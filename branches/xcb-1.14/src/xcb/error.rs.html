@@ -182,10 +182,10 @@
 <span id="182">182</span>
 <span id="183">183</span>
 <span id="184">184</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base::FromWireError</span>;
+</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base::ResolveWireError</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">ErrorExtensionData</span>, <span class="ident">Extension</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xproto</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::x</span>;
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::damage</span>;
@@ -225,7 +225,7 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ProtocolError</span> {
-    <span class="ident">X</span>(<span class="ident">xproto::Error</span>),
+    <span class="ident">X</span>(<span class="ident">x::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
     <span class="ident">Damage</span>(<span class="ident">damage::Error</span>),
@@ -276,7 +276,7 @@
             <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">ext</span> {
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
                 <span class="ident">Extension::Damage</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Damage</span>(<span class="ident">damage::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Damage</span>(<span class="ident">damage::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -284,7 +284,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
                 <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Glx</span>(<span class="ident">glx::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Glx</span>(<span class="ident">glx::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -292,7 +292,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
                 <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::RandR</span>(<span class="ident">randr::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::RandR</span>(<span class="ident">randr::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -300,7 +300,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
                 <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Shm</span>(<span class="ident">shm::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Shm</span>(<span class="ident">shm::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -308,7 +308,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
                 <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Sync</span>(<span class="ident">sync::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Sync</span>(<span class="ident">sync::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -316,7 +316,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
                 <span class="ident">Extension::Xf86VidMode</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Xf86VidMode</span>(<span class="ident">xf86vidmode::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Xf86VidMode</span>(<span class="ident">xf86vidmode::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -324,7 +324,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
                 <span class="ident">Extension::XFixes</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::XFixes</span>(<span class="ident">xfixes::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::XFixes</span>(<span class="ident">xfixes::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -332,7 +332,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
                 <span class="ident">Extension::Input</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -340,7 +340,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
                 <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Xkb</span>(<span class="ident">xkb::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Xkb</span>(<span class="ident">xkb::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -348,7 +348,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
                 <span class="ident">Extension::XPrint</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::XPrint</span>(<span class="ident">xprint::Error::from_wire_error</span>(
+                    <span class="kw">return</span> <span class="ident">ProtocolError::XPrint</span>(<span class="ident">xprint::Error::resolve_wire_error</span>(
                         <span class="ident">data</span>.<span class="ident">first_error</span>,
                         <span class="ident">error</span>,
                     ));
@@ -356,7 +356,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
                 <span class="ident">Extension::Xv</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">ProtocolError::Xv</span>(<span class="ident">xv::Error::from_wire_error</span>(<span class="ident">data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>));
+                    <span class="kw">return</span> <span class="ident">ProtocolError::Xv</span>(<span class="ident">xv::Error::resolve_wire_error</span>(<span class="ident">data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>));
                 }
 
                 <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> {}
@@ -364,7 +364,7 @@
         }
     }
 
-    <span class="ident">ProtocolError::X</span>(<span class="ident">xproto::Error::from_wire_error</span>(<span class="number">0</span>, <span class="ident">error</span>))
+    <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::resolve_wire_error</span>(<span class="number">0</span>, <span class="ident">error</span>))
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>

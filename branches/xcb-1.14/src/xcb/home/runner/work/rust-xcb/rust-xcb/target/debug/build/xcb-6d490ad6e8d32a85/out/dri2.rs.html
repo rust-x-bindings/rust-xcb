@@ -2609,6 +2609,72 @@
 <span id="2609">2609</span>
 <span id="2610">2610</span>
 <span id="2611">2611</span>
+<span id="2612">2612</span>
+<span id="2613">2613</span>
+<span id="2614">2614</span>
+<span id="2615">2615</span>
+<span id="2616">2616</span>
+<span id="2617">2617</span>
+<span id="2618">2618</span>
+<span id="2619">2619</span>
+<span id="2620">2620</span>
+<span id="2621">2621</span>
+<span id="2622">2622</span>
+<span id="2623">2623</span>
+<span id="2624">2624</span>
+<span id="2625">2625</span>
+<span id="2626">2626</span>
+<span id="2627">2627</span>
+<span id="2628">2628</span>
+<span id="2629">2629</span>
+<span id="2630">2630</span>
+<span id="2631">2631</span>
+<span id="2632">2632</span>
+<span id="2633">2633</span>
+<span id="2634">2634</span>
+<span id="2635">2635</span>
+<span id="2636">2636</span>
+<span id="2637">2637</span>
+<span id="2638">2638</span>
+<span id="2639">2639</span>
+<span id="2640">2640</span>
+<span id="2641">2641</span>
+<span id="2642">2642</span>
+<span id="2643">2643</span>
+<span id="2644">2644</span>
+<span id="2645">2645</span>
+<span id="2646">2646</span>
+<span id="2647">2647</span>
+<span id="2648">2648</span>
+<span id="2649">2649</span>
+<span id="2650">2650</span>
+<span id="2651">2651</span>
+<span id="2652">2652</span>
+<span id="2653">2653</span>
+<span id="2654">2654</span>
+<span id="2655">2655</span>
+<span id="2656">2656</span>
+<span id="2657">2657</span>
+<span id="2658">2658</span>
+<span id="2659">2659</span>
+<span id="2660">2660</span>
+<span id="2661">2661</span>
+<span id="2662">2662</span>
+<span id="2663">2663</span>
+<span id="2664">2664</span>
+<span id="2665">2665</span>
+<span id="2666">2666</span>
+<span id="2667">2667</span>
+<span id="2668">2668</span>
+<span id="2669">2669</span>
+<span id="2670">2670</span>
+<span id="2671">2671</span>
+<span id="2672">2672</span>
+<span id="2673">2673</span>
+<span id="2674">2674</span>
+<span id="2675">2675</span>
+<span id="2676">2676</span>
+<span id="2677">2677</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
@@ -2642,7 +2708,7 @@
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">reply</span>.<span class="ident">is_null</span>(), <span class="string">&quot;Could not fetch DRI2 extension data&quot;</span>);
-        <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xproto::QueryExtensionReply::from_ptr</span>(<span class="ident">reply</span>);
+        <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xproto::QueryExtensionReply::from_raw</span>(<span class="ident">reply</span>);
         <span class="kw">if</span> <span class="op">!</span><span class="ident">reply</span>.<span class="ident">present</span>() {
             <span class="ident">std::mem::forget</span>(<span class="ident">reply</span>);
             <span class="kw">return</span> <span class="prelude-val">None</span>;
@@ -2911,8 +2977,8 @@
     <span class="ident">InvalidateBuffers</span>(<span class="ident">InvalidateBuffersEvent</span>),
 }
 
-<span class="kw">impl</span> <span class="ident">base::FromWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+<span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">event</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">event</span>).<span class="ident">response_type</span> <span class="op">&amp;</span> <span class="number">0x7F</span>;
         <span class="macro">debug_assert!</span>(<span class="ident">response_type</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;This is not an event but an error!&quot;</span>);
@@ -3127,12 +3193,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">QueryVersionReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -3176,16 +3242,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -3210,9 +3282,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
@@ -3226,7 +3298,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
@@ -3282,12 +3354,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConnectReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ConnectReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_len</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
@@ -3391,16 +3463,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">ConnectReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">ConnectReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ConnectReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -3425,9 +3503,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">ConnectCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">ConnectCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">ConnectCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">ConnectCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">ConnectReply</span>;
 }
 
@@ -3441,7 +3519,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedConnectCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedConnectCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">ConnectReply</span>;
 }
 
@@ -3497,12 +3575,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuthenticateReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">AuthenticateReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -3538,16 +3616,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">AuthenticateReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">AuthenticateReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">AuthenticateReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -3572,9 +3656,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">AuthenticateCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">AuthenticateCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">AuthenticateCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">AuthenticateCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">AuthenticateReply</span>;
 }
 
@@ -3588,7 +3672,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedAuthenticateCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedAuthenticateCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">AuthenticateReply</span>;
 }
 
@@ -3734,12 +3818,12 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroyDrawable</span> {}
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetBuffersReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GetBuffersReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_len</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
@@ -3824,16 +3908,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetBuffersReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetBuffersReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">GetBuffersReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -3858,9 +3948,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetBuffersCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetBuffersCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetBuffersCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetBuffersCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetBuffersReply</span>;
 }
 
@@ -3874,7 +3964,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetBuffersCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetBuffersCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetBuffersReply</span>;
 }
 
@@ -3935,12 +4025,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CopyRegionReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">CopyRegionReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -3968,16 +4058,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">CopyRegionReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">CopyRegionReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">CopyRegionReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4002,9 +4098,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">CopyRegionCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">CopyRegionCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">CopyRegionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">CopyRegionCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">CopyRegionReply</span>;
 }
 
@@ -4018,7 +4114,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedCopyRegionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedCopyRegionCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">CopyRegionReply</span>;
 }
 
@@ -4078,12 +4174,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetBuffersWithFormatReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GetBuffersWithFormatReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_len</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
@@ -4168,16 +4264,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4202,9 +4304,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetBuffersWithFormatCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetBuffersWithFormatReply</span>;
 }
 
@@ -4218,7 +4320,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetBuffersWithFormatCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetBuffersWithFormatCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetBuffersWithFormatReply</span>;
 }
 
@@ -4279,12 +4381,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SwapBuffersReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">SwapBuffersReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -4328,16 +4430,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">SwapBuffersReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">SwapBuffersReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">SwapBuffersReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4362,9 +4470,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">SwapBuffersCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">SwapBuffersCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">SwapBuffersCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">SwapBuffersCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">SwapBuffersReply</span>;
 }
 
@@ -4378,7 +4486,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedSwapBuffersCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedSwapBuffersCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">SwapBuffersReply</span>;
 }
 
@@ -4444,12 +4552,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetMscReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GetMscReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -4525,16 +4633,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetMscReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetMscReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">GetMscReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4559,9 +4673,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetMscCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetMscCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetMscCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetMscCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetMscReply</span>;
 }
 
@@ -4575,7 +4689,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetMscCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetMscCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetMscReply</span>;
 }
 
@@ -4629,12 +4743,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaitMscReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">WaitMscReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -4710,16 +4824,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">WaitMscReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">WaitMscReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">WaitMscReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4744,9 +4864,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">WaitMscCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">WaitMscCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">WaitMscCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">WaitMscCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">WaitMscReply</span>;
 }
 
@@ -4760,7 +4880,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedWaitMscCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedWaitMscCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">WaitMscReply</span>;
 }
 
@@ -4826,12 +4946,12 @@
 }
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">WaitSbcReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">WaitSbcReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -4907,16 +5027,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">WaitSbcReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">WaitSbcReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">WaitSbcReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -4941,9 +5067,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">WaitSbcCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">WaitSbcCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">WaitSbcCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">WaitSbcCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">WaitSbcReply</span>;
 }
 
@@ -4957,7 +5083,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedWaitSbcCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedWaitSbcCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">WaitSbcReply</span>;
 }
 
@@ -5062,12 +5188,12 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SwapInterval</span> {}
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetParamReply</span> {
-    <span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
+    <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">GetParamReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
-        <span class="self">self</span>.<span class="ident">ptr</span>
+        <span class="self">self</span>.<span class="ident">raw</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u8</span> {
@@ -5116,16 +5242,22 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetParamReply</span> {
-    <span class="kw">fn</span> <span class="ident">from_ptr</span>(<span class="ident">ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">ptr</span> }
+<span class="kw">impl</span> <span class="ident">base::Reply</span> <span class="kw">for</span> <span class="ident">GetParamReply</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+        <span class="self">Self</span> { <span class="ident">raw</span> }
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">raw</span>;
+        <span class="ident">std::mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
     }
 }
 
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">GetParamReply</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
-            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
         }
     }
 }
@@ -5150,9 +5282,9 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetParamCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetParamCookie</span> {}
 
-<span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetParamCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetParamCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetParamReply</span>;
 }
 
@@ -5166,7 +5298,7 @@
     }
 }
 
-<span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetParamCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetParamCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetParamReply</span>;
 }
 

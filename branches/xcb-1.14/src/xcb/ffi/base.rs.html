@@ -584,7 +584,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Forces any buffered output to be written to the server. Blocks</span>
     <span class="doccomment">/// until the write is complete.</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_flush</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_flush</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
     <span class="doccomment">/// @brief Returns the maximum request length that this server accepts.</span>
     <span class="doccomment">/// @param c The connection to the X server.</span>
@@ -745,7 +745,7 @@
     <span class="doccomment">/// The result must not be freed. This storage is managed by the cache</span>
     <span class="doccomment">/// itself.</span>
     <span class="comment">// We trick the result from `*const xcb_query_extension_reply_t` to `*const u8` to be compatible with</span>
-    <span class="comment">// `xproto::QueryExtensionReply::from_data`</span>
+    <span class="comment">// `x::QueryExtensionReply::from_raw`</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_extension_data</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">ext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span>,
@@ -779,7 +779,7 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// The result must not be freed.</span>
     <span class="comment">// We trick the result from `*const xcb_setup_t` to `*const u8` to be compatible with</span>
-    <span class="comment">// `xproto::Setup::from_data`</span>
+    <span class="comment">// `x::Setup::from_data`</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_setup</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
 
     <span class="doccomment">/// @brief Access the file descriptor of the connection.</span>

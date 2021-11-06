@@ -311,6 +311,10 @@
 <span id="311">311</span>
 <span id="312">312</span>
 <span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -352,7 +356,7 @@
 
 <span class="doccomment">//! Rust bindings to the XCB library.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The X protocol C-language Binding (XCB - https://xcb.freedesktop.org/) is a</span>
+<span class="doccomment">//! The X protocol C-language Binding (XCB - &lt;https://xcb.freedesktop.org/&gt;) is a</span>
 <span class="doccomment">//! replacement for Xlib featuring a small footprint, latency hiding,</span>
 <span class="doccomment">//! direct access to the protocol, improved threading support, and extensibility.</span>
 <span class="doccomment">//!</span>
@@ -372,17 +376,14 @@
 <span class="doccomment">//! The client listens to events with calls such as `Connection::wait_for_event`</span>
 <span class="doccomment">//! (blocking) or `Connection::poll_for_event` (non-blocking).</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! API documentation is detailed in modules `base` and `xproto`.</span>
+<span class="doccomment">//! The `x` module contains definitions of the core X protocol.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!  - `base`: contains `Connection` and a few utils</span>
-<span class="doccomment">//!  - `xproto`: X protocol requests and events</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! X protocol extensions are activated with cargo features</span>
+<span class="doccomment">//! The protocol extensions are activated with cargo features</span>
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">base</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">error</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">event</span>;
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ext</span>;
+<span class="kw">mod</span> <span class="ident">base</span>;
+<span class="kw">mod</span> <span class="ident">error</span>;
+<span class="kw">mod</span> <span class="ident">event</span>;
+<span class="kw">mod</span> <span class="ident">ext</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
@@ -390,8 +391,8 @@
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x</span> {
-    <span class="doccomment">//! module containing all the definitions of the core X protocol</span>
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::base</span>::{<span class="ident">COPY_FROM_PARENT</span>, <span class="ident">CURRENT_TIME</span>, <span class="ident">NO_SYMBOL</span>};
+    <span class="doccomment">//! The core X protocol definitions</span>
+
     <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xproto</span>::<span class="kw-2">*</span>;
 }
 
@@ -415,13 +416,20 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">test</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xproto</span> {
+<span class="kw">mod</span> <span class="ident">xproto</span> {
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::new_ret_no_self</span>)]</span>
     <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
 
-    <span class="doccomment">//! module containing all the definitions of the core X protocol</span>
+    <span class="doccomment">/// `COPY_FROM_PARENT` can be used for many `CreateWindow` fields</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COPY_FROM_PARENT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// `CURRENT_TIME` can be used in most requests that take a `Timestamp`</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURRENT_TIME</span>: <span class="ident">Timestamp</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// `NO_SYMBOL` fills in unused entries in `Keysym` tables</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NO_SYMBOL</span>: <span class="ident">Keysym</span> <span class="op">=</span> <span class="number">0</span>;
 
     <span class="doccomment">/// Trait for element in a property list</span>
     <span class="doccomment">///</span>
