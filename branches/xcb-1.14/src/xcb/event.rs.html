@@ -216,27 +216,6 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
-<span id="219">219</span>
-<span id="220">220</span>
-<span id="221">221</span>
-<span id="222">222</span>
-<span id="223">223</span>
-<span id="224">224</span>
-<span id="225">225</span>
-<span id="226">226</span>
-<span id="227">227</span>
-<span id="228">228</span>
-<span id="229">229</span>
-<span id="230">230</span>
-<span id="231">231</span>
-<span id="232">232</span>
-<span id="233">233</span>
-<span id="234">234</span>
-<span id="235">235</span>
-<span id="236">236</span>
-<span id="237">237</span>
-<span id="238">238</span>
-<span id="239">239</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="ident">ResolveWireEvent</span>, <span class="ident">ResolveWireGeEvent</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">EventExtensionData</span>, <span class="ident">Extension</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
@@ -370,18 +349,12 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
                 <span class="ident">Extension::Dri2</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Dri2</span>(<span class="ident">dri2::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Dri2</span>(<span class="ident">dri2::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
                 <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Glx</span>(<span class="ident">glx::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Glx</span>(<span class="ident">glx::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
@@ -394,10 +367,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
                 <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::RandR</span>(<span class="ident">randr::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::RandR</span>(<span class="ident">randr::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
@@ -410,26 +380,17 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
                 <span class="ident">Extension::Shape</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Shape</span>(<span class="ident">shape::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Shape</span>(<span class="ident">shape::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
                 <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Shm</span>(<span class="ident">shm::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Shm</span>(<span class="ident">shm::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
                 <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Sync</span>(<span class="ident">sync::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Sync</span>(<span class="ident">sync::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
@@ -450,10 +411,7 @@
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
                 <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="kw">return</span> <span class="ident">Event::Xkb</span>(<span class="ident">xkb::Event::resolve_wire_event</span>(
-                        <span class="ident">data</span>.<span class="ident">first_event</span>,
-                        <span class="ident">event</span>,
-                    ));
+                    <span class="kw">return</span> <span class="ident">Event::Xkb</span>(<span class="ident">xkb::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>));
                 }
 
                 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
