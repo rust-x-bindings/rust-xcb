@@ -1,7 +1,4 @@
-
 # Rust XCB
-
-[![Build Status](https://travis-ci.org/rtbo/rust-xcb.svg?branch=master)](https://travis-ci.org/rtbo/rust-xcb)
 
 Rust-XCB is a set of bindings and wrappers for [XCB](http://xcb.freedesktop.org). It uses the XML
 protocol descriptions from XCB to generate the bindings and the wrappers.
@@ -14,12 +11,12 @@ xcb = "0.10"
 ```
 
 __Documentation__:
-http://rtbo.github.io/rust-xcb/xcb/index.html
+http://rust-x-bindings.github.io/rust-xcb/xcb/index.html
 
 ## The bindings
 
-The bindings are generated from the `rs_client.py` script with help from the `xcbgen` library (also
-from XCB). The bindings are inside the `ffi` module, which also contains the hand-written bindings
+The bindings are generated from the build script written in Rust.
+The bindings are inside the `ffi` module, which also contains the hand-written bindings
 to the core library.
 
 Bindings reflect the C API almost one for one.
@@ -32,8 +29,8 @@ object "types" and other safe helpers.
 
 ## Example
 
-Drawing example (checkout for more [here](https://github.com/rtbo/rust-xcb/tree/master/examples)
-and also [here](https://github.com/rtbo/toy_xcb))
+Drawing example (checkout for more [here](https://github.com/rust-x-bindings/rust-xcb/tree/master/examples)
+and also [here](https://github.com/rust-x-bindings/toy_xcb))
 
 ```rust
 extern crate xcb;
