@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["MAJOR_VERSION",""],["MINOR_VERSION",""],["VERSION_STRING",""],["XNAME",""]],"enum":[["Error",""],["ReportLevel",""]],"struct":[["Add",""],["Create",""],["Damage",""],["Destroy",""],["QueryVersion",""],["QueryVersionCookie",""],["QueryVersionReply",""],["Subtract",""]]});

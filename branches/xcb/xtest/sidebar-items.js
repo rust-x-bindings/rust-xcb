@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["MAJOR_VERSION",""],["MINOR_VERSION",""],["VERSION_STRING",""],["XNAME",""]],"enum":[["Cursor",""]],"struct":[["CompareCursor",""],["CompareCursorCookie",""],["CompareCursorReply",""],["FakeInput",""],["GetVersion",""],["GetVersionCookie",""],["GetVersionReply",""],["GrabControl",""]]});
