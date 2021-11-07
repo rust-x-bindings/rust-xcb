@@ -1471,13 +1471,6 @@
 <span id="1471">1471</span>
 <span id="1472">1472</span>
 <span id="1473">1473</span>
-<span id="1474">1474</span>
-<span id="1475">1475</span>
-<span id="1476">1476</span>
-<span id="1477">1477</span>
-<span id="1478">1478</span>
-<span id="1479">1479</span>
-<span id="1480">1480</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">ErrorExtensionData</span>, <span class="ident">EventExtensionData</span>, <span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2562,12 +2555,7 @@
 
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">stamp</span>: <span class="ident">Timestamp</span> <span class="op">=</span> <span class="number">0</span>;
 
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">xcb_register_for_special_xge</span>(
-                <span class="self">self</span>.<span class="ident">c</span>,
-                <span class="ident">ext</span>,
-                <span class="ident">XGE::NUMBER</span>,
-                <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">stamp</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
-            );
+            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">xcb_register_for_special_xge</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">ext</span>, <span class="ident">XGE::NUMBER</span>, <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">stamp</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
 
             <span class="ident">SpecialEventId</span> { <span class="ident">raw</span>, <span class="ident">stamp</span> }
         }
@@ -2819,8 +2807,7 @@
     {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
-            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span>
-                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
+            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
             <span class="kw">match</span> (<span class="ident">reply</span>.<span class="ident">is_null</span>(), <span class="ident">error</span>.<span class="ident">is_null</span>()) {
                 (<span class="bool-val">true</span>, <span class="bool-val">true</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="self">self</span>.<span class="ident">has_error</span>()<span class="question-mark">?</span>;
@@ -2860,8 +2847,7 @@
         <span class="ident">C</span>: <span class="ident">UncheckedCookieWithReply</span>,
     {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span>
-                <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="ident">ptr::null_mut</span>());
+            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="ident">ptr::null_mut</span>());
             <span class="kw">if</span> <span class="ident">reply</span>.<span class="ident">is_null</span>() {
                 <span class="self">self</span>.<span class="ident">has_error</span>()<span class="question-mark">?</span>;
                 <span class="prelude-val">Ok</span>(<span class="prelude-val">None</span>)
