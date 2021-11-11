@@ -1,39 +1,49 @@
-extern crate xcb;
-
 use xcb::randr;
 
-fn main() {
-    let (con, screen_num) = xcb::Connection::connect(None).unwrap();
-    let screen = con.get_setup().roots().nth(screen_num as usize).unwrap();
+fn main() -> xcb::Result<()> {
+    let (conn, screen_num) =
+        xcb::Connection::connect_with_extensions(None, &[xcb::Extension::RandR], &[]).unwrap();
+    let screen = conn.get_setup().roots().nth(screen_num as usize).unwrap();
 
-    let randr_base = con
-        .get_extension_data(&mut randr::id())
-        .unwrap()
-        .first_event();
-    let _ = randr::select_input(&con, screen.root(), randr::NOTIFY_MASK_CRTC_CHANGE as u16)
-        .request_check();
+    conn.check_request(conn.send_request_checked(&randr::SelectInput {
+        window: screen.root(),
+        enable: randr::NotifyMask::CRTC_CHANGE,
+    }))?;
 
     loop {
-        con.flush();
-        let event = con.wait_for_event().unwrap();
+        conn.flush()?;
 
-        if event.response_type() == randr_base + randr::NOTIFY {
-            let ev: &randr::NotifyEvent = unsafe { xcb::cast_event(&event) };
-            let d = ev.u().cc();
-            println!(
-                "received CRTC_NOTIFY event:\n\
-                     \ttimestamp: {}, window: {}, crtc: {}, mode: {}, rotation: {}\n\
+        let event = match conn.wait_for_event() {
+            Err(xcb::Error::Connection(err)) => {
+                panic!("unexpected I/O error: {}", err);
+            }
+            Err(xcb::Error::Protocol(err)) => {
+                panic!("unexpected protocol error: {:#?}", err);
+            }
+            Ok(event) => event,
+        };
+
+        match event {
+            xcb::Event::RandR(randr::Event::Notify(ev)) => match ev.u() {
+                randr::NotifyData::Cc(cc) => {
+                    println!(
+                        "received CRTC_CHANGE event:\n\
+                     \ttimestamp: {}, window: {:?}, crtc: {:?}, mode: {:?}, rotation: {:?}\n\
                      \tx: {}, y: {}, width: {}, height: {}",
-                d.timestamp(),
-                d.window(),
-                d.crtc(),
-                d.mode(),
-                d.rotation(),
-                d.x(),
-                d.y(),
-                d.width(),
-                d.height()
-            );
+                        cc.timestamp(),
+                        cc.window(),
+                        cc.crtc(),
+                        cc.mode(),
+                        cc.rotation(),
+                        cc.x(),
+                        cc.y(),
+                        cc.width(),
+                        cc.height()
+                    );
+                }
+                _ => {}
+            },
+            _ => {}
         }
     }
 }

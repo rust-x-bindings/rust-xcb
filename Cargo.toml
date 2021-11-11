@@ -9,8 +9,9 @@ readme = "README.md"
 keywords = ["xcb", "window", "xlib", "x11", "opengl"]
 license = "MIT"
 build = "build/main.rs"
-exclude = ["scripts", ".github", "examples/must_fail_*"]
+exclude = ["scripts", ".github", "examples/todo/*"]
 autoexamples = false
+edition = "2018"
 
 [build-dependencies]
 libc = "0.2.102"
@@ -19,6 +20,7 @@ quick-xml = "0.22.0"
 [dependencies]
 libc = "0.2.102"
 log = "0.4.14"
+bitflags = "1.3.2"
 
 [dependencies.x11]
 version = "2.19.0"
@@ -34,7 +36,7 @@ damage = [ "xfixes" ]
 dpms = []
 dri2 = []
 dri3 = []
-genericevent = []
+ge = []
 glx = []
 present = [ "render", "xfixes", "sync" ]
 randr = [ "render" ]
@@ -50,11 +52,11 @@ xf86dri = []
 xf86vidmode = []
 xfixes = [ "render", "shape" ]
 xinerama = []
-# input = [ "xfixes" ]
+xinput = [ "xfixes" ]
 xkb = []
-x_print = []
-selinux = []
-test = []
+xprint = []
+xselinux = []
+xtest = []
 xvmc = [ "xv" ]
 xv = [ "shm" ]
 
@@ -62,7 +64,7 @@ xv = [ "shm" ]
 gl = "0.14.0"
 
 [dev-dependencies.x11]
-version = "2.19.0"
+version = "2.19.1"
 features = ["xlib", "glx"]
 
 [[example]]
@@ -74,26 +76,22 @@ name = "connect_str"
 [[example]]
 name = "connect"
 
-[[example]]
-name = "draw_root_window"
+# [[example]]
+# name = "draw_root_window"
 
 [[example]]
 name = "drawing"
 
 [[example]]
 name = "opengl_window"
-required-features = ["xlib_xcb", "dri2"]
-
-[[example]]
-name = "print_setup"
+required-features = ["glx", "xlib_xcb", "dri2"]
 
 [[example]]
 name = "randr_crtc_info"
 required-features = ["randr"]
 
 [[example]]
-name = "ffi_randr_crtc_info"
-required-features = ["randr"]
+name = "print_setup"
 
 [[example]]
 name = "randr_crtc_listen"
@@ -110,17 +108,10 @@ required-features = ["randr"]
 [[example]]
 name = "screen_info"
 
-[[example]]
-name = "ffi_screen_info"
-
-[[example]]
-name = "threaded_window"
-required-features = ["thread"]
+# [[example]]
+# name = "threaded_window"
+# required-features = ["thread"]
 
 [[example]]
 name = "xkb_init"
-required-features = ["xkb"]
-
-[[example]]
-name = "ffi_xkb_init"
 required-features = ["xkb"]

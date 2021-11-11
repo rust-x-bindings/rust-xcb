@@ -4,6 +4,8 @@
  *         Remi Thebault <remi.thebault@gmail.com>
  *         Thomas Bracht Laumann Jespersen <laumann.thomas@gmail.com>
  *
+ * Copyright (c) 2017-2021 Remi Thebault <remi.thebault@gmail.com>
+ *
  * Permission is hereby granted, free of charge, to any
  * person obtaining a copy of this software and associated
  * documentation files (the "Software"), to deal in the
@@ -31,12 +33,13 @@
 
 #![allow(dead_code)]
 #![allow(unused_imports)]
-#![allow(non_snake_case)]
-#![allow(unused_unsafe)]
+#![allow(unused_parens)]
+#![allow(clippy::len_without_is_empty)]
+#![allow(clippy::diverging_sub_expression)]
 
 //! Rust bindings to the XCB library.
 //!
-//! The X protocol C-language Binding (XCB - https://xcb.freedesktop.org/) is a
+//! The X protocol C-language Binding (XCB - <https://xcb.freedesktop.org/>) is a
 //! replacement for Xlib featuring a small footprint, latency hiding,
 //! direct access to the protocol, improved threading support, and extensibility.
 //!
@@ -49,49 +52,103 @@
 //!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)
 //!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)
 //!
-//! Void requests are normally unchecked. They are issued by the client, that
-//! will normally not do anything else about it. For each such request, it exists
-//! a variant with `_checked` suffix (e.g. `change_property` and `change_property_checked`)
-//! that allows to receive a confirmation reply from the server via
-//! `Connection::request_check`.
-//!
-//! Conversely, non-void requests are normally checked. When the client retrieves
-//! the `Reply`, it can check for an `Error`. For each such request, it exists a variant
-//! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).
-//! If this variant is used, the `Reply` is retrieved assuming that there was no error.
+//! Requests are passed to the server by filling a request structure e.g. `x::CreateWindow`
+//! and passing it to `Connection::send_request`.
 //!
 //! The server can also communicate with clients by sending `Event`s.
 //! The client listens to events with calls such as `Connection::wait_for_event`
 //! (blocking) or `Connection::poll_for_event` (non-blocking).
 //!
-//! API documentation is detailed in modules `base` and `xproto`.
+//! The `x` module contains definitions of the core X protocol.
 //!
-//!  - `base`: contains `Connection` and a few utils
-//!  - `xproto`: X protocol requests and events
-//!
-//! X protocol extensions are activated with cargo features
+//! The protocol extensions are activated with cargo features
 
-extern crate libc;
-#[cfg(feature = "xlib_xcb")]
-extern crate x11;
+mod base;
+mod error;
+mod event;
+mod ext;
 
-#[macro_use]
-extern crate log;
+pub use base::*;
+pub use error::*;
+pub use event::*;
+pub use ext::*;
 
-pub mod base;
+pub mod x {
+    //! The core X protocol definitions
 
-pub mod xproto {
+    pub use super::xproto::*;
+}
+
+pub mod ffi {
+    #![allow(non_camel_case_types)]
+    #![allow(improper_ctypes)]
+
+    pub(crate) mod base;
+    pub(crate) mod ext;
+
+    #[cfg(feature = "xlib_xcb")]
+    pub(crate) mod xlib_xcb;
+
+    pub use base::*;
+    pub use ext::*;
+
+    #[cfg(feature = "xlib_xcb")]
+    pub use xlib_xcb::*;
+}
+
+#[cfg(test)]
+mod test;
+
+mod xproto {
+    #![allow(unused_variables)]
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::new_ret_no_self)]
+    #![allow(clippy::too_many_arguments)]
+
+    /// `COPY_FROM_PARENT` can be used for many `CreateWindow` fields
+    pub const COPY_FROM_PARENT: u32 = 0;
+
+    /// `CURRENT_TIME` can be used in most requests that take a `Timestamp`
+    pub const CURRENT_TIME: Timestamp = 0;
+
+    /// `NO_SYMBOL` fills in unused entries in `Keysym` tables
+    pub const NO_SYMBOL: Keysym = 0;
+
+    /// Trait for element in a property list
+    ///
+    /// In events (e.g. `GetProperty::value`), it allows to assert that the format
+    /// correspond to the type cast and therefore to do the cast safely at runtime
+    ///
+    /// In request (e.g. `ChangeProperty::data`), it allows to infer the format value
+    /// from the type of passed data
+    pub trait PropEl {
+        const FORMAT: u8;
+    }
+
+    impl PropEl for u8 {
+        const FORMAT: u8 = 8;
+    }
+
+    impl PropEl for u16 {
+        const FORMAT: u8 = 16;
+    }
+
+    impl PropEl for u32 {
+        const FORMAT: u8 = 32;
+    }
+
+    impl PropEl for Atom {
+        const FORMAT: u8 = 32;
+    }
+
     include!(concat!(env!("OUT_DIR"), "/xproto.rs"));
 }
-pub mod big_requests {
-    include!(concat!(env!("OUT_DIR"), "/big_requests.rs"));
+pub mod bigreq {
+    include!(concat!(env!("OUT_DIR"), "/bigreq.rs"));
 }
 pub mod xc_misc {
     include!(concat!(env!("OUT_DIR"), "/xc_misc.rs"));
 }
-
-pub use base::*;
-pub use xproto::*;
 
 #[cfg(feature = "composite")]
 pub mod composite {
@@ -110,6 +167,7 @@ pub mod dpms {
 
 #[cfg(feature = "dri2")]
 pub mod dri2 {
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/dri2.rs"));
 }
 
@@ -118,58 +176,74 @@ pub mod dri3 {
     include!(concat!(env!("OUT_DIR"), "/dri3.rs"));
 }
 
-#[cfg(feature = "genericevent")]
-pub mod genericevent {
-    include!(concat!(env!("OUT_DIR"), "/genericevent.rs"));
+#[cfg(feature = "ge")]
+pub mod ge {
+    include!(concat!(env!("OUT_DIR"), "/ge.rs"));
 }
 
 #[cfg(feature = "glx")]
 pub mod glx {
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/glx.rs"));
 }
 
-// #[cfg(feature = "input")]
-// pub mod input {
-//     include!(concat!(env!("OUT_DIR"), "/input.rs"));
-// }
+#[cfg(feature = "xinput")]
+pub mod xinput {
+    #![allow(unused_variables)]
+    #![allow(unused_mut)]
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
+    include!(concat!(env!("OUT_DIR"), "/xinput.rs"));
+}
 
 #[cfg(feature = "present")]
 pub mod present {
+    #![allow(clippy::unit_arg)]
     include!(concat!(env!("OUT_DIR"), "/present.rs"));
 }
 
 #[cfg(feature = "randr")]
 pub mod randr {
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/randr.rs"));
 }
 
 #[cfg(feature = "record")]
 pub mod record {
+    #![allow(clippy::unit_arg)]
     include!(concat!(env!("OUT_DIR"), "/record.rs"));
 }
 
 #[cfg(feature = "render")]
 pub mod render {
+    #![allow(unused_variables)]
+    #![allow(clippy::unit_arg)]
     include!(concat!(env!("OUT_DIR"), "/render.rs"));
 }
 
 #[cfg(feature = "res")]
 pub mod res {
+    #![allow(unused_variables)]
+    #![allow(clippy::unit_arg)]
     include!(concat!(env!("OUT_DIR"), "/res.rs"));
 }
 
 #[cfg(feature = "screensaver")]
 pub mod screensaver {
+    #![allow(unused_variables)]
     include!(concat!(env!("OUT_DIR"), "/screensaver.rs"));
 }
 
-#[cfg(feature = "selinux")]
-pub mod selinux {
-    include!(concat!(env!("OUT_DIR"), "/selinux.rs"));
+#[cfg(feature = "xselinux")]
+pub mod xselinux {
+    #![allow(clippy::unit_arg)]
+    include!(concat!(env!("OUT_DIR"), "/xselinux.rs"));
 }
 
 #[cfg(feature = "shape")]
 pub mod shape {
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/shape.rs"));
 }
 
@@ -180,17 +254,21 @@ pub mod shm {
 
 #[cfg(feature = "sync")]
 pub mod sync {
+    #![allow(unused_variables)]
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/sync.rs"));
 }
 
-#[cfg(feature = "test")]
-pub mod test {
-    include!(concat!(env!("OUT_DIR"), "/test.rs"));
+#[cfg(feature = "xtest")]
+pub mod xtest {
+    include!(concat!(env!("OUT_DIR"), "/xtest.rs"));
 }
 
-#[cfg(feature = "x_print")]
-pub mod x_print {
-    include!(concat!(env!("OUT_DIR"), "/x_print.rs"));
+#[cfg(feature = "xprint")]
+pub mod xprint {
+    #![allow(clippy::unit_arg)]
+    include!(concat!(env!("OUT_DIR"), "/xprint.rs"));
 }
 
 #[cfg(feature = "xevie")]
@@ -220,6 +298,9 @@ pub mod xinerama {
 
 #[cfg(feature = "xkb")]
 pub mod xkb {
+    #![allow(unused_variables)]
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/xkb.rs"));
 }
 
@@ -230,169 +311,7 @@ pub mod xvmc {
 
 #[cfg(feature = "xv")]
 pub mod xv {
+    #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/xv.rs"));
-}
-
-pub mod ffi {
-    #![allow(non_camel_case_types)]
-    #![allow(improper_ctypes)]
-
-    pub mod base;
-    pub mod ext;
-
-    pub mod xproto {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xproto.rs"));
-    }
-    pub mod big_requests {
-        include!(concat!(env!("OUT_DIR"), "/ffi/big_requests.rs"));
-    }
-    pub mod xc_misc {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xc_misc.rs"));
-    }
-
-    pub use ffi::base::*;
-    pub use ffi::xproto::*;
-
-    #[cfg(feature = "xlib_xcb")]
-    pub mod xlib_xcb;
-
-    #[cfg(feature = "composite")]
-    pub mod composite {
-        include!(concat!(env!("OUT_DIR"), "/ffi/composite.rs"));
-    }
-
-    #[cfg(feature = "damage")]
-    pub mod damage {
-        include!(concat!(env!("OUT_DIR"), "/ffi/damage.rs"));
-    }
-
-    #[cfg(feature = "dpms")]
-    pub mod dpms {
-        include!(concat!(env!("OUT_DIR"), "/ffi/dpms.rs"));
-    }
-
-    #[cfg(feature = "dri2")]
-    pub mod dri2 {
-        include!(concat!(env!("OUT_DIR"), "/ffi/dri2.rs"));
-    }
-
-    #[cfg(feature = "dri3")]
-    pub mod dri3 {
-        include!(concat!(env!("OUT_DIR"), "/ffi/dri3.rs"));
-    }
-
-    #[cfg(feature = "genericevent")]
-    pub mod genericevent {
-        include!(concat!(env!("OUT_DIR"), "/ffi/genericevent.rs"));
-    }
-
-    #[cfg(feature = "glx")]
-    pub mod glx {
-        include!(concat!(env!("OUT_DIR"), "/ffi/glx.rs"));
-    }
-
-    // #[cfg(feature = "input")]
-    // pub mod input {
-    //     include!(concat!(env!("OUT_DIR"), "/ffi/input.rs"));
-    // }
-
-    #[cfg(feature = "present")]
-    pub mod present {
-        include!(concat!(env!("OUT_DIR"), "/ffi/present.rs"));
-    }
-
-    #[cfg(feature = "randr")]
-    pub mod randr {
-        include!(concat!(env!("OUT_DIR"), "/ffi/randr.rs"));
-    }
-
-    #[cfg(feature = "record")]
-    pub mod record {
-        include!(concat!(env!("OUT_DIR"), "/ffi/record.rs"));
-    }
-
-    #[cfg(feature = "render")]
-    pub mod render {
-        include!(concat!(env!("OUT_DIR"), "/ffi/render.rs"));
-    }
-
-    #[cfg(feature = "res")]
-    pub mod res {
-        include!(concat!(env!("OUT_DIR"), "/ffi/res.rs"));
-    }
-
-    #[cfg(feature = "screensaver")]
-    pub mod screensaver {
-        include!(concat!(env!("OUT_DIR"), "/ffi/screensaver.rs"));
-    }
-
-    #[cfg(feature = "selinux")]
-    pub mod selinux {
-        include!(concat!(env!("OUT_DIR"), "/ffi/selinux.rs"));
-    }
-
-    #[cfg(feature = "shape")]
-    pub mod shape {
-        include!(concat!(env!("OUT_DIR"), "/ffi/shape.rs"));
-    }
-
-    #[cfg(feature = "shm")]
-    pub mod shm {
-        include!(concat!(env!("OUT_DIR"), "/ffi/shm.rs"));
-    }
-
-    #[cfg(feature = "sync")]
-    pub mod sync {
-        include!(concat!(env!("OUT_DIR"), "/ffi/sync.rs"));
-    }
-
-    #[cfg(feature = "test")]
-    pub mod test {
-        include!(concat!(env!("OUT_DIR"), "/ffi/test.rs"));
-    }
-
-    #[cfg(feature = "x_print")]
-    pub mod x_print {
-        include!(concat!(env!("OUT_DIR"), "/ffi/x_print.rs"));
-    }
-
-    #[cfg(feature = "xevie")]
-    pub mod xevie {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xevie.rs"));
-    }
-
-    #[cfg(feature = "xf86dri")]
-    pub mod xf86dri {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xf86dri.rs"));
-    }
-
-    #[cfg(feature = "xf86vidmode")]
-    pub mod xf86vidmode {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xf86vidmode.rs"));
-    }
-
-    #[cfg(feature = "xfixes")]
-    pub mod xfixes {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xfixes.rs"));
-    }
-
-    #[cfg(feature = "xinerama")]
-    pub mod xinerama {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xinerama.rs"));
-    }
-
-    #[cfg(feature = "xkb")]
-    pub mod xkb {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xkb.rs"));
-    }
-
-    #[cfg(feature = "xvmc")]
-    pub mod xvmc {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xvmc.rs"));
-    }
-
-    #[cfg(feature = "xv")]
-    pub mod xv {
-        include!(concat!(env!("OUT_DIR"), "/ffi/xv.rs"));
-    }
 }

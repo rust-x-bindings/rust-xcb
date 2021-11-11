@@ -1,119 +1,162 @@
-extern crate xcb;
+use xcb::x;
 
-fn main() {
-    let points: &[xcb::Point] = &[
-        xcb::Point::new(10, 10),
-        xcb::Point::new(10, 20),
-        xcb::Point::new(20, 10),
-        xcb::Point::new(20, 20),
+fn main() -> xcb::Result<()> {
+    let points: &[x::Point] = &[
+        x::Point { x: 10, y: 10 },
+        x::Point { x: 10, y: 20 },
+        x::Point { x: 20, y: 10 },
+        x::Point { x: 20, y: 20 },
     ];
-    let polyline: &[xcb::Point] = &[
-        xcb::Point::new(50, 10),
-        xcb::Point::new(5, 20), /* rest of points are relative */
-        xcb::Point::new(25, -20),
-        xcb::Point::new(10, 10),
+    let polyline: &[x::Point] = &[
+        x::Point { x: 50, y: 10 },
+        x::Point { x: 5, y: 20 },
+        x::Point { x: 25, y: -20 }, /* rest of points are relative */
+        x::Point { x: 10, y: 10 },
     ];
-    let segments: &[xcb::Segment] = &[
-        xcb::Segment::new(100, 10, 140, 30),
-        xcb::Segment::new(110, 25, 130, 60),
+    let segments: &[x::Segment] = &[
+        x::Segment {
+            x1: 100,
+            y1: 10,
+            x2: 140,
+            y2: 30,
+        },
+        x::Segment {
+            x1: 110,
+            y1: 25,
+            x2: 130,
+            y2: 60,
+        },
     ];
-    let rectangles: &[xcb::Rectangle] = &[
-        xcb::Rectangle::new(10, 50, 40, 20),
-        xcb::Rectangle::new(80, 50, 10, 40),
+    let rectangles: &[x::Rectangle] = &[
+        x::Rectangle {
+            x: 10,
+            y: 50,
+            width: 40,
+            height: 20,
+        },
+        x::Rectangle {
+            x: 80,
+            y: 50,
+            width: 10,
+            height: 40,
+        },
     ];
-    let arcs: &[xcb::Arc] = &[
-        xcb::Arc::new(10, 100, 60, 40, 0, 90 << 6),
-        xcb::Arc::new(90, 100, 55, 40, 0, 270 << 6),
+    let arcs: &[x::Arc] = &[
+        x::Arc {
+            x: 10,
+            y: 100,
+            width: 60,
+            height: 40,
+            angle1: 0,
+            angle2: 90 << 6,
+        },
+        x::Arc {
+            x: 90,
+            y: 100,
+            width: 55,
+            height: 40,
+            angle1: 0,
+            angle2: 270 << 6,
+        },
     ];
 
     let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
     let setup = conn.get_setup();
     let screen = setup.roots().nth(screen_num as usize).unwrap();
 
-    let foreground = conn.generate_id();
+    let gc: x::Gcontext = conn.generate_id();
 
-    xcb::create_gc(
-        &conn,
-        foreground,
-        screen.root(),
-        &[
-            (xcb::GC_FOREGROUND, screen.black_pixel()),
-            (xcb::GC_GRAPHICS_EXPOSURES, 0),
+    let window: x::Window = conn.generate_id();
+    conn.send_request(&x::CreateWindow {
+        depth: x::COPY_FROM_PARENT as u8,
+        wid: window,
+        parent: screen.root(),
+        x: 0,
+        y: 0,
+        width: 150,
+        height: 150,
+        border_width: 10,
+        class: x::WindowClass::InputOutput,
+        visual: screen.root_visual(),
+        value_list: &[
+            x::Cw::BackPixel(screen.white_pixel()),
+            x::Cw::EventMask((x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS).bits()),
         ],
-    );
+    });
 
-    let win = conn.generate_id();
-    xcb::create_window(
-        &conn,
-        xcb::COPY_FROM_PARENT as u8,
-        win,
-        screen.root(),
-        0,
-        0,
-        150,
-        150,
-        10,
-        xcb::WINDOW_CLASS_INPUT_OUTPUT as u16,
-        screen.root_visual(),
-        &[
-            (xcb::CW_BACK_PIXEL, screen.white_pixel()),
-            (
-                xcb::CW_EVENT_MASK,
-                xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS,
-            ),
+    conn.send_request(&x::MapWindow { window });
+
+    conn.send_request(&x::CreateGc {
+        cid: gc,
+        drawable: x::Drawable::Window(window),
+        value_list: &[
+            x::Gc::Foreground(screen.black_pixel()),
+            x::Gc::GraphicsExposures(false),
         ],
-    );
-    xcb::map_window(&conn, win);
-    conn.flush();
+    });
+
+    conn.flush()?;
 
     loop {
-        let event = conn.wait_for_event();
-        match event {
-            None => {
-                break;
+        let event = match conn.wait_for_event() {
+            Err(xcb::Error::Connection(xcb::ConnError::Connection)) => {
+                // graceful shutdown, likely "x" close button clicked in title bar
+                break Ok(());
             }
-            Some(event) => {
-                let r = event.response_type() & !0x80;
-                match r {
-                    xcb::EXPOSE => {
-                        /* We draw the points */
-                        xcb::poly_point(
-                            &conn,
-                            xcb::COORD_MODE_ORIGIN as u8,
-                            win,
-                            foreground,
-                            &points,
-                        );
+            Err(err) => {
+                panic!("unexpected error: {:#?}", err);
+            }
+            Ok(event) => event,
+        };
+        match event {
+            xcb::Event::X(x::Event::Expose(_ev)) => {
+                let drawable = x::Drawable::Window(window);
 
-                        /* We draw the polygonal line */
-                        xcb::poly_line(
-                            &conn,
-                            xcb::COORD_MODE_PREVIOUS as u8,
-                            win,
-                            foreground,
-                            &polyline,
-                        );
+                /* We draw the points */
+                conn.send_request(&x::PolyPoint {
+                    coordinate_mode: x::CoordMode::Origin,
+                    drawable,
+                    gc,
+                    points,
+                });
 
-                        /* We draw the segements */
-                        xcb::poly_segment(&conn, win, foreground, &segments);
+                /* We draw the polygonal line */
+                conn.send_request(&x::PolyLine {
+                    coordinate_mode: x::CoordMode::Previous,
+                    drawable,
+                    gc,
+                    points: &polyline,
+                });
 
-                        /* We draw the rectangles */
-                        xcb::poly_rectangle(&conn, win, foreground, &rectangles);
+                /* We draw the segements */
+                conn.send_request(&x::PolySegment {
+                    drawable,
+                    gc,
+                    segments,
+                });
 
-                        /* We draw the arcs */
-                        xcb::poly_arc(&conn, win, foreground, &arcs);
+                /* We draw the rectangles */
+                conn.send_request(&x::PolyRectangle {
+                    drawable,
+                    gc,
+                    rectangles,
+                });
 
-                        /* We flush the request */
-                        conn.flush();
-                    }
-                    xcb::KEY_PRESS => {
-                        let key_press: &xcb::KeyPressEvent = unsafe { xcb::cast_event(&event) };
-                        println!("Key '{}' pressed", key_press.detail());
-                        break;
-                    }
-                    _ => {}
+                /* We draw the arcs */
+                conn.send_request(&x::PolyArc { drawable, gc, arcs });
+
+                /* We flush the request */
+                conn.flush()?;
+            }
+
+            xcb::Event::X(x::Event::KeyPress(key_press)) => {
+                println!("Key '{}' pressed", key_press.detail());
+                if key_press.detail() == 0x18 {
+                    // Q (on qwerty)
+                    break Ok(());
                 }
             }
+            _ => {}
         }
     }
 }
