@@ -1459,27 +1459,71 @@ impl CodeGen {
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
-                    writeln!(out, "    pub fn {}(&self{}) -> &str {{", name, params)?;
-
-                    writeln!(out, "        unsafe {{")?;
+                    // String returned from X may not be valid utf-8.
+                    // To overcome this, we provide two methods:
+                    //   - one that returns Result<&str, Utf8Error>
+                    //   - one that returns &[u8]
+                    // see rust-xcb#96
                     writeln!(
                         out,
-                        "            let offset = {};",
+                        "{}pub fn {}(&self{}) -> Result<&str, std::str::Utf8Error> {{",
+                        cg::ind(1),
+                        name,
+                        params
+                    )?;
+
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
                         self.build_rs_expr(wire_off, "self.", "()", fields)
                     )?;
                     writeln!(
                         out,
-                        "            let len = {} as _;",
+                        "{}let len = {} as _;",
+                        cg::ind(3),
                         self.build_rs_expr(len_expr, "self.", "()", fields)
                     )?;
-                    writeln!(out, "            let ptr = self.wire_ptr().add(offset);",)?;
+                    writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
                     writeln!(
                         out,
-                        "            let utf8 = std::slice::from_raw_parts(ptr, len);",
+                        "{}let raw = std::slice::from_raw_parts(ptr, len);",
+                        cg::ind(3)
                     )?;
-                    writeln!(out, "            std::str::from_utf8(utf8).unwrap()")?;
-                    writeln!(out, "        }}")?;
-                    writeln!(out, "    }}")?;
+                    writeln!(out, "{}std::str::from_utf8(raw)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+
+                    writeln!(out)?;
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(
+                        out,
+                        "{}pub fn {}_raw(&self{}) -> &[u8] {{",
+                        cg::ind(1),
+                        name,
+                        params
+                    )?;
+
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let len = {} as _;",
+                        cg::ind(3),
+                        self.build_rs_expr(len_expr, "self.", "()", fields)
+                    )?;
+                    writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
+                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
                 }
                 Field::List {
                     name,
