@@ -468,34 +468,34 @@
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>};
 
 <span class="doccomment">/// Current protocol version</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">X_PROTOCOL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PROTOCOL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
 
 <span class="doccomment">/// Current minor version</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">X_PROTOCOL_REVISION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PROTOCOL_REVISION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
 
 <span class="doccomment">/// X_TCP_PORT + display number = server port for TCP transport</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">X_TCP_PORT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6000</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_TCP_PORT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6000</span>;
 
 <span class="doccomment">/// xcb connection errors because of socket, pipe and other stream errors.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_ERROR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_ERROR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
 
 <span class="doccomment">/// xcb connection shutdown because of extension not supported</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_EXT_NOTSUPPORTED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_EXT_NOTSUPPORTED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
 
 <span class="doccomment">/// malloc(), calloc() and realloc() error upon failure, for eg ENOMEM</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_MEM_INSUFFICIENT</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_MEM_INSUFFICIENT</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
 
 <span class="doccomment">/// Connection closed, exceeding request length that server accepts.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_REQ_LEN_EXCEED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_REQ_LEN_EXCEED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
 
 <span class="doccomment">/// Connection closed, error during parsing display string.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_PARSE_ERR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_PARSE_ERR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
 
 <span class="doccomment">/// Connection closed because the server does not have a screen matching the display.</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_INVALID_SCREEN</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_INVALID_SCREEN</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
 
 <span class="doccomment">/// Connection closed because some FD passing operation failed</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_FDPASSING_FAILED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_FDPASSING_FAILED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
 
 <span class="doccomment">/// @brief XCB Connection structure.</span>
 <span class="doccomment">///</span>
@@ -511,32 +511,32 @@
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_generic_event_t</span> {
     <span class="doccomment">/// Type of the response</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">response_type</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
     <span class="doccomment">/// Padding</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad0</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">pad0</span>: <span class="ident">u8</span>,
     <span class="doccomment">/// Sequence number</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
     <span class="doccomment">/// Padding</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
+    <span class="kw">pub</span> <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
     <span class="doccomment">/// full sequence</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
 }
 
 <span class="comment">// GE_GENERIC stuff is actually generated in X-proto, but we need it here in FFI form,</span>
 <span class="comment">// so it is just copy pasted from xproto.h</span>
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">const</span> <span class="ident">XCB_GE_GENERIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">35</span>;
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_GE_GENERIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">35</span>;
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_ge_generic_event_t</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">response_type</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">extension</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">sequence</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">length</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">event_type</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">pad0</span>: [<span class="ident">u8</span>; <span class="number">22</span>],
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">u8</span>,
+    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">length</span>: <span class="ident">u32</span>,
+    <span class="kw">pub</span> <span class="ident">event_type</span>: <span class="ident">u16</span>,
+    <span class="kw">pub</span> <span class="ident">pad0</span>: [<span class="ident">u8</span>; <span class="number">22</span>],
+    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
 }
 
 <span class="doccomment">/// Generic error</span>

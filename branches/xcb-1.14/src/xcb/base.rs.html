@@ -1471,6 +1471,96 @@
 <span id="1471">1471</span>
 <span id="1472">1472</span>
 <span id="1473">1473</span>
+<span id="1474">1474</span>
+<span id="1475">1475</span>
+<span id="1476">1476</span>
+<span id="1477">1477</span>
+<span id="1478">1478</span>
+<span id="1479">1479</span>
+<span id="1480">1480</span>
+<span id="1481">1481</span>
+<span id="1482">1482</span>
+<span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
+<span id="1495">1495</span>
+<span id="1496">1496</span>
+<span id="1497">1497</span>
+<span id="1498">1498</span>
+<span id="1499">1499</span>
+<span id="1500">1500</span>
+<span id="1501">1501</span>
+<span id="1502">1502</span>
+<span id="1503">1503</span>
+<span id="1504">1504</span>
+<span id="1505">1505</span>
+<span id="1506">1506</span>
+<span id="1507">1507</span>
+<span id="1508">1508</span>
+<span id="1509">1509</span>
+<span id="1510">1510</span>
+<span id="1511">1511</span>
+<span id="1512">1512</span>
+<span id="1513">1513</span>
+<span id="1514">1514</span>
+<span id="1515">1515</span>
+<span id="1516">1516</span>
+<span id="1517">1517</span>
+<span id="1518">1518</span>
+<span id="1519">1519</span>
+<span id="1520">1520</span>
+<span id="1521">1521</span>
+<span id="1522">1522</span>
+<span id="1523">1523</span>
+<span id="1524">1524</span>
+<span id="1525">1525</span>
+<span id="1526">1526</span>
+<span id="1527">1527</span>
+<span id="1528">1528</span>
+<span id="1529">1529</span>
+<span id="1530">1530</span>
+<span id="1531">1531</span>
+<span id="1532">1532</span>
+<span id="1533">1533</span>
+<span id="1534">1534</span>
+<span id="1535">1535</span>
+<span id="1536">1536</span>
+<span id="1537">1537</span>
+<span id="1538">1538</span>
+<span id="1539">1539</span>
+<span id="1540">1540</span>
+<span id="1541">1541</span>
+<span id="1542">1542</span>
+<span id="1543">1543</span>
+<span id="1544">1544</span>
+<span id="1545">1545</span>
+<span id="1546">1546</span>
+<span id="1547">1547</span>
+<span id="1548">1548</span>
+<span id="1549">1549</span>
+<span id="1550">1550</span>
+<span id="1551">1551</span>
+<span id="1552">1552</span>
+<span id="1553">1553</span>
+<span id="1554">1554</span>
+<span id="1555">1555</span>
+<span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">ErrorExtensionData</span>, <span class="ident">EventExtensionData</span>, <span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -1538,13 +1628,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 
     <span class="doccomment">/// Convert the event into a raw pointer</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>;
+
+    <span class="doccomment">/// Obtain the event as a raw pointer</span>
+    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>;
 
     <span class="doccomment">/// Access to the raw event data</span>
     <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
@@ -1570,13 +1663,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 
     <span class="doccomment">/// Convert the event into a raw pointer</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>;
+
+    <span class="doccomment">/// Obtain the event as a raw pointer</span>
+    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>;
 
     <span class="doccomment">/// Access to the raw event data</span>
     <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
@@ -1599,13 +1695,16 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `raw` must be a valid pointer to the error, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span>;
 
     <span class="doccomment">/// Convert the error into a raw pointer</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new error</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>;
+
+    <span class="doccomment">/// Obtain the error as a raw pointer</span>
+    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>;
 
     <span class="doccomment">/// Access to the raw error data</span>
     <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
@@ -2146,6 +2245,46 @@
         }
     }
 
+    <span class="doccomment">/// Open a new connection with Xlib.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The event queue owner defaults to Xlib.</span>
+    <span class="doccomment">/// One would need to open an XCB connection with Xlib in order to use</span>
+    <span class="doccomment">/// OpenGL.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_with_xlib_display</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
+
+            <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_xlib_display</span>(<span class="ident">dpy</span>);
+
+            <span class="ident">conn</span>.<span class="ident">has_error</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> (<span class="ident">conn</span>, <span class="ident">xlib::XDefaultScreen</span>(<span class="ident">dpy</span>) <span class="kw">as</span> <span class="ident">i32</span>))
+        }
+    }
+
+    <span class="doccomment">/// Open a new connection with Xlib and cache the provided extensions data.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Data of extensions specified by `mandatory` and `optional` is cached to allow</span>
+    <span class="doccomment">/// the resolution of events and errors in these extensions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The event queue owner defaults to Xlib.</span>
+    <span class="doccomment">/// One would need to open an XCB connection with Xlib in order to use</span>
+    <span class="doccomment">/// OpenGL.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_with_xlib_display_and_extensions</span>(
+        <span class="ident">mandatory</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
+        <span class="ident">optional</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
+
+            <span class="kw">let</span> <span class="ident">conn</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::from_xlib_display_and_extensions</span>(<span class="ident">dpy</span>, <span class="ident">mandatory</span>, <span class="ident">optional</span>);
+
+            <span class="ident">conn</span>.<span class="ident">has_error</span>()
+                .<span class="ident">map</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> (<span class="ident">conn</span>, <span class="ident">xlib::XDefaultScreen</span>(<span class="ident">dpy</span>) <span class="kw">as</span> <span class="ident">i32</span>))
+        }
+    }
+
     <span class="doccomment">/// Connects to the X server with an open socket file descriptor and optional authentification info.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// Connects to an X server, given the open socket fd and the</span>
@@ -2313,6 +2452,47 @@
             <span class="ident">event_ext_data</span>,
             <span class="ident">error_ext_data</span>,
         };
+    }
+
+    <span class="doccomment">/// Initialize a new `Connection` from an existing Xlib display.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Wraps a `xlib::Display` and get an XCB connection from an exisiting object</span>
+    <span class="doccomment">/// `xlib::XCloseDisplay` will be called when the returned object is dropped.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// The `dpy` pointer must be a pointer to a valid `xlib::Display`</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_xlib_display</span>(<span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Connection</span> {
+        <span class="ident"><span class="self">Self</span>::from_xlib_display_and_extensions</span>(<span class="ident">dpy</span>, <span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>[])
+    }
+
+    <span class="doccomment">/// Initialize a new `Connection` from an existing Xlib display.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Wraps a `xlib::Display` and get an XCB connection from an exisiting object</span>
+    <span class="doccomment">/// `xlib::XCloseDisplay` will be called when the returned object is dropped.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Extension data specified by `mandatory` and `optional` is cached to allow</span>
+    <span class="doccomment">/// the resolution of events and errors in these extensions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// The `dpy` pointer must be a pointer to a valid `xlib::Display`.</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_xlib_display_and_extensions</span>(
+        <span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>,
+        <span class="ident">mandatory</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
+        <span class="ident">optional</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Connection</span> {
+        <span class="macro">assert!</span>(<span class="op">!</span><span class="ident">dpy</span>.<span class="ident">is_null</span>(), <span class="string">&quot;attempt connect with null display&quot;</span>);
+        <span class="kw">let</span> <span class="ident">c</span> <span class="op">=</span> <span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>);
+
+        <span class="kw">let</span> (<span class="ident">event_ext_data</span>, <span class="ident">error_ext_data</span>) <span class="op">=</span> <span class="ident">cache_extensions_data</span>(<span class="ident">c</span>, <span class="ident">mandatory</span>, <span class="ident">optional</span>);
+
+        <span class="ident">Connection</span> {
+            <span class="ident">c</span>,
+            <span class="ident">dpy</span>,
+            <span class="ident">event_ext_data</span>,
+            <span class="ident">error_ext_data</span>,
+        }
     }
 
     <span class="doccomment">/// Get the extensions activated for this connection.</span>
