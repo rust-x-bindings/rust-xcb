@@ -1486,7 +1486,11 @@ impl CodeGen {
                         self.build_rs_expr(len_expr, "self.", "()", fields)
                     )?;
                     writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
-                    writeln!(out, "{}let raw = std::slice::from_raw_parts(ptr, len);", cg::ind(3))?;
+                    writeln!(
+                        out,
+                        "{}let raw = std::slice::from_raw_parts(ptr, len);",
+                        cg::ind(3)
+                    )?;
                     writeln!(out, "{}std::str::from_utf8(raw)", cg::ind(3))?;
                     writeln!(out, "{}}}", cg::ind(2))?;
                     writeln!(out, "{}}}", cg::ind(1))?;
