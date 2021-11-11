@@ -10,7 +10,7 @@ xcb = "1.0.0-beta"
 ```
 
 __Documentation__:
-http://rust-x-bindings.github.io/rust-xcb/xcb/index.html
+https://rust-x-bindings.github.io/rust-xcb/branches/v1.0-dev/xcb/
 
 Rust-XCB is constituted of the following components:
  - the core library
