@@ -32,8 +32,8 @@
 #![allow(non_upper_case_globals)]
 #![allow(non_snake_case)]
 
-use ffi::xcb_connection_t;
-use libc::{c_uint, c_void};
+use crate::ffi::xcb_connection_t;
+use libc::c_uint;
 
 use x11::xlib;
 

@@ -1,16 +1,13 @@
-extern crate gl;
-extern crate libc;
-extern crate x11;
-extern crate xcb;
-
-use xcb::dri2;
+use xcb::ffi::xcb_generic_event_t;
+use xcb::{self, dri2, glx, x};
+use xcb::{BaseEvent, Xid};
 
 use x11::glx::*;
 use x11::xlib;
 
 use std::ffi::{CStr, CString};
 use std::os::raw::{c_int, c_void};
-use std::ptr::null_mut;
+use std::ptr;
 
 const GLX_CONTEXT_MAJOR_VERSION_ARB: u32 = 0x2091;
 const GLX_CONTEXT_MINOR_VERSION_ARB: u32 = 0x2092;
@@ -41,12 +38,12 @@ fn check_glx_extension(glx_exts: &str, ext_name: &str) -> bool {
     false
 }
 
-static mut ctx_error_occurred: bool = false;
+static mut CTX_ERROR_OCCURED: bool = false;
 unsafe extern "C" fn ctx_error_handler(
     _dpy: *mut xlib::Display,
     _ev: *mut xlib::XErrorEvent,
 ) -> i32 {
-    ctx_error_occurred = true;
+    CTX_ERROR_OCCURED = true;
     0
 }
 
@@ -55,19 +52,6 @@ unsafe fn check_gl_error() {
     if err != gl::NO_ERROR {
         println!("got gl error {}", err);
     }
-}
-
-// returns the glx version in a decimal form
-// eg. 1.3  => 13
-fn glx_dec_version(dpy: *mut xlib::Display) -> i32 {
-    let mut maj: c_int = 0;
-    let mut min: c_int = 0;
-    unsafe {
-        if glXQueryVersion(dpy, &mut maj as *mut c_int, &mut min as *mut c_int) == 0 {
-            panic!("cannot get glx version");
-        }
-    }
-    (maj * 10 + min) as i32
 }
 
 fn get_glxfbconfig(
@@ -94,262 +78,258 @@ fn get_glxfbconfig(
     }
 }
 
-fn main() {
-    unsafe {
-        let (conn, screen_num) = xcb::Connection::connect_with_xlib_display().unwrap();
-        conn.set_event_queue_owner(xcb::EventQueueOwner::Xcb);
+fn main() -> xcb::Result<()> {
+    let (conn, screen_num) =
+        xcb::Connection::connect_with_xlib_display_and_extensions(&[], &[xcb::Extension::Dri2])?;
 
-        if glx_dec_version(conn.get_raw_dpy()) < 13 {
-            panic!("glx-1.3 is not supported");
-        }
+    conn.set_event_queue_owner(xcb::EventQueueOwner::Xcb);
 
-        let fbc = get_glxfbconfig(
-            conn.get_raw_dpy(),
-            screen_num,
-            &[
-                GLX_X_RENDERABLE,
-                1,
-                GLX_DRAWABLE_TYPE,
-                GLX_WINDOW_BIT,
-                GLX_RENDER_TYPE,
-                GLX_RGBA_BIT,
-                GLX_X_VISUAL_TYPE,
-                GLX_TRUE_COLOR,
-                GLX_RED_SIZE,
-                8,
-                GLX_GREEN_SIZE,
-                8,
-                GLX_BLUE_SIZE,
-                8,
-                GLX_ALPHA_SIZE,
-                8,
-                GLX_DEPTH_SIZE,
-                24,
-                GLX_STENCIL_SIZE,
-                8,
-                GLX_DOUBLEBUFFER,
-                1,
-                0,
-            ],
-        );
+    let glx_ver = conn.wait_for_reply(conn.send_request(&glx::QueryVersion {
+        major_version: 1,
+        minor_version: 3,
+    }))?;
+    assert!(glx_ver.major_version() >= 1 && glx_ver.minor_version() >= 3);
 
-        let vi: *const xlib::XVisualInfo = glXGetVisualFromFBConfig(conn.get_raw_dpy(), fbc);
-
-        let dri2_ev = {
-            conn.prefetch_extension_data(dri2::id());
-            match conn.get_extension_data(dri2::id()) {
-                None => {
-                    panic!("could not load dri2 extension")
-                }
-                Some(r) => r.first_event(),
-            }
-        };
-
-        let (wm_protocols, wm_delete_window) = {
-            let pc = xcb::intern_atom(&conn, false, "WM_PROTOCOLS");
-            let dwc = xcb::intern_atom(&conn, false, "WM_DELETE_WINDOW");
-
-            let p = match pc.get_reply() {
-                Ok(p) => p.atom(),
-                Err(_) => panic!("could not load WM_PROTOCOLS atom"),
-            };
-            let dw = match dwc.get_reply() {
-                Ok(dw) => dw.atom(),
-                Err(_) => panic!("could not load WM_DELETE_WINDOW atom"),
-            };
-            (p, dw)
-        };
-
-        let setup = conn.get_setup();
-        let screen = setup.roots().nth((*vi).screen as usize).unwrap();
-
-        let cmap = conn.generate_id();
-        let win = conn.generate_id();
-
-        xcb::create_colormap(
-            &conn,
-            xcb::COLORMAP_ALLOC_NONE as u8,
-            cmap,
-            screen.root(),
-            (*vi).visualid as u32,
-        );
-
-        let cw_values = [
-            (xcb::CW_BACK_PIXEL, screen.white_pixel()),
-            (xcb::CW_BORDER_PIXEL, screen.black_pixel()),
-            (
-                xcb::CW_EVENT_MASK,
-                xcb::EVENT_MASK_KEY_PRESS | xcb::EVENT_MASK_EXPOSURE,
-            ),
-            (xcb::CW_COLORMAP, cmap),
-        ];
-
-        xcb::create_window(
-            &conn,
-            (*vi).depth as u8,
-            win,
-            screen.root(),
-            0,
-            0,
-            640,
-            480,
-            0,
-            xcb::WINDOW_CLASS_INPUT_OUTPUT as u16,
-            (*vi).visualid as u32,
-            &cw_values,
-        );
-
-        xlib::XFree(vi as *mut c_void);
-
-        let title = "XCB OpenGL";
-        xcb::change_property(
-            &conn,
-            xcb::PROP_MODE_REPLACE as u8,
-            win,
-            xcb::ATOM_WM_NAME,
-            xcb::ATOM_STRING,
+    let fbc = get_glxfbconfig(
+        conn.get_raw_dpy(),
+        screen_num,
+        &[
+            GLX_X_RENDERABLE,
+            1,
+            GLX_DRAWABLE_TYPE,
+            GLX_WINDOW_BIT,
+            GLX_RENDER_TYPE,
+            GLX_RGBA_BIT,
+            GLX_X_VISUAL_TYPE,
+            GLX_TRUE_COLOR,
+            GLX_RED_SIZE,
             8,
-            title.as_bytes(),
-        );
+            GLX_GREEN_SIZE,
+            8,
+            GLX_BLUE_SIZE,
+            8,
+            GLX_ALPHA_SIZE,
+            8,
+            GLX_DEPTH_SIZE,
+            24,
+            GLX_STENCIL_SIZE,
+            8,
+            GLX_DOUBLEBUFFER,
+            1,
+            0,
+        ],
+    );
 
-        let protocols = [wm_delete_window];
-        xcb::change_property(
-            &conn,
-            xcb::PROP_MODE_REPLACE as u8,
-            win,
-            wm_protocols,
-            xcb::ATOM_ATOM,
-            32,
-            &protocols,
-        );
+    let vi_ptr: *mut xlib::XVisualInfo =
+        unsafe { glXGetVisualFromFBConfig(conn.get_raw_dpy(), fbc) };
+    let vi = unsafe { *vi_ptr };
 
-        xcb::map_window(&conn, win);
-        conn.flush();
+    // retrieving a few atoms
+    let (wm_protocols, wm_del_window) = {
+        let cookies = (
+            conn.send_request(&x::InternAtom {
+                only_if_exists: false,
+                name: "WM_PROTOCOLS",
+            }),
+            conn.send_request(&x::InternAtom {
+                only_if_exists: false,
+                name: "WM_DELETE_WINDOW",
+            }),
+        );
+        (
+            conn.wait_for_reply(cookies.0)?.atom(),
+            conn.wait_for_reply(cookies.1)?.atom(),
+        )
+    };
+
+    let setup = conn.get_setup();
+    let screen = setup.roots().nth(vi.screen as usize).unwrap();
+
+    let cmap: x::Colormap = conn.generate_id();
+    let win: x::Window = conn.generate_id();
+
+    conn.send_request(&x::CreateColormap {
+        alloc: x::ColormapAlloc::None,
+        mid: cmap,
+        window: screen.root(),
+        visual: vi.visualid as u32,
+    });
+
+    conn.send_request(&x::CreateWindow {
+        depth: x::COPY_FROM_PARENT as u8,
+        wid: win,
+        parent: screen.root(),
+        x: 0,
+        y: 0,
+        width: 640,
+        height: 480,
+        border_width: 0,
+        class: x::WindowClass::InputOutput,
+        visual: vi.visualid as u32,
+        value_list: &[
+            x::Cw::BackPixel(screen.white_pixel()),
+            x::Cw::EventMask((x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS).bits()),
+            x::Cw::Colormap(cmap),
+        ],
+    });
+
+    unsafe {
+        xlib::XFree(vi_ptr as *mut c_void);
+    }
+
+    let title = "XCB OpenGL";
+
+    conn.check_request(conn.send_request_checked(&x::ChangeProperty {
+        mode: x::PropMode::Replace,
+        window: win,
+        property: x::ATOM_WM_NAME,
+        r#type: x::ATOM_STRING,
+        data: title.as_bytes(),
+    }))?;
+
+    conn.check_request(conn.send_request_checked(&x::ChangeProperty {
+        mode: x::PropMode::Replace,
+        window: win,
+        property: wm_protocols,
+        r#type: x::ATOM_ATOM,
+        data: &[wm_del_window],
+    }))?;
+
+    conn.check_request(conn.send_request_checked(&x::MapWindow { window: win }))?;
+
+    unsafe {
         xlib::XSync(conn.get_raw_dpy(), xlib::False);
+    }
 
-        let glx_exts = CStr::from_ptr(glXQueryExtensionsString(conn.get_raw_dpy(), screen_num))
+    let glx_exts =
+        unsafe { CStr::from_ptr(glXQueryExtensionsString(conn.get_raw_dpy(), screen_num)) }
             .to_str()
             .unwrap();
 
-        if !check_glx_extension(&glx_exts, "GLX_ARB_create_context") {
-            panic!("could not find GLX extension GLX_ARB_create_context");
-        }
+    if !check_glx_extension(&glx_exts, "GLX_ARB_create_context") {
+        panic!("could not find GLX extension GLX_ARB_create_context");
+    }
 
-        // with glx, no need of a current context is needed to load symbols
-        // otherwise we would need to create a temporary legacy GL context
-        // for loading symbols (at least glXCreateContextAttribsARB)
-        let glx_create_context_attribs: GlXCreateContextAttribsARBProc =
-            std::mem::transmute(load_gl_func("glXCreateContextAttribsARB"));
+    // with glx, no need of a current context is needed to load symbols
+    // otherwise we would need to create a temporary legacy GL context
+    // for loading symbols (at least glXCreateContextAttribsARB)
+    let glx_create_context_attribs: GlXCreateContextAttribsARBProc =
+        unsafe { std::mem::transmute(load_gl_func("glXCreateContextAttribsARB")) };
 
-        // loading all other symbols
+    // loading all other symbols
+    unsafe {
         gl::load_with(|n| load_gl_func(&n));
+    }
 
-        if !gl::GenVertexArrays::is_loaded() {
-            panic!("no GL3 support available!");
-        }
+    if !gl::GenVertexArrays::is_loaded() {
+        panic!("no GL3 support available!");
+    }
 
-        // installing an event handler to check if error is generated
-        ctx_error_occurred = false;
-        let old_handler = xlib::XSetErrorHandler(Some(ctx_error_handler));
+    // installing an event handler to check if error is generated
+    unsafe {
+        CTX_ERROR_OCCURED = false;
+    }
 
-        let context_attribs: [c_int; 5] = [
-            GLX_CONTEXT_MAJOR_VERSION_ARB as c_int,
-            3,
-            GLX_CONTEXT_MINOR_VERSION_ARB as c_int,
-            0,
-            0,
-        ];
-        let ctx = glx_create_context_attribs(
+    let old_handler = unsafe { xlib::XSetErrorHandler(Some(ctx_error_handler)) };
+
+    let context_attribs: [c_int; 5] = [
+        GLX_CONTEXT_MAJOR_VERSION_ARB as c_int,
+        3,
+        GLX_CONTEXT_MINOR_VERSION_ARB as c_int,
+        0,
+        0,
+    ];
+    let ctx = unsafe {
+        glx_create_context_attribs(
             conn.get_raw_dpy(),
             fbc,
-            null_mut(),
+            ptr::null_mut(),
             xlib::True,
             &context_attribs[0] as *const c_int,
-        );
+        )
+    };
 
-        conn.flush();
+    conn.flush()?;
+
+    unsafe {
         xlib::XSync(conn.get_raw_dpy(), xlib::False);
         xlib::XSetErrorHandler(std::mem::transmute(old_handler));
+    }
 
-        if ctx.is_null() || ctx_error_occurred {
-            panic!("error when creating gl-3.0 context");
-        }
+    if ctx.is_null() || unsafe { CTX_ERROR_OCCURED } {
+        panic!("error when creating gl-3.0 context");
+    }
 
-        if glXIsDirect(conn.get_raw_dpy(), ctx) == 0 {
-            panic!("obtained indirect rendering context")
-        }
+    if unsafe { glXIsDirect(conn.get_raw_dpy(), ctx) } == 0 {
+        panic!("obtained indirect rendering context")
+    }
 
-        loop {
-            if let Some(ev) = conn.wait_for_event() {
-                let ev_type = ev.response_type() & !0x80;
-                match ev_type {
-                    xcb::EXPOSE => {
-                        glXMakeCurrent(conn.get_raw_dpy(), win as xlib::XID, ctx);
-                        gl::ClearColor(0.5f32, 0.5f32, 1.0f32, 1.0f32);
-                        gl::Clear(gl::COLOR_BUFFER_BIT);
-                        gl::Flush();
-                        check_gl_error();
-                        glXSwapBuffers(conn.get_raw_dpy(), win as xlib::XID);
-                        glXMakeCurrent(conn.get_raw_dpy(), 0, null_mut());
-                    }
-                    xcb::KEY_PRESS => {
+    loop {
+        conn.flush()?;
+
+        match conn.wait_for_event()? {
+            xcb::Event::X(x::Event::Expose(_)) => unsafe {
+                glXMakeCurrent(conn.get_raw_dpy(), win.resource_id() as xlib::XID, ctx);
+                gl::ClearColor(0.5f32, 0.5f32, 1.0f32, 1.0f32);
+                gl::Clear(gl::COLOR_BUFFER_BIT);
+                gl::Flush();
+                check_gl_error();
+                glXSwapBuffers(conn.get_raw_dpy(), win.resource_id() as xlib::XID);
+                glXMakeCurrent(conn.get_raw_dpy(), 0, ptr::null_mut());
+            },
+            xcb::Event::X(x::Event::KeyPress(_ev)) => {}
+            xcb::Event::X(x::Event::ClientMessage(ev)) => {
+                if let x::ClientMessageData::Data32([atom, ..]) = ev.data() {
+                    if atom == wm_del_window.resource_id() {
+                        // window "x" button clicked by user, we gracefully exit
                         break;
                     }
-                    xcb::CLIENT_MESSAGE => {
-                        let cmev = unsafe { xcb::cast_event::<xcb::ClientMessageEvent>(&ev) };
-                        if cmev.type_() == wm_protocols && cmev.format() == 32 {
-                            let protocol = cmev.data().data32()[0];
-                            if protocol == wm_delete_window {
-                                break;
-                            }
-                        }
-                    }
-                    _ => {
-                        // following stuff is not obvious at all, but is necessary
-                        // to handle GL when XCB owns the event queue
-                        if ev_type == dri2_ev || ev_type == dri2_ev + 1 {
-                            // these are libgl dri2 event that need special handling
-                            // see https://bugs.freedesktop.org/show_bug.cgi?id=35945#c4
-                            // and mailing thread starting here:
-                            // http://lists.freedesktop.org/archives/xcb/2015-November/010556.html
-
-                            if let Some(proc_) =
-                                xlib::XESetWireToEvent(conn.get_raw_dpy(), ev_type as i32, None)
-                            {
-                                xlib::XESetWireToEvent(
-                                    conn.get_raw_dpy(),
-                                    ev_type as i32,
-                                    Some(proc_),
-                                );
-                                let raw_ev = ev.ptr;
-                                (*raw_ev).sequence =
-                                    xlib::XLastKnownRequestProcessed(conn.get_raw_dpy()) as u16;
-                                let mut dummy: xlib::XEvent = std::mem::zeroed();
-                                proc_(
-                                    conn.get_raw_dpy(),
-                                    &mut dummy as *mut xlib::XEvent,
-                                    raw_ev as *mut xlib::xEvent,
-                                );
-                            }
-                        }
-                    }
                 }
-                conn.flush();
-            } else {
-                break;
             }
+
+            // Following stuff is not obvious at all.
+            // I've seen this as necessary in the past to handle GL when XCB owns the event queue.
+            // It doesn't seem necessary anymore (in fact DRI2 is not present
+            // on my system, so I won't even hit this code) but I leave it here
+            // in case it is useful to someone.
+
+            // These are libgl dri2 event that need special handling
+            // see https://bugs.freedesktop.org/show_bug.cgi?id=35945#c4
+            // and mailing thread starting here:
+            // http://lists.freedesktop.org/archives/xcb/2015-November/010556.html
+            xcb::Event::Dri2(dri2::Event::BufferSwapComplete(ev)) => unsafe {
+                rewire_event(&conn, ev.as_raw())
+            },
+            xcb::Event::Dri2(dri2::Event::InvalidateBuffers(ev)) => unsafe {
+                rewire_event(&conn, ev.as_raw())
+            },
+            _ => {}
         }
+    }
 
-        // only to make sure that rs_client generate correct names for DRI2
-        // (used to be "*_DRI_2_*")
-        // should be in a "compile tests" section instead of example
-        let _ = xcb::ffi::dri2::XCB_DRI2_ATTACHMENT_BUFFER_ACCUM;
-
+    unsafe {
         glXDestroyContext(conn.get_raw_dpy(), ctx);
+    }
 
-        xcb::unmap_window(&conn, win);
-        xcb::destroy_window(&conn, win);
-        xcb::free_colormap(&conn, cmap);
-        conn.flush();
+    conn.send_request(&x::UnmapWindow { window: win });
+    conn.send_request(&x::DestroyWindow { window: win });
+    conn.send_request(&x::FreeColormap { cmap });
+    conn.flush()?;
+
+    Ok(())
+}
+
+unsafe fn rewire_event(conn: &xcb::Connection, raw_ev: *mut xcb_generic_event_t) {
+    let ev_type = ((*raw_ev).response_type & 0x7f) as i32;
+
+    if let Some(proc) = xlib::XESetWireToEvent(conn.get_raw_dpy(), ev_type, None) {
+        xlib::XESetWireToEvent(conn.get_raw_dpy(), ev_type, Some(proc));
+        (*raw_ev).sequence = xlib::XLastKnownRequestProcessed(conn.get_raw_dpy()) as u16;
+        let mut dummy: xlib::XEvent = std::mem::zeroed();
+        proc(
+            conn.get_raw_dpy(),
+            &mut dummy as *mut xlib::XEvent,
+            raw_ev as *mut xlib::xEvent,
+        );
     }
 }

@@ -1,39 +1,29 @@
 extern crate quick_xml;
 
-mod ast;
-mod codegen;
+mod cg;
+mod ir;
 mod output;
 mod parse;
 
 use std::env;
 use std::fs;
+use std::io;
 use std::path::{Path, PathBuf};
 
-use ast::{Event, ExtInfo, OpCopy, OpCopyMap};
-use codegen::{CodeGen, DepInfo};
+use cg::{CodeGen, DepInfo};
+use ir::ExtInfo;
 use output::Output;
-use parse::{Parser, Result};
-
-fn xcb_mod_map(name: &str) -> &str {
-    match name {
-        "bigreq" => "big_requests",
-        "ge" => "genericevent",
-        "xselinux" => "selinux",
-        "xprint" => "x_print",
-        "xtest" => "test",
-        _ => name,
-    }
-}
+use parse::{Event, Parser, Result};
 
 fn is_always(name: &str) -> bool {
-    matches!(name, "xproto" | "big_requests" | "xc_misc")
+    matches!(name, "xproto" | "bigreq" | "xc_misc")
 }
 
 fn has_feature(name: &str) -> bool {
     env::var(format!("CARGO_FEATURE_{}", name.to_ascii_uppercase())).is_ok()
 }
 
-fn main() {
+fn main() -> io::Result<()> {
     let root = env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| ".".to_string());
     let xml_dir = Path::new(&root).join("xml");
     let out_dir = env::var("OUT_DIR").unwrap_or_else(|_| "./gen/current".to_string());
@@ -47,14 +37,15 @@ fn main() {
         }
     });
     let gen_all = env::var("RXCB_GENALL").is_ok();
+    let export = env::var("RXCB_EXPORT").ok();
+
+    if rustfmt.is_some() && export.is_some() {
+        panic!("RXCB_EXPORT and RXCB_RUSTFMT do not work well together. Please choose one or the other.");
+    }
 
     let mut dep_info = Vec::new();
 
     for xml_file in iter_xml(&xml_dir) {
-        if xml_file.file_stem().unwrap().to_str().unwrap() == "xinput" {
-            continue;
-        }
-
         process_xcb_gen(&xml_file, out_dir, &rustfmt, gen_all, &mut dep_info).unwrap_or_else(
             |err| {
                 panic!(
@@ -66,8 +57,20 @@ fn main() {
         );
     }
 
+    if let Some(export) = export {
+        let export = Path::new(&export);
+        fs::create_dir_all(&export)?;
+
+        for f in iter_out_rs(out_dir) {
+            let copy = export.join(f.file_name().unwrap());
+            fs::copy(f, copy)?;
+        }
+    }
+
     #[cfg(target_os = "freebsd")]
     println!("cargo:rustc-link-search=/usr/local/lib");
+
+    Ok(())
 }
 
 fn iter_xml(xml_dir: &Path) -> impl Iterator<Item = PathBuf> {
@@ -76,6 +79,16 @@ fn iter_xml(xml_dir: &Path) -> impl Iterator<Item = PathBuf> {
         .map(|e| e.unwrap().path())
         .filter(|p| match p.extension() {
             Some(e) => e == "xml",
+            _ => false,
+        })
+}
+
+fn iter_out_rs(out_dir: &Path) -> impl Iterator<Item = PathBuf> {
+    fs::read_dir(out_dir)
+        .unwrap()
+        .map(|e| e.unwrap().path())
+        .filter(|p| match p.extension() {
+            Some(e) => e == "rs",
             _ => false,
         })
 }
@@ -98,6 +111,23 @@ where
     })
 }
 
+fn recurse_push_depinfo(mut dep_info: &mut Vec<DepInfo>, xcb_mod: &str, global: &[DepInfo]) {
+    if dep_info.iter().any(|di| di.xcb_mod == xcb_mod) {
+        return;
+    }
+
+    let di = global
+        .iter()
+        .find(|di| di.xcb_mod == xcb_mod)
+        .unwrap_or_else(|| panic!("can't find dependency {}", xcb_mod));
+
+    dep_info.push(di.clone());
+
+    for d in &di.deps {
+        recurse_push_depinfo(&mut dep_info, d, global);
+    }
+}
+
 fn process_xcb_gen(
     xml_file: &Path,
     out_dir: &Path,
@@ -106,70 +136,41 @@ fn process_xcb_gen(
     dep_info: &mut Vec<DepInfo>,
 ) -> Result<()> {
     let xcb_mod = xml_file.file_stem().unwrap();
-    let xcb_mod = xcb_mod.to_str().unwrap();
-    let xcb_mod = xcb_mod_map(xcb_mod);
+    let xcb_mod = xcb_mod.to_str().unwrap().to_string();
 
     if dep_info.iter().any(|di| di.xcb_mod == xcb_mod) {
         return Ok(());
     }
 
-    if !gen_all && !is_always(xcb_mod) && !has_feature(xcb_mod) {
+    if !gen_all && !is_always(&xcb_mod) && !has_feature(&xcb_mod) {
         return Ok(());
     }
-
-    let ffi_file = out_dir.join("ffi").join(&xcb_mod).with_extension("rs");
-    let rs_file = out_dir.join(&xcb_mod).with_extension("rs");
-
-    let ffi = Output::new(rustfmt, &ffi_file)
-        .unwrap_or_else(|_| panic!("cannot create FFI output file: {}", ffi_file.display()));
-    let rs = Output::new(rustfmt, &rs_file)
-        .unwrap_or_else(|_| panic!("cannot create Rust output file: {}", rs_file.display()));
 
     let mut parser = Parser::from_file(xml_file);
 
     let mut imports = Vec::new();
-    let mut events = Vec::new();
-    let mut evcopies: OpCopyMap = OpCopyMap::new();
-    let mut info: Option<(String, Option<ExtInfo>)> = None;
+    let mut mod_info: Option<(String, Option<ExtInfo>)> = None;
+    let mut items = Vec::new();
 
     for e in &mut parser {
         match e? {
-            Event::Ignore => {}
-            Event::Info(mod_name, ext_info) => {
-                info = Some((mod_name, ext_info));
+            Event::ModuleInfo { name, extinfo } => {
+                mod_info = Some((name, extinfo));
             }
             Event::Import(imp) => imports.push(imp),
-            Event::Event {
-                number,
-                stru,
-                no_seq_number,
-                xge,
-            } => {
-                evcopies.insert(stru.name.clone(), Vec::new());
-                events.push(Event::Event {
-                    number,
-                    stru,
-                    no_seq_number,
-                    xge,
-                });
-            }
-            Event::EventCopy { name, number, ref_ } => {
-                if let Some(copies) = evcopies.get_mut(&ref_) {
-                    copies.push(OpCopy { name, number });
-                } else {
-                    events.push(Event::EventCopy { name, number, ref_ });
-                }
-            }
-            ev => {
-                events.push(ev);
-            }
+            Event::Item(item) => items.push(item),
+            _ => {}
         }
     }
 
-    let info = info.expect("no xcb protocol opening");
+    let mod_info = mod_info.expect("no xcb protocol opening");
+
+    if xcb_mod != "xproto" && imports.iter().all(|i| i != "xproto") {
+        imports.insert(0, "xproto".to_string());
+    }
 
     let deps = {
-        let mut deps = Vec::new();
+        let mut deps: Vec<DepInfo> = Vec::new();
 
         for i in imports.iter() {
             let xml_file = xml_file.with_file_name(&format!("{}.xml", i));
@@ -183,28 +184,33 @@ fn process_xcb_gen(
                 )
             });
 
-            let i = xcb_mod_map(i);
-            deps.push(
-                dep_info
-                    .iter()
-                    .find(|di| di.xcb_mod == i)
-                    .unwrap_or_else(|| panic!("can't find dependency {} of {}", i, xcb_mod))
-                    .clone(),
-            );
+            recurse_push_depinfo(&mut deps, i, dep_info);
         }
 
         deps
     };
 
-    let mut cg = CodeGen::new(xcb_mod, ffi, rs, deps, evcopies);
+    let out_file = out_dir.join(&xcb_mod).with_extension("rs");
+    let mut out = Output::new(rustfmt, &out_file)
+        .unwrap_or_else(|_| panic!("cannot create Rust output file: {}", out_file.display()));
 
-    cg.prologue(imports, &info.1)?;
+    let mut cg = CodeGen::new(xcb_mod, &mod_info.1, deps);
 
-    for ev in events {
-        cg.event(ev)?;
+    for item in &items {
+        cg.preregister_item(item);
+    }
+    for item in &items {
+        cg.resolve_type(item);
+    }
+    for item in items {
+        cg.resolve_error_event_request(item);
     }
 
-    cg.epilogue()?;
+    cg.emit_prologue(&mut out)?;
+    cg.emit_errors(&mut out)?;
+    cg.emit_events(&mut out)?;
+    cg.emit_types(&mut out)?;
+    cg.emit_requests(&mut out)?;
 
     dep_info.push(cg.into_depinfo());
 
