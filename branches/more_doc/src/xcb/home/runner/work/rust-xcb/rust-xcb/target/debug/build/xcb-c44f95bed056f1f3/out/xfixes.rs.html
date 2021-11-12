@@ -3145,6 +3145,57 @@
 <span id="3145">3145</span>
 <span id="3146">3146</span>
 <span id="3147">3147</span>
+<span id="3148">3148</span>
+<span id="3149">3149</span>
+<span id="3150">3150</span>
+<span id="3151">3151</span>
+<span id="3152">3152</span>
+<span id="3153">3153</span>
+<span id="3154">3154</span>
+<span id="3155">3155</span>
+<span id="3156">3156</span>
+<span id="3157">3157</span>
+<span id="3158">3158</span>
+<span id="3159">3159</span>
+<span id="3160">3160</span>
+<span id="3161">3161</span>
+<span id="3162">3162</span>
+<span id="3163">3163</span>
+<span id="3164">3164</span>
+<span id="3165">3165</span>
+<span id="3166">3166</span>
+<span id="3167">3167</span>
+<span id="3168">3168</span>
+<span id="3169">3169</span>
+<span id="3170">3170</span>
+<span id="3171">3171</span>
+<span id="3172">3172</span>
+<span id="3173">3173</span>
+<span id="3174">3174</span>
+<span id="3175">3175</span>
+<span id="3176">3176</span>
+<span id="3177">3177</span>
+<span id="3178">3178</span>
+<span id="3179">3179</span>
+<span id="3180">3180</span>
+<span id="3181">3181</span>
+<span id="3182">3182</span>
+<span id="3183">3183</span>
+<span id="3184">3184</span>
+<span id="3185">3185</span>
+<span id="3186">3186</span>
+<span id="3187">3187</span>
+<span id="3188">3188</span>
+<span id="3189">3189</span>
+<span id="3190">3190</span>
+<span id="3191">3191</span>
+<span id="3192">3192</span>
+<span id="3193">3193</span>
+<span id="3194">3194</span>
+<span id="3195">3195</span>
+<span id="3196">3196</span>
+<span id="3197">3197</span>
+<span id="3198">3198</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xfixes.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -3161,9 +3212,13 @@
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
 
+<span class="doccomment">/// The official identifier for the `XFixes` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XNAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;XFIXES&quot;</span>;
+<span class="doccomment">/// The major version of the `XFixes` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="doccomment">/// The minor version of the `XFixes` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="doccomment">/// The version string of the `XFixes` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;5.0&quot;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
@@ -3171,12 +3226,18 @@
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
 
+<span class="doccomment">/// Prefetch server runtime info data of the `XFixes` extension.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefetch_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) {
     <span class="kw">unsafe</span> {
         <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
 }
 
+<span class="doccomment">/// Fetch server runtime info data of the `XFixes` extension.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Might be non-blocking if [prefetch_extension_data] was called before.</span>
+<span class="doccomment">/// This function is of seldom use as the extensions are initialized by the</span>
+<span class="doccomment">/// [Connection](crate::Connection) constructor.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
@@ -3197,6 +3258,7 @@
     }
 }
 
+<span class="doccomment">/// The `BadRegionError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadRegionError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -3293,6 +3355,7 @@
     }
 }
 
+<span class="doccomment">/// The `SelectionNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
 }
@@ -3444,6 +3507,7 @@
     }
 }
 
+<span class="doccomment">/// The `CursorNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CursorNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
 }
@@ -3727,6 +3791,7 @@
     }
 }
 
+<span class="doccomment">/// Reply type for [QueryVersion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3859,6 +3924,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
+<span class="doccomment">/// The `QueryVersion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
     <span class="kw">pub</span> <span class="ident">client_major_version</span>: <span class="ident">u32</span>,
@@ -3910,6 +3976,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
+<span class="doccomment">/// The `ChangeSaveSet` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeSaveSet</span> {
     <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">SaveSetMode</span>,
@@ -3961,6 +4028,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeSaveSet</span> {}
 
+<span class="doccomment">/// The `SelectSelectionInput` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectSelectionInput</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -4010,6 +4078,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SelectSelectionInput</span> {}
 
+<span class="doccomment">/// The `SelectCursorInput` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectCursorInput</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -4057,6 +4126,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SelectCursorInput</span> {}
 
+<span class="doccomment">/// Reply type for [GetCursorImage]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorImageReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -4277,6 +4347,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetCursorImageReply</span>;
 }
 
+<span class="doccomment">/// The `GetCursorImage` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorImage</span> {}
 
@@ -4323,6 +4394,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetCursorImageCookie</span>;
 }
 
+<span class="doccomment">/// The `CreateRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRegion</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4373,6 +4445,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRegion</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateRegionFromBitmap` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRegionFromBitmap</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4420,6 +4493,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRegionFromBitmap</span> {}
 
+<span class="doccomment">/// The `CreateRegionFromWindow` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRegionFromWindow</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4469,6 +4543,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRegionFromWindow</span> {}
 
+<span class="doccomment">/// The `CreateRegionFromGc` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRegionFromGc</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4516,6 +4591,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRegionFromGc</span> {}
 
+<span class="doccomment">/// The `CreateRegionFromPicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRegionFromPicture</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4563,6 +4639,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRegionFromPicture</span> {}
 
+<span class="doccomment">/// The `DestroyRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroyRegion</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4608,6 +4685,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroyRegion</span> {}
 
+<span class="doccomment">/// The `SetRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetRegion</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4658,6 +4736,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetRegion</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CopyRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CopyRegion</span> {
     <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">Region</span>,
@@ -4705,6 +4784,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CopyRegion</span> {}
 
+<span class="doccomment">/// The `UnionRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnionRegion</span> {
     <span class="kw">pub</span> <span class="ident">source1</span>: <span class="ident">Region</span>,
@@ -4754,6 +4834,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">UnionRegion</span> {}
 
+<span class="doccomment">/// The `IntersectRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IntersectRegion</span> {
     <span class="kw">pub</span> <span class="ident">source1</span>: <span class="ident">Region</span>,
@@ -4803,6 +4884,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">IntersectRegion</span> {}
 
+<span class="doccomment">/// The `SubtractRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SubtractRegion</span> {
     <span class="kw">pub</span> <span class="ident">source1</span>: <span class="ident">Region</span>,
@@ -4852,6 +4934,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SubtractRegion</span> {}
 
+<span class="doccomment">/// The `InvertRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InvertRegion</span> {
     <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">Region</span>,
@@ -4901,6 +4984,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">InvertRegion</span> {}
 
+<span class="doccomment">/// The `TranslateRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TranslateRegion</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -4950,6 +5034,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">TranslateRegion</span> {}
 
+<span class="doccomment">/// The `RegionExtents` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RegionExtents</span> {
     <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">Region</span>,
@@ -4997,6 +5082,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">RegionExtents</span> {}
 
+<span class="doccomment">/// Reply type for [FetchRegion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchRegionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5150,6 +5236,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">FetchRegionReply</span>;
 }
 
+<span class="doccomment">/// The `FetchRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchRegion</span> {
     <span class="kw">pub</span> <span class="ident">region</span>: <span class="ident">Region</span>,
@@ -5199,6 +5286,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedFetchRegionCookie</span>;
 }
 
+<span class="doccomment">/// The `SetGcClipRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetGcClipRegion</span> {
     <span class="kw">pub</span> <span class="ident">gc</span>: <span class="ident">xproto::Gcontext</span>,
@@ -5250,6 +5338,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetGcClipRegion</span> {}
 
+<span class="doccomment">/// The `SetWindowShapeRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetWindowShapeRegion</span> {
     <span class="kw">pub</span> <span class="ident">dest</span>: <span class="ident">xproto::Window</span>,
@@ -5304,6 +5393,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetWindowShapeRegion</span> {}
 
+<span class="doccomment">/// The `SetPictureClipRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetPictureClipRegion</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">render::Picture</span>,
@@ -5355,6 +5445,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetPictureClipRegion</span> {}
 
+<span class="doccomment">/// The `SetCursorName` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetCursorName</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">cursor</span>: <span class="ident">xproto::Cursor</span>,
@@ -5406,6 +5497,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetCursorName</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// Reply type for [GetCursorName]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorNameReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5580,6 +5672,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetCursorNameReply</span>;
 }
 
+<span class="doccomment">/// The `GetCursorName` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorName</span> {
     <span class="kw">pub</span> <span class="ident">cursor</span>: <span class="ident">xproto::Cursor</span>,
@@ -5629,6 +5722,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetCursorNameCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [GetCursorImageAndName]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorImageAndNameReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5896,6 +5990,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetCursorImageAndNameReply</span>;
 }
 
+<span class="doccomment">/// The `GetCursorImageAndName` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetCursorImageAndName</span> {}
 
@@ -5942,6 +6037,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetCursorImageAndNameCookie</span>;
 }
 
+<span class="doccomment">/// The `ChangeCursor` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeCursor</span> {
     <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">xproto::Cursor</span>,
@@ -5989,6 +6085,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeCursor</span> {}
 
+<span class="doccomment">/// The `ChangeCursorByName` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeCursorByName</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">src</span>: <span class="ident">xproto::Cursor</span>,
@@ -6040,6 +6137,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangeCursorByName</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `ExpandRegion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExpandRegion</span> {
     <span class="kw">pub</span> <span class="ident">source</span>: <span class="ident">Region</span>,
@@ -6095,6 +6193,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ExpandRegion</span> {}
 
+<span class="doccomment">/// The `HideCursor` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">HideCursor</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -6140,6 +6239,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">HideCursor</span> {}
 
+<span class="doccomment">/// The `ShowCursor` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ShowCursor</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -6185,6 +6285,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ShowCursor</span> {}
 
+<span class="doccomment">/// The `CreatePointerBarrier` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreatePointerBarrier</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">barrier</span>: <span class="ident">Barrier</span>,
@@ -6248,6 +6349,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreatePointerBarrier</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `DeletePointerBarrier` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeletePointerBarrier</span> {
     <span class="kw">pub</span> <span class="ident">barrier</span>: <span class="ident">Barrier</span>,

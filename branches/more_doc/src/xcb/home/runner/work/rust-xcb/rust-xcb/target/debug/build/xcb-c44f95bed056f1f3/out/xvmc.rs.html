@@ -1562,6 +1562,31 @@
 <span id="1562">1562</span>
 <span id="1563">1563</span>
 <span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xvmc.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1578,9 +1603,13 @@
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
 
+<span class="doccomment">/// The official identifier for the `XvMC` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XNAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;XVideo-MotionCompensation&quot;</span>;
+<span class="doccomment">/// The major version of the `XvMC` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// The minor version of the `XvMC` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// The version string of the `XvMC` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;1.1&quot;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
@@ -1588,12 +1617,18 @@
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
 
+<span class="doccomment">/// Prefetch server runtime info data of the `XvMC` extension.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefetch_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) {
     <span class="kw">unsafe</span> {
         <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
 }
 
+<span class="doccomment">/// Fetch server runtime info data of the `XvMC` extension.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Might be non-blocking if [prefetch_extension_data] was called before.</span>
+<span class="doccomment">/// This function is of seldom use as the extensions are initialized by the</span>
+<span class="doccomment">/// [Connection](crate::Connection) constructor.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
@@ -1728,6 +1763,7 @@
     }
 }
 
+<span class="doccomment">/// Reply type for [QueryVersion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1859,6 +1895,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
+<span class="doccomment">/// The `QueryVersion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {}
 
@@ -1905,6 +1942,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [ListSurfaceTypes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListSurfaceTypesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2058,6 +2096,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">ListSurfaceTypesReply</span>;
 }
 
+<span class="doccomment">/// The `ListSurfaceTypes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListSurfaceTypes</span> {
     <span class="kw">pub</span> <span class="ident">port_id</span>: <span class="ident">xv::Port</span>,
@@ -2107,6 +2146,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedListSurfaceTypesCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [CreateContext]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContextReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2282,6 +2322,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">CreateContextReply</span>;
 }
 
+<span class="doccomment">/// The `CreateContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContext</span> {
     <span class="kw">pub</span> <span class="ident">context_id</span>: <span class="ident">Context</span>,
@@ -2341,6 +2382,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedCreateContextCookie</span>;
 }
 
+<span class="doccomment">/// The `DestroyContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroyContext</span> {
     <span class="kw">pub</span> <span class="ident">context_id</span>: <span class="ident">Context</span>,
@@ -2386,6 +2428,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroyContext</span> {}
 
+<span class="doccomment">/// Reply type for [CreateSurface]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateSurfaceReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2528,6 +2571,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">CreateSurfaceReply</span>;
 }
 
+<span class="doccomment">/// The `CreateSurface` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateSurface</span> {
     <span class="kw">pub</span> <span class="ident">surface_id</span>: <span class="ident">Surface</span>,
@@ -2579,6 +2623,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedCreateSurfaceCookie</span>;
 }
 
+<span class="doccomment">/// The `DestroySurface` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroySurface</span> {
     <span class="kw">pub</span> <span class="ident">surface_id</span>: <span class="ident">Surface</span>,
@@ -2624,6 +2669,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroySurface</span> {}
 
+<span class="doccomment">/// Reply type for [CreateSubpicture]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateSubpictureReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2821,6 +2867,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">CreateSubpictureReply</span>;
 }
 
+<span class="doccomment">/// The `CreateSubpicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateSubpicture</span> {
     <span class="kw">pub</span> <span class="ident">subpicture_id</span>: <span class="ident">Subpicture</span>,
@@ -2878,6 +2925,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedCreateSubpictureCookie</span>;
 }
 
+<span class="doccomment">/// The `DestroySubpicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroySubpicture</span> {
     <span class="kw">pub</span> <span class="ident">subpicture_id</span>: <span class="ident">Subpicture</span>,
@@ -2923,6 +2971,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroySubpicture</span> {}
 
+<span class="doccomment">/// Reply type for [ListSubpictureTypes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListSubpictureTypesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3076,6 +3125,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">ListSubpictureTypesReply</span>;
 }
 
+<span class="doccomment">/// The `ListSubpictureTypes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ListSubpictureTypes</span> {
     <span class="kw">pub</span> <span class="ident">port_id</span>: <span class="ident">xv::Port</span>,
