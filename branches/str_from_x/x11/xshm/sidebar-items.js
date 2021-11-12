@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["XShmAttach",""],["XShmCreateImage",""],["XShmCreatePixMap",""],["XShmDetach",""],["XShmGetEventBase",""],["XShmGetImage",""],["XShmPixmapFormat",""],["XShmPutImage",""],["XShmQueryExtension",""],["XshmQueryVersion",""]],"struct":[["XShmCompletionEvent",""],["XshmSegmentInfo",""]],"type":[["ShmSeg",""]]});

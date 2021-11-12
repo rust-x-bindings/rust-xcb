@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["MAJOR_VERSION",""],["MINOR_VERSION",""],["VERSION_STRING",""],["XNAME",""]],"fn":[["get_extension_data",""],["prefetch_extension_data",""]],"struct":[["QueryVersion",""],["QueryVersionCookie","Cookie type for [QueryVersion]"],["QueryVersionReply",""],["UncheckedQueryVersionCookie","Unchecked cookie type for [QueryVersion]"]]});
