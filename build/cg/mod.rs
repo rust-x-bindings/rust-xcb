@@ -442,6 +442,11 @@ impl CodeGen {
     }
 
     pub fn emit_prologue<O: Write>(&self, out: &mut O) -> io::Result<()> {
+        writeln!(
+            out,
+            "// This source file is generated automatically from {}.xml",
+            self.xcb_mod
+        )?;
         writeln!(out)?;
         writeln!(
             out,
