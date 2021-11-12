@@ -260,6 +260,112 @@
 <span id="260">260</span>
 <span id="261">261</span>
 <span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
+<span id="280">280</span>
+<span id="281">281</span>
+<span id="282">282</span>
+<span id="283">283</span>
+<span id="284">284</span>
+<span id="285">285</span>
+<span id="286">286</span>
+<span id="287">287</span>
+<span id="288">288</span>
+<span id="289">289</span>
+<span id="290">290</span>
+<span id="291">291</span>
+<span id="292">292</span>
+<span id="293">293</span>
+<span id="294">294</span>
+<span id="295">295</span>
+<span id="296">296</span>
+<span id="297">297</span>
+<span id="298">298</span>
+<span id="299">299</span>
+<span id="300">300</span>
+<span id="301">301</span>
+<span id="302">302</span>
+<span id="303">303</span>
+<span id="304">304</span>
+<span id="305">305</span>
+<span id="306">306</span>
+<span id="307">307</span>
+<span id="308">308</span>
+<span id="309">309</span>
+<span id="310">310</span>
+<span id="311">311</span>
+<span id="312">312</span>
+<span id="313">313</span>
+<span id="314">314</span>
+<span id="315">315</span>
+<span id="316">316</span>
+<span id="317">317</span>
+<span id="318">318</span>
+<span id="319">319</span>
+<span id="320">320</span>
+<span id="321">321</span>
+<span id="322">322</span>
+<span id="323">323</span>
+<span id="324">324</span>
+<span id="325">325</span>
+<span id="326">326</span>
+<span id="327">327</span>
+<span id="328">328</span>
+<span id="329">329</span>
+<span id="330">330</span>
+<span id="331">331</span>
+<span id="332">332</span>
+<span id="333">333</span>
+<span id="334">334</span>
+<span id="335">335</span>
+<span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
+<span id="350">350</span>
+<span id="351">351</span>
+<span id="352">352</span>
+<span id="353">353</span>
+<span id="354">354</span>
+<span id="355">355</span>
+<span id="356">356</span>
+<span id="357">357</span>
+<span id="358">358</span>
+<span id="359">359</span>
+<span id="360">360</span>
+<span id="361">361</span>
+<span id="362">362</span>
+<span id="363">363</span>
+<span id="364">364</span>
+<span id="365">365</span>
+<span id="366">366</span>
+<span id="367">367</span>
+<span id="368">368</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -319,6 +425,28 @@
 
 <span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;xcb&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
+    <span class="doccomment">/**
+     * @brief Send a request to the server.
+     * @param c The connection to the X server.
+     * @param flags A combination of flags from the xcb_send_request_flags_t enumeration.
+     * @param vector Data to send; must have two iovecs before start for internal use.
+     * @param request Information about the request to be sent.
+     * @return The request&#39;s sequence number on success, 0 otherwise.
+     *
+     * This function sends a new request to the X server. The data of the request is
+     * given as an array of @c iovecs in the @p vector argument. The length of that
+     * array and the necessary management information are given in the @p request
+     * argument.
+     *
+     * When this function returns, the request might or might not be sent already.
+     * Use xcb_flush() to make sure that it really was sent.
+     *
+     * Please note that this function is not the preferred way for sending requests.
+     * It&#39;s better to use the generated wrapper functions.
+     *
+     * Please note that xcb might use index -1 and -2 of the @p vector array internally,
+     * so they must be valid!
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
@@ -363,6 +491,28 @@
         <span class="ident">fds</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_uint</span>;
 
+    <span class="doccomment">/**
+     * @brief Send a request to the server, with 64-bit sequence number returned.
+     * @param c The connection to the X server.
+     * @param flags A combination of flags from the xcb_send_request_flags_t enumeration.
+     * @param vector Data to send; must have two iovecs before start for internal use.
+     * @param request Information about the request to be sent.
+     * @return The request&#39;s sequence number on success, 0 otherwise.
+     *
+     * This function sends a new request to the X server. The data of the request is
+     * given as an array of @c iovecs in the @p vector argument. The length of that
+     * array and the necessary management information are given in the @p request
+     * argument.
+     *
+     * When this function returns, the request might or might not be sent already.
+     * Use xcb_flush() to make sure that it really was sent.
+     *
+     * Please note that this function is not the preferred way for sending requests.
+     * It&#39;s better to use the generated wrapper functions.
+     *
+     * Please note that xcb might use index -1 and -2 of the @p vector array internally,
+     * so they must be valid!
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request64</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
@@ -483,18 +633,51 @@
         <span class="ident">requests</span>: <span class="ident">u64</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
 
+    <span class="doccomment">/**
+     * @brief Wait for the reply of a given request.
+     * @param c The connection to the X server.
+     * @param request Sequence number of the request as returned by xcb_send_request().
+     * @param e Location to store errors in, or NULL. Ignored for unchecked requests.
+     *
+     * Returns the reply to the given request or returns null in the event of
+     * errors. Blocks until the reply or error for the request arrives, or an I/O
+     * error occurs.
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">c_uint</span>,
         <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
 
+    <span class="doccomment">/**
+     * @brief Wait for the reply of a given request, with 64-bit sequence number
+     * @param c The connection to the X server.
+     * @param request 64-bit sequence number of the request as returned by xcb_send_request64().
+     * @param e Location to store errors in, or NULL. Ignored for unchecked requests.
+     *
+     * Returns the reply to the given request or returns null in the event of
+     * errors. Blocks until the reply or error for the request arrives, or an I/O
+     * error occurs.
+     *
+     * Unlike its xcb_wait_for_reply() counterpart, the given sequence number is not
+     * automatically &quot;widened&quot; to 64-bit.
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply64</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">u64</span>,
         <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
 
+    <span class="doccomment">/**
+     * @brief Poll for the reply of a given request.
+     * @param c The connection to the X server.
+     * @param request Sequence number of the request as returned by xcb_send_request().
+     * @param reply Location to store the reply in, must not be NULL.
+     * @param error Location to store errors in, or NULL. Ignored for unchecked requests.
+     * @return 1 when the reply to the request was returned, else 0.
+     *
+     * Checks if the reply to the given request already received. Does not block.
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">c_uint</span>,
@@ -502,6 +685,19 @@
         <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
 
+    <span class="doccomment">/**
+     * @brief Poll for the reply of a given request, with 64-bit sequence number.
+     * @param c The connection to the X server.
+     * @param request 64-bit sequence number of the request as returned by xcb_send_request().
+     * @param reply Location to store the reply in, must not be NULL.
+     * @param error Location to store errors in, or NULL. Ignored for unchecked requests.
+     * @return 1 when the reply to the request was returned, else 0.
+     *
+     * Checks if the reply to the given request already received. Does not block.
+     *
+     * Unlike its xcb_poll_for_reply() counterpart, the given sequence number is not
+     * automatically &quot;widened&quot; to 64-bit.
+     */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply64</span>(
         <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">u64</span>,
@@ -521,6 +717,22 @@
         <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
         <span class="ident">replylen</span>: <span class="ident">usize</span>,
     ) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>;
+
+    <span class="comment">/* xcb_util.c */</span>
+
+    <span class="doccomment">/**
+     * @param mask The mask to check
+     * @return The number of set bits in the mask
+     */</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_popcount</span>(<span class="ident">mask</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+
+    <span class="doccomment">/**
+     * @param list The base of an array
+     * @param len The length of the array
+     * @return The sum of all entries in the array.
+     */</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_sumof</span>(<span class="ident">list</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>, <span class="ident">len</span>: <span class="ident">c_int</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">c_int</span>;
+
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>

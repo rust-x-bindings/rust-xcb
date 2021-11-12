@@ -375,68 +375,6 @@
 <span id="375">375</span>
 <span id="376">376</span>
 <span id="377">377</span>
-<span id="378">378</span>
-<span id="379">379</span>
-<span id="380">380</span>
-<span id="381">381</span>
-<span id="382">382</span>
-<span id="383">383</span>
-<span id="384">384</span>
-<span id="385">385</span>
-<span id="386">386</span>
-<span id="387">387</span>
-<span id="388">388</span>
-<span id="389">389</span>
-<span id="390">390</span>
-<span id="391">391</span>
-<span id="392">392</span>
-<span id="393">393</span>
-<span id="394">394</span>
-<span id="395">395</span>
-<span id="396">396</span>
-<span id="397">397</span>
-<span id="398">398</span>
-<span id="399">399</span>
-<span id="400">400</span>
-<span id="401">401</span>
-<span id="402">402</span>
-<span id="403">403</span>
-<span id="404">404</span>
-<span id="405">405</span>
-<span id="406">406</span>
-<span id="407">407</span>
-<span id="408">408</span>
-<span id="409">409</span>
-<span id="410">410</span>
-<span id="411">411</span>
-<span id="412">412</span>
-<span id="413">413</span>
-<span id="414">414</span>
-<span id="415">415</span>
-<span id="416">416</span>
-<span id="417">417</span>
-<span id="418">418</span>
-<span id="419">419</span>
-<span id="420">420</span>
-<span id="421">421</span>
-<span id="422">422</span>
-<span id="423">423</span>
-<span id="424">424</span>
-<span id="425">425</span>
-<span id="426">426</span>
-<span id="427">427</span>
-<span id="428">428</span>
-<span id="429">429</span>
-<span id="430">430</span>
-<span id="431">431</span>
-<span id="432">432</span>
-<span id="433">433</span>
-<span id="434">434</span>
-<span id="435">435</span>
-<span id="436">436</span>
-<span id="437">437</span>
-<span id="438">438</span>
-<span id="439">439</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="ident">Connection</span>, <span class="ident">Reply</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::{
     <span class="ident">xcb_connection_t</span>, <span class="ident">xcb_extension_t</span>, <span class="ident">xcb_get_extension_data</span>, <span class="ident">xcb_prefetch_extension_data</span>,
@@ -446,159 +384,97 @@
 <span class="kw">use</span> <span class="ident">std::fmt</span>;
 <span class="kw">use</span> <span class="ident">std::mem</span>;
 
-<span class="doccomment">/// Refers to a X protocol extension.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Extension</span> {
-    <span class="doccomment">/// The `BIG-REQUESTS` extension.</span>
     <span class="ident">BigRequests</span>,
-
-    <span class="doccomment">/// The `XCMISC` extension.</span>
     <span class="ident">XcMisc</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-    <span class="doccomment">/// The `Composite` extension.</span>
-    <span class="doccomment">/// Available with the `composite` cargo feature.</span>
     <span class="ident">Composite</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="doccomment">/// The `DAMAGE` extension.</span>
-    <span class="doccomment">/// Available with the `damage` cargo feature.</span>
     <span class="ident">Damage</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-    <span class="doccomment">/// The `DPMS` extension.</span>
-    <span class="doccomment">/// Available with the `dpms` cargo feature.</span>
     <span class="ident">Dpms</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-    <span class="doccomment">/// The `DRI2` extension.</span>
-    <span class="doccomment">/// Available with the `dri2` cargo feature.</span>
     <span class="ident">Dri2</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-    <span class="doccomment">/// The `DRI3` extension.</span>
-    <span class="doccomment">/// Available with the `dri3` cargo feature.</span>
     <span class="ident">Dri3</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-    <span class="doccomment">/// The `Generic Event Extension` extension.</span>
-    <span class="doccomment">/// Available with the `ge` cargo feature.</span>
     <span class="ident">GenericEvent</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="doccomment">/// The `GLX` extension.</span>
-    <span class="doccomment">/// Available with the `glx` cargo feature.</span>
     <span class="ident">Glx</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-    <span class="doccomment">/// The `Present` extension.</span>
-    <span class="doccomment">/// Available with the `present` cargo feature.</span>
     <span class="ident">Present</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="doccomment">/// The `RANDR` extension.</span>
-    <span class="doccomment">/// Available with the `randr` cargo feature.</span>
     <span class="ident">RandR</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-    <span class="doccomment">/// The `RECORD` extension.</span>
-    <span class="doccomment">/// Available with the `record` cargo feature.</span>
     <span class="ident">Record</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-    <span class="doccomment">/// The `RENDER` extension.</span>
-    <span class="doccomment">/// Available with the `render` cargo feature.</span>
     <span class="ident">Render</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-    <span class="doccomment">/// The `X-Resource` extension.</span>
-    <span class="doccomment">/// Available with the `res` cargo feature.</span>
     <span class="ident">Res</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-    <span class="doccomment">/// The `MIT-SCREEN-SAVER` extension.</span>
-    <span class="doccomment">/// Available with the `screensaver` cargo feature.</span>
     <span class="ident">ScreenSaver</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-    <span class="doccomment">/// The `SHAPE` extension.</span>
-    <span class="doccomment">/// Available with the `shape` cargo feature.</span>
     <span class="ident">Shape</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="doccomment">/// The `MIT-SHM` extension.</span>
-    <span class="doccomment">/// Available with the `shm` cargo feature.</span>
     <span class="ident">Shm</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="doccomment">/// The `SYNC` extension.</span>
-    <span class="doccomment">/// Available with the `sync` cargo feature.</span>
     <span class="ident">Sync</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-    <span class="doccomment">/// The `XEVIE` extension.</span>
-    <span class="doccomment">/// Available with the `xevie` cargo feature.</span>
     <span class="ident">Xevie</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFree86-DRI` extension.</span>
-    <span class="doccomment">/// Available with the `xf86dri` cargo feature.</span>
     <span class="ident">Xf86Dri</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFree86-VidModeExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xf86vidmode` cargo feature.</span>
     <span class="ident">Xf86VidMode</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFIXES` extension.</span>
-    <span class="doccomment">/// Available with the `xfixes` cargo feature.</span>
     <span class="ident">XFixes</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-    <span class="doccomment">/// The `XINERAMA` extension.</span>
-    <span class="doccomment">/// Available with the `xinerama` cargo feature.</span>
     <span class="ident">Xinerama</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-    <span class="doccomment">/// The `XInputExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xinput` cargo feature.</span>
     <span class="ident">Input</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="doccomment">/// The `XKEYBOARD` extension.</span>
-    <span class="doccomment">/// Available with the `xkb` cargo feature.</span>
     <span class="ident">Xkb</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-    <span class="doccomment">/// The `XpExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xprint` cargo feature.</span>
     <span class="ident">XPrint</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-    <span class="doccomment">/// The `SELinux` extension.</span>
-    <span class="doccomment">/// Available with the `xselinux` cargo feature.</span>
     <span class="ident">SeLinux</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-    <span class="doccomment">/// The `XTEST` extension.</span>
-    <span class="doccomment">/// Available with the `xtest` cargo feature.</span>
     <span class="ident">Test</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="doccomment">/// The `XVideo` extension.</span>
-    <span class="doccomment">/// Available with the `xv` cargo feature.</span>
     <span class="ident">Xv</span>,
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-    <span class="doccomment">/// The `XVideo-MotionCompensation` extension.</span>
-    <span class="doccomment">/// Available with the `xvmc` cargo feature.</span>
     <span class="ident">XvMc</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">Extension</span> {
-    <span class="doccomment">/// Returns the official X-Name of the extension,</span>
-    <span class="doccomment">/// such as `&quot;BIG-REQUESTS&quot;`.</span>
     <span class="kw">fn</span> <span class="ident">xname</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
         <span class="kw">match</span> <span class="self">self</span> {
             <span class="ident">Extension::BigRequests</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::bigreq::XNAME</span>,

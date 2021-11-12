@@ -243,55 +243,55 @@
 <span class="doccomment">/// A protocol error issued from the X server</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ProtocolError</span> {
-    <span class="doccomment">/// The error is from the core X protocol.</span>
+    <span class="doccomment">/// The error is from the core X protocol</span>
     <span class="ident">X</span>(<span class="ident">x::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `DAMAGE` extension.</span>
+    <span class="doccomment">/// The error is issued from the `damage` extension</span>
     <span class="ident">Damage</span>(<span class="ident">damage::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `GLX` extension.</span>
+    <span class="doccomment">/// The error is issued from the `glx` extension</span>
     <span class="ident">Glx</span>(<span class="ident">glx::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `RANDR` extension.</span>
+    <span class="doccomment">/// The error is issued from the `randr` extension</span>
     <span class="ident">RandR</span>(<span class="ident">randr::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `RENDER` extension.</span>
+    <span class="doccomment">/// The error is issued from the `render` extension</span>
     <span class="ident">Render</span>(<span class="ident">render::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `MIT-SHM` extension.</span>
+    <span class="doccomment">/// The error is issued from the `shm` extension</span>
     <span class="ident">Shm</span>(<span class="ident">shm::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `SYNC` extension.</span>
+    <span class="doccomment">/// The error is issued from the `sync` extension</span>
     <span class="ident">Sync</span>(<span class="ident">sync::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XFree86-VidModeExtension` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xf86vidmode` extension</span>
     <span class="ident">Xf86VidMode</span>(<span class="ident">xf86vidmode::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XFIXES` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xfixes` extension</span>
     <span class="ident">XFixes</span>(<span class="ident">xfixes::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XInputExtension` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xinput` extension</span>
     <span class="ident">Input</span>(<span class="ident">xinput::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XKEYBOARD` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xkb` extension</span>
     <span class="ident">Xkb</span>(<span class="ident">xkb::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XpExtension` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xprint` extension</span>
     <span class="ident">XPrint</span>(<span class="ident">xprint::Error</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XVideo` extension.</span>
+    <span class="doccomment">/// The error is issued from the `xv` extension</span>
     <span class="ident">Xv</span>(<span class="ident">xv::Error</span>),
 }
 
