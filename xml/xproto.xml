@@ -2609,29 +2609,24 @@ Configures a window's size, position, border width and stacking order.
             </description>
             <example>
                 <![CDATA[
-/*
- * Configures the given window to the left upper corner
- * with a size of 1024x768 pixels.
- *
- */
-void my_example(xcb_connection_t *c, xcb_window_t window) {
-    uint16_t mask = 0;
-
-    mask |= XCB_CONFIG_WINDOW_X;
-    mask |= XCB_CONFIG_WINDOW_Y;
-    mask |= XCB_CONFIG_WINDOW_WIDTH;
-    mask |= XCB_CONFIG_WINDOW_HEIGHT;
-
-    const uint32_t values[] = {
-        0,    /* x */
-        0,    /* y */
-        1024, /* width */
-        768   /* height */
-    };
-
-    xcb_configure_window(c, window, mask, values);
-    xcb_flush(c);
-}
+#   use xcb::x;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Configures the given window to the left upper corner
+// with a size of 1024x768 pixels.
+conn.send_request(&x::ConfigureWindow {
+    window,
+    value_list: &[
+        x::ConfigWindow::X(0),
+        x::ConfigWindow::Y(0),
+        x::ConfigWindow::Width(0),
+        x::ConfigWindow::Height(0),
+    ],
+});
+conn.flush()?;
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="window">
@@ -2773,21 +2768,18 @@ Gets the current geometry of the specified drawable (either `Window` or `Pixmap`
             </description>
             <example>
                 <![CDATA[
-/*
- * Displays the x and y position of the given window.
- *
- */
-void my_example(xcb_connection_t *c, xcb_window_t window) {
-    xcb_get_geometry_cookie_t cookie;
-    xcb_get_geometry_reply_t *reply;
-
-    cookie = xcb_get_geometry(c, window);
-    /* ... do other work here if possible ... */
-    if ((reply = xcb_get_geometry_reply(c, cookie, NULL))) {
-        printf("This window is at %d, %d\\n", reply->x, reply->y);
-    }
-    free(reply);
-}
+#   use xcb::x;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Get the X and Y coordinates of a window.
+let cookie = conn.send_request(&x::GetGeometry {
+    drawable: x::Drawable::Window(window),
+});
+let reply = conn.wait_for_reply(cookie)?;
+let (x, y) = (reply.x(), reply.y());
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="drawable">
@@ -2849,26 +2841,21 @@ specified `window`. The children are listed in bottom-to-top stacking order.
             </description>
             <example>
                 <![CDATA[
-/*
- * Displays the root, parent and children of the specified window.
- *
- */
-void my_example(xcb_connection_t *conn, xcb_window_t window) {
-    xcb_query_tree_cookie_t cookie;
-    xcb_query_tree_reply_t *reply;
-
-    cookie = xcb_query_tree(conn, window);
-    if ((reply = xcb_query_tree_reply(conn, cookie, NULL))) {
-        printf("root = 0x%08x\\n", reply->root);
-        printf("parent = 0x%08x\\n", reply->parent);
-
-        xcb_window_t *children = xcb_query_tree_children(reply);
-        for (int i = 0; i < xcb_query_tree_children_length(reply); i++)
-            printf("child window = 0x%08x\\n", children[i]);
-
-        free(reply);
-    }
-}
+#   use xcb::{x};
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Get the root, parent and children of the specified window.
+let cookie = conn.send_request(&x::QueryTree {
+    window,
+});
+let reply = conn.wait_for_reply(cookie)?;
+// type inference is not needed here, only to show the type of returned value.
+let root: x::Window = reply.root();
+let parent: x::Window = reply.parent();
+let children: &[x::Window] = reply.children();
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="window">
@@ -2906,21 +2893,19 @@ not yet exist.
             </description>
             <example>
                 <![CDATA[
-/*
- * Resolves the _NET_WM_NAME atom.
- *
- */
-void my_example(xcb_connection_t *c) {
-    xcb_intern_atom_cookie_t cookie;
-    xcb_intern_atom_reply_t *reply;
-
-    cookie = xcb_intern_atom(c, 0, strlen("_NET_WM_NAME"), "_NET_WM_NAME");
-    /* ... do other work here if possible ... */
-    if ((reply = xcb_intern_atom_reply(c, cookie, NULL))) {
-        printf("The _NET_WM_NAME atom has ID %u\n", reply->atom);
-        free(reply);
-    }
-}
+#   use xcb::{x};
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Resolve the _NET_WM_NAME atom.
+let cookie = conn.send_request(&x::InternAtom {
+    only_if_exists: false,
+    name: "_NET_WM_NAME",
+});
+let reply = conn.wait_for_reply(cookie)?;
+let wm_name = reply.atom();
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="name_len">
@@ -3030,21 +3015,20 @@ window title, encoded as UTF-8 string, in the `_NET_WM_NAME` property.
             </description>
             <example>
                 <![CDATA[
-/*
- * Sets the WM_NAME property of the window to "XCB Example".
- *
- */
-void my_example(xcb_connection_t *conn, xcb_window_t window) {
-    xcb_change_property(conn,
-        XCB_PROP_MODE_REPLACE,
-        window,
-        XCB_ATOM_WM_NAME,
-        XCB_ATOM_STRING,
-        8,
-        strlen("XCB Example"),
-        "XCB Example");
-    xcb_flush(conn);
-}
+#   use xcb::{x};
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Set the WM_NAME property of the window "XCB Example".
+conn.send_request(&x::ChangeProperty {
+    mode: x::PropMode::Replace,
+    window,
+    property: x::ATOM_WM_NAME,
+    r#type: x::ATOM_STRING,
+    data: b"XCB Example",
+});
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="window">
@@ -3190,32 +3174,25 @@ TODO: talk about the offset/length thing. what's a valid use case?
             </description>
             <example>
                 <![CDATA[
-/*
- * Prints the WM_NAME property of the window.
- *
- */
-void my_example(xcb_connection_t *c, xcb_window_t window) {
-    xcb_get_property_cookie_t cookie;
-    xcb_get_property_reply_t *reply;
-
-    /* These atoms are predefined in the X11 protocol. */
-    xcb_atom_t property = XCB_ATOM_WM_NAME;
-    xcb_atom_t type = XCB_ATOM_STRING;
-
-    // TODO: a reasonable long_length for WM_NAME?
-    cookie = xcb_get_property(c, 0, window, property, type, 0, 0);
-    if ((reply = xcb_get_property_reply(c, cookie, NULL))) {
-        int len = xcb_get_property_value_length(reply);
-        if (len == 0) {
-            printf("TODO\\n");
-            free(reply);
-            return;
-        }
-        printf("WM_NAME is %.*s\\n", len,
-               (char*)xcb_get_property_value(reply));
-    }
-    free(reply);
-}
+#   use xcb::{x};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Get the WM_NAME property of the window
+let cookie = conn.send_request(&x::GetProperty {
+    delete: false,
+    window,
+    property: x::ATOM_WM_NAME,
+    r#type: x::ATOM_STRING,
+    long_offset: 0,
+    long_length: 0,
+});
+let reply = conn.wait_for_reply(cookie)?;
+// value() returns &[u8]
+let title = str::from_utf8(reply.value()).expect("The WM_NAME property is not valid UTF-8");
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="window">
@@ -3412,34 +3389,32 @@ contents of `event` are otherwise unaltered and unchecked except for the
             </description>
             <example>
                 <![CDATA[
-/*
- * Tell the given window that it was configured to a size of 800x600 pixels.
- *
- */
-void my_example(xcb_connection_t *conn, xcb_window_t window) {
-    /* Every X11 event is 32 bytes long. Therefore, XCB will copy 32 bytes.
-     * In order to properly initialize these bytes, we allocate 32 bytes even
-     * though we only need less for an xcb_configure_notify_event_t */
-    xcb_configure_notify_event_t *event = calloc(32, 1);
-
-    event->event = window;
-    event->window = window;
-    event->response_type = XCB_CONFIGURE_NOTIFY;
-
-    event->x = 0;
-    event->y = 0;
-    event->width = 800;
-    event->height = 600;
-
-    event->border_width = 0;
-    event->above_sibling = XCB_NONE;
-    event->override_redirect = false;
-
-    xcb_send_event(conn, false, window, XCB_EVENT_MASK_STRUCTURE_NOTIFY,
-                   (char*)event);
-    xcb_flush(conn);
-    free(event);
-}
+#   use xcb::{x, Xid};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let window: x::Window = conn.generate_id();
+// Tell the given window that it was configured to a size of 800x600 pixels.
+let event = x::ConfigureNotifyEvent::new(
+    window,
+    window,
+    x::Window::none(),
+    0,
+    0,
+    800,
+    600,
+    0,
+    false,
+);
+conn.send_request(&x::SendEvent {
+    propagate: false,
+    destination: x::SendEventDest::Window(window),
+    event_mask: x::EventMask::STRUCTURE_NOTIFY,
+    event: &event,
+});
+conn.flush()?;
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="destination">
@@ -3560,32 +3535,29 @@ Actively grabs control of the pointer. Further pointer events are reported only 
             </description>
             <example>
                 <![CDATA[
-/*
- * Grabs the pointer actively
- *
- */
-void my_example(xcb_connection_t *conn, xcb_screen_t *screen, xcb_cursor_t cursor) {
-    xcb_grab_pointer_cookie_t cookie;
-    xcb_grab_pointer_reply_t *reply;
-
-    cookie = xcb_grab_pointer(
-        conn,
-        false,               /* get all pointer events specified by the following mask */
-        screen->root,        /* grab the root window */
-        XCB_NONE,            /* which events to let through */
-        XCB_GRAB_MODE_ASYNC, /* pointer events should continue as normal */
-        XCB_GRAB_MODE_ASYNC, /* keyboard mode */
-        XCB_NONE,            /* confine_to = in which window should the cursor stay */
-        cursor,              /* we change the cursor to whatever the user wanted */
-        XCB_CURRENT_TIME
-    );
-
-    if ((reply = xcb_grab_pointer_reply(conn, cookie, NULL))) {
-        if (reply->status == XCB_GRAB_STATUS_SUCCESS)
-            printf("successfully grabbed the pointer\\n");
-        free(preply);
-    }
-}
+#   use xcb::{x, Xid};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let setup = conn.get_setup();
+#       let screen = setup.roots().nth(screen_num as usize).unwrap();
+#       let window: x::Window = conn.generate_id();
+#       let cursor: x::Cursor = conn.generate_id();
+// Grabs the pointer actively
+let cookie = conn.send_request(&x::GrabPointer {
+    owner_events: false,                // get all pointer events specified by the following mask
+    grab_window: screen.root(),         // grab the root window
+    event_mask: x::EventMask::NO_EVENT, // which event to let through
+    pointer_mode: x::GrabMode::Async,   // pointer events should continue as normal
+    keyboard_mode: x::GrabMode::Async,  // pointer events should continue as normal
+    confine_to: x::Window::none(),      // in which window should the cursor stay
+    cursor,                             // we change the cursor
+    time: x::CURRENT_TIME,
+});
+let reply = conn.wait_for_reply(cookie)?;
+assert!(reply.status() == x::GrabStatus::Success, "GrabPointer did not succeed");
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="event_mask">
@@ -3909,30 +3881,26 @@ last-keyboard-grab time is set to the specified time.
             </description>
             <example>
                 <![CDATA[
-/*
- * Grabs the keyboard actively
- *
- */
-void my_example(xcb_connection_t *conn, xcb_screen_t *screen) {
-    xcb_grab_keyboard_cookie_t cookie;
-    xcb_grab_keyboard_reply_t *reply;
-
-    cookie = xcb_grab_keyboard(
-        conn,
-        true,                /* report events */
-        screen->root,        /* grab the root window */
-        XCB_CURRENT_TIME,
-        XCB_GRAB_MODE_ASYNC, /* process events as normal, do not require sync */
-        XCB_GRAB_MODE_ASYNC
-    );
-
-    if ((reply = xcb_grab_keyboard_reply(conn, cookie, NULL))) {
-        if (reply->status == XCB_GRAB_STATUS_SUCCESS)
-            printf("successfully grabbed the keyboard\\n");
-
-        free(reply);
-    }
-}
+#   use xcb::{x};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let setup = conn.get_setup();
+#       let screen = setup.roots().nth(screen_num as usize).unwrap();
+#       let window: x::Window = conn.generate_id();
+#       let cursor: x::Cursor = conn.generate_id();
+// Grabs the keyboard actively
+let cookie = conn.send_request(&x::GrabKeyboard {
+    owner_events: true,                 // get all pointer events specified by the following mask
+    grab_window: screen.root(),         // grab the root window
+    time: x::CURRENT_TIME,
+    pointer_mode: x::GrabMode::Async,   // process events as normal, do not require sync
+    keyboard_mode: x::GrabMode::Async,
+});
+let reply = conn.wait_for_reply(cookie)?;
+assert!(reply.status() == x::GrabStatus::Success, "GrabKeyboard did not succeed");
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="owner_events">
@@ -5753,26 +5721,27 @@ Changes the components specified by `value_mask` for the specified graphics cont
             </description>
             <example>
                 <![CDATA[
-/*
- * Changes the foreground color component of the specified graphics context.
- *
- */
-void my_example(xcb_connection_t *conn, xcb_gcontext_t gc, uint32_t fg, uint32_t bg) {
-    /* C99 allows us to use a compact way of changing a single component: */
-    xcb_change_gc(conn, gc, XCB_GC_FOREGROUND, (uint32_t[]){ fg });
-
-    /* The more explicit way. Beware that the order of values is important! */
-    uint32_t mask = 0;
-    mask |= XCB_GC_FOREGROUND;
-    mask |= XCB_GC_BACKGROUND;
-
-    uint32_t values[] = {
-        fg,
-        bg
-    };
-    xcb_change_gc(conn, gc, mask, values);
-    xcb_flush(conn);
-}
+#   use xcb::{x};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let setup = conn.get_setup();
+#       let screen = setup.roots().nth(screen_num as usize).unwrap();
+#       let gc: x::Gcontext = conn.generate_id();
+// Change the foreground and background component
+// of a graphics context to white on black.
+// `value_list` components order must be in the same order
+// than in the `Gc` enum.
+conn.send_request(&x::ChangeGc {
+    gc,
+    value_list: &[
+        x::Gc::Foreground(screen.white_pixel()),
+        x::Gc::Background(screen.black_pixel()),
+    ],
+});
+conn.flush()?;
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="gc">
@@ -6037,15 +6006,28 @@ request were a single, filled shape.
             </description>
             <example>
                 <![CDATA[
-/*
- * Draw a straight line.
- *
- */
-void my_example(xcb_connection_t *conn, xcb_drawable_t drawable, xcb_gcontext_t gc) {
-    xcb_poly_line(conn, XCB_COORD_MODE_ORIGIN, drawable, gc, 2,
-                  (xcb_point_t[]) { {10, 10}, {100, 10} });
-    xcb_flush(conn);
-}
+#   use xcb::{x};
+#   use std::str;
+#   fn main() -> xcb::Result<()> {
+#       let (conn, screen_num) = xcb::Connection::connect(None)?;
+#       let setup = conn.get_setup();
+#       let screen = setup.roots().nth(screen_num as usize).unwrap();
+#       let window: x::Window = conn.generate_id();
+#       let gc: x::Gcontext = conn.generate_id();
+// Draw a straight line on a window
+let points = &[
+    x::Point { x: 10, y: 10 },
+    x::Point { x: 100, y: 10 },
+];
+conn.send_request(&x::PolyLine {
+    coordinate_mode: x::CoordMode::Origin,
+    drawable: x::Drawable::Window(window),
+    gc,
+    points,
+});
+conn.flush()?;
+#       Ok(())
+#   }
       ]]>
             </example>
             <field name="drawable">

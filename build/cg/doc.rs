@@ -45,14 +45,28 @@ impl Doc {
     }
 
     pub(super) fn emit<O: Write>(&self, out: &mut O, ind: u32) -> io::Result<()> {
+        let mut empty = true;
         if let Some(brief) = &self.brief {
             emit_doc_text(out, ind, brief)?;
-        }
-        if self.brief.is_some() && self.description.is_some() {
-            emit_doc_text(out, ind, "")?;
+            empty = false;
         }
         if let Some(desc) = &self.description {
+            if !empty {
+                emit_doc_text(out, ind, "")?;
+            }
             emit_doc_text(out, ind, desc)?;
+            empty = false;
+        }
+        if let Some(example) = &self.example {
+            if example.contains("fn main") {
+                if !empty {
+                    emit_doc_text(out, ind, "")?;
+                }
+                emit_doc_text(out, ind, "# Example")?;
+                emit_doc_text(out, ind, "```no_run")?;
+                emit_doc_text(out, ind, example)?;
+                emit_doc_text(out, ind, "```")?;
+            }
         }
         Ok(())
     }

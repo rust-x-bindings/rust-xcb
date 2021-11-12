@@ -122,7 +122,7 @@ pub trait GeEvent {
 /// This should be completely transparent to the user, as [ProtocolError] is
 /// resolving all types of errors together.
 pub trait BaseError {
-    /// The extension associated to this event, or `None` for the main protocol
+    /// The extension associated to this error, or `None` for the main protocol
     const EXTENSION: Option<Extension>;
 
     /// The number associated to this error
@@ -458,9 +458,7 @@ pub struct DisplayInfo {
     screen: i32,
 }
 
-/// Parses a display string name in the form documented by (X(7x))[man].
-///
-/// Parses the display string name in the form documented by (X(7x))[man].
+/// Parses a display string in the form documented by [X (7x)](https://linux.die.net/man/7/x).
 ///
 /// Returns `Some(DisplayInfo)` on success and `None` otherwise.
 /// Has no side effects on failure.
@@ -468,8 +466,6 @@ pub struct DisplayInfo {
 /// If `name` empty, it uses the environment variable `DISPLAY`.
 ///
 /// If `name` does not contain a screen number, `DisplayInfo::screen` is set to `0`.
-///
-/// [man]: [https://linux.die.net/man/7/x]
 pub fn parse_display(name: &str) -> Option<DisplayInfo> {
     unsafe {
         let name = CString::new(name).unwrap();
@@ -602,7 +598,7 @@ pub type Result<T> = result::Result<T, Error>;
 ///
 /// It handles all communications with the X server.
 /// It dispatches the requests, receives the replies, poll/wait the events.
-/// It also resolve the error and events from X server.
+/// It also resolves the errors and events from X server.
 ///
 /// `Connection` is thread safe.
 ///
@@ -707,6 +703,9 @@ impl Connection {
     /// The event queue owner defaults to Xlib.
     /// One would need to open an XCB connection with Xlib in order to use
     /// OpenGL.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
     #[cfg(feature = "xlib_xcb")]
     pub fn connect_with_xlib_display_and_extensions(
         mandatory: &[Extension],
@@ -863,6 +862,9 @@ impl Connection {
     ///
     /// Extension data specified by `mandatory` and `optional` is cached to allow
     /// the resolution of events and errors in these extensions.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
     ///
     /// # Safety
     /// The `conn` pointer must point to a valid `xcb_connection_t`

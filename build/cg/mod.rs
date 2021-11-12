@@ -469,7 +469,17 @@ impl CodeGen {
 
         if let Some(ext_info) = self.ext_info.as_ref() {
             writeln!(out)?;
+            writeln!(
+                out,
+                "/// The official identifier for the `{}` extension.",
+                ext_info.name
+            )?;
             writeln!(out, "pub const XNAME: &str = \"{}\";", ext_info.xname)?;
+            writeln!(
+                out,
+                "/// The major version of the `{}` extension.",
+                ext_info.name
+            )?;
             writeln!(
                 out,
                 "pub const MAJOR_VERSION: u32 = {};",
@@ -477,8 +487,18 @@ impl CodeGen {
             )?;
             writeln!(
                 out,
+                "/// The minor version of the `{}` extension.",
+                ext_info.name
+            )?;
+            writeln!(
+                out,
                 "pub const MINOR_VERSION: u32 = {};",
                 ext_info.minor_version
+            )?;
+            writeln!(
+                out,
+                "/// The version string of the `{}` extension.",
+                ext_info.name
             )?;
             writeln!(
                 out,
@@ -502,6 +522,11 @@ impl CodeGen {
             writeln!(out)?;
             writeln!(
                 out,
+                "/// Prefetch server runtime info data of the `{}` extension.",
+                ext_info.name
+            )?;
+            writeln!(
+                out,
                 "pub fn prefetch_extension_data(conn: &base::Connection) {{"
             )?;
             writeln!(out, "    unsafe {{")?;
@@ -513,6 +538,21 @@ impl CodeGen {
             writeln!(out, "}}")?;
 
             writeln!(out)?;
+            writeln!(
+                out,
+                "/// Fetch server runtime info data of the `{}` extension.",
+                ext_info.name
+            )?;
+            writeln!(out, "///")?;
+            writeln!(
+                out,
+                "/// Might be non-blocking if [prefetch_extension_data] was called before."
+            )?;
+            writeln!(
+                out,
+                "/// This function is of seldom use as the extensions are initialized by the"
+            )?;
+            writeln!(out, "/// [Connection](crate::Connection) constructor.")?;
             writeln!(
                 out,
                 "pub fn get_extension_data(conn: &base::Connection) -> std::option::Option<ext::ExtensionData> {{"

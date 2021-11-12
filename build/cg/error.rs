@@ -111,6 +111,7 @@ impl CodeGen {
                     ""
                 };
                 writeln!(out)?;
+                writeln!(out, "/// The `{}` error.", error.rs_typ)?;
                 writeln!(
                     out,
                     "pub type {} = {}{};",
@@ -123,6 +124,7 @@ impl CodeGen {
             // They own the data pointed to that must be freed during drop.
 
             writeln!(out)?;
+            writeln!(out, "/// The `{}` error.", error.rs_typ)?;
             writeln!(out, "pub struct {} {{", error.rs_typ)?;
             writeln!(out, "    raw: *mut xcb_generic_error_t,")?;
             writeln!(out, "}}")?;
