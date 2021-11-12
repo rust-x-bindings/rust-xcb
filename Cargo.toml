@@ -13,6 +13,9 @@ exclude = ["scripts", ".github", "examples/todo/*"]
 autoexamples = false
 edition = "2018"
 
+[package.metadata.docs.rs]
+all-features = true
+
 [build-dependencies]
 libc = "0.2.102"
 quick-xml = "0.22.0"
