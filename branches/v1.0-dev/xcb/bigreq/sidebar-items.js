@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["MAJOR_VERSION",""],["MINOR_VERSION",""],["VERSION_STRING",""],["XNAME",""]],"fn":[["get_extension_data",""],["prefetch_extension_data",""]],"struct":[["Enable",""],["EnableCookie","Cookie type for [Enable]"],["EnableReply",""],["UncheckedEnableCookie","Unchecked cookie type for [Enable]"]]});
