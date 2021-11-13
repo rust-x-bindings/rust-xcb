@@ -191,6 +191,8 @@ impl CodeGen {
                 writeln!(out)?;
                 if let Some(doc) = &event.doc {
                     doc.emit(out, 0)?;
+                } else {
+                    writeln!(out, "/// The `{}` event.", event.rs_typ)?;
                 }
                 writeln!(out, "pub type {} = {};", event.rs_typ, copy_from_rs_typ)?;
                 continue;
@@ -208,6 +210,8 @@ impl CodeGen {
             writeln!(out)?;
             if let Some(doc) = &event.doc {
                 doc.emit(out, 0)?;
+            } else {
+                writeln!(out, "/// The `{}` event.", event.rs_typ)?;
             }
             writeln!(out, "pub struct {} {{", event.rs_typ)?;
             writeln!(out, "    raw: *mut {},", raw_typ)?;

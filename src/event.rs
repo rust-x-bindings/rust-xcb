@@ -45,50 +45,66 @@ use crate::xprint;
 #[cfg(feature = "xv")]
 use crate::xv;
 
+/// Unified Event type from the X server.
 #[derive(Debug)]
 pub enum Event {
+    /// The event is issued from the X core protocol.
     X(x::Event),
 
     #[cfg(feature = "damage")]
+    /// The event is issued from the `DAMAGE` extension.
     Damage(damage::Event),
 
     #[cfg(feature = "dri2")]
+    /// The event is issued from the `DRI2` extension.
     Dri2(dri2::Event),
 
     #[cfg(feature = "glx")]
+    /// The event is issued from the `GLX` extension.
     Glx(glx::Event),
 
     #[cfg(feature = "present")]
+    /// The event is issued from the `Present` extension.
     Present(present::Event),
 
     #[cfg(feature = "randr")]
+    /// The event is issued from the `RANDR` extension.
     RandR(randr::Event),
 
     #[cfg(feature = "screensaver")]
+    /// The event is issued from the `MIT-SCREEN-SAVER` extension.
     ScreenSaver(screensaver::Event),
 
     #[cfg(feature = "shape")]
+    /// The event is issued from the `SHAPE` extension.
     Shape(shape::Event),
 
     #[cfg(feature = "shm")]
+    /// The event is issued from the `MIT-SHM` extension.
     Shm(shm::Event),
 
     #[cfg(feature = "sync")]
+    /// The event is issued from the `SYNC` extension.
     Sync(sync::Event),
 
     #[cfg(feature = "xfixes")]
+    /// The event is issued from the `XFIXES` extension.
     XFixes(xfixes::Event),
 
     #[cfg(feature = "xinput")]
+    /// The event is issued from the `XInputExtension` extension.
     Input(xinput::Event),
 
     #[cfg(feature = "xkb")]
+    /// The event is issued from the `XKEYBOARD` extension.
     Xkb(xkb::Event),
 
     #[cfg(feature = "xprint")]
+    /// The event is issued from the `XpExtension` extension.
     XPrint(xprint::Event),
 
     #[cfg(feature = "xv")]
+    /// The event is issued from the `XVideo` extension.
     Xv(xv::Event),
 }
 

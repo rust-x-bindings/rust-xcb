@@ -57,28 +57,6 @@ pub(crate) enum xcb_send_request_flags_t {
 
 #[link(name = "xcb")]
 extern "C" {
-    /**
-     * @brief Send a request to the server.
-     * @param c The connection to the X server.
-     * @param flags A combination of flags from the xcb_send_request_flags_t enumeration.
-     * @param vector Data to send; must have two iovecs before start for internal use.
-     * @param request Information about the request to be sent.
-     * @return The request's sequence number on success, 0 otherwise.
-     *
-     * This function sends a new request to the X server. The data of the request is
-     * given as an array of @c iovecs in the @p vector argument. The length of that
-     * array and the necessary management information are given in the @p request
-     * argument.
-     *
-     * When this function returns, the request might or might not be sent already.
-     * Use xcb_flush() to make sure that it really was sent.
-     *
-     * Please note that this function is not the preferred way for sending requests.
-     * It's better to use the generated wrapper functions.
-     *
-     * Please note that xcb might use index -1 and -2 of the @p vector array internally,
-     * so they must be valid!
-     */
     pub(crate) fn xcb_send_request(
         c: *mut xcb_connection_t,
         flags: c_int,
@@ -123,28 +101,6 @@ extern "C" {
         fds: *mut c_int,
     ) -> c_uint;
 
-    /**
-     * @brief Send a request to the server, with 64-bit sequence number returned.
-     * @param c The connection to the X server.
-     * @param flags A combination of flags from the xcb_send_request_flags_t enumeration.
-     * @param vector Data to send; must have two iovecs before start for internal use.
-     * @param request Information about the request to be sent.
-     * @return The request's sequence number on success, 0 otherwise.
-     *
-     * This function sends a new request to the X server. The data of the request is
-     * given as an array of @c iovecs in the @p vector argument. The length of that
-     * array and the necessary management information are given in the @p request
-     * argument.
-     *
-     * When this function returns, the request might or might not be sent already.
-     * Use xcb_flush() to make sure that it really was sent.
-     *
-     * Please note that this function is not the preferred way for sending requests.
-     * It's better to use the generated wrapper functions.
-     *
-     * Please note that xcb might use index -1 and -2 of the @p vector array internally,
-     * so they must be valid!
-     */
     pub(crate) fn xcb_send_request64(
         c: *mut xcb_connection_t,
         flags: c_int,
@@ -265,51 +221,18 @@ extern "C" {
         requests: u64,
     ) -> c_int;
 
-    /**
-     * @brief Wait for the reply of a given request.
-     * @param c The connection to the X server.
-     * @param request Sequence number of the request as returned by xcb_send_request().
-     * @param e Location to store errors in, or NULL. Ignored for unchecked requests.
-     *
-     * Returns the reply to the given request or returns null in the event of
-     * errors. Blocks until the reply or error for the request arrives, or an I/O
-     * error occurs.
-     */
     pub(crate) fn xcb_wait_for_reply(
         c: *mut xcb_connection_t,
         request: c_uint,
         e: *mut *mut xcb_generic_error_t,
     ) -> *mut c_void;
 
-    /**
-     * @brief Wait for the reply of a given request, with 64-bit sequence number
-     * @param c The connection to the X server.
-     * @param request 64-bit sequence number of the request as returned by xcb_send_request64().
-     * @param e Location to store errors in, or NULL. Ignored for unchecked requests.
-     *
-     * Returns the reply to the given request or returns null in the event of
-     * errors. Blocks until the reply or error for the request arrives, or an I/O
-     * error occurs.
-     *
-     * Unlike its xcb_wait_for_reply() counterpart, the given sequence number is not
-     * automatically "widened" to 64-bit.
-     */
     pub(crate) fn xcb_wait_for_reply64(
         c: *mut xcb_connection_t,
         request: u64,
         e: *mut *mut xcb_generic_error_t,
     ) -> *mut c_void;
 
-    /**
-     * @brief Poll for the reply of a given request.
-     * @param c The connection to the X server.
-     * @param request Sequence number of the request as returned by xcb_send_request().
-     * @param reply Location to store the reply in, must not be NULL.
-     * @param error Location to store errors in, or NULL. Ignored for unchecked requests.
-     * @return 1 when the reply to the request was returned, else 0.
-     *
-     * Checks if the reply to the given request already received. Does not block.
-     */
     pub(crate) fn xcb_poll_for_reply(
         c: *mut xcb_connection_t,
         request: c_uint,
@@ -317,19 +240,6 @@ extern "C" {
         e: *mut *mut xcb_generic_error_t,
     ) -> *mut c_void;
 
-    /**
-     * @brief Poll for the reply of a given request, with 64-bit sequence number.
-     * @param c The connection to the X server.
-     * @param request 64-bit sequence number of the request as returned by xcb_send_request().
-     * @param reply Location to store the reply in, must not be NULL.
-     * @param error Location to store errors in, or NULL. Ignored for unchecked requests.
-     * @return 1 when the reply to the request was returned, else 0.
-     *
-     * Checks if the reply to the given request already received. Does not block.
-     *
-     * Unlike its xcb_poll_for_reply() counterpart, the given sequence number is not
-     * automatically "widened" to 64-bit.
-     */
     pub(crate) fn xcb_poll_for_reply64(
         c: *mut xcb_connection_t,
         request: u64,
@@ -349,20 +259,4 @@ extern "C" {
         reply: *mut c_void,
         replylen: usize,
     ) -> *mut c_int;
-
-    /* xcb_util.c */
-
-    /**
-     * @param mask The mask to check
-     * @return The number of set bits in the mask
-     */
-    pub(crate) fn xcb_popcount(mask: u32) -> c_int;
-
-    /**
-     * @param list The base of an array
-     * @param len The length of the array
-     * @return The sum of all entries in the array.
-     */
-    pub(crate) fn xcb_sumof(list: *mut u8, len: c_int) -> c_int;
-
 }

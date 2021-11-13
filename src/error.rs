@@ -42,55 +42,55 @@ use crate::xv;
 /// A protocol error issued from the X server
 #[derive(Debug)]
 pub enum ProtocolError {
-    /// The error is from the core X protocol
+    /// The error is from the core X protocol.
     X(x::Error),
 
     #[cfg(feature = "damage")]
-    /// The error is issued from the `damage` extension
+    /// The error is issued from the `DAMAGE` extension.
     Damage(damage::Error),
 
     #[cfg(feature = "glx")]
-    /// The error is issued from the `glx` extension
+    /// The error is issued from the `GLX` extension.
     Glx(glx::Error),
 
     #[cfg(feature = "randr")]
-    /// The error is issued from the `randr` extension
+    /// The error is issued from the `RANDR` extension.
     RandR(randr::Error),
 
     #[cfg(feature = "render")]
-    /// The error is issued from the `render` extension
+    /// The error is issued from the `RENDER` extension.
     Render(render::Error),
 
     #[cfg(feature = "shm")]
-    /// The error is issued from the `shm` extension
+    /// The error is issued from the `MIT-SHM` extension.
     Shm(shm::Error),
 
     #[cfg(feature = "sync")]
-    /// The error is issued from the `sync` extension
+    /// The error is issued from the `SYNC` extension.
     Sync(sync::Error),
 
     #[cfg(feature = "xf86vidmode")]
-    /// The error is issued from the `xf86vidmode` extension
+    /// The error is issued from the `XFree86-VidModeExtension` extension.
     Xf86VidMode(xf86vidmode::Error),
 
     #[cfg(feature = "xfixes")]
-    /// The error is issued from the `xfixes` extension
+    /// The error is issued from the `XFIXES` extension.
     XFixes(xfixes::Error),
 
     #[cfg(feature = "xinput")]
-    /// The error is issued from the `xinput` extension
+    /// The error is issued from the `XInputExtension` extension.
     Input(xinput::Error),
 
     #[cfg(feature = "xkb")]
-    /// The error is issued from the `xkb` extension
+    /// The error is issued from the `XKEYBOARD` extension.
     Xkb(xkb::Error),
 
     #[cfg(feature = "xprint")]
-    /// The error is issued from the `xprint` extension
+    /// The error is issued from the `XpExtension` extension.
     XPrint(xprint::Error),
 
     #[cfg(feature = "xv")]
-    /// The error is issued from the `xv` extension
+    /// The error is issued from the `XVideo` extension.
     Xv(xv::Error),
 }
 

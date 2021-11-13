@@ -252,6 +252,8 @@ impl CodeGen {
         writeln!(out)?;
         if let Some(doc) = &reply.doc {
             doc.emit(out, 0)?;
+        } else {
+            writeln!(out, "/// Reply type for [{}]", req_name)?;
         }
         writeln!(out, "pub struct {} {{", reply_rs_typ)?;
         writeln!(out, "    raw: *const u8,")?;
@@ -391,6 +393,8 @@ impl CodeGen {
         writeln!(out)?;
         if let Some(doc) = doc {
             doc.emit(out, 0)?;
+        } else {
+            writeln!(out, "/// The `{}` request.", rs_typ)?;
         }
         writeln!(out, "#[derive(Clone, Debug)]")?;
         writeln!(out, "pub struct {}{} {{", rs_typ, generic_decl)?;

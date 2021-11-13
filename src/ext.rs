@@ -7,97 +7,159 @@ use crate::x;
 use std::fmt;
 use std::mem;
 
+/// Refers to a X protocol extension.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
 pub enum Extension {
+    /// The `BIG-REQUESTS` extension.
     BigRequests,
+
+    /// The `XCMISC` extension.
     XcMisc,
 
     #[cfg(feature = "composite")]
+    /// The `Composite` extension.
+    /// Available with the `composite` cargo feature.
     Composite,
 
     #[cfg(feature = "damage")]
+    /// The `DAMAGE` extension.
+    /// Available with the `damage` cargo feature.
     Damage,
 
     #[cfg(feature = "dpms")]
+    /// The `DPMS` extension.
+    /// Available with the `dpms` cargo feature.
     Dpms,
 
     #[cfg(feature = "dri2")]
+    /// The `DRI2` extension.
+    /// Available with the `dri2` cargo feature.
     Dri2,
 
     #[cfg(feature = "dri3")]
+    /// The `DRI3` extension.
+    /// Available with the `dri3` cargo feature.
     Dri3,
 
     #[cfg(feature = "ge")]
+    /// The `Generic Event Extension` extension.
+    /// Available with the `ge` cargo feature.
     GenericEvent,
 
     #[cfg(feature = "glx")]
+    /// The `GLX` extension.
+    /// Available with the `glx` cargo feature.
     Glx,
 
     #[cfg(feature = "present")]
+    /// The `Present` extension.
+    /// Available with the `present` cargo feature.
     Present,
 
     #[cfg(feature = "randr")]
+    /// The `RANDR` extension.
+    /// Available with the `randr` cargo feature.
     RandR,
 
     #[cfg(feature = "record")]
+    /// The `RECORD` extension.
+    /// Available with the `record` cargo feature.
     Record,
 
     #[cfg(feature = "render")]
+    /// The `RENDER` extension.
+    /// Available with the `render` cargo feature.
     Render,
 
     #[cfg(feature = "res")]
+    /// The `X-Resource` extension.
+    /// Available with the `res` cargo feature.
     Res,
 
     #[cfg(feature = "screensaver")]
+    /// The `MIT-SCREEN-SAVER` extension.
+    /// Available with the `screensaver` cargo feature.
     ScreenSaver,
 
     #[cfg(feature = "shape")]
+    /// The `SHAPE` extension.
+    /// Available with the `shape` cargo feature.
     Shape,
 
     #[cfg(feature = "shm")]
+    /// The `MIT-SHM` extension.
+    /// Available with the `shm` cargo feature.
     Shm,
 
     #[cfg(feature = "sync")]
+    /// The `SYNC` extension.
+    /// Available with the `sync` cargo feature.
     Sync,
 
     #[cfg(feature = "xevie")]
+    /// The `XEVIE` extension.
+    /// Available with the `xevie` cargo feature.
     Xevie,
 
     #[cfg(feature = "xf86dri")]
+    /// The `XFree86-DRI` extension.
+    /// Available with the `xf86dri` cargo feature.
     Xf86Dri,
 
     #[cfg(feature = "xf86vidmode")]
+    /// The `XFree86-VidModeExtension` extension.
+    /// Available with the `xf86vidmode` cargo feature.
     Xf86VidMode,
 
     #[cfg(feature = "xfixes")]
+    /// The `XFIXES` extension.
+    /// Available with the `xfixes` cargo feature.
     XFixes,
 
     #[cfg(feature = "xinerama")]
+    /// The `XINERAMA` extension.
+    /// Available with the `xinerama` cargo feature.
     Xinerama,
 
     #[cfg(feature = "xinput")]
+    /// The `XInputExtension` extension.
+    /// Available with the `xinput` cargo feature.
     Input,
 
     #[cfg(feature = "xkb")]
+    /// The `XKEYBOARD` extension.
+    /// Available with the `xkb` cargo feature.
     Xkb,
 
     #[cfg(feature = "xprint")]
+    /// The `XpExtension` extension.
+    /// Available with the `xprint` cargo feature.
     XPrint,
 
     #[cfg(feature = "xselinux")]
+    /// The `SELinux` extension.
+    /// Available with the `xselinux` cargo feature.
     SeLinux,
 
     #[cfg(feature = "xtest")]
+    /// The `XTEST` extension.
+    /// Available with the `xtest` cargo feature.
     Test,
 
     #[cfg(feature = "xv")]
+    /// The `XVideo` extension.
+    /// Available with the `xv` cargo feature.
     Xv,
 
     #[cfg(feature = "xvmc")]
+    /// The `XVideo-MotionCompensation` extension.
+    /// Available with the `xvmc` cargo feature.
     XvMc,
 }
 
 impl Extension {
+    /// Returns the official X-Name of the extension,
+    /// such as `"BIG-REQUESTS"`.
     fn xname(&self) -> &'static str {
         match self {
             Extension::BigRequests => crate::bigreq::XNAME,
@@ -197,6 +259,7 @@ impl fmt::Display for Extension {
 }
 
 /// Extension data as returned by each extensions `get_extension_data`.
+///
 /// See [crate::bigreq::get_extension_data] as example.
 pub struct ExtensionData {
     pub ext: Extension,
