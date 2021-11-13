@@ -3647,6 +3647,57 @@
 <span id="3647">3647</span>
 <span id="3648">3648</span>
 <span id="3649">3649</span>
+<span id="3650">3650</span>
+<span id="3651">3651</span>
+<span id="3652">3652</span>
+<span id="3653">3653</span>
+<span id="3654">3654</span>
+<span id="3655">3655</span>
+<span id="3656">3656</span>
+<span id="3657">3657</span>
+<span id="3658">3658</span>
+<span id="3659">3659</span>
+<span id="3660">3660</span>
+<span id="3661">3661</span>
+<span id="3662">3662</span>
+<span id="3663">3663</span>
+<span id="3664">3664</span>
+<span id="3665">3665</span>
+<span id="3666">3666</span>
+<span id="3667">3667</span>
+<span id="3668">3668</span>
+<span id="3669">3669</span>
+<span id="3670">3670</span>
+<span id="3671">3671</span>
+<span id="3672">3672</span>
+<span id="3673">3673</span>
+<span id="3674">3674</span>
+<span id="3675">3675</span>
+<span id="3676">3676</span>
+<span id="3677">3677</span>
+<span id="3678">3678</span>
+<span id="3679">3679</span>
+<span id="3680">3680</span>
+<span id="3681">3681</span>
+<span id="3682">3682</span>
+<span id="3683">3683</span>
+<span id="3684">3684</span>
+<span id="3685">3685</span>
+<span id="3686">3686</span>
+<span id="3687">3687</span>
+<span id="3688">3688</span>
+<span id="3689">3689</span>
+<span id="3690">3690</span>
+<span id="3691">3691</span>
+<span id="3692">3692</span>
+<span id="3693">3693</span>
+<span id="3694">3694</span>
+<span id="3695">3695</span>
+<span id="3696">3696</span>
+<span id="3697">3697</span>
+<span id="3698">3698</span>
+<span id="3699">3699</span>
+<span id="3700">3700</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xprint.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -3661,9 +3712,13 @@
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
 
+<span class="doccomment">/// The official identifier for the `XPrint` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XNAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;XpExtension&quot;</span>;
+<span class="doccomment">/// The major version of the `XPrint` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// The minor version of the `XPrint` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="doccomment">/// The version string of the `XPrint` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;1.0&quot;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
@@ -3671,12 +3726,18 @@
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
 
+<span class="doccomment">/// Prefetch server runtime info data of the `XPrint` extension.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefetch_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) {
     <span class="kw">unsafe</span> {
         <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
 }
 
+<span class="doccomment">/// Fetch server runtime info data of the `XPrint` extension.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Might be non-blocking if [prefetch_extension_data] was called before.</span>
+<span class="doccomment">/// This function is of seldom use as the extensions are initialized by the</span>
+<span class="doccomment">/// [Connection](crate::Connection) constructor.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
@@ -3697,6 +3758,7 @@
     }
 }
 
+<span class="doccomment">/// The `BadContextError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadContextError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -3773,6 +3835,7 @@
     }
 }
 
+<span class="doccomment">/// The `BadSequenceError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadSequenceError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -3871,6 +3934,7 @@
     }
 }
 
+<span class="doccomment">/// The `NotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
 }
@@ -3980,6 +4044,7 @@
     }
 }
 
+<span class="doccomment">/// The `AttributNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AttributNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
 }
@@ -4354,6 +4419,7 @@
     <span class="ident">SpoolerAttr</span> <span class="op">=</span> <span class="number">7</span>,
 }
 
+<span class="doccomment">/// Reply type for [PrintQueryVersion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintQueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -4485,6 +4551,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintQueryVersionReply</span>;
 }
 
+<span class="doccomment">/// The `PrintQueryVersion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintQueryVersion</span> {}
 
@@ -4531,6 +4598,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintQueryVersionCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintGetPrinterList]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetPrinterListReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -4689,6 +4757,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetPrinterListReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetPrinterList` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetPrinterList</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">printer_name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">String8</span>],
@@ -4749,6 +4818,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetPrinterListCookie</span>;
 }
 
+<span class="doccomment">/// The `PrintRehashPrinterList` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintRehashPrinterList</span> {}
 
@@ -4791,6 +4861,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintRehashPrinterList</span> {}
 
+<span class="doccomment">/// The `CreateContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">context_id</span>: <span class="ident">u32</span>,
@@ -4849,6 +4920,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateContext</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `PrintSetContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintSetContext</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">u32</span>,
@@ -4894,6 +4966,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintSetContext</span> {}
 
+<span class="doccomment">/// Reply type for [PrintGetContext]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetContextReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5016,6 +5089,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetContextReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetContext</span> {}
 
@@ -5062,6 +5136,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetContextCookie</span>;
 }
 
+<span class="doccomment">/// The `PrintDestroyContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintDestroyContext</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">u32</span>,
@@ -5107,6 +5182,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintDestroyContext</span> {}
 
+<span class="doccomment">/// Reply type for [PrintGetScreenOfContext]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetScreenOfContextReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5229,6 +5305,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetScreenOfContextReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetScreenOfContext` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetScreenOfContext</span> {}
 
@@ -5275,6 +5352,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetScreenOfContextCookie</span>;
 }
 
+<span class="doccomment">/// The `PrintStartJob` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintStartJob</span> {
     <span class="kw">pub</span> <span class="ident">output_mode</span>: <span class="ident">u8</span>,
@@ -5320,6 +5398,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintStartJob</span> {}
 
+<span class="doccomment">/// The `PrintEndJob` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintEndJob</span> {
     <span class="kw">pub</span> <span class="ident">cancel</span>: <span class="ident">bool</span>,
@@ -5365,6 +5444,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintEndJob</span> {}
 
+<span class="doccomment">/// The `PrintStartDoc` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintStartDoc</span> {
     <span class="kw">pub</span> <span class="ident">driver_mode</span>: <span class="ident">u8</span>,
@@ -5410,6 +5490,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintStartDoc</span> {}
 
+<span class="doccomment">/// The `PrintEndDoc` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintEndDoc</span> {
     <span class="kw">pub</span> <span class="ident">cancel</span>: <span class="ident">bool</span>,
@@ -5455,6 +5536,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintEndDoc</span> {}
 
+<span class="doccomment">/// The `PrintPutDocumentData` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintPutDocumentData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="ident">xproto::Drawable</span>,
@@ -5520,6 +5602,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintPutDocumentData</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// Reply type for [PrintGetDocumentData]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetDocumentDataReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -5695,6 +5778,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetDocumentDataReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetDocumentData` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetDocumentData</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -5746,6 +5830,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetDocumentDataCookie</span>;
 }
 
+<span class="doccomment">/// The `PrintStartPage` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintStartPage</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -5791,6 +5876,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintStartPage</span> {}
 
+<span class="doccomment">/// The `PrintEndPage` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintEndPage</span> {
     <span class="kw">pub</span> <span class="ident">cancel</span>: <span class="ident">bool</span>,
@@ -5836,6 +5922,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintEndPage</span> {}
 
+<span class="doccomment">/// The `PrintSelectInput` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintSelectInput</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -5883,6 +5970,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintSelectInput</span> {}
 
+<span class="doccomment">/// Reply type for [PrintInputSelected]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintInputSelectedReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6014,6 +6102,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintInputSelectedReply</span>;
 }
 
+<span class="doccomment">/// The `PrintInputSelected` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintInputSelected</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -6063,6 +6152,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintInputSelectedCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintGetAttributes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetAttributesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6216,6 +6306,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetAttributesReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetAttributes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetAttributes</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -6267,6 +6358,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetAttributesCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintGetOneAttributes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetOneAttributesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6420,6 +6512,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetOneAttributesReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetOneAttributes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetOneAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -6477,6 +6570,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetOneAttributesCookie</span>;
 }
 
+<span class="doccomment">/// The `PrintSetAttributes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintSetAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -6533,6 +6627,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PrintSetAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// Reply type for [PrintGetPageDimensions]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetPageDimensionsReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6700,6 +6795,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetPageDimensionsReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetPageDimensions` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetPageDimensions</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -6749,6 +6845,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintGetPageDimensionsCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintQueryScreens]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintQueryScreensReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6902,6 +6999,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintQueryScreensReply</span>;
 }
 
+<span class="doccomment">/// The `PrintQueryScreens` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintQueryScreens</span> {}
 
@@ -6948,6 +7046,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintQueryScreensCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintSetImageResolution]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintSetImageResolutionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -7075,6 +7174,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintSetImageResolutionReply</span>;
 }
 
+<span class="doccomment">/// The `PrintSetImageResolution` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintSetImageResolution</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,
@@ -7126,6 +7226,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedPrintSetImageResolutionCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [PrintGetImageResolution]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetImageResolutionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -7248,6 +7349,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">PrintGetImageResolutionReply</span>;
 }
 
+<span class="doccomment">/// The `PrintGetImageResolution` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PrintGetImageResolution</span> {
     <span class="kw">pub</span> <span class="ident">context</span>: <span class="ident">Pcontext</span>,

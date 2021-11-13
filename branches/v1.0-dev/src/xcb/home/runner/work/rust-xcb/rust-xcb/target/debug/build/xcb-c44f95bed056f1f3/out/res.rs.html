@@ -1704,6 +1704,28 @@
 <span id="1704">1704</span>
 <span id="1705">1705</span>
 <span id="1706">1706</span>
+<span id="1707">1707</span>
+<span id="1708">1708</span>
+<span id="1709">1709</span>
+<span id="1710">1710</span>
+<span id="1711">1711</span>
+<span id="1712">1712</span>
+<span id="1713">1713</span>
+<span id="1714">1714</span>
+<span id="1715">1715</span>
+<span id="1716">1716</span>
+<span id="1717">1717</span>
+<span id="1718">1718</span>
+<span id="1719">1719</span>
+<span id="1720">1720</span>
+<span id="1721">1721</span>
+<span id="1722">1722</span>
+<span id="1723">1723</span>
+<span id="1724">1724</span>
+<span id="1725">1725</span>
+<span id="1726">1726</span>
+<span id="1727">1727</span>
+<span id="1728">1728</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from res.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1718,9 +1740,13 @@
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
 
+<span class="doccomment">/// The official identifier for the `Res` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XNAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;X-Resource&quot;</span>;
+<span class="doccomment">/// The major version of the `Res` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// The minor version of the `Res` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// The version string of the `Res` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;1.2&quot;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
@@ -1728,12 +1754,18 @@
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
 
+<span class="doccomment">/// Prefetch server runtime info data of the `Res` extension.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefetch_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) {
     <span class="kw">unsafe</span> {
         <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
 }
 
+<span class="doccomment">/// Fetch server runtime info data of the `Res` extension.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Might be non-blocking if [prefetch_extension_data] was called before.</span>
+<span class="doccomment">/// This function is of seldom use as the extensions are initialized by the</span>
+<span class="doccomment">/// [Connection](crate::Connection) constructor.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
@@ -2224,6 +2256,7 @@
     }
 }
 
+<span class="doccomment">/// Reply type for [QueryVersion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2355,6 +2388,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
+<span class="doccomment">/// The `QueryVersion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
     <span class="kw">pub</span> <span class="ident">client_major</span>: <span class="ident">u8</span>,
@@ -2406,6 +2440,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryClients]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientsReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2559,6 +2594,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryClientsReply</span>;
 }
 
+<span class="doccomment">/// The `QueryClients` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClients</span> {}
 
@@ -2605,6 +2641,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryClientsCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryClientResources]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientResourcesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2758,6 +2795,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryClientResourcesReply</span>;
 }
 
+<span class="doccomment">/// The `QueryClientResources` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientResources</span> {
     <span class="kw">pub</span> <span class="ident">xid</span>: <span class="ident">u32</span>,
@@ -2807,6 +2845,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryClientResourcesCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryClientPixmapBytes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientPixmapBytesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2938,6 +2977,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryClientPixmapBytesReply</span>;
 }
 
+<span class="doccomment">/// The `QueryClientPixmapBytes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientPixmapBytes</span> {
     <span class="kw">pub</span> <span class="ident">xid</span>: <span class="ident">u32</span>,
@@ -2987,6 +3027,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryClientPixmapBytesCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryClientIds]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientIdsReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3145,6 +3186,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryClientIdsReply</span>;
 }
 
+<span class="doccomment">/// The `QueryClientIds` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryClientIds</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">specs</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">ClientIdSpec</span>],
@@ -3198,6 +3240,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryClientIdsCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryResourceBytes]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryResourceBytesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3356,6 +3399,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryResourceBytesReply</span>;
 }
 
+<span class="doccomment">/// The `QueryResourceBytes` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryResourceBytes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">client</span>: <span class="ident">u32</span>,

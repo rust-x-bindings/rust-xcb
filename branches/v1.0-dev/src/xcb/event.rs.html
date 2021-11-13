@@ -216,6 +216,22 @@
 <span id="216">216</span>
 <span id="217">217</span>
 <span id="218">218</span>
+<span id="219">219</span>
+<span id="220">220</span>
+<span id="221">221</span>
+<span id="222">222</span>
+<span id="223">223</span>
+<span id="224">224</span>
+<span id="225">225</span>
+<span id="226">226</span>
+<span id="227">227</span>
+<span id="228">228</span>
+<span id="229">229</span>
+<span id="230">230</span>
+<span id="231">231</span>
+<span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="ident">ResolveWireEvent</span>, <span class="ident">ResolveWireGeEvent</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">EventExtensionData</span>, <span class="ident">Extension</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
@@ -263,50 +279,66 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xv</span>;
 
+<span class="doccomment">/// Unified Event type from the X server.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span> {
+    <span class="doccomment">/// The event is issued from the X core protocol.</span>
     <span class="ident">X</span>(<span class="ident">x::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `DAMAGE` extension.</span>
     <span class="ident">Damage</span>(<span class="ident">damage::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `DRI2` extension.</span>
     <span class="ident">Dri2</span>(<span class="ident">dri2::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `GLX` extension.</span>
     <span class="ident">Glx</span>(<span class="ident">glx::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `Present` extension.</span>
     <span class="ident">Present</span>(<span class="ident">present::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `RANDR` extension.</span>
     <span class="ident">RandR</span>(<span class="ident">randr::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `MIT-SCREEN-SAVER` extension.</span>
     <span class="ident">ScreenSaver</span>(<span class="ident">screensaver::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `SHAPE` extension.</span>
     <span class="ident">Shape</span>(<span class="ident">shape::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `MIT-SHM` extension.</span>
     <span class="ident">Shm</span>(<span class="ident">shm::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `SYNC` extension.</span>
     <span class="ident">Sync</span>(<span class="ident">sync::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `XFIXES` extension.</span>
     <span class="ident">XFixes</span>(<span class="ident">xfixes::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `XInputExtension` extension.</span>
     <span class="ident">Input</span>(<span class="ident">xinput::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `XKEYBOARD` extension.</span>
     <span class="ident">Xkb</span>(<span class="ident">xkb::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `XpExtension` extension.</span>
     <span class="ident">XPrint</span>(<span class="ident">xprint::Event</span>),
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
+    <span class="doccomment">/// The event is issued from the `XVideo` extension.</span>
     <span class="ident">Xv</span>(<span class="ident">xv::Event</span>),
 }
 

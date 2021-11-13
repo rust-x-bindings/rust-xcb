@@ -4452,6 +4452,56 @@
 <span id="4452">4452</span>
 <span id="4453">4453</span>
 <span id="4454">4454</span>
+<span id="4455">4455</span>
+<span id="4456">4456</span>
+<span id="4457">4457</span>
+<span id="4458">4458</span>
+<span id="4459">4459</span>
+<span id="4460">4460</span>
+<span id="4461">4461</span>
+<span id="4462">4462</span>
+<span id="4463">4463</span>
+<span id="4464">4464</span>
+<span id="4465">4465</span>
+<span id="4466">4466</span>
+<span id="4467">4467</span>
+<span id="4468">4468</span>
+<span id="4469">4469</span>
+<span id="4470">4470</span>
+<span id="4471">4471</span>
+<span id="4472">4472</span>
+<span id="4473">4473</span>
+<span id="4474">4474</span>
+<span id="4475">4475</span>
+<span id="4476">4476</span>
+<span id="4477">4477</span>
+<span id="4478">4478</span>
+<span id="4479">4479</span>
+<span id="4480">4480</span>
+<span id="4481">4481</span>
+<span id="4482">4482</span>
+<span id="4483">4483</span>
+<span id="4484">4484</span>
+<span id="4485">4485</span>
+<span id="4486">4486</span>
+<span id="4487">4487</span>
+<span id="4488">4488</span>
+<span id="4489">4489</span>
+<span id="4490">4490</span>
+<span id="4491">4491</span>
+<span id="4492">4492</span>
+<span id="4493">4493</span>
+<span id="4494">4494</span>
+<span id="4495">4495</span>
+<span id="4496">4496</span>
+<span id="4497">4497</span>
+<span id="4498">4498</span>
+<span id="4499">4499</span>
+<span id="4500">4500</span>
+<span id="4501">4501</span>
+<span id="4502">4502</span>
+<span id="4503">4503</span>
+<span id="4504">4504</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4466,9 +4516,13 @@
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
 
+<span class="doccomment">/// The official identifier for the `Render` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XNAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;RENDER&quot;</span>;
+<span class="doccomment">/// The major version of the `Render` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MAJOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="doccomment">/// The minor version of the `Render` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">MINOR_VERSION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
+<span class="doccomment">/// The version string of the `Render` extension.</span>
 <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">VERSION_STRING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;0.11&quot;</span>;
 
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">static</span> <span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>: <span class="ident">xcb_extension_t</span> <span class="op">=</span> <span class="ident">xcb_extension_t</span> {
@@ -4476,12 +4530,18 @@
     <span class="ident">global_id</span>: <span class="number">0</span>,
 };
 
+<span class="doccomment">/// Prefetch server runtime info data of the `Render` extension.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">prefetch_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) {
     <span class="kw">unsafe</span> {
         <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
     }
 }
 
+<span class="doccomment">/// Fetch server runtime info data of the `Render` extension.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Might be non-blocking if [prefetch_extension_data] was called before.</span>
+<span class="doccomment">/// This function is of seldom use as the extensions are initialized by the</span>
+<span class="doccomment">/// [Connection](crate::Connection) constructor.</span>
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_extension_data</span>(<span class="ident">conn</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="ident">ext::ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>.<span class="ident">get_raw_conn</span>(), <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>);
@@ -4502,6 +4562,7 @@
     }
 }
 
+<span class="doccomment">/// The `PictFormatError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictFormatError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -4578,6 +4639,7 @@
     }
 }
 
+<span class="doccomment">/// The `PictureError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictureError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -4654,6 +4716,7 @@
     }
 }
 
+<span class="doccomment">/// The `PictOpError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictOpError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -4730,6 +4793,7 @@
     }
 }
 
+<span class="doccomment">/// The `GlyphSetError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GlyphSetError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -4806,6 +4870,7 @@
     }
 }
 
+<span class="doccomment">/// The `GlyphError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GlyphError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
 }
@@ -6461,6 +6526,7 @@
     }
 }
 
+<span class="doccomment">/// Reply type for [QueryVersion]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6593,6 +6659,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
+<span class="doccomment">/// The `QueryVersion` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
     <span class="kw">pub</span> <span class="ident">client_major_version</span>: <span class="ident">u32</span>,
@@ -6644,6 +6711,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryPictFormats]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryPictFormatsReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -6910,6 +6978,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryPictFormatsReply</span>;
 }
 
+<span class="doccomment">/// The `QueryPictFormats` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryPictFormats</span> {}
 
@@ -6956,6 +7025,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryPictFormatsCookie</span>;
 }
 
+<span class="doccomment">/// Reply type for [QueryPictIndexValues]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryPictIndexValuesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -7109,6 +7179,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryPictIndexValuesReply</span>;
 }
 
+<span class="doccomment">/// The `QueryPictIndexValues` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryPictIndexValues</span> {
     <span class="kw">pub</span> <span class="ident">format</span>: <span class="ident">Pictformat</span>,
@@ -7158,6 +7229,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryPictIndexValuesCookie</span>;
 }
 
+<span class="doccomment">/// The `CreatePicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreatePicture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">pid</span>: <span class="ident">Picture</span>,
@@ -7221,6 +7293,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreatePicture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `ChangePicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangePicture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -7280,6 +7353,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ChangePicture</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `SetPictureClipRectangles` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetPictureClipRectangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -7334,6 +7408,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetPictureClipRectangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `FreePicture` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FreePicture</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -7379,6 +7454,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">FreePicture</span> {}
 
+<span class="doccomment">/// The `Composite` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Composite</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -7446,6 +7522,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">Composite</span> {}
 
+<span class="doccomment">/// The `Trapezoids` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Trapezoids</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -7506,6 +7583,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">Trapezoids</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `Triangles` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Triangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -7566,6 +7644,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">Triangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `TriStrip` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TriStrip</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -7626,6 +7705,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">TriStrip</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `TriFan` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">TriFan</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -7686,6 +7766,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">TriFan</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateGlyphSet` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateGlyphSet</span> {
     <span class="kw">pub</span> <span class="ident">gsid</span>: <span class="ident">Glyphset</span>,
@@ -7733,6 +7814,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateGlyphSet</span> {}
 
+<span class="doccomment">/// The `ReferenceGlyphSet` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReferenceGlyphSet</span> {
     <span class="kw">pub</span> <span class="ident">gsid</span>: <span class="ident">Glyphset</span>,
@@ -7780,6 +7862,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">ReferenceGlyphSet</span> {}
 
+<span class="doccomment">/// The `FreeGlyphSet` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FreeGlyphSet</span> {
     <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">Glyphset</span>,
@@ -7825,6 +7908,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">FreeGlyphSet</span> {}
 
+<span class="doccomment">/// The `AddGlyphs` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AddGlyphs</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">Glyphset</span>,
@@ -7888,6 +7972,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">AddGlyphs</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `FreeGlyphs` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FreeGlyphs</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">Glyphset</span>,
@@ -7938,6 +8023,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">FreeGlyphs</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CompositeGlyphs8` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompositeGlyphs8</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -8000,6 +8086,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CompositeGlyphs8</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CompositeGlyphs16` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompositeGlyphs16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -8062,6 +8149,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CompositeGlyphs16</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CompositeGlyphs32` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompositeGlyphs32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -8124,6 +8212,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CompositeGlyphs32</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `FillRectangles` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FillRectangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">op</span>: <span class="ident">PictOp</span>,
@@ -8178,6 +8267,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">FillRectangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateCursor` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateCursor</span> {
     <span class="kw">pub</span> <span class="ident">cid</span>: <span class="ident">xproto::Cursor</span>,
@@ -8229,6 +8319,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateCursor</span> {}
 
+<span class="doccomment">/// The `SetPictureTransform` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetPictureTransform</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8276,6 +8367,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetPictureTransform</span> {}
 
+<span class="doccomment">/// Reply type for [QueryFilters]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryFiltersReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -8458,6 +8550,7 @@
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryFiltersReply</span>;
 }
 
+<span class="doccomment">/// The `QueryFilters` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryFilters</span> {
     <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="ident">xproto::Drawable</span>,
@@ -8507,6 +8600,7 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryFiltersCookie</span>;
 }
 
+<span class="doccomment">/// The `SetPictureFilter` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SetPictureFilter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8569,6 +8663,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">SetPictureFilter</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateAnimCursor` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateAnimCursor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">cid</span>: <span class="ident">xproto::Cursor</span>,
@@ -8619,6 +8714,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateAnimCursor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `AddTraps` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AddTraps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8673,6 +8769,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">AddTraps</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateSolidFill` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateSolidFill</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8720,6 +8817,7 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateSolidFill</span> {}
 
+<span class="doccomment">/// The `CreateLinearGradient` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateLinearGradient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8781,6 +8879,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateLinearGradient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateRadialGradient` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateRadialGradient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
@@ -8846,6 +8945,7 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CreateRadialGradient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
+<span class="doccomment">/// The `CreateConicalGradient` request.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateConicalGradient</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">picture</span>: <span class="ident">Picture</span>,
