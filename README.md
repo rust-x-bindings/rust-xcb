@@ -151,7 +151,10 @@ loop {
         }
         Some(event) => {
             let r = event.response_type();
-            if r == xcb::KEY_PRESS as u8 {
+            if r == 0 {
+                // This is an error.
+                panic!("received error from the X server");
+            } else if r == xcb::KEY_PRESS as u8 {
                 let key_press: &xcb::KeyPressEvent = unsafe {
                     // so much for the safe interface
                     xcb::cast_event(&event)
@@ -168,29 +171,18 @@ loop {
 }
 
 // 1.0
-loop {
-    let event = match conn.wait_for_event() {
-        Err(xcb::Error::Connection(xcb::ConnError::Connection)) => {
-            // graceful shutdown, likely "x" close button clicked in title bar
-            break;
+fn main() -> xcb::Result<()> {
+    // ...
+    loop {
+        match conn.wait_for_event()? {
+            xcb::Event::X(x::Event::KeyPress(key_press)) => {
+                // do stuff
+            }
+            xcb::Event::Xkb(xkb::Event::MapNotify(ev)) => {
+                // do other stuff (pass data to xkbcommon for example)
+            }
+            _ => {}
         }
-        Err(xcb::Error::Connection(err)) => {
-            panic!("unexpected I/O error: {:#?}", err);
-        }
-        Err(xcb::Error::Protocol(err)) => {
-            panic!("unexpected protocol error: {:#?}", err);
-        }
-        Ok(event) => event,
-    };
-
-    match event {
-        xcb::ProtocolEvent::X(x::Event::KeyPress(key_press)) => {
-            // do stuff
-        }
-        xcb::ProtocolEvent::Xkb(xkb::Event::MapNotify(ev)) => {
-            // do other stuff (pass data to xkbcommon for example)
-        }
-        _ => {}
     }
 }
 ```
