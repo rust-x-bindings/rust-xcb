@@ -63,6 +63,8 @@
 //! Each extension is defined in its own module such as [xkb] or [render], and
 //! is activated by a cargo feature of the same name.
 //!
+//! # Example
+//!
 //! Here is a walk-through of a simple `xcb` client.
 //! ```no_run
 //! // we import the necessary modules (only the core X module in this application).
