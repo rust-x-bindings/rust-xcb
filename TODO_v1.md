@@ -3,7 +3,9 @@
  - [x] Implementation of the new API
     - [x] Xid
     - [x] Xid unions
-    - [x] Structs
+    - [ ] Structs
+        - [x] Accessors
+        - [ ] Constructor
     - [x] Switches
     - [x] Expressions
     - [x] Enums / Masks
@@ -14,10 +16,12 @@
  - [x] Porting examples
  - [x] Porting XML examples
  - [x] Documentation
- - [ ] Finalize switches naming (like x::Cw)
+ - [ ] Finalize switches naming (e.g. x::CreateWindowValueList -> x::Cw)
  - [ ] Support of xinput::SendExtensionEvent
  - [ ] Create example with XInput (pen tablet?)
+ - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs
+ - [ ] Missing API tweaks (e.g. Cw::EventMask should take an EventMask)
  - [ ] Porting toy-xcb
  - [ ] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
