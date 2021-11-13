@@ -1,0 +1,23 @@
+# TODO list for v1.0
+
+ - [x] Implementation of the new API
+    - [x] Xid
+    - [x] Xid unions
+    - [x] Structs
+    - [x] Switches
+    - [x] Expressions
+    - [x] Enums / Masks
+    - [x] Unions
+    - [x] Errors
+    - [x] Requests
+    - [x] Events
+ - [x] Porting examples
+ - [x] Porting XML examples
+ - [x] Documentation
+ - [ ] Finalize switches naming (like x::Cw)
+ - [ ] Support of xinput::SendExtensionEvent
+ - [ ] Create example with XInput (pen tablet?)
+ - [ ] Create example with gfx-rs
+ - [ ] Porting toy-xcb
+ - [ ] Porting xkbcommon-rs
+ - [ ] Porting x11-clipboard
