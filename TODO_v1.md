@@ -22,6 +22,6 @@
  - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs
  - [ ] Missing API tweaks (e.g. Cw::EventMask should take an EventMask)
- - [ ] Porting toy-xcb
- - [ ] Porting xkbcommon-rs
+ - [x] Porting toy-xcb
+ - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
