@@ -16,6 +16,8 @@ Rust-XCB is constituted of the following components:
  - the core library
  - the X protocol and its extensions
 
+See [CONTRIBUTING.md](https://github.com/rust-x-bindings/rust-xcb/blob/v1.0-dev/CONTRIBUTING.md) for contributions.
+
 ## The core library
 
 The main component is the `Connection` class which is used to connect and
