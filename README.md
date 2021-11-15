@@ -1,3 +1,10 @@
+## New API in preparation
+
+This is the ReadMe of the versions `0.x` which will soon be deprecated.
+
+`v1.0` is currently in preparation and first beta is released. See branch [v1.0-dev](https://github.com/rust-x-bindings/rust-xcb/tree/v1.0-dev).
+
+
 # Rust XCB
 
 Rust-XCB is a set of bindings and wrappers for [XCB](http://xcb.freedesktop.org). It uses the XML
@@ -12,6 +19,7 @@ xcb = "0.10"
 
 __Documentation__:
 http://rust-x-bindings.github.io/rust-xcb/xcb/index.html
+
 
 ## The bindings
 
