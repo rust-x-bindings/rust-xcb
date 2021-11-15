@@ -872,6 +872,34 @@ fn switch_exceptions() -> Vec<RsTypException> {
             new_rs_typ: "Cw",
             emit: false,
         },
+        RsTypException {
+            module: "render",
+            rs_typ: "CreatePictureValueList",
+            new_module: None,
+            new_rs_typ: "Cp",
+            emit: true,
+        },
+        RsTypException {
+            module: "render",
+            rs_typ: "ChangePictureValueList",
+            new_module: None,
+            new_rs_typ: "Cp",
+            emit: false,
+        },
+        RsTypException {
+            module: "sync",
+            rs_typ: "CreateAlarmValueList",
+            new_module: None,
+            new_rs_typ: "Ca",
+            emit: true,
+        },
+        RsTypException {
+            module: "sync",
+            rs_typ: "ChangeAlarmValueList",
+            new_module: None,
+            new_rs_typ: "Ca",
+            emit: false,
+        },
     ]
 }
 
@@ -903,6 +931,20 @@ fn mask_exceptions() -> Vec<RsTypException> {
             rs_typ: "Kb",
             new_module: None,
             new_rs_typ: "KbMask",
+            emit: true,
+        },
+        RsTypException {
+            module: "render",
+            rs_typ: "Cp",
+            new_module: None,
+            new_rs_typ: "CpMask",
+            emit: true,
+        },
+        RsTypException {
+            module: "sync",
+            rs_typ: "Ca",
+            new_module: None,
+            new_rs_typ: "CaMask",
             emit: true,
         },
     ]
