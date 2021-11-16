@@ -14,10 +14,6 @@ impl CodeGen {
         reply: Option<ir::Reply>,
         doc: Option<ir::Doc>,
     ) {
-        if self.xcb_mod == "xinput" && name == "SendExtensionEvent" {
-            // FIXME: xinput request that depend on event
-            return;
-        }
         // special case for the request that send events
         let sends_event = matches!(
             (self.xcb_mod.as_str(), name.as_str()),
@@ -140,14 +136,23 @@ impl CodeGen {
         let mut start = 0;
         let mut end = 0;
 
-        let mut field = |is_fixed: bool| {
-            end += 1;
-            if is_fixed && !last_fixed {
-                assert_eq!(end, start + 1);
-                sections.push(SerializeSection::Var(&params[start]));
+        let mut field = |is_fixed: bool, is_align_pad: bool| {
+            if !is_fixed && last_fixed {
+                // we passed the end of a fixed section
+                sections.push(SerializeSection::Fixed(&params[start..end]));
                 start = end;
-            } else if !is_fixed {
-                sections.push(SerializeSection::Fixed(&params[start..end - 1]));
+            }
+            end += 1;
+            if !is_fixed && !is_align_pad {
+                // we reach a variable section
+                sections.push(SerializeSection::Var(&params[start]));
+            }
+            if is_align_pad {
+                // each section is followed by an align section, so align pads don't need any treatment
+                assert!(!last_fixed);
+            }
+            if !is_fixed {
+                // fixed fields are grouped together, so we advance the start pointer only when we reach a var field
                 start = end;
             }
             last_fixed = is_fixed;
@@ -159,54 +164,61 @@ impl CodeGen {
                     struct_style: Some(StructStyle::DynBuf),
                     ..
                 } => {
-                    field(false);
+                    field(false, false);
                     has_lt = true;
                 }
                 Field::Field { .. } => {
-                    field(true);
+                    field(true, false);
                 }
                 Field::List {
                     struct_style: Some(StructStyle::DynBuf),
                     len_expr: Expr::Value(_),
                     ..
                 } => {
-                    field(false);
+                    field(false, false);
+                    has_lt = true;
+                }
+                Field::List { is_union: true, .. } => {
+                    field(false, false);
                     has_lt = true;
                 }
                 Field::List {
                     len_expr: Expr::Value(_),
                     ..
                 } => {
-                    field(true);
+                    field(true, false);
                 }
                 Field::List { .. } => {
-                    field(false);
+                    field(false, false);
                     has_lt = true;
                 }
                 Field::Switch { is_mask, .. } => {
-                    field(false);
+                    field(false, false);
                     if *is_mask {
                         has_lt = true;
                     }
                 }
                 Field::Expr { .. } => {
-                    field(true);
+                    field(true, false);
                 }
                 Field::Pad { .. } => {
-                    field(true);
+                    field(true, false);
                 }
                 Field::AlignPad { .. } => {
                     //assert!(last_fixed);
-                    field(false);
+                    field(false, true);
                 }
             }
         }
 
-        if last_fixed {
+        if last_fixed && start < end {
             sections.push(SerializeSection::Fixed(&params[start..end]));
-        } else {
-            sections.push(SerializeSection::Var(&params[start - 1]));
+            start = end;
         }
+
+        assert!(start == end);
+
+        //panic!("{:#?}", sections);
 
         let (cookie_rs_typ, reply_rs_typ) = if is_void {
             ("base::VoidCookie".to_string(), "()".to_string())
@@ -1039,6 +1051,51 @@ impl CodeGen {
                     cg::ind(2),
                     num * 2 + 2,
                     name
+                )?;
+            }
+            Field::List {
+                name,
+                is_union: true,
+                ..
+            } => {
+                writeln!(
+                    out,
+                    "{}let len{} = self.{}.iter().map(|el| el.wire_len()).sum::<usize>();",
+                    cg::ind(2),
+                    num,
+                    name
+                )?;
+                writeln!(
+                    out,
+                    "{}let mut buf{} = vec![0u8; len{}];",
+                    cg::ind(2),
+                    num,
+                    num
+                )?;
+                writeln!(out, "{}let mut offset{} = 0usize;", cg::ind(2), num)?;
+                writeln!(out, "{}for el in self.{} {{", cg::ind(2), name)?;
+                writeln!(
+                    out,
+                    "{}offset{} += el.serialize(&mut buf{}[offset{} ..]);",
+                    cg::ind(3),
+                    num,
+                    num,
+                    num
+                )?;
+                writeln!(out, "{}}}", cg::ind(2))?;
+                writeln!(
+                    out,
+                    "{}sections[{}].iov_base = buf{}.as_ptr() as *mut _;",
+                    cg::ind(2),
+                    num * 2 + 2,
+                    num
+                )?;
+                writeln!(
+                    out,
+                    "{}sections[{}].iov_len = buf{}.len();",
+                    cg::ind(2),
+                    num * 2 + 2,
+                    num
                 )?;
             }
             Field::List {

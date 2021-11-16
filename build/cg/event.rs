@@ -1,7 +1,7 @@
 use super::r#struct::{make_field, ResolvedFields};
-use super::{CodeGen, Event, Field, WireSz};
+use super::{CodeGen, Event, EventStruct, Field, UnionVariant, UnionVariantContent, WireSz};
 use crate::cg::r#struct::RANDR_SUBCODES;
-use crate::cg::{self, Expr, StructStyle};
+use crate::cg::{self, Expr, StructStyle, TypeInfo};
 use crate::cg::{util, QualifiedRsTyp};
 use crate::ir;
 
@@ -144,6 +144,44 @@ impl CodeGen {
             is_xge: event.is_xge,
             doc: event.doc,
         });
+    }
+
+    pub(super) fn resolve_event_struct(&mut self, typ: String, selectors: Vec<ir::EventSelector>) {
+        let rs_typ = cg::rust_type_name(&typ);
+
+        let mut variants = Vec::new();
+        let mut wire_sz = Expr::Value(32);
+
+        for es in &selectors {
+            for ev in &self.events {
+                if es.xge == ev.is_xge
+                    && ev.number >= es.opcode_range.0 as i32
+                    && ev.number <= es.opcode_range.1 as i32
+                {
+                    variants.push(UnionVariant {
+                        variant: ev.variant.clone(),
+                        module: None,
+                        content: UnionVariantContent::RsTyp(ev.rs_typ.clone()),
+                    });
+                    if es.xge {
+                        wire_sz = Expr::Unknown("XGE event".into());
+                    }
+                }
+            }
+        }
+
+        let typ_info = TypeInfo::Union {
+            rs_typ: rs_typ.clone(),
+            wire_sz,
+            variants,
+            module: None,
+            type_field: None,
+            impl_clone: false,
+        };
+        self.register_typ(typ, typ_info);
+
+        let event_struct = EventStruct { rs_typ, selectors };
+        self.event_structs.push(event_struct);
     }
 
     fn ir_field_sizeof(&self, f: &ir::Field) -> Expr {
@@ -291,6 +329,8 @@ impl CodeGen {
             writeln!(out, "}}")?;
 
             self.emit_debug_impl(out, &event.rs_typ, &event.fields)?;
+
+            self.emit_wired_impl(out, &event.rs_typ, event.is_xge)?;
 
             writeln!(out)?;
             writeln!(out, "impl Drop for {} {{", event.rs_typ)?;
@@ -629,6 +669,55 @@ impl CodeGen {
             self.xcb_mod
         )?;
         writeln!(out, "{}}}", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+        writeln!(out, "}}")?;
+        Ok(())
+    }
+
+    fn emit_wired_impl<O: Write>(&self, out: &mut O, rs_typ: &str, is_xge: bool) -> io::Result<()> {
+        writeln!(out)?;
+        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
+            cg::ind(1),
+            if is_xge { "" } else { "_" }
+        )?;
+        if is_xge {
+            writeln!(out, "{}*(ptr.add(4) as *const u32) as usize", cg::ind(2))?;
+        } else {
+            writeln!(out, "{}32", cg::ind(2))?;
+        }
+        writeln!(out, "{}}}", cg::ind(1))?;
+
+        writeln!(out)?;
+        writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
+        if is_xge {
+            writeln!(out, "{}self.length() as usize", cg::ind(2))?;
+        } else {
+            writeln!(out, "{}32usize", cg::ind(2))?;
+        }
+        writeln!(out, "{}}}", cg::ind(1))?;
+
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}fn serialize(&self, wire_buf: &mut[u8]) -> usize {{",
+            cg::ind(1)
+        )?;
+        writeln!(
+            out,
+            "{}debug_assert!(wire_buf.len() >= self.wire_len());",
+            cg::ind(2)
+        )?;
+        writeln!(
+            out,
+            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(self.as_slice());",
+            cg::ind(2)
+        )?;
+        writeln!(out, "{}self.wire_len()", cg::ind(2))?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
         Ok(())

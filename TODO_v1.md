@@ -17,7 +17,7 @@
  - [x] Porting XML examples
  - [x] Documentation
  - [x] Finalize switches naming (e.g. x::CreateWindowValueList -> x::Cw)
- - [ ] Support of xinput::SendExtensionEvent
+ - [x] Support of xinput::SendExtensionEvent
  - [ ] Create example with XInput (pen tablet?)
  - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs

@@ -32,6 +32,7 @@ impl CodeGen {
             variants,
             wire_sz,
             type_field,
+            impl_clone: true,
         };
         self.register_typ(typ.to_string(), typ_info);
     }
@@ -187,9 +188,14 @@ impl CodeGen {
         variants: &[UnionVariant],
         wire_sz: &Expr,
         type_field: &Option<UnionTypeField>,
+        impl_clone: bool,
     ) -> io::Result<()> {
         writeln!(out)?;
-        writeln!(out, "#[derive(Clone, Debug)]")?;
+        writeln!(
+            out,
+            "#[derive({}Debug)]",
+            if impl_clone { "Clone, " } else { "" }
+        )?;
         writeln!(out, "pub enum {} {{", rs_typ)?;
         for v in variants {
             match &v.content {

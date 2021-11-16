@@ -78,6 +78,7 @@ enum TypeInfo {
         variants: Vec<UnionVariant>,
         wire_sz: Expr,
         type_field: Option<UnionTypeField>,
+        impl_clone: bool,
     },
     Switch {
         module: Option<String>,
@@ -134,6 +135,7 @@ enum Field {
         is_fieldref: bool,
         need_compute_offset: bool,
         is_prop: bool, // property field (resolved with type `void` and a format field is present)
+        is_union: bool,
     },
     Switch {
         name: String,
@@ -230,6 +232,15 @@ struct Event {
     doc: Option<Doc>,
 }
 
+// correspond to the <eventstruct> xml tag.
+// this will generate a trait that will
+// implement all events in the selector
+#[derive(Debug, Clone)]
+struct EventStruct {
+    rs_typ: String,
+    selectors: Vec<ir::EventSelector>,
+}
+
 #[derive(Debug, Clone)]
 struct ExtInfo {
     pub rs_name: String,
@@ -263,6 +274,7 @@ pub struct CodeGen {
     errors_preregistered: bool,
     requests: Vec<Request>,
     events: Vec<Event>,
+    event_structs: Vec<EventStruct>,
     mask_exceptions: Vec<RsTypException>,
     switch_exceptions: Vec<RsTypException>,
 }
@@ -323,6 +335,7 @@ impl CodeGen {
             errors_preregistered: false,
             requests: Vec::new(),
             events: Vec::new(),
+            event_structs: Vec::new(),
             mask_exceptions: mask_exceptions(),
             switch_exceptions: switch_exceptions(),
         }
@@ -436,6 +449,11 @@ impl CodeGen {
                 number,
                 r#ref,
             } => self.resolve_eventcopy(name, number, r#ref),
+
+            ir::Item::EventStruct { typ, selectors } => {
+                assert!(!selectors.is_empty());
+                self.resolve_event_struct(typ, selectors);
+            }
 
             _ => {}
         }
@@ -645,9 +663,10 @@ impl CodeGen {
                     variants,
                     wire_sz,
                     type_field,
+                    impl_clone,
                     ..
                 } => {
-                    self.emit_union(out, rs_typ, variants, wire_sz, type_field)?;
+                    self.emit_union(out, rs_typ, variants, wire_sz, type_field, *impl_clone)?;
                 }
                 TypeInfo::Switch {
                     rs_typ,
