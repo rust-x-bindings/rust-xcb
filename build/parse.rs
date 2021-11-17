@@ -977,43 +977,41 @@ impl<B: BufRead> Parser<B> {
         let mut selectors = Vec::new();
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Start(ref e)) => {
-                    if e.name() == b"allowed" {
-                        let names: [&[u8]; 4] =
-                            [b"extension", b"xge", b"opcode-min", b"opcode-max"];
-                        let mut vals: [Option<String>; 4] = [None, None, None, None];
-                        get_attributes(start.attributes(), &names, &mut vals)?;
-                        let [extension, xge, opcode_min, opcode_max] = vals;
-                        match (extension, xge, opcode_min, opcode_max) {
-                            (Some(extension), Some(xge), Some(opcode_min), Some(opcode_max)) => {
-                                let xge = xge == "true";
-                                let opcode_min = opcode_min
-                                    .parse::<u32>()
-                                    .expect("opcode-min must be a number");
-                                let opcode_max = opcode_max
-                                    .parse::<u32>()
-                                    .expect("opcode-max must be a number");
-                                selectors.push(EventSelector {
-                                    extension,
-                                    xge,
-                                    opcode_range: (opcode_min, opcode_max),
-                                });
-                            }
-                            _ => {
-                                return Err(Error::Parse(
-                                    "Incomplete <allowed> element for event selector".into(),
-                                ));
-                            }
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Empty(ref e) if e.name() == b"allowed" => {
+                    let names: [&[u8]; 4] = [b"extension", b"xge", b"opcode-min", b"opcode-max"];
+                    let mut vals: [Option<String>; 4] = [None, None, None, None];
+                    get_attributes(e.attributes(), &names, &mut vals)?;
+                    let [extension, xge, opcode_min, opcode_max] = vals;
+                    match (extension, xge, opcode_min, opcode_max) {
+                        (Some(extension), Some(xge), Some(opcode_min), Some(opcode_max)) => {
+                            let xge = xge == "true";
+                            let opcode_min = opcode_min
+                                .parse::<u32>()
+                                .expect("opcode-min must be a number");
+                            let opcode_max = opcode_max
+                                .parse::<u32>()
+                                .expect("opcode-max must be a number");
+                            selectors.push(EventSelector {
+                                extension,
+                                xge,
+                                opcode_range: (opcode_min, opcode_max),
+                            });
+                        }
+                        _ => {
+                            return Err(Error::Parse(
+                                "Incomplete <allowed> element for event selector".into(),
+                            ));
                         }
                     }
                 }
-                Ok(XmlEv::End(ref e)) => {
-                    if e.name() == b"eventstruct" {
-                        break;
-                    }
+                XmlEv::End(ref e) if e.name() == b"eventstruct" => {
+                    break;
                 }
-                _ => {}
+                XmlEv::Comment(..) => {}
+                ev => {
+                    return Err(Error::Parse(format!("Unexpected XML: {:#?}", ev)));
+                }
             }
         }
 

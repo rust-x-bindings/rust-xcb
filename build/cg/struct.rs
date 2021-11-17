@@ -197,6 +197,7 @@ impl CodeGen {
                         struct_style,
                         params_struct,
                         doc,
+                        is_union,
                         ..
                     } = self.get_field_info(name, typ, false, doc);
 
@@ -236,6 +237,7 @@ impl CodeGen {
                         need_compute_offset,
                         params_struct,
                         is_prop,
+                        is_union,
                         doc,
                     });
 
@@ -253,6 +255,7 @@ impl CodeGen {
                         typ,
                         struct_style,
                         params_struct,
+                        is_union,
                         doc,
                         ..
                     } = self.get_field_info(name, typ, false, doc);
@@ -272,6 +275,7 @@ impl CodeGen {
                         len_expr: Expr::UntilEnd,
                         need_compute_offset,
                         is_prop,
+                        is_union,
                         doc,
                     });
 
