@@ -9527,6 +9527,33 @@
 <span id="9527">9527</span>
 <span id="9528">9528</span>
 <span id="9529">9529</span>
+<span id="9530">9530</span>
+<span id="9531">9531</span>
+<span id="9532">9532</span>
+<span id="9533">9533</span>
+<span id="9534">9534</span>
+<span id="9535">9535</span>
+<span id="9536">9536</span>
+<span id="9537">9537</span>
+<span id="9538">9538</span>
+<span id="9539">9539</span>
+<span id="9540">9540</span>
+<span id="9541">9541</span>
+<span id="9542">9542</span>
+<span id="9543">9543</span>
+<span id="9544">9544</span>
+<span id="9545">9545</span>
+<span id="9546">9546</span>
+<span id="9547">9547</span>
+<span id="9548">9548</span>
+<span id="9549">9549</span>
+<span id="9550">9550</span>
+<span id="9551">9551</span>
+<span id="9552">9552</span>
+<span id="9553">9553</span>
+<span id="9554">9554</span>
+<span id="9555">9555</span>
+<span id="9556">9556</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from randr.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -10121,6 +10148,24 @@
     }
 }
 
+<span class="kw">impl</span> <span class="ident">base::Wired</span> <span class="kw">for</span> <span class="ident">ScreenChangeNotifyEvent</span> {
+    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32usize</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
+        (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="self">self</span>.<span class="ident">as_slice</span>());
+        <span class="self">self</span>.<span class="ident">wire_len</span>()
+    }
+}
+
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">ScreenChangeNotifyEvent</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -10252,6 +10297,24 @@
             .<span class="ident">field</span>(<span class="string">&quot;sequence&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sequence</span>())
             .<span class="ident">field</span>(<span class="string">&quot;u&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">u</span>())
             .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">base::Wired</span> <span class="kw">for</span> <span class="ident">NotifyEvent</span> {
+    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32usize</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
+        (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="self">self</span>.<span class="ident">as_slice</span>());
+        <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
 
@@ -15517,14 +15580,12 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">12</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">buf1</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">0</span>];
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf1</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">red</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">red</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>();
             <span class="ident">sections</span>[<span class="number">5</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">buf2</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">0</span>];
-            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf2</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">green</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">green</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>();
             <span class="ident">sections</span>[<span class="number">7</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
             <span class="ident">sections</span>[<span class="number">8</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">blue</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
@@ -15864,16 +15925,16 @@
     <span class="kw">fn</span> <span class="ident">raw_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">c</span>: <span class="kw-2">&amp;</span><span class="ident">base::Connection</span>, <span class="ident">checked</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="op">=</span> <span class="ident">xcb_protocol_request_t</span> {
-                <span class="ident">count</span>: <span class="number">8</span>,
+                <span class="ident">count</span>: <span class="number">6</span>,
                 <span class="ident">ext</span>: (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">FFI_EXT</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
                 <span class="ident">opcode</span>: <span class="number">26</span>,
                 <span class="ident">isvoid</span>: <span class="number">1</span>,
             };
 
-            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">10</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sections</span>: [<span class="ident">iovec</span>; <span class="number">8</span>] <span class="op">=</span> [<span class="ident">iovec</span> {
                 <span class="ident">iov_base</span>: <span class="ident">std::ptr::null_mut</span>(),
                 <span class="ident">iov_len</span>: <span class="number">0</span>,
-            }; <span class="number">10</span>];
+            }; <span class="number">8</span>];
 
             <span class="kw">let</span> <span class="ident">buf0</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">48</span>];
             <span class="self">self</span>.<span class="ident">crtc</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">buf0</span>[<span class="number">4</span>..]);
@@ -15883,19 +15944,13 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">48</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">buf1</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">0</span>];
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf1</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_name</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_name</span>.<span class="ident">len</span>();
             <span class="ident">sections</span>[<span class="number">5</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">buf2</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">0</span>];
-            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf2</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_params</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_params</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">render::Fixed</span><span class="op">&gt;</span>();
             <span class="ident">sections</span>[<span class="number">7</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
-
-            <span class="ident">sections</span>[<span class="number">8</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_params</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">8</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">filter_params</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">render::Fixed</span><span class="op">&gt;</span>();
-            <span class="ident">sections</span>[<span class="number">9</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">8</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
             <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
 
@@ -18977,9 +19032,8 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">16</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">buf1</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="number">0</span>; <span class="number">0</span>];
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="ident">buf1</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
-            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">crtcs</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;
+            <span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">crtcs</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">Crtc</span><span class="op">&gt;</span>();
             <span class="ident">sections</span>[<span class="number">5</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">4</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
             <span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_base</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">outputs</span>.<span class="ident">as_ptr</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>;

@@ -2991,6 +2991,42 @@
 <span id="2991">2991</span>
 <span id="2992">2992</span>
 <span id="2993">2993</span>
+<span id="2994">2994</span>
+<span id="2995">2995</span>
+<span id="2996">2996</span>
+<span id="2997">2997</span>
+<span id="2998">2998</span>
+<span id="2999">2999</span>
+<span id="3000">3000</span>
+<span id="3001">3001</span>
+<span id="3002">3002</span>
+<span id="3003">3003</span>
+<span id="3004">3004</span>
+<span id="3005">3005</span>
+<span id="3006">3006</span>
+<span id="3007">3007</span>
+<span id="3008">3008</span>
+<span id="3009">3009</span>
+<span id="3010">3010</span>
+<span id="3011">3011</span>
+<span id="3012">3012</span>
+<span id="3013">3013</span>
+<span id="3014">3014</span>
+<span id="3015">3015</span>
+<span id="3016">3016</span>
+<span id="3017">3017</span>
+<span id="3018">3018</span>
+<span id="3019">3019</span>
+<span id="3020">3020</span>
+<span id="3021">3021</span>
+<span id="3022">3022</span>
+<span id="3023">3023</span>
+<span id="3024">3024</span>
+<span id="3025">3025</span>
+<span id="3026">3026</span>
+<span id="3027">3027</span>
+<span id="3028">3028</span>
+<span id="3029">3029</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from dri2.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -3207,6 +3243,24 @@
     }
 }
 
+<span class="kw">impl</span> <span class="ident">base::Wired</span> <span class="kw">for</span> <span class="ident">BufferSwapCompleteEvent</span> {
+    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32usize</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
+        (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="self">self</span>.<span class="ident">as_slice</span>());
+        <span class="self">self</span>.<span class="ident">wire_len</span>()
+    }
+}
+
 <span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">BufferSwapCompleteEvent</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="kw">unsafe</span> {
@@ -3297,6 +3351,24 @@
             .<span class="ident">field</span>(<span class="string">&quot;sequence&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">sequence</span>())
             .<span class="ident">field</span>(<span class="string">&quot;drawable&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">drawable</span>())
             .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">impl</span> <span class="ident">base::Wired</span> <span class="kw">for</span> <span class="ident">InvalidateBuffersEvent</span> {
+    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="number">32usize</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">usize</span> {
+        <span class="macro">debug_assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_len</span>());
+        (<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="number">0</span>..<span class="self">self</span>.<span class="ident">wire_len</span>()]).<span class="ident">copy_from_slice</span>(<span class="self">self</span>.<span class="ident">as_slice</span>());
+        <span class="self">self</span>.<span class="ident">wire_len</span>()
     }
 }
 
