@@ -25,7 +25,7 @@ fn main() -> xcb::Result<()> {
         visual: screen.root_visual(),
         value_list: &[
             x::Cw::BackPixel(screen.white_pixel()),
-            x::Cw::EventMask((x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS).bits()),
+            x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS),
         ],
     });
 

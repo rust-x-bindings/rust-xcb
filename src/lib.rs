@@ -102,7 +102,7 @@
 //!         // this list must be in same order than `Cw` enum order
 //!         value_list: &[
 //!             x::Cw::BackPixel(screen.white_pixel()),
-//!             x::Cw::EventMask((x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS).bits())
+//!             x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS)
 //!         ],
 //!     });
 //!     // We now check if the window creation worked.
