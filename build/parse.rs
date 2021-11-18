@@ -309,24 +309,23 @@ impl Parser<BufReader<File>> {
 
 impl<B: BufRead> Parser<B> {
     fn expect_text(&mut self) -> Result<String> {
-        match self.xml.read_event(&mut self.buf) {
-            Ok(XmlEv::Text(e) | XmlEv::CData(e)) => {
+        match self.xml.read_event(&mut self.buf)? {
+            XmlEv::Text(e) | XmlEv::CData(e) => {
                 let txt = e.unescaped()?;
                 Ok(str::from_utf8(&txt)?.into())
             }
-            Ok(ev) => Err(Error::Parse(format!("expected text, found {:?}", ev))),
-            Err(e) => Err(e.into()),
+            ev => Err(Error::Parse(format!("expected text, found {:?}", ev))),
         }
     }
 
     fn expect_text_trim(&mut self, close_tag: &[u8]) -> Result<String> {
-        match self.xml.read_event(&mut self.buf) {
-            Ok(XmlEv::Text(e) | XmlEv::CData(e)) => {
+        match self.xml.read_event(&mut self.buf)? {
+            XmlEv::Text(e) | XmlEv::CData(e) => {
                 let txt = e.unescaped()?;
                 let txt = str::from_utf8(&txt)?.trim().into();
                 if !close_tag.is_empty() {
-                    match self.xml.read_event(&mut self.buf) {
-                        Ok(XmlEv::End(e)) => {
+                    match self.xml.read_event(&mut self.buf)? {
+                        XmlEv::End(e) => {
                             if e.name() == close_tag {
                                 return Ok(txt);
                             }
@@ -335,18 +334,17 @@ impl<B: BufRead> Parser<B> {
                                 str::from_utf8(close_tag).unwrap()
                             )))
                         }
-                        Ok(ev) => Err(Error::Parse(format!(
+                        ev => Err(Error::Parse(format!(
                             "expected </{}>, found {:?}",
                             str::from_utf8(close_tag).unwrap(),
                             ev
                         ))),
-                        Err(e) => Err(e.into()),
                     }
                 } else {
                     Ok(txt)
                 }
             }
-            Ok(XmlEv::End(e)) => {
+            XmlEv::End(e) => {
                 if e.name() == close_tag {
                     Ok(String::new())
                 } else {
@@ -356,23 +354,21 @@ impl<B: BufRead> Parser<B> {
                     )))
                 }
             }
-            Ok(ev) => Err(Error::Parse(format!("expected text, found {:?}", ev))),
-            Err(e) => Err(e.into()),
+            ev => Err(Error::Parse(format!("expected text, found {:?}", ev))),
         }
     }
 
     fn expect_start(&mut self) -> Result<Vec<u8>> {
-        match self.xml.read_event(&mut self.buf) {
-            Ok(XmlEv::Start(e) | XmlEv::Empty(e)) => Ok(Vec::from(e.name())),
-            Ok(ev) => Err(Error::Parse(format!("expected start tag, found {:?}", ev))),
-            Err(e) => Err(e.into()),
+        match self.xml.read_event(&mut self.buf)? {
+            XmlEv::Start(e) | XmlEv::Empty(e) => Ok(Vec::from(e.name())),
+            ev => Err(Error::Parse(format!("expected start tag, found {:?}", ev))),
         }
     }
 
     fn expect_close_tag(&mut self, tag: &[u8]) -> Result<()> {
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::End(e)) => {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::End(e) => {
                     if e.name() == tag {
                         return Ok(());
                     } else {
@@ -383,15 +379,14 @@ impl<B: BufRead> Parser<B> {
                         )));
                     }
                 }
-                Ok(XmlEv::Comment(_)) => {}
-                Ok(ev) => {
+                XmlEv::Comment(_) => {}
+                ev => {
                     return Err(Error::Parse(format!(
                         "expected </{}>, found {:?}",
                         str::from_utf8(tag).unwrap(),
                         ev
                     )))
                 }
-                Err(e) => return Err(e.into()),
             }
         }
     }
@@ -403,35 +398,6 @@ impl<B: BufRead> Parser<B> {
         Ok((tag, txt))
     }
 
-    // fn expect_start_tag(&mut self, tag: &[u8]) -> Result<()> {
-    //     match self.xml.read_event(&mut self.buf) {
-    //         Ok(XmlEv::Start(e) | XmlEv::Empty(e)) => {
-    //             if e.name() == tag {
-    //                 Ok(())
-    //             } else {
-    //                 Err(Error::Parse(format!(
-    //                     "expected <{}>, got <{}>",
-    //                     str::from_utf8(tag).unwrap(),
-    //                     str::from_utf8(e.name())?
-    //                 )))
-    //             }
-    //         }
-    //         Ok(ev) => Err(Error::Parse(format!(
-    //             "expected <{}>, found {:?}",
-    //             str::from_utf8(tag).unwrap(),
-    //             ev
-    //         ))),
-    //         Err(e) => Err(e)?,
-    //     }
-    // }
-
-    // fn expect_text_element_with_tag(&mut self, tag: &[u8]) -> Result<String> {
-    //     self.expect_start_tag(tag)?;
-    //     let txt = self.expect_text()?;
-    //     self.expect_close_tag(tag)?;
-    //     Ok(txt)
-    // }
-
     fn parse_doc(&mut self) -> Result<Doc> {
         let mut brief = None;
         let mut description = None;
@@ -441,8 +407,8 @@ impl<B: BufRead> Parser<B> {
         let mut sees = Vec::new();
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Start(ref e)) => match e.name() {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Start(ref e) => match e.name() {
                     b"brief" => {
                         brief = Some(self.expect_text_trim(b"brief")?);
                     }
@@ -469,7 +435,7 @@ impl<B: BufRead> Parser<B> {
                     }
                     _ => {}
                 },
-                Ok(XmlEv::Empty(ref e)) => {
+                XmlEv::Empty(ref e) => {
                     if e.name() == b"field" {
                         let name = expect_attribute(e.attributes(), b"name")?;
                         fields.push(DocField {
@@ -478,16 +444,15 @@ impl<B: BufRead> Parser<B> {
                         });
                     }
                 }
-                Ok(XmlEv::Text(_) | XmlEv::CData(_)) => {
+                XmlEv::Text(_) | XmlEv::CData(_) => {
                     return Err(Error::Parse("Unexpected doc text out of element".into()));
                 }
-                Ok(XmlEv::End(ref e)) => {
+                XmlEv::End(ref e) => {
                     if e.name() == b"doc" {
                         break;
                     }
                 }
-                Ok(_) => {}
-                Err(err) => return Err(err.into()),
+                _ => {}
             }
         }
 
@@ -564,8 +529,8 @@ impl<B: BufRead> Parser<B> {
     }
 
     fn parse_expr(&mut self, empty_end_tag: &[u8]) -> Result<Option<Expr>> {
-        match self.xml.read_event(&mut self.buf) {
-            Ok(XmlEv::Start(ref e)) => {
+        match self.xml.read_event(&mut self.buf)? {
+            XmlEv::Start(ref e) => {
                 let e = e.to_owned();
                 Ok(Some(self.parse_expr_content(
                     e.attributes(),
@@ -573,7 +538,7 @@ impl<B: BufRead> Parser<B> {
                     false,
                 )?))
             }
-            Ok(XmlEv::Empty(ref e)) => {
+            XmlEv::Empty(ref e) => {
                 let e = e.to_owned();
                 Ok(Some(self.parse_expr_content(
                     e.attributes(),
@@ -581,8 +546,8 @@ impl<B: BufRead> Parser<B> {
                     true,
                 )?))
             }
-            Ok(XmlEv::Comment(_)) => self.parse_expr(empty_end_tag), // in case of comment, we just parse the next one
-            Ok(XmlEv::End(e)) => {
+            XmlEv::Comment(_) => self.parse_expr(empty_end_tag), // in case of comment, we just parse the next one
+            XmlEv::End(e) => {
                 if e.name() == empty_end_tag {
                     Ok(None)
                 } else {
@@ -592,11 +557,10 @@ impl<B: BufRead> Parser<B> {
                     )))
                 }
             }
-            Ok(ev) => Err(Error::Parse(format!(
+            ev => Err(Error::Parse(format!(
                 "Unexpected XML while parsing expression: {:?}",
                 ev
             ))),
-            Err(err) => Err(err.into()),
         }
     }
 
@@ -610,8 +574,8 @@ impl<B: BufRead> Parser<B> {
         let mut xidtypes = Vec::new();
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Start(ref e)) => match e.name() {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Start(ref e) => match e.name() {
                     b"type" => {
                         let typ = self.expect_text_trim(b"type")?;
                         xidtypes.push(typ);
@@ -623,18 +587,15 @@ impl<B: BufRead> Parser<B> {
                         )));
                     }
                 },
-                Ok(XmlEv::End(ref e)) => match e.name() {
+                XmlEv::End(ref e) => match e.name() {
                     b"xidunion" => break,
                     _ => unreachable!(),
                 },
-                Ok(ev) => {
+                ev => {
                     return Err(Error::Parse(format!(
                         "Unexpected XML in <xidunion>: {:?}",
                         ev
                     )));
-                }
-                Err(err) => {
-                    return Err(err.into());
                 }
             }
         }
@@ -647,8 +608,8 @@ impl<B: BufRead> Parser<B> {
         let mut doc = None;
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Empty(ref e) | XmlEv::Start(ref e)) => match e.name() {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Empty(ref e) | XmlEv::Start(ref e) => match e.name() {
                     b"item" => {
                         let name = expect_attribute(e.attributes(), b"name")?;
                         let (tag, value) = self.expect_text_element()?;
@@ -684,7 +645,7 @@ impl<B: BufRead> Parser<B> {
                         )));
                     }
                 },
-                Ok(XmlEv::End(ref e)) => match e.name() {
+                XmlEv::End(ref e) => match e.name() {
                     b"enum" => break,
                     b"item" => continue,
                     tag => {
@@ -694,11 +655,10 @@ impl<B: BufRead> Parser<B> {
                         )))
                     }
                 },
-                Ok(XmlEv::Comment(_)) => {}
-                Ok(ev) => {
+                XmlEv::Comment(_) => {}
+                ev => {
                     return Err(Error::Parse(format!("unexpected XML in enum: {:?}", ev)));
                 }
-                Err(err) => return Err(err.into()),
             }
         }
 
@@ -887,15 +847,15 @@ impl<B: BufRead> Parser<B> {
         let mut doc = None;
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Empty(ref e)) => {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Empty(ref e) => {
                     let e = e.to_owned();
                     let f = self.parse_field_content(&e, true)?;
                     if let Some(f) = f {
                         fields.push(f);
                     }
                 }
-                Ok(XmlEv::Start(ref e)) => match e.name() {
+                XmlEv::Start(ref e) => match e.name() {
                     b"list" | b"exprfield" | b"switch" => {
                         let e = e.to_owned();
                         let f = self.parse_field_content(&e, false)?;
@@ -919,16 +879,15 @@ impl<B: BufRead> Parser<B> {
                         )))
                     }
                 },
-                Ok(XmlEv::End(ref e)) => {
+                XmlEv::End(ref e) => {
                     if e.name() == end_tag {
                         break;
                     }
                 }
-                Ok(XmlEv::Comment(_)) => {}
-                Ok(ev) => {
+                XmlEv::Comment(_) => {}
+                ev => {
                     return Err(Error::Parse(format!("unexpected XML in struct: {:?}", ev)));
                 }
-                Err(err) => return Err(err.into()),
             }
         }
 
@@ -1059,8 +1018,8 @@ impl<B: BufRead> Parser<B> {
         let mut fields = Vec::new();
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Start(ref e)) => {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Start(ref e) => {
                     let e = e.to_owned();
                     if is_expr_tag(e.name()) {
                         let expr = self.parse_expr_content(e.attributes(), e.name(), false)?;
@@ -1072,7 +1031,7 @@ impl<B: BufRead> Parser<B> {
                         }
                     }
                 }
-                Ok(XmlEv::Empty(ref e)) => {
+                XmlEv::Empty(ref e) => {
                     let e = e.to_owned();
                     if is_expr_tag(e.name()) {
                         let expr = self.parse_expr_content(e.attributes(), e.name(), true)?;
@@ -1084,8 +1043,8 @@ impl<B: BufRead> Parser<B> {
                         }
                     }
                 }
-                Ok(XmlEv::Comment(_)) => {}
-                Ok(XmlEv::End(ref e)) => {
+                XmlEv::Comment(_) => {}
+                XmlEv::End(ref e) => {
                     if e.name() == end_tag {
                         break;
                     }
@@ -1113,8 +1072,8 @@ impl<B: BufRead> Parser<B> {
         let mut cases = Vec::new();
 
         loop {
-            match self.xml.read_event(&mut self.buf) {
-                Ok(XmlEv::Start(ref e)) => {
+            match self.xml.read_event(&mut self.buf)? {
+                XmlEv::Start(ref e) => {
                     let names: [&[u8]; 1] = [b"name"];
                     let mut vals: [Option<String>; 1] = [None];
                     get_attributes(e.attributes(), &names, &mut vals)?;
@@ -1134,13 +1093,12 @@ impl<B: BufRead> Parser<B> {
                         }
                     }
                 }
-                Ok(XmlEv::End(ref e)) => {
+                XmlEv::End(ref e) => {
                     if e.name() == b"switch" {
                         break;
                     }
                 }
-                Ok(_) => {}
-                Err(err) => return Err(err.into()),
+                _ => {}
             }
         }
 
