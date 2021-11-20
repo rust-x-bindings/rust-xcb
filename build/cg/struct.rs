@@ -1373,86 +1373,6 @@ impl CodeGen {
                 }
                 Field::List {
                     name,
-                    module,
-                    rs_typ,
-                    wire_off,
-                    len_expr,
-                    struct_style: None,
-                    doc,
-                    ..
-                } if rs_typ != "char" && !matches!(len_expr, Expr::Value(_)) => {
-                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                    let params = len_expr.params_str();
-                    if let Some(doc) = doc {
-                        doc.emit(out, 1)?;
-                    }
-                    writeln!(
-                        out,
-                        "    pub fn {}(&self{}) -> &[{}] {{",
-                        name, params, q_rs_typ
-                    )?;
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(
-                        out,
-                        "{}let offset = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(wire_off, "self.", "()", fields)
-                    )?;
-                    writeln!(
-                        out,
-                        "{}let len = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(len_expr, "self.", "()", fields)
-                    )?;
-                    writeln!(
-                        out,
-                        "{}let ptr = self.wire_ptr().add(offset) as *const {};",
-                        cg::ind(3),
-                        q_rs_typ
-                    )?;
-                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
-                    writeln!(out, "{}}}", cg::ind(1))?;
-                }
-                Field::List {
-                    name,
-                    module,
-                    rs_typ,
-                    wire_off,
-                    len_expr,
-                    struct_style: None,
-                    doc,
-                    ..
-                } if rs_typ != "char" => {
-                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                    let len = len_expr.fixed_length().unwrap();
-                    let params = len_expr.params_str();
-                    if let Some(doc) = doc {
-                        doc.emit(out, 1)?;
-                    }
-                    writeln!(
-                        out,
-                        "    pub fn {}(&self{}) -> &[{}; {}] {{",
-                        name, params, q_rs_typ, len
-                    )?;
-
-                    writeln!(out, "        unsafe {{")?;
-                    writeln!(
-                        out,
-                        "            let offset = {};",
-                        self.build_rs_expr(wire_off, "self.", "()", fields)
-                    )?;
-                    writeln!(
-                        out,
-                        "            let ptr = self.wire_ptr().add(offset) as *const [{}; {}];",
-                        q_rs_typ, len
-                    )?;
-                    writeln!(out, "            &*ptr")?;
-                    writeln!(out, "        }}")?;
-                    writeln!(out, "    }}")?;
-                }
-                Field::List {
-                    name,
                     rs_typ,
                     wire_off,
                     len_expr,
@@ -1534,8 +1454,86 @@ impl CodeGen {
                     module,
                     rs_typ,
                     wire_off,
+                    len_expr: Expr::Value(len),
+                    struct_style: None,
+                    doc,
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(
+                        out,
+                        "    pub fn {}(&self) -> &[{}; {}] {{",
+                        name, q_rs_typ, len
+                    )?;
+
+                    writeln!(out, "        unsafe {{")?;
+                    writeln!(
+                        out,
+                        "            let offset = {};",
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "            let ptr = self.wire_ptr().add(offset) as *const [{}; {}];",
+                        q_rs_typ, len
+                    )?;
+                    writeln!(out, "            &*ptr")?;
+                    writeln!(out, "        }}")?;
+                    writeln!(out, "    }}")?;
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    wire_off,
+                    len_expr,
+                    struct_style: None,
+                    doc,
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    let params = len_expr.params_str();
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(
+                        out,
+                        "    pub fn {}(&self{}) -> &[{}] {{",
+                        name, params, q_rs_typ
+                    )?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let len = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(len_expr, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let ptr = self.wire_ptr().add(offset) as *const {};",
+                        cg::ind(3),
+                        q_rs_typ
+                    )?;
+                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    wire_off,
                     len_expr: Expr::UntilEnd,
-                    struct_style: None | Some(StructStyle::WireLayout | StructStyle::FixBuf),
+                    struct_style: Some(StructStyle::WireLayout | StructStyle::FixBuf),
                     doc,
                     ..
                 } => {
