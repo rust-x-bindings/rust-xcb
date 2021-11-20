@@ -73,6 +73,7 @@ impl CodeGen {
                     name,
                     typ,
                     len_expr: ir::Expr::Value(sz),
+                    ..
                 } => {
                     let variant = util::tit_cap(name);
                     let (module, typ) = util::extract_module(typ);

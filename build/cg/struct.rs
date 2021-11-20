@@ -128,7 +128,7 @@ impl CodeGen {
                         params_struct,
                         doc,
                         ..
-                    } = self.get_field_info(name, typ, r#enum.is_some(), doc);
+                    } = self.get_field_info(name, typ, r#enum.as_deref(), mask.as_deref(), doc);
 
                     if !hfl || (rs_typ != "u32" && (r#enum.is_some() || (mask.is_some()))) {
                         has_wire_layout = false;
@@ -186,6 +186,8 @@ impl CodeGen {
                     name,
                     typ,
                     len_expr,
+                    r#enum,
+                    mask,
                 } => {
                     let FieldInfo {
                         name,
@@ -196,10 +198,12 @@ impl CodeGen {
                         has_wire_layout: hfl,
                         struct_style,
                         params_struct,
+                        r#enum,
+                        mask,
                         doc,
                         is_union,
                         ..
-                    } = self.get_field_info(name, typ, false, doc);
+                    } = self.get_field_info(name, typ, r#enum.as_deref(), mask.as_deref(), doc);
 
                     let len_expr = self.resolve_expr(len_expr);
 
@@ -232,6 +236,8 @@ impl CodeGen {
                         wire_off: wire_off.clone(),
                         wire_sz: wire_sz.clone(),
                         struct_style,
+                        r#enum,
+                        mask,
                         is_fieldref: false,
                         len_expr,
                         need_compute_offset,
@@ -247,7 +253,12 @@ impl CodeGen {
 
                     wire_sz
                 }
-                ir::Field::ListNoLen { typ, name } => {
+                ir::Field::ListNoLen {
+                    typ,
+                    name,
+                    r#enum,
+                    mask,
+                } => {
                     let FieldInfo {
                         name,
                         module,
@@ -255,10 +266,12 @@ impl CodeGen {
                         typ,
                         struct_style,
                         params_struct,
+                        r#enum,
+                        mask,
                         is_union,
                         doc,
                         ..
-                    } = self.get_field_info(name, typ, false, doc);
+                    } = self.get_field_info(name, typ, r#enum.as_deref(), mask.as_deref(), doc);
 
                     has_wire_layout = false;
                     let is_prop = has_prop_field && typ == "void";
@@ -271,6 +284,8 @@ impl CodeGen {
                         wire_sz: Expr::UntilEnd,
                         struct_style,
                         params_struct,
+                        r#enum,
+                        mask,
                         is_fieldref: false,
                         len_expr: Expr::UntilEnd,
                         need_compute_offset,
@@ -311,7 +326,7 @@ impl CodeGen {
                 ir::Field::Expr { name, typ, expr } => {
                     let FieldInfo {
                         name, typ, wire_sz, ..
-                    } = self.get_field_info(name, typ, false, doc);
+                    } = self.get_field_info(name, typ, None, None, doc);
 
                     has_wire_layout = false;
 
@@ -428,7 +443,8 @@ impl CodeGen {
         &self,
         name: &str,
         typ: &str,
-        alt_repr: bool,
+        r#enum: Option<&str>,
+        mask: Option<&str>,
         doc: Option<&Doc>,
     ) -> FieldInfo {
         let name = cg::rust_field_name(name);
@@ -446,14 +462,21 @@ impl CodeGen {
         };
         let doc = self.doc_lookup_field(doc, &name);
 
+        let has_wire_layout = r#enum.is_none() && typinfo.has_wire_layout();
+
+        let r#enum = r#enum.as_ref().map(|typ| self.get_mod_rs_typ(typ));
+        let mask = mask.as_ref().map(|typ| self.get_mod_rs_typ(typ));
+
         FieldInfo {
             name,
             module: module.map(str::to_owned),
             typ: typ.to_string(),
             rs_typ: rs_typ.to_string(),
             wire_sz,
-            has_wire_layout: !alt_repr && typinfo.has_wire_layout(),
+            has_wire_layout,
             struct_style: typinfo.struct_style(),
+            r#enum,
+            mask,
             params_struct,
             doc,
             is_union,
@@ -1486,6 +1509,57 @@ impl CodeGen {
                 }
                 Field::List {
                     name,
+                    rs_typ,
+                    wire_off,
+                    len_expr,
+                    doc,
+                    r#enum,
+                    mask,
+                    ..
+                } if rs_typ == "u32" && (r#enum.is_some() || mask.is_some()) => {
+                    let q_rs_typ = r#enum.as_ref().or_else(|| mask.as_ref()).unwrap();
+                    let q_rs_typ = {
+                        let (module, rs_typ) = q_rs_typ;
+                        (module, rs_typ).qualified_rs_typ()
+                    };
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(
+                        out,
+                        "{}pub fn {}(&self) -> &[{}] {{",
+                        cg::ind(1),
+                        name,
+                        q_rs_typ
+                    )?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let len = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(len_expr, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let ptr = self.wire_ptr().add(offset) as *const {};",
+                        cg::ind(3),
+                        q_rs_typ
+                    )?;
+                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::List { r#enum, mask, .. } if r#enum.is_some() || mask.is_some() => {
+                    unimplemented!("return iterator of mask or enum");
+                }
+                Field::List {
+                    name,
                     module,
                     rs_typ,
                     wire_off,
@@ -1900,6 +1974,8 @@ struct FieldInfo {
     has_wire_layout: bool,
     struct_style: Option<StructStyle>,
     params_struct: Option<ParamsStruct>,
+    r#enum: Option<(Option<String>, String)>,
+    mask: Option<(Option<String>, String)>,
     doc: Option<DocField>,
     is_union: bool,
     is_xid: bool,

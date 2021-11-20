@@ -131,6 +131,8 @@ enum Field {
         len_expr: Expr,
         struct_style: Option<StructStyle>,
         params_struct: Option<ParamsStruct>,
+        r#enum: Option<(Option<String>, String)>,
+        mask: Option<(Option<String>, String)>,
         doc: Option<DocField>,
         is_fieldref: bool,
         need_compute_offset: bool,
