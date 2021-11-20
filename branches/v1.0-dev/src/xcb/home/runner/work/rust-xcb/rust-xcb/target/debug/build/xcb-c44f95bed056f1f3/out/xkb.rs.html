@@ -15395,6 +15395,8 @@
 <span id="15395">15395</span>
 <span id="15396">15396</span>
 <span id="15397">15397</span>
+<span id="15398">15398</span>
+<span id="15399">15399</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -22574,16 +22576,16 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">SelectEventsDetails</span> {
     <span class="ident">NewKeyboardNotify</span> {
-        <span class="ident">affect_new_keyboard</span>: <span class="ident">u16</span>,
-        <span class="ident">new_keyboard_details</span>: <span class="ident">u16</span>,
+        <span class="ident">affect_new_keyboard</span>: <span class="ident">NknDetail</span>,
+        <span class="ident">new_keyboard_details</span>: <span class="ident">NknDetail</span>,
     },
     <span class="ident">StateNotify</span> {
-        <span class="ident">affect_state</span>: <span class="ident">u16</span>,
-        <span class="ident">state_details</span>: <span class="ident">u16</span>,
+        <span class="ident">affect_state</span>: <span class="ident">StatePart</span>,
+        <span class="ident">state_details</span>: <span class="ident">StatePart</span>,
     },
     <span class="ident">ControlsNotify</span> {
-        <span class="ident">affect_ctrls</span>: <span class="ident">u32</span>,
-        <span class="ident">ctrl_details</span>: <span class="ident">u32</span>,
+        <span class="ident">affect_ctrls</span>: <span class="ident">Control</span>,
+        <span class="ident">ctrl_details</span>: <span class="ident">Control</span>,
     },
     <span class="ident">IndicatorStateNotify</span> {
         <span class="ident">affect_indicator_state</span>: <span class="ident">u32</span>,
@@ -22594,12 +22596,12 @@
         <span class="ident">indicator_map_details</span>: <span class="ident">u32</span>,
     },
     <span class="ident">NamesNotify</span> {
-        <span class="ident">affect_names</span>: <span class="ident">u16</span>,
-        <span class="ident">names_details</span>: <span class="ident">u16</span>,
+        <span class="ident">affect_names</span>: <span class="ident">NameDetail</span>,
+        <span class="ident">names_details</span>: <span class="ident">NameDetail</span>,
     },
     <span class="ident">CompatMapNotify</span> {
-        <span class="ident">affect_compat</span>: <span class="ident">u8</span>,
-        <span class="ident">compat_details</span>: <span class="ident">u8</span>,
+        <span class="ident">affect_compat</span>: <span class="ident">CmDetail</span>,
+        <span class="ident">compat_details</span>: <span class="ident">CmDetail</span>,
     },
     <span class="ident">BellNotify</span> {
         <span class="ident">affect_bell</span>: <span class="ident">u8</span>,
@@ -22610,12 +22612,12 @@
         <span class="ident">msg_details</span>: <span class="ident">u8</span>,
     },
     <span class="ident">AccessXNotify</span> {
-        <span class="ident">affect_access_x</span>: <span class="ident">u16</span>,
-        <span class="ident">access_x_details</span>: <span class="ident">u16</span>,
+        <span class="ident">affect_access_x</span>: <span class="ident">AxnDetail</span>,
+        <span class="ident">access_x_details</span>: <span class="ident">AxnDetail</span>,
     },
     <span class="ident">ExtensionDeviceNotify</span> {
-        <span class="ident">affect_ext_dev</span>: <span class="ident">u16</span>,
-        <span class="ident">extdev_details</span>: <span class="ident">u16</span>,
+        <span class="ident">affect_ext_dev</span>: <span class="ident">XiFeature</span>,
+        <span class="ident">extdev_details</span>: <span class="ident">XiFeature</span>,
     },
 }
 
@@ -22866,22 +22868,24 @@
                     <span class="ident">affect_new_keyboard</span>,
                     <span class="ident">new_keyboard_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_new_keyboard</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">new_keyboard_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span>
+                        (<span class="ident">affect_new_keyboard</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span>
+                        (<span class="ident">new_keyboard_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::StateNotify</span> {
                     <span class="ident">affect_state</span>,
                     <span class="ident">state_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_state</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::ControlsNotify</span> {
                     <span class="ident">affect_ctrls</span>,
                     <span class="ident">ctrl_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_ctrls</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ctrl_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_ctrls</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">ctrl_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::IndicatorStateNotify</span> {
                     <span class="ident">affect_indicator_state</span>,
@@ -22901,15 +22905,15 @@
                     <span class="ident">affect_names</span>,
                     <span class="ident">names_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_names</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">names_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_names</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">names_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::CompatMapNotify</span> {
                     <span class="ident">affect_compat</span>,
                     <span class="ident">compat_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_compat</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">compat_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_compat</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">compat_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::BellNotify</span> {
                     <span class="ident">affect_bell</span>,
@@ -22929,15 +22933,15 @@
                     <span class="ident">affect_access_x</span>,
                     <span class="ident">access_x_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_access_x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">access_x_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_access_x</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">access_x_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">SelectEventsDetails::ExtensionDeviceNotify</span> {
                     <span class="ident">affect_ext_dev</span>,
                     <span class="ident">extdev_details</span>,
                 } <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">affect_ext_dev</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">extdev_details</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">affect_ext_dev</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">extdev_details</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }
         }
@@ -24846,7 +24850,7 @@
         <span class="ident">getmap_length</span>: <span class="ident">u32</span>,
         <span class="ident">type_min_key_code</span>: <span class="ident">xproto::Keycode</span>,
         <span class="ident">type_max_key_code</span>: <span class="ident">xproto::Keycode</span>,
-        <span class="ident">present</span>: <span class="ident">u16</span>,
+        <span class="ident">present</span>: <span class="ident">MapPart</span>,
         <span class="ident">first_type</span>: <span class="ident">u8</span>,
         <span class="ident">n_types</span>: <span class="ident">u8</span>,
         <span class="ident">total_types</span>: <span class="ident">u8</span>,
@@ -24868,7 +24872,7 @@
         <span class="ident">first_v_mod_map_key</span>: <span class="ident">xproto::Keycode</span>,
         <span class="ident">n_v_mod_map_keys</span>: <span class="ident">u8</span>,
         <span class="ident">total_v_mod_map_keys</span>: <span class="ident">u8</span>,
-        <span class="ident">virtual_mods</span>: <span class="ident">u16</span>,
+        <span class="ident">virtual_mods</span>: <span class="ident">VMod</span>,
         <span class="ident">map</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">GetKbdByNameReplyRepliesMap</span><span class="op">&gt;</span>,
     },
     <span class="ident">CompatMap</span> {
@@ -24876,7 +24880,7 @@
         <span class="ident">compat_device_id</span>: <span class="ident">u8</span>,
         <span class="ident">compatmap_sequence</span>: <span class="ident">u16</span>,
         <span class="ident">compatmap_length</span>: <span class="ident">u32</span>,
-        <span class="ident">groups_rtrn</span>: <span class="ident">u8</span>,
+        <span class="ident">groups_rtrn</span>: <span class="ident">SetOfGroup</span>,
         <span class="ident">first_si_rtrn</span>: <span class="ident">u16</span>,
         <span class="ident">n_si_rtrn</span>: <span class="ident">u16</span>,
         <span class="ident">n_total_si</span>: <span class="ident">u16</span>,
@@ -24898,12 +24902,12 @@
         <span class="ident">key_device_id</span>: <span class="ident">u8</span>,
         <span class="ident">keyname_sequence</span>: <span class="ident">u16</span>,
         <span class="ident">keyname_length</span>: <span class="ident">u32</span>,
-        <span class="ident">which</span>: <span class="ident">u32</span>,
+        <span class="ident">which</span>: <span class="ident">NameDetail</span>,
         <span class="ident">key_min_key_code</span>: <span class="ident">xproto::Keycode</span>,
         <span class="ident">key_max_key_code</span>: <span class="ident">xproto::Keycode</span>,
         <span class="ident">n_types</span>: <span class="ident">u8</span>,
-        <span class="ident">group_names</span>: <span class="ident">u8</span>,
-        <span class="ident">virtual_mods</span>: <span class="ident">u16</span>,
+        <span class="ident">group_names</span>: <span class="ident">SetOfGroup</span>,
+        <span class="ident">virtual_mods</span>: <span class="ident">VMod</span>,
         <span class="ident">first_key</span>: <span class="ident">xproto::Keycode</span>,
         <span class="ident">n_keys</span>: <span class="ident">u8</span>,
         <span class="ident">indicators</span>: <span class="ident">u32</span>,
@@ -25480,7 +25484,7 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">type_min_key_code</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">type_max_key_code</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">present</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">present</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">first_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">n_types</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">total_types</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -25503,7 +25507,7 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">n_v_mod_map_keys</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">total_v_mod_map_keys</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">virtual_mods</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">virtual_mods</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">map</span>.<span class="ident">as_slice</span>().<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">GetKbdByNameReplyReplies::CompatMap</span> {
@@ -25522,7 +25526,7 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">compat_device_id</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">compatmap_sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">compatmap_length</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">groups_rtrn</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">groups_rtrn</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">first_si_rtrn</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">n_si_rtrn</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -25580,12 +25584,12 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">key_device_id</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">keyname_sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">keyname_length</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">which</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">which</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">key_min_key_code</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">key_max_key_code</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">n_types</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">group_names</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">virtual_mods</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">group_names</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">virtual_mods</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">first_key</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">n_keys</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">indicators</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);

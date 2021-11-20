@@ -23266,6 +23266,11 @@
 <span id="23266">23266</span>
 <span id="23267">23267</span>
 <span id="23268">23268</span>
+<span id="23269">23269</span>
+<span id="23270">23270</span>
+<span id="23271">23271</span>
+<span id="23272">23272</span>
+<span id="23273">23273</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -28891,7 +28896,7 @@
     <span class="ident">Button</span>(<span class="ident">u16</span>),
     <span class="ident">Valuator</span> {
         <span class="ident">axes_len</span>: <span class="ident">u8</span>,
-        <span class="ident">mode</span>: <span class="ident">u8</span>,
+        <span class="ident">mode</span>: <span class="ident">ValuatorMode</span>,
         <span class="ident">motion_size</span>: <span class="ident">u32</span>,
         <span class="ident">axes</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">AxisInfo</span><span class="op">&gt;</span>,
     },
@@ -29003,7 +29008,8 @@
                 <span class="ident">axes</span>,
             } <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">axes_len</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">mode</span>) } <span class="kw">as</span> <span class="ident">u8</span>)
+                    .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">motion_size</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">axes</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -32324,7 +32330,7 @@
     },
     <span class="ident">Valuator</span> {
         <span class="ident">num_valuators</span>: <span class="ident">u8</span>,
-        <span class="ident">mode</span>: <span class="ident">u8</span>,
+        <span class="ident">mode</span>: <span class="ident">ValuatorStateModeMask</span>,
         <span class="ident">valuators</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">i32</span><span class="op">&gt;</span>,
     },
 }
@@ -32438,7 +32444,7 @@
                 <span class="ident">valuators</span>,
             } <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">num_valuators</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">mode</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">valuators</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
@@ -35229,7 +35235,7 @@
     },
     <span class="ident">RemoveMaster</span> {
         <span class="ident">deviceid</span>: <span class="ident">DeviceId</span>,
-        <span class="ident">return_mode</span>: <span class="ident">u8</span>,
+        <span class="ident">return_mode</span>: <span class="ident">ChangeMode</span>,
         <span class="ident">return_pointer</span>: <span class="ident">DeviceId</span>,
         <span class="ident">return_keyboard</span>: <span class="ident">DeviceId</span>,
     },
@@ -35373,7 +35379,8 @@
                 <span class="ident">return_keyboard</span>,
             } <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">deviceid</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">return_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">return_mode</span>) } <span class="kw">as</span> <span class="ident">u8</span>)
+                    .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">return_pointer</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">return_keyboard</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -36522,16 +36529,16 @@
         <span class="ident">max</span>: <span class="ident">Fp3232</span>,
         <span class="ident">value</span>: <span class="ident">Fp3232</span>,
         <span class="ident">resolution</span>: <span class="ident">u32</span>,
-        <span class="ident">mode</span>: <span class="ident">u8</span>,
+        <span class="ident">mode</span>: <span class="ident">ValuatorMode</span>,
     },
     <span class="ident">Scroll</span> {
         <span class="ident">number</span>: <span class="ident">u16</span>,
-        <span class="ident">scroll_type</span>: <span class="ident">u16</span>,
-        <span class="ident">flags</span>: <span class="ident">u32</span>,
+        <span class="ident">scroll_type</span>: <span class="ident">ScrollType</span>,
+        <span class="ident">flags</span>: <span class="ident">ScrollFlags</span>,
         <span class="ident">increment</span>: <span class="ident">Fp3232</span>,
     },
     <span class="ident">Touch</span> {
-        <span class="ident">mode</span>: <span class="ident">u8</span>,
+        <span class="ident">mode</span>: <span class="ident">TouchMode</span>,
         <span class="ident">num_touches</span>: <span class="ident">u8</span>,
     },
 }
@@ -36718,7 +36725,8 @@
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">max</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">value</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">resolution</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">mode</span>) } <span class="kw">as</span> <span class="ident">u8</span>)
+                    .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
             <span class="ident">DeviceClassData::Scroll</span> {
@@ -36728,13 +36736,15 @@
                 <span class="ident">increment</span>,
             } <span class="op">=</span><span class="op">&gt;</span> {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">number</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">scroll_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">scroll_type</span>) } <span class="kw">as</span> <span class="ident">u16</span>)
+                    .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">flags</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">increment</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
             }
             <span class="ident">DeviceClassData::Touch</span> { <span class="ident">mode</span>, <span class="ident">num_touches</span> } <span class="op">=</span><span class="op">&gt;</span> {
-                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">mode</span>) } <span class="kw">as</span> <span class="ident">u8</span>)
+                    .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">num_touches</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
             }
         }

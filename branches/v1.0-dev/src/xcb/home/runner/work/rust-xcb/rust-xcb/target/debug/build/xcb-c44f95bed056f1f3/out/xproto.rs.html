@@ -23781,6 +23781,21 @@
 <span id="23781">23781</span>
 <span id="23782">23782</span>
 <span id="23783">23783</span>
+<span id="23784">23784</span>
+<span id="23785">23785</span>
+<span id="23786">23786</span>
+<span id="23787">23787</span>
+<span id="23788">23788</span>
+<span id="23789">23789</span>
+<span id="23790">23790</span>
+<span id="23791">23791</span>
+<span id="23792">23792</span>
+<span id="23793">23793</span>
+<span id="23794">23794</span>
+<span id="23795">23795</span>
+<span id="23796">23796</span>
+<span id="23797">23797</span>
+<span id="23798">23798</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -32611,15 +32626,15 @@
     <span class="ident">BackPixel</span>(<span class="ident">u32</span>),
     <span class="ident">BorderPixmap</span>(<span class="ident">Pixmap</span>),
     <span class="ident">BorderPixel</span>(<span class="ident">u32</span>),
-    <span class="ident">BitGravity</span>(<span class="ident">u32</span>),
-    <span class="ident">WinGravity</span>(<span class="ident">u32</span>),
-    <span class="ident">BackingStore</span>(<span class="ident">u32</span>),
+    <span class="ident">BitGravity</span>(<span class="ident">Gravity</span>),
+    <span class="ident">WinGravity</span>(<span class="ident">Gravity</span>),
+    <span class="ident">BackingStore</span>(<span class="ident">BackingStore</span>),
     <span class="ident">BackingPlanes</span>(<span class="ident">u32</span>),
     <span class="ident">BackingPixel</span>(<span class="ident">u32</span>),
     <span class="ident">OverrideRedirect</span>(<span class="ident">bool</span>),
     <span class="ident">SaveUnder</span>(<span class="ident">bool</span>),
-    <span class="ident">EventMask</span>(<span class="ident">u32</span>),
-    <span class="ident">DontPropagate</span>(<span class="ident">u32</span>),
+    <span class="ident">EventMask</span>(<span class="ident">EventMask</span>),
+    <span class="ident">DontPropagate</span>(<span class="ident">EventMask</span>),
     <span class="ident">Colormap</span>(<span class="ident">Colormap</span>),
     <span class="ident">Cursor</span>(<span class="ident">Cursor</span>),
 }
@@ -32854,13 +32869,16 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">border_pixel</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::BitGravity</span>(<span class="ident">bit_gravity</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">bit_gravity</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">bit_gravity</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::WinGravity</span>(<span class="ident">win_gravity</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">win_gravity</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">win_gravity</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::BackingStore</span>(<span class="ident">backing_store</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">backing_store</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">backing_store</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::BackingPlanes</span>(<span class="ident">backing_planes</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">backing_planes</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -32877,10 +32895,11 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">save_under</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::EventMask</span>(<span class="ident">event_mask</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_mask</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">event_mask</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::DontPropagate</span>(<span class="ident">do_not_propogate_mask</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">do_not_propogate_mask</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span>
+                        (<span class="ident">do_not_propogate_mask</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cw::Colormap</span>(<span class="ident">colormap</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">colormap</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -32907,7 +32926,7 @@
     <span class="ident">Height</span>(<span class="ident">u32</span>),
     <span class="ident">BorderWidth</span>(<span class="ident">u32</span>),
     <span class="ident">Sibling</span>(<span class="ident">Window</span>),
-    <span class="ident">StackMode</span>(<span class="ident">u32</span>),
+    <span class="ident">StackMode</span>(<span class="ident">StackMode</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">ConfigWindow</span> {
@@ -33058,7 +33077,8 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sibling</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">ConfigWindow::StackMode</span>(<span class="ident">stack_mode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">stack_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">stack_mode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }
         }
@@ -33073,29 +33093,29 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Gc</span> {
-    <span class="ident">Function</span>(<span class="ident">u32</span>),
+    <span class="ident">Function</span>(<span class="ident">Gx</span>),
     <span class="ident">PlaneMask</span>(<span class="ident">u32</span>),
     <span class="ident">Foreground</span>(<span class="ident">u32</span>),
     <span class="ident">Background</span>(<span class="ident">u32</span>),
     <span class="ident">LineWidth</span>(<span class="ident">u32</span>),
-    <span class="ident">LineStyle</span>(<span class="ident">u32</span>),
-    <span class="ident">CapStyle</span>(<span class="ident">u32</span>),
-    <span class="ident">JoinStyle</span>(<span class="ident">u32</span>),
-    <span class="ident">FillStyle</span>(<span class="ident">u32</span>),
-    <span class="ident">FillRule</span>(<span class="ident">u32</span>),
+    <span class="ident">LineStyle</span>(<span class="ident">LineStyle</span>),
+    <span class="ident">CapStyle</span>(<span class="ident">CapStyle</span>),
+    <span class="ident">JoinStyle</span>(<span class="ident">JoinStyle</span>),
+    <span class="ident">FillStyle</span>(<span class="ident">FillStyle</span>),
+    <span class="ident">FillRule</span>(<span class="ident">FillRule</span>),
     <span class="ident">Tile</span>(<span class="ident">Pixmap</span>),
     <span class="ident">Stipple</span>(<span class="ident">Pixmap</span>),
     <span class="ident">TileStippleOriginX</span>(<span class="ident">i32</span>),
     <span class="ident">TileStippleOriginY</span>(<span class="ident">i32</span>),
     <span class="ident">Font</span>(<span class="ident">Font</span>),
-    <span class="ident">SubwindowMode</span>(<span class="ident">u32</span>),
+    <span class="ident">SubwindowMode</span>(<span class="ident">SubwindowMode</span>),
     <span class="ident">GraphicsExposures</span>(<span class="ident">bool</span>),
     <span class="ident">ClipOriginX</span>(<span class="ident">i32</span>),
     <span class="ident">ClipOriginY</span>(<span class="ident">i32</span>),
     <span class="ident">ClipMask</span>(<span class="ident">Pixmap</span>),
     <span class="ident">DashOffset</span>(<span class="ident">u32</span>),
     <span class="ident">DashList</span>(<span class="ident">u32</span>),
-    <span class="ident">ArcMode</span>(<span class="ident">u32</span>),
+    <span class="ident">ArcMode</span>(<span class="ident">ArcMode</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">Gc</span> {
@@ -33404,7 +33424,8 @@
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
                 <span class="ident">Gc::Function</span>(<span class="ident">function</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">function</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">function</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::PlaneMask</span>(<span class="ident">plane_mask</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">plane_mask</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -33419,19 +33440,24 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line_width</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::LineStyle</span>(<span class="ident">line_style</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">line_style</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">line_style</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::CapStyle</span>(<span class="ident">cap_style</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">cap_style</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">cap_style</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::JoinStyle</span>(<span class="ident">join_style</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">join_style</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">join_style</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::FillStyle</span>(<span class="ident">fill_style</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">fill_style</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">fill_style</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::FillRule</span>(<span class="ident">fill_rule</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">fill_rule</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">fill_rule</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::Tile</span>(<span class="ident">tile</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">tile</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -33449,7 +33475,8 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">font</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::SubwindowMode</span>(<span class="ident">subwindow_mode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">subwindow_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">subwindow_mode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::GraphicsExposures</span>(<span class="ident">graphics_exposures</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="kw">let</span> <span class="ident">graphics_exposures</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw-2">*</span><span class="ident">graphics_exposures</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
@@ -33471,7 +33498,8 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">dashes</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Gc::ArcMode</span>(<span class="ident">arc_mode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">arc_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">arc_mode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }
         }
@@ -33491,9 +33519,9 @@
     <span class="ident">BellPitch</span>(<span class="ident">i32</span>),
     <span class="ident">BellDuration</span>(<span class="ident">i32</span>),
     <span class="ident">Led</span>(<span class="ident">u32</span>),
-    <span class="ident">LedMode</span>(<span class="ident">u32</span>),
+    <span class="ident">LedMode</span>(<span class="ident">LedMode</span>),
     <span class="ident">Key</span>(<span class="ident">Keycode32</span>),
-    <span class="ident">AutoRepeatMode</span>(<span class="ident">u32</span>),
+    <span class="ident">AutoRepeatMode</span>(<span class="ident">AutoRepeatMode</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">Kb</span> {
@@ -33652,13 +33680,15 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">led</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Kb::LedMode</span>(<span class="ident">led_mode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">led_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">led_mode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Kb::Key</span>(<span class="ident">key</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">key</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Kb::AutoRepeatMode</span>(<span class="ident">auto_repeat_mode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">auto_repeat_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">auto_repeat_mode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
             }
         }

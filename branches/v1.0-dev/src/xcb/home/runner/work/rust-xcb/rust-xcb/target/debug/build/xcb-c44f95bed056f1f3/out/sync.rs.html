@@ -3096,6 +3096,8 @@
 <span id="3096">3096</span>
 <span id="3097">3097</span>
 <span id="3098">3098</span>
+<span id="3099">3099</span>
+<span id="3100">3100</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from sync.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4250,9 +4252,9 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Ca</span> {
     <span class="ident">Counter</span>(<span class="ident">Counter</span>),
-    <span class="ident">ValueType</span>(<span class="ident">u32</span>),
+    <span class="ident">ValueType</span>(<span class="ident">Valuetype</span>),
     <span class="ident">Value</span>(<span class="ident">Int64</span>),
-    <span class="ident">TestType</span>(<span class="ident">u32</span>),
+    <span class="ident">TestType</span>(<span class="ident">Testtype</span>),
     <span class="ident">Delta</span>(<span class="ident">Int64</span>),
     <span class="ident">Events</span>(<span class="ident">u32</span>),
 }
@@ -4379,13 +4381,15 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">counter</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Ca::ValueType</span>(<span class="ident">value_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">value_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">value_type</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Ca::Value</span>(<span class="ident">value</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">value</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Ca::TestType</span>(<span class="ident">test_type</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">test_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">test_type</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Ca::Delta</span>(<span class="ident">delta</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delta</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);

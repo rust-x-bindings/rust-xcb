@@ -4227,6 +4227,10 @@
 <span id="4227">4227</span>
 <span id="4228">4228</span>
 <span id="4229">4229</span>
+<span id="4230">4230</span>
+<span id="4231">4231</span>
+<span id="4232">4232</span>
+<span id="4233">4233</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -5734,7 +5738,7 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Cp</span> {
-    <span class="ident">Repeat</span>(<span class="ident">u32</span>),
+    <span class="ident">Repeat</span>(<span class="ident">Repeat</span>),
     <span class="ident">AlphaMap</span>(<span class="ident">Picture</span>),
     <span class="ident">AlphaXOrigin</span>(<span class="ident">i32</span>),
     <span class="ident">AlphaYOrigin</span>(<span class="ident">i32</span>),
@@ -5742,9 +5746,9 @@
     <span class="ident">ClipYOrigin</span>(<span class="ident">i32</span>),
     <span class="ident">ClipMask</span>(<span class="ident">xproto::Pixmap</span>),
     <span class="ident">GraphicsExposure</span>(<span class="ident">u32</span>),
-    <span class="ident">SubwindowMode</span>(<span class="ident">u32</span>),
-    <span class="ident">PolyEdge</span>(<span class="ident">u32</span>),
-    <span class="ident">PolyMode</span>(<span class="ident">u32</span>),
+    <span class="ident">SubwindowMode</span>(<span class="ident">xproto::SubwindowMode</span>),
+    <span class="ident">PolyEdge</span>(<span class="ident">PolyEdge</span>),
+    <span class="ident">PolyMode</span>(<span class="ident">PolyMode</span>),
     <span class="ident">Dither</span>(<span class="ident">xproto::Atom</span>),
     <span class="ident">ComponentAlpha</span>(<span class="ident">u32</span>),
 }
@@ -5945,7 +5949,8 @@
         <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="self">self</span>.<span class="ident">iter</span>() {
             <span class="kw">match</span> <span class="ident">el</span> {
                 <span class="ident">Cp::Repeat</span>(<span class="ident">repeat</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">repeat</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">repeat</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cp::AlphaMap</span>(<span class="ident">alphamap</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">alphamap</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
@@ -5969,13 +5974,16 @@
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">graphicsexposure</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cp::SubwindowMode</span>(<span class="ident">subwindowmode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">subwindowmode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">subwindowmode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cp::PolyEdge</span>(<span class="ident">polyedge</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">polyedge</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">polyedge</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cp::PolyMode</span>(<span class="ident">polymode</span>) <span class="op">=</span><span class="op">&gt;</span> {
-                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">polymode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
+                    <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">unsafe</span> { <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="kw-2">*</span><span class="ident">polymode</span>) } <span class="kw">as</span> <span class="ident">u32</span>)
+                        .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">Cp::Dither</span>(<span class="ident">dither</span>) <span class="op">=</span><span class="op">&gt;</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">dither</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);

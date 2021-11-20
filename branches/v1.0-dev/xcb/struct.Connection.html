@@ -217,7 +217,7 @@ If the request expect a reply, the cookie can be used to retrieve the reply</p>
         <span class="ident">visual</span>: <span class="ident">screen</span>.<span class="ident">root_visual</span>(),
         <span class="ident">value_list</span>: <span class="kw-2">&amp;</span>[
             <span class="ident">x::Cw::BackPixel</span>(<span class="ident">screen</span>.<span class="ident">white_pixel</span>()),
-            <span class="ident">x::Cw::EventMask</span>((<span class="ident">x::EventMask::EXPOSURE</span> <span class="op">|</span> <span class="ident">x::EventMask::KEY_PRESS</span>).<span class="ident">bits</span>()),
+            <span class="ident">x::Cw::EventMask</span>(<span class="ident">x::EventMask::EXPOSURE</span> <span class="op">|</span> <span class="ident">x::EventMask::KEY_PRESS</span>),
         ],
     });
 
