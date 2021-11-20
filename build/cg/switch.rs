@@ -190,6 +190,19 @@ impl CodeGen {
 
             if c.fields.len() == 1 {
                 match &c.fields[0] {
+                    Field::Field {
+                        r#enum: Some(r#enum),
+                        ..
+                    } => {
+                        let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
+                        writeln!(out, "    {}({}),", c.name, q_rs_typ)?;
+                    }
+                    Field::Field {
+                        mask: Some(mask), ..
+                    } => {
+                        let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                        writeln!(out, "    {}({}),", c.name, q_rs_typ)?;
+                    }
                     Field::Field { module, rs_typ, .. } => {
                         let q_rs_typ = (module, rs_typ).qualified_rs_typ();
                         writeln!(out, "    {}({}),", c.name, q_rs_typ)?;
@@ -217,6 +230,22 @@ impl CodeGen {
                 writeln!(out, "    {}{{", c.name)?;
                 for f in &c.fields {
                     match f {
+                        Field::Field {
+                            name,
+                            r#enum: Some(r#enum),
+                            ..
+                        } => {
+                            let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
+                            writeln!(out, "        {}: {},", name, q_rs_typ)?;
+                        }
+                        Field::Field {
+                            name,
+                            mask: Some(mask),
+                            ..
+                        } => {
+                            let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                            writeln!(out, "        {}: {},", name, q_rs_typ)?;
+                        }
                         Field::Field {
                             module,
                             name,
@@ -646,6 +675,30 @@ impl CodeGen {
                             "{}offset += {}.serialize(&mut wire_buf[offset..]);",
                             cg::ind(ind + 2),
                             name
+                        )?;
+                    }
+                    Field::Field {
+                        name,
+                        r#enum: Some(_),
+                        rs_typ,
+                        ..
+                    } => {
+                        writeln!(out,
+                            "{}offset += (unsafe {{ std::mem::transmute::<_, u32>(*{}) }} as {}).serialize(&mut wire_buf[offset..]);",
+                            cg::ind(ind+2), name, rs_typ)?;
+                    }
+                    Field::Field {
+                        name,
+                        mask: Some(_),
+                        rs_typ,
+                        ..
+                    } => {
+                        writeln!(
+                            out,
+                            "{}offset += ({}.bits() as {}).serialize(&mut wire_buf[offset..]);",
+                            cg::ind(ind + 2),
+                            name,
+                            rs_typ
                         )?;
                     }
                     Field::Field { name, .. } => {

@@ -1,5 +1,5 @@
 use crate::base::{self, Wired};
-use crate::x::{Cw, Depth, DepthBuf, VisualClass, Visualtype};
+use crate::x;
 
 fn visual_data(bits_per_rgb_value: u8) -> Vec<u8> {
     vec![
@@ -54,10 +54,10 @@ fn depth_data(visual_bprv: &[u8], extra_garbage: usize) -> Vec<u8> {
 fn test_fixbuf_from_data() {
     let data = visual_data(24);
 
-    let vt = unsafe { Visualtype::from_data(&data) };
+    let vt = unsafe { x::Visualtype::from_data(&data) };
 
     assert_eq!(vt.visual_id(), 0x20304050);
-    assert_eq!(vt.class(), VisualClass::PseudoColor);
+    assert_eq!(vt.class(), x::VisualClass::PseudoColor);
     assert_eq!(vt.bits_per_rgb_value(), 24);
     assert_eq!(vt.colormap_entries(), 0x4050);
     assert_eq!(vt.red_mask(), 0x000000ff);
@@ -71,15 +71,15 @@ fn test_dynbuf_from_data() {
     let mut data = depth_data(&[32, 24], 4);
 
     assert_eq!(data.len(), 60);
-    assert_eq!(unsafe { Depth::compute_wire_len(data.as_ptr(), ()) }, 56);
+    assert_eq!(unsafe { x::Depth::compute_wire_len(data.as_ptr(), ()) }, 56);
     {
-        let depth = unsafe { Depth::from_data(&data[0..56]) };
+        let depth = unsafe { x::Depth::from_data(&data[0..56]) };
         assert_eq!(depth.depth(), 16);
         let visuals = depth.visuals();
         assert_eq!(visuals.len(), 2);
         let vt = visuals[0];
         assert_eq!(vt.visual_id(), 0x20304050);
-        assert_eq!(vt.class(), VisualClass::PseudoColor);
+        assert_eq!(vt.class(), x::VisualClass::PseudoColor);
         assert_eq!(vt.bits_per_rgb_value(), 32);
         assert_eq!(vt.colormap_entries(), 0x4050);
         assert_eq!(vt.red_mask(), 0x000000ff);
@@ -87,7 +87,7 @@ fn test_dynbuf_from_data() {
         assert_eq!(vt.blue_mask(), 0x00ff0000);
         let vt = visuals[1];
         assert_eq!(vt.visual_id(), 0x20304050);
-        assert_eq!(vt.class(), VisualClass::PseudoColor);
+        assert_eq!(vt.class(), x::VisualClass::PseudoColor);
         assert_eq!(vt.bits_per_rgb_value(), 24);
         assert_eq!(vt.colormap_entries(), 0x4050);
         assert_eq!(vt.red_mask(), 0x000000ff);
@@ -101,13 +101,13 @@ fn test_dynbuf_from_data() {
     data.pop();
     data.pop();
 
-    let depth = unsafe { DepthBuf::from_data(data) };
+    let depth = unsafe { x::DepthBuf::from_data(data) };
     assert_eq!(depth.depth(), 16);
     let visuals = depth.visuals();
     assert_eq!(visuals.len(), 2);
     let vt = visuals[0];
     assert_eq!(vt.visual_id(), 0x20304050);
-    assert_eq!(vt.class(), VisualClass::PseudoColor);
+    assert_eq!(vt.class(), x::VisualClass::PseudoColor);
     assert_eq!(vt.bits_per_rgb_value(), 32);
     assert_eq!(vt.colormap_entries(), 0x4050);
     assert_eq!(vt.red_mask(), 0x000000ff);
@@ -115,7 +115,7 @@ fn test_dynbuf_from_data() {
     assert_eq!(vt.blue_mask(), 0x00ff0000);
     let vt = visuals[1];
     assert_eq!(vt.visual_id(), 0x20304050);
-    assert_eq!(vt.class(), VisualClass::PseudoColor);
+    assert_eq!(vt.class(), x::VisualClass::PseudoColor);
     assert_eq!(vt.bits_per_rgb_value(), 24);
     assert_eq!(vt.colormap_entries(), 0x4050);
     assert_eq!(vt.red_mask(), 0x000000ff);
@@ -128,32 +128,32 @@ fn test_dynbuf_from_data() {
 #[cfg(target_endian = "little")]
 fn test_dynbuf_from_data_panic() {
     let data = depth_data(&[32, 24], 4);
-    unsafe { DepthBuf::from_data(data) };
+    unsafe { x::DepthBuf::from_data(data) };
 }
 
 #[test]
 fn test_cw_is_sorted_distinct() {
-    assert!(Cw::is_sorted_distinct(&[
-        Cw::BackPixel(4),
-        Cw::BitGravity(4),
-        Cw::WinGravity(4),
+    assert!(x::Cw::is_sorted_distinct(&[
+        x::Cw::BackPixel(4),
+        x::Cw::BitGravity(x::Gravity::West),
+        x::Cw::WinGravity(x::Gravity::West),
     ]));
 
-    assert!(!Cw::is_sorted_distinct(&[
-        Cw::BackPixel(4),
-        Cw::WinGravity(4),
-        Cw::BitGravity(4),
+    assert!(!x::Cw::is_sorted_distinct(&[
+        x::Cw::BackPixel(4),
+        x::Cw::WinGravity(x::Gravity::West),
+        x::Cw::BitGravity(x::Gravity::West),
     ]));
 
-    assert!(!Cw::is_sorted_distinct(&[
-        Cw::BackPixel(4),
-        Cw::BitGravity(4),
-        Cw::BitGravity(4),
+    assert!(!x::Cw::is_sorted_distinct(&[
+        x::Cw::BackPixel(4),
+        x::Cw::BitGravity(x::Gravity::West),
+        x::Cw::BitGravity(x::Gravity::West),
     ]));
 
-    assert!(!Cw::is_sorted_distinct(&[
-        Cw::BackPixel(4),
-        Cw::BitGravity(4),
-        Cw::BitGravity(5),
+    assert!(!x::Cw::is_sorted_distinct(&[
+        x::Cw::BackPixel(4),
+        x::Cw::BitGravity(x::Gravity::West),
+        x::Cw::BitGravity(x::Gravity::Center),
     ]));
 }
