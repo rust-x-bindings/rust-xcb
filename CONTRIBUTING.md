@@ -1,6 +1,10 @@
 # Contribution guide
 
 All PRs are welcome.
+
+When issueing a pull-request, make sure that the repo is formatted with `cargo fmt`
+and that `cargo clippy --all-features` and `cargo test --all-features` return no error.
+
 The source code is organize as follow:
 
 ## `build/`
