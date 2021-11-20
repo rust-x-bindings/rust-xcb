@@ -16,6 +16,7 @@
  - [x] Porting examples
  - [x] Porting XML examples
  - [x] Documentation
+    - link to reply in request
  - [x] Finalize switches naming (e.g. x::CreateWindowValueList -> x::Cw)
  - [x] Support of xinput::SendExtensionEvent
  - [ ] Create example with XInput (pen tablet?)
