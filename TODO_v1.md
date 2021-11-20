@@ -21,7 +21,7 @@
  - [ ] Create example with XInput (pen tablet?)
  - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs
- - [ ] Missing API tweaks (e.g. Cw::EventMask should take an EventMask)
+ - [x] Missing API tweaks (e.g. Cw::EventMask should take an EventMask)
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
