@@ -745,12 +745,38 @@ impl<B: BufRead> Parser<B> {
                     }
                 }
                 b"list" => {
-                    let names: [&[u8]; 2] = [b"type", b"name"];
-                    let mut vals: [Option<String>; 2] = [None, None];
-                    get_attributes(e.attributes(), &names, &mut vals)?;
-                    let [typ, nam] = vals;
-                    if let (Some(typ), Some(name)) = (typ, nam) {
-                        Ok(Some(Field::ListNoLen { name, typ }))
+                    let mut r#type = None;
+                    let mut name = None;
+                    let mut r#enum = None;
+                    let mut mask = None;
+                    for attr in e.attributes() {
+                        match attr {
+                            Ok(attr) if attr.key == b"type" => {
+                                r#type = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"name" => {
+                                name = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"enum" => {
+                                r#enum = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"mask" => {
+                                mask = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) => unreachable!(
+                                "field attribute {}",
+                                str::from_utf8(attr.key).unwrap()
+                            ),
+                            Err(err) => return Err(err.into()),
+                        }
+                    }
+                    if let (Some(typ), Some(name)) = (r#type, name) {
+                        Ok(Some(Field::ListNoLen {
+                            name,
+                            typ,
+                            r#enum,
+                            mask,
+                        }))
                     } else {
                         Err(Error::Parse(
                             "<list> tag without type and/or name attribute".into(),
@@ -791,19 +817,47 @@ impl<B: BufRead> Parser<B> {
         } else {
             match e.name() {
                 b"list" => {
-                    let names: [&[u8]; 2] = [b"type", b"name"];
-                    let mut vals: [Option<String>; 2] = [None, None];
-                    get_attributes(e.attributes(), &names, &mut vals)?;
-                    let [typ, nam] = vals;
-                    if let (Some(typ), Some(name)) = (typ, nam) {
+                    let mut r#type = None;
+                    let mut name = None;
+                    let mut r#enum = None;
+                    let mut mask = None;
+                    for attr in e.attributes() {
+                        match attr {
+                            Ok(attr) if attr.key == b"type" => {
+                                r#type = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"name" => {
+                                name = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"enum" => {
+                                r#enum = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) if attr.key == b"mask" => {
+                                mask = Some(attr_value(&attr).unwrap());
+                            }
+                            Ok(attr) => unreachable!(
+                                "field attribute {}",
+                                str::from_utf8(attr.key).unwrap()
+                            ),
+                            Err(err) => return Err(err.into()),
+                        }
+                    }
+                    if let (Some(typ), Some(name)) = (r#type, name) {
                         let len_expr = self.parse_expr(b"list")?;
                         Ok(Some(match len_expr {
                             Some(len_expr) => Field::List {
                                 name,
                                 typ,
                                 len_expr,
+                                r#enum,
+                                mask,
                             },
-                            None => Field::ListNoLen { name, typ },
+                            None => Field::ListNoLen {
+                                name,
+                                typ,
+                                r#enum,
+                                mask,
+                            },
                         }))
                     } else {
                         Err(Error::Parse(

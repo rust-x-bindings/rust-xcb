@@ -79,10 +79,14 @@ pub enum Field {
         name: String,
         typ: String,
         len_expr: Expr,
+        r#enum: Option<String>,
+        mask: Option<String>,
     },
     ListNoLen {
         name: String,
         typ: String,
+        r#enum: Option<String>,
+        mask: Option<String>,
     },
     Expr {
         name: String,
