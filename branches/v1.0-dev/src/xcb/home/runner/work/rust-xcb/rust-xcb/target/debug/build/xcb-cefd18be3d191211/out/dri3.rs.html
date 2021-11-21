@@ -1555,6 +1555,60 @@
 <span id="1555">1555</span>
 <span id="1556">1556</span>
 <span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
+<span id="1597">1597</span>
+<span id="1598">1598</span>
+<span id="1599">1599</span>
+<span id="1600">1600</span>
+<span id="1601">1601</span>
+<span id="1602">1602</span>
+<span id="1603">1603</span>
+<span id="1604">1604</span>
+<span id="1605">1605</span>
+<span id="1606">1606</span>
+<span id="1607">1607</span>
+<span id="1608">1608</span>
+<span id="1609">1609</span>
+<span id="1610">1610</span>
+<span id="1611">1611</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from dri3.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1615,7 +1669,10 @@
     }
 }
 
-<span class="doccomment">/// Reply type for [QueryVersion]</span>
+<span class="doccomment">/// Reply type for [QueryVersion].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [QueryVersionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedQueryVersionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1699,20 +1756,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Unchecked cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1748,6 +1805,10 @@
 }
 
 <span class="doccomment">/// The `QueryVersion` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [QueryVersionReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [QueryVersionCookie] and [UncheckedQueryVersionCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
     <span class="kw">pub</span> <span class="ident">major_version</span>: <span class="ident">u32</span>,
@@ -1799,7 +1860,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [Open]</span>
+<span class="doccomment">/// Reply type for [Open].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [OpenCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedOpenCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1883,20 +1947,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [Open]</span>
+<span class="doccomment">/// Cookie type for [Open].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a OpenReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [OpenReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [Open]</span>
+<span class="doccomment">/// Unchecked cookie type for [Open].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a OpenReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [OpenReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedOpenCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1932,6 +1996,10 @@
 }
 
 <span class="doccomment">/// The `Open` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [OpenReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [OpenCookie] and [UncheckedOpenCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Open</span> {
     <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="ident">xproto::Drawable</span>,
@@ -1984,6 +2052,10 @@
 }
 
 <span class="doccomment">/// The `PixmapFromBuffer` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PixmapFromBuffer</span> {
     <span class="kw">pub</span> <span class="ident">pixmap</span>: <span class="ident">xproto::Pixmap</span>,
@@ -2045,7 +2117,10 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PixmapFromBuffer</span> {}
 
-<span class="doccomment">/// Reply type for [BufferFromPixmap]</span>
+<span class="doccomment">/// Reply type for [BufferFromPixmap].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [BufferFromPixmapCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedBufferFromPixmapCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BufferFromPixmapReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2183,20 +2258,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [BufferFromPixmap]</span>
+<span class="doccomment">/// Cookie type for [BufferFromPixmap].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a BufferFromPixmapReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [BufferFromPixmapReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BufferFromPixmapCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [BufferFromPixmap]</span>
+<span class="doccomment">/// Unchecked cookie type for [BufferFromPixmap].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a BufferFromPixmapReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [BufferFromPixmapReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedBufferFromPixmapCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2232,6 +2307,10 @@
 }
 
 <span class="doccomment">/// The `BufferFromPixmap` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [BufferFromPixmapReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [BufferFromPixmapCookie] and [UncheckedBufferFromPixmapCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BufferFromPixmap</span> {
     <span class="kw">pub</span> <span class="ident">pixmap</span>: <span class="ident">xproto::Pixmap</span>,
@@ -2282,6 +2361,10 @@
 }
 
 <span class="doccomment">/// The `FenceFromFd` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FenceFromFd</span> {
     <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="ident">xproto::Drawable</span>,
@@ -2333,7 +2416,10 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">FenceFromFd</span> {}
 
-<span class="doccomment">/// Reply type for [FdFromFence]</span>
+<span class="doccomment">/// Reply type for [FdFromFence].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [FdFromFenceCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedFdFromFenceCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FdFromFenceReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2417,20 +2503,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [FdFromFence]</span>
+<span class="doccomment">/// Cookie type for [FdFromFence].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a FdFromFenceReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [FdFromFenceReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FdFromFenceCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [FdFromFence]</span>
+<span class="doccomment">/// Unchecked cookie type for [FdFromFence].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a FdFromFenceReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [FdFromFenceReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedFdFromFenceCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2466,6 +2552,10 @@
 }
 
 <span class="doccomment">/// The `FdFromFence` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [FdFromFenceReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [FdFromFenceCookie] and [UncheckedFdFromFenceCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FdFromFence</span> {
     <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="ident">xproto::Drawable</span>,
@@ -2517,7 +2607,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedFdFromFenceCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [GetSupportedModifiers]</span>
+<span class="doccomment">/// Reply type for [GetSupportedModifiers].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetSupportedModifiersCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetSupportedModifiersCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetSupportedModifiersReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2647,20 +2740,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetSupportedModifiers]</span>
+<span class="doccomment">/// Cookie type for [GetSupportedModifiers].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetSupportedModifiersReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetSupportedModifiersReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetSupportedModifiersCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetSupportedModifiers]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetSupportedModifiers].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetSupportedModifiersReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetSupportedModifiersReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetSupportedModifiersCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2696,6 +2789,10 @@
 }
 
 <span class="doccomment">/// The `GetSupportedModifiers` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetSupportedModifiersReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetSupportedModifiersCookie] and [UncheckedGetSupportedModifiersCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetSupportedModifiers</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">u32</span>,
@@ -2750,6 +2847,10 @@
 }
 
 <span class="doccomment">/// The `PixmapFromBuffers` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PixmapFromBuffers</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">pixmap</span>: <span class="ident">xproto::Pixmap</span>,
@@ -2829,7 +2930,10 @@
 
 <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">PixmapFromBuffers</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {}
 
-<span class="doccomment">/// Reply type for [BuffersFromPixmap]</span>
+<span class="doccomment">/// Reply type for [BuffersFromPixmap].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [BuffersFromPixmapCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedBuffersFromPixmapCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuffersFromPixmapReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3015,20 +3119,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [BuffersFromPixmap]</span>
+<span class="doccomment">/// Cookie type for [BuffersFromPixmap].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a BuffersFromPixmapReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [BuffersFromPixmapReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuffersFromPixmapCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [BuffersFromPixmap]</span>
+<span class="doccomment">/// Unchecked cookie type for [BuffersFromPixmap].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a BuffersFromPixmapReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [BuffersFromPixmapReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedBuffersFromPixmapCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -3064,6 +3168,10 @@
 }
 
 <span class="doccomment">/// The `BuffersFromPixmap` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [BuffersFromPixmapReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [BuffersFromPixmapCookie] and [UncheckedBuffersFromPixmapCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BuffersFromPixmap</span> {
     <span class="kw">pub</span> <span class="ident">pixmap</span>: <span class="ident">xproto::Pixmap</span>,

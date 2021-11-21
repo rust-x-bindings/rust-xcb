@@ -1207,6 +1207,48 @@
 <span id="1207">1207</span>
 <span id="1208">1208</span>
 <span id="1209">1209</span>
+<span id="1210">1210</span>
+<span id="1211">1211</span>
+<span id="1212">1212</span>
+<span id="1213">1213</span>
+<span id="1214">1214</span>
+<span id="1215">1215</span>
+<span id="1216">1216</span>
+<span id="1217">1217</span>
+<span id="1218">1218</span>
+<span id="1219">1219</span>
+<span id="1220">1220</span>
+<span id="1221">1221</span>
+<span id="1222">1222</span>
+<span id="1223">1223</span>
+<span id="1224">1224</span>
+<span id="1225">1225</span>
+<span id="1226">1226</span>
+<span id="1227">1227</span>
+<span id="1228">1228</span>
+<span id="1229">1229</span>
+<span id="1230">1230</span>
+<span id="1231">1231</span>
+<span id="1232">1232</span>
+<span id="1233">1233</span>
+<span id="1234">1234</span>
+<span id="1235">1235</span>
+<span id="1236">1236</span>
+<span id="1237">1237</span>
+<span id="1238">1238</span>
+<span id="1239">1239</span>
+<span id="1240">1240</span>
+<span id="1241">1241</span>
+<span id="1242">1242</span>
+<span id="1243">1243</span>
+<span id="1244">1244</span>
+<span id="1245">1245</span>
+<span id="1246">1246</span>
+<span id="1247">1247</span>
+<span id="1248">1248</span>
+<span id="1249">1249</span>
+<span id="1250">1250</span>
+<span id="1251">1251</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinerama.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1298,7 +1340,10 @@
     }
 }
 
-<span class="doccomment">/// Reply type for [QueryVersion]</span>
+<span class="doccomment">/// Reply type for [QueryVersion].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [QueryVersionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedQueryVersionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1382,20 +1427,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Unchecked cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1431,6 +1476,10 @@
 }
 
 <span class="doccomment">/// The `QueryVersion` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [QueryVersionReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [QueryVersionCookie] and [UncheckedQueryVersionCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {
     <span class="kw">pub</span> <span class="ident">major</span>: <span class="ident">u8</span>,
@@ -1482,7 +1531,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [GetState]</span>
+<span class="doccomment">/// Reply type for [GetState].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetStateCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetStateCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetStateReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1565,20 +1617,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetState]</span>
+<span class="doccomment">/// Cookie type for [GetState].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetStateReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetStateReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetStateCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetState]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetState].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetStateReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetStateReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetStateCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1614,6 +1666,10 @@
 }
 
 <span class="doccomment">/// The `GetState` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetStateReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetStateCookie] and [UncheckedGetStateCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetState</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -1663,7 +1719,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetStateCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [GetScreenCount]</span>
+<span class="doccomment">/// Reply type for [GetScreenCount].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetScreenCountCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetScreenCountCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenCountReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1746,20 +1805,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetScreenCount]</span>
+<span class="doccomment">/// Cookie type for [GetScreenCount].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetScreenCountReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetScreenCountReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenCountCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetScreenCount]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetScreenCount].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetScreenCountReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetScreenCountReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetScreenCountCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1795,6 +1854,10 @@
 }
 
 <span class="doccomment">/// The `GetScreenCount` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetScreenCountReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetScreenCountCookie] and [UncheckedGetScreenCountCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenCount</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -1844,7 +1907,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetScreenCountCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [GetScreenSize]</span>
+<span class="doccomment">/// Reply type for [GetScreenSize].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetScreenSizeCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetScreenSizeCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenSizeReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1946,20 +2012,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetScreenSize]</span>
+<span class="doccomment">/// Cookie type for [GetScreenSize].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetScreenSizeReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetScreenSizeReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenSizeCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetScreenSize]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetScreenSize].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetScreenSizeReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetScreenSizeReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetScreenSizeCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -1995,6 +2061,10 @@
 }
 
 <span class="doccomment">/// The `GetScreenSize` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetScreenSizeReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetScreenSizeCookie] and [UncheckedGetScreenSizeCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetScreenSize</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -2046,7 +2116,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetScreenSizeCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [IsActive]</span>
+<span class="doccomment">/// Reply type for [IsActive].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [IsActiveCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedIsActiveCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IsActiveReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2121,20 +2194,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [IsActive]</span>
+<span class="doccomment">/// Cookie type for [IsActive].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a IsActiveReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [IsActiveReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IsActiveCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [IsActive]</span>
+<span class="doccomment">/// Unchecked cookie type for [IsActive].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a IsActiveReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [IsActiveReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedIsActiveCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2170,6 +2243,10 @@
 }
 
 <span class="doccomment">/// The `IsActive` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [IsActiveReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [IsActiveCookie] and [UncheckedIsActiveCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IsActive</span> {}
 
@@ -2216,7 +2293,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedIsActiveCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [QueryScreens]</span>
+<span class="doccomment">/// Reply type for [QueryScreens].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [QueryScreensCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedQueryScreensCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryScreensReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2322,20 +2402,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [QueryScreens]</span>
+<span class="doccomment">/// Cookie type for [QueryScreens].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryScreensReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryScreensReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryScreensCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [QueryScreens]</span>
+<span class="doccomment">/// Unchecked cookie type for [QueryScreens].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryScreensReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryScreensReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryScreensCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2371,6 +2451,10 @@
 }
 
 <span class="doccomment">/// The `QueryScreens` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [QueryScreensReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [QueryScreensCookie] and [UncheckedQueryScreensCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryScreens</span> {}
 

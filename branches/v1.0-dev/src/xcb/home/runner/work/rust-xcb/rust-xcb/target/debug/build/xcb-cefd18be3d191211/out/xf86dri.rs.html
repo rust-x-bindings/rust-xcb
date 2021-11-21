@@ -2181,6 +2181,81 @@
 <span id="2181">2181</span>
 <span id="2182">2182</span>
 <span id="2183">2183</span>
+<span id="2184">2184</span>
+<span id="2185">2185</span>
+<span id="2186">2186</span>
+<span id="2187">2187</span>
+<span id="2188">2188</span>
+<span id="2189">2189</span>
+<span id="2190">2190</span>
+<span id="2191">2191</span>
+<span id="2192">2192</span>
+<span id="2193">2193</span>
+<span id="2194">2194</span>
+<span id="2195">2195</span>
+<span id="2196">2196</span>
+<span id="2197">2197</span>
+<span id="2198">2198</span>
+<span id="2199">2199</span>
+<span id="2200">2200</span>
+<span id="2201">2201</span>
+<span id="2202">2202</span>
+<span id="2203">2203</span>
+<span id="2204">2204</span>
+<span id="2205">2205</span>
+<span id="2206">2206</span>
+<span id="2207">2207</span>
+<span id="2208">2208</span>
+<span id="2209">2209</span>
+<span id="2210">2210</span>
+<span id="2211">2211</span>
+<span id="2212">2212</span>
+<span id="2213">2213</span>
+<span id="2214">2214</span>
+<span id="2215">2215</span>
+<span id="2216">2216</span>
+<span id="2217">2217</span>
+<span id="2218">2218</span>
+<span id="2219">2219</span>
+<span id="2220">2220</span>
+<span id="2221">2221</span>
+<span id="2222">2222</span>
+<span id="2223">2223</span>
+<span id="2224">2224</span>
+<span id="2225">2225</span>
+<span id="2226">2226</span>
+<span id="2227">2227</span>
+<span id="2228">2228</span>
+<span id="2229">2229</span>
+<span id="2230">2230</span>
+<span id="2231">2231</span>
+<span id="2232">2232</span>
+<span id="2233">2233</span>
+<span id="2234">2234</span>
+<span id="2235">2235</span>
+<span id="2236">2236</span>
+<span id="2237">2237</span>
+<span id="2238">2238</span>
+<span id="2239">2239</span>
+<span id="2240">2240</span>
+<span id="2241">2241</span>
+<span id="2242">2242</span>
+<span id="2243">2243</span>
+<span id="2244">2244</span>
+<span id="2245">2245</span>
+<span id="2246">2246</span>
+<span id="2247">2247</span>
+<span id="2248">2248</span>
+<span id="2249">2249</span>
+<span id="2250">2250</span>
+<span id="2251">2251</span>
+<span id="2252">2252</span>
+<span id="2253">2253</span>
+<span id="2254">2254</span>
+<span id="2255">2255</span>
+<span id="2256">2256</span>
+<span id="2257">2257</span>
+<span id="2258">2258</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xf86dri.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -2272,7 +2347,10 @@
     }
 }
 
-<span class="doccomment">/// Reply type for [QueryVersion]</span>
+<span class="doccomment">/// Reply type for [QueryVersion].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [QueryVersionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedQueryVersionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2365,20 +2443,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [QueryVersion]</span>
+<span class="doccomment">/// Unchecked cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryVersionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryVersionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2414,6 +2492,10 @@
 }
 
 <span class="doccomment">/// The `QueryVersion` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [QueryVersionReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [QueryVersionCookie] and [UncheckedQueryVersionCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {}
 
@@ -2460,7 +2542,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [QueryDirectRenderingCapable]</span>
+<span class="doccomment">/// Reply type for [QueryDirectRenderingCapable].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [QueryDirectRenderingCapableCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedQueryDirectRenderingCapableCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryDirectRenderingCapableReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2532,20 +2617,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [QueryDirectRenderingCapable]</span>
+<span class="doccomment">/// Cookie type for [QueryDirectRenderingCapable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryDirectRenderingCapableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryDirectRenderingCapableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryDirectRenderingCapableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [QueryDirectRenderingCapable]</span>
+<span class="doccomment">/// Unchecked cookie type for [QueryDirectRenderingCapable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a QueryDirectRenderingCapableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [QueryDirectRenderingCapableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryDirectRenderingCapableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2581,6 +2666,10 @@
 }
 
 <span class="doccomment">/// The `QueryDirectRenderingCapable` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [QueryDirectRenderingCapableReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [QueryDirectRenderingCapableCookie] and [UncheckedQueryDirectRenderingCapableCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryDirectRenderingCapable</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -2630,7 +2719,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryDirectRenderingCapableCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [OpenConnection]</span>
+<span class="doccomment">/// Reply type for [OpenConnection].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [OpenConnectionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedOpenConnectionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenConnectionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2768,20 +2860,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [OpenConnection]</span>
+<span class="doccomment">/// Cookie type for [OpenConnection].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a OpenConnectionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [OpenConnectionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenConnectionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [OpenConnection]</span>
+<span class="doccomment">/// Unchecked cookie type for [OpenConnection].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a OpenConnectionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [OpenConnectionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedOpenConnectionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -2817,6 +2909,10 @@
 }
 
 <span class="doccomment">/// The `OpenConnection` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [OpenConnectionReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [OpenConnectionCookie] and [UncheckedOpenConnectionCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OpenConnection</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -2867,6 +2963,10 @@
 }
 
 <span class="doccomment">/// The `CloseConnection` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CloseConnection</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -2912,7 +3012,10 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">CloseConnection</span> {}
 
-<span class="doccomment">/// Reply type for [GetClientDriverName]</span>
+<span class="doccomment">/// Reply type for [GetClientDriverName].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetClientDriverNameCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetClientDriverNameCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetClientDriverNameReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3070,20 +3173,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetClientDriverName]</span>
+<span class="doccomment">/// Cookie type for [GetClientDriverName].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetClientDriverNameReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetClientDriverNameReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetClientDriverNameCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetClientDriverName]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetClientDriverName].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetClientDriverNameReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetClientDriverNameReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetClientDriverNameCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -3119,6 +3222,10 @@
 }
 
 <span class="doccomment">/// The `GetClientDriverName` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetClientDriverNameReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetClientDriverNameCookie] and [UncheckedGetClientDriverNameCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetClientDriverName</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3168,7 +3275,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetClientDriverNameCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [CreateContext]</span>
+<span class="doccomment">/// Reply type for [CreateContext].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [CreateContextCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedCreateContextCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContextReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3243,20 +3353,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [CreateContext]</span>
+<span class="doccomment">/// Cookie type for [CreateContext].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a CreateContextReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [CreateContextReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContextCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [CreateContext]</span>
+<span class="doccomment">/// Unchecked cookie type for [CreateContext].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a CreateContextReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [CreateContextReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedCreateContextCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -3292,6 +3402,10 @@
 }
 
 <span class="doccomment">/// The `CreateContext` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [CreateContextReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [CreateContextCookie] and [UncheckedCreateContextCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateContext</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3346,6 +3460,10 @@
 }
 
 <span class="doccomment">/// The `DestroyContext` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroyContext</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3393,7 +3511,10 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroyContext</span> {}
 
-<span class="doccomment">/// Reply type for [CreateDrawable]</span>
+<span class="doccomment">/// Reply type for [CreateDrawable].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [CreateDrawableCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedCreateDrawableCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateDrawableReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3468,20 +3589,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [CreateDrawable]</span>
+<span class="doccomment">/// Cookie type for [CreateDrawable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a CreateDrawableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [CreateDrawableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateDrawableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [CreateDrawable]</span>
+<span class="doccomment">/// Unchecked cookie type for [CreateDrawable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a CreateDrawableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [CreateDrawableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedCreateDrawableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -3517,6 +3638,10 @@
 }
 
 <span class="doccomment">/// The `CreateDrawable` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [CreateDrawableReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [CreateDrawableCookie] and [UncheckedCreateDrawableCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateDrawable</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3569,6 +3694,10 @@
 }
 
 <span class="doccomment">/// The `DestroyDrawable` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request has no reply.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroyDrawable</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3616,7 +3745,10 @@
 
 <span class="kw">impl</span> <span class="ident">base::RequestWithoutReply</span> <span class="kw">for</span> <span class="ident">DestroyDrawable</span> {}
 
-<span class="doccomment">/// Reply type for [GetDrawableInfo]</span>
+<span class="doccomment">/// Reply type for [GetDrawableInfo].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetDrawableInfoCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetDrawableInfoCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDrawableInfoReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -3831,20 +3963,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetDrawableInfo]</span>
+<span class="doccomment">/// Cookie type for [GetDrawableInfo].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetDrawableInfoReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetDrawableInfoReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDrawableInfoCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetDrawableInfo]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetDrawableInfo].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetDrawableInfoReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetDrawableInfoReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetDrawableInfoCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -3880,6 +4012,10 @@
 }
 
 <span class="doccomment">/// The `GetDrawableInfo` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetDrawableInfoReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetDrawableInfoCookie] and [UncheckedGetDrawableInfoCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDrawableInfo</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -3931,7 +4067,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetDrawableInfoCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [GetDeviceInfo]</span>
+<span class="doccomment">/// Reply type for [GetDeviceInfo].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [GetDeviceInfoCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedGetDeviceInfoCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDeviceInfoReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -4092,20 +4231,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [GetDeviceInfo]</span>
+<span class="doccomment">/// Cookie type for [GetDeviceInfo].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetDeviceInfoReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetDeviceInfoReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDeviceInfoCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [GetDeviceInfo]</span>
+<span class="doccomment">/// Unchecked cookie type for [GetDeviceInfo].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a GetDeviceInfoReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [GetDeviceInfoReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetDeviceInfoCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -4141,6 +4280,10 @@
 }
 
 <span class="doccomment">/// The `GetDeviceInfo` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [GetDeviceInfoReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [GetDeviceInfoCookie] and [UncheckedGetDeviceInfoCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetDeviceInfo</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,
@@ -4190,7 +4333,10 @@
     <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetDeviceInfoCookie</span>;
 }
 
-<span class="doccomment">/// Reply type for [AuthConnection]</span>
+<span class="doccomment">/// Reply type for [AuthConnection].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [AuthConnectionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedAuthConnectionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuthConnectionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -4265,20 +4411,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [AuthConnection]</span>
+<span class="doccomment">/// Cookie type for [AuthConnection].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a AuthConnectionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [AuthConnectionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuthConnectionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [AuthConnection]</span>
+<span class="doccomment">/// Unchecked cookie type for [AuthConnection].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a AuthConnectionReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [AuthConnectionReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedAuthConnectionCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -4314,6 +4460,10 @@
 }
 
 <span class="doccomment">/// The `AuthConnection` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [AuthConnectionReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [AuthConnectionCookie] and [UncheckedAuthConnectionCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AuthConnection</span> {
     <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">u32</span>,

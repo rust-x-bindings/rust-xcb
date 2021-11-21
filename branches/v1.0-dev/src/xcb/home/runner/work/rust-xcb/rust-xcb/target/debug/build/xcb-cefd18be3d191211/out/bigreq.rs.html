@@ -230,6 +230,13 @@
 <span id="230">230</span>
 <span id="231">231</span>
 <span id="232">232</span>
+<span id="233">233</span>
+<span id="234">234</span>
+<span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from bigreq.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -293,7 +300,10 @@
     }
 }
 
-<span class="doccomment">/// Reply type for [Enable]</span>
+<span class="doccomment">/// Reply type for [Enable].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Can be obtained from a [EnableCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
+<span class="doccomment">/// or from a [UncheckedEnableCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnableReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -368,20 +378,20 @@
     }
 }
 
-<span class="doccomment">/// Cookie type for [Enable]</span>
+<span class="doccomment">/// Cookie type for [Enable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a EnableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply`</span>
+<span class="doccomment">/// This cookie can be used to get a [EnableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="doccomment">/// Unchecked cookie type for [Enable]</span>
+<span class="doccomment">/// Unchecked cookie type for [Enable].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This cookie can be used to get a EnableReply</span>
-<span class="doccomment">/// result with `Connection::wait_for_reply_unchecked`</span>
+<span class="doccomment">/// This cookie can be used to get a [EnableReply]</span>
+<span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedEnableCookie</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
@@ -417,6 +427,10 @@
 }
 
 <span class="doccomment">/// The `Enable` request.</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// This request replies [EnableReply].</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// Associated cookies are [EnableCookie] and [UncheckedEnableCookie].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Enable</span> {}
 
