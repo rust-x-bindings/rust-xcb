@@ -6,6 +6,8 @@ jobs:
   check:
     name: Lint, Build and Test
     runs-on: ubuntu-latest
+    env:
+      RUSTDOCFLAGS: -Dwarnings
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
@@ -74,4 +76,10 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: test
+          args: --all-features
+
+      - name: Run cargo doc
+        uses: actions-rs/cargo@v1
+        with:
+          command: doc
           args: --all-features
