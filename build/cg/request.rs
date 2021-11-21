@@ -265,7 +265,14 @@ impl CodeGen {
         if let Some(doc) = &reply.doc {
             doc.emit(out, 0)?;
         } else {
-            writeln!(out, "/// Reply type for [{}]", req_name)?;
+            writeln!(out, "/// Reply type for [{}].", req_name)?;
+            writeln!(out, "///")?;
+            writeln!(out,
+                "/// Can be obtained from a [{}] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)",
+                cookie_rs_typ)?;
+            writeln!(out,
+                "/// or from a [Unchecked{}] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)",
+                cookie_rs_typ)?;
         }
         writeln!(out, "pub struct {} {{", reply_rs_typ)?;
         writeln!(out, "    raw: *const u8,")?;
@@ -318,10 +325,17 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         writeln!(out)?;
-        writeln!(out, "/// Cookie type for [{}]", req_name)?;
+        writeln!(out, "/// Cookie type for [{}].", req_name)?;
         writeln!(out, "///")?;
-        writeln!(out, "/// This cookie can be used to get a {}", reply_rs_typ)?;
-        writeln!(out, "/// result with `Connection::wait_for_reply`")?;
+        writeln!(
+            out,
+            "/// This cookie can be used to get a [{}]",
+            reply_rs_typ
+        )?;
+        writeln!(
+            out,
+            "/// with [Connection::wait_for_reply](crate::Connection::wait_for_reply)"
+        )?;
         writeln!(out, "#[derive(Debug)]")?;
         writeln!(out, "pub struct {} {{", cookie_rs_typ)?;
         writeln!(out, "    seq: u64,")?;
@@ -329,13 +343,14 @@ impl CodeGen {
 
         writeln!(out)?;
         writeln!(out, "#[derive(Debug)]")?;
-        writeln!(out, "/// Unchecked cookie type for [{}]", req_name)?;
+        writeln!(out, "/// Unchecked cookie type for [{}].", req_name)?;
         writeln!(out, "///")?;
-        writeln!(out, "/// This cookie can be used to get a {}", reply_rs_typ)?;
         writeln!(
             out,
-            "/// result with `Connection::wait_for_reply_unchecked`"
+            "/// This cookie can be used to get a [{}]",
+            reply_rs_typ
         )?;
+        writeln!(out, "/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)")?;
         writeln!(out, "pub struct Unchecked{} {{", cookie_rs_typ)?;
         writeln!(out, "    seq: u64,")?;
         writeln!(out, "}}")?;
@@ -407,6 +422,21 @@ impl CodeGen {
             doc.emit(out, 0)?;
         } else {
             writeln!(out, "/// The `{}` request.", rs_typ)?;
+        }
+        writeln!(out, "///")?;
+        if info.is_void {
+            writeln!(out, "/// This request has no reply.")?;
+            writeln!(out, "///")?;
+            writeln!(out,
+                "/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).")?;
+        } else {
+            writeln!(out, "/// This request replies [{}].", info.reply_rs_typ)?;
+            writeln!(out, "///")?;
+            writeln!(
+                out,
+                "/// Associated cookies are [{}] and [Unchecked{}].",
+                info.cookie_rs_typ, info.cookie_rs_typ
+            )?;
         }
         writeln!(out, "#[derive(Clone, Debug)]")?;
         writeln!(out, "pub struct {}{} {{", rs_typ, generic_decl)?;
