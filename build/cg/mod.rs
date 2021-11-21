@@ -697,9 +697,10 @@ impl CodeGen {
             | "FLOAT64" => { return; }
             _ => {}
         }
-        if new_typ == "BOOL32" {
-            return;
-        }
+        let old_typ = match new_typ {
+            "STRING8" => "CARD8",
+            _ => old_typ,
+        };
         let rs_typ = rust_type_name(new_typ);
         let (old_module, old_typ) = extract_module(old_typ);
         let old_typinfo = self.find_typinfo(old_module, old_typ);
