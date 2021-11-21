@@ -30,7 +30,7 @@ and max_keycode in the connection setup, or a BadValue error results.</p>
 error results.  When using AnyModifier or AnyKey, the request fails completely, and a BadAccess error
 results (no grabs are established) if there is a conflicting grab for any combination.</p>
 <p>This request has no reply.</p>
-<p>Associated cookies are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.CheckedVoidCookie.html">CheckedVoidCookie</a>.</p>
+<p>Associated cookie types are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.VoidCookieChecked.html">VoidCookieChecked</a>.</p>
 </div></details><h2 id="fields" class="fields small-section-header">Fields<a href="#fields" class="anchor"></a></h2><span id="structfield.owner_events" class="structfield small-section-header"><a href="#structfield.owner_events" class="anchor field"></a><code>owner_events: <a class="primitive" href="https://doc.rust-lang.org/1.56.1/std/primitive.bool.html">bool</a></code></span><div class="docblock"><p>If 1, the <code>grab_window</code> will still get the pointer events. If 0, events are not
 reported to the <code>grab_window</code>.</p>
 </div><span id="structfield.grab_window" class="structfield small-section-header"><a href="#structfield.grab_window" class="anchor field"></a><code>grab_window: <a class="struct" href="struct.Window.html" title="struct xcb::x::Window">Window</a></code></span><div class="docblock"><p>Specifies the window on which the pointer should be grabbed.</p>

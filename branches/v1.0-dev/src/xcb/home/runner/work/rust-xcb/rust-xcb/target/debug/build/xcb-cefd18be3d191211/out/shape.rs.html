@@ -1742,7 +1742,7 @@
 <span class="doccomment">/// Reply type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Can be obtained from a [QueryVersionCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
-<span class="doccomment">/// or from a [UncheckedQueryVersionCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
+<span class="doccomment">/// or from a [QueryVersionCookieUnchecked] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -1840,7 +1840,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
 <span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersionCookieUnchecked</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
@@ -1854,15 +1854,15 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieChecked</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {}
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyChecked</span> <span class="kw">for</span> <span class="ident">QueryVersionCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryVersionCookieUnchecked</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">UncheckedQueryVersionCookie</span> { <span class="ident">seq</span> }
+        <span class="ident">QueryVersionCookieUnchecked</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -1870,7 +1870,7 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryVersionCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyUnchecked</span> <span class="kw">for</span> <span class="ident">QueryVersionCookieUnchecked</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
 }
 
@@ -1878,7 +1878,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request replies [QueryVersionReply].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [QueryVersionCookie] and [UncheckedQueryVersionCookie].</span>
+<span class="doccomment">/// Associated cookie types are [QueryVersionCookie] and [QueryVersionCookieUnchecked].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryVersion</span> {}
 
@@ -1922,14 +1922,14 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">QueryVersion</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryVersionReply</span>;
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryVersionCookie</span>;
-    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryVersionCookie</span>;
+    <span class="kw">type</span> <span class="ident">CookieUnchecked</span> <span class="op">=</span> <span class="ident">QueryVersionCookieUnchecked</span>;
 }
 
 <span class="doccomment">/// The `Rectangles` request.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request has no reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
+<span class="doccomment">/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Rectangles</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">operation</span>: <span class="ident">So</span>,
@@ -1995,7 +1995,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request has no reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
+<span class="doccomment">/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Mask</span> {
     <span class="kw">pub</span> <span class="ident">operation</span>: <span class="ident">So</span>,
@@ -2056,7 +2056,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request has no reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
+<span class="doccomment">/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Combine</span> {
     <span class="kw">pub</span> <span class="ident">operation</span>: <span class="ident">So</span>,
@@ -2119,7 +2119,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request has no reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
+<span class="doccomment">/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Offset</span> {
     <span class="kw">pub</span> <span class="ident">destination_kind</span>: <span class="ident">Sk</span>,
@@ -2175,7 +2175,7 @@
 <span class="doccomment">/// Reply type for [QueryExtents].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Can be obtained from a [QueryExtentsCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
-<span class="doccomment">/// or from a [UncheckedQueryExtentsCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
+<span class="doccomment">/// or from a [QueryExtentsCookieUnchecked] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryExtentsReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2349,7 +2349,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryExtentsReply]</span>
 <span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedQueryExtentsCookie</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryExtentsCookieUnchecked</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
@@ -2363,15 +2363,15 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieChecked</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookie</span> {}
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyChecked</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryExtentsReply</span>;
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedQueryExtentsCookie</span> {
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookieUnchecked</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">UncheckedQueryExtentsCookie</span> { <span class="ident">seq</span> }
+        <span class="ident">QueryExtentsCookieUnchecked</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -2379,7 +2379,7 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedQueryExtentsCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyUnchecked</span> <span class="kw">for</span> <span class="ident">QueryExtentsCookieUnchecked</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryExtentsReply</span>;
 }
 
@@ -2387,7 +2387,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request replies [QueryExtentsReply].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [QueryExtentsCookie] and [UncheckedQueryExtentsCookie].</span>
+<span class="doccomment">/// Associated cookie types are [QueryExtentsCookie] and [QueryExtentsCookieUnchecked].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryExtents</span> {
     <span class="kw">pub</span> <span class="ident">destination_window</span>: <span class="ident">xproto::Window</span>,
@@ -2434,14 +2434,14 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">QueryExtents</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">QueryExtentsReply</span>;
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">QueryExtentsCookie</span>;
-    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedQueryExtentsCookie</span>;
+    <span class="kw">type</span> <span class="ident">CookieUnchecked</span> <span class="op">=</span> <span class="ident">QueryExtentsCookieUnchecked</span>;
 }
 
 <span class="doccomment">/// The `SelectInput` request.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request has no reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).</span>
+<span class="doccomment">/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectInput</span> {
     <span class="kw">pub</span> <span class="ident">destination_window</span>: <span class="ident">xproto::Window</span>,
@@ -2492,7 +2492,7 @@
 <span class="doccomment">/// Reply type for [InputSelected].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Can be obtained from a [InputSelectedCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
-<span class="doccomment">/// or from a [UncheckedInputSelectedCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
+<span class="doccomment">/// or from a [InputSelectedCookieUnchecked] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InputSelectedReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2577,7 +2577,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [InputSelectedReply]</span>
 <span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedInputSelectedCookie</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InputSelectedCookieUnchecked</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
@@ -2591,15 +2591,15 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">InputSelectedCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieChecked</span> <span class="kw">for</span> <span class="ident">InputSelectedCookie</span> {}
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">InputSelectedCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyChecked</span> <span class="kw">for</span> <span class="ident">InputSelectedCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">InputSelectedReply</span>;
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedInputSelectedCookie</span> {
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">InputSelectedCookieUnchecked</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">UncheckedInputSelectedCookie</span> { <span class="ident">seq</span> }
+        <span class="ident">InputSelectedCookieUnchecked</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -2607,7 +2607,7 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedInputSelectedCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyUnchecked</span> <span class="kw">for</span> <span class="ident">InputSelectedCookieUnchecked</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">InputSelectedReply</span>;
 }
 
@@ -2615,7 +2615,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request replies [InputSelectedReply].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [InputSelectedCookie] and [UncheckedInputSelectedCookie].</span>
+<span class="doccomment">/// Associated cookie types are [InputSelectedCookie] and [InputSelectedCookieUnchecked].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">InputSelected</span> {
     <span class="kw">pub</span> <span class="ident">destination_window</span>: <span class="ident">xproto::Window</span>,
@@ -2662,13 +2662,13 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">InputSelected</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">InputSelectedReply</span>;
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">InputSelectedCookie</span>;
-    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedInputSelectedCookie</span>;
+    <span class="kw">type</span> <span class="ident">CookieUnchecked</span> <span class="op">=</span> <span class="ident">InputSelectedCookieUnchecked</span>;
 }
 
 <span class="doccomment">/// Reply type for [GetRectangles].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// Can be obtained from a [GetRectanglesCookie] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)</span>
-<span class="doccomment">/// or from a [UncheckedGetRectanglesCookie] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
+<span class="doccomment">/// or from a [GetRectanglesCookieUnchecked] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetRectanglesReply</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>,
 }
@@ -2797,7 +2797,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetRectanglesReply]</span>
 <span class="doccomment">/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UncheckedGetRectanglesCookie</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetRectanglesCookieUnchecked</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
@@ -2811,15 +2811,15 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookie</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieChecked</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookie</span> {}
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyChecked</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookie</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetRectanglesReply</span>;
 }
 
-<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">UncheckedGetRectanglesCookie</span> {
+<span class="kw">impl</span> <span class="ident">base::Cookie</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookieUnchecked</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">UncheckedGetRectanglesCookie</span> { <span class="ident">seq</span> }
+        <span class="ident">GetRectanglesCookieUnchecked</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -2827,7 +2827,7 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::UncheckedCookieWithReply</span> <span class="kw">for</span> <span class="ident">UncheckedGetRectanglesCookie</span> {
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">base::CookieWithReplyUnchecked</span> <span class="kw">for</span> <span class="ident">GetRectanglesCookieUnchecked</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetRectanglesReply</span>;
 }
 
@@ -2835,7 +2835,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This request replies [GetRectanglesReply].</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// Associated cookies are [GetRectanglesCookie] and [UncheckedGetRectanglesCookie].</span>
+<span class="doccomment">/// Associated cookie types are [GetRectanglesCookie] and [GetRectanglesCookieUnchecked].</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GetRectangles</span> {
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
@@ -2884,7 +2884,7 @@
 <span class="kw">impl</span> <span class="ident">base::RequestWithReply</span> <span class="kw">for</span> <span class="ident">GetRectangles</span> {
     <span class="kw">type</span> <span class="ident">Reply</span> <span class="op">=</span> <span class="ident">GetRectanglesReply</span>;
     <span class="kw">type</span> <span class="ident">Cookie</span> <span class="op">=</span> <span class="ident">GetRectanglesCookie</span>;
-    <span class="kw">type</span> <span class="ident">UncheckedCookie</span> <span class="op">=</span> <span class="ident">UncheckedGetRectanglesCookie</span>;
+    <span class="kw">type</span> <span class="ident">CookieUnchecked</span> <span class="op">=</span> <span class="ident">GetRectanglesCookieUnchecked</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../../../../../../../../../../" data-current-crate="xcb" data-search-index-js="../../../../../../../../../../../../search-index.js" data-search-js="../../../../../../../../../../../../search.js"></div>

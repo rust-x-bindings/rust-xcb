@@ -31,7 +31,7 @@ contents of <code>event</code> are otherwise unaltered and unchecked except for 
 });
 <span class="ident">conn</span>.<span class="ident">flush</span>()<span class="question-mark">?</span>;</code></pre></div>
 <p>This request has no reply.</p>
-<p>Associated cookies are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.CheckedVoidCookie.html">CheckedVoidCookie</a>.</p>
+<p>Associated cookie types are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.VoidCookieChecked.html">VoidCookieChecked</a>.</p>
 </div></details><h2 id="fields" class="fields small-section-header">Fields<a href="#fields" class="anchor"></a></h2><span id="structfield.propagate" class="structfield small-section-header"><a href="#structfield.propagate" class="anchor field"></a><code>propagate: <a class="primitive" href="https://doc.rust-lang.org/1.56.1/std/primitive.bool.html">bool</a></code></span><div class="docblock"><p>If <code>propagate</code> is true and no clients have selected any event on <code>destination</code>,
 the destination is replaced with the closest ancestor of <code>destination</code> for
 which some client has selected a type in <code>event_mask</code> and for which no

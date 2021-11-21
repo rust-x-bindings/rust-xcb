@@ -3,7 +3,7 @@
 }</code></pre></div><details class="rustdoc-toggle top-doc" open><summary class="hideme"><span>Expand description</span></summary><div class="docblock"><p>kills a client</p>
 <p>Forces a close down of the client that created the specified <code>resource</code>.</p>
 <p>This request has no reply.</p>
-<p>Associated cookies are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.CheckedVoidCookie.html">CheckedVoidCookie</a>.</p>
+<p>Associated cookie types are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.VoidCookieChecked.html">VoidCookieChecked</a>.</p>
 </div></details><h2 id="fields" class="fields small-section-header">Fields<a href="#fields" class="anchor"></a></h2><span id="structfield.resource" class="structfield small-section-header"><a href="#structfield.resource" class="anchor field"></a><code>resource: <a class="primitive" href="https://doc.rust-lang.org/1.56.1/std/primitive.u32.html">u32</a></code></span><div class="docblock"><p>Any resource belonging to the client (for example a Window), used to identify
 the client connection.</p>
 <p>The special value of <code>XCB_KILL_ALL_TEMPORARY</code>, the resources of all clients

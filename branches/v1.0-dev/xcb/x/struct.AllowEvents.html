@@ -7,7 +7,7 @@ freeze due to grabbing it actively. This request has no effect if <code>time</co
 earlier than the last-grab time of the most recent active grab for this client
 or if <code>time</code> is later than the current X server time.</p>
 <p>This request has no reply.</p>
-<p>Associated cookies are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.CheckedVoidCookie.html">CheckedVoidCookie</a>.</p>
+<p>Associated cookie types are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.VoidCookieChecked.html">VoidCookieChecked</a>.</p>
 </div></details><h2 id="fields" class="fields small-section-header">Fields<a href="#fields" class="anchor"></a></h2><span id="structfield.mode" class="structfield small-section-header"><a href="#structfield.mode" class="anchor field"></a><code>mode: <a class="enum" href="enum.Allow.html" title="enum xcb::x::Allow">Allow</a></code></span><div class="docblock"></div><span id="structfield.time" class="structfield small-section-header"><a href="#structfield.time" class="anchor field"></a><code>time: <a class="type" href="type.Timestamp.html" title="type xcb::x::Timestamp">Timestamp</a></code></span><div class="docblock"><p>Timestamp to avoid race conditions when running X over the network.</p>
 <p>The special value <code>XCB_CURRENT_TIME</code> will be replaced with the current server
 time.</p>

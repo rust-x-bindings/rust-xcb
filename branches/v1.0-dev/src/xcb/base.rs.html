@@ -1885,7 +1885,7 @@
 <span class="doccomment">/// Cookies not implementing this trait acknowledge that the error is sent to the event loop</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See also [Connection::send_request], [Connection::send_request_checked] and [Connection::check_request]</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">CheckedCookie</span>: <span class="ident">Cookie</span> {}
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">CookieChecked</span>: <span class="ident">Cookie</span> {}
 
 <span class="doccomment">/// A trait for checked cookies of requests that send a reply.</span>
 <span class="doccomment">///</span>
@@ -1894,7 +1894,7 @@
 <span class="doccomment">/// This is the default cookie type for requests with reply.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See also [Connection::send_request], [Connection::wait_for_reply]</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">CheckedCookieWithReply</span>: <span class="ident">CheckedCookie</span> {
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">CookieWithReplyChecked</span>: <span class="ident">CookieChecked</span> {
     <span class="doccomment">/// The reply type associated with the cookie</span>
     <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
 }
@@ -1906,7 +1906,7 @@
 <span class="doccomment">/// but in the event loop.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// See also [Connection::send_request_unchecked], [Connection::wait_for_event]</span>
-<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">UncheckedCookieWithReply</span>: <span class="ident">Cookie</span> {
+<span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">trait</span> <span class="ident">CookieWithReplyUnchecked</span>: <span class="ident">Cookie</span> {
     <span class="doccomment">/// The reply type associated with the cookie</span>
     <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
 }
@@ -1933,13 +1933,13 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// See [Connection::send_request_checked]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CheckedVoidCookie</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VoidCookieChecked</span> {
     <span class="ident">seq</span>: <span class="ident">u64</span>,
 }
 
-<span class="kw">impl</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span> {
+<span class="kw">impl</span> <span class="ident">Cookie</span> <span class="kw">for</span> <span class="ident">VoidCookieChecked</span> {
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_sequence</span>(<span class="ident">seq</span>: <span class="ident">u64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
-        <span class="ident">CheckedVoidCookie</span> { <span class="ident">seq</span> }
+        <span class="ident">VoidCookieChecked</span> { <span class="ident">seq</span> }
     }
 
     <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">u64</span> {
@@ -1947,7 +1947,7 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">CheckedCookie</span> <span class="kw">for</span> <span class="ident">CheckedVoidCookie</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">CookieChecked</span> <span class="kw">for</span> <span class="ident">VoidCookieChecked</span> {}
 
 <span class="doccomment">/// Trait implemented by all requests to send the serialized data over the wire.</span>
 <span class="doccomment">///</span>
@@ -1975,7 +1975,7 @@
 
 <span class="doccomment">/// Marker trait for requests that do not return a reply.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// These trait is implicitely associated with [`VoidCookie`] and [`CheckedVoidCookie`].</span>
+<span class="doccomment">/// These trait is implicitely associated with [`VoidCookie`] and [`VoidCookieChecked`].</span>
 <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">RequestWithoutReply</span>: <span class="ident">Request</span> {}
 
 <span class="doccomment">/// Trait for requests that return a reply.</span>
@@ -1983,9 +1983,9 @@
     <span class="doccomment">/// Reply associated with the request</span>
     <span class="kw">type</span> <span class="ident">Reply</span>: <span class="ident">Reply</span>;
     <span class="doccomment">/// Default cookie type for the request, as returned by [Connection::send_request].</span>
-    <span class="kw">type</span> <span class="ident">Cookie</span>: <span class="ident">CheckedCookieWithReply</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">Cookie</span>: <span class="ident">CookieWithReplyChecked</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
     <span class="doccomment">/// Unchecked cookie type for the request, as returned by [Connection::send_request_unchecked].</span>
-    <span class="kw">type</span> <span class="ident">UncheckedCookie</span>: <span class="ident">UncheckedCookieWithReply</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
+    <span class="kw">type</span> <span class="ident">CookieUnchecked</span>: <span class="ident">CookieWithReplyUnchecked</span><span class="op">&lt;</span><span class="ident">Reply</span> <span class="op">=</span> <span class="ident"><span class="self">Self</span>::Reply</span><span class="op">&gt;</span>;
 }
 
 <span class="doccomment">/// Determines whether Xlib or XCB owns the event queue of [`Connection`].</span>
@@ -2896,16 +2896,16 @@
     <span class="doccomment">/// #   Ok(())</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_checked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">CheckedVoidCookie</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_checked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">VoidCookieChecked</span>
     <span class="kw">where</span>
         <span class="ident">R</span>: <span class="ident">RequestWithoutReply</span>,
     {
-        <span class="kw">unsafe</span> { <span class="ident">CheckedVoidCookie::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">true</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">VoidCookieChecked::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">true</span>)) }
     }
 
     <span class="doccomment">/// Send an unchecked request to the X server.</span>
     <span class="doccomment">///</span>
-    <span class="doccomment">/// Unchecked requests expect a reply that is to be retrieved by `Connection::wait_for_reply_unchecked`.</span>
+    <span class="doccomment">/// Unchecked requests expect a reply that is to be retrieved by [Connection::wait_for_reply_unchecked].</span>
     <span class="doccomment">/// Unchecked means that the error is not checked when the reply is fetched. Instead, the error will</span>
     <span class="doccomment">/// be sent to the event loop</span>
     <span class="doccomment">///</span>
@@ -2924,11 +2924,11 @@
     <span class="doccomment">/// #   Ok(())</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_unchecked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R::UncheckedCookie</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">send_request_unchecked</span><span class="op">&lt;</span><span class="ident">R</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">req</span>: <span class="kw-2">&amp;</span><span class="ident">R</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">R::CookieUnchecked</span>
     <span class="kw">where</span>
         <span class="ident">R</span>: <span class="ident">RequestWithReply</span>,
     {
-        <span class="kw">unsafe</span> { <span class="ident">R::UncheckedCookie::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">false</span>)) }
+        <span class="kw">unsafe</span> { <span class="ident">R::CookieUnchecked::from_sequence</span>(<span class="ident">req</span>.<span class="ident">raw_request</span>(<span class="self">self</span>, <span class="bool-val">false</span>)) }
     }
 
     <span class="doccomment">/// Check a checked request for errors.</span>
@@ -2953,7 +2953,7 @@
     <span class="doccomment">/// #   Ok(())</span>
     <span class="doccomment">/// # }</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">CheckedVoidCookie</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtocolResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">check_request</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">VoidCookieChecked</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtocolResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">xcb_void_cookie_t</span> {
             <span class="ident">seq</span>: <span class="ident">cookie</span>.<span class="ident">sequence</span>() <span class="kw">as</span> <span class="ident">u32</span>,
         };
@@ -2987,7 +2987,7 @@
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_for_reply</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">C::Reply</span><span class="op">&gt;</span>
     <span class="kw">where</span>
-        <span class="ident">C</span>: <span class="ident">CheckedCookieWithReply</span>,
+        <span class="ident">C</span>: <span class="ident">CookieWithReplyChecked</span>,
     {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span> <span class="op">=</span> <span class="ident">std::ptr::null_mut</span>();
@@ -3028,7 +3028,7 @@
     <span class="doccomment">/// ```</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">wait_for_reply_unchecked</span><span class="op">&lt;</span><span class="ident">C</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">cookie</span>: <span class="ident">C</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ConnResult</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">C::Reply</span><span class="op">&gt;</span><span class="op">&gt;</span>
     <span class="kw">where</span>
-        <span class="ident">C</span>: <span class="ident">UncheckedCookieWithReply</span>,
+        <span class="ident">C</span>: <span class="ident">CookieWithReplyUnchecked</span>,
     {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">xcb_wait_for_reply64</span>(<span class="self">self</span>.<span class="ident">c</span>, <span class="ident">cookie</span>.<span class="ident">sequence</span>(), <span class="ident">ptr::null_mut</span>());

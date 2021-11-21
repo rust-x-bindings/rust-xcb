@@ -18,7 +18,7 @@ offsets (<code>dst_x</code>, <code>dst_y</code>) relative to <code>dst_window</c
 <code>XCB_NONE</code> (TODO), the pointer will be moved by the offsets (<code>dst_x</code>, <code>dst_y</code>)
 relative to the current position of the pointer.</p>
 <p>This request has no reply.</p>
-<p>Associated cookies are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.CheckedVoidCookie.html">CheckedVoidCookie</a>.</p>
+<p>Associated cookie types are <a href="../struct.VoidCookie.html">VoidCookie</a> and <a href="../struct.VoidCookieChecked.html">VoidCookieChecked</a>.</p>
 </div></details><h2 id="fields" class="fields small-section-header">Fields<a href="#fields" class="anchor"></a></h2><span id="structfield.src_window" class="structfield small-section-header"><a href="#structfield.src_window" class="anchor field"></a><code>src_window: <a class="struct" href="struct.Window.html" title="struct xcb::x::Window">Window</a></code></span><div class="docblock"><p>If <code>src_window</code> is not <code>XCB_NONE</code> (TODO), the move will only take place if the
 pointer is inside <code>src_window</code> and within the rectangle specified by (<code>src_x</code>,
 <code>src_y</code>, <code>src_width</code>, <code>src_height</code>). The rectangle coordinates are relative to
