@@ -320,7 +320,7 @@ pub trait Cookie {
 /// Cookies not implementing this trait acknowledge that the error is sent to the event loop
 ///
 /// See also [Connection::send_request], [Connection::send_request_checked] and [Connection::check_request]
-pub unsafe trait CheckedCookie: Cookie {}
+pub unsafe trait CookieChecked: Cookie {}
 
 /// A trait for checked cookies of requests that send a reply.
 ///
@@ -329,7 +329,7 @@ pub unsafe trait CheckedCookie: Cookie {}
 /// This is the default cookie type for requests with reply.
 ///
 /// See also [Connection::send_request], [Connection::wait_for_reply]
-pub unsafe trait CheckedCookieWithReply: CheckedCookie {
+pub unsafe trait CookieWithReplyChecked: CookieChecked {
     /// The reply type associated with the cookie
     type Reply: Reply;
 }
@@ -341,7 +341,7 @@ pub unsafe trait CheckedCookieWithReply: CheckedCookie {
 /// but in the event loop.
 ///
 /// See also [Connection::send_request_unchecked], [Connection::wait_for_event]
-pub unsafe trait UncheckedCookieWithReply: Cookie {
+pub unsafe trait CookieWithReplyUnchecked: Cookie {
     /// The reply type associated with the cookie
     type Reply: Reply;
 }
@@ -368,13 +368,13 @@ impl Cookie for VoidCookie {
 ///
 /// See [Connection::send_request_checked]
 #[derive(Debug)]
-pub struct CheckedVoidCookie {
+pub struct VoidCookieChecked {
     seq: u64,
 }
 
-impl Cookie for CheckedVoidCookie {
+impl Cookie for VoidCookieChecked {
     unsafe fn from_sequence(seq: u64) -> Self {
-        CheckedVoidCookie { seq }
+        VoidCookieChecked { seq }
     }
 
     fn sequence(&self) -> u64 {
@@ -382,7 +382,7 @@ impl Cookie for CheckedVoidCookie {
     }
 }
 
-unsafe impl CheckedCookie for CheckedVoidCookie {}
+unsafe impl CookieChecked for VoidCookieChecked {}
 
 /// Trait implemented by all requests to send the serialized data over the wire.
 ///
@@ -410,7 +410,7 @@ pub trait Request: RawRequest {
 
 /// Marker trait for requests that do not return a reply.
 ///
-/// These trait is implicitely associated with [`VoidCookie`] and [`CheckedVoidCookie`].
+/// These trait is implicitely associated with [`VoidCookie`] and [`VoidCookieChecked`].
 pub trait RequestWithoutReply: Request {}
 
 /// Trait for requests that return a reply.
@@ -418,9 +418,9 @@ pub trait RequestWithReply: Request {
     /// Reply associated with the request
     type Reply: Reply;
     /// Default cookie type for the request, as returned by [Connection::send_request].
-    type Cookie: CheckedCookieWithReply<Reply = Self::Reply>;
+    type Cookie: CookieWithReplyChecked<Reply = Self::Reply>;
     /// Unchecked cookie type for the request, as returned by [Connection::send_request_unchecked].
-    type UncheckedCookie: UncheckedCookieWithReply<Reply = Self::Reply>;
+    type CookieUnchecked: CookieWithReplyUnchecked<Reply = Self::Reply>;
 }
 
 /// Determines whether Xlib or XCB owns the event queue of [`Connection`].
@@ -1331,16 +1331,16 @@ impl Connection {
     /// #   Ok(())
     /// # }
     /// ```
-    pub fn send_request_checked<R>(&self, req: &R) -> CheckedVoidCookie
+    pub fn send_request_checked<R>(&self, req: &R) -> VoidCookieChecked
     where
         R: RequestWithoutReply,
     {
-        unsafe { CheckedVoidCookie::from_sequence(req.raw_request(self, true)) }
+        unsafe { VoidCookieChecked::from_sequence(req.raw_request(self, true)) }
     }
 
     /// Send an unchecked request to the X server.
     ///
-    /// Unchecked requests expect a reply that is to be retrieved by `Connection::wait_for_reply_unchecked`.
+    /// Unchecked requests expect a reply that is to be retrieved by [Connection::wait_for_reply_unchecked].
     /// Unchecked means that the error is not checked when the reply is fetched. Instead, the error will
     /// be sent to the event loop
     ///
@@ -1359,11 +1359,11 @@ impl Connection {
     /// #   Ok(())
     /// # }
     /// ```
-    pub fn send_request_unchecked<R>(&self, req: &R) -> R::UncheckedCookie
+    pub fn send_request_unchecked<R>(&self, req: &R) -> R::CookieUnchecked
     where
         R: RequestWithReply,
     {
-        unsafe { R::UncheckedCookie::from_sequence(req.raw_request(self, false)) }
+        unsafe { R::CookieUnchecked::from_sequence(req.raw_request(self, false)) }
     }
 
     /// Check a checked request for errors.
@@ -1388,7 +1388,7 @@ impl Connection {
     /// #   Ok(())
     /// # }
     /// ```
-    pub fn check_request(&self, cookie: CheckedVoidCookie) -> ProtocolResult<()> {
+    pub fn check_request(&self, cookie: VoidCookieChecked) -> ProtocolResult<()> {
         let cookie = xcb_void_cookie_t {
             seq: cookie.sequence() as u32,
         };
@@ -1422,7 +1422,7 @@ impl Connection {
     /// ```
     pub fn wait_for_reply<C>(&self, cookie: C) -> Result<C::Reply>
     where
-        C: CheckedCookieWithReply,
+        C: CookieWithReplyChecked,
     {
         unsafe {
             let mut error: *mut xcb_generic_error_t = std::ptr::null_mut();
@@ -1463,7 +1463,7 @@ impl Connection {
     /// ```
     pub fn wait_for_reply_unchecked<C>(&self, cookie: C) -> ConnResult<Option<C::Reply>>
     where
-        C: UncheckedCookieWithReply,
+        C: CookieWithReplyUnchecked,
     {
         unsafe {
             let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), ptr::null_mut());
