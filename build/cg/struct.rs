@@ -1,5 +1,6 @@
-use crate::cg;
+use crate::cg::request::fieldref_get_value;
 use crate::cg::util;
+use crate::cg::{self, request::request_fieldref_emitted};
 use crate::ir;
 
 use super::{
@@ -530,7 +531,9 @@ impl CodeGen {
             (false, Expr::Value(wire_sz)) => {
                 self.emit_fix_buf_struct(out, rs_typ, fields, *wire_sz, doc)?
             }
-            (false, _) => self.emit_dyn_buf_struct(out, rs_typ, fields, params_struct, doc)?,
+            (false, wire_sz) => {
+                self.emit_dyn_buf_struct(out, rs_typ, fields, params_struct, wire_sz, doc)?
+            }
             _ => unreachable!("{}::{}", self.xcb_mod, rs_typ),
         }
 
@@ -663,6 +666,8 @@ impl CodeGen {
         )?;
         writeln!(out, "    }}")?;
 
+        self.emit_struct_ctor(out, rs_typ, fields, &Expr::Value(wire_sz))?;
+
         writeln!(out)?;
         writeln!(
             out,
@@ -709,6 +714,7 @@ impl CodeGen {
         rs_typ: &str,
         fields: &[Field],
         params_struct: Option<&ParamsStruct>,
+        wire_sz: &Expr,
         doc: Option<&Doc>,
     ) -> io::Result<()> {
         if let Some(params_struct) = params_struct {
@@ -798,6 +804,9 @@ impl CodeGen {
         }
         writeln!(out, "        {}Buf {{ data }}", rs_typ)?;
         writeln!(out, "    }}")?;
+
+        self.emit_struct_ctor(out, rs_typ, fields, wire_sz)?;
+
         writeln!(out, "}}")?;
 
         writeln!(out)?;
@@ -1088,6 +1097,337 @@ impl CodeGen {
         }
 
         Ok(stmts)
+    }
+
+    fn emit_struct_ctor<O: Write>(
+        &self,
+        out: &mut O,
+        struct_rs_typ: &str,
+        fields: &[Field],
+        wire_sz: &Expr,
+    ) -> io::Result<()> {
+        if fields.len() == 1 && matches!(fields[0], Field::Pad { .. }) {
+            return Ok(());
+        }
+        let is_fixed = matches!(wire_sz, Expr::Value(_));
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}/// Construct a new [{}{}].",
+            cg::ind(1),
+            struct_rs_typ,
+            if is_fixed { "" } else { "Buf" }
+        )?;
+        writeln!(
+            out,
+            "{}#[allow(unused_assignments, unused_unsafe)]",
+            cg::ind(1)
+        )?;
+        writeln!(out, "{}pub fn new(", cg::ind(1))?;
+        for f in fields {
+            match f {
+                Field::Field {
+                    name,
+                    module,
+                    rs_typ,
+                    is_fieldref,
+                    struct_style: Some(StructStyle::DynBuf),
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    if !is_fieldref {
+                        writeln!(out, "{}{}: &{},", cg::ind(2), name, q_rs_typ)?;
+                    }
+                }
+                Field::Field {
+                    name,
+                    module,
+                    rs_typ,
+                    is_fieldref,
+                    r#enum,
+                    mask,
+                    ..
+                } => {
+                    let q_rs_typ = enum_mask_qualified_rs_typ(module, rs_typ, r#enum, mask);
+                    if !is_fieldref || request_fieldref_emitted(name, fields, false) {
+                        writeln!(out, "{}{}: {},", cg::ind(2), name, q_rs_typ)?;
+                    }
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    struct_style: Some(StructStyle::DynBuf),
+                    len_expr: Expr::Value(len),
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    writeln!(out, "{}{}: [{}Buf; {}],", cg::ind(2), name, q_rs_typ, len)?;
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    len_expr: Expr::Value(len),
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    writeln!(out, "{}{}: &[{}; {}],", cg::ind(2), name, q_rs_typ, len)?;
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    struct_style: Some(StructStyle::DynBuf),
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    writeln!(out, "{}{}: &[{}Buf],", cg::ind(2), name, q_rs_typ)?;
+                }
+                Field::List { name, rs_typ, .. } if rs_typ == "char" => {
+                    writeln!(out, "{}{}: &str,", cg::ind(2), name)?;
+                }
+                Field::List {
+                    name,
+                    module,
+                    rs_typ,
+                    r#enum,
+                    mask,
+                    ..
+                } => {
+                    let q_rs_typ = enum_mask_qualified_rs_typ(module, rs_typ, r#enum, mask);
+                    writeln!(out, "{}{}: &[{}],", cg::ind(2), name, q_rs_typ)?;
+                }
+                Field::Switch {
+                    name,
+                    module,
+                    rs_typ,
+                    is_mask,
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    if *is_mask {
+                        writeln!(out, "{}{}: &[{}],", cg::ind(2), name, q_rs_typ)?;
+                    } else {
+                        writeln!(out, "{}{}: {},", cg::ind(2), name, q_rs_typ)?;
+                    }
+                }
+                Field::Pad { .. } => {}
+                Field::AlignPad { .. } => {}
+                f => unreachable!("struct ctor arguments: {:#?}", f),
+            }
+        }
+        writeln!(
+            out,
+            "{}) -> {}{} {{",
+            cg::ind(1),
+            struct_rs_typ,
+            if is_fixed { "" } else { "Buf" }
+        )?;
+        writeln!(out, "{}unsafe {{", cg::ind(3))?;
+
+        if let Expr::Value(sz) = wire_sz {
+            writeln!(out, "{}let mut wire_buf = [0u8; {}];", cg::ind(3), sz)?;
+        } else {
+            writeln!(out, "{}let mut wire_sz = 0usize;", cg::ind(3))?;
+            for f in fields {
+                match f {
+                    Field::Field {
+                        name,
+                        wire_sz: Expr::Value(sz),
+                        ..
+                    } => {
+                        writeln!(out, "{}wire_sz += {}; // {}", cg::ind(3), sz, name)?;
+                    }
+                    Field::Field { name, .. } => {
+                        writeln!(out, "{}wire_sz += {}.wire_len();", cg::ind(3), name)?;
+                    }
+                    Field::List { name, rs_typ, .. } if rs_typ == "char" => {
+                        writeln!(out, "{}wire_sz += {}.len();", cg::ind(3), name)?;
+                    }
+                    Field::List {
+                        name,
+                        rs_typ,
+                        mask: Some(..),
+                        ..
+                    } => {
+                        writeln!(
+                            out,
+                            "{}wire_sz += {}.len() * std::mem::size_of::<{}>();",
+                            cg::ind(3),
+                            name,
+                            rs_typ,
+                        )?;
+                    }
+                    Field::List { name, .. } => {
+                        writeln!(
+                            out,
+                            "{}wire_sz += {}.iter().map(|el| el.wire_len()).sum::<usize>();",
+                            cg::ind(3),
+                            name
+                        )?;
+                    }
+                    Field::Switch {
+                        name,
+                        is_mask: false,
+                        ..
+                    } => {
+                        writeln!(out, "{}wire_sz += {}.wire_len();", cg::ind(3), name)?;
+                    }
+                    Field::Pad {
+                        wire_sz: Expr::Value(sz),
+                        ..
+                    } => {
+                        writeln!(out, "{}wire_sz += {}; // pad", cg::ind(3), sz)?;
+                    }
+                    Field::AlignPad {
+                        wire_sz: Expr::AlignPad(align, ..),
+                        ..
+                    } => {
+                        writeln!(
+                            out,
+                            "{}wire_sz += base::align_pad(wire_sz, {});",
+                            cg::ind(3),
+                            align
+                        )?;
+                    }
+                    f => unreachable!("struct ctor wire_sz: {:#?}", f),
+                }
+            }
+            writeln!(out, "{}let mut wire_buf = vec![0u8; wire_sz];", cg::ind(3))?;
+        }
+        writeln!(out, "{}let mut wire_off = 0usize;", cg::ind(3))?;
+        writeln!(out)?;
+
+        for f in fields {
+            match f {
+                Field::Field {
+                    name,
+                    is_fieldref,
+                    struct_style: Some(StructStyle::DynBuf),
+                    ..
+                } => {
+                    if !is_fieldref {
+                        writeln!(
+                            out,
+                            "{}wire_off += {}.serialize(&mut wire_buf[wire_off ..]);",
+                            cg::ind(3),
+                            name
+                        )?;
+                    } else {
+                        writeln!(out, "// TODO fieldref")?;
+                    }
+                }
+                Field::Field {
+                    name,
+                    module,
+                    rs_typ,
+                    wire_sz: Expr::Value(sz),
+                    r#enum,
+                    mask,
+                    is_fieldref,
+                    is_prop_format,
+                    ..
+                } => {
+                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    let fieldref_value = if *is_fieldref {
+                        fieldref_get_value(name, fields, false, "")
+                    } else {
+                        None
+                    };
+
+                    let value_expr;
+
+                    if let Some(value) = fieldref_value {
+                        value_expr = format!("({} as {})", value, q_rs_typ);
+                    } else if *is_prop_format {
+                        value_expr = "P::FORMAT".to_string();
+                    } else if mask.is_some() && rs_typ == "u32" {
+                        value_expr = format!("{}.bits()", name);
+                    } else if mask.is_some() {
+                        value_expr = format!("({}.bits() as {})", name, q_rs_typ);
+                    } else if r#enum.is_some() && rs_typ == "u32" {
+                        value_expr = format!("std::mem::transmute::<_, u32>({})", name);
+                    } else if r#enum.is_some() && rs_typ == "bool" {
+                        value_expr =
+                            format!("(std::mem::transmute::<_, u32>({}) as u{})", name, 8 * sz);
+                    } else if r#enum.is_some() {
+                        value_expr =
+                            format!("(std::mem::transmute::<_, u32>({}) as {})", name, q_rs_typ);
+                    } else if rs_typ == "bool" {
+                        value_expr =
+                            format!("(if {} {{ 1u{} }} else {{ 0u{} }})", name, 8 * sz, 8 * sz);
+                    } else {
+                        value_expr = format!("{}", name);
+                    }
+
+                    writeln!(
+                        out,
+                        "{}wire_off += {}.serialize(&mut wire_buf[wire_off .. ]);",
+                        cg::ind(3),
+                        value_expr,
+                    )?;
+                }
+                Field::List {
+                    name, rs_typ, mask, ..
+                } => {
+                    let transform = if rs_typ == "char" {
+                        ".as_bytes()".to_string()
+                    } else if mask.is_some() {
+                        format!(".iter().map(|el| el.bits() as {})", rs_typ)
+                    } else {
+                        String::new()
+                    };
+                    writeln!(out, "{}for el in {}{} {{", cg::ind(3), name, transform)?;
+                    writeln!(
+                        out,
+                        "{}wire_off += el.serialize(&mut wire_buf[wire_off ..]);",
+                        cg::ind(4)
+                    )?;
+                    writeln!(out, "{}}}", cg::ind(3))?;
+                }
+                Field::Switch { name, .. } => {
+                    writeln!(
+                        out,
+                        "{}wire_off += {}.serialize(&mut wire_buf[wire_off ..]);",
+                        cg::ind(3),
+                        name
+                    )?;
+                }
+                Field::Pad {
+                    wire_sz: Expr::Value(sz),
+                    ..
+                } => {
+                    writeln!(out, "{}wire_off += {}; // pad", cg::ind(3), sz)?;
+                }
+                Field::AlignPad {
+                    wire_sz: Expr::AlignPad(align, ..),
+                    ..
+                } => {
+                    writeln!(
+                        out,
+                        "{}wire_off += base::align_pad(wire_off, {});",
+                        cg::ind(3),
+                        align
+                    )?;
+                }
+                f => unreachable!("struct ctor arguments: {:#?}", f),
+            }
+        }
+
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}{}{} {{ data: wire_buf }}",
+            cg::ind(3),
+            struct_rs_typ,
+            if is_fixed { "" } else { "Buf" }
+        )?;
+
+        writeln!(out, "{}}}", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+
+        Ok(())
     }
 
     pub(super) fn emit_struct_accessors<O: Write>(

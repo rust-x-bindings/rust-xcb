@@ -891,45 +891,6 @@ impl CodeGen {
                         offset
                     )?;
 
-                    // if let Some(value) = fieldref_value {
-                    //     writeln!(
-                    //         out,
-                    //         "{}({} as {}).serialize(&mut buf{}[{} .. ]);",
-                    //         cg::ind(2),
-                    //         value,
-                    //         q_rs_typ,
-                    //         num,
-                    //         offset
-                    //     )?;
-                    // } else if (mask.is_some() || r#enum.is_some()) && rs_typ == "bool" {
-                    //     writeln!(
-                    //         out,
-                    //         "{}*(buf{}.as_mut_ptr().add({}) as *mut {}) = std::mem::transmute::<_, u32>(self.{}) != 0;",
-                    //         cg::ind(2), num, offset, q_rs_typ, name
-                    //     )?;
-                    // } else if mask.is_some() || r#enum.is_some() {
-                    //     writeln!(
-                    //         out,
-                    //         "{}*(buf{}.as_mut_ptr().add({}) as *mut {}) = std::mem::transmute::<_, u32>(self.{}) as {};",
-                    //         cg::ind(2), num, offset, q_rs_typ, name, q_rs_typ
-                    //     )?;
-                    // } else {
-                    //     let (ptr_typ, postfix) = if rs_typ == "SendEventDest" {
-                    //         ("u32", ".resource_id()")
-                    //     } else {
-                    //         (q_rs_typ.as_str(), "")
-                    //     };
-                    //     writeln!(
-                    //         out,
-                    //         "{}*(buf{}.as_mut_ptr().add({}) as *mut {}) = self.{}{};",
-                    //         cg::ind(2),
-                    //         num,
-                    //         offset,
-                    //         ptr_typ,
-                    //         name,
-                    //         postfix
-                    //     )?;
-                    // }
                     offset += sz;
                 }
                 Field::List {
@@ -1252,7 +1213,7 @@ enum SerializeSection<'a> {
 //    - a single fieldref
 //    - a fieldref multiplied by format divided by 8 (for properties only)
 // For other cases, we put the field as public paramater and require user to supply a value.
-fn request_fieldref_emitted(name: &str, fields: &[Field], has_prop_field: bool) -> bool {
+pub(super) fn request_fieldref_emitted(name: &str, fields: &[Field], has_prop_field: bool) -> bool {
     for f in fields {
         match f {
             Field::List {
@@ -1307,7 +1268,7 @@ fn is_prop_field_mult<'a>(name: &'a str, lhs: &Expr, rhs: &Expr) -> bool {
     true
 }
 
-fn fieldref_get_value(
+pub(super) fn fieldref_get_value(
     name: &str,
     fields: &[Field],
     has_prop_field: bool,
