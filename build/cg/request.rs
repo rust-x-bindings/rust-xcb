@@ -271,7 +271,7 @@ impl CodeGen {
                 "/// Can be obtained from a [{}] with [Connection::wait_for_reply](crate::Connection::wait_for_reply)",
                 cookie_rs_typ)?;
             writeln!(out,
-                "/// or from a [Unchecked{}] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)",
+                "/// or from a [{}Unchecked] with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)",
                 cookie_rs_typ)?;
         }
         writeln!(out, "pub struct {} {{", reply_rs_typ)?;
@@ -351,7 +351,7 @@ impl CodeGen {
             reply_rs_typ
         )?;
         writeln!(out, "/// with [Connection::wait_for_reply_unchecked](crate::Connection::wait_for_reply_unchecked)")?;
-        writeln!(out, "pub struct Unchecked{} {{", cookie_rs_typ)?;
+        writeln!(out, "pub struct {}Unchecked {{", cookie_rs_typ)?;
         writeln!(out, "    seq: u64,")?;
         writeln!(out, "}}")?;
 
@@ -369,7 +369,7 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(
             out,
-            "unsafe impl base::CheckedCookie for {} {{",
+            "unsafe impl base::CookieChecked for {} {{",
             cookie_rs_typ
         )?;
         writeln!(out, "}}")?;
@@ -377,16 +377,16 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(
             out,
-            "unsafe impl base::CheckedCookieWithReply for {} {{",
+            "unsafe impl base::CookieWithReplyChecked for {} {{",
             cookie_rs_typ
         )?;
         writeln!(out, "    type Reply = {};", reply_rs_typ)?;
         writeln!(out, "}}")?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Cookie for Unchecked{} {{", cookie_rs_typ)?;
+        writeln!(out, "impl base::Cookie for {}Unchecked {{", cookie_rs_typ)?;
         writeln!(out, "    unsafe fn from_sequence(seq: u64) -> Self {{")?;
-        writeln!(out, "        Unchecked{} {{ seq }}", cookie_rs_typ)?;
+        writeln!(out, "        {}Unchecked {{ seq }}", cookie_rs_typ)?;
         writeln!(out, "    }}")?;
         writeln!(out)?;
         writeln!(out, "    fn sequence(&self) -> u64 {{")?;
@@ -397,7 +397,7 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(
             out,
-            "unsafe impl base::UncheckedCookieWithReply for Unchecked{} {{",
+            "unsafe impl base::CookieWithReplyUnchecked for {}Unchecked {{",
             cookie_rs_typ
         )?;
         writeln!(out, "    type Reply = {};", reply_rs_typ)?;
@@ -428,13 +428,13 @@ impl CodeGen {
             writeln!(out, "/// This request has no reply.")?;
             writeln!(out, "///")?;
             writeln!(out,
-                "/// Associated cookies are [VoidCookie](crate::VoidCookie) and [CheckedVoidCookie](crate::CheckedVoidCookie).")?;
+                "/// Associated cookie types are [VoidCookie](crate::VoidCookie) and [VoidCookieChecked](crate::VoidCookieChecked).")?;
         } else {
             writeln!(out, "/// This request replies [{}].", info.reply_rs_typ)?;
             writeln!(out, "///")?;
             writeln!(
                 out,
-                "/// Associated cookies are [{}] and [Unchecked{}].",
+                "/// Associated cookie types are [{}] and [{}Unchecked].",
                 info.cookie_rs_typ, info.cookie_rs_typ
             )?;
         }
@@ -632,7 +632,7 @@ impl CodeGen {
             writeln!(out, "    type Cookie = {};", cookie_rs_typ)?;
             writeln!(
                 out,
-                "    type UncheckedCookie = Unchecked{};",
+                "    type CookieUnchecked = {}Unchecked;",
                 cookie_rs_typ
             )?;
         }

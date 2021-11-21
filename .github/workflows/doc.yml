@@ -11,6 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RXCB_RUSTFMT: 1
+      RUSTDOCFLAGS: -Dwarnings
     steps:
       - name: Checkout sources
         uses: actions/checkout@v2
