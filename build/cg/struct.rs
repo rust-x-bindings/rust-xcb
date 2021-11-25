@@ -1358,7 +1358,7 @@ impl CodeGen {
                         value_expr =
                             format!("(if {} {{ 1u{} }} else {{ 0u{} }})", name, 8 * sz, 8 * sz);
                     } else {
-                        value_expr = format!("{}", name);
+                        value_expr = name.to_string();
                     }
 
                     writeln!(
