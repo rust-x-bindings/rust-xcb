@@ -421,6 +421,7 @@ pub mod record {
     //!
     //! Accessible with the `record` cargo feature.
     #![allow(clippy::unit_arg)]
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/record.rs"));
 }
 
@@ -528,6 +529,7 @@ pub mod xf86vidmode {
     //! The `XFree86-VidModeExtension` X extension.
     //!
     //! Accessible with the `xf86vidmode` cargo feature.
+    #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/xf86vidmode.rs"));
 }
 
