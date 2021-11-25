@@ -3866,6 +3866,35 @@
 <span id="3866">3866</span>
 <span id="3867">3867</span>
 <span id="3868">3868</span>
+<span id="3869">3869</span>
+<span id="3870">3870</span>
+<span id="3871">3871</span>
+<span id="3872">3872</span>
+<span id="3873">3873</span>
+<span id="3874">3874</span>
+<span id="3875">3875</span>
+<span id="3876">3876</span>
+<span id="3877">3877</span>
+<span id="3878">3878</span>
+<span id="3879">3879</span>
+<span id="3880">3880</span>
+<span id="3881">3881</span>
+<span id="3882">3882</span>
+<span id="3883">3883</span>
+<span id="3884">3884</span>
+<span id="3885">3885</span>
+<span id="3886">3886</span>
+<span id="3887">3887</span>
+<span id="3888">3888</span>
+<span id="3889">3889</span>
+<span id="3890">3890</span>
+<span id="3891">3891</span>
+<span id="3892">3892</span>
+<span id="3893">3893</span>
+<span id="3894">3894</span>
+<span id="3895">3895</span>
+<span id="3896">3896</span>
+<span id="3897">3897</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xprint.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4476,6 +4505,35 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_data</span>(<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrinterBuf</span> {
         <span class="macro">debug_assert_eq!</span>(<span class="ident">Printer::compute_wire_len</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>(), ()), <span class="ident">data</span>.<span class="ident">len</span>());
         <span class="ident">PrinterBuf</span> { <span class="ident">data</span> }
+    }
+
+    <span class="doccomment">/// Construct a new [PrinterBuf].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">String8</span>], <span class="ident">description</span>: <span class="kw-2">&amp;</span>[<span class="ident">String8</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">PrinterBuf</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// name_len</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">el</span><span class="op">|</span> <span class="ident">el</span>.<span class="ident">wire_len</span>()).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>();
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_sz</span>, <span class="number">4</span>);
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// desc_len</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">description</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">el</span><span class="op">|</span> <span class="ident">el</span>.<span class="ident">wire_len</span>()).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>();
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_sz</span>, <span class="number">4</span>);
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0u8</span>; <span class="ident">wire_sz</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">name</span> {
+                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            }
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">description</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">description</span> {
+                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            }
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
+
+            <span class="ident">PrinterBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
     }
 }
 

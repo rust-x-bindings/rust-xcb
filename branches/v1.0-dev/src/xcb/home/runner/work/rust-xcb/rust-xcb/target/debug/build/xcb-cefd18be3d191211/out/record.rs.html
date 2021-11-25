@@ -1548,6 +1548,59 @@
 <span id="1548">1548</span>
 <span id="1549">1549</span>
 <span id="1550">1550</span>
+<span id="1551">1551</span>
+<span id="1552">1552</span>
+<span id="1553">1553</span>
+<span id="1554">1554</span>
+<span id="1555">1555</span>
+<span id="1556">1556</span>
+<span id="1557">1557</span>
+<span id="1558">1558</span>
+<span id="1559">1559</span>
+<span id="1560">1560</span>
+<span id="1561">1561</span>
+<span id="1562">1562</span>
+<span id="1563">1563</span>
+<span id="1564">1564</span>
+<span id="1565">1565</span>
+<span id="1566">1566</span>
+<span id="1567">1567</span>
+<span id="1568">1568</span>
+<span id="1569">1569</span>
+<span id="1570">1570</span>
+<span id="1571">1571</span>
+<span id="1572">1572</span>
+<span id="1573">1573</span>
+<span id="1574">1574</span>
+<span id="1575">1575</span>
+<span id="1576">1576</span>
+<span id="1577">1577</span>
+<span id="1578">1578</span>
+<span id="1579">1579</span>
+<span id="1580">1580</span>
+<span id="1581">1581</span>
+<span id="1582">1582</span>
+<span id="1583">1583</span>
+<span id="1584">1584</span>
+<span id="1585">1585</span>
+<span id="1586">1586</span>
+<span id="1587">1587</span>
+<span id="1588">1588</span>
+<span id="1589">1589</span>
+<span id="1590">1590</span>
+<span id="1591">1591</span>
+<span id="1592">1592</span>
+<span id="1593">1593</span>
+<span id="1594">1594</span>
+<span id="1595">1595</span>
+<span id="1596">1596</span>
+<span id="1597">1597</span>
+<span id="1598">1598</span>
+<span id="1599">1599</span>
+<span id="1600">1600</span>
+<span id="1601">1601</span>
+<span id="1602">1602</span>
+<span id="1603">1603</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from record.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1839,6 +1892,38 @@
         <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">data</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Range</span>)
     }
 
+    <span class="doccomment">/// Construct a new [Range].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">core_requests</span>: <span class="ident">Range8</span>,
+        <span class="ident">core_replies</span>: <span class="ident">Range8</span>,
+        <span class="ident">ext_requests</span>: <span class="ident">ExtRange</span>,
+        <span class="ident">ext_replies</span>: <span class="ident">ExtRange</span>,
+        <span class="ident">delivered_events</span>: <span class="ident">Range8</span>,
+        <span class="ident">device_events</span>: <span class="ident">Range8</span>,
+        <span class="ident">errors</span>: <span class="ident">Range8</span>,
+        <span class="ident">client_started</span>: <span class="ident">bool</span>,
+        <span class="ident">client_died</span>: <span class="ident">bool</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Range</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">24</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">core_requests</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">core_replies</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ext_requests</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ext_replies</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">delivered_events</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">device_events</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">errors</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="kw">if</span> <span class="ident">client_started</span> { <span class="number">1u8</span> } <span class="kw">else</span> { <span class="number">0u8</span> }).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="kw">if</span> <span class="ident">client_died</span> { <span class="number">1u8</span> } <span class="kw">else</span> { <span class="number">0u8</span> }).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+
+            <span class="ident">Range</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
+    }
+
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">as_ptr</span>()
     }
@@ -2049,6 +2134,27 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_data</span>(<span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ClientInfoBuf</span> {
         <span class="macro">debug_assert_eq!</span>(<span class="ident">ClientInfo::compute_wire_len</span>(<span class="ident">data</span>.<span class="ident">as_ptr</span>(), ()), <span class="ident">data</span>.<span class="ident">len</span>());
         <span class="ident">ClientInfoBuf</span> { <span class="ident">data</span> }
+    }
+
+    <span class="doccomment">/// Construct a new [ClientInfoBuf].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">client_resource</span>: <span class="ident">ClientSpec</span>, <span class="ident">ranges</span>: <span class="kw-2">&amp;</span>[<span class="ident">Range</span>]) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ClientInfoBuf</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// client_resource</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// num_ranges</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">ranges</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">el</span><span class="op">|</span> <span class="ident">el</span>.<span class="ident">wire_len</span>()).<span class="ident">sum</span>::<span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span>();
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0u8</span>; <span class="ident">wire_sz</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">client_resource</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">ranges</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">ranges</span> {
+                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            }
+
+            <span class="ident">ClientInfoBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
     }
 }
 

@@ -3196,6 +3196,68 @@
 <span id="3196">3196</span>
 <span id="3197">3197</span>
 <span id="3198">3198</span>
+<span id="3199">3199</span>
+<span id="3200">3200</span>
+<span id="3201">3201</span>
+<span id="3202">3202</span>
+<span id="3203">3203</span>
+<span id="3204">3204</span>
+<span id="3205">3205</span>
+<span id="3206">3206</span>
+<span id="3207">3207</span>
+<span id="3208">3208</span>
+<span id="3209">3209</span>
+<span id="3210">3210</span>
+<span id="3211">3211</span>
+<span id="3212">3212</span>
+<span id="3213">3213</span>
+<span id="3214">3214</span>
+<span id="3215">3215</span>
+<span id="3216">3216</span>
+<span id="3217">3217</span>
+<span id="3218">3218</span>
+<span id="3219">3219</span>
+<span id="3220">3220</span>
+<span id="3221">3221</span>
+<span id="3222">3222</span>
+<span id="3223">3223</span>
+<span id="3224">3224</span>
+<span id="3225">3225</span>
+<span id="3226">3226</span>
+<span id="3227">3227</span>
+<span id="3228">3228</span>
+<span id="3229">3229</span>
+<span id="3230">3230</span>
+<span id="3231">3231</span>
+<span id="3232">3232</span>
+<span id="3233">3233</span>
+<span id="3234">3234</span>
+<span id="3235">3235</span>
+<span id="3236">3236</span>
+<span id="3237">3237</span>
+<span id="3238">3238</span>
+<span id="3239">3239</span>
+<span id="3240">3240</span>
+<span id="3241">3241</span>
+<span id="3242">3242</span>
+<span id="3243">3243</span>
+<span id="3244">3244</span>
+<span id="3245">3245</span>
+<span id="3246">3246</span>
+<span id="3247">3247</span>
+<span id="3248">3248</span>
+<span id="3249">3249</span>
+<span id="3250">3250</span>
+<span id="3251">3251</span>
+<span id="3252">3252</span>
+<span id="3253">3253</span>
+<span id="3254">3254</span>
+<span id="3255">3255</span>
+<span id="3256">3256</span>
+<span id="3257">3257</span>
+<span id="3258">3258</span>
+<span id="3259">3259</span>
+<span id="3260">3260</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from sync.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4107,6 +4169,31 @@
         );
         <span class="ident">SystemcounterBuf</span> { <span class="ident">data</span> }
     }
+
+    <span class="doccomment">/// Construct a new [SystemcounterBuf].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">counter</span>: <span class="ident">Counter</span>, <span class="ident">resolution</span>: <span class="ident">Int64</span>, <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">SystemcounterBuf</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// counter</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">8</span>; <span class="comment">// resolution</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>; <span class="comment">// name_len</span>
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
+            <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_sz</span>, <span class="number">4</span>);
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="number">0u8</span>; <span class="ident">wire_sz</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">counter</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">resolution</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">name</span>.<span class="ident">as_bytes</span>() {
+                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            }
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
+
+            <span class="ident">SystemcounterBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">SystemcounterBuf</span> {
@@ -4199,6 +4286,29 @@
         <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">data</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Trigger</span>)
     }
 
+    <span class="doccomment">/// Construct a new [Trigger].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">counter</span>: <span class="ident">Counter</span>,
+        <span class="ident">wait_type</span>: <span class="ident">Valuetype</span>,
+        <span class="ident">wait_value</span>: <span class="ident">Int64</span>,
+        <span class="ident">test_type</span>: <span class="ident">Testtype</span>,
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Trigger</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">20</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">counter</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">wait_type</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">wait_value</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">test_type</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+
+            <span class="ident">Trigger</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
+    }
+
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">as_ptr</span>()
     }
@@ -4284,6 +4394,20 @@
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_data</span><span class="op">&lt;</span><span class="ident">D</span>: <span class="ident">AsRef</span><span class="op">&lt;</span>[<span class="ident">u8</span>]<span class="op">&gt;</span> <span class="op">+</span> <span class="question-mark">?</span><span class="ident">Sized</span><span class="op">&gt;</span>(<span class="ident">data</span>: <span class="kw-2">&amp;</span><span class="ident">D</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="ident">Waitcondition</span> {
         <span class="macro">debug_assert_eq!</span>(<span class="ident">data</span>.<span class="ident">as_ref</span>().<span class="ident">len</span>(), <span class="number">28</span>);
         <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">data</span>.<span class="ident">as_ref</span>() <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">Waitcondition</span>)
+    }
+
+    <span class="doccomment">/// Construct a new [Waitcondition].</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">trigger</span>: <span class="ident">Trigger</span>, <span class="ident">event_threshold</span>: <span class="ident">Int64</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Waitcondition</span> {
+        <span class="kw">unsafe</span> {
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_buf</span> <span class="op">=</span> [<span class="number">0u8</span>; <span class="number">28</span>];
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
+
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">trigger</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_threshold</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+
+            <span class="ident">Waitcondition</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
+        }
     }
 
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
