@@ -116,5 +116,9 @@ name = "screen_info"
 # required-features = ["thread"]
 
 [[example]]
+name = "xinput_stylus_events"
+required-features = ["xinput"]
+
+[[example]]
 name = "xkb_init"
 required-features = ["xkb"]
