@@ -1,5 +1,5 @@
 use crate::base::ResolveWireError;
-use crate::ext::{ErrorExtensionData, Extension};
+use crate::ext::{Extension, ExtensionData};
 use crate::ffi::*;
 use crate::x;
 
@@ -96,106 +96,93 @@ pub enum ProtocolError {
 
 pub(crate) unsafe fn resolve_error(
     error: *mut xcb_generic_error_t,
-    extension_data: &[ErrorExtensionData],
+    extension_data: &[ExtensionData],
 ) -> ProtocolError {
     debug_assert!(!error.is_null());
 
     let error_code = (*error).error_code;
-    for data in extension_data {
-        if error_code >= data.first_error {
-            match data.ext {
-                #[cfg(feature = "damage")]
-                Extension::Damage => {
-                    return ProtocolError::Damage(damage::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
 
-                #[cfg(feature = "glx")]
-                Extension::Glx => {
-                    return ProtocolError::Glx(glx::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
+    let best = {
+        let mut best: Option<&ExtensionData> = None;
+        for data in extension_data {
+            if error_code >= data.first_error {
+                if let Some(ed) = best {
+                    if data.first_error > ed.first_error {
+                        best = Some(data);
+                    }
+                } else {
+                    best = Some(data);
                 }
-
-                #[cfg(feature = "randr")]
-                Extension::RandR => {
-                    return ProtocolError::RandR(randr::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "shm")]
-                Extension::Shm => {
-                    return ProtocolError::Shm(shm::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "sync")]
-                Extension::Sync => {
-                    return ProtocolError::Sync(sync::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xf86vidmode")]
-                Extension::Xf86VidMode => {
-                    return ProtocolError::Xf86VidMode(xf86vidmode::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xfixes")]
-                Extension::XFixes => {
-                    return ProtocolError::XFixes(xfixes::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xinput")]
-                Extension::Input => {
-                    return ProtocolError::Input(xinput::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xkb")]
-                Extension::Xkb => {
-                    return ProtocolError::Xkb(xkb::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xprint")]
-                Extension::XPrint => {
-                    return ProtocolError::XPrint(xprint::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                #[cfg(feature = "xv")]
-                Extension::Xv => {
-                    return ProtocolError::Xv(xv::Error::resolve_wire_error(
-                        data.first_error,
-                        error,
-                    ));
-                }
-
-                _ => {}
             }
         }
-    }
+        best
+    };
 
-    ProtocolError::X(x::Error::resolve_wire_error(0, error))
+    if let Some(ext_data) = best {
+        match ext_data.ext {
+            #[cfg(feature = "damage")]
+            Extension::Damage => ProtocolError::Damage(damage::Error::resolve_wire_error(
+                ext_data.first_error,
+                error,
+            )),
+
+            #[cfg(feature = "glx")]
+            Extension::Glx => {
+                ProtocolError::Glx(glx::Error::resolve_wire_error(ext_data.first_error, error))
+            }
+
+            #[cfg(feature = "randr")]
+            Extension::RandR => ProtocolError::RandR(randr::Error::resolve_wire_error(
+                ext_data.first_error,
+                error,
+            )),
+
+            #[cfg(feature = "shm")]
+            Extension::Shm => {
+                ProtocolError::Shm(shm::Error::resolve_wire_error(ext_data.first_error, error))
+            }
+
+            #[cfg(feature = "sync")]
+            Extension::Sync => {
+                ProtocolError::Sync(sync::Error::resolve_wire_error(ext_data.first_error, error))
+            }
+
+            #[cfg(feature = "xf86vidmode")]
+            Extension::Xf86VidMode => ProtocolError::Xf86VidMode(
+                xf86vidmode::Error::resolve_wire_error(ext_data.first_error, error),
+            ),
+
+            #[cfg(feature = "xfixes")]
+            Extension::XFixes => ProtocolError::XFixes(xfixes::Error::resolve_wire_error(
+                ext_data.first_error,
+                error,
+            )),
+
+            #[cfg(feature = "xinput")]
+            Extension::Input => ProtocolError::Input(xinput::Error::resolve_wire_error(
+                ext_data.first_error,
+                error,
+            )),
+
+            #[cfg(feature = "xkb")]
+            Extension::Xkb => {
+                ProtocolError::Xkb(xkb::Error::resolve_wire_error(ext_data.first_error, error))
+            }
+
+            #[cfg(feature = "xprint")]
+            Extension::XPrint => ProtocolError::XPrint(xprint::Error::resolve_wire_error(
+                ext_data.first_error,
+                error,
+            )),
+
+            #[cfg(feature = "xv")]
+            Extension::Xv => {
+                ProtocolError::Xv(xv::Error::resolve_wire_error(ext_data.first_error, error))
+            }
+
+            _ => unreachable!("Could not match extension event"),
+        }
+    } else {
+        ProtocolError::X(x::Error::resolve_wire_error(0, error))
+    }
 }

@@ -261,6 +261,7 @@ impl fmt::Display for Extension {
 /// Extension data as returned by each extensions `get_extension_data`.
 ///
 /// See [crate::bigreq::get_extension_data] as example.
+#[derive(Debug)]
 pub struct ExtensionData {
     pub ext: Extension,
     pub major_opcode: u8,
@@ -272,7 +273,7 @@ pub(crate) fn cache_extensions_data(
     conn: *mut xcb_connection_t,
     mandatory: &[Extension],
     optional: &[Extension],
-) -> (Vec<EventExtensionData>, Vec<ErrorExtensionData>) {
+) -> Vec<ExtensionData> {
     unsafe {
         for ext in mandatory {
             let ext_id = get_extension_id(*ext);
@@ -283,8 +284,7 @@ pub(crate) fn cache_extensions_data(
             xcb_prefetch_extension_data(conn, ext_id as *mut _);
         }
 
-        let mut event_data = Vec::new();
-        let mut error_data = Vec::new();
+        let mut ext_data = Vec::new();
 
         for ext in mandatory {
             let ext_id = get_extension_id(*ext);
@@ -296,13 +296,10 @@ pub(crate) fn cache_extensions_data(
                 "mandatory extension {} is not present on this system",
                 ext
             );
-            event_data.push(EventExtensionData {
+            ext_data.push(ExtensionData {
                 ext: *ext,
                 major_opcode: reply.major_opcode(),
                 first_event: reply.first_event(),
-            });
-            error_data.push(ErrorExtensionData {
-                ext: *ext,
                 first_error: reply.first_error(),
             });
             mem::forget(reply);
@@ -318,22 +315,19 @@ pub(crate) fn cache_extensions_data(
                 continue;
             }
 
-            event_data.push(EventExtensionData {
+            ext_data.push(ExtensionData {
                 ext: *ext,
                 major_opcode: reply.major_opcode(),
                 first_event: reply.first_event(),
-            });
-            error_data.push(ErrorExtensionData {
-                ext: *ext,
                 first_error: reply.first_error(),
             });
             mem::forget(reply);
         }
 
-        event_data.sort_by(|a, b| b.first_event.cmp(&a.first_event));
-        error_data.sort_by(|a, b| b.first_error.cmp(&a.first_error));
+        // we sort by event in reverse order to optimize the event algo
+        ext_data.sort_by(|a, b| b.first_event.cmp(&a.first_event));
 
-        (event_data, error_data)
+        ext_data
     }
 }
 
@@ -426,15 +420,4 @@ unsafe fn get_extension_id(ext: Extension) -> &'static mut xcb_extension_t {
         #[cfg(feature = "xvmc")]
         Extension::XvMc => &mut crate::xvmc::FFI_EXT,
     }
-}
-
-pub(crate) struct EventExtensionData {
-    pub(crate) ext: Extension,
-    pub(crate) major_opcode: u8,
-    pub(crate) first_event: u8,
-}
-
-pub(crate) struct ErrorExtensionData {
-    pub(crate) ext: Extension,
-    pub(crate) first_error: u8,
 }

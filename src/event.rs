@@ -1,5 +1,5 @@
 use crate::base::{ResolveWireEvent, ResolveWireGeEvent};
-use crate::ext::{EventExtensionData, Extension};
+use crate::ext::{ExtensionData, Extension};
 use crate::ffi::*;
 use crate::x;
 
@@ -110,7 +110,7 @@ pub enum Event {
 
 pub(crate) unsafe fn resolve_event(
     event: *mut xcb_generic_event_t,
-    extension_data: &[EventExtensionData],
+    extension_data: &[ExtensionData],
 ) -> Event {
     let response_type = (*event).response_type & 0x7F;
 
