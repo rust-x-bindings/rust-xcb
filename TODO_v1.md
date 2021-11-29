@@ -3,9 +3,9 @@
  - [x] Implementation of the new API
     - [x] Xid
     - [x] Xid unions
-    - [ ] Structs
+    - [x] Structs
         - [x] Accessors
-        - [ ] Constructor
+        - [x] Constructor
     - [x] Switches
     - [x] Expressions
     - [x] Enums / Masks
@@ -16,13 +16,19 @@
  - [x] Porting examples
  - [x] Porting XML examples
  - [x] Documentation
-    - link to reply in request
+    - [x] link to reply in request
  - [x] Finalize switches naming (e.g. x::CreateWindowValueList -> x::Cw)
+ - [x] Report request name in protocol errors
  - [x] Support of xinput::SendExtensionEvent
- - [ ] Create example with XInput (pen tablet?)
+ - [x] Create example with XInput (pen tablet?)
+    - [ ] Update with valuator classes
  - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs
- - [x] Missing API tweaks (e.g. Cw::EventMask should take an EventMask)
+ - [ ] Missing API tweaks
+    - [x] Cw::EventMask should take an EventMask
+    - [ ] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
+    - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
+    - [ ] xinput::ListInputDevice has incomplete InputInfo
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
