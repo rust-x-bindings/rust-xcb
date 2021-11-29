@@ -1079,7 +1079,7 @@ impl Connection {
     ///             Err(xcb::Error::Connection(err)) => {
     ///                 panic!("unexpected I/O error: {}", err);
     ///             }
-    ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err)))) => {
+    ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err), _req_name))) => {
     ///                 // may be this particular error is fine?
     ///                 continue;
     ///             }
