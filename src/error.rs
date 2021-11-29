@@ -2,6 +2,7 @@ use crate::base::ResolveWireError;
 use crate::ext::{Extension, ExtensionData};
 use crate::ffi::*;
 use crate::x;
+use std::mem;
 
 #[cfg(feature = "damage")]
 use crate::damage;
@@ -293,4 +294,123 @@ pub(crate) unsafe fn resolve_error(
     } else {
         ProtocolError::X(x::Error::resolve_wire_error(0, error), emitted_by)
     }
+}
+
+#[cfg(all(feature = "xinput", feature = "xkb"))]
+#[test]
+fn test_resolve_error() {
+    // resolve a core error with core request
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 2,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 4,
+        major_code: 0,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::X(x::Error::Value(_), Some(req_name)) if req_name == "x::DestroyWindow")
+    );
+    mem::forget(err);
+
+    // resolve a core error with xinput request
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 2,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 4,
+        major_code: 100,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: 100,
+            first_event: 50,
+            first_error: 20,
+        },
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: 200,
+            first_event: 80,
+            first_error: 40,
+        },
+    ];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::X(x::Error::Value(_), Some(req_name)) if req_name == "xinput::CloseDevice")
+    );
+    mem::forget(err);
+
+    // resolve a xinput error with xinput request
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 22,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 4,
+        major_code: 100,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: 100,
+            first_event: 50,
+            first_error: 20,
+        },
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: 200,
+            first_event: 80,
+            first_error: 40,
+        },
+    ];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::Input(xinput::Error::Mode(_), Some(req_name)) if req_name == "xinput::CloseDevice")
+    );
+    mem::forget(err);
+
+    // same as previous, but reverse order of extension data
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 22,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 4,
+        major_code: 100,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: 100,
+            first_event: 50,
+            first_error: 20,
+        },
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: 200,
+            first_event: 80,
+            first_error: 40,
+        },
+    ];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::Input(xinput::Error::Mode(_), Some(req_name)) if req_name == "xinput::CloseDevice")
+    );
+    mem::forget(err);
 }

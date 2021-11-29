@@ -87,8 +87,8 @@ pub struct xcb_generic_error_t {
     pub resource_id: u32,
     pub minor_code: u16,
     pub major_code: u8,
-    pad0: u8,
-    pad: [u32; 5],
+    pub pad0: u8,
+    pub pad: [u32; 5],
     pub full_sequence: u32,
 }
 
