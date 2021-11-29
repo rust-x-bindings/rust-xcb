@@ -875,10 +875,7 @@ impl Connection {
         let ext_data = cache_extensions_data(conn, mandatory, optional);
 
         #[cfg(not(feature = "xlib_xcb"))]
-        return Connection {
-            c: conn,
-            ext_data,
-        };
+        return Connection { c: conn, ext_data };
 
         #[cfg(feature = "xlib_xcb")]
         return Connection {
@@ -921,11 +918,7 @@ impl Connection {
 
         let ext_data = cache_extensions_data(c, mandatory, optional);
 
-        Connection {
-            c,
-            dpy,
-            ext_data,
-        }
+        Connection { c, dpy, ext_data }
     }
 
     /// Get the extensions activated for this connection.

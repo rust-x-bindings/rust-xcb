@@ -1,5 +1,5 @@
 use crate::base::{ResolveWireEvent, ResolveWireGeEvent};
-use crate::ext::{ExtensionData, Extension};
+use crate::ext::{Extension, ExtensionData};
 use crate::ffi::*;
 use crate::x;
 
