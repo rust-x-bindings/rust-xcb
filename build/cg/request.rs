@@ -100,6 +100,32 @@ impl CodeGen {
     }
 
     pub fn emit_requests<O: Write>(&self, out: &mut O) -> io::Result<()> {
+        writeln!(out)?;
+        writeln!(
+            out,
+            "pub(crate) fn request_name(opcode: u16) -> std::option::Option<&'static str> {{"
+        )?;
+        writeln!(out, "{}match opcode {{", cg::ind(1))?;
+        let module;
+        if self.ext_info.is_some() {
+            module = self.xcb_mod.as_str();
+        } else {
+            module = "x";
+        }
+        for r in &self.requests {
+            writeln!(
+                out,
+                "{}{} => Some(\"{}::{}\"),",
+                cg::ind(2),
+                r.opcode,
+                module,
+                r.rs_typ
+            )?;
+        }
+        writeln!(out, "{}_ => None,", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+        writeln!(out, "}}")?;
+
         for r in &self.requests {
             let Request {
                 rs_typ,

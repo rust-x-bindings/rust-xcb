@@ -1,6 +1,6 @@
 use crate::error::{self, ProtocolError};
 use crate::event::{self, Event};
-use crate::ext::{ErrorExtensionData, EventExtensionData, Extension, ExtensionData};
+use crate::ext::{Extension, ExtensionData};
 #[cfg(feature = "present")]
 use crate::present;
 use crate::x::{Atom, Keysym, Setup, Timestamp};
@@ -609,8 +609,7 @@ pub struct Connection {
     #[cfg(feature = "xlib_xcb")]
     dpy: *mut xlib::Display,
 
-    event_ext_data: Vec<EventExtensionData>,
-    error_ext_data: Vec<ErrorExtensionData>,
+    ext_data: Vec<ExtensionData>,
 }
 
 unsafe impl Send for Connection {}
@@ -845,16 +844,14 @@ impl Connection {
         #[cfg(not(feature = "xlib_xcb"))]
         return Connection {
             c: conn,
-            event_ext_data: Vec::new(),
-            error_ext_data: Vec::new(),
+            ext_data: Vec::new(),
         };
 
         #[cfg(feature = "xlib_xcb")]
         return Connection {
             c: conn,
             dpy: ptr::null_mut(),
-            event_ext_data: Vec::new(),
-            error_ext_data: Vec::new(),
+            ext_data: Vec::new(),
         };
     }
 
@@ -875,21 +872,16 @@ impl Connection {
     ) -> Connection {
         assert!(!conn.is_null());
 
-        let (event_ext_data, error_ext_data) = cache_extensions_data(conn, mandatory, optional);
+        let ext_data = cache_extensions_data(conn, mandatory, optional);
 
         #[cfg(not(feature = "xlib_xcb"))]
-        return Connection {
-            c: conn,
-            event_ext_data,
-            error_ext_data,
-        };
+        return Connection { c: conn, ext_data };
 
         #[cfg(feature = "xlib_xcb")]
         return Connection {
             c: conn,
             dpy: ptr::null_mut(),
-            event_ext_data,
-            error_ext_data,
+            ext_data,
         };
     }
 
@@ -924,14 +916,9 @@ impl Connection {
         assert!(!dpy.is_null(), "attempt connect with null display");
         let c = XGetXCBConnection(dpy);
 
-        let (event_ext_data, error_ext_data) = cache_extensions_data(c, mandatory, optional);
+        let ext_data = cache_extensions_data(c, mandatory, optional);
 
-        Connection {
-            c,
-            dpy,
-            event_ext_data,
-            error_ext_data,
-        }
+        Connection { c, dpy, ext_data }
     }
 
     /// Get the extensions activated for this connection.
@@ -951,7 +938,7 @@ impl Connection {
     /// # }
     /// ```
     pub fn active_extensions(&self) -> impl Iterator<Item = Extension> + '_ {
-        self.event_ext_data.iter().map(|eed| eed.ext)
+        self.ext_data.iter().map(|eed| eed.ext)
     }
 
     /// Returns the inner ffi `xcb_connection_t` pointer
@@ -1062,9 +1049,9 @@ impl Connection {
             self.has_error()?;
             panic!("xcb_wait_for_event returned null with I/O error");
         } else if is_error(ev) {
-            Err(error::resolve_error(ev as *mut _, &self.error_ext_data).into())
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
         } else {
-            Ok(event::resolve_event(ev, &self.event_ext_data))
+            Ok(event::resolve_event(ev, &self.ext_data))
         }
     }
 
@@ -1073,9 +1060,9 @@ impl Connection {
             self.has_error()?;
             Ok(None)
         } else if is_error(ev) {
-            Err(error::resolve_error(ev as *mut _, &self.error_ext_data).into())
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
         } else {
-            Ok(Some(event::resolve_event(ev, &self.event_ext_data)))
+            Ok(Some(event::resolve_event(ev, &self.ext_data)))
         }
     }
 
@@ -1092,7 +1079,7 @@ impl Connection {
     ///             Err(xcb::Error::Connection(err)) => {
     ///                 panic!("unexpected I/O error: {}", err);
     ///             }
-    ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err)))) => {
+    ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err), _req_name))) => {
     ///                 // may be this particular error is fine?
     ///                 continue;
     ///             }
@@ -1150,9 +1137,9 @@ impl Connection {
             if ev.is_null() {
                 Ok(None)
             } else if is_error(ev) {
-                Err(error::resolve_error(ev as *mut _, &self.error_ext_data))
+                Err(error::resolve_error(ev as *mut _, &self.ext_data))
             } else {
-                Ok(Some(event::resolve_event(ev, &self.event_ext_data)))
+                Ok(Some(event::resolve_event(ev, &self.ext_data)))
             }
         }
     }
@@ -1397,7 +1384,7 @@ impl Connection {
             Ok(())
         } else {
             unsafe {
-                let res = error::resolve_error(error, &self.error_ext_data);
+                let res = error::resolve_error(error, &self.ext_data);
                 Err(res)
             }
         }
@@ -1433,7 +1420,7 @@ impl Connection {
                     unreachable!("xcb_wait_for_reply64 returned null without I/O error");
                 }
                 (true, false) => {
-                    let error = error::resolve_error(error, &self.error_ext_data);
+                    let error = error::resolve_error(error, &self.ext_data);
                     Err(error.into())
                 }
                 (false, true) => Ok(C::Reply::from_raw(reply as *const u8)),
