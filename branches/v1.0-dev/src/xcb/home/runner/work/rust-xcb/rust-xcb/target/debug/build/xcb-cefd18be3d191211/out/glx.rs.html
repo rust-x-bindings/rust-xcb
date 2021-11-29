@@ -17391,6 +17391,113 @@
 <span id="17391">17391</span>
 <span id="17392">17392</span>
 <span id="17393">17393</span>
+<span id="17394">17394</span>
+<span id="17395">17395</span>
+<span id="17396">17396</span>
+<span id="17397">17397</span>
+<span id="17398">17398</span>
+<span id="17399">17399</span>
+<span id="17400">17400</span>
+<span id="17401">17401</span>
+<span id="17402">17402</span>
+<span id="17403">17403</span>
+<span id="17404">17404</span>
+<span id="17405">17405</span>
+<span id="17406">17406</span>
+<span id="17407">17407</span>
+<span id="17408">17408</span>
+<span id="17409">17409</span>
+<span id="17410">17410</span>
+<span id="17411">17411</span>
+<span id="17412">17412</span>
+<span id="17413">17413</span>
+<span id="17414">17414</span>
+<span id="17415">17415</span>
+<span id="17416">17416</span>
+<span id="17417">17417</span>
+<span id="17418">17418</span>
+<span id="17419">17419</span>
+<span id="17420">17420</span>
+<span id="17421">17421</span>
+<span id="17422">17422</span>
+<span id="17423">17423</span>
+<span id="17424">17424</span>
+<span id="17425">17425</span>
+<span id="17426">17426</span>
+<span id="17427">17427</span>
+<span id="17428">17428</span>
+<span id="17429">17429</span>
+<span id="17430">17430</span>
+<span id="17431">17431</span>
+<span id="17432">17432</span>
+<span id="17433">17433</span>
+<span id="17434">17434</span>
+<span id="17435">17435</span>
+<span id="17436">17436</span>
+<span id="17437">17437</span>
+<span id="17438">17438</span>
+<span id="17439">17439</span>
+<span id="17440">17440</span>
+<span id="17441">17441</span>
+<span id="17442">17442</span>
+<span id="17443">17443</span>
+<span id="17444">17444</span>
+<span id="17445">17445</span>
+<span id="17446">17446</span>
+<span id="17447">17447</span>
+<span id="17448">17448</span>
+<span id="17449">17449</span>
+<span id="17450">17450</span>
+<span id="17451">17451</span>
+<span id="17452">17452</span>
+<span id="17453">17453</span>
+<span id="17454">17454</span>
+<span id="17455">17455</span>
+<span id="17456">17456</span>
+<span id="17457">17457</span>
+<span id="17458">17458</span>
+<span id="17459">17459</span>
+<span id="17460">17460</span>
+<span id="17461">17461</span>
+<span id="17462">17462</span>
+<span id="17463">17463</span>
+<span id="17464">17464</span>
+<span id="17465">17465</span>
+<span id="17466">17466</span>
+<span id="17467">17467</span>
+<span id="17468">17468</span>
+<span id="17469">17469</span>
+<span id="17470">17470</span>
+<span id="17471">17471</span>
+<span id="17472">17472</span>
+<span id="17473">17473</span>
+<span id="17474">17474</span>
+<span id="17475">17475</span>
+<span id="17476">17476</span>
+<span id="17477">17477</span>
+<span id="17478">17478</span>
+<span id="17479">17479</span>
+<span id="17480">17480</span>
+<span id="17481">17481</span>
+<span id="17482">17482</span>
+<span id="17483">17483</span>
+<span id="17484">17484</span>
+<span id="17485">17485</span>
+<span id="17486">17486</span>
+<span id="17487">17487</span>
+<span id="17488">17488</span>
+<span id="17489">17489</span>
+<span id="17490">17490</span>
+<span id="17491">17491</span>
+<span id="17492">17492</span>
+<span id="17493">17493</span>
+<span id="17494">17494</span>
+<span id="17495">17495</span>
+<span id="17496">17496</span>
+<span id="17497">17497</span>
+<span id="17498">17498</span>
+<span id="17499">17499</span>
+<span id="17500">17500</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from glx.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -18329,6 +18436,113 @@
     <span class="ident">GlRender</span> <span class="op">=</span> <span class="number">7168</span>,
     <span class="ident">GlFeedback</span> <span class="op">=</span> <span class="number">7169</span>,
     <span class="ident">GlSelect</span> <span class="op">=</span> <span class="number">7170</span>,
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::Render&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::RenderLarge&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreateContext&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DestroyContext&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::MakeCurrent&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::IsDirect&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::QueryVersion&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::WaitGl&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::WaitX&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CopyContext&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::SwapBuffers&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::UseXFont&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreateGlxPixmap&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetVisualConfigs&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DestroyGlxPixmap&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::VendorPrivate&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::VendorPrivateWithReply&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::QueryExtensionsString&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::QueryServerString&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::ClientInfo&quot;</span>),
+        <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetFbConfigs&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreatePixmap&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DestroyPixmap&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreateNewContext&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::QueryContext&quot;</span>),
+        <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::MakeContextCurrent&quot;</span>),
+        <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreatePbuffer&quot;</span>),
+        <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DestroyPbuffer&quot;</span>),
+        <span class="number">29</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetDrawableAttributes&quot;</span>),
+        <span class="number">30</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::ChangeDrawableAttributes&quot;</span>),
+        <span class="number">31</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreateWindow&quot;</span>),
+        <span class="number">32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DeleteWindow&quot;</span>),
+        <span class="number">33</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::SetClientInfoArb&quot;</span>),
+        <span class="number">34</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::CreateContextAttribsArb&quot;</span>),
+        <span class="number">35</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::SetClientInfo2arb&quot;</span>),
+        <span class="number">101</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::NewList&quot;</span>),
+        <span class="number">102</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::EndList&quot;</span>),
+        <span class="number">103</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DeleteLists&quot;</span>),
+        <span class="number">104</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GenLists&quot;</span>),
+        <span class="number">105</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::FeedbackBuffer&quot;</span>),
+        <span class="number">106</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::SelectBuffer&quot;</span>),
+        <span class="number">107</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::RenderMode&quot;</span>),
+        <span class="number">108</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::Finish&quot;</span>),
+        <span class="number">109</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::PixelStoref&quot;</span>),
+        <span class="number">110</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::PixelStorei&quot;</span>),
+        <span class="number">111</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::ReadPixels&quot;</span>),
+        <span class="number">112</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetBooleanv&quot;</span>),
+        <span class="number">113</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetClipPlane&quot;</span>),
+        <span class="number">114</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetDoublev&quot;</span>),
+        <span class="number">115</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetError&quot;</span>),
+        <span class="number">116</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetFloatv&quot;</span>),
+        <span class="number">117</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetIntegerv&quot;</span>),
+        <span class="number">118</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetLightfv&quot;</span>),
+        <span class="number">119</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetLightiv&quot;</span>),
+        <span class="number">120</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMapdv&quot;</span>),
+        <span class="number">121</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMapfv&quot;</span>),
+        <span class="number">122</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMapiv&quot;</span>),
+        <span class="number">123</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMaterialfv&quot;</span>),
+        <span class="number">124</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMaterialiv&quot;</span>),
+        <span class="number">125</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetPixelMapfv&quot;</span>),
+        <span class="number">126</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetPixelMapuiv&quot;</span>),
+        <span class="number">127</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetPixelMapusv&quot;</span>),
+        <span class="number">128</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetPolygonStipple&quot;</span>),
+        <span class="number">129</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetString&quot;</span>),
+        <span class="number">130</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexEnvfv&quot;</span>),
+        <span class="number">131</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexEnviv&quot;</span>),
+        <span class="number">132</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexGendv&quot;</span>),
+        <span class="number">133</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexGenfv&quot;</span>),
+        <span class="number">134</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexGeniv&quot;</span>),
+        <span class="number">135</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexImage&quot;</span>),
+        <span class="number">136</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexParameterfv&quot;</span>),
+        <span class="number">137</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexParameteriv&quot;</span>),
+        <span class="number">138</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexLevelParameterfv&quot;</span>),
+        <span class="number">139</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetTexLevelParameteriv&quot;</span>),
+        <span class="number">140</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::IsEnabled&quot;</span>),
+        <span class="number">141</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::IsList&quot;</span>),
+        <span class="number">142</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::Flush&quot;</span>),
+        <span class="number">143</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::AreTexturesResident&quot;</span>),
+        <span class="number">144</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DeleteTextures&quot;</span>),
+        <span class="number">145</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GenTextures&quot;</span>),
+        <span class="number">146</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::IsTexture&quot;</span>),
+        <span class="number">147</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetColorTable&quot;</span>),
+        <span class="number">148</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetColorTableParameterfv&quot;</span>),
+        <span class="number">149</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetColorTableParameteriv&quot;</span>),
+        <span class="number">150</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetConvolutionFilter&quot;</span>),
+        <span class="number">151</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetConvolutionParameterfv&quot;</span>),
+        <span class="number">152</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetConvolutionParameteriv&quot;</span>),
+        <span class="number">153</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetSeparableFilter&quot;</span>),
+        <span class="number">154</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetHistogram&quot;</span>),
+        <span class="number">155</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetHistogramParameterfv&quot;</span>),
+        <span class="number">156</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetHistogramParameteriv&quot;</span>),
+        <span class="number">157</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMinmax&quot;</span>),
+        <span class="number">158</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMinmaxParameterfv&quot;</span>),
+        <span class="number">159</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetMinmaxParameteriv&quot;</span>),
+        <span class="number">160</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetCompressedTexImageArb&quot;</span>),
+        <span class="number">161</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::DeleteQueriesArb&quot;</span>),
+        <span class="number">162</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GenQueriesArb&quot;</span>),
+        <span class="number">163</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::IsQueryArb&quot;</span>),
+        <span class="number">164</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetQueryivArb&quot;</span>),
+        <span class="number">165</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetQueryObjectivArb&quot;</span>),
+        <span class="number">166</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;glx::GetQueryObjectuivArb&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
+    }
 }
 
 <span class="doccomment">/// The `Render` request.</span>

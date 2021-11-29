@@ -4026,6 +4026,33 @@
 <span id="4026">4026</span>
 <span id="4027">4027</span>
 <span id="4028">4028</span>
+<span id="4029">4029</span>
+<span id="4030">4030</span>
+<span id="4031">4031</span>
+<span id="4032">4032</span>
+<span id="4033">4033</span>
+<span id="4034">4034</span>
+<span id="4035">4035</span>
+<span id="4036">4036</span>
+<span id="4037">4037</span>
+<span id="4038">4038</span>
+<span id="4039">4039</span>
+<span id="4040">4040</span>
+<span id="4041">4041</span>
+<span id="4042">4042</span>
+<span id="4043">4043</span>
+<span id="4044">4044</span>
+<span id="4045">4045</span>
+<span id="4046">4046</span>
+<span id="4047">4047</span>
+<span id="4048">4048</span>
+<span id="4049">4049</span>
+<span id="4050">4050</span>
+<span id="4051">4051</span>
+<span id="4052">4052</span>
+<span id="4053">4053</span>
+<span id="4054">4054</span>
+<span id="4055">4055</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xf86vidmode.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4891,6 +4918,33 @@
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">12</span>)
             .<span class="ident">field</span>(<span class="string">&quot;privsize&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">privsize</span>())
             .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::QueryVersion&quot;</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetModeLine&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::ModModeLine&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SwitchMode&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetMonitor&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::LockModeSwitch&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetAllModeLines&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::AddModeLine&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::DeleteModeLine&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::ValidateModeLine&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SwitchToMode&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetViewPort&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SetViewPort&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetDotClocks&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SetClientVersion&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SetGamma&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetGamma&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetGammaRamp&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::SetGammaRamp&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetGammaRampSize&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xf86vidmode::GetPermissions&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

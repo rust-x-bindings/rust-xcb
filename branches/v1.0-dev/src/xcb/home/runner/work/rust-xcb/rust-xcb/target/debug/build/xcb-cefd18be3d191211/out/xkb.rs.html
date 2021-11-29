@@ -15968,6 +15968,36 @@
 <span id="15968">15968</span>
 <span id="15969">15969</span>
 <span id="15970">15970</span>
+<span id="15971">15971</span>
+<span id="15972">15972</span>
+<span id="15973">15973</span>
+<span id="15974">15974</span>
+<span id="15975">15975</span>
+<span id="15976">15976</span>
+<span id="15977">15977</span>
+<span id="15978">15978</span>
+<span id="15979">15979</span>
+<span id="15980">15980</span>
+<span id="15981">15981</span>
+<span id="15982">15982</span>
+<span id="15983">15983</span>
+<span id="15984">15984</span>
+<span id="15985">15985</span>
+<span id="15986">15986</span>
+<span id="15987">15987</span>
+<span id="15988">15988</span>
+<span id="15989">15989</span>
+<span id="15990">15990</span>
+<span id="15991">15991</span>
+<span id="15992">15992</span>
+<span id="15993">15993</span>
+<span id="15994">15994</span>
+<span id="15995">15995</span>
+<span id="15996">15996</span>
+<span id="15997">15997</span>
+<span id="15998">15998</span>
+<span id="15999">15999</span>
+<span id="16000">16000</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -26645,6 +26675,36 @@
             }
         }
         <span class="ident">offset</span>
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::UseExtension&quot;</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SelectEvents&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::Bell&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetState&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::LatchLockState&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetControls&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetControls&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetMap&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetMap&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetCompatMap&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetCompatMap&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetIndicatorState&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetIndicatorMap&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetIndicatorMap&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetNamedIndicator&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetNamedIndicator&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetNames&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetNames&quot;</span>),
+        <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::PerClientFlags&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::ListComponents&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetKbdByName&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::GetDeviceInfo&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetDeviceInfo&quot;</span>),
+        <span class="number">101</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xkb::SetDebuggingFlags&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

@@ -4438,6 +4438,43 @@
 <span id="4438">4438</span>
 <span id="4439">4439</span>
 <span id="4440">4440</span>
+<span id="4441">4441</span>
+<span id="4442">4442</span>
+<span id="4443">4443</span>
+<span id="4444">4444</span>
+<span id="4445">4445</span>
+<span id="4446">4446</span>
+<span id="4447">4447</span>
+<span id="4448">4448</span>
+<span id="4449">4449</span>
+<span id="4450">4450</span>
+<span id="4451">4451</span>
+<span id="4452">4452</span>
+<span id="4453">4453</span>
+<span id="4454">4454</span>
+<span id="4455">4455</span>
+<span id="4456">4456</span>
+<span id="4457">4457</span>
+<span id="4458">4458</span>
+<span id="4459">4459</span>
+<span id="4460">4460</span>
+<span id="4461">4461</span>
+<span id="4462">4462</span>
+<span id="4463">4463</span>
+<span id="4464">4464</span>
+<span id="4465">4465</span>
+<span id="4466">4466</span>
+<span id="4467">4467</span>
+<span id="4468">4468</span>
+<span id="4469">4469</span>
+<span id="4470">4470</span>
+<span id="4471">4471</span>
+<span id="4472">4472</span>
+<span id="4473">4473</span>
+<span id="4474">4474</span>
+<span id="4475">4475</span>
+<span id="4476">4476</span>
+<span id="4477">4477</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -6272,6 +6309,43 @@
             }
         }
         <span class="ident">offset</span>
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::QueryVersion&quot;</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::QueryPictFormats&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::QueryPictIndexValues&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreatePicture&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::ChangePicture&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::SetPictureClipRectangles&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::FreePicture&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::Composite&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::Trapezoids&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::Triangles&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::TriStrip&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::TriFan&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateGlyphSet&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::ReferenceGlyphSet&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::FreeGlyphSet&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::AddGlyphs&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::FreeGlyphs&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CompositeGlyphs8&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CompositeGlyphs16&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CompositeGlyphs32&quot;</span>),
+        <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::FillRectangles&quot;</span>),
+        <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateCursor&quot;</span>),
+        <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::SetPictureTransform&quot;</span>),
+        <span class="number">29</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::QueryFilters&quot;</span>),
+        <span class="number">30</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::SetPictureFilter&quot;</span>),
+        <span class="number">31</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateAnimCursor&quot;</span>),
+        <span class="number">32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::AddTraps&quot;</span>),
+        <span class="number">33</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateSolidFill&quot;</span>),
+        <span class="number">34</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateLinearGradient&quot;</span>),
+        <span class="number">35</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateRadialGradient&quot;</span>),
+        <span class="number">36</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;render::CreateConicalGradient&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

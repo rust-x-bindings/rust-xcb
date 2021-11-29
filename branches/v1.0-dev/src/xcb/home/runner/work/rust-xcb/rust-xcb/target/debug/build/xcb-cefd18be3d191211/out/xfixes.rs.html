@@ -3379,6 +3379,45 @@
 <span id="3379">3379</span>
 <span id="3380">3380</span>
 <span id="3381">3381</span>
+<span id="3382">3382</span>
+<span id="3383">3383</span>
+<span id="3384">3384</span>
+<span id="3385">3385</span>
+<span id="3386">3386</span>
+<span id="3387">3387</span>
+<span id="3388">3388</span>
+<span id="3389">3389</span>
+<span id="3390">3390</span>
+<span id="3391">3391</span>
+<span id="3392">3392</span>
+<span id="3393">3393</span>
+<span id="3394">3394</span>
+<span id="3395">3395</span>
+<span id="3396">3396</span>
+<span id="3397">3397</span>
+<span id="3398">3398</span>
+<span id="3399">3399</span>
+<span id="3400">3400</span>
+<span id="3401">3401</span>
+<span id="3402">3402</span>
+<span id="3403">3403</span>
+<span id="3404">3404</span>
+<span id="3405">3405</span>
+<span id="3406">3406</span>
+<span id="3407">3407</span>
+<span id="3408">3408</span>
+<span id="3409">3409</span>
+<span id="3410">3410</span>
+<span id="3411">3411</span>
+<span id="3412">3412</span>
+<span id="3413">3413</span>
+<span id="3414">3414</span>
+<span id="3415">3415</span>
+<span id="3416">3416</span>
+<span id="3417">3417</span>
+<span id="3418">3418</span>
+<span id="3419">3419</span>
+<span id="3420">3420</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xfixes.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4007,6 +4046,45 @@
         <span class="kw">const</span> <span class="ident">POSITIVE_Y</span> <span class="op">=</span> <span class="number">0x00000002</span>;
         <span class="kw">const</span> <span class="ident">NEGATIVE_X</span> <span class="op">=</span> <span class="number">0x00000004</span>;
         <span class="kw">const</span> <span class="ident">NEGATIVE_Y</span> <span class="op">=</span> <span class="number">0x00000008</span>;
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::QueryVersion&quot;</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::ChangeSaveSet&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SelectSelectionInput&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SelectCursorInput&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::GetCursorImage&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreateRegion&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreateRegionFromBitmap&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreateRegionFromWindow&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreateRegionFromGc&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreateRegionFromPicture&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::DestroyRegion&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SetRegion&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CopyRegion&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::UnionRegion&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::IntersectRegion&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SubtractRegion&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::InvertRegion&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::TranslateRegion&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::RegionExtents&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::FetchRegion&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SetGcClipRegion&quot;</span>),
+        <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SetWindowShapeRegion&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SetPictureClipRegion&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::SetCursorName&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::GetCursorName&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::GetCursorImageAndName&quot;</span>),
+        <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::ChangeCursor&quot;</span>),
+        <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::ChangeCursorByName&quot;</span>),
+        <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::ExpandRegion&quot;</span>),
+        <span class="number">29</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::HideCursor&quot;</span>),
+        <span class="number">30</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::ShowCursor&quot;</span>),
+        <span class="number">31</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::CreatePointerBarrier&quot;</span>),
+        <span class="number">32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xfixes::DeletePointerBarrier&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

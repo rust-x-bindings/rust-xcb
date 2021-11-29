@@ -10050,6 +10050,57 @@
 <span id="10050">10050</span>
 <span id="10051">10051</span>
 <span id="10052">10052</span>
+<span id="10053">10053</span>
+<span id="10054">10054</span>
+<span id="10055">10055</span>
+<span id="10056">10056</span>
+<span id="10057">10057</span>
+<span id="10058">10058</span>
+<span id="10059">10059</span>
+<span id="10060">10060</span>
+<span id="10061">10061</span>
+<span id="10062">10062</span>
+<span id="10063">10063</span>
+<span id="10064">10064</span>
+<span id="10065">10065</span>
+<span id="10066">10066</span>
+<span id="10067">10067</span>
+<span id="10068">10068</span>
+<span id="10069">10069</span>
+<span id="10070">10070</span>
+<span id="10071">10071</span>
+<span id="10072">10072</span>
+<span id="10073">10073</span>
+<span id="10074">10074</span>
+<span id="10075">10075</span>
+<span id="10076">10076</span>
+<span id="10077">10077</span>
+<span id="10078">10078</span>
+<span id="10079">10079</span>
+<span id="10080">10080</span>
+<span id="10081">10081</span>
+<span id="10082">10082</span>
+<span id="10083">10083</span>
+<span id="10084">10084</span>
+<span id="10085">10085</span>
+<span id="10086">10086</span>
+<span id="10087">10087</span>
+<span id="10088">10088</span>
+<span id="10089">10089</span>
+<span id="10090">10090</span>
+<span id="10091">10091</span>
+<span id="10092">10092</span>
+<span id="10093">10093</span>
+<span id="10094">10094</span>
+<span id="10095">10095</span>
+<span id="10096">10096</span>
+<span id="10097">10097</span>
+<span id="10098">10098</span>
+<span id="10099">10099</span>
+<span id="10100">10100</span>
+<span id="10101">10101</span>
+<span id="10102">10102</span>
+<span id="10103">10103</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from randr.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -12503,6 +12554,57 @@
             }
         }
         <span class="number">28</span>
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::QueryVersion&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetScreenConfig&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SelectInput&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetScreenInfo&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetScreenSizeRange&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetScreenSize&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetScreenResources&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetOutputInfo&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ListOutputProperties&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::QueryOutputProperty&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ConfigureOutputProperty&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ChangeOutputProperty&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::DeleteOutputProperty&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetOutputProperty&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::CreateMode&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::DestroyMode&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::AddOutputMode&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::DeleteOutputMode&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetCrtcInfo&quot;</span>),
+        <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetCrtcConfig&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetCrtcGammaSize&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetCrtcGamma&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetCrtcGamma&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetScreenResourcesCurrent&quot;</span>),
+        <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetCrtcTransform&quot;</span>),
+        <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetCrtcTransform&quot;</span>),
+        <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetPanning&quot;</span>),
+        <span class="number">29</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetPanning&quot;</span>),
+        <span class="number">30</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetOutputPrimary&quot;</span>),
+        <span class="number">31</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetOutputPrimary&quot;</span>),
+        <span class="number">32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetProviders&quot;</span>),
+        <span class="number">33</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetProviderInfo&quot;</span>),
+        <span class="number">34</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetProviderOffloadSink&quot;</span>),
+        <span class="number">35</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetProviderOutputSource&quot;</span>),
+        <span class="number">36</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ListProviderProperties&quot;</span>),
+        <span class="number">37</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::QueryProviderProperty&quot;</span>),
+        <span class="number">38</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ConfigureProviderProperty&quot;</span>),
+        <span class="number">39</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::ChangeProviderProperty&quot;</span>),
+        <span class="number">40</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::DeleteProviderProperty&quot;</span>),
+        <span class="number">41</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetProviderProperty&quot;</span>),
+        <span class="number">42</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::GetMonitors&quot;</span>),
+        <span class="number">43</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::SetMonitor&quot;</span>),
+        <span class="number">44</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::DeleteMonitor&quot;</span>),
+        <span class="number">45</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::CreateLease&quot;</span>),
+        <span class="number">46</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;randr::FreeLease&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

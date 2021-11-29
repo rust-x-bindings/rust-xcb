@@ -25007,6 +25007,73 @@
 <span id="25007">25007</span>
 <span id="25008">25008</span>
 <span id="25009">25009</span>
+<span id="25010">25010</span>
+<span id="25011">25011</span>
+<span id="25012">25012</span>
+<span id="25013">25013</span>
+<span id="25014">25014</span>
+<span id="25015">25015</span>
+<span id="25016">25016</span>
+<span id="25017">25017</span>
+<span id="25018">25018</span>
+<span id="25019">25019</span>
+<span id="25020">25020</span>
+<span id="25021">25021</span>
+<span id="25022">25022</span>
+<span id="25023">25023</span>
+<span id="25024">25024</span>
+<span id="25025">25025</span>
+<span id="25026">25026</span>
+<span id="25027">25027</span>
+<span id="25028">25028</span>
+<span id="25029">25029</span>
+<span id="25030">25030</span>
+<span id="25031">25031</span>
+<span id="25032">25032</span>
+<span id="25033">25033</span>
+<span id="25034">25034</span>
+<span id="25035">25035</span>
+<span id="25036">25036</span>
+<span id="25037">25037</span>
+<span id="25038">25038</span>
+<span id="25039">25039</span>
+<span id="25040">25040</span>
+<span id="25041">25041</span>
+<span id="25042">25042</span>
+<span id="25043">25043</span>
+<span id="25044">25044</span>
+<span id="25045">25045</span>
+<span id="25046">25046</span>
+<span id="25047">25047</span>
+<span id="25048">25048</span>
+<span id="25049">25049</span>
+<span id="25050">25050</span>
+<span id="25051">25051</span>
+<span id="25052">25052</span>
+<span id="25053">25053</span>
+<span id="25054">25054</span>
+<span id="25055">25055</span>
+<span id="25056">25056</span>
+<span id="25057">25057</span>
+<span id="25058">25058</span>
+<span id="25059">25059</span>
+<span id="25060">25060</span>
+<span id="25061">25061</span>
+<span id="25062">25062</span>
+<span id="25063">25063</span>
+<span id="25064">25064</span>
+<span id="25065">25065</span>
+<span id="25066">25066</span>
+<span id="25067">25067</span>
+<span id="25068">25068</span>
+<span id="25069">25069</span>
+<span id="25070">25070</span>
+<span id="25071">25071</span>
+<span id="25072">25072</span>
+<span id="25073">25073</span>
+<span id="25074">25074</span>
+<span id="25075">25075</span>
+<span id="25076">25076</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -41190,6 +41257,73 @@
             }
         }
         <span class="number">32</span>
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetExtensionVersion&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ListInputDevices&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::OpenDevice&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::CloseDevice&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SetDeviceMode&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SelectExtensionEvent&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetSelectedExtensionEvents&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeDeviceDontPropagateList&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceDontPropagateList&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceMotionEvents&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeKeyboardDevice&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangePointerDevice&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GrabDevice&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::UngrabDevice&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GrabDeviceKey&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::UngrabDeviceKey&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GrabDeviceButton&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::UngrabDeviceButton&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::AllowDeviceEvents&quot;</span>),
+        <span class="number">20</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceFocus&quot;</span>),
+        <span class="number">21</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SetDeviceFocus&quot;</span>),
+        <span class="number">22</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetFeedbackControl&quot;</span>),
+        <span class="number">23</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeFeedbackControl&quot;</span>),
+        <span class="number">24</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceKeyMapping&quot;</span>),
+        <span class="number">25</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeDeviceKeyMapping&quot;</span>),
+        <span class="number">26</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceModifierMapping&quot;</span>),
+        <span class="number">27</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SetDeviceModifierMapping&quot;</span>),
+        <span class="number">28</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceButtonMapping&quot;</span>),
+        <span class="number">29</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SetDeviceButtonMapping&quot;</span>),
+        <span class="number">30</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::QueryDeviceState&quot;</span>),
+        <span class="number">32</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::DeviceBell&quot;</span>),
+        <span class="number">33</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SetDeviceValuators&quot;</span>),
+        <span class="number">34</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceControl&quot;</span>),
+        <span class="number">35</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeDeviceControl&quot;</span>),
+        <span class="number">36</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ListDeviceProperties&quot;</span>),
+        <span class="number">37</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::ChangeDeviceProperty&quot;</span>),
+        <span class="number">38</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::DeleteDeviceProperty&quot;</span>),
+        <span class="number">39</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::GetDeviceProperty&quot;</span>),
+        <span class="number">40</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiQueryPointer&quot;</span>),
+        <span class="number">41</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiWarpPointer&quot;</span>),
+        <span class="number">42</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiChangeCursor&quot;</span>),
+        <span class="number">43</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiChangeHierarchy&quot;</span>),
+        <span class="number">44</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiSetClientPointer&quot;</span>),
+        <span class="number">45</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiGetClientPointer&quot;</span>),
+        <span class="number">46</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiSelectEvents&quot;</span>),
+        <span class="number">47</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiQueryVersion&quot;</span>),
+        <span class="number">48</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiQueryDevice&quot;</span>),
+        <span class="number">49</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiSetFocus&quot;</span>),
+        <span class="number">50</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiGetFocus&quot;</span>),
+        <span class="number">51</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiGrabDevice&quot;</span>),
+        <span class="number">52</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiUngrabDevice&quot;</span>),
+        <span class="number">53</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiAllowEvents&quot;</span>),
+        <span class="number">54</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiPassiveGrabDevice&quot;</span>),
+        <span class="number">55</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiPassiveUngrabDevice&quot;</span>),
+        <span class="number">56</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiListProperties&quot;</span>),
+        <span class="number">57</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiChangeProperty&quot;</span>),
+        <span class="number">58</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiDeleteProperty&quot;</span>),
+        <span class="number">59</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiGetProperty&quot;</span>),
+        <span class="number">60</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiGetSelectedEvents&quot;</span>),
+        <span class="number">61</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::XiBarrierReleasePointer&quot;</span>),
+        <span class="number">31</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xinput::SendExtensionEvent&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 

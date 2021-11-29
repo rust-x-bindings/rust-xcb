@@ -4769,6 +4769,32 @@
 <span id="4769">4769</span>
 <span id="4770">4770</span>
 <span id="4771">4771</span>
+<span id="4772">4772</span>
+<span id="4773">4773</span>
+<span id="4774">4774</span>
+<span id="4775">4775</span>
+<span id="4776">4776</span>
+<span id="4777">4777</span>
+<span id="4778">4778</span>
+<span id="4779">4779</span>
+<span id="4780">4780</span>
+<span id="4781">4781</span>
+<span id="4782">4782</span>
+<span id="4783">4783</span>
+<span id="4784">4784</span>
+<span id="4785">4785</span>
+<span id="4786">4786</span>
+<span id="4787">4787</span>
+<span id="4788">4788</span>
+<span id="4789">4789</span>
+<span id="4790">4790</span>
+<span id="4791">4791</span>
+<span id="4792">4792</span>
+<span id="4793">4793</span>
+<span id="4794">4794</span>
+<span id="4795">4795</span>
+<span id="4796">4796</span>
+<span id="4797">4797</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xv.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -6952,6 +6978,32 @@
             .<span class="ident">field</span>(<span class="string">&quot;vscanline_order&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">vscanline_order</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">11</span>)
             .<span class="ident">finish</span>()
+    }
+}
+
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">request_name</span>(<span class="ident">opcode</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span> {
+    <span class="kw">match</span> <span class="ident">opcode</span> {
+        <span class="number">0</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryExtension&quot;</span>),
+        <span class="number">1</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryAdaptors&quot;</span>),
+        <span class="number">2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryEncodings&quot;</span>),
+        <span class="number">3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::GrabPort&quot;</span>),
+        <span class="number">4</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::UngrabPort&quot;</span>),
+        <span class="number">5</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::PutVideo&quot;</span>),
+        <span class="number">6</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::PutStill&quot;</span>),
+        <span class="number">7</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::GetVideo&quot;</span>),
+        <span class="number">8</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::GetStill&quot;</span>),
+        <span class="number">9</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::StopVideo&quot;</span>),
+        <span class="number">10</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::SelectVideoNotify&quot;</span>),
+        <span class="number">11</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::SelectPortNotify&quot;</span>),
+        <span class="number">12</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryBestSize&quot;</span>),
+        <span class="number">13</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::SetPortAttribute&quot;</span>),
+        <span class="number">14</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::GetPortAttribute&quot;</span>),
+        <span class="number">15</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryPortAttributes&quot;</span>),
+        <span class="number">16</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::ListImageFormats&quot;</span>),
+        <span class="number">17</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::QueryImageAttributes&quot;</span>),
+        <span class="number">18</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::PutImage&quot;</span>),
+        <span class="number">19</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">Some</span>(<span class="string">&quot;xv::ShmPutImage&quot;</span>),
+        <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="prelude-val">None</span>,
     }
 }
 
