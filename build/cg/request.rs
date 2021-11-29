@@ -101,11 +101,11 @@ impl CodeGen {
 
     pub fn emit_requests<O: Write>(&self, out: &mut O) -> io::Result<()> {
         writeln!(out)?;
-        writeln!(out, "pub(crate) fn request_name(opcode: u8) -> Option<&'static str> {{")?;
+        writeln!(out, "pub(crate) fn request_name(opcode: u16) -> Option<&'static str> {{")?;
         writeln!(out, "{}match opcode {{", cg::ind(1))?;
         let module;
-        if let Some(ext_info) = &self.ext_info {
-            module = ext_info.rs_name.as_str();
+        if self.ext_info.is_some() {
+            module = self.xcb_mod.as_str();
         } else {
             module = "x";
         }

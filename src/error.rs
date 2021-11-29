@@ -104,7 +104,7 @@ pub(crate) unsafe fn resolve_error(
 
     let error_code = (*error).error_code;
     let major_code = (*error).major_code;
-    let minor_code = (*error).major_code;
+    let minor_code = (*error).minor_code;
 
     let (best, emitting_ext) = {
         let mut best: Option<&ExtensionData> = None;
