@@ -7,6 +7,7 @@
         - [x] Accessors
         - [x] Constructor
     - [x] Switches
+        - [x] Constructors
     - [x] Expressions
     - [x] Enums / Masks
     - [x] Unions
@@ -24,11 +25,12 @@
     - [ ] Update with valuator classes
  - [ ] Create example with Vulkan
  - [ ] Create example with gfx-rs
- - [ ] Missing API tweaks
+ - Missing API tweaks:
     - [x] Cw::EventMask should take an EventMask
     - [ ] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
     - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
     - [ ] xinput::ListInputDevice has incomplete InputInfo
+    - [ ] remove fieldrefs in switches
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
