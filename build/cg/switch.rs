@@ -1,6 +1,7 @@
 use super::r#enum::{self};
 use super::r#struct::{ParamsStruct, ResolvedFields};
 use super::{CodeGen, Expr, Field, SwitchCase, TypeInfo};
+use crate::cg::request::{fieldref_get_value, request_fieldref_emitted};
 use crate::cg::{self, util, QualifiedRsTyp, StructStyle};
 use crate::ir;
 
@@ -256,15 +257,18 @@ impl CodeGen {
                             name,
                             rs_typ,
                             struct_style,
+                            is_fieldref,
                             ..
                         } => {
-                            let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                            let buf = if matches!(struct_style, Some(StructStyle::DynBuf)) {
-                                "Buf"
-                            } else {
-                                ""
-                            };
-                            writeln!(out, "        {}: {}{},", name, q_rs_typ, buf)?;
+                            if !*is_fieldref || request_fieldref_emitted(name, &c.fields, false) {
+                                let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                                let buf = if matches!(struct_style, Some(StructStyle::DynBuf)) {
+                                    "Buf"
+                                } else {
+                                    ""
+                                };
+                                writeln!(out, "        {}: {}{},", name, q_rs_typ, buf)?;
+                            }
                         }
                         Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                             writeln!(out, "        {}: String,", name)?;
@@ -416,6 +420,27 @@ impl CodeGen {
 
             for f in &sc.fields {
                 match f {
+                    Field::Field {
+                        name,
+                        is_fieldref: true,
+                        ..
+                    } => {
+                        if request_fieldref_emitted(name, &sc.fields, false) {
+                            writeln!(out, "{}{},", cg::ind(ind + 2), name)?;
+                        }
+                    }
+                    Field::Field {
+                        wire_sz: Expr::Value(_),
+                        ..
+                    }
+                    | Field::List {
+                        wire_sz: Expr::Value(_),
+                        ..
+                    }
+                    | Field::Pad {
+                        wire_sz: Expr::Value(_),
+                        ..
+                    } => {}
                     Field::Field { name, .. }
                     | Field::List { name, .. }
                     | Field::Switch { name, .. } => writeln!(out, "{}{},", cg::ind(ind + 2), name)?,
@@ -424,6 +449,7 @@ impl CodeGen {
                     Field::AlignPad { .. } => {}
                 }
             }
+            writeln!(out, "{}..", cg::ind(ind + 2))?;
 
             writeln!(out, "{}{} => {{", cg::ind(ind + 1), close)?;
             for f in &sc.fields {
@@ -516,6 +542,15 @@ impl CodeGen {
 
             for f in &sc.fields {
                 match f {
+                    Field::Field {
+                        name,
+                        is_fieldref: true,
+                        ..
+                    } => {
+                        if request_fieldref_emitted(name, &sc.fields, false) {
+                            writeln!(out, "{}{},", cg::ind(ind + 2), name)?;
+                        }
+                    }
                     Field::Field { name, .. }
                     | Field::List { name, .. }
                     | Field::Switch { name, .. } => writeln!(out, "{}{},", cg::ind(ind + 2), name)?,
@@ -524,6 +559,7 @@ impl CodeGen {
                     Field::AlignPad { .. } => {}
                 }
             }
+            writeln!(out, "{}..", cg::ind(ind + 2))?;
 
             writeln!(out, "{}{} => {{", cg::ind(ind + 1), close)?;
             for f in &sc.fields {
@@ -570,24 +606,56 @@ impl CodeGen {
                     Field::Field {
                         name,
                         mask: Some(_),
+                        is_fieldref,
                         rs_typ,
                         ..
                     } => {
+                        let fieldref_value = if *is_fieldref {
+                            fieldref_get_value(name, &sc.fields, false, "")
+                        } else {
+                            None
+                        };
+                        let expr;
+                        if let Some(fieldref_value) = fieldref_value {
+                            expr = fieldref_value
+                        } else {
+                            expr = name.clone() + ".bits()"
+                        };
                         writeln!(
                             out,
-                            "{}offset += ({}.bits() as {}).serialize(&mut wire_buf[offset..]);",
+                            "{}offset += ({} as {}).serialize(&mut wire_buf[offset..]);",
                             cg::ind(ind + 2),
-                            name,
+                            expr,
                             rs_typ
                         )?;
                     }
-                    Field::Field { name, .. } => {
-                        writeln!(
-                            out,
-                            "{}offset += {}.serialize(&mut wire_buf[offset..]);",
-                            cg::ind(ind + 2),
-                            name
-                        )?;
+                    Field::Field {
+                        name,
+                        rs_typ,
+                        is_fieldref,
+                        ..
+                    } => {
+                        let fieldref_value = if *is_fieldref {
+                            fieldref_get_value(name, &sc.fields, false, "")
+                        } else {
+                            None
+                        };
+                        if let Some(fieldref_value) = fieldref_value {
+                            writeln!(
+                                out,
+                                "{}offset += ({} as {}).serialize(&mut wire_buf[offset..]);",
+                                cg::ind(ind + 2),
+                                fieldref_value,
+                                rs_typ
+                            )?;
+                        } else {
+                            writeln!(
+                                out,
+                                "{}offset += {}.serialize(&mut wire_buf[offset..]);",
+                                cg::ind(ind + 2),
+                                name
+                            )?;
+                        }
                     }
                     Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                         writeln!(
@@ -896,6 +964,15 @@ impl CodeGen {
             writeln!(out, "{}return {}::{}{}", cg::ind(3), rs_typ, sc.name, open)?;
             for f in &sc.fields {
                 match f {
+                    Field::Field {
+                        name,
+                        is_fieldref: true,
+                        ..
+                    } => {
+                        if request_fieldref_emitted(name, &sc.fields, false) {
+                            writeln!(out, "{}{},", cg::ind(4), name)?;
+                        }
+                    }
                     Field::Field { name, .. } => {
                         writeln!(out, "{}{},", cg::ind(4), name)?;
                     }
