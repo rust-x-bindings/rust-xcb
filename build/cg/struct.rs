@@ -3,6 +3,7 @@ use crate::cg::util;
 use crate::cg::{self, request::request_fieldref_emitted};
 use crate::ir;
 
+use super::UnionTypeField;
 use super::{
     doc::DocField, CodeGen, Doc, Expr, Field, HasWireLayout, QualifiedRsTyp, RsTyp, StructStyle,
     TypeInfo, WireSz,
@@ -127,6 +128,7 @@ impl CodeGen {
                         is_xid,
                         is_mask,
                         params_struct,
+                        union_typefield,
                         doc,
                         ..
                     } = self.get_field_info(name, typ, r#enum.as_deref(), mask.as_deref(), doc);
@@ -150,6 +152,7 @@ impl CodeGen {
                         wire_sz: wire_sz.clone(),
                         struct_style,
                         params_struct,
+                        union_typefield,
                         doc,
                         is_mask: is_mask || mask.is_some(),
                         r#enum,
@@ -199,6 +202,7 @@ impl CodeGen {
                         has_wire_layout: hfl,
                         struct_style,
                         params_struct,
+                        union_typefield,
                         r#enum,
                         mask,
                         doc,
@@ -243,6 +247,7 @@ impl CodeGen {
                         len_expr,
                         need_compute_offset,
                         params_struct,
+                        union_typefield,
                         is_prop,
                         is_union,
                         doc,
@@ -267,6 +272,7 @@ impl CodeGen {
                         typ,
                         struct_style,
                         params_struct,
+                        union_typefield,
                         r#enum,
                         mask,
                         is_union,
@@ -285,6 +291,7 @@ impl CodeGen {
                         wire_sz: Expr::UntilEnd,
                         struct_style,
                         params_struct,
+                        union_typefield,
                         r#enum,
                         mask,
                         is_fieldref: false,
@@ -355,6 +362,7 @@ impl CodeGen {
                         wire_sz: Expr::Value(4),
                         struct_style: None,
                         params_struct: None,
+                        union_typefield: None,
                         doc,
                         is_fieldref: false,
                         is_paramref: false,
@@ -461,6 +469,10 @@ impl CodeGen {
             TypeInfo::Struct { params_struct, .. } => params_struct.clone(),
             _ => None,
         };
+        let union_typefield = match typinfo {
+            TypeInfo::Union { type_field, .. } => type_field.clone(),
+            _ => None,
+        };
         let doc = self.doc_lookup_field(doc, &name);
 
         let has_wire_layout = r#enum.is_none() && typinfo.has_wire_layout();
@@ -479,6 +491,7 @@ impl CodeGen {
             r#enum,
             mask,
             params_struct,
+            union_typefield,
             doc,
             is_union,
             is_xid,
@@ -486,7 +499,7 @@ impl CodeGen {
         }
     }
 
-    fn build_params_expr(
+    pub(super) fn build_params_expr(
         &self,
         params_struct: Option<&ParamsStruct>,
         module: Option<&str>,
@@ -2318,6 +2331,7 @@ struct FieldInfo {
     mask: Option<(Option<String>, String)>,
     doc: Option<DocField>,
     is_union: bool,
+    union_typefield: Option<UnionTypeField>,
     is_xid: bool,
     is_mask: bool,
 }

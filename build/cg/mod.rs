@@ -112,6 +112,7 @@ enum Field {
         params_struct: Option<ParamsStruct>,
         r#enum: Option<(Option<String>, String)>,
         mask: Option<(Option<String>, String)>,
+        union_typefield: Option<UnionTypeField>,
         doc: Option<DocField>,
         is_fieldref: bool,
         is_paramref: bool,
@@ -138,6 +139,7 @@ enum Field {
         need_compute_offset: bool,
         is_prop: bool, // property field (resolved with type `void` and a format field is present)
         is_union: bool,
+        union_typefield: Option<UnionTypeField>,
     },
     Switch {
         name: String,
@@ -1047,18 +1049,6 @@ impl TypeInfo {
         }
     }
 }
-
-// impl Field {
-//     fn name_or_desc(&self) -> &str {
-//         match self {
-//             Field::Field { name, .. } | Field::List { name, .. } | Field::Switch { name, .. } => {
-//                 name
-//             }
-//             Field::Pad { .. } => "pad",
-//             Field::AlignPad { .. } => "align pad",
-//         }
-//     }
-// }
 
 type ModRsTyp<'a> = (Option<&'a str>, &'a str);
 
