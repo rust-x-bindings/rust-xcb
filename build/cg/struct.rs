@@ -128,7 +128,6 @@ impl CodeGen {
                         is_xid,
                         is_mask,
                         params_struct,
-                        union_typefield,
                         doc,
                         ..
                     } = self.get_field_info(name, typ, r#enum.as_deref(), mask.as_deref(), doc);
@@ -152,7 +151,6 @@ impl CodeGen {
                         wire_sz: wire_sz.clone(),
                         struct_style,
                         params_struct,
-                        union_typefield,
                         doc,
                         is_mask: is_mask || mask.is_some(),
                         r#enum,
@@ -362,7 +360,6 @@ impl CodeGen {
                         wire_sz: Expr::Value(4),
                         struct_style: None,
                         params_struct: None,
-                        union_typefield: None,
                         doc,
                         is_fieldref: false,
                         is_paramref: false,

@@ -1,5 +1,5 @@
 use super::r#struct::{make_field, ResolvedFields};
-use super::{CodeGen, Event, EventStruct, Field, UnionVariant, UnionVariantContent, WireSz};
+use super::{CodeGen, Event, Field, UnionVariant, UnionVariantContent, WireSz};
 use crate::cg::r#struct::RANDR_SUBCODES;
 use crate::cg::{self, Expr, StructStyle, TypeInfo};
 use crate::cg::{util, QualifiedRsTyp};
@@ -171,7 +171,7 @@ impl CodeGen {
         }
 
         let typ_info = TypeInfo::Union {
-            rs_typ: rs_typ.clone(),
+            rs_typ,
             wire_sz,
             variants,
             module: None,
@@ -179,9 +179,6 @@ impl CodeGen {
             impl_clone: false,
         };
         self.register_typ(typ, typ_info);
-
-        let event_struct = EventStruct { rs_typ, selectors };
-        self.event_structs.push(event_struct);
     }
 
     fn ir_field_sizeof(&self, f: &ir::Field) -> Expr {

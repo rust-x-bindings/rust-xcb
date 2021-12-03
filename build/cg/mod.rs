@@ -112,7 +112,6 @@ enum Field {
         params_struct: Option<ParamsStruct>,
         r#enum: Option<(Option<String>, String)>,
         mask: Option<(Option<String>, String)>,
-        union_typefield: Option<UnionTypeField>,
         doc: Option<DocField>,
         is_fieldref: bool,
         is_paramref: bool,
@@ -236,15 +235,6 @@ struct Event {
     doc: Option<Doc>,
 }
 
-// correspond to the <eventstruct> xml tag.
-// this will generate a trait that will
-// implement all events in the selector
-#[derive(Debug, Clone)]
-struct EventStruct {
-    rs_typ: String,
-    selectors: Vec<ir::EventSelector>,
-}
-
 #[derive(Debug, Clone)]
 struct ExtInfo {
     pub rs_name: String,
@@ -278,7 +268,6 @@ pub struct CodeGen {
     errors_preregistered: bool,
     requests: Vec<Request>,
     events: Vec<Event>,
-    event_structs: Vec<EventStruct>,
     mask_exceptions: Vec<RsTypException>,
     switch_exceptions: Vec<RsTypException>,
 }
@@ -339,7 +328,6 @@ impl CodeGen {
             errors_preregistered: false,
             requests: Vec::new(),
             events: Vec::new(),
-            event_structs: Vec::new(),
             mask_exceptions: mask_exceptions(),
             switch_exceptions: switch_exceptions(),
         }
