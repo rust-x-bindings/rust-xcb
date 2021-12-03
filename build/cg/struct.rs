@@ -2089,7 +2089,60 @@ impl CodeGen {
                     writeln!(out, "        }}")?;
                     writeln!(out, "    }}")?;
                 }
-                _ => {}
+                Field::Switch {
+                    name,
+                    module,
+                    rs_typ,
+                    params_struct,
+                    expr,
+                    wire_off,
+                    is_mask,
+                    doc,
+                    ..
+                } => {
+                    if *is_mask {
+                        continue;
+                    }
+                    let params_expr = self.build_params_expr(
+                        Some(params_struct),
+                        module.as_ref().map(|s| s.as_str()),
+                        "self.",
+                        "()",
+                    );
+                    let switch_expr = self.build_rs_expr(expr, "self.", "()", fields);
+                    let offset_expr = self.build_rs_expr(wire_off, "self.", "()", fields);
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    let return_typ = if *is_mask {
+                        format!("Vec<{}>", rs_typ)
+                    } else {
+                        rs_typ.to_string()
+                    };
+                    writeln!(
+                        out,
+                        "{}pub fn {}(&self) -> {} {{",
+                        cg::ind(1),
+                        name,
+                        return_typ
+                    )?;
+                    writeln!(out, "{}let params = {};", cg::ind(2), params_expr)?;
+                    writeln!(out, "{}let offset = {};", cg::ind(2), offset_expr)?;
+                    writeln!(out, "{}let switch = {};", cg::ind(2), switch_expr)?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(out, "{}{}::from_wire_data(", cg::ind(3), rs_typ,)?;
+                    writeln!(
+                        out,
+                        "{}self.wire_ptr().add(offset), switch, params",
+                        cg::ind(4),
+                    )?;
+                    writeln!(out, "{})", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::Pad { .. } => {}
+                Field::AlignPad { .. } => {}
+                f => unreachable!("{:#?}", f),
             }
         }
         Ok(())
