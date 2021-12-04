@@ -138,6 +138,7 @@ enum Field {
         need_compute_offset: bool,
         is_prop: bool, // property field (resolved with type `void` and a format field is present)
         is_union: bool,
+        union_typefield: Option<UnionTypeField>,
     },
     Switch {
         name: String,
@@ -234,15 +235,6 @@ struct Event {
     doc: Option<Doc>,
 }
 
-// correspond to the <eventstruct> xml tag.
-// this will generate a trait that will
-// implement all events in the selector
-#[derive(Debug, Clone)]
-struct EventStruct {
-    rs_typ: String,
-    selectors: Vec<ir::EventSelector>,
-}
-
 #[derive(Debug, Clone)]
 struct ExtInfo {
     pub rs_name: String,
@@ -276,7 +268,6 @@ pub struct CodeGen {
     errors_preregistered: bool,
     requests: Vec<Request>,
     events: Vec<Event>,
-    event_structs: Vec<EventStruct>,
     mask_exceptions: Vec<RsTypException>,
     switch_exceptions: Vec<RsTypException>,
 }
@@ -337,7 +328,6 @@ impl CodeGen {
             errors_preregistered: false,
             requests: Vec::new(),
             events: Vec::new(),
-            event_structs: Vec::new(),
             mask_exceptions: mask_exceptions(),
             switch_exceptions: switch_exceptions(),
         }
@@ -1047,18 +1037,6 @@ impl TypeInfo {
         }
     }
 }
-
-// impl Field {
-//     fn name_or_desc(&self) -> &str {
-//         match self {
-//             Field::Field { name, .. } | Field::List { name, .. } | Field::Switch { name, .. } => {
-//                 name
-//             }
-//             Field::Pad { .. } => "pad",
-//             Field::AlignPad { .. } => "align pad",
-//         }
-//     }
-// }
 
 type ModRsTyp<'a> = (Option<&'a str>, &'a str);
 

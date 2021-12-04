@@ -111,7 +111,7 @@ where
     })
 }
 
-fn recurse_push_depinfo(mut dep_info: &mut Vec<DepInfo>, xcb_mod: &str, global: &[DepInfo]) {
+fn recurse_push_depinfo(dep_info: &mut Vec<DepInfo>, xcb_mod: &str, global: &[DepInfo]) {
     if dep_info.iter().any(|di| di.xcb_mod == xcb_mod) {
         return;
     }
@@ -124,7 +124,7 @@ fn recurse_push_depinfo(mut dep_info: &mut Vec<DepInfo>, xcb_mod: &str, global: 
     dep_info.push(di.clone());
 
     for d in &di.deps {
-        recurse_push_depinfo(&mut dep_info, d, global);
+        recurse_push_depinfo(dep_info, d, global);
     }
 }
 

@@ -1,6 +1,7 @@
 use super::r#enum::{self};
 use super::r#struct::{ParamsStruct, ResolvedFields};
 use super::{CodeGen, Expr, Field, SwitchCase, TypeInfo};
+use crate::cg::r#struct::enum_mask_qualified_rs_typ;
 use crate::cg::request::{fieldref_get_value, request_fieldref_emitted};
 use crate::cg::{self, util, QualifiedRsTyp, StructStyle};
 use crate::ir;
@@ -247,10 +248,13 @@ impl CodeGen {
                         Field::Field {
                             name,
                             mask: Some(mask),
+                            is_fieldref,
                             ..
                         } => {
-                            let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
-                            writeln!(out, "        {}: {},", name, q_rs_typ)?;
+                            if !*is_fieldref || request_fieldref_emitted(name, &c.fields, false) {
+                                let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                                writeln!(out, "        {}: {},", name, q_rs_typ)?;
+                            }
                         }
                         Field::Field {
                             module,
@@ -272,6 +276,22 @@ impl CodeGen {
                         }
                         Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                             writeln!(out, "        {}: String,", name)?;
+                        }
+                        Field::List {
+                            name,
+                            r#enum: Some(r#enum),
+                            ..
+                        } => {
+                            let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
+                            writeln!(out, "{}{}: Vec<{}>,", cg::ind(2), name, q_rs_typ)?;
+                        }
+                        Field::List {
+                            name,
+                            mask: Some(mask),
+                            ..
+                        } => {
+                            let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                            writeln!(out, "{}{}: Vec<{}>,", cg::ind(2), name, q_rs_typ)?;
                         }
                         Field::List {
                             module,
@@ -301,7 +321,7 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         if is_mask {
-            self.emit_mask_switch_impl(out, rs_typ, maskenum, cases)?;
+            self.emit_mask_switch_impl(out, rs_typ, maskenum, cases, params_struct)?;
         } else {
             self.emit_enum_switch_impl(out, rs_typ, maskenum, cases, params_struct)?;
         }
@@ -314,9 +334,413 @@ impl CodeGen {
         }
         writeln!(out, "    type Params = {};", params_struct.rs_typ)?;
         self.emit_switch_compute_wire_len(out, expr, rs_typ, cases, params_struct, is_mask)?;
+        writeln!(out)?;
         self.emit_switch_wire_len(out, rs_typ, cases, is_mask)?;
+        writeln!(out)?;
         self.emit_switch_serialize(out, rs_typ, cases, is_mask)?;
         writeln!(out, "}}")?;
+        Ok(())
+    }
+
+    fn emit_switch_ctor<O: Write>(
+        &self,
+        out: &mut O,
+        rs_typ: &str,
+        is_mask: bool,
+        cases: &[SwitchCase],
+        params_struct: &ParamsStruct,
+    ) -> io::Result<()> {
+        let return_typ = if is_mask {
+            format!("Vec<{}>", rs_typ)
+        } else {
+            rs_typ.to_string()
+        };
+        writeln!(out, "    #[allow(unused_assignments)]")?;
+        writeln!(out,
+            "    pub(crate) unsafe fn from_wire_data(wire_data: *const u8, expr: usize, params: {}) -> {} {{",
+            params_struct.rs_typ, return_typ)?;
+
+        writeln!(out, "{}let {}{{", cg::ind(2), params_struct.rs_typ)?;
+        for p in &params_struct.params {
+            writeln!(out, "{}{},", cg::ind(3), p)?;
+        }
+        writeln!(out, "{}}} = params;", cg::ind(2))?;
+
+        if is_mask {
+            writeln!(out, "{}let mut result = Vec::new();", cg::ind(2))?;
+        }
+
+        for sc in cases {
+            let exprs = sc.exprs.iter().map(|e| self.build_rs_expr(e, "", "", &[]));
+
+            let expr: String = if is_mask {
+                format!("expr & {} != 0", exprs.collect::<Vec<_>>().join(" & "))
+            } else {
+                exprs
+                    .map(|e| format!("expr == {}", e))
+                    .collect::<Vec<_>>()
+                    .join(" || ")
+            };
+
+            writeln!(out, "{}if {} {{", cg::ind(2), expr)?;
+
+            writeln!(out, "{}let mut offset = 0usize;", cg::ind(3))?;
+
+            for f in &sc.fields {
+                // TODO: remove fieldrefs
+                match f {
+                    Field::Field {
+                        name,
+                        rs_typ,
+                        wire_sz: Expr::Value(sz),
+                        r#enum: Some(r#enum),
+                        is_fieldref: false,
+                        ..
+                    } => {
+                        let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
+                        writeln!(out, "{}let {} = std::mem::transmute::<_, {}>(*(wire_data.add(offset) as *const {}) as u32);", cg::ind(3), name, q_rs_typ, rs_typ)?;
+                        writeln!(out, "{}offset += {};", cg::ind(3), sz)?;
+                    }
+                    Field::Field {
+                        name,
+                        module,
+                        rs_typ,
+                        struct_style: Some(StructStyle::DynBuf),
+                        params_struct,
+                        ..
+                    } => {
+                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                        let params_expr = self.build_params_expr(
+                            params_struct.as_ref(),
+                            module.as_deref(),
+                            "",
+                            "",
+                        );
+                        writeln!(out, "{}let {} = {{", cg::ind(3), name)?;
+                        writeln!(
+                            out,
+                            "{}    let sz = {}::compute_wire_len(wire_data.add(offset), {});",
+                            cg::ind(3),
+                            q_rs_typ,
+                            params_expr
+                        )?;
+                        writeln!(out, "{}    let data = std::slice::from_raw_parts(wire_data.add(offset), sz);", cg::ind(3))?;
+                        writeln!(out, "{}    offset += sz;", cg::ind(3))?;
+                        writeln!(
+                            out,
+                            "{}    {}Buf::from_data(data.to_vec())",
+                            cg::ind(3),
+                            q_rs_typ
+                        )?;
+                        writeln!(out, "{}}};", cg::ind(3))?;
+                    }
+                    Field::Field {
+                        name,
+                        rs_typ,
+                        wire_sz: Expr::Value(sz),
+                        ..
+                    } if rs_typ == "bool" => {
+                        let wire_typ = format!("u{}", *sz * 8);
+                        writeln!(
+                            out,
+                            "{}let {} = *(wire_data.add(offset) as *const {}) != 0;",
+                            cg::ind(3),
+                            name,
+                            wire_typ
+                        )?;
+                        writeln!(out, "{}offset += {};", cg::ind(3), sz)?;
+                    }
+                    Field::Field {
+                        name,
+                        module,
+                        rs_typ,
+                        ..
+                    } => {
+                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                        writeln!(
+                            out,
+                            "{}let {} = *(wire_data.add(offset) as *const {});",
+                            cg::ind(3),
+                            name,
+                            q_rs_typ
+                        )?;
+                        writeln!(
+                            out,
+                            "{}offset += std::mem::size_of::<{}>();",
+                            cg::ind(3),
+                            q_rs_typ
+                        )?;
+                    }
+                    Field::List {
+                        name,
+                        rs_typ,
+                        len_expr,
+                        wire_sz,
+                        ..
+                    } if rs_typ == "char" => {
+                        let len_expr = self.build_rs_expr(len_expr, "", "", &sc.fields);
+                        assert_eq!(len_expr, self.build_rs_expr(wire_sz, "", "", &sc.fields));
+
+                        writeln!(
+                            out,
+                            "{}let {}_ptr = wire_data.add(offset);",
+                            cg::ind(3),
+                            name
+                        )?;
+                        writeln!(
+                            out,
+                            "{}let {}_bytes = std::slice::from_raw_parts({}_ptr, {});",
+                            cg::ind(3),
+                            name,
+                            name,
+                            len_expr,
+                        )?;
+                        writeln!(out, "{}let {} = std::str::from_utf8({}_bytes).expect(\"Invalid UTF-8 for {}::{}\");", cg::ind(3), name, name, rs_typ, name)?;
+                        writeln!(out, "{}let {} = String::from({});", cg::ind(3), name, name)?;
+                        writeln!(out, "{}offset += {}.len();", cg::ind(3), name)?;
+                    }
+                    Field::List {
+                        name,
+                        module,
+                        rs_typ,
+                        struct_style: None | Some(StructStyle::WireLayout | StructStyle::FixBuf),
+                        is_union: false,
+                        len_expr,
+                        mask,
+                        r#enum,
+                        ..
+                    } if rs_typ == "u32" || (r#enum.is_none() || mask.is_none()) => {
+                        let q_rs_typ = enum_mask_qualified_rs_typ(module, rs_typ, r#enum, mask);
+                        writeln!(out, "{}let {} = {{", cg::ind(3), name)?;
+                        writeln!(
+                            out,
+                            "{}    let ptr = wire_data.add(offset) as *const {};",
+                            cg::ind(3),
+                            q_rs_typ
+                        )?;
+                        writeln!(
+                            out,
+                            "{}    let len = {};",
+                            cg::ind(3),
+                            self.build_rs_expr(len_expr, "", "", &[])
+                        )?;
+                        writeln!(
+                            out,
+                            "{}    let data = std::slice::from_raw_parts(ptr, len);",
+                            cg::ind(3)
+                        )?;
+                        writeln!(
+                            out,
+                            "{}offset += len * std::mem::size_of::<{}>();",
+                            cg::ind(4),
+                            q_rs_typ
+                        )?;
+                        writeln!(out, "{}    data.to_vec()", cg::ind(3))?;
+                        writeln!(out, "{}}};", cg::ind(3))?;
+                    }
+                    Field::List {
+                        name,
+                        rs_typ,
+                        len_expr,
+                        mask: Some(mask),
+                        ..
+                    } => {
+                        let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                        writeln!(out, "{}let mut {} = Vec::new();", cg::ind(3), name)?;
+                        writeln!(
+                            out,
+                            "{}for i in 0..{} {{",
+                            cg::ind(3),
+                            self.build_rs_expr(len_expr, "", "", &[])
+                        )?;
+                        writeln!(out,
+                            "{}{}.push({}::from_bits(*(wire_data.add(offset) as *const {}) as u32).unwrap());",
+                            cg::ind(4), name, q_rs_typ, rs_typ)?;
+                        writeln!(
+                            out,
+                            "{}offset += std::mem::size_of::<{}>();",
+                            cg::ind(4),
+                            rs_typ
+                        )?;
+                        writeln!(out, "{}}}", cg::ind(3))?;
+                    }
+                    Field::List {
+                        name,
+                        module,
+                        rs_typ,
+                        len_expr,
+                        struct_style,
+                        params_struct,
+                        is_union,
+                        union_typefield,
+                        ..
+                    } if matches!(struct_style, Some(StructStyle::DynBuf)) || *is_union => {
+                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                        writeln!(out, "{}let mut {} = Vec::new();", cg::ind(3), name)?;
+                        writeln!(
+                            out,
+                            "{}let {}_params = {};",
+                            cg::ind(3),
+                            name,
+                            self.build_params_expr(
+                                params_struct.as_ref(),
+                                module.as_deref(),
+                                "",
+                                ""
+                            )
+                        )?;
+                        writeln!(
+                            out,
+                            "{}for i in 0..{} {{",
+                            cg::ind(3),
+                            self.build_rs_expr(len_expr, "", "", &[])
+                        )?;
+                        writeln!(out, "{}let ptr = wire_data.add(offset);", cg::ind(4))?;
+                        writeln!(
+                            out,
+                            "{}let sz = {}::compute_wire_len(ptr, {}_params);",
+                            cg::ind(4),
+                            q_rs_typ,
+                            name,
+                        )?;
+                        writeln!(
+                            out,
+                            "{}let data = std::slice::from_raw_parts(ptr, sz);",
+                            cg::ind(4)
+                        )?;
+                        if *is_union {
+                            assert!(
+                                union_typefield.is_some(),
+                                "cannot build a union here without type field"
+                            );
+                            writeln!(out, "{}let el = {}::from_data(data);", cg::ind(4), q_rs_typ,)?;
+                        } else {
+                            writeln!(
+                                out,
+                                "{}let el = {}Buf::from_data(data.to_vec());",
+                                cg::ind(4),
+                                q_rs_typ,
+                            )?;
+                        }
+                        writeln!(out, "{}{}.push(el);", cg::ind(4), name,)?;
+                        writeln!(out, "{}offset += sz;", cg::ind(4),)?;
+                        writeln!(out, "{}}}", cg::ind(3))?;
+                    }
+                    Field::Switch {
+                        name,
+                        module,
+                        rs_typ,
+                        params_struct,
+                        expr,
+                        is_mask,
+                        ..
+                    } => {
+                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                        let params_expr =
+                            self.build_params_expr(Some(params_struct), module.as_deref(), "", "");
+                        // do not supply fields because the masks are defined as integer here
+                        let expr = self.build_rs_expr(expr, "", "", &[]);
+                        let impl_type = if *is_mask {
+                            format!("<&[{}]>", q_rs_typ)
+                        } else {
+                            q_rs_typ.clone()
+                        };
+                        writeln!(out, "{}let {}_params = {};", cg::ind(3), name, params_expr)?;
+                        writeln!(out, "{}let {}_expr = {};", cg::ind(3), name, expr)?;
+                        writeln!(out, "{}let {} = {}::from_wire_data(wire_data.add(offset), {}_expr, {}_params);", cg::ind(3), name, q_rs_typ, name, name)?;
+                        writeln!(
+                            out,
+                            "{}offset += {}::compute_wire_len(wire_data.add(offset), {}_params);",
+                            cg::ind(3),
+                            impl_type,
+                            name
+                        )?;
+                    }
+                    Field::Pad {
+                        wire_sz: Expr::Value(sz),
+                        ..
+                    } => {
+                        writeln!(out, "{}offset += {}; // pad", cg::ind(3), sz)?;
+                    }
+                    Field::AlignPad {
+                        wire_sz: Expr::AlignPad(sz, _),
+                        ..
+                    } => {
+                        writeln!(
+                            out,
+                            "{}offset += base::align_pad(offset, {});",
+                            cg::ind(3),
+                            sz
+                        )?;
+                    }
+                    f => unreachable!("{:#?}", f),
+                }
+            }
+
+            let (open, close) = if sc.fields.len() == 1 {
+                ("(", ")")
+            } else {
+                ("{", "}")
+            };
+            let stmt = if is_mask { "result.push(" } else { "return " };
+            writeln!(out, "{}{}{}::{}{}", cg::ind(3), stmt, rs_typ, sc.name, open)?;
+            for f in &sc.fields {
+                match f {
+                    Field::Field {
+                        name,
+                        mask,
+                        is_fieldref,
+                        ..
+                    } => {
+                        if !*is_fieldref || request_fieldref_emitted(name, &sc.fields, false) {
+                            if let Some((module, mask)) = mask {
+                                let pref_name = if sc.fields.len() != 1 {
+                                    format!("{}: ", name)
+                                } else {
+                                    "".to_string()
+                                };
+                                let q_rs_typ = (module, mask).qualified_rs_typ();
+                                writeln!(
+                                    out,
+                                    "{}{}{}::from_bits({} as u32).unwrap(),",
+                                    cg::ind(4),
+                                    pref_name,
+                                    q_rs_typ,
+                                    name
+                                )?;
+                            } else {
+                                writeln!(out, "{}{},", cg::ind(4), name)?;
+                            }
+                        }
+                    }
+                    Field::List { name, .. } => {
+                        writeln!(out, "{}{},", cg::ind(4), name)?;
+                    }
+                    Field::Switch { name, .. } => {
+                        writeln!(out, "{}{},", cg::ind(4), name)?;
+                    }
+                    Field::Pad { .. } => {}
+                    Field::AlignPad { .. } => {}
+                    f => unreachable!("{:#?}", f),
+                }
+            }
+            writeln!(
+                out,
+                "{}{}{};",
+                cg::ind(3),
+                close,
+                if is_mask { ")" } else { "" }
+            )?;
+            writeln!(out, "{}}}", cg::ind(2))?;
+        }
+        writeln!(
+            out,
+            "{}unreachable!(\"Could not match any expression for {}\");",
+            cg::ind(2),
+            rs_typ
+        )?;
+        writeln!(out, "    }}")?;
+
         Ok(())
     }
 
@@ -468,11 +892,39 @@ impl CodeGen {
                     } => {
                         writeln!(out, "{}sz += {};", cg::ind(ind + 2), sz)?;
                     }
+                    Field::Field {
+                        mask,
+                        r#enum,
+                        rs_typ,
+                        ..
+                    } if mask.is_some() || r#enum.is_some() => {
+                        writeln!(
+                            out,
+                            "{}sz += std::mem::size_of::<{}>();",
+                            cg::ind(ind + 2),
+                            rs_typ
+                        )?;
+                    }
                     Field::Field { name, .. } => {
                         writeln!(out, "{}sz += {}.wire_len();", cg::ind(ind + 2), name)?;
                     }
                     Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                         writeln!(out, "{}sz += {}.len();", cg::ind(ind + 2), name)?;
+                    }
+                    Field::List {
+                        name,
+                        mask,
+                        r#enum,
+                        rs_typ,
+                        ..
+                    } if mask.is_some() || r#enum.is_some() => {
+                        writeln!(
+                            out,
+                            "{}sz += {}.len() * std::mem::size_of::<{}>();",
+                            cg::ind(ind + 2),
+                            name,
+                            rs_typ
+                        )?;
                     }
                     Field::List { name, .. } => {
                         writeln!(out, "{}for el in {} {{", cg::ind(ind + 2), name)?;
@@ -516,7 +968,6 @@ impl CodeGen {
         cases: &[SwitchCase],
         is_mask: bool,
     ) -> io::Result<()> {
-        writeln!(out)?;
         writeln!(
             out,
             "    fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
@@ -666,6 +1117,21 @@ impl CodeGen {
                         )?;
                         writeln!(out, "{}offset += {}.len();", cg::ind(ind + 2), name)?;
                     }
+                    Field::List {
+                        name,
+                        rs_typ,
+                        mask: Some(_),
+                        ..
+                    } => {
+                        writeln!(out, "{}for el in {} {{", cg::ind(ind + 2), name)?;
+                        writeln!(
+                            out,
+                            "{}offset += (el.bits() as {}).serialize(&mut wire_buf[offset..]);",
+                            cg::ind(ind + 3),
+                            rs_typ,
+                        )?;
+                        writeln!(out, "{}}}", cg::ind(ind + 2))?;
+                    }
                     Field::List { name, .. } => {
                         writeln!(out, "{}for el in {} {{", cg::ind(ind + 2), name)?;
                         writeln!(
@@ -723,10 +1189,14 @@ impl CodeGen {
         rs_typ: &str,
         mask: &(Option<String>, String),
         cases: &[SwitchCase],
+        params_struct: &ParamsStruct,
     ) -> io::Result<()> {
         let mask = (&mask.0, &mask.1).qualified_rs_typ();
         writeln!(out)?;
         writeln!(out, "impl {} {{", rs_typ)?;
+
+        self.emit_switch_ctor(out, rs_typ, true, cases, params_struct)?;
+
         writeln!(
             out,
             "    pub(crate) fn get_mask(slice: &[{}]) -> {} {{",
@@ -795,206 +1265,7 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(out, "impl {} {{", rs_typ)?;
 
-        writeln!(out, "    #[allow(unused_assignments)]")?;
-        writeln!(out, "    pub(crate) unsafe fn from_wire_data_and_expr(params: {}, wire_data: *const u8, expr: usize) -> Self {{", params_struct.rs_typ)?;
-
-        writeln!(out, "{}let {}{{", cg::ind(2), params_struct.rs_typ)?;
-        for p in &params_struct.params {
-            writeln!(out, "{}{},", cg::ind(3), p)?;
-        }
-        writeln!(out, "{}}} = params;", cg::ind(2))?;
-
-        for sc in cases {
-            let exprs: Vec<String> = sc
-                .exprs
-                .iter()
-                .map(|e| format!("expr == {}", self.build_rs_expr(e, "", "", &[])))
-                .collect();
-            let exprs = exprs.join("||");
-            writeln!(out, "{}if {} {{", cg::ind(2), exprs)?;
-
-            writeln!(out, "{}let mut offset = 0usize;", cg::ind(3))?;
-
-            for f in &sc.fields {
-                // TODO: remove fieldrefs
-                match f {
-                    Field::Field {
-                        name,
-                        rs_typ,
-                        wire_sz: Expr::Value(sz),
-                        r#enum: Some(r#enum),
-                        ..
-                    } => {
-                        let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
-                        writeln!(out, "{}let {} = std::mem::transmute::<_, {}>(*(wire_data.add(offset) as *const {}) as u32);", cg::ind(3), name, q_rs_typ, rs_typ)?;
-                        writeln!(out, "{}offset += {};", cg::ind(3), sz)?;
-                    }
-                    Field::Field {
-                        name,
-                        rs_typ,
-                        wire_sz: Expr::Value(sz),
-                        mask: Some(mask),
-                        ..
-                    } => {
-                        let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
-                        writeln!(out, "{}let {} = {}::from_bits(*(wire_data.add(offset) as *const {}) as u32).unwrap();", cg::ind(3), name, q_rs_typ, rs_typ)?;
-                        writeln!(out, "{}offset += {};", cg::ind(3), sz)?;
-                    }
-                    Field::Field {
-                        name,
-                        rs_typ,
-                        wire_sz: Expr::Value(sz),
-                        ..
-                    } if rs_typ == "bool" => {
-                        let wire_typ = format!("u{}", *sz * 8);
-                        writeln!(
-                            out,
-                            "{}let {} = *(wire_data.add(offset) as *const {}) != 0;",
-                            cg::ind(3),
-                            name,
-                            wire_typ
-                        )?;
-                        writeln!(out, "{}offset += {};", cg::ind(3), sz)?;
-                    }
-                    Field::Field {
-                        name,
-                        module,
-                        rs_typ,
-                        ..
-                    } => {
-                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                        writeln!(
-                            out,
-                            "{}let {} = *(wire_data.add(offset) as *const {});",
-                            cg::ind(3),
-                            name,
-                            q_rs_typ
-                        )?;
-                        writeln!(
-                            out,
-                            "{}offset += std::mem::size_of::<{}>();",
-                            cg::ind(3),
-                            q_rs_typ
-                        )?;
-                    }
-                    Field::List {
-                        name,
-                        rs_typ,
-                        len_expr,
-                        wire_sz,
-                        ..
-                    } if rs_typ == "char" => {
-                        let len_expr = self.build_rs_expr(len_expr, "", "", &sc.fields);
-                        assert_eq!(len_expr, self.build_rs_expr(wire_sz, "", "", &sc.fields));
-
-                        writeln!(
-                            out,
-                            "{}let {}_ptr = wire_data.add(offset);",
-                            cg::ind(3),
-                            name
-                        )?;
-                        writeln!(
-                            out,
-                            "{}let {}_bytes = std::slice::from_raw_parts({}_ptr, {});",
-                            cg::ind(3),
-                            name,
-                            name,
-                            len_expr,
-                        )?;
-                        writeln!(out, "{}let {} = std::str::from_utf8({}_bytes).expect(\"Invalid UTF-8 for {}::{}\");", cg::ind(3), name, name, rs_typ, name)?;
-                        writeln!(out, "{}let {} = String::from({});", cg::ind(3), name, name)?;
-                        writeln!(out, "{}offset += {}.len();", cg::ind(3), name)?;
-                    }
-                    Field::List {
-                        name,
-                        module,
-                        rs_typ,
-                        len_expr,
-                        ..
-                    } => {
-                        let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                        writeln!(out, "{}let mut {} = Vec::new();", cg::ind(3), name)?;
-                        writeln!(
-                            out,
-                            "{}for i in 0..{} {{",
-                            cg::ind(3),
-                            self.build_rs_expr(len_expr, "", "", &sc.fields)
-                        )?;
-                        writeln!(
-                            out,
-                            "{}{}.push(*(wire_data.add(offset) as *const {}));",
-                            cg::ind(4),
-                            name,
-                            q_rs_typ
-                        )?;
-                        writeln!(
-                            out,
-                            "{}offset += std::mem::size_of::<{}>();",
-                            cg::ind(4),
-                            q_rs_typ
-                        )?;
-                        writeln!(out, "{}}}", cg::ind(3))?;
-                    }
-                    Field::Pad {
-                        wire_sz: Expr::Value(sz),
-                        ..
-                    } => {
-                        writeln!(out, "{}offset += {}; // pad", cg::ind(3), sz)?;
-                    }
-                    Field::AlignPad {
-                        wire_sz: Expr::AlignPad(sz, _),
-                        ..
-                    } => {
-                        writeln!(
-                            out,
-                            "{}offset += base::align_pad(offset, {});",
-                            cg::ind(3),
-                            sz
-                        )?;
-                    }
-                    f => unreachable!("{:#?}", f),
-                }
-            }
-
-            let (open, close) = if sc.fields.len() == 1 {
-                ("(", ")")
-            } else {
-                ("{", "}")
-            };
-            writeln!(out, "{}return {}::{}{}", cg::ind(3), rs_typ, sc.name, open)?;
-            for f in &sc.fields {
-                match f {
-                    Field::Field {
-                        name,
-                        is_fieldref: true,
-                        ..
-                    } => {
-                        if request_fieldref_emitted(name, &sc.fields, false) {
-                            writeln!(out, "{}{},", cg::ind(4), name)?;
-                        }
-                    }
-                    Field::Field { name, .. } => {
-                        writeln!(out, "{}{},", cg::ind(4), name)?;
-                    }
-                    Field::List { name, .. } => {
-                        writeln!(out, "{}{},", cg::ind(4), name)?;
-                    }
-                    Field::Pad { .. } => {}
-                    Field::AlignPad { .. } => {}
-                    f => unreachable!("{:#?}", f),
-                }
-            }
-
-            writeln!(out, "{}{};", cg::ind(3), close)?;
-            writeln!(out, "{}}}", cg::ind(2))?;
-        }
-        writeln!(
-            out,
-            "{}unreachable!(\"Could not match any expression for {}\");",
-            cg::ind(2),
-            rs_typ
-        )?;
-        writeln!(out, "    }}")?;
+        self.emit_switch_ctor(out, rs_typ, false, cases, params_struct)?;
 
         writeln!(out)?;
         writeln!(out, "    pub(crate) fn get_enum(&self) -> {} {{", r#enum)?;
