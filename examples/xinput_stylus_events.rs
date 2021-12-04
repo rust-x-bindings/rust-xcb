@@ -61,7 +61,7 @@ fn main() -> xcb::Result<()> {
         device.expect("could not find a stylus device")
     };
 
-    println!("found device: {:?}", device);
+    println!("found device \"{}\" ({})", device.name, device.id);
 
     let cookie = conn.send_request(&xinput::OpenDevice {
         device_id: device.id as u8,
