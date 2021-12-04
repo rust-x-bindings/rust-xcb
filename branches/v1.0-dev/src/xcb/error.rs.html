@@ -516,7 +516,7 @@
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_error</span>(
     <span class="ident">error</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
     <span class="ident">extension_data</span>: <span class="kw-2">&amp;</span>[<span class="ident">ExtensionData</span>],
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">ProtocolError</span> {
+) -&gt; <span class="ident">ProtocolError</span> {
     <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">error</span>.<span class="ident">is_null</span>());
 
     <span class="kw">let</span> <span class="ident">error_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">error_code</span>;
@@ -527,7 +527,7 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">best</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">None</span>;
         <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">extension_data</span> {
-            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">major_opcode</span> <span class="op">=</span><span class="op">=</span> <span class="ident">major_code</span> {
+            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">major_opcode</span> <span class="op">==</span> <span class="ident">major_code</span> {
                 <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>.<span class="ident">ext</span>);
             }
             <span class="kw">if</span> <span class="ident">error_code</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">data</span>.<span class="ident">first_error</span> {
@@ -546,92 +546,92 @@
     <span class="kw">let</span> <span class="ident">emitted_by</span>;
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext</span>) <span class="op">=</span> <span class="ident">emitting_ext</span> {
         <span class="ident">emitted_by</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">ext</span> {
-            <span class="ident">Extension::BigRequests</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::bigreq::request_name</span>(<span class="ident">minor_code</span>),
-            <span class="ident">Extension::XcMisc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xc_misc::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::BigRequests</span> =&gt; <span class="ident"><span class="kw">crate</span>::bigreq::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::XcMisc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xc_misc::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-            <span class="ident">Extension::Composite</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::composite::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Composite</span> =&gt; <span class="ident"><span class="kw">crate</span>::composite::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::damage::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Damage</span> =&gt; <span class="ident"><span class="kw">crate</span>::damage::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-            <span class="ident">Extension::Dpms</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dpms::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Dpms</span> =&gt; <span class="ident"><span class="kw">crate</span>::dpms::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-            <span class="ident">Extension::Dri2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dri2::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Dri2</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri2::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-            <span class="ident">Extension::Dri3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dri3::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Dri3</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri3::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-            <span class="ident">Extension::GenericEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::ge::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::GenericEvent</span> =&gt; <span class="ident"><span class="kw">crate</span>::ge::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::glx::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Glx</span> =&gt; <span class="ident"><span class="kw">crate</span>::glx::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-            <span class="ident">Extension::Present</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::present::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Present</span> =&gt; <span class="ident"><span class="kw">crate</span>::present::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::randr::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::RandR</span> =&gt; <span class="ident"><span class="kw">crate</span>::randr::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-            <span class="ident">Extension::Record</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::record::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Record</span> =&gt; <span class="ident"><span class="kw">crate</span>::record::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-            <span class="ident">Extension::Render</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::render::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Render</span> =&gt; <span class="ident"><span class="kw">crate</span>::render::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-            <span class="ident">Extension::Res</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::res::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Res</span> =&gt; <span class="ident"><span class="kw">crate</span>::res::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-            <span class="ident">Extension::ScreenSaver</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::screensaver::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="ident"><span class="kw">crate</span>::screensaver::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-            <span class="ident">Extension::Shape</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::shape::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Shape</span> =&gt; <span class="ident"><span class="kw">crate</span>::shape::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::shm::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Shm</span> =&gt; <span class="ident"><span class="kw">crate</span>::shm::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::sync::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Sync</span> =&gt; <span class="ident"><span class="kw">crate</span>::sync::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-            <span class="ident">Extension::Xevie</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xevie::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xevie</span> =&gt; <span class="ident"><span class="kw">crate</span>::xevie::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86Dri</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xf86dri::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86dri::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86vidmode::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xfixes::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident"><span class="kw">crate</span>::xfixes::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-            <span class="ident">Extension::Xinerama</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xinerama::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xinerama</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinerama::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xinput::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Input</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinput::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xkb::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident"><span class="kw">crate</span>::xkb::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xprint::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident"><span class="kw">crate</span>::xprint::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-            <span class="ident">Extension::SeLinux</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xselinux::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::SeLinux</span> =&gt; <span class="ident"><span class="kw">crate</span>::xselinux::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-            <span class="ident">Extension::Test</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xtest::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Test</span> =&gt; <span class="ident"><span class="kw">crate</span>::xtest::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xv::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::Xv</span> =&gt; <span class="ident"><span class="kw">crate</span>::xv::request_name</span>(<span class="ident">minor_code</span>),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-            <span class="ident">Extension::XvMc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xvmc::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="ident">Extension::XvMc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xvmc::request_name</span>(<span class="ident">minor_code</span>),
         };
     } <span class="kw">else</span> {
         <span class="ident">emitted_by</span> <span class="op">=</span> <span class="ident"><span class="kw">crate</span>::x::request_name</span>(<span class="ident">minor_code</span>);
@@ -640,72 +640,72 @@
     <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext_data</span>) <span class="op">=</span> <span class="ident">best</span> {
         <span class="kw">match</span> <span class="ident">ext_data</span>.<span class="ident">ext</span> {
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Damage</span>(
+            <span class="ident">Extension::Damage</span> =&gt; <span class="ident">ProtocolError::Damage</span>(
                 <span class="ident">damage::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Glx</span>(
+            <span class="ident">Extension::Glx</span> =&gt; <span class="ident">ProtocolError::Glx</span>(
                 <span class="ident">glx::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::RandR</span>(
+            <span class="ident">Extension::RandR</span> =&gt; <span class="ident">ProtocolError::RandR</span>(
                 <span class="ident">randr::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Shm</span>(
+            <span class="ident">Extension::Shm</span> =&gt; <span class="ident">ProtocolError::Shm</span>(
                 <span class="ident">shm::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Sync</span>(
+            <span class="ident">Extension::Sync</span> =&gt; <span class="ident">ProtocolError::Sync</span>(
                 <span class="ident">sync::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Xf86VidMode</span>(
+            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident">ProtocolError::Xf86VidMode</span>(
                 <span class="ident">xf86vidmode::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::XFixes</span>(
+            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident">ProtocolError::XFixes</span>(
                 <span class="ident">xfixes::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Input</span>(
+            <span class="ident">Extension::Input</span> =&gt; <span class="ident">ProtocolError::Input</span>(
                 <span class="ident">xinput::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Xkb</span>(
+            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident">ProtocolError::Xkb</span>(
                 <span class="ident">xkb::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::XPrint</span>(
+            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident">ProtocolError::XPrint</span>(
                 <span class="ident">xprint::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">ProtocolError::Xv</span>(
+            <span class="ident">Extension::Xv</span> =&gt; <span class="ident">ProtocolError::Xv</span>(
                 <span class="ident">xv::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
                 <span class="ident">emitted_by</span>,
             ),
 
-            <span class="kw">_</span> <span class="op">=</span><span class="op">&gt;</span> <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension event&quot;</span>),
+            <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension event&quot;</span>),
         }
     } <span class="kw">else</span> {
         <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::resolve_wire_error</span>(<span class="number">0</span>, <span class="ident">error</span>), <span class="ident">emitted_by</span>)
@@ -730,7 +730,7 @@
     <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [];
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;x::DestroyWindow&quot;</span>)
+        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;x::DestroyWindow&quot;</span>)
     );
     <span class="ident">mem::forget</span>(<span class="ident">err</span>);
 
@@ -762,7 +762,7 @@
     ];
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
     <span class="ident">mem::forget</span>(<span class="ident">err</span>);
 
@@ -794,7 +794,7 @@
     ];
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
     <span class="ident">mem::forget</span>(<span class="ident">err</span>);
 
@@ -826,7 +826,7 @@
     ];
     <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
     <span class="ident">mem::forget</span>(<span class="ident">err</span>);
 }

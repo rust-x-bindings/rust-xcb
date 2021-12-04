@@ -583,100 +583,100 @@
 <span class="kw">impl</span> <span class="ident">Extension</span> {
     <span class="doccomment">/// Returns the official X-Name of the extension,</span>
     <span class="doccomment">/// such as `&quot;BIG-REQUESTS&quot;`.</span>
-    <span class="kw">fn</span> <span class="ident">xname</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
+    <span class="kw">fn</span> <span class="ident">xname</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Extension::BigRequests</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::bigreq::XNAME</span>,
-            <span class="ident">Extension::XcMisc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xc_misc::XNAME</span>,
+            <span class="ident">Extension::BigRequests</span> =&gt; <span class="ident"><span class="kw">crate</span>::bigreq::XNAME</span>,
+            <span class="ident">Extension::XcMisc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xc_misc::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-            <span class="ident">Extension::Composite</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::composite::XNAME</span>,
+            <span class="ident">Extension::Composite</span> =&gt; <span class="ident"><span class="kw">crate</span>::composite::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::damage::XNAME</span>,
+            <span class="ident">Extension::Damage</span> =&gt; <span class="ident"><span class="kw">crate</span>::damage::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-            <span class="ident">Extension::Dpms</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dpms::XNAME</span>,
+            <span class="ident">Extension::Dpms</span> =&gt; <span class="ident"><span class="kw">crate</span>::dpms::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-            <span class="ident">Extension::Dri2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dri2::XNAME</span>,
+            <span class="ident">Extension::Dri2</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri2::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-            <span class="ident">Extension::Dri3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::dri3::XNAME</span>,
+            <span class="ident">Extension::Dri3</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri3::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-            <span class="ident">Extension::GenericEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::ge::XNAME</span>,
+            <span class="ident">Extension::GenericEvent</span> =&gt; <span class="ident"><span class="kw">crate</span>::ge::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::glx::XNAME</span>,
+            <span class="ident">Extension::Glx</span> =&gt; <span class="ident"><span class="kw">crate</span>::glx::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-            <span class="ident">Extension::Present</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::present::XNAME</span>,
+            <span class="ident">Extension::Present</span> =&gt; <span class="ident"><span class="kw">crate</span>::present::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::randr::XNAME</span>,
+            <span class="ident">Extension::RandR</span> =&gt; <span class="ident"><span class="kw">crate</span>::randr::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-            <span class="ident">Extension::Record</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::record::XNAME</span>,
+            <span class="ident">Extension::Record</span> =&gt; <span class="ident"><span class="kw">crate</span>::record::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-            <span class="ident">Extension::Render</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::render::XNAME</span>,
+            <span class="ident">Extension::Render</span> =&gt; <span class="ident"><span class="kw">crate</span>::render::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-            <span class="ident">Extension::Res</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::res::XNAME</span>,
+            <span class="ident">Extension::Res</span> =&gt; <span class="ident"><span class="kw">crate</span>::res::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-            <span class="ident">Extension::ScreenSaver</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::screensaver::XNAME</span>,
+            <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="ident"><span class="kw">crate</span>::screensaver::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-            <span class="ident">Extension::Shape</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::shape::XNAME</span>,
+            <span class="ident">Extension::Shape</span> =&gt; <span class="ident"><span class="kw">crate</span>::shape::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::shm::XNAME</span>,
+            <span class="ident">Extension::Shm</span> =&gt; <span class="ident"><span class="kw">crate</span>::shm::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::sync::XNAME</span>,
+            <span class="ident">Extension::Sync</span> =&gt; <span class="ident"><span class="kw">crate</span>::sync::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-            <span class="ident">Extension::Xevie</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xevie::XNAME</span>,
+            <span class="ident">Extension::Xevie</span> =&gt; <span class="ident"><span class="kw">crate</span>::xevie::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86Dri</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xf86dri::XNAME</span>,
+            <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86dri::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode::XNAME</span>,
+            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86vidmode::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xfixes::XNAME</span>,
+            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident"><span class="kw">crate</span>::xfixes::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-            <span class="ident">Extension::Xinerama</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xinerama::XNAME</span>,
+            <span class="ident">Extension::Xinerama</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinerama::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xinput::XNAME</span>,
+            <span class="ident">Extension::Input</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinput::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xkb::XNAME</span>,
+            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident"><span class="kw">crate</span>::xkb::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xprint::XNAME</span>,
+            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident"><span class="kw">crate</span>::xprint::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-            <span class="ident">Extension::SeLinux</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xselinux::XNAME</span>,
+            <span class="ident">Extension::SeLinux</span> =&gt; <span class="ident"><span class="kw">crate</span>::xselinux::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-            <span class="ident">Extension::Test</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xtest::XNAME</span>,
+            <span class="ident">Extension::Test</span> =&gt; <span class="ident"><span class="kw">crate</span>::xtest::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xv::XNAME</span>,
+            <span class="ident">Extension::Xv</span> =&gt; <span class="ident"><span class="kw">crate</span>::xv::XNAME</span>,
 
             <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-            <span class="ident">Extension::XvMc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident"><span class="kw">crate</span>::xvmc::XNAME</span>,
+            <span class="ident">Extension::XvMc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xvmc::XNAME</span>,
         }
     }
 }
 
 <span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Extension</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">fmt::Result</span> {
+    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
         <span class="self">self</span>.<span class="ident">xname</span>().<span class="ident">fmt</span>(<span class="ident">f</span>)
     }
 }
@@ -696,7 +696,7 @@
     <span class="ident">conn</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
     <span class="ident">mandatory</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
     <span class="ident">optional</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
-) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> {
+) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> {
     <span class="kw">unsafe</span> {
         <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">mandatory</span> {
             <span class="kw">let</span> <span class="ident">ext_id</span> <span class="op">=</span> <span class="ident">get_extension_id</span>(<span class="kw-2">*</span><span class="ident">ext</span>);
@@ -754,94 +754,94 @@
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_extension_id</span>(<span class="ident">ext</span>: <span class="ident">Extension</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span> {
+<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_extension_id</span>(<span class="ident">ext</span>: <span class="ident">Extension</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span> {
     <span class="kw">match</span> <span class="ident">ext</span> {
-        <span class="ident">Extension::BigRequests</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::bigreq::FFI_EXT</span>,
-        <span class="ident">Extension::XcMisc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xc_misc::FFI_EXT</span>,
+        <span class="ident">Extension::BigRequests</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::bigreq::FFI_EXT</span>,
+        <span class="ident">Extension::XcMisc</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xc_misc::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-        <span class="ident">Extension::Composite</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::composite::FFI_EXT</span>,
+        <span class="ident">Extension::Composite</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::composite::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-        <span class="ident">Extension::Damage</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::damage::FFI_EXT</span>,
+        <span class="ident">Extension::Damage</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::damage::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-        <span class="ident">Extension::Dpms</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dpms::FFI_EXT</span>,
+        <span class="ident">Extension::Dpms</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dpms::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-        <span class="ident">Extension::Dri2</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dri2::FFI_EXT</span>,
+        <span class="ident">Extension::Dri2</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dri2::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-        <span class="ident">Extension::Dri3</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dri3::FFI_EXT</span>,
+        <span class="ident">Extension::Dri3</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::dri3::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-        <span class="ident">Extension::GenericEvent</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::ge::FFI_EXT</span>,
+        <span class="ident">Extension::GenericEvent</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::ge::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-        <span class="ident">Extension::Glx</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::glx::FFI_EXT</span>,
+        <span class="ident">Extension::Glx</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::glx::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-        <span class="ident">Extension::Present</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::present::FFI_EXT</span>,
+        <span class="ident">Extension::Present</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::present::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-        <span class="ident">Extension::RandR</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::randr::FFI_EXT</span>,
+        <span class="ident">Extension::RandR</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::randr::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-        <span class="ident">Extension::Record</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::record::FFI_EXT</span>,
+        <span class="ident">Extension::Record</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::record::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-        <span class="ident">Extension::Render</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::render::FFI_EXT</span>,
+        <span class="ident">Extension::Render</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::render::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-        <span class="ident">Extension::Res</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::res::FFI_EXT</span>,
+        <span class="ident">Extension::Res</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::res::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-        <span class="ident">Extension::ScreenSaver</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::screensaver::FFI_EXT</span>,
+        <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::screensaver::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-        <span class="ident">Extension::Shape</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::shape::FFI_EXT</span>,
+        <span class="ident">Extension::Shape</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::shape::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-        <span class="ident">Extension::Shm</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::shm::FFI_EXT</span>,
+        <span class="ident">Extension::Shm</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::shm::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-        <span class="ident">Extension::Sync</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::sync::FFI_EXT</span>,
+        <span class="ident">Extension::Sync</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::sync::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-        <span class="ident">Extension::Xevie</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xevie::FFI_EXT</span>,
+        <span class="ident">Extension::Xevie</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xevie::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-        <span class="ident">Extension::Xf86Dri</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xf86dri::FFI_EXT</span>,
+        <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xf86dri::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-        <span class="ident">Extension::Xf86VidMode</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode::FFI_EXT</span>,
+        <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-        <span class="ident">Extension::XFixes</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xfixes::FFI_EXT</span>,
+        <span class="ident">Extension::XFixes</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xfixes::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-        <span class="ident">Extension::Xinerama</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xinerama::FFI_EXT</span>,
+        <span class="ident">Extension::Xinerama</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xinerama::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-        <span class="ident">Extension::Input</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xinput::FFI_EXT</span>,
+        <span class="ident">Extension::Input</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xinput::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-        <span class="ident">Extension::Xkb</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xkb::FFI_EXT</span>,
+        <span class="ident">Extension::Xkb</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xkb::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-        <span class="ident">Extension::XPrint</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xprint::FFI_EXT</span>,
+        <span class="ident">Extension::XPrint</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xprint::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-        <span class="ident">Extension::SeLinux</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xselinux::FFI_EXT</span>,
+        <span class="ident">Extension::SeLinux</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xselinux::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-        <span class="ident">Extension::Test</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xtest::FFI_EXT</span>,
+        <span class="ident">Extension::Test</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xtest::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-        <span class="ident">Extension::Xv</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xv::FFI_EXT</span>,
+        <span class="ident">Extension::Xv</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xv::FFI_EXT</span>,
 
         <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-        <span class="ident">Extension::XvMc</span> <span class="op">=</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xvmc::FFI_EXT</span>,
+        <span class="ident">Extension::XvMc</span> =&gt; <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident"><span class="kw">crate</span>::xvmc::FFI_EXT</span>,
     }
 }
 </code></pre></div>

@@ -104,7 +104,7 @@
 <span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;X11-xcb&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="doccomment">/// Get an XCB connection from the `xlib::Display`.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>;
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>;
     <span class="doccomment">/// Set the owner of the X client event queue.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSetEventQueueOwner</span>(<span class="ident">dpy</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xlib::Display</span>, <span class="ident">owner</span>: <span class="ident">XEventQueueOwner</span>);
 }
