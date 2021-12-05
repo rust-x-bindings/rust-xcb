@@ -2307,8 +2307,8 @@ impl CodeGen {
                 Field::List { .. } => {
                     // TODO
                 }
-                Field::Switch { .. } => {
-                    // TODO
+                Field::Switch { name, .. } => {
+                    writeln!(out, "{}.field(\"{}\", &self.{}())", cg::ind(3), name, name)?;
                 }
                 Field::Pad {
                     wire_sz: Expr::Value(sz),
