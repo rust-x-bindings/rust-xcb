@@ -2097,17 +2097,6 @@ impl CodeGen {
                     doc,
                     ..
                 } => {
-                    if *is_mask {
-                        continue;
-                    }
-                    let params_expr = self.build_params_expr(
-                        Some(params_struct),
-                        module.as_ref().map(|s| s.as_str()),
-                        "self.",
-                        "()",
-                    );
-                    let switch_expr = self.build_rs_expr(expr, "self.", "()", fields);
-                    let offset_expr = self.build_rs_expr(wire_off, "self.", "()", fields);
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
@@ -2123,6 +2112,45 @@ impl CodeGen {
                         name,
                         return_typ
                     )?;
+                    // must define all params locally as usize because build_params_expr
+                    // cannot know if a field is a mask or not
+                    for p in &params_struct.params {
+                        let mut caught = false;
+                        for f in fields {
+                            match f {
+                                Field::Field {
+                                    name,
+                                    mask: Some(_),
+                                    ..
+                                } if name == p => {
+                                    writeln!(
+                                        out,
+                                        "{}let {} = self.{}().bits();",
+                                        cg::ind(2),
+                                        name,
+                                        name
+                                    )?;
+                                    caught = true;
+                                    break;
+                                }
+                                Field::Field { name, .. } if name == p => {
+                                    writeln!(out, "{}let {} = self.{}();", cg::ind(2), name, name)?;
+                                    caught = true;
+                                    break;
+                                }
+                                _ => {}
+                            }
+                        }
+                        assert!(caught);
+                    }
+                    let params_expr = self.build_params_expr(
+                        Some(params_struct),
+                        module.as_ref().map(|s| s.as_str()),
+                        "",
+                        "",
+                    );
+                    let switch_expr = self.build_rs_expr(expr, "self.", "()", fields);
+                    let offset_expr = self.build_rs_expr(wire_off, "self.", "()", fields);
                     writeln!(out, "{}let params = {};", cg::ind(2), params_expr)?;
                     writeln!(out, "{}let offset = {};", cg::ind(2), offset_expr)?;
                     writeln!(out, "{}let switch = {};", cg::ind(2), switch_expr)?;
@@ -2279,8 +2307,8 @@ impl CodeGen {
                 Field::List { .. } => {
                     // TODO
                 }
-                Field::Switch { .. } => {
-                    // TODO
+                Field::Switch { name, .. } => {
+                    writeln!(out, "{}.field(\"{}\", &self.{}())", cg::ind(3), name, name)?;
                 }
                 Field::Pad {
                     wire_sz: Expr::Value(sz),
