@@ -2283,36 +2283,34 @@ impl CodeGen {
             "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{"
         )?;
         for f in fields {
-            match f {
-                Field::List {
-                    name,
-                    is_prop: true,
-                    ..
-                } => {
+            if let Field::List {
+                name,
+                is_prop: true,
+                ..
+            } = f
+            {
+                writeln!(
+                    out,
+                    "{}let {}: Box<dyn std::fmt::Debug> = match self.format() {{",
+                    cg::ind(2),
+                    name
+                )?;
+                for format in [8, 16, 32] {
                     writeln!(
                         out,
-                        "{}let {}: Box<dyn std::fmt::Debug> = match self.format() {{",
-                        cg::ind(2),
-                        name
+                        "{}{} => Box::new(self.{}::<u{}>()),",
+                        cg::ind(3),
+                        format,
+                        name,
+                        format
                     )?;
-                    for format in [8, 16, 32] {
-                        writeln!(
-                            out,
-                            "{}{} => Box::new(self.{}::<u{}>()),",
-                            cg::ind(3),
-                            format,
-                            name,
-                            format
-                        )?;
-                    }
-                    writeln!(
-                        out,
-                        "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
-                        cg::ind(3)
-                    )?;
-                    writeln!(out, "{}}};", cg::ind(2))?;
                 }
-                _ => {}
+                writeln!(
+                    out,
+                    "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
+                    cg::ind(3)
+                )?;
+                writeln!(out, "{}}};", cg::ind(2))?;
             }
         }
         writeln!(out, "        f.debug_struct(\"{}\")", rs_typ)?;
