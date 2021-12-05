@@ -2282,6 +2282,37 @@ impl CodeGen {
             out,
             "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{"
         )?;
+        for f in fields {
+            if let Field::List {
+                name,
+                is_prop: true,
+                ..
+            } = f
+            {
+                writeln!(
+                    out,
+                    "{}let {}: Box<dyn std::fmt::Debug> = match self.format() {{",
+                    cg::ind(2),
+                    name
+                )?;
+                for format in [8, 16, 32] {
+                    writeln!(
+                        out,
+                        "{}{} => Box::new(self.{}::<u{}>()),",
+                        cg::ind(3),
+                        format,
+                        name,
+                        format
+                    )?;
+                }
+                writeln!(
+                    out,
+                    "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
+                    cg::ind(3)
+                )?;
+                writeln!(out, "{}}};", cg::ind(2))?;
+            }
+        }
         writeln!(out, "        f.debug_struct(\"{}\")", rs_typ)?;
         for f in fields {
             match f {
@@ -2293,13 +2324,7 @@ impl CodeGen {
                     is_prop: true,
                     ..
                 } => {
-                    writeln!(
-                        out,
-                        "{}.field(\"{}\", &self.{}::<u8>())",
-                        cg::ind(3),
-                        name,
-                        name
-                    )?;
+                    writeln!(out, "{}.field(\"{}\", &*{})", cg::ind(3), name, name)?;
                 }
                 Field::List { name, wire_sz, .. } if wire_sz.params().is_empty() => {
                     writeln!(out, "{}.field(\"{}\", &self.{}())", cg::ind(3), name, name)?;
