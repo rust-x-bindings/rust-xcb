@@ -10101,6 +10101,18 @@
 <span id="10101">10101</span>
 <span id="10102">10102</span>
 <span id="10103">10103</span>
+<span id="10104">10104</span>
+<span id="10105">10105</span>
+<span id="10106">10106</span>
+<span id="10107">10107</span>
+<span id="10108">10108</span>
+<span id="10109">10109</span>
+<span id="10110">10110</span>
+<span id="10111">10111</span>
+<span id="10112">10112</span>
+<span id="10113">10113</span>
+<span id="10114">10114</span>
+<span id="10115">10115</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from randr.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -15080,6 +15092,12 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetOutputPropertyReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="ident">data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">format</span>() {
+            <span class="number">8</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()),
+            <span class="number">16</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()),
+            <span class="number">32</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()),
+            <span class="ident">format</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;impossible prop format: {}&quot;</span>, <span class="ident">format</span>),
+        };
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetOutputPropertyReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;format&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">format</span>())
@@ -15089,7 +15107,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;bytes_after&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes_after</span>())
             .<span class="ident">field</span>(<span class="string">&quot;num_items&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">num_items</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">12</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">data</span>)
             .<span class="ident">finish</span>()
     }
 }
@@ -19467,6 +19485,12 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetProviderPropertyReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="ident">data</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">format</span>() {
+            <span class="number">8</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()),
+            <span class="number">16</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()),
+            <span class="number">32</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()),
+            <span class="ident">format</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;impossible prop format: {}&quot;</span>, <span class="ident">format</span>),
+        };
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetProviderPropertyReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;format&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">format</span>())
@@ -19476,7 +19500,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;bytes_after&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes_after</span>())
             .<span class="ident">field</span>(<span class="string">&quot;num_items&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">num_items</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">12</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;data&quot;</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">data</span>)
             .<span class="ident">finish</span>()
     }
 }

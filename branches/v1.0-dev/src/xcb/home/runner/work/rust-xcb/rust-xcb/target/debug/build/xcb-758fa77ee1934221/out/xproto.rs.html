@@ -25280,6 +25280,12 @@
 <span id="25280">25280</span>
 <span id="25281">25281</span>
 <span id="25282">25282</span>
+<span id="25283">25283</span>
+<span id="25284">25284</span>
+<span id="25285">25285</span>
+<span id="25286">25286</span>
+<span id="25287">25287</span>
+<span id="25288">25288</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -38423,6 +38429,12 @@
 
 <span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">GetPropertyReply</span> {
     <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
+        <span class="kw">let</span> <span class="ident">value</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">std::fmt::Debug</span><span class="op">&gt;</span> <span class="op">=</span> <span class="kw">match</span> <span class="self">self</span>.<span class="ident">format</span>() {
+            <span class="number">8</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">value</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>()),
+            <span class="number">16</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">value</span>::<span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>()),
+            <span class="number">32</span> =&gt; <span class="ident">Box::new</span>(<span class="self">self</span>.<span class="ident">value</span>::<span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>()),
+            <span class="ident">format</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;impossible prop format: {}&quot;</span>, <span class="ident">format</span>),
+        };
         <span class="ident">f</span>.<span class="ident">debug_struct</span>(<span class="string">&quot;GetPropertyReply&quot;</span>)
             .<span class="ident">field</span>(<span class="string">&quot;response_type&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">response_type</span>())
             .<span class="ident">field</span>(<span class="string">&quot;format&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">format</span>())
@@ -38432,7 +38444,7 @@
             .<span class="ident">field</span>(<span class="string">&quot;bytes_after&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">bytes_after</span>())
             .<span class="ident">field</span>(<span class="string">&quot;value_len&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value_len</span>())
             .<span class="ident">field</span>(<span class="string">&quot;pad&quot;</span>, <span class="kw-2">&amp;</span><span class="number">12</span>)
-            .<span class="ident">field</span>(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">value</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>())
+            .<span class="ident">field</span>(<span class="string">&quot;value&quot;</span>, <span class="kw-2">&amp;</span><span class="kw-2">*</span><span class="ident">value</span>)
             .<span class="ident">finish</span>()
     }
 }
