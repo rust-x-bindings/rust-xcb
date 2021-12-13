@@ -610,6 +610,14 @@ pub struct Connection {
     dpy: *mut xlib::Display,
 
     ext_data: Vec<ExtensionData>,
+
+    // Following field is used to handle the
+    // rare (if existing) cases of multiple connections
+    // per application.
+    // Only the first established connections is used
+    // to print the name of atoms during Debug
+    #[cfg(feature = "debug_atom_names")]
+    dbg_atom_names: bool,
 }
 
 unsafe impl Send for Connection {}
@@ -839,20 +847,7 @@ impl Connection {
     /// # Safety
     /// The `conn` pointer must point to a valid `xcb_connection_t`
     pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
-        assert!(!conn.is_null());
-
-        #[cfg(not(feature = "xlib_xcb"))]
-        return Connection {
-            c: conn,
-            ext_data: Vec::new(),
-        };
-
-        #[cfg(feature = "xlib_xcb")]
-        return Connection {
-            c: conn,
-            dpy: ptr::null_mut(),
-            ext_data: Vec::new(),
-        };
+        Self::from_raw_conn_and_extensions(conn, &[], &[])
     }
 
     /// Builds a new `Connection` object from an available connection and cache the extension data
@@ -872,16 +867,45 @@ impl Connection {
     ) -> Connection {
         assert!(!conn.is_null());
 
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = conn;
+                true
+            } else {
+                false
+            }
+        };
+
         let ext_data = cache_extensions_data(conn, mandatory, optional);
 
         #[cfg(not(feature = "xlib_xcb"))]
+        #[cfg(not(feature = "debug_atom_names"))]
         return Connection { c: conn, ext_data };
 
+        #[cfg(not(feature = "xlib_xcb"))]
+        #[cfg(feature = "debug_atom_names")]
+        return Connection {
+            c: conn,
+            ext_data,
+            dbg_atom_names,
+        };
+
         #[cfg(feature = "xlib_xcb")]
+        #[cfg(not(feature = "debug_atom_names"))]
         return Connection {
             c: conn,
             dpy: ptr::null_mut(),
             ext_data,
+        };
+
+        #[cfg(feature = "xlib_xcb")]
+        #[cfg(feature = "debug_atom_names")]
+        return Connection {
+            c: conn,
+            dpy: ptr::null_mut(),
+            ext_data,
+            dbg_atom_names,
         };
     }
 
@@ -916,9 +940,23 @@ impl Connection {
         assert!(!dpy.is_null(), "attempt connect with null display");
         let c = XGetXCBConnection(dpy);
 
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = c;
+                true
+            } else {
+                false
+            }
+        };
+
         let ext_data = cache_extensions_data(c, mandatory, optional);
 
-        Connection { c, dpy, ext_data }
+        #[cfg(feature = "debug_atom_names")]
+        return Connection { c, dpy, ext_data, dbg_atom_names };
+
+        #[cfg(not(feature = "debug_atom_names"))]
+        return Connection { c, dpy, ext_data };
     }
 
     /// Get the extensions activated for this connection.
@@ -1492,6 +1530,13 @@ impl AsRawFd for Connection {
 
 impl Drop for Connection {
     fn drop(&mut self) {
+        #[cfg(feature = "debug_atom_names")]
+        if self.dbg_atom_names {
+            unsafe {
+                dan::DAN_CONN = ptr::null_mut();
+            }
+        }
+
         #[cfg(not(feature = "xlib_xcb"))]
         unsafe {
             xcb_disconnect(self.c);
@@ -1503,6 +1548,55 @@ impl Drop for Connection {
                 xcb_disconnect(self.c);
             } else {
                 xlib::XCloseDisplay(self.dpy);
+            }
+        }
+    }
+}
+
+#[cfg(feature = "debug_atom_names")]
+mod dan {
+    use super::{Connection, Xid};
+    use crate::ffi::base::xcb_connection_t;
+    use crate::x;
+
+    use std::fmt;
+    use std::mem;
+    use std::ptr;
+
+    pub(crate) static mut DAN_CONN: *mut xcb_connection_t = ptr::null_mut();
+
+    impl fmt::Debug for x::Atom {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            let mut write = |name: &str| -> fmt::Result {
+                f.write_fmt(format_args!("Atom(\"{}\" ; {})", name, self.resource_id()))
+            };
+            if let Some(name) = x::predefined_atom_name(*self) {
+                write(name)
+            } else {
+                let conn = unsafe { Connection::from_raw_conn(DAN_CONN) };
+
+                let cookie = conn.send_request(&x::GetAtomName { atom: *self });
+                let reply = conn.wait_for_reply(cookie).map_err(|err| {
+                    eprintln!(
+                        "Error during fmt::Debug of x::Atom (fetching atom name): {:#?}",
+                        err
+                    );
+                    fmt::Error
+                })?;
+
+                let name = reply.name().map_err(|err| {
+                    eprintln!(
+                        "Non UTF-8 name received for x::Atom {}: {:#?}",
+                        self.resource_id(),
+                        err
+                    );
+                    fmt::Error
+                })?;
+
+                write(name)?;
+
+                mem::forget(conn);
+                Ok(())
             }
         }
     }
