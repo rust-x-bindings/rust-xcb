@@ -638,14 +638,6 @@
 <span id="638">638</span>
 <span id="639">639</span>
 <span id="640">640</span>
-<span id="641">641</span>
-<span id="642">642</span>
-<span id="643">643</span>
-<span id="644">644</span>
-<span id="645">645</span>
-<span id="646">646</span>
-<span id="647">647</span>
-<span id="648">648</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -899,16 +891,8 @@
 <span class="doccomment">//! When this feature is activated, the `fmt::Debug` implementation for `x::Atom` will print</span>
 <span class="doccomment">//! out the name of the atom in addition to its value.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! E.g. the feature would turn:</span>
-<span class="doccomment">//! ```ignore</span>
-<span class="doccomment">//! Atom {</span>
-<span class="doccomment">//!     res_id: 303,</span>
-<span class="doccomment">//! }</span>
-<span class="doccomment">//! ```</span>
-<span class="doccomment">//! into</span>
-<span class="doccomment">//! ```ignore</span>
-<span class="doccomment">//! Atom(&quot;Abs Pressure&quot; ; 303)</span>
-<span class="doccomment">//! ```</span>
+<span class="doccomment">//! E.g. the feature would turn `Atom { res_id: 303 }` into `Atom(&quot;Abs Pressure&quot; ; 303)`.</span>
+<span class="doccomment">//!</span>
 <span class="doccomment">//! This can be useful in situations where you are not sure which atom you have to intern</span>
 <span class="doccomment">//! in order to look up some data in a reply.</span>
 <span class="doccomment">//!</span>
