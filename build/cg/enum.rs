@@ -112,6 +112,25 @@ impl CodeGen {
                 )?;
             }
 
+            if self.dbg_atom_names {
+                writeln!(out)?;
+                writeln!(
+                    out,
+                    "/// Get the name of an Atom if it is in the predefined list"
+                )?;
+                writeln!(
+                    out,
+                    "pub(crate) fn predefined_atom_name(atom: Atom) -> Option<&'static str> {{"
+                )?;
+                writeln!(out, "{}match atom.resource_id() {{", cg::ind(1))?;
+                for item in items {
+                    writeln!(out, "{}{} => Some(\"{}\"),", cg::ind(2), item.1, item.0)?;
+                }
+                writeln!(out, "{}_ => None,", cg::ind(2))?;
+                writeln!(out, "{}}}", cg::ind(1))?;
+                writeln!(out, "}}")?;
+            }
+
             return Ok(());
         }
 

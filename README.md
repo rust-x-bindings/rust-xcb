@@ -188,3 +188,26 @@ fn main() -> xcb::Result<()> {
     }
 }
 ```
+
+## Debugging
+
+All types in Rust XCB implement `Debug` in a way that allows recursive debug print.
+E.g. iterators will not print a useless pointer value, but will recurse down to each element.
+
+There is in addition the optional `"debug_atom_names"` cargo feature under which each atom
+will print its name for easier debugging in some situations.
+For example, Xinput provide some information about input devices with atom identifiers.
+This allows you to quickly look-up which atoms you need to intern and seek for.
+E.g. the feature would turn:
+```
+Atom {
+    res_id: 303,
+}
+```
+into
+```
+Atom("Abs Pressure" ; 303)
+```
+
+The feature sets global variable to have access to the connection in the `Debug::fmt` call,
+so it should be activated only when needed.

@@ -42,19 +42,26 @@ fn main() -> io::Result<()> {
     if rustfmt.is_some() && export.is_some() {
         panic!("RXCB_EXPORT and RXCB_RUSTFMT do not work well together. Please choose one or the other.");
     }
+    let dbg_atom_names = has_feature("debug_atom_names");
 
     let mut dep_info = Vec::new();
 
     for xml_file in iter_xml(&xml_dir) {
-        process_xcb_gen(&xml_file, out_dir, &rustfmt, gen_all, &mut dep_info).unwrap_or_else(
-            |err| {
-                panic!(
-                    "Error during processing of {}: {:?}",
-                    xml_file.display(),
-                    err
-                )
-            },
-        );
+        process_xcb_gen(
+            &xml_file,
+            out_dir,
+            &rustfmt,
+            gen_all,
+            &mut dep_info,
+            dbg_atom_names,
+        )
+        .unwrap_or_else(|err| {
+            panic!(
+                "Error during processing of {}: {:?}",
+                xml_file.display(),
+                err
+            )
+        });
     }
 
     if let Some(export) = export {
@@ -134,6 +141,7 @@ fn process_xcb_gen(
     rustfmt: &Option<PathBuf>,
     gen_all: bool,
     dep_info: &mut Vec<DepInfo>,
+    dbg_atom_names: bool,
 ) -> Result<()> {
     let xcb_mod = xml_file.file_stem().unwrap();
     let xcb_mod = xcb_mod.to_str().unwrap().to_string();
@@ -176,7 +184,15 @@ fn process_xcb_gen(
             let xml_file = xml_file.with_file_name(&format!("{}.xml", i));
 
             // panic also from here to have the correct xml_file reported
-            process_xcb_gen(&xml_file, out_dir, rustfmt, gen_all, dep_info).unwrap_or_else(|err| {
+            process_xcb_gen(
+                &xml_file,
+                out_dir,
+                rustfmt,
+                gen_all,
+                dep_info,
+                dbg_atom_names,
+            )
+            .unwrap_or_else(|err| {
                 panic!(
                     "Error during processing of {}: {:?}",
                     xml_file.display(),
@@ -194,7 +210,7 @@ fn process_xcb_gen(
     let mut out = Output::new(rustfmt, &out_file)
         .unwrap_or_else(|_| panic!("cannot create Rust output file: {}", out_file.display()));
 
-    let mut cg = CodeGen::new(xcb_mod, &mod_info.1, deps);
+    let mut cg = CodeGen::new(xcb_mod, &mod_info.1, deps, dbg_atom_names);
 
     for item in &items {
         cg.preregister_item(item);
