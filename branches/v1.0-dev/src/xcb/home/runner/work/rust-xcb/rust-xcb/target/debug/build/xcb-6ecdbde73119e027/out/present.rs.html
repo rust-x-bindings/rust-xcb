@@ -1818,6 +1818,21 @@
 <span id="1818">1818</span>
 <span id="1819">1819</span>
 <span id="1820">1820</span>
+<span id="1821">1821</span>
+<span id="1822">1822</span>
+<span id="1823">1823</span>
+<span id="1824">1824</span>
+<span id="1825">1825</span>
+<span id="1826">1826</span>
+<span id="1827">1827</span>
+<span id="1828">1828</span>
+<span id="1829">1829</span>
+<span id="1830">1830</span>
+<span id="1831">1831</span>
+<span id="1832">1832</span>
+<span id="1833">1833</span>
+<span id="1834">1834</span>
+<span id="1835">1835</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from present.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -2029,6 +2044,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GenericEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GenericEvent</span> {}
 
 <span class="doccomment">/// The `ConfigureNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConfigureNotifyEvent</span> {
@@ -2252,6 +2270,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ConfigureNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ConfigureNotifyEvent</span> {}
+
 <span class="doccomment">/// The `CompleteNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompleteNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>,
@@ -2439,6 +2460,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">CompleteNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">CompleteNotifyEvent</span> {}
+
 <span class="doccomment">/// The `IdleNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IdleNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>,
@@ -2606,6 +2630,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">IdleNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">IdleNotifyEvent</span> {}
 
 <span class="doccomment">/// The `RedirectNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RedirectNotifyEvent</span> {
@@ -2911,6 +2938,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">RedirectNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">RedirectNotifyEvent</span> {}
 
 <span class="doccomment">/// Unified event type for the Present extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

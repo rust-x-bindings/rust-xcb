@@ -4568,6 +4568,21 @@
 <span id="4568">4568</span>
 <span id="4569">4569</span>
 <span id="4570">4570</span>
+<span id="4571">4571</span>
+<span id="4572">4572</span>
+<span id="4573">4573</span>
+<span id="4574">4574</span>
+<span id="4575">4575</span>
+<span id="4576">4576</span>
+<span id="4577">4577</span>
+<span id="4578">4578</span>
+<span id="4579">4579</span>
+<span id="4580">4580</span>
+<span id="4581">4581</span>
+<span id="4582">4582</span>
+<span id="4583">4583</span>
+<span id="4584">4584</span>
+<span id="4585">4585</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4705,6 +4720,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PictFormatError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PictFormatError</span> {}
+
 <span class="doccomment">/// The `PictureError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictureError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4781,6 +4799,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PictureError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PictureError</span> {}
 
 <span class="doccomment">/// The `PictOpError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PictOpError</span> {
@@ -4859,6 +4880,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PictOpError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PictOpError</span> {}
+
 <span class="doccomment">/// The `GlyphSetError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GlyphSetError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4936,6 +4960,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GlyphSetError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GlyphSetError</span> {}
+
 <span class="doccomment">/// The `GlyphError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GlyphError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -5012,6 +5039,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GlyphError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GlyphError</span> {}
 
 <span class="doccomment">/// Unified error type for the Render extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

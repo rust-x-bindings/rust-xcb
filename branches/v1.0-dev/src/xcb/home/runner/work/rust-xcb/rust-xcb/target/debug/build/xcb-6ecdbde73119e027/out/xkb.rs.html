@@ -17340,6 +17340,45 @@
 <span id="17340">17340</span>
 <span id="17341">17341</span>
 <span id="17342">17342</span>
+<span id="17343">17343</span>
+<span id="17344">17344</span>
+<span id="17345">17345</span>
+<span id="17346">17346</span>
+<span id="17347">17347</span>
+<span id="17348">17348</span>
+<span id="17349">17349</span>
+<span id="17350">17350</span>
+<span id="17351">17351</span>
+<span id="17352">17352</span>
+<span id="17353">17353</span>
+<span id="17354">17354</span>
+<span id="17355">17355</span>
+<span id="17356">17356</span>
+<span id="17357">17357</span>
+<span id="17358">17358</span>
+<span id="17359">17359</span>
+<span id="17360">17360</span>
+<span id="17361">17361</span>
+<span id="17362">17362</span>
+<span id="17363">17363</span>
+<span id="17364">17364</span>
+<span id="17365">17365</span>
+<span id="17366">17366</span>
+<span id="17367">17367</span>
+<span id="17368">17368</span>
+<span id="17369">17369</span>
+<span id="17370">17370</span>
+<span id="17371">17371</span>
+<span id="17372">17372</span>
+<span id="17373">17373</span>
+<span id="17374">17374</span>
+<span id="17375">17375</span>
+<span id="17376">17376</span>
+<span id="17377">17377</span>
+<span id="17378">17378</span>
+<span id="17379">17379</span>
+<span id="17380">17380</span>
+<span id="17381">17381</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -17504,6 +17543,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">KeyboardError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">KeyboardError</span> {}
 
 <span class="doccomment">/// Unified error type for the Xkb extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -17749,6 +17791,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">NewKeyboardNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">NewKeyboardNotifyEvent</span> {}
 
 <span class="doccomment">/// The `MapNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MapNotifyEvent</span> {
@@ -18096,6 +18141,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">MapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">MapNotifyEvent</span> {}
 
 <span class="doccomment">/// The `StateNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StateNotifyEvent</span> {
@@ -18454,6 +18502,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">StateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">StateNotifyEvent</span> {}
+
 <span class="doccomment">/// The `ControlsNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ControlsNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -18682,6 +18733,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ControlsNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ControlsNotifyEvent</span> {}
+
 <span class="doccomment">/// The `IndicatorStateNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IndicatorStateNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -18841,6 +18895,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">IndicatorStateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">IndicatorStateNotifyEvent</span> {}
+
 <span class="doccomment">/// The `IndicatorMapNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">IndicatorMapNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -18999,6 +19056,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">IndicatorMapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">IndicatorMapNotifyEvent</span> {}
 
 <span class="doccomment">/// The `NamesNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NamesNotifyEvent</span> {
@@ -19273,6 +19333,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">NamesNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">NamesNotifyEvent</span> {}
+
 <span class="doccomment">/// The `CompatMapNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CompatMapNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -19453,6 +19516,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">CompatMapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">CompatMapNotifyEvent</span> {}
 
 <span class="doccomment">/// The `BellNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BellNotifyEvent</span> {
@@ -19677,6 +19743,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BellNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BellNotifyEvent</span> {}
+
 <span class="doccomment">/// The `ActionMessageEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ActionMessageEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -19878,6 +19947,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ActionMessageEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ActionMessageEvent</span> {}
+
 <span class="doccomment">/// The `AccessXNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AccessXNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -20058,6 +20130,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">AccessXNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">AccessXNotifyEvent</span> {}
 
 <span class="doccomment">/// The `ExtensionDeviceNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExtensionDeviceNotifyEvent</span> {
@@ -20298,6 +20373,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ExtensionDeviceNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ExtensionDeviceNotifyEvent</span> {}
 
 <span class="doccomment">/// Unified event type for the Xkb extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

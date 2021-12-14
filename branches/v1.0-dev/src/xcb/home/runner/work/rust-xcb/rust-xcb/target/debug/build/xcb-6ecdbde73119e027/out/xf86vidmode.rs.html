@@ -4053,6 +4053,27 @@
 <span id="4053">4053</span>
 <span id="4054">4054</span>
 <span id="4055">4055</span>
+<span id="4056">4056</span>
+<span id="4057">4057</span>
+<span id="4058">4058</span>
+<span id="4059">4059</span>
+<span id="4060">4060</span>
+<span id="4061">4061</span>
+<span id="4062">4062</span>
+<span id="4063">4063</span>
+<span id="4064">4064</span>
+<span id="4065">4065</span>
+<span id="4066">4066</span>
+<span id="4067">4067</span>
+<span id="4068">4068</span>
+<span id="4069">4069</span>
+<span id="4070">4070</span>
+<span id="4071">4071</span>
+<span id="4072">4072</span>
+<span id="4073">4073</span>
+<span id="4074">4074</span>
+<span id="4075">4075</span>
+<span id="4076">4076</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xf86vidmode.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4193,6 +4214,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadClockError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadClockError</span> {}
+
 <span class="doccomment">/// The `BadHTimingsError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadHTimingsError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4269,6 +4293,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadHTimingsError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadHTimingsError</span> {}
 
 <span class="doccomment">/// The `BadVTimingsError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadVTimingsError</span> {
@@ -4347,6 +4374,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadVTimingsError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadVTimingsError</span> {}
+
 <span class="doccomment">/// The `ModeUnsuitableError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ModeUnsuitableError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4423,6 +4453,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ModeUnsuitableError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ModeUnsuitableError</span> {}
 
 <span class="doccomment">/// The `ExtensionDisabledError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExtensionDisabledError</span> {
@@ -4501,6 +4534,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ExtensionDisabledError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ExtensionDisabledError</span> {}
+
 <span class="doccomment">/// The `ClientNotLocalError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClientNotLocalError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4578,6 +4614,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ClientNotLocalError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ClientNotLocalError</span> {}
+
 <span class="doccomment">/// The `ZoomLockedError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ZoomLockedError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -4654,6 +4693,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ZoomLockedError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ZoomLockedError</span> {}
 
 <span class="doccomment">/// Unified error type for the Xf86VidMode extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

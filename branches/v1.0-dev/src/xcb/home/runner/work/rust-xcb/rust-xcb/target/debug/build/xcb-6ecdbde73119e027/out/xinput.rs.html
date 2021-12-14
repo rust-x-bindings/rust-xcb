@@ -25956,6 +25956,87 @@
 <span id="25956">25956</span>
 <span id="25957">25957</span>
 <span id="25958">25958</span>
+<span id="25959">25959</span>
+<span id="25960">25960</span>
+<span id="25961">25961</span>
+<span id="25962">25962</span>
+<span id="25963">25963</span>
+<span id="25964">25964</span>
+<span id="25965">25965</span>
+<span id="25966">25966</span>
+<span id="25967">25967</span>
+<span id="25968">25968</span>
+<span id="25969">25969</span>
+<span id="25970">25970</span>
+<span id="25971">25971</span>
+<span id="25972">25972</span>
+<span id="25973">25973</span>
+<span id="25974">25974</span>
+<span id="25975">25975</span>
+<span id="25976">25976</span>
+<span id="25977">25977</span>
+<span id="25978">25978</span>
+<span id="25979">25979</span>
+<span id="25980">25980</span>
+<span id="25981">25981</span>
+<span id="25982">25982</span>
+<span id="25983">25983</span>
+<span id="25984">25984</span>
+<span id="25985">25985</span>
+<span id="25986">25986</span>
+<span id="25987">25987</span>
+<span id="25988">25988</span>
+<span id="25989">25989</span>
+<span id="25990">25990</span>
+<span id="25991">25991</span>
+<span id="25992">25992</span>
+<span id="25993">25993</span>
+<span id="25994">25994</span>
+<span id="25995">25995</span>
+<span id="25996">25996</span>
+<span id="25997">25997</span>
+<span id="25998">25998</span>
+<span id="25999">25999</span>
+<span id="26000">26000</span>
+<span id="26001">26001</span>
+<span id="26002">26002</span>
+<span id="26003">26003</span>
+<span id="26004">26004</span>
+<span id="26005">26005</span>
+<span id="26006">26006</span>
+<span id="26007">26007</span>
+<span id="26008">26008</span>
+<span id="26009">26009</span>
+<span id="26010">26010</span>
+<span id="26011">26011</span>
+<span id="26012">26012</span>
+<span id="26013">26013</span>
+<span id="26014">26014</span>
+<span id="26015">26015</span>
+<span id="26016">26016</span>
+<span id="26017">26017</span>
+<span id="26018">26018</span>
+<span id="26019">26019</span>
+<span id="26020">26020</span>
+<span id="26021">26021</span>
+<span id="26022">26022</span>
+<span id="26023">26023</span>
+<span id="26024">26024</span>
+<span id="26025">26025</span>
+<span id="26026">26026</span>
+<span id="26027">26027</span>
+<span id="26028">26028</span>
+<span id="26029">26029</span>
+<span id="26030">26030</span>
+<span id="26031">26031</span>
+<span id="26032">26032</span>
+<span id="26033">26033</span>
+<span id="26034">26034</span>
+<span id="26035">26035</span>
+<span id="26036">26036</span>
+<span id="26037">26037</span>
+<span id="26038">26038</span>
+<span id="26039">26039</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -26096,6 +26177,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceError</span> {}
+
 <span class="doccomment">/// The `EventError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EventError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -26172,6 +26256,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">EventError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">EventError</span> {}
 
 <span class="doccomment">/// The `ModeError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ModeError</span> {
@@ -26250,6 +26337,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ModeError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ModeError</span> {}
+
 <span class="doccomment">/// The `DeviceBusyError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceBusyError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -26327,6 +26417,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceBusyError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceBusyError</span> {}
+
 <span class="doccomment">/// The `ClassError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ClassError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -26403,6 +26496,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ClassError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ClassError</span> {}
 
 <span class="doccomment">/// Unified error type for the Input extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -26589,6 +26685,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceValuatorEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceValuatorEvent</span> {}
 
 <span class="doccomment">/// The `DeviceKeyPressEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceKeyPressEvent</span> {
@@ -26823,6 +26922,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceKeyPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceKeyPressEvent</span> {}
+
 <span class="doccomment">/// The `DeviceKeyReleaseEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DeviceKeyReleaseEvent</span> <span class="op">=</span> <span class="ident">DeviceKeyPressEvent</span>;
 
@@ -26994,6 +27096,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceFocusInEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceFocusInEvent</span> {}
 
 <span class="doccomment">/// The `DeviceFocusOutEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">DeviceFocusOutEvent</span> <span class="op">=</span> <span class="ident">DeviceFocusInEvent</span>;
@@ -27211,6 +27316,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceStateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceStateNotifyEvent</span> {}
+
 <span class="doccomment">/// The `DeviceMappingNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceMappingNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27371,6 +27479,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceMappingNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceMappingNotifyEvent</span> {}
+
 <span class="doccomment">/// The `ChangeDeviceNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeDeviceNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27508,6 +27619,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ChangeDeviceNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ChangeDeviceNotifyEvent</span> {}
+
 <span class="doccomment">/// The `DeviceKeyStateNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceKeyStateNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27629,6 +27743,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceKeyStateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceKeyStateNotifyEvent</span> {}
+
 <span class="doccomment">/// The `DeviceButtonStateNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceButtonStateNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27749,6 +27866,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceButtonStateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceButtonStateNotifyEvent</span> {}
 
 <span class="doccomment">/// The `DevicePresenceNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DevicePresenceNotifyEvent</span> {
@@ -27899,6 +28019,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DevicePresenceNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DevicePresenceNotifyEvent</span> {}
+
 <span class="doccomment">/// The `DevicePropertyNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DevicePropertyNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -28046,6 +28169,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DevicePropertyNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DevicePropertyNotifyEvent</span> {}
 
 <span class="doccomment">/// The `DeviceChangedEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DeviceChangedEvent</span> {
@@ -28228,6 +28354,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DeviceChangedEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DeviceChangedEvent</span> {}
 
 <span class="doccomment">/// The `KeyPressEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">KeyPressEvent</span> {
@@ -28531,6 +28660,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">KeyPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">KeyPressEvent</span> {}
 
 <span class="doccomment">/// The `KeyReleaseEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">KeyReleaseEvent</span> <span class="op">=</span> <span class="ident">KeyPressEvent</span>;
@@ -28838,6 +28970,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ButtonPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ButtonPressEvent</span> {}
+
 <span class="doccomment">/// The `ButtonReleaseEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ButtonReleaseEvent</span> <span class="op">=</span> <span class="ident">ButtonPressEvent</span>;
 
@@ -29125,6 +29260,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">EnterEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">EnterEvent</span> {}
+
 <span class="doccomment">/// The `LeaveEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LeaveEvent</span> <span class="op">=</span> <span class="ident">EnterEvent</span>;
 
@@ -29304,6 +29442,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">HierarchyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">HierarchyEvent</span> {}
+
 <span class="doccomment">/// The `PropertyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PropertyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_ge_generic_event_t</span>,
@@ -29463,6 +29604,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PropertyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PropertyEvent</span> {}
 
 <span class="doccomment">/// The `RawKeyPressEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RawKeyPressEvent</span> {
@@ -29685,6 +29829,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">RawKeyPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">RawKeyPressEvent</span> {}
 
 <span class="doccomment">/// The `RawKeyReleaseEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RawKeyReleaseEvent</span> <span class="op">=</span> <span class="ident">RawKeyPressEvent</span>;
@@ -29910,6 +30057,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">RawButtonPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">RawButtonPressEvent</span> {}
 
 <span class="doccomment">/// The `RawButtonReleaseEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RawButtonReleaseEvent</span> <span class="op">=</span> <span class="ident">RawButtonPressEvent</span>;
@@ -30220,6 +30370,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">TouchBeginEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">TouchBeginEvent</span> {}
+
 <span class="doccomment">/// The `TouchUpdateEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">TouchUpdateEvent</span> <span class="op">=</span> <span class="ident">TouchBeginEvent</span>;
 
@@ -30422,6 +30575,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">TouchOwnershipEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">TouchOwnershipEvent</span> {}
 
 <span class="doccomment">/// The `RawTouchBeginEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RawTouchBeginEvent</span> {
@@ -30644,6 +30800,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">RawTouchBeginEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">RawTouchBeginEvent</span> {}
 
 <span class="doccomment">/// The `RawTouchUpdateEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RawTouchUpdateEvent</span> <span class="op">=</span> <span class="ident">RawTouchBeginEvent</span>;
@@ -30891,6 +31050,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BarrierHitEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BarrierHitEvent</span> {}
 
 <span class="doccomment">/// The `BarrierLeaveEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BarrierLeaveEvent</span> <span class="op">=</span> <span class="ident">BarrierHitEvent</span>;

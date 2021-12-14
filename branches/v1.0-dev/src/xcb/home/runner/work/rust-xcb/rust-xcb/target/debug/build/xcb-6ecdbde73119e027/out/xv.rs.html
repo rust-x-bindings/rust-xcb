@@ -4795,6 +4795,21 @@
 <span id="4795">4795</span>
 <span id="4796">4796</span>
 <span id="4797">4797</span>
+<span id="4798">4798</span>
+<span id="4799">4799</span>
+<span id="4800">4800</span>
+<span id="4801">4801</span>
+<span id="4802">4802</span>
+<span id="4803">4803</span>
+<span id="4804">4804</span>
+<span id="4805">4805</span>
+<span id="4806">4806</span>
+<span id="4807">4807</span>
+<span id="4808">4808</span>
+<span id="4809">4809</span>
+<span id="4810">4810</span>
+<span id="4811">4811</span>
+<span id="4812">4812</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xv.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4933,6 +4948,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadPortError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadPortError</span> {}
+
 <span class="doccomment">/// The `BadEncodingError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadEncodingError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -5010,6 +5028,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadEncodingError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadEncodingError</span> {}
+
 <span class="doccomment">/// The `BadControlError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BadControlError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -5086,6 +5107,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BadControlError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BadControlError</span> {}
 
 <span class="doccomment">/// Unified error type for the Xv extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -5258,6 +5282,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">VideoNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">VideoNotifyEvent</span> {}
+
 <span class="doccomment">/// The `PortNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">PortNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -5404,6 +5431,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PortNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PortNotifyEvent</span> {}
 
 <span class="doccomment">/// Unified event type for the Xv extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

@@ -25362,6 +25362,96 @@
 <span id="25362">25362</span>
 <span id="25363">25363</span>
 <span id="25364">25364</span>
+<span id="25365">25365</span>
+<span id="25366">25366</span>
+<span id="25367">25367</span>
+<span id="25368">25368</span>
+<span id="25369">25369</span>
+<span id="25370">25370</span>
+<span id="25371">25371</span>
+<span id="25372">25372</span>
+<span id="25373">25373</span>
+<span id="25374">25374</span>
+<span id="25375">25375</span>
+<span id="25376">25376</span>
+<span id="25377">25377</span>
+<span id="25378">25378</span>
+<span id="25379">25379</span>
+<span id="25380">25380</span>
+<span id="25381">25381</span>
+<span id="25382">25382</span>
+<span id="25383">25383</span>
+<span id="25384">25384</span>
+<span id="25385">25385</span>
+<span id="25386">25386</span>
+<span id="25387">25387</span>
+<span id="25388">25388</span>
+<span id="25389">25389</span>
+<span id="25390">25390</span>
+<span id="25391">25391</span>
+<span id="25392">25392</span>
+<span id="25393">25393</span>
+<span id="25394">25394</span>
+<span id="25395">25395</span>
+<span id="25396">25396</span>
+<span id="25397">25397</span>
+<span id="25398">25398</span>
+<span id="25399">25399</span>
+<span id="25400">25400</span>
+<span id="25401">25401</span>
+<span id="25402">25402</span>
+<span id="25403">25403</span>
+<span id="25404">25404</span>
+<span id="25405">25405</span>
+<span id="25406">25406</span>
+<span id="25407">25407</span>
+<span id="25408">25408</span>
+<span id="25409">25409</span>
+<span id="25410">25410</span>
+<span id="25411">25411</span>
+<span id="25412">25412</span>
+<span id="25413">25413</span>
+<span id="25414">25414</span>
+<span id="25415">25415</span>
+<span id="25416">25416</span>
+<span id="25417">25417</span>
+<span id="25418">25418</span>
+<span id="25419">25419</span>
+<span id="25420">25420</span>
+<span id="25421">25421</span>
+<span id="25422">25422</span>
+<span id="25423">25423</span>
+<span id="25424">25424</span>
+<span id="25425">25425</span>
+<span id="25426">25426</span>
+<span id="25427">25427</span>
+<span id="25428">25428</span>
+<span id="25429">25429</span>
+<span id="25430">25430</span>
+<span id="25431">25431</span>
+<span id="25432">25432</span>
+<span id="25433">25433</span>
+<span id="25434">25434</span>
+<span id="25435">25435</span>
+<span id="25436">25436</span>
+<span id="25437">25437</span>
+<span id="25438">25438</span>
+<span id="25439">25439</span>
+<span id="25440">25440</span>
+<span id="25441">25441</span>
+<span id="25442">25442</span>
+<span id="25443">25443</span>
+<span id="25444">25444</span>
+<span id="25445">25445</span>
+<span id="25446">25446</span>
+<span id="25447">25447</span>
+<span id="25448">25448</span>
+<span id="25449">25449</span>
+<span id="25450">25450</span>
+<span id="25451">25451</span>
+<span id="25452">25452</span>
+<span id="25453">25453</span>
+<span id="25454">25454</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -25479,6 +25569,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">RequestError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">RequestError</span> {}
+
 <span class="doccomment">/// The `ValueError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ValueError</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
@@ -25583,6 +25676,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ValueError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ValueError</span> {}
 
 <span class="doccomment">/// The `WindowError` error.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">WindowError</span> <span class="op">=</span> <span class="ident">ValueError</span>;
@@ -25918,6 +26014,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">KeyPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">KeyPressEvent</span> {}
+
 <span class="doccomment">/// a key was pressed/released</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">KeyReleaseEvent</span> <span class="op">=</span> <span class="ident">KeyPressEvent</span>;
 
@@ -26157,6 +26256,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ButtonPressEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ButtonPressEvent</span> {}
 
 <span class="doccomment">/// a mouse button was pressed/released</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ButtonReleaseEvent</span> <span class="op">=</span> <span class="ident">ButtonPressEvent</span>;
@@ -26398,6 +26500,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">MotionNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">MotionNotifyEvent</span> {}
 
 <span class="doccomment">/// the pointer is in a different window</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">EnterNotifyEvent</span> {
@@ -26646,6 +26751,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">EnterNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">EnterNotifyEvent</span> {}
+
 <span class="doccomment">/// the pointer is in a different window</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">LeaveNotifyEvent</span> <span class="op">=</span> <span class="ident">EnterNotifyEvent</span>;
 
@@ -26786,6 +26894,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">FocusInEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">FocusInEvent</span> {}
+
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FocusOutEvent</span> <span class="op">=</span> <span class="ident">FocusInEvent</span>;
 
@@ -26889,6 +27000,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">KeymapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">KeymapNotifyEvent</span> {}
 
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExposeEvent</span> {
@@ -27062,6 +27176,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ExposeEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ExposeEvent</span> {}
 
 <span class="doccomment">/// The `GraphicsExposureEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GraphicsExposureEvent</span> {
@@ -27254,6 +27371,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GraphicsExposureEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GraphicsExposureEvent</span> {}
+
 <span class="doccomment">/// The `NoExposureEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">NoExposureEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27386,6 +27506,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">NoExposureEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">NoExposureEvent</span> {}
+
 <span class="doccomment">/// The `VisibilityNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">VisibilityNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27508,6 +27631,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">VisibilityNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">VisibilityNotifyEvent</span> {}
 
 <span class="doccomment">/// The `CreateNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CreateNotifyEvent</span> {
@@ -27698,6 +27824,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">CreateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">CreateNotifyEvent</span> {}
+
 <span class="doccomment">/// a window is destroyed</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DestroyNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -27821,6 +27950,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">DestroyNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">DestroyNotifyEvent</span> {}
 
 <span class="doccomment">/// a window is unmapped</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnmapNotifyEvent</span> {
@@ -27957,6 +28089,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">UnmapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">UnmapNotifyEvent</span> {}
+
 <span class="doccomment">/// a window was mapped</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MapNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -28091,6 +28226,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">MapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">MapNotifyEvent</span> {}
+
 <span class="doccomment">/// window wants to be mapped</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MapRequestEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -28213,6 +28351,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">MapRequestEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">MapRequestEvent</span> {}
 
 <span class="doccomment">/// The `ReparentNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ReparentNotifyEvent</span> {
@@ -28380,6 +28521,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ReparentNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ReparentNotifyEvent</span> {}
 
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConfigureNotifyEvent</span> {
@@ -28595,6 +28739,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ConfigureNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ConfigureNotifyEvent</span> {}
+
 <span class="doccomment">/// The `ConfigureRequestEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConfigureRequestEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -28808,6 +28955,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ConfigureRequestEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ConfigureRequestEvent</span> {}
+
 <span class="doccomment">/// The `GravityNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">GravityNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -28949,6 +29099,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GravityNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GravityNotifyEvent</span> {}
+
 <span class="doccomment">/// The `ResizeRequestEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ResizeRequestEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -29079,6 +29232,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ResizeRequestEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ResizeRequestEvent</span> {}
 
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">CirculateNotifyEvent</span> {
@@ -29217,6 +29373,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">CirculateNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">CirculateNotifyEvent</span> {}
 
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">CirculateRequestEvent</span> <span class="op">=</span> <span class="ident">CirculateNotifyEvent</span>;
@@ -29368,6 +29527,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PropertyNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PropertyNotifyEvent</span> {}
+
 <span class="doccomment">/// The `SelectionClearEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionClearEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -29498,6 +29660,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">SelectionClearEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">SelectionClearEvent</span> {}
 
 <span class="doccomment">/// The `SelectionRequestEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionRequestEvent</span> {
@@ -29667,6 +29832,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">SelectionRequestEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">SelectionRequestEvent</span> {}
+
 <span class="doccomment">/// The `SelectionNotifyEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SelectionNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -29824,6 +29992,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">SelectionNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">SelectionNotifyEvent</span> {}
+
 <span class="doccomment">/// the colormap for some window changed</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ColormapNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -29968,6 +30139,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ColormapNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ColormapNotifyEvent</span> {}
 
 <span class="doccomment">/// NOT YET DOCUMENTED</span>
 <span class="doccomment">///</span>
@@ -30137,6 +30311,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">ClientMessageEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">ClientMessageEvent</span> {}
+
 <span class="doccomment">/// keyboard mapping changed</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">MappingNotifyEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -30272,6 +30449,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">MappingNotifyEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">MappingNotifyEvent</span> {}
 
 <span class="doccomment">/// Unified event type for the X core protocol</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>

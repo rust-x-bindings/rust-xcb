@@ -17498,6 +17498,15 @@
 <span id="17498">17498</span>
 <span id="17499">17499</span>
 <span id="17500">17500</span>
+<span id="17501">17501</span>
+<span id="17502">17502</span>
+<span id="17503">17503</span>
+<span id="17504">17504</span>
+<span id="17505">17505</span>
+<span id="17506">17506</span>
+<span id="17507">17507</span>
+<span id="17508">17508</span>
+<span id="17509">17509</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from glx.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -17662,6 +17671,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">GenericError</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">GenericError</span> {}
 
 <span class="doccomment">/// The `BadContextError` error.</span>
 <span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BadContextError</span> <span class="op">=</span> <span class="ident">GenericError</span>;
@@ -17966,6 +17978,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">PbufferClobberEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">PbufferClobberEvent</span> {}
+
 <span class="doccomment">/// The `BufferSwapCompleteEvent` event.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">BufferSwapCompleteEvent</span> {
     <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
@@ -18146,6 +18161,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Send</span> <span class="kw">for</span> <span class="ident">BufferSwapCompleteEvent</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">Sync</span> <span class="kw">for</span> <span class="ident">BufferSwapCompleteEvent</span> {}
 
 <span class="doccomment">/// Unified event type for the Glx extension</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
