@@ -606,6 +606,7 @@ pub type Result<T> = result::Result<T, Error>;
 /// will call `xcb_disconnect` when the `Connection` goes out of scope.
 pub struct Connection {
     c: *mut xcb_connection_t,
+
     #[cfg(feature = "xlib_xcb")]
     dpy: *mut xlib::Display,
 
@@ -953,7 +954,12 @@ impl Connection {
         let ext_data = cache_extensions_data(c, mandatory, optional);
 
         #[cfg(feature = "debug_atom_names")]
-        return Connection { c, dpy, ext_data, dbg_atom_names };
+        return Connection {
+            c,
+            dpy,
+            ext_data,
+            dbg_atom_names,
+        };
 
         #[cfg(not(feature = "debug_atom_names"))]
         return Connection { c, dpy, ext_data };

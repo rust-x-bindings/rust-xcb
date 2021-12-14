@@ -47,7 +47,6 @@ impl CodeGen {
     }
 
     pub(super) fn emit_xid<O: Write>(&self, out: &mut O, rs_typ: &str) -> io::Result<()> {
-
         let dbg = if self.dbg_atom_names && self.xcb_mod == "xproto" && rs_typ == "Atom" {
             ""
         } else {
