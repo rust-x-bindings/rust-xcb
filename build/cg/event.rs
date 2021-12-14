@@ -335,6 +335,10 @@ impl CodeGen {
             writeln!(out, "        unsafe {{ libc::free(self.raw as *mut _); }}")?;
             writeln!(out, "    }}")?;
             writeln!(out, "}}")?;
+
+            writeln!(out)?;
+            writeln!(out, "unsafe impl Send for {} {{}}", event.rs_typ)?;
+            writeln!(out, "unsafe impl Sync for {} {{}}", event.rs_typ)?;
         }
 
         writeln!(out)?;
