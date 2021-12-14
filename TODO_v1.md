@@ -30,7 +30,8 @@
     - [ ] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
     - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
     - [ ] xinput::ListInputDevice has incomplete InputInfo
-    - [ ] remove fieldrefs in switches
+    - [x] remove fieldrefs in switches
+    - [x] Debug props should match format
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard

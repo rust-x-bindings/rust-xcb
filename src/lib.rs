@@ -234,6 +234,75 @@
 //!     }
 //! }
 //! ```
+//!
+//! # Cargo features
+//!
+//! The following Cargo features are available
+//!
+//! ## `xlib_xcb`
+//!
+//! This feature activates the use of `xlib::Display` to connect to XCB, therefore making
+//! available both Xlib and XCB functions to the same connection.
+//! While XCB is sufficient to handle all communication with the X server, some things can
+//! still only be done by Xlib. E.g. hardware initialization for OpenGL is done by Xlib only.
+//!
+//! ## `debug_atom_names`
+//!
+//! When this feature is activated, the `fmt::Debug` implementation for `x::Atom` will print
+//! out the name of the atom in addition to its value.
+//!
+//! E.g. the feature would turn:
+//! ```ignore
+//! Atom {
+//!     res_id: 303,
+//! }
+//! ```
+//! into
+//! ```ignore
+//! Atom("Abs Pressure" ; 303)
+//! ```
+//! This can be useful in situations where you are not sure which atom you have to intern
+//! in order to look up some data in a reply.
+//!
+//! It should be noted that the feature sets global variable to have access to
+//! the connection in the `fmt::Debug` implementation, and that the `Debug` print
+//! have side effects (`x::GetAtomName` requests) which can sometimes not be desirable.
+//! The feature should therefore only be activated when needed.
+//!
+//! ## Extension features
+//!
+//! The following X extensions are activated by a cargo feature:
+//!
+//! | Extension name                | Cargo feature |
+//! |-------------------------------|---------------|
+//! | `Composite`                   | `composite`   |
+//! | `DAMAGE`                      | `damage`      |
+//! | `DPMS`                        | `dpms`        |
+//! | `DRI2`                        | `dri2`        |
+//! | `DRI3`                        | `dri3`        |
+//! | `Generic Event Extension`     | `ge`          |
+//! | `GLX`                         | `glx`         |
+//! | `Present`                     | `present`     |
+//! | `RANDR`                       | `randr`       |
+//! | `RECORD`                      | `record`      |
+//! | `RENDER`                      | `render`      |
+//! | `X-Resource`                  | `res`         |
+//! | `MIT-SCREEN-SAVER`            | `screensaver` |
+//! | `SHAPE`                       | `shape`       |
+//! | `MIT-SHM`                     | `shm`         |
+//! | `SYNC`                        | `sync`        |
+//! | `XEVIE`                       | `xevie`       |
+//! | `XFree86-DRI`                 | `xf86dri`     |
+//! | `XFree86-VidModeExtension`    | `xf86vidmode` |
+//! | `XFIXES`                      | `xfixes`      |
+//! | `XINERAMA`                    | `xinerama`    |
+//! | `XInputExtension`             | `xinput`      |
+//! | `XKEYBOARD`                   | `xkb`         |
+//! | `XpExtension`                 | `xprint`      |
+//! | `SELinux`                     | `xselinux`    |
+//! | `TEST`                        | `xtest`       |
+//! | `XVideo`                      | `xv`          |
+//! | `XVideo-MotionCompensation`   | `xvmc`        |
 
 mod base;
 mod error;

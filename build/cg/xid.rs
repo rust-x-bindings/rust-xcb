@@ -47,8 +47,14 @@ impl CodeGen {
     }
 
     pub(super) fn emit_xid<O: Write>(&self, out: &mut O, rs_typ: &str) -> io::Result<()> {
+        let dbg = if self.dbg_atom_names && self.xcb_mod == "xproto" && rs_typ == "Atom" {
+            ""
+        } else {
+            "Debug, "
+        };
+
         writeln!(out)?;
-        writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq, Eq)]")?;
+        writeln!(out, "#[derive(Copy, Clone, {}PartialEq, Eq)]", dbg)?;
         writeln!(out, "#[repr(C)]")?;
         writeln!(out, "pub struct {} {{", rs_typ)?;
         writeln!(out, "    res_id: u32,")?;

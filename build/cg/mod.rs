@@ -270,10 +270,16 @@ pub struct CodeGen {
     events: Vec<Event>,
     mask_exceptions: Vec<RsTypException>,
     switch_exceptions: Vec<RsTypException>,
+    dbg_atom_names: bool,
 }
 
 impl CodeGen {
-    pub fn new(xcb_mod: String, ext_info: &Option<ir::ExtInfo>, depinfo: Vec<DepInfo>) -> CodeGen {
+    pub fn new(
+        xcb_mod: String,
+        ext_info: &Option<ir::ExtInfo>,
+        depinfo: Vec<DepInfo>,
+        dbg_atom_names: bool,
+    ) -> CodeGen {
         let simples = &[
             ("CARD8", "u8", 1, true),
             ("CARD16", "u16", 2, true),
@@ -330,6 +336,7 @@ impl CodeGen {
             events: Vec::new(),
             mask_exceptions: mask_exceptions(),
             switch_exceptions: switch_exceptions(),
+            dbg_atom_names,
         }
     }
 
