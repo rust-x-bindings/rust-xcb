@@ -675,13 +675,15 @@ impl Connection {
         let mut screen_num: c_int = 0;
         let displayname = display_name.map(|s| CString::new(s).unwrap());
         unsafe {
-            let cconn = if let Some(display) = displayname {
+            let conn = if let Some(display) = displayname {
                 xcb_connect(display.as_ptr(), &mut screen_num)
             } else {
                 xcb_connect(ptr::null(), &mut screen_num)
             };
 
-            let conn = Self::from_raw_conn_and_extensions(cconn, mandatory, optional);
+            check_connection_error(conn)?;
+
+            let conn = Self::from_raw_conn_and_extensions(conn, mandatory, optional);
             conn.has_error().map(|_| (conn, screen_num as i32))
         }
     }
@@ -695,6 +697,8 @@ impl Connection {
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(ptr::null());
+
+            check_connection_error(XGetXCBConnection(dpy))?;
 
             let conn = Self::from_xlib_display(dpy);
 
@@ -721,6 +725,8 @@ impl Connection {
     ) -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(ptr::null());
+
+            check_connection_error(XGetXCBConnection(dpy))?;
 
             let conn = Self::from_xlib_display_and_extensions(dpy, mandatory, optional);
 
@@ -777,6 +783,8 @@ impl Connection {
 
         let conn = unsafe {
             let conn = xcb_connect_to_fd(fd, ai_ptr);
+            check_connection_error(conn)?;
+
             Self::from_raw_conn_and_extensions(conn, mandatory, optional)
         };
 
@@ -838,6 +846,8 @@ impl Connection {
                 &mut screen_num as *mut _,
             );
 
+            check_connection_error(conn)?;
+
             let conn = Self::from_raw_conn_and_extensions(conn, mandatory, optional);
             conn.has_error().map(|_| (conn, screen_num as i32))
         }
@@ -857,6 +867,7 @@ impl Connection {
     /// the resolution of events and errors in these extensions.
     ///
     /// # Panics
+    /// Panics if the connection is null or in error state.
     /// Panics if one of the mandatory extension is not present.
     ///
     /// # Safety
@@ -867,6 +878,7 @@ impl Connection {
         optional: &[Extension],
     ) -> Connection {
         assert!(!conn.is_null());
+        assert!(check_connection_error(conn).is_ok());
 
         #[cfg(feature = "debug_atom_names")]
         let dbg_atom_names = {
@@ -930,6 +942,9 @@ impl Connection {
     /// Extension data specified by `mandatory` and `optional` is cached to allow
     /// the resolution of events and errors in these extensions.
     ///
+    /// # Panics
+    /// Panics if the connection is null or in error state.
+    ///
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`.
     #[cfg(feature = "xlib_xcb")]
@@ -940,6 +955,8 @@ impl Connection {
     ) -> Connection {
         assert!(!dpy.is_null(), "attempt connect with null display");
         let c = XGetXCBConnection(dpy);
+
+        assert!(check_connection_error(c).is_ok());
 
         #[cfg(feature = "debug_atom_names")]
         let dbg_atom_names = {
@@ -1277,22 +1294,7 @@ impl Connection {
     /// connection is shut down and further operations on the
     /// connection have no effect.
     pub fn has_error(&self) -> ConnResult<()> {
-        unsafe {
-            match xcb_connection_has_error(self.c) {
-                0 => Ok(()),
-                XCB_CONN_ERROR => Err(ConnError::Connection),
-                XCB_CONN_CLOSED_EXT_NOTSUPPORTED => Err(ConnError::ClosedExtNotSupported),
-                XCB_CONN_CLOSED_MEM_INSUFFICIENT => Err(ConnError::ClosedMemInsufficient),
-                XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
-                XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
-                XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
-                _ => {
-                    log::warn!("XCB: unexpected error code from xcb_connection_has_error");
-                    log::warn!("XCB: Default to ConnError::Connection");
-                    Err(ConnError::Connection)
-                }
-            }
-        }
+        unsafe { check_connection_error(self.c) }
     }
 
     /// Send a request to the X server.
@@ -1604,6 +1606,23 @@ mod dan {
                 mem::forget(conn);
                 Ok(())
             }
+        }
+    }
+}
+
+unsafe fn check_connection_error(conn: *mut xcb_connection_t) -> ConnResult<()> {
+    match xcb_connection_has_error(conn) {
+        0 => Ok(()),
+        XCB_CONN_ERROR => Err(ConnError::Connection),
+        XCB_CONN_CLOSED_EXT_NOTSUPPORTED => Err(ConnError::ClosedExtNotSupported),
+        XCB_CONN_CLOSED_MEM_INSUFFICIENT => Err(ConnError::ClosedMemInsufficient),
+        XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
+        XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
+        XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
+        _ => {
+            log::warn!("XCB: unexpected error code from xcb_connection_has_error");
+            log::warn!("XCB: Default to ConnError::Connection");
+            Err(ConnError::Connection)
         }
     }
 }
