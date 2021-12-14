@@ -251,16 +251,8 @@
 //! When this feature is activated, the `fmt::Debug` implementation for `x::Atom` will print
 //! out the name of the atom in addition to its value.
 //!
-//! E.g. the feature would turn:
-//! ```ignore
-//! Atom {
-//!     res_id: 303,
-//! }
-//! ```
-//! into
-//! ```ignore
-//! Atom("Abs Pressure" ; 303)
-//! ```
+//! E.g. the feature would turn `Atom { res_id: 303 }` into `Atom("Abs Pressure" ; 303)`.
+//!
 //! This can be useful in situations where you are not sure which atom you have to intern
 //! in order to look up some data in a reply.
 //!
