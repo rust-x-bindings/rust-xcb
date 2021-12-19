@@ -21,17 +21,21 @@
  - [x] Finalize switches naming (e.g. x::CreateWindowValueList -> x::Cw)
  - [x] Report request name in protocol errors
  - [x] Support of xinput::SendExtensionEvent
- - [x] Create example with XInput (pen tablet?)
-    - [ ] Update with valuator classes
- - [ ] Create example with Vulkan
- - [ ] Create example with wgpu
+ - [ ] Examples
+    - [x] Port old examples
+    - [x] Create example with XInput (pen tablet?)
+        - [ ] Update with valuator classes
+    - [ ] Create example with Vulkan
+    - [ ] Create example with wgpu
+    - [ ] Create example using an Fd API
  - Missing API tweaks:
     - [x] Cw::EventMask should take an EventMask
-    - [ ] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
+    - [x] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
     - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
     - [x] xinput::ListInputDevice has incomplete InputInfo
     - [x] remove fieldrefs in switches
     - [x] Debug props should match format
+    - [ ] Fix Fd API
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
