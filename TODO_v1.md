@@ -24,12 +24,12 @@
  - [x] Create example with XInput (pen tablet?)
     - [ ] Update with valuator classes
  - [ ] Create example with Vulkan
- - [ ] Create example with gfx-rs
+ - [ ] Create example with wgpu
  - Missing API tweaks:
     - [x] Cw::EventMask should take an EventMask
     - [ ] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
     - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
-    - [ ] xinput::ListInputDevice has incomplete InputInfo
+    - [x] xinput::ListInputDevice has incomplete InputInfo
     - [x] remove fieldrefs in switches
     - [x] Debug props should match format
  - [x] Porting toy-xcb
