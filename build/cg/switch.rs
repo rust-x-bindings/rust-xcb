@@ -188,7 +188,7 @@ impl CodeGen {
         writeln!(out, "#[derive(Clone, Debug)]")?;
         writeln!(out, "pub enum {} {{", rs_typ)?;
         for c in cases {
-            if c.fields.len() == 1 {
+            if visible_fields_len(&c.fields) == 1 {
                 let is_input_info_info = rs_typ == "InputInfoInfo";
 
                 assert!(!c.fields.is_empty());
@@ -216,6 +216,19 @@ impl CodeGen {
                     }
                     Field::List { rs_typ, .. } if rs_typ == "char" => {
                         writeln!(out, "    {}(String),", c.name)?;
+                    }
+                    Field::List {
+                        r#enum: Some(r#enum),
+                        ..
+                    } => {
+                        let q_rs_typ = (&r#enum.0, &r#enum.1).qualified_rs_typ();
+                        writeln!(out, "    {}(Vec<{}>),", c.name, q_rs_typ)?;
+                    }
+                    Field::List {
+                        mask: Some(mask), ..
+                    } => {
+                        let q_rs_typ = (&mask.0, &mask.1).qualified_rs_typ();
+                        writeln!(out, "    {}(Vec<{}>),", c.name, q_rs_typ)?;
                     }
                     Field::List {
                         module,
@@ -677,7 +690,7 @@ impl CodeGen {
                 }
             }
 
-            let (open, close) = if sc.fields.len() == 1 {
+            let (open, close) = if visible_fields_len(&sc.fields) == 1 {
                 ("(", ")")
             } else {
                 ("{", "}")
@@ -694,7 +707,7 @@ impl CodeGen {
                     } => {
                         if !*is_fieldref || request_fieldref_emitted(name, &sc.fields, false) {
                             if let Some((module, mask)) = mask {
-                                let pref_name = if sc.fields.len() != 1 {
+                                let pref_name = if visible_fields_len(&sc.fields) != 1 {
                                     format!("{}: ", name)
                                 } else {
                                     "".to_string()
@@ -834,7 +847,7 @@ impl CodeGen {
         };
 
         for sc in cases {
-            let (open, close) = if sc.fields.len() == 1 {
+            let (open, close) = if visible_fields_len(&sc.fields) == 1 {
                 ("(", ")")
             } else {
                 ("{", "}")
@@ -983,7 +996,7 @@ impl CodeGen {
         };
 
         for sc in cases {
-            let (open, close) = if sc.fields.len() == 1 {
+            let (open, close) = if visible_fields_len(&sc.fields) == 1 {
                 ("(", ")")
             } else {
                 ("{", "}")
@@ -1287,4 +1300,18 @@ impl CodeGen {
         writeln!(out, "}}")?;
         Ok(())
     }
+}
+
+fn visible_fields_len(fields: &[Field]) -> usize {
+    let mut len = 0;
+    for f in fields {
+        match f {
+            Field::Pad { .. } => {}
+            Field::AlignPad { .. } => {}
+            _ => {
+                len += 1;
+            }
+        }
+    }
+    len
 }
