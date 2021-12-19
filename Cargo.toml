@@ -9,7 +9,7 @@ readme = "README.md"
 keywords = ["xcb", "window", "xlib", "x11", "opengl"]
 license = "MIT"
 build = "build/main.rs"
-exclude = ["scripts", ".github", "examples/todo/*"]
+exclude = [".github", "examples/todo/*", "gen", "xml/upstream", "xml/upstream_normalized"]
 autoexamples = false
 edition = "2018"
 
