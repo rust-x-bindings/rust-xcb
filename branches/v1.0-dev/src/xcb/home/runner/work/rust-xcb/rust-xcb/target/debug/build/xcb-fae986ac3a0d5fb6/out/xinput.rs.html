@@ -26029,14 +26029,6 @@
 <span id="26029">26029</span>
 <span id="26030">26030</span>
 <span id="26031">26031</span>
-<span id="26032">26032</span>
-<span id="26033">26033</span>
-<span id="26034">26034</span>
-<span id="26035">26035</span>
-<span id="26036">26036</span>
-<span id="26037">26037</span>
-<span id="26038">26038</span>
-<span id="26039">26039</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -37222,9 +37214,7 @@
         <span class="ident">status</span>: <span class="ident">u8</span>,
         <span class="ident">iscore</span>: <span class="ident">u8</span>,
     },
-    <span class="ident">Enable</span> {
-        <span class="ident">enable</span>: <span class="ident">u8</span>,
-    },
+    <span class="ident">Enable</span>(<span class="ident">u8</span>),
     <span class="ident">AbsArea</span> {
         <span class="ident">offset_x</span>: <span class="ident">u32</span>,
         <span class="ident">offset_y</span>: <span class="ident">u32</span>,
@@ -37317,7 +37307,7 @@
             <span class="kw">let</span> <span class="ident">enable</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">wire_data</span>.<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>);
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>();
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>; <span class="comment">// pad</span>
-            <span class="kw">return</span> <span class="ident">DeviceStateData::Enable</span> { <span class="ident">enable</span> };
+            <span class="kw">return</span> <span class="ident">DeviceStateData::Enable</span>(<span class="ident">enable</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">DeviceControl::AbsArea</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -37469,7 +37459,7 @@
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             }
-            <span class="ident">DeviceStateData::Enable</span> { .. } =&gt; {
+            <span class="ident">DeviceStateData::Enable</span>(..) =&gt; {
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
@@ -37530,7 +37520,7 @@
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">iscore</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             }
-            <span class="ident">DeviceStateData::Enable</span> { <span class="ident">enable</span>, .. } =&gt; {
+            <span class="ident">DeviceStateData::Enable</span>(<span class="ident">enable</span>, ..) =&gt; {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">enable</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
@@ -38497,12 +38487,8 @@
         <span class="ident">rotation</span>: <span class="ident">u32</span>,
         <span class="ident">button_threshold</span>: <span class="ident">u32</span>,
     },
-    <span class="ident">Core</span> {
-        <span class="ident">status</span>: <span class="ident">u8</span>,
-    },
-    <span class="ident">Enable</span> {
-        <span class="ident">enable</span>: <span class="ident">u8</span>,
-    },
+    <span class="ident">Core</span>(<span class="ident">u8</span>),
+    <span class="ident">Enable</span>(<span class="ident">u8</span>),
     <span class="ident">AbsArea</span> {
         <span class="ident">offset_x</span>: <span class="ident">u32</span>,
         <span class="ident">offset_y</span>: <span class="ident">u32</span>,
@@ -38574,14 +38560,14 @@
             <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">wire_data</span>.<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>);
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>();
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>; <span class="comment">// pad</span>
-            <span class="kw">return</span> <span class="ident">DeviceCtlData::Core</span> { <span class="ident">status</span> };
+            <span class="kw">return</span> <span class="ident">DeviceCtlData::Core</span>(<span class="ident">status</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">DeviceControl::Enable</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="kw">let</span> <span class="ident">enable</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">wire_data</span>.<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>);
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>();
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>; <span class="comment">// pad</span>
-            <span class="kw">return</span> <span class="ident">DeviceCtlData::Enable</span> { <span class="ident">enable</span> };
+            <span class="kw">return</span> <span class="ident">DeviceCtlData::Enable</span>(<span class="ident">enable</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">DeviceControl::AbsArea</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -38717,11 +38703,11 @@
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
             }
-            <span class="ident">DeviceCtlData::Core</span> { .. } =&gt; {
+            <span class="ident">DeviceCtlData::Core</span>(..) =&gt; {
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
-            <span class="ident">DeviceCtlData::Enable</span> { .. } =&gt; {
+            <span class="ident">DeviceCtlData::Enable</span>(..) =&gt; {
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
@@ -38772,11 +38758,11 @@
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rotation</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">button_threshold</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
             }
-            <span class="ident">DeviceCtlData::Core</span> { <span class="ident">status</span>, .. } =&gt; {
+            <span class="ident">DeviceCtlData::Core</span>(<span class="ident">status</span>, ..) =&gt; {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">status</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
-            <span class="ident">DeviceCtlData::Enable</span> { <span class="ident">enable</span>, .. } =&gt; {
+            <span class="ident">DeviceCtlData::Enable</span>(<span class="ident">enable</span>, ..) =&gt; {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">enable</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">3</span>;
             }
@@ -39671,9 +39657,7 @@
         <span class="ident">deviceid</span>: <span class="ident">DeviceId</span>,
         <span class="ident">master</span>: <span class="ident">DeviceId</span>,
     },
-    <span class="ident">DetachSlave</span> {
-        <span class="ident">deviceid</span>: <span class="ident">DeviceId</span>,
-    },
+    <span class="ident">DetachSlave</span>(<span class="ident">DeviceId</span>),
 }
 
 <span class="kw">impl</span> <span class="ident">HierarchyChangeData</span> {
@@ -39736,7 +39720,7 @@
             <span class="kw">let</span> <span class="ident">deviceid</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">wire_data</span>.<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">DeviceId</span>);
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">DeviceId</span><span class="op">&gt;</span>();
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>; <span class="comment">// pad</span>
-            <span class="kw">return</span> <span class="ident">HierarchyChangeData::DetachSlave</span> { <span class="ident">deviceid</span> };
+            <span class="kw">return</span> <span class="ident">HierarchyChangeData::DetachSlave</span>(<span class="ident">deviceid</span>);
         }
         <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for HierarchyChangeData&quot;</span>);
     }
@@ -39828,7 +39812,7 @@
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             }
-            <span class="ident">HierarchyChangeData::DetachSlave</span> { .. } =&gt; {
+            <span class="ident">HierarchyChangeData::DetachSlave</span>(..) =&gt; {
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             }
@@ -39874,7 +39858,7 @@
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">deviceid</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">master</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
             }
-            <span class="ident">HierarchyChangeData::DetachSlave</span> { <span class="ident">deviceid</span>, .. } =&gt; {
+            <span class="ident">HierarchyChangeData::DetachSlave</span>(<span class="ident">deviceid</span>, ..) =&gt; {
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">deviceid</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>;
             }
@@ -42480,8 +42464,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ChangeDevicePropertyItems</span> {
-    <span class="ident">N8Bits</span> { <span class="ident">data8</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> },
-    <span class="ident">N16Bits</span> { <span class="ident">data16</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> },
+    <span class="ident">N8Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
+    <span class="ident">N16Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>),
     <span class="ident">N32Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>),
 }
 
@@ -42503,7 +42487,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">ChangeDevicePropertyItems::N8Bits</span> { <span class="ident">data8</span> };
+            <span class="kw">return</span> <span class="ident">ChangeDevicePropertyItems::N8Bits</span>(<span class="ident">data8</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N16Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42515,7 +42499,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">ChangeDevicePropertyItems::N16Bits</span> { <span class="ident">data16</span> };
+            <span class="kw">return</span> <span class="ident">ChangeDevicePropertyItems::N16Bits</span>(<span class="ident">data16</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N32Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42574,13 +42558,13 @@
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ChangeDevicePropertyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">ChangeDevicePropertyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
             }
-            <span class="ident">ChangeDevicePropertyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">ChangeDevicePropertyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
@@ -42598,13 +42582,13 @@
     <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">ChangeDevicePropertyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">ChangeDevicePropertyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
             }
-            <span class="ident">ChangeDevicePropertyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">ChangeDevicePropertyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
@@ -42628,8 +42612,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">GetDevicePropertyReplyItems</span> {
-    <span class="ident">N8Bits</span> { <span class="ident">data8</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> },
-    <span class="ident">N16Bits</span> { <span class="ident">data16</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> },
+    <span class="ident">N8Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
+    <span class="ident">N16Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>),
     <span class="ident">N32Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>),
 }
 
@@ -42651,7 +42635,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">GetDevicePropertyReplyItems::N8Bits</span> { <span class="ident">data8</span> };
+            <span class="kw">return</span> <span class="ident">GetDevicePropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N16Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42663,7 +42647,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">GetDevicePropertyReplyItems::N16Bits</span> { <span class="ident">data16</span> };
+            <span class="kw">return</span> <span class="ident">GetDevicePropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N32Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42722,13 +42706,13 @@
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">GetDevicePropertyReplyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">GetDevicePropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
             }
-            <span class="ident">GetDevicePropertyReplyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">GetDevicePropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
@@ -42746,13 +42730,13 @@
     <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">GetDevicePropertyReplyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">GetDevicePropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
             }
-            <span class="ident">GetDevicePropertyReplyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">GetDevicePropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
@@ -42776,8 +42760,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XiChangePropertyItems</span> {
-    <span class="ident">N8Bits</span> { <span class="ident">data8</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> },
-    <span class="ident">N16Bits</span> { <span class="ident">data16</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> },
+    <span class="ident">N8Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
+    <span class="ident">N16Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>),
     <span class="ident">N32Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>),
 }
 
@@ -42799,7 +42783,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">XiChangePropertyItems::N8Bits</span> { <span class="ident">data8</span> };
+            <span class="kw">return</span> <span class="ident">XiChangePropertyItems::N8Bits</span>(<span class="ident">data8</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N16Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42811,7 +42795,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">XiChangePropertyItems::N16Bits</span> { <span class="ident">data16</span> };
+            <span class="kw">return</span> <span class="ident">XiChangePropertyItems::N16Bits</span>(<span class="ident">data16</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N32Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42872,13 +42856,13 @@
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">XiChangePropertyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">XiChangePropertyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
             }
-            <span class="ident">XiChangePropertyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">XiChangePropertyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
@@ -42896,13 +42880,13 @@
     <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">XiChangePropertyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">XiChangePropertyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
             }
-            <span class="ident">XiChangePropertyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">XiChangePropertyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
@@ -42926,8 +42910,8 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XiGetPropertyReplyItems</span> {
-    <span class="ident">N8Bits</span> { <span class="ident">data8</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> },
-    <span class="ident">N16Bits</span> { <span class="ident">data16</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> },
+    <span class="ident">N8Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
+    <span class="ident">N16Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span>),
     <span class="ident">N32Bits</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span>),
 }
 
@@ -42949,7 +42933,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">XiGetPropertyReplyItems::N8Bits</span> { <span class="ident">data8</span> };
+            <span class="kw">return</span> <span class="ident">XiGetPropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N16Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -42961,7 +42945,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="kw">return</span> <span class="ident">XiGetPropertyReplyItems::N16Bits</span> { <span class="ident">data16</span> };
+            <span class="kw">return</span> <span class="ident">XiGetPropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>);
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">==</span> (<span class="ident">PropertyFormat::N32Bits</span> <span class="kw">as</span> <span class="ident">usize</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -43020,13 +43004,13 @@
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sz</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">XiGetPropertyReplyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">XiGetPropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
                 <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
             }
-            <span class="ident">XiGetPropertyReplyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">XiGetPropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                 }
@@ -43044,13 +43028,13 @@
     <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
         <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">XiGetPropertyReplyItems::N8Bits</span> { <span class="ident">data8</span>, .. } =&gt; {
+            <span class="ident">XiGetPropertyReplyItems::N8Bits</span>(<span class="ident">data8</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data8</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }
                 <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
             }
-            <span class="ident">XiGetPropertyReplyItems::N16Bits</span> { <span class="ident">data16</span>, .. } =&gt; {
+            <span class="ident">XiGetPropertyReplyItems::N16Bits</span>(<span class="ident">data16</span>, ..) =&gt; {
                 <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">data16</span> {
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                 }

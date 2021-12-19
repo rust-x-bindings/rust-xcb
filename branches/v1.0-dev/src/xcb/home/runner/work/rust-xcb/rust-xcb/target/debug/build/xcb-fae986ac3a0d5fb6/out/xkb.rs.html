@@ -17367,18 +17367,6 @@
 <span id="17367">17367</span>
 <span id="17368">17368</span>
 <span id="17369">17369</span>
-<span id="17370">17370</span>
-<span id="17371">17371</span>
-<span id="17372">17372</span>
-<span id="17373">17373</span>
-<span id="17374">17374</span>
-<span id="17375">17375</span>
-<span id="17376">17376</span>
-<span id="17377">17377</span>
-<span id="17378">17378</span>
-<span id="17379">17379</span>
-<span id="17380">17380</span>
-<span id="17381">17381</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -25539,15 +25527,9 @@
         <span class="ident">acts_rtrn_acts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Action</span><span class="op">&gt;</span>,
     },
     <span class="ident">KeyBehaviors</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetBehavior</span><span class="op">&gt;</span>),
-    <span class="ident">VirtualMods</span> {
-        <span class="ident">vmods_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">xproto::ModMask</span><span class="op">&gt;</span>,
-    },
-    <span class="ident">ExplicitComponents</span> {
-        <span class="ident">explicit_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetExplicit</span><span class="op">&gt;</span>,
-    },
-    <span class="ident">ModifierMap</span> {
-        <span class="ident">modmap_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyModMap</span><span class="op">&gt;</span>,
-    },
+    <span class="ident">VirtualMods</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">xproto::ModMask</span><span class="op">&gt;</span>),
+    <span class="ident">ExplicitComponents</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetExplicit</span><span class="op">&gt;</span>),
+    <span class="ident">ModifierMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyModMap</span><span class="op">&gt;</span>),
     <span class="ident">VirtualModMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyVModMap</span><span class="op">&gt;</span>),
 }
 
@@ -25645,7 +25627,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::EXPLICIT_COMPONENTS</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -25657,7 +25639,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::ExplicitComponents</span>(<span class="ident">explicit_rtrn</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::MODIFIER_MAP</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -25669,7 +25651,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::VIRTUAL_MOD_MAP</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -25843,17 +25825,17 @@
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
                 }
-                <span class="ident">GetMapReplyMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>, ..) =&gt; {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">vmods_rtrn</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>();
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetMapReplyMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::ExplicitComponents</span>(<span class="ident">explicit_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">explicit_rtrn</span> {
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetMapReplyMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">modmap_rtrn</span> {
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
@@ -25901,19 +25883,19 @@
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                 }
-                <span class="ident">GetMapReplyMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">vmods_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">el</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetMapReplyMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::ExplicitComponents</span>(<span class="ident">explicit_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">explicit_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetMapReplyMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetMapReplyMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">modmap_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
@@ -25953,9 +25935,7 @@
         <span class="ident">actions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Action</span><span class="op">&gt;</span>,
     },
     <span class="ident">KeyBehaviors</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetBehavior</span><span class="op">&gt;</span>),
-    <span class="ident">VirtualMods</span> {
-        <span class="ident">vmods</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-    },
+    <span class="ident">VirtualMods</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>),
     <span class="ident">ExplicitComponents</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetExplicit</span><span class="op">&gt;</span>),
     <span class="ident">ModifierMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyModMap</span><span class="op">&gt;</span>),
     <span class="ident">VirtualModMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyVModMap</span><span class="op">&gt;</span>),
@@ -26055,7 +26035,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">SetMapValues::VirtualMods</span> { <span class="ident">vmods</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">SetMapValues::VirtualMods</span>(<span class="ident">vmods</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::EXPLICIT_COMPONENTS</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -26247,7 +26227,7 @@
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
                 }
-                <span class="ident">SetMapValues::VirtualMods</span> { <span class="ident">vmods</span>, .. } =&gt; {
+                <span class="ident">SetMapValues::VirtualMods</span>(<span class="ident">vmods</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">vmods</span> {
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
@@ -26305,7 +26285,7 @@
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                 }
-                <span class="ident">SetMapValues::VirtualMods</span> { <span class="ident">vmods</span>, .. } =&gt; {
+                <span class="ident">SetMapValues::VirtualMods</span>(<span class="ident">vmods</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">vmods</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
@@ -27369,15 +27349,9 @@
         <span class="ident">acts_rtrn_acts</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Action</span><span class="op">&gt;</span>,
     },
     <span class="ident">KeyBehaviors</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetBehavior</span><span class="op">&gt;</span>),
-    <span class="ident">VirtualMods</span> {
-        <span class="ident">vmods_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">xproto::ModMask</span><span class="op">&gt;</span>,
-    },
-    <span class="ident">ExplicitComponents</span> {
-        <span class="ident">explicit_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetExplicit</span><span class="op">&gt;</span>,
-    },
-    <span class="ident">ModifierMap</span> {
-        <span class="ident">modmap_rtrn</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyModMap</span><span class="op">&gt;</span>,
-    },
+    <span class="ident">VirtualMods</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">xproto::ModMask</span><span class="op">&gt;</span>),
+    <span class="ident">ExplicitComponents</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SetExplicit</span><span class="op">&gt;</span>),
+    <span class="ident">ModifierMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyModMap</span><span class="op">&gt;</span>),
     <span class="ident">VirtualModMap</span>(<span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">KeyVModMap</span><span class="op">&gt;</span>),
 }
 
@@ -27475,7 +27449,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::EXPLICIT_COMPONENTS</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -27487,7 +27461,9 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span>(
+                <span class="ident">explicit_rtrn</span>,
+            ));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::MODIFIER_MAP</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -27499,7 +27475,7 @@
                 <span class="ident">data</span>.<span class="ident">to_vec</span>()
             };
             <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
-            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span> });
+            <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>));
         }
         <span class="kw">if</span> <span class="ident">expr</span> <span class="op">&amp;</span> (<span class="ident">MapPart::VIRTUAL_MOD_MAP</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -27673,17 +27649,17 @@
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>, ..) =&gt; {
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">vmods_rtrn</span>.<span class="ident">len</span>() <span class="op">*</span> <span class="ident">std::mem::size_of</span>::<span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>();
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span>(<span class="ident">explicit_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">explicit_rtrn</span> {
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
                     <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sz</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">modmap_rtrn</span> {
                         <span class="ident">sz</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">wire_len</span>();
                     }
@@ -27731,19 +27707,19 @@
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span> { <span class="ident">vmods_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::VirtualMods</span>(<span class="ident">vmods_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">vmods_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">el</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span> { <span class="ident">explicit_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::ExplicitComponents</span>(<span class="ident">explicit_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">explicit_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
                     <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">offset</span>, <span class="number">4</span>);
                 }
-                <span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span> { <span class="ident">modmap_rtrn</span>, .. } =&gt; {
+                <span class="ident">GetKbdByNameReplyRepliesMap::ModifierMap</span>(<span class="ident">modmap_rtrn</span>, ..) =&gt; {
                     <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">modmap_rtrn</span> {
                         <span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">offset</span>..]);
                     }
