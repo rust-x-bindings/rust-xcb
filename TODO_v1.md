@@ -36,7 +36,7 @@
     - [x] remove fieldrefs in switches
     - [x] Debug props should match format
     - [x] Fix Fd API
-    - [ ] Reply impl Send and Sync
+    - [x] Reply impl Send and Sync
     - [x] Fix the wire_len calculation (32 + 4 * length)
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
