@@ -28,7 +28,7 @@
     - [ ] Create example with Vulkan
     - [ ] Create example with wgpu
     - [ ] Create example using an Fd API
- - Missing API tweaks:
+ - Missing API tweaks / fixes:
     - [x] Cw::EventMask should take an EventMask
     - [x] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
     - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
@@ -37,6 +37,7 @@
     - [x] Debug props should match format
     - [x] Fix Fd API
     - [ ] Reply impl Send and Sync
+    - [x] Fix the wire_len calculation (32 + 4 * length)
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
