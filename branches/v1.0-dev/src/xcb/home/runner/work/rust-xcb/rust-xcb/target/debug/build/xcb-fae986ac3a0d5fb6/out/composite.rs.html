@@ -853,6 +853,14 @@
 <span id="853">853</span>
 <span id="854">854</span>
 <span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from composite.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -949,6 +957,10 @@
 <span class="kw">impl</span> <span class="ident">QueryVersionReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">raw</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
@@ -1481,6 +1493,10 @@
 <span class="kw">impl</span> <span class="ident">GetOverlayWindowReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">raw</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {

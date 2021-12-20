@@ -1026,6 +1026,26 @@
 <span id="1026">1026</span>
 <span id="1027">1027</span>
 <span id="1028">1028</span>
+<span id="1029">1029</span>
+<span id="1030">1030</span>
+<span id="1031">1031</span>
+<span id="1032">1032</span>
+<span id="1033">1033</span>
+<span id="1034">1034</span>
+<span id="1035">1035</span>
+<span id="1036">1036</span>
+<span id="1037">1037</span>
+<span id="1038">1038</span>
+<span id="1039">1039</span>
+<span id="1040">1040</span>
+<span id="1041">1041</span>
+<span id="1042">1042</span>
+<span id="1043">1043</span>
+<span id="1044">1044</span>
+<span id="1045">1045</span>
+<span id="1046">1046</span>
+<span id="1047">1047</span>
+<span id="1048">1048</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xevie.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1163,6 +1183,10 @@
 <span class="kw">impl</span> <span class="ident">QueryVersionReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">raw</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
@@ -1361,6 +1385,10 @@
         <span class="self">self</span>.<span class="ident">raw</span>
     }
 
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -1537,6 +1565,10 @@
         <span class="self">self</span>.<span class="ident">raw</span>
     }
 
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
+    }
+
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -1711,6 +1743,10 @@
 <span class="kw">impl</span> <span class="ident">SendReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">raw</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
@@ -1890,6 +1926,10 @@
 <span class="kw">impl</span> <span class="ident">SelectInputReply</span> {
     <span class="kw">fn</span> <span class="ident">wire_ptr</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span> {
         <span class="self">self</span>.<span class="ident">raw</span>
+    }
+
+    <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+        (<span class="number">32</span> <span class="op">+</span> <span class="self">self</span>.<span class="ident">length</span>() <span class="op">*</span> <span class="number">4</span>) <span class="kw">as</span> <span class="kw">_</span>
     }
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
