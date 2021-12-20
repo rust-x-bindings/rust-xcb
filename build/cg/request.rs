@@ -366,6 +366,10 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         writeln!(out)?;
+        writeln!(out, "unsafe impl std::marker::Send for {} {{}}", reply_rs_typ)?;
+        writeln!(out, "unsafe impl std::marker::Sync for {} {{}}", reply_rs_typ)?;
+
+        writeln!(out)?;
         writeln!(out, "/// Cookie type for [{}].", req_name)?;
         writeln!(out, "///")?;
         writeln!(
