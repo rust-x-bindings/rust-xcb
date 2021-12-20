@@ -35,7 +35,8 @@
     - [x] xinput::ListInputDevice has incomplete InputInfo
     - [x] remove fieldrefs in switches
     - [x] Debug props should match format
-    - [ ] Fix Fd API
+    - [x] Fix Fd API
+    - [ ] Reply impl Send and Sync
  - [x] Porting toy-xcb
  - [x] Porting xkbcommon-rs
  - [ ] Porting x11-clipboard
