@@ -318,6 +318,11 @@ impl CodeGen {
         writeln!(out, "    fn wire_ptr(&self) -> *const u8 {{")?;
         writeln!(out, "        self.raw")?;
         writeln!(out, "    }}")?;
+        writeln!(out)?;
+        // reply length field is expressed in 4 bytes units and start after the 32 bytes reply body
+        writeln!(out, "    fn wire_len(&self) -> usize {{")?;
+        writeln!(out, "        (32 + self.length() * 4) as _")?;
+        writeln!(out, "    }}")?;
 
         for f in &reply.fields {
             if let Field::Field {
@@ -334,48 +339,7 @@ impl CodeGen {
         }
         self.emit_struct_accessors(out, reply_rs_typ, &reply.fields)?;
 
-        // We emit the reply fds.
-        // The offset of 32 + 4 * length correspond to what the C implementation is doing
-        // although I'm not sure why (32 is in fact sizeof(reply_t), which is always 32 for
-        // the replies that receive fd)
-        for f in &reply.fields {
-            match f {
-                Field::Field { name, rs_typ, .. } if rs_typ == "RawFd" => {
-                    writeln!(out)?;
-                    writeln!(out, "{}pub fn {}(&self) -> RawFd {{", cg::ind(1), name)?;
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(
-                        out,
-                        "{}assert!(self.nfd() == 1, \"Expected a single Fd for {}::{}\");",
-                        cg::ind(3),
-                        reply_rs_typ,
-                        name
-                    )?;
-                    writeln!(
-                        out,
-                        "{}*(self.wire_ptr().add((32 + 4 * self.length()) as _) as *const RawFd)",
-                        cg::ind(3)
-                    )?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
-                    writeln!(out, "{}}}", cg::ind(1))?;
-                }
-                Field::List { name, rs_typ, .. } if rs_typ == "RawFd" => {
-                    writeln!(out)?;
-                    writeln!(out, "{}pub fn {}(&self) -> &[RawFd] {{", cg::ind(1), name)?;
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(out, "{}let len = self.nfd() as usize;", cg::ind(3))?;
-                    writeln!(
-                        out,
-                        "{}let ptr = self.wire_ptr().add((32 + 4 * self.length()) as _) as *const RawFd;",
-                        cg::ind(3)
-                    )?;
-                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
-                    writeln!(out, "{}}}", cg::ind(1))?;
-                }
-                _ => {}
-            }
-        }
+        self.emit_reply_fds(out, reply_rs_typ, &reply.fields)?;
 
         writeln!(out, "}}")?;
 
@@ -479,6 +443,56 @@ impl CodeGen {
         )?;
         writeln!(out, "    type Reply = {};", reply_rs_typ)?;
         writeln!(out, "}}")?;
+
+        Ok(())
+    }
+
+    fn emit_reply_fds<O: Write>(
+        &self,
+        out: &mut O,
+        reply_rs_typ: &str,
+        fields: &[Field],
+    ) -> io::Result<()> {
+        // We emit the reply fds.
+        // libxcb store them after the wire body.
+        for f in fields {
+            match f {
+                Field::Field { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out)?;
+                    writeln!(out, "{}pub fn {}(&self) -> RawFd {{", cg::ind(1), name)?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}assert!(self.nfd() == 1, \"Expected a single Fd for {}::{}\");",
+                        cg::ind(3),
+                        reply_rs_typ,
+                        name
+                    )?;
+                    writeln!(
+                        out,
+                        "{}*(self.wire_ptr().add(self.wire_len()) as *const RawFd)",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::List { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out)?;
+                    writeln!(out, "{}pub fn {}(&self) -> &[RawFd] {{", cg::ind(1), name)?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(out, "{}let len = self.nfd() as usize;", cg::ind(3))?;
+                    writeln!(
+                        out,
+                        "{}let ptr = self.wire_ptr().add(self.wire_len()) as *const RawFd;",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                _ => {}
+            }
+        }
 
         Ok(())
     }

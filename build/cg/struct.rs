@@ -1984,8 +1984,8 @@ impl CodeGen {
                         cg::ind(3),
                         self.build_rs_expr(wire_off, "self.", "()", fields)
                     )?;
-                    writeln!(out, "{}assert_eq!((self.length() as usize - offset) % std::mem::size_of::<{}>(), 0);", cg::ind(3), q_rs_typ)?;
-                    writeln!(out, "{}let len = (self.length() as usize - offset) / std::mem::size_of::<{}>();", cg::ind(3), q_rs_typ)?;
+                    writeln!(out, "{}assert_eq!((self.wire_len() as usize - offset) % std::mem::size_of::<{}>(), 0);", cg::ind(3), q_rs_typ)?;
+                    writeln!(out, "{}let len = (self.wire_len() as usize - offset) / std::mem::size_of::<{}>();", cg::ind(3), q_rs_typ)?;
                     writeln!(out, "{}std::slice::from_raw_parts(self.wire_ptr().add(offset) as *const {}, len)", cg::ind(3), q_rs_typ)?;
                     writeln!(out, "{}}}", cg::ind(2))?;
                     writeln!(out, "{}}}", cg::ind(1))?;
