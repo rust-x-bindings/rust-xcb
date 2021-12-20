@@ -654,6 +654,18 @@
 <span id="654">654</span>
 <span id="655">655</span>
 <span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xc_misc.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -891,11 +903,15 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">8</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> {
+                <span class="ident">base::RequestFlags::CHECKED</span>
+            } <span class="kw">else</span> {
+                <span class="ident">base::RequestFlags::NONE</span>
+            };
 
             <span class="ident">xcb_send_request64</span>(
                 <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-                <span class="ident">flags</span>,
+                <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
                 <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             )
@@ -1077,11 +1093,15 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">4</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> {
+                <span class="ident">base::RequestFlags::CHECKED</span>
+            } <span class="kw">else</span> {
+                <span class="ident">base::RequestFlags::NONE</span>
+            };
 
             <span class="ident">xcb_send_request64</span>(
                 <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-                <span class="ident">flags</span>,
+                <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
                 <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             )
@@ -1288,11 +1308,15 @@
             <span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="number">8</span>;
             <span class="ident">sections</span>[<span class="number">3</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">2</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
-            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
+            <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> {
+                <span class="ident">base::RequestFlags::CHECKED</span>
+            } <span class="kw">else</span> {
+                <span class="ident">base::RequestFlags::NONE</span>
+            };
 
             <span class="ident">xcb_send_request64</span>(
                 <span class="ident">c</span>.<span class="ident">get_raw_conn</span>(),
-                <span class="ident">flags</span>,
+                <span class="ident">flags</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="kw">_</span>,
                 <span class="ident">sections</span>.<span class="ident">as_mut_ptr</span>().<span class="ident">add</span>(<span class="number">2</span>),
                 <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">protocol_request</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw">_</span>,
             )
