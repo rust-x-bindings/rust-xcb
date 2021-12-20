@@ -761,16 +761,20 @@ impl CodeGen {
             )?;
         }
 
+        let (unchecked_f, checked_f) = ("base::RequestFlags::NONE", "base::RequestFlags::CHECKED");
+
         writeln!(out)?;
         writeln!(
             out,
-            "{}let flags = if checked {{ 1 }} else {{ 0 }};",
-            cg::ind(2)
+            "{}let flags = if checked {{ {} }} else {{ {} }};",
+            cg::ind(2),
+            checked_f,
+            unchecked_f,
         )?;
         writeln!(out)?;
         writeln!(out, "{}xcb_send_request64(", cg::ind(2))?;
         writeln!(out, "{}    c.get_raw_conn(),", cg::ind(2))?;
-        writeln!(out, "{}    flags,", cg::ind(2))?;
+        writeln!(out, "{}    flags.bits() as _,", cg::ind(2))?;
         writeln!(out, "{}    sections.as_mut_ptr().add(2),", cg::ind(2))?;
         writeln!(out, "{}    &mut protocol_request as *mut _", cg::ind(2))?;
         writeln!(out, "{})", cg::ind(2))?;
