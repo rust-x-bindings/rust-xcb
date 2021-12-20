@@ -186,6 +186,8 @@ impl CodeGen {
                 out,
                 "    fn wire_ptr(&self) -> *const u8 {{ self.raw as *const u8 }}"
             )?;
+            writeln!(out)?;
+            writeln!(out, "    fn wire_len(&self) -> usize {{ 32 }}")?;
             self.emit_struct_accessors(out, &error.rs_typ, &error.fields)?;
             writeln!(out, "}}")?;
 

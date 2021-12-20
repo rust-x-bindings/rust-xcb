@@ -291,18 +291,12 @@ impl CodeGen {
             writeln!(out, "        self.raw")?;
             writeln!(out, "    }}")?;
 
-            let len_expr = if event.is_xge {
-                "self.length() as usize"
-            } else {
-                "32"
-            };
             writeln!(out)?;
             writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
             writeln!(out, "        unsafe {{")?;
             writeln!(
                 out,
-                "            std::slice::from_raw_parts(self.raw as *const u8, {})",
-                len_expr
+                "            std::slice::from_raw_parts(self.raw as *const u8, self.wire_len())",
             )?;
             writeln!(out, "        }}")?;
             writeln!(out, "    }}")?;
@@ -696,7 +690,7 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
         if is_xge {
-            writeln!(out, "{}self.length() as usize", cg::ind(2))?;
+            writeln!(out, "{}32 + 4 * self.length() as usize", cg::ind(2))?;
         } else {
             writeln!(out, "{}32usize", cg::ind(2))?;
         }
