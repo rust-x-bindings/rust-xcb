@@ -136,7 +136,7 @@ impl CodeGen {
                 doc,
             } = r;
 
-            let info = self.query_request_info(rs_typ, params, *opcode, reply.is_none());
+            let info = self.query_request_info(rs_typ, params, *opcode, reply.as_ref());
 
             if let Some(reply) = reply {
                 self.emit_cookie_reply(out, reply, &info)?;
@@ -154,7 +154,7 @@ impl CodeGen {
         rs_typ: &str,
         params: &'a [Field],
         opcode: u32,
-        is_void: bool,
+        reply: Option<&Reply>,
     ) -> RequestInfo<'a> {
         let mut last_fixed = true;
         let mut has_lt = false;
@@ -244,9 +244,7 @@ impl CodeGen {
 
         assert!(start == end);
 
-        //panic!("{:#?}", sections);
-
-        let (cookie_rs_typ, reply_rs_typ) = if is_void {
+        let (cookie_rs_typ, reply_rs_typ) = if reply.is_none() {
             ("base::VoidCookie".to_string(), "()".to_string())
         } else {
             (rs_typ.to_string() + "Cookie", rs_typ.to_string() + "Reply")
@@ -262,6 +260,14 @@ impl CodeGen {
             )
         });
 
+        let has_fd = params.iter().any(field_is_fd);
+
+        let reply_has_fd = if let Some(reply) = reply {
+            reply.fields.iter().any(field_is_fd)
+        } else {
+            false
+        };
+
         RequestInfo {
             rs_typ: rs_typ.to_string(),
             cookie_rs_typ,
@@ -269,8 +275,10 @@ impl CodeGen {
             sections,
             has_lifetime: has_lt,
             opcode,
-            is_void,
+            is_void: reply.is_none(),
             has_prop_field,
+            has_fd,
+            reply_has_fd,
         }
     }
 
@@ -325,6 +333,49 @@ impl CodeGen {
             }
         }
         self.emit_struct_accessors(out, reply_rs_typ, &reply.fields)?;
+
+        // We emit the reply fds.
+        // The offset of 32 + 4 * length correspond to what the C implementation is doing
+        // although I'm not sure why (32 is in fact sizeof(reply_t), which is always 32 for
+        // the replies that receive fd)
+        for f in &reply.fields {
+            match f {
+                Field::Field { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out)?;
+                    writeln!(out, "{}pub fn {}(&self) -> RawFd {{", cg::ind(1), name)?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}assert!(self.nfd() == 1, \"Expected a single Fd for {}::{}\");",
+                        cg::ind(3),
+                        reply_rs_typ,
+                        name
+                    )?;
+                    writeln!(
+                        out,
+                        "{}*(self.wire_ptr().add((32 + 4 * self.length()) as _) as *const RawFd)",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::List { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out)?;
+                    writeln!(out, "{}pub fn {}(&self) -> &[RawFd] {{", cg::ind(1), name)?;
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(out, "{}let len = self.nfd() as usize;", cg::ind(3))?;
+                    writeln!(
+                        out,
+                        "{}let ptr = self.wire_ptr().add((32 + 4 * self.length()) as _) as *const RawFd;",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                _ => {}
+            }
+        }
 
         writeln!(out, "}}")?;
 
@@ -742,6 +793,19 @@ impl CodeGen {
         writeln!(out, "{}    iov_len: 0,", cg::ind(2))?;
         writeln!(out, "{}}}; {}];", cg::ind(2), iovec_count)?;
 
+        for p in params {
+            // there are no cases where more than one field is fd, so we don't need to accumulate a length here
+            match p {
+                Field::Field { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out, "{}let fds: [RawFd; 1] = [self.{}];", cg::ind(2), name)?;
+                }
+                Field::List { name, rs_typ, .. } if rs_typ == "RawFd" => {
+                    writeln!(out, "{}let fds: &[RawFd] = self.{};", cg::ind(2), name)?;
+                }
+                _ => {}
+            }
+        }
+
         for (num, sect) in info.sections.iter().enumerate() {
             writeln!(out)?;
             match sect {
@@ -762,21 +826,39 @@ impl CodeGen {
         }
 
         let (unchecked_f, checked_f) = ("base::RequestFlags::NONE", "base::RequestFlags::CHECKED");
+        let reply_fd_f = if info.reply_has_fd {
+            " | base::RequestFlags::REPLY_FDS"
+        } else {
+            ""
+        };
 
         writeln!(out)?;
         writeln!(
             out,
-            "{}let flags = if checked {{ {} }} else {{ {} }};",
+            "{}let flags = if checked {{ {}{} }} else {{ {}{} }};",
             cg::ind(2),
             checked_f,
+            reply_fd_f,
             unchecked_f,
+            reply_fd_f,
         )?;
+
+        let func = if info.has_fd {
+            "xcb_send_request_with_fds64"
+        } else {
+            "xcb_send_request64"
+        };
         writeln!(out)?;
-        writeln!(out, "{}xcb_send_request64(", cg::ind(2))?;
+        writeln!(out, "{}{}(", cg::ind(2), func)?;
         writeln!(out, "{}    c.get_raw_conn(),", cg::ind(2))?;
         writeln!(out, "{}    flags.bits() as _,", cg::ind(2))?;
         writeln!(out, "{}    sections.as_mut_ptr().add(2),", cg::ind(2))?;
-        writeln!(out, "{}    &mut protocol_request as *mut _", cg::ind(2))?;
+        writeln!(out, "{}    &mut protocol_request as *mut _,", cg::ind(2))?;
+        if info.has_fd {
+            writeln!(out, "{}fds.len() as _,", cg::ind(3))?;
+            // xcb will not modify the content of fds, the cast is therefore safe
+            writeln!(out, "{}fds.as_ptr() as *mut _,", cg::ind(3))?;
+        }
         writeln!(out, "{})", cg::ind(2))?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}}}")?;
@@ -823,7 +905,7 @@ impl CodeGen {
         info: &RequestInfo,
         sends_event: bool,
     ) -> io::Result<()> {
-        let sz = self.fixed_fields_size(fields);
+        let sz = self.request_fixed_fields_size(fields);
         writeln!(
             out,
             "{}let buf{}: &mut [u8] = &mut [0; {}];",
@@ -833,6 +915,9 @@ impl CodeGen {
         )?;
         let mut offset = 0;
         for f in fields {
+            if field_is_fd(f) {
+                continue;
+            }
             match f {
                 Field::Field { name, .. } | Field::List { name, .. }
                     if sends_event && name == "event" =>
@@ -1184,9 +1269,12 @@ impl CodeGen {
         Ok(())
     }
 
-    fn fixed_fields_size(&self, fields: &[Field]) -> usize {
+    fn request_fixed_fields_size(&self, fields: &[Field]) -> usize {
         let mut sz = 0;
         for f in fields {
+            if field_is_fd(f) {
+                continue;
+            }
             match f {
                 Field::Field {
                     wire_sz: Expr::Value(s),
@@ -1229,6 +1317,8 @@ struct RequestInfo<'a> {
     opcode: u32,
     is_void: bool,
     has_prop_field: bool,
+    has_fd: bool,
+    reply_has_fd: bool,
 }
 
 #[derive(Debug)]
@@ -1342,4 +1432,12 @@ pub(super) fn fieldref_get_value(
         }
     }
     None
+}
+
+pub(super) fn field_is_fd(field: &Field) -> bool {
+    matches!(
+        field,
+        Field::Field{rs_typ, ..} | Field::List{rs_typ, ..}
+            if rs_typ == "RawFd"
+    )
 }

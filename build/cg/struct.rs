@@ -1,6 +1,6 @@
-use crate::cg::request::fieldref_get_value;
+use crate::cg;
+use crate::cg::request::{field_is_fd, fieldref_get_value, request_fieldref_emitted};
 use crate::cg::util;
-use crate::cg::{self, request::request_fieldref_emitted};
 use crate::ir;
 
 use super::UnionTypeField;
@@ -1447,13 +1447,17 @@ impl CodeGen {
         fields: &[Field],
     ) -> io::Result<()> {
         for f in fields {
-            writeln!(out)?;
+            if field_is_fd(f) {
+                // fd fields are handled directly in request.rs
+                continue;
+            }
             if self.handle_client_message_data(out, struct_rs_typ, f)? {
                 continue;
             }
             if self.handle_randr_notify_data(out, struct_rs_typ, f)? {
                 continue;
             }
+            writeln!(out)?;
             match f {
                 Field::Field {
                     name,
