@@ -10311,6 +10311,8 @@
 <span id="10311">10311</span>
 <span id="10312">10312</span>
 <span id="10313">10313</span>
+<span id="10314">10314</span>
+<span id="10315">10315</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from randr.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -20409,9 +20411,11 @@
 
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">master_fd</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">RawFd</span> {
         <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">8usize</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">RawFd</span>;
-            <span class="kw-2">*</span><span class="ident">ptr</span>
+            <span class="macro">assert!</span>(
+                <span class="self">self</span>.<span class="ident">nfd</span>() <span class="op">==</span> <span class="number">1</span>,
+                <span class="string">&quot;Expected a single Fd for CreateLeaseReply::master_fd&quot;</span>
+            );
+            <span class="kw-2">*</span>(<span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>((<span class="number">32</span> <span class="op">+</span> <span class="number">4</span> <span class="op">*</span> <span class="self">self</span>.<span class="ident">length</span>()) <span class="kw">as</span> <span class="kw">_</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">RawFd</span>)
         }
     }
 }
@@ -20543,9 +20547,9 @@
             <span class="ident">sections</span>[<span class="number">7</span>].<span class="ident">iov_len</span> <span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">sections</span>[<span class="number">6</span>].<span class="ident">iov_len</span>, <span class="number">4</span>);
 
             <span class="kw">let</span> <span class="ident">flags</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">checked</span> {
-                <span class="ident">base::RequestFlags::CHECKED</span>
+                <span class="ident">base::RequestFlags::CHECKED</span> <span class="op">|</span> <span class="ident">base::RequestFlags::REPLY_FDS</span>
             } <span class="kw">else</span> {
-                <span class="ident">base::RequestFlags::NONE</span>
+                <span class="ident">base::RequestFlags::NONE</span> <span class="op">|</span> <span class="ident">base::RequestFlags::REPLY_FDS</span>
             };
 
             <span class="ident">xcb_send_request64</span>(
