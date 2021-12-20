@@ -1046,6 +1046,21 @@
 <span id="1046">1046</span>
 <span id="1047">1047</span>
 <span id="1048">1048</span>
+<span id="1049">1049</span>
+<span id="1050">1050</span>
+<span id="1051">1051</span>
+<span id="1052">1052</span>
+<span id="1053">1053</span>
+<span id="1054">1054</span>
+<span id="1055">1055</span>
+<span id="1056">1056</span>
+<span id="1057">1057</span>
+<span id="1058">1058</span>
+<span id="1059">1059</span>
+<span id="1060">1060</span>
+<span id="1061">1061</span>
+<span id="1062">1062</span>
+<span id="1063">1063</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xevie.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1264,6 +1279,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
@@ -1446,6 +1464,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">StartReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">StartReply</span> {}
+
 <span class="doccomment">/// Cookie type for [Start].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [StartReply]</span>
@@ -1626,6 +1647,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">EndReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">EndReply</span> {}
+
 <span class="doccomment">/// Cookie type for [End].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [EndReply]</span>
@@ -1805,6 +1829,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">SendReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">SendReply</span> {}
 
 <span class="doccomment">/// Cookie type for [Send].</span>
 <span class="doccomment">///</span>
@@ -1988,6 +2015,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">SelectInputReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">SelectInputReply</span> {}
 
 <span class="doccomment">/// Cookie type for [SelectInput].</span>
 <span class="doccomment">///</span>

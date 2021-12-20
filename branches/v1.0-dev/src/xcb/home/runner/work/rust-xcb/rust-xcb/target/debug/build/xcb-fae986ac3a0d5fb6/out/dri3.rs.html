@@ -1695,6 +1695,24 @@
 <span id="1695">1695</span>
 <span id="1696">1696</span>
 <span id="1697">1697</span>
+<span id="1698">1698</span>
+<span id="1699">1699</span>
+<span id="1700">1700</span>
+<span id="1701">1701</span>
+<span id="1702">1702</span>
+<span id="1703">1703</span>
+<span id="1704">1704</span>
+<span id="1705">1705</span>
+<span id="1706">1706</span>
+<span id="1707">1707</span>
+<span id="1708">1708</span>
+<span id="1709">1709</span>
+<span id="1710">1710</span>
+<span id="1711">1711</span>
+<span id="1712">1712</span>
+<span id="1713">1713</span>
+<span id="1714">1714</span>
+<span id="1715">1715</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from dri3.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1860,6 +1878,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
@@ -2061,6 +2082,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">OpenReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">OpenReply</span> {}
 
 <span class="doccomment">/// Cookie type for [Open].</span>
 <span class="doccomment">///</span>
@@ -2389,6 +2413,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">BufferFromPixmapReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">BufferFromPixmapReply</span> {}
+
 <span class="doccomment">/// Cookie type for [BufferFromPixmap].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [BufferFromPixmapReply]</span>
@@ -2650,6 +2677,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">FdFromFenceReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">FdFromFenceReply</span> {}
+
 <span class="doccomment">/// Cookie type for [FdFromFence].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [FdFromFenceReply]</span>
@@ -2894,6 +2924,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetSupportedModifiersReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetSupportedModifiersReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetSupportedModifiers].</span>
 <span class="doccomment">///</span>
@@ -3286,6 +3319,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">BuffersFromPixmapReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">BuffersFromPixmapReply</span> {}
 
 <span class="doccomment">/// Cookie type for [BuffersFromPixmap].</span>
 <span class="doccomment">///</span>

@@ -1512,6 +1512,18 @@
 <span id="1512">1512</span>
 <span id="1513">1513</span>
 <span id="1514">1514</span>
+<span id="1515">1515</span>
+<span id="1516">1516</span>
+<span id="1517">1517</span>
+<span id="1518">1518</span>
+<span id="1519">1519</span>
+<span id="1520">1520</span>
+<span id="1521">1521</span>
+<span id="1522">1522</span>
+<span id="1523">1523</span>
+<span id="1524">1524</span>
+<span id="1525">1525</span>
+<span id="1526">1526</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from shape.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1917,6 +1929,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
@@ -2451,6 +2466,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryExtentsReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryExtentsReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryExtents].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryExtentsReply]</span>
@@ -2691,6 +2709,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">InputSelectedReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">InputSelectedReply</span> {}
+
 <span class="doccomment">/// Cookie type for [InputSelected].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [InputSelectedReply]</span>
@@ -2918,6 +2939,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetRectanglesReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetRectanglesReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetRectangles].</span>
 <span class="doccomment">///</span>

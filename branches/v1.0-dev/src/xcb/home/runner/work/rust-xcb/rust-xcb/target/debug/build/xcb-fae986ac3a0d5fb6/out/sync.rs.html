@@ -3456,6 +3456,24 @@
 <span id="3456">3456</span>
 <span id="3457">3457</span>
 <span id="3458">3458</span>
+<span id="3459">3459</span>
+<span id="3460">3460</span>
+<span id="3461">3461</span>
+<span id="3462">3462</span>
+<span id="3463">3463</span>
+<span id="3464">3464</span>
+<span id="3465">3465</span>
+<span id="3466">3466</span>
+<span id="3467">3467</span>
+<span id="3468">3468</span>
+<span id="3469">3469</span>
+<span id="3470">3470</span>
+<span id="3471">3471</span>
+<span id="3472">3472</span>
+<span id="3473">3473</span>
+<span id="3474">3474</span>
+<span id="3475">3475</span>
+<span id="3476">3476</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from sync.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -5009,6 +5027,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">InitializeReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">InitializeReply</span> {}
+
 <span class="doccomment">/// Cookie type for [Initialize].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [InitializeReply]</span>
@@ -5234,6 +5255,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">ListSystemCountersReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">ListSystemCountersReply</span> {}
 
 <span class="doccomment">/// Cookie type for [ListSystemCounters].</span>
 <span class="doccomment">///</span>
@@ -5529,6 +5553,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryCounterReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryCounterReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryCounter].</span>
 <span class="doccomment">///</span>
@@ -6102,6 +6129,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryAlarmReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryAlarmReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryAlarm].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryAlarmReply]</span>
@@ -6345,6 +6375,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPriorityReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPriorityReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetPriority].</span>
 <span class="doccomment">///</span>
@@ -6751,6 +6784,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryFenceReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryFenceReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryFence].</span>
 <span class="doccomment">///</span>

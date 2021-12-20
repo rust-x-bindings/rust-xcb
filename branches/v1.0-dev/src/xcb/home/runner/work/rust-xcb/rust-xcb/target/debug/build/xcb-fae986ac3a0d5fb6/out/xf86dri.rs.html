@@ -2358,6 +2358,33 @@
 <span id="2358">2358</span>
 <span id="2359">2359</span>
 <span id="2360">2360</span>
+<span id="2361">2361</span>
+<span id="2362">2362</span>
+<span id="2363">2363</span>
+<span id="2364">2364</span>
+<span id="2365">2365</span>
+<span id="2366">2366</span>
+<span id="2367">2367</span>
+<span id="2368">2368</span>
+<span id="2369">2369</span>
+<span id="2370">2370</span>
+<span id="2371">2371</span>
+<span id="2372">2372</span>
+<span id="2373">2373</span>
+<span id="2374">2374</span>
+<span id="2375">2375</span>
+<span id="2376">2376</span>
+<span id="2377">2377</span>
+<span id="2378">2378</span>
+<span id="2379">2379</span>
+<span id="2380">2380</span>
+<span id="2381">2381</span>
+<span id="2382">2382</span>
+<span id="2383">2383</span>
+<span id="2384">2384</span>
+<span id="2385">2385</span>
+<span id="2386">2386</span>
+<span id="2387">2387</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xf86dri.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -2567,6 +2594,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
@@ -2748,6 +2778,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryDirectRenderingCapableReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryDirectRenderingCapableReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryDirectRenderingCapable].</span>
 <span class="doccomment">///</span>
@@ -2999,6 +3032,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">OpenConnectionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">OpenConnectionReply</span> {}
 
 <span class="doccomment">/// Cookie type for [OpenConnection].</span>
 <span class="doccomment">///</span>
@@ -3325,6 +3361,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetClientDriverNameReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetClientDriverNameReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetClientDriverName].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetClientDriverNameReply]</span>
@@ -3512,6 +3551,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">CreateContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">CreateContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [CreateContext].</span>
 <span class="doccomment">///</span>
@@ -3760,6 +3802,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">CreateDrawableReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">CreateDrawableReply</span> {}
 
 <span class="doccomment">/// Cookie type for [CreateDrawable].</span>
 <span class="doccomment">///</span>
@@ -4147,6 +4192,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetDrawableInfoReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetDrawableInfoReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetDrawableInfo].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetDrawableInfoReply]</span>
@@ -4423,6 +4471,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetDeviceInfoReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetDeviceInfoReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetDeviceInfo].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetDeviceInfoReply]</span>
@@ -4610,6 +4661,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">AuthConnectionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">AuthConnectionReply</span> {}
 
 <span class="doccomment">/// Cookie type for [AuthConnection].</span>
 <span class="doccomment">///</span>

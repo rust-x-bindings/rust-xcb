@@ -4743,6 +4743,18 @@
 <span id="4743">4743</span>
 <span id="4744">4744</span>
 <span id="4745">4745</span>
+<span id="4746">4746</span>
+<span id="4747">4747</span>
+<span id="4748">4748</span>
+<span id="4749">4749</span>
+<span id="4750">4750</span>
+<span id="4751">4751</span>
+<span id="4752">4752</span>
+<span id="4753">4753</span>
+<span id="4754">4754</span>
+<span id="4755">4755</span>
+<span id="4756">4756</span>
+<span id="4757">4757</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from render.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -6837,6 +6849,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
@@ -7171,6 +7186,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryPictFormatsReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryPictFormatsReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryPictFormats].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryPictFormatsReply]</span>
@@ -7386,6 +7404,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryPictIndexValuesReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryPictIndexValuesReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryPictIndexValues].</span>
 <span class="doccomment">///</span>
@@ -8928,6 +8949,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryFiltersReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryFiltersReply</span> {}
 
 <span class="doccomment">/// Cookie type for [QueryFilters].</span>
 <span class="doccomment">///</span>

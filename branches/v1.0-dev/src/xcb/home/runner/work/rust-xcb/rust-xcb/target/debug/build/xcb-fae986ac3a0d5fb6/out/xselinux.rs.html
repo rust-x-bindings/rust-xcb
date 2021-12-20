@@ -4343,6 +4343,54 @@
 <span id="4343">4343</span>
 <span id="4344">4344</span>
 <span id="4345">4345</span>
+<span id="4346">4346</span>
+<span id="4347">4347</span>
+<span id="4348">4348</span>
+<span id="4349">4349</span>
+<span id="4350">4350</span>
+<span id="4351">4351</span>
+<span id="4352">4352</span>
+<span id="4353">4353</span>
+<span id="4354">4354</span>
+<span id="4355">4355</span>
+<span id="4356">4356</span>
+<span id="4357">4357</span>
+<span id="4358">4358</span>
+<span id="4359">4359</span>
+<span id="4360">4360</span>
+<span id="4361">4361</span>
+<span id="4362">4362</span>
+<span id="4363">4363</span>
+<span id="4364">4364</span>
+<span id="4365">4365</span>
+<span id="4366">4366</span>
+<span id="4367">4367</span>
+<span id="4368">4368</span>
+<span id="4369">4369</span>
+<span id="4370">4370</span>
+<span id="4371">4371</span>
+<span id="4372">4372</span>
+<span id="4373">4373</span>
+<span id="4374">4374</span>
+<span id="4375">4375</span>
+<span id="4376">4376</span>
+<span id="4377">4377</span>
+<span id="4378">4378</span>
+<span id="4379">4379</span>
+<span id="4380">4380</span>
+<span id="4381">4381</span>
+<span id="4382">4382</span>
+<span id="4383">4383</span>
+<span id="4384">4384</span>
+<span id="4385">4385</span>
+<span id="4386">4386</span>
+<span id="4387">4387</span>
+<span id="4388">4388</span>
+<span id="4389">4389</span>
+<span id="4390">4390</span>
+<span id="4391">4391</span>
+<span id="4392">4392</span>
+<span id="4393">4393</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xselinux.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -4765,6 +4813,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
@@ -5054,6 +5105,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetDeviceCreateContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetDeviceCreateContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetDeviceCreateContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetDeviceCreateContextReply]</span>
@@ -5339,6 +5393,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetDeviceContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetDeviceContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetDeviceContext].</span>
 <span class="doccomment">///</span>
@@ -5627,6 +5684,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetWindowCreateContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetWindowCreateContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetWindowCreateContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetWindowCreateContextReply]</span>
@@ -5852,6 +5912,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetWindowContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetWindowContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetWindowContext].</span>
 <span class="doccomment">///</span>
@@ -6140,6 +6203,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPropertyCreateContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPropertyCreateContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetPropertyCreateContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetPropertyCreateContextReply]</span>
@@ -6424,6 +6490,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPropertyUseContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPropertyUseContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetPropertyUseContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetPropertyUseContextReply]</span>
@@ -6649,6 +6718,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPropertyContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPropertyContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetPropertyContext].</span>
 <span class="doccomment">///</span>
@@ -6881,6 +6953,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPropertyDataContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPropertyDataContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetPropertyDataContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetPropertyDataContextReply]</span>
@@ -7106,6 +7181,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">ListPropertiesReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">ListPropertiesReply</span> {}
 
 <span class="doccomment">/// Cookie type for [ListProperties].</span>
 <span class="doccomment">///</span>
@@ -7394,6 +7472,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetSelectionCreateContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetSelectionCreateContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetSelectionCreateContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetSelectionCreateContextReply]</span>
@@ -7678,6 +7759,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetSelectionUseContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetSelectionUseContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetSelectionUseContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetSelectionUseContextReply]</span>
@@ -7903,6 +7987,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetSelectionContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetSelectionContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetSelectionContext].</span>
 <span class="doccomment">///</span>
@@ -8133,6 +8220,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetSelectionDataContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetSelectionDataContextReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetSelectionDataContext].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetSelectionDataContextReply]</span>
@@ -8356,6 +8446,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">ListSelectionsReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">ListSelectionsReply</span> {}
 
 <span class="doccomment">/// Cookie type for [ListSelections].</span>
 <span class="doccomment">///</span>
@@ -8582,6 +8675,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetClientContextReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetClientContextReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetClientContext].</span>
 <span class="doccomment">///</span>

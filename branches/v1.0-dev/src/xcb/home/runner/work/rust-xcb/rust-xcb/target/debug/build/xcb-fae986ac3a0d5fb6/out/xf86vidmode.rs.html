@@ -4230,6 +4230,39 @@
 <span id="4230">4230</span>
 <span id="4231">4231</span>
 <span id="4232">4232</span>
+<span id="4233">4233</span>
+<span id="4234">4234</span>
+<span id="4235">4235</span>
+<span id="4236">4236</span>
+<span id="4237">4237</span>
+<span id="4238">4238</span>
+<span id="4239">4239</span>
+<span id="4240">4240</span>
+<span id="4241">4241</span>
+<span id="4242">4242</span>
+<span id="4243">4243</span>
+<span id="4244">4244</span>
+<span id="4245">4245</span>
+<span id="4246">4246</span>
+<span id="4247">4247</span>
+<span id="4248">4248</span>
+<span id="4249">4249</span>
+<span id="4250">4250</span>
+<span id="4251">4251</span>
+<span id="4252">4252</span>
+<span id="4253">4253</span>
+<span id="4254">4254</span>
+<span id="4255">4255</span>
+<span id="4256">4256</span>
+<span id="4257">4257</span>
+<span id="4258">4258</span>
+<span id="4259">4259</span>
+<span id="4260">4260</span>
+<span id="4261">4261</span>
+<span id="4262">4262</span>
+<span id="4263">4263</span>
+<span id="4264">4264</span>
+<span id="4265">4265</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xf86vidmode.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -5265,6 +5298,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">QueryVersionReply</span> {}
+
 <span class="doccomment">/// Cookie type for [QueryVersion].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [QueryVersionReply]</span>
@@ -5605,6 +5641,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetModeLineReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetModeLineReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetModeLine].</span>
 <span class="doccomment">///</span>
@@ -6078,6 +6117,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetMonitorReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetMonitorReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetMonitor].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetMonitorReply]</span>
@@ -6352,6 +6394,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetAllModeLinesReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetAllModeLinesReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetAllModeLines].</span>
 <span class="doccomment">///</span>
@@ -6728,6 +6773,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">ValidateModeLineReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">ValidateModeLineReply</span> {}
+
 <span class="doccomment">/// Cookie type for [ValidateModeLine].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [ValidateModeLineReply]</span>
@@ -7036,6 +7084,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetViewPortReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetViewPortReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetViewPort].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetViewPortReply]</span>
@@ -7337,6 +7388,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetDotClocksReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetDotClocksReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetDotClocks].</span>
 <span class="doccomment">///</span>
@@ -7661,6 +7715,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetGammaReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetGammaReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetGamma].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetGammaReply]</span>
@@ -7904,6 +7961,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetGammaRampReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetGammaRampReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetGammaRamp].</span>
 <span class="doccomment">///</span>
@@ -8167,6 +8227,9 @@
     }
 }
 
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetGammaRampSizeReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetGammaRampSizeReply</span> {}
+
 <span class="doccomment">/// Cookie type for [GetGammaRampSize].</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This cookie can be used to get a [GetGammaRampSizeReply]</span>
@@ -8356,6 +8419,9 @@
         }
     }
 }
+
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Send</span> <span class="kw">for</span> <span class="ident">GetPermissionsReply</span> {}
+<span class="kw">unsafe</span> <span class="kw">impl</span> <span class="ident">std::marker::Sync</span> <span class="kw">for</span> <span class="ident">GetPermissionsReply</span> {}
 
 <span class="doccomment">/// Cookie type for [GetPermissions].</span>
 <span class="doccomment">///</span>
