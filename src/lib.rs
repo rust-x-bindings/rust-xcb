@@ -132,23 +132,23 @@
 //!         let cookies = (
 //!             conn.send_request(&x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: "WM_PROTOCOLS",
+//!                 name: b"WM_PROTOCOLS",
 //!             }),
 //!             conn.send_request(&x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: "WM_DELETE_WINDOW",
+//!                 name: b"WM_DELETE_WINDOW",
 //!             }),
 //!             conn.send_request(&x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: "_NET_WM_STATE",
+//!                 name: b"_NET_WM_STATE",
 //!             }),
 //!             conn.send_request(&x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: "_NET_WM_STATE_MAXIMIZED_VERT",
+//!                 name: b"_NET_WM_STATE_MAXIMIZED_VERT",
 //!             }),
 //!             conn.send_request(&x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: "_NET_WM_STATE_MAXIMIZED_HORZ",
+//!                 name: b"_NET_WM_STATE_MAXIMIZED_HORZ",
 //!             }),
 //!         );
 //!         (

@@ -1333,7 +1333,7 @@ impl Connection {
     ///     // Example of request with reply. The error (if any) is obtained with the reply.
     ///     let cookie = conn.send_request(&x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: "WM_PROTOCOLS",
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: x::Atom = conn
     ///             .wait_for_reply(cookie)?
@@ -1384,7 +1384,7 @@ impl Connection {
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request_unchecked(&x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: "WM_PROTOCOLS",
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: Option<x::Atom> = conn
     ///             .wait_for_reply_unchecked(cookie)?
@@ -1445,7 +1445,7 @@ impl Connection {
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request(&x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: "WM_PROTOCOLS",
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: x::Atom = conn
     ///             .wait_for_reply(cookie)?
@@ -1486,7 +1486,7 @@ impl Connection {
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request_unchecked(&x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: "WM_PROTOCOLS",
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: Option<x::Atom> = conn
     ///             .wait_for_reply_unchecked(cookie)?  // connection error may happen
@@ -1570,6 +1570,7 @@ mod dan {
     use std::fmt;
     use std::mem;
     use std::ptr;
+    use std::str;
 
     pub(crate) static mut DAN_CONN: *mut xcb_connection_t = ptr::null_mut();
 
@@ -1592,7 +1593,7 @@ mod dan {
                     fmt::Error
                 })?;
 
-                let name = reply.name().map_err(|err| {
+                let name = str::from_utf8(reply.name()).map_err(|err| {
                     eprintln!(
                         "Non UTF-8 name received for x::Atom {}: {:#?}",
                         self.resource_id(),

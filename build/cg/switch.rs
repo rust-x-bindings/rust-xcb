@@ -1124,8 +1124,9 @@ impl CodeGen {
                     Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                         writeln!(
                             out,
-                            "{}(&mut wire_buf[offset..]).copy_from_slice({}.as_bytes());",
+                            "{}(&mut wire_buf[offset..offset+{}.len()]).copy_from_slice({}.as_bytes());",
                             cg::ind(ind + 2),
+                            name,
                             name
                         )?;
                         writeln!(out, "{}offset += {}.len();", cg::ind(ind + 2), name)?;

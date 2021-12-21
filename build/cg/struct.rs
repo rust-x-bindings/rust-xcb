@@ -1195,7 +1195,7 @@ impl CodeGen {
                     writeln!(out, "{}{}: &[{}Buf],", cg::ind(2), name, q_rs_typ)?;
                 }
                 Field::List { name, rs_typ, .. } if rs_typ == "char" => {
-                    writeln!(out, "{}{}: &str,", cg::ind(2), name)?;
+                    writeln!(out, "{}{}: &[u8],", cg::ind(2), name)?;
                 }
                 Field::List {
                     name,
@@ -1378,12 +1378,20 @@ impl CodeGen {
                         value_expr,
                     )?;
                 }
+                Field::List { name, rs_typ, .. } if rs_typ == "char" => {
+                    writeln!(
+                        out,
+                        "{}wire_buf[wire_off .. wire_off + {}.len()].copy_from_slice({});",
+                        cg::ind(3),
+                        name,
+                        name
+                    )?;
+                    writeln!(out, "{}wire_off += {}.len();", cg::ind(3), name)?;
+                }
                 Field::List {
                     name, rs_typ, mask, ..
                 } => {
-                    let transform = if rs_typ == "char" {
-                        ".as_bytes()".to_string()
-                    } else if mask.is_some() {
+                    let transform = if mask.is_some() {
                         format!(".iter().map(|el| el.bits() as {})", rs_typ)
                     } else {
                         String::new()
@@ -1757,52 +1765,21 @@ impl CodeGen {
                     ..
                 } if rs_typ == "char" => {
                     let params = len_expr.params_str();
-                    if let Some(doc) = doc {
-                        doc.emit(out, 1)?;
-                    }
-                    // String returned from X may not be valid utf-8.
-                    // To overcome this, we provide two methods:
-                    //   - one that returns Result<&str, Utf8Error>
-                    //   - one that returns &[u8]
-                    // see rust-xcb#96
-                    writeln!(
-                        out,
-                        "{}pub fn {}(&self{}) -> Result<&str, std::str::Utf8Error> {{",
-                        cg::ind(1),
-                        name,
-                        params
-                    )?;
-
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(
-                        out,
-                        "{}let offset = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(wire_off, "self.", "()", fields)
-                    )?;
-                    writeln!(
-                        out,
-                        "{}let len = {} as _;",
-                        cg::ind(3),
-                        self.build_rs_expr(len_expr, "self.", "()", fields)
-                    )?;
-                    writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
-                    writeln!(
-                        out,
-                        "{}let raw = std::slice::from_raw_parts(ptr, len);",
-                        cg::ind(3)
-                    )?;
-                    writeln!(out, "{}std::str::from_utf8(raw)", cg::ind(3))?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
-                    writeln!(out, "{}}}", cg::ind(1))?;
-
                     writeln!(out)?;
+                    // According X protocol spec, strings are latin-1 encoded
+                    // Therefore we return them only as bytes, and user may convert them as string
+                    // see rust-xcb#34 and rust-xcb#96
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
                     writeln!(
                         out,
-                        "{}pub fn {}_raw(&self{}) -> &[u8] {{",
+                        "{}/// Returned string is encoded in LATIN-1",
+                        cg::ind(1)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}pub fn {}(&self{}) -> &[u8] {{",
                         cg::ind(1),
                         name,
                         params
@@ -2287,34 +2264,45 @@ impl CodeGen {
             "    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{"
         )?;
         for f in fields {
-            if let Field::List {
-                name,
-                is_prop: true,
-                ..
-            } = f
-            {
-                writeln!(
-                    out,
-                    "{}let {}: Box<dyn std::fmt::Debug> = match self.format() {{",
-                    cg::ind(2),
-                    name
-                )?;
-                for format in [8, 16, 32] {
+            match f {
+                Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                     writeln!(
                         out,
-                        "{}{} => Box::new(self.{}::<u{}>()),",
-                        cg::ind(3),
-                        format,
+                        "{}let {} = std::str::from_utf8(self.{}());",
+                        cg::ind(2),
                         name,
-                        format
+                        name,
                     )?;
                 }
-                writeln!(
-                    out,
-                    "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
-                    cg::ind(3)
-                )?;
-                writeln!(out, "{}}};", cg::ind(2))?;
+                Field::List {
+                    name,
+                    is_prop: true,
+                    ..
+                } => {
+                    writeln!(
+                        out,
+                        "{}let {}: Box<dyn std::fmt::Debug> = match self.format() {{",
+                        cg::ind(2),
+                        name
+                    )?;
+                    for format in [8, 16, 32] {
+                        writeln!(
+                            out,
+                            "{}{} => Box::new(self.{}::<u{}>()),",
+                            cg::ind(3),
+                            format,
+                            name,
+                            format
+                        )?;
+                    }
+                    writeln!(
+                        out,
+                        "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "{}}};", cg::ind(2))?;
+                }
+                _ => {}
             }
         }
         writeln!(out, "        f.debug_struct(\"{}\")", rs_typ)?;
@@ -2322,6 +2310,9 @@ impl CodeGen {
             match f {
                 Field::Field { name, .. } => {
                     writeln!(out, "{}.field(\"{}\", &self.{}())", cg::ind(3), name, name)?;
+                }
+                Field::List { name, rs_typ, .. } if rs_typ == "char" => {
+                    writeln!(out, "{}.field(\"{}\", &{})", cg::ind(3), name, name)?;
                 }
                 Field::List {
                     name,
