@@ -1,4 +1,3 @@
-use std::str;
 use xcb::{x, Xid};
 
 fn main() -> xcb::Result<()> {
@@ -53,30 +52,30 @@ fn main() -> xcb::Result<()> {
         long_length: 1024,
     });
     let reply = conn.wait_for_reply(cookie)?;
-    assert_eq!(str::from_utf8(reply.value()).unwrap(), title);
+    assert_eq!(reply.value::<u8>(), title.as_bytes());
 
     // retrieving a few atoms
     let (wm_protocols, wm_del_window, wm_state, wm_state_maxv, wm_state_maxh) = {
         let cookies = (
             conn.send_request(&x::InternAtom {
                 only_if_exists: true,
-                name: "WM_PROTOCOLS",
+                name: b"WM_PROTOCOLS",
             }),
             conn.send_request(&x::InternAtom {
                 only_if_exists: true,
-                name: "WM_DELETE_WINDOW",
+                name: b"WM_DELETE_WINDOW",
             }),
             conn.send_request(&x::InternAtom {
                 only_if_exists: true,
-                name: "_NET_WM_STATE",
+                name: b"_NET_WM_STATE",
             }),
             conn.send_request(&x::InternAtom {
                 only_if_exists: true,
-                name: "_NET_WM_STATE_MAXIMIZED_VERT",
+                name: b"_NET_WM_STATE_MAXIMIZED_VERT",
             }),
             conn.send_request(&x::InternAtom {
                 only_if_exists: true,
-                name: "_NET_WM_STATE_MAXIMIZED_HORZ",
+                name: b"_NET_WM_STATE_MAXIMIZED_HORZ",
             }),
         );
         (

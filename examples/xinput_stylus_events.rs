@@ -49,7 +49,7 @@ fn main() -> xcb::Result<()> {
     let device = {
         let mut device: Option<StylusDevice> = None;
         for (i, dev) in device_list.devices().iter().enumerate() {
-            let name = device_list.names().nth(i).unwrap().name().unwrap();
+            let name = device_list.names().nth(i).unwrap().name().to_utf8();
             if name.contains(&find_device) {
                 device = Some(StylusDevice {
                     id: dev.device_id() as xinput::DeviceId,

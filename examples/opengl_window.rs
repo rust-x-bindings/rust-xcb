@@ -129,11 +129,11 @@ fn main() -> xcb::Result<()> {
         let cookies = (
             conn.send_request(&x::InternAtom {
                 only_if_exists: false,
-                name: "WM_PROTOCOLS",
+                name: b"WM_PROTOCOLS",
             }),
             conn.send_request(&x::InternAtom {
                 only_if_exists: false,
-                name: "WM_DELETE_WINDOW",
+                name: b"WM_DELETE_WINDOW",
             }),
         );
         (

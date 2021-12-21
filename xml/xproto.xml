@@ -2900,7 +2900,7 @@ not yet exist.
 // Resolve the _NET_WM_NAME atom.
 let cookie = conn.send_request(&x::InternAtom {
     only_if_exists: false,
-    name: "_NET_WM_NAME",
+    name: b"_NET_WM_NAME",
 });
 let reply = conn.wait_for_reply(cookie)?;
 let wm_name = reply.atom();
