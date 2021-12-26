@@ -638,6 +638,8 @@
 <span id="638">638</span>
 <span id="639">639</span>
 <span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -772,23 +774,23 @@
 <span class="doccomment">//!         let cookies = (</span>
 <span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">//!                 only_if_exists: true,</span>
-<span class="doccomment">//!                 name: &quot;WM_PROTOCOLS&quot;,</span>
+<span class="doccomment">//!                 name: b&quot;WM_PROTOCOLS&quot;,</span>
 <span class="doccomment">//!             }),</span>
 <span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">//!                 only_if_exists: true,</span>
-<span class="doccomment">//!                 name: &quot;WM_DELETE_WINDOW&quot;,</span>
+<span class="doccomment">//!                 name: b&quot;WM_DELETE_WINDOW&quot;,</span>
 <span class="doccomment">//!             }),</span>
 <span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">//!                 only_if_exists: true,</span>
-<span class="doccomment">//!                 name: &quot;_NET_WM_STATE&quot;,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE&quot;,</span>
 <span class="doccomment">//!             }),</span>
 <span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">//!                 only_if_exists: true,</span>
-<span class="doccomment">//!                 name: &quot;_NET_WM_STATE_MAXIMIZED_VERT&quot;,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_VERT&quot;,</span>
 <span class="doccomment">//!             }),</span>
 <span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">//!                 only_if_exists: true,</span>
-<span class="doccomment">//!                 name: &quot;_NET_WM_STATE_MAXIMIZED_HORZ&quot;,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_HORZ&quot;,</span>
 <span class="doccomment">//!             }),</span>
 <span class="doccomment">//!         );</span>
 <span class="doccomment">//!         (</span>
@@ -940,11 +942,13 @@
 <span class="kw">mod</span> <span class="ident">error</span>;
 <span class="kw">mod</span> <span class="ident">event</span>;
 <span class="kw">mod</span> <span class="ident">ext</span>;
+<span class="kw">mod</span> <span class="ident">lat1_str</span>;
 
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::<span class="kw-2">*</span>;
 <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">lat1_str</span>::<span class="kw-2">*</span>;
 
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x</span> {
     <span class="doccomment">//! The core X protocol definitions</span>

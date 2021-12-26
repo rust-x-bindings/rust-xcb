@@ -227,7 +227,7 @@ If the request expect a reply, the cookie can be used to retrieve the reply</p>
     <span class="comment">// Example of request with reply. The error (if any) is obtained with the reply.</span>
     <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">send_request</span>(<span class="kw-2">&amp;</span><span class="ident">x::InternAtom</span> {
         <span class="ident">only_if_exists</span>: <span class="bool-val">true</span>,
-        <span class="ident">name</span>: <span class="string">&quot;WM_PROTOCOLS&quot;</span>,
+        <span class="ident">name</span>: <span class="string">b&quot;WM_PROTOCOLS&quot;</span>,
     });
     <span class="kw">let</span> <span class="ident">wm_protocols_atom</span>: <span class="ident">x::Atom</span> <span class="op">=</span> <span class="ident">conn</span>
             .<span class="ident">wait_for_reply</span>(<span class="ident">cookie</span>)<span class="question-mark">?</span>
@@ -245,7 +245,7 @@ be sent to the event loop</p>
 <h5 id="example-7" class="section-header"><a href="#example-7">Example</a></h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>    <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">send_request_unchecked</span>(<span class="kw-2">&amp;</span><span class="ident">x::InternAtom</span> {
         <span class="ident">only_if_exists</span>: <span class="bool-val">true</span>,
-        <span class="ident">name</span>: <span class="string">&quot;WM_PROTOCOLS&quot;</span>,
+        <span class="ident">name</span>: <span class="string">b&quot;WM_PROTOCOLS&quot;</span>,
     });
     <span class="kw">let</span> <span class="ident">wm_protocols_atom</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">x::Atom</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">conn</span>
             .<span class="ident">wait_for_reply_unchecked</span>(<span class="ident">cookie</span>)<span class="question-mark">?</span>
@@ -265,7 +265,7 @@ convenience to avoid races in determining whether the sync is needed.</p>
 <h5 id="example-9" class="section-header"><a href="#example-9">Example</a></h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>    <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">send_request</span>(<span class="kw-2">&amp;</span><span class="ident">x::InternAtom</span> {
         <span class="ident">only_if_exists</span>: <span class="bool-val">true</span>,
-        <span class="ident">name</span>: <span class="string">&quot;WM_PROTOCOLS&quot;</span>,
+        <span class="ident">name</span>: <span class="string">b&quot;WM_PROTOCOLS&quot;</span>,
     });
     <span class="kw">let</span> <span class="ident">wm_protocols_atom</span>: <span class="ident">x::Atom</span> <span class="op">=</span> <span class="ident">conn</span>
             .<span class="ident">wait_for_reply</span>(<span class="ident">cookie</span>)<span class="question-mark">?</span>
@@ -275,7 +275,7 @@ convenience to avoid races in determining whether the sync is needed.</p>
 <h5 id="example-10" class="section-header"><a href="#example-10">Example</a></h5>
 <div class="example-wrap"><pre class="rust rust-example-rendered"><code>    <span class="kw">let</span> <span class="ident">cookie</span> <span class="op">=</span> <span class="ident">conn</span>.<span class="ident">send_request_unchecked</span>(<span class="kw-2">&amp;</span><span class="ident">x::InternAtom</span> {
         <span class="ident">only_if_exists</span>: <span class="bool-val">true</span>,
-        <span class="ident">name</span>: <span class="string">&quot;WM_PROTOCOLS&quot;</span>,
+        <span class="ident">name</span>: <span class="string">b&quot;WM_PROTOCOLS&quot;</span>,
     });
     <span class="kw">let</span> <span class="ident">wm_protocols_atom</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">x::Atom</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">conn</span>
             .<span class="ident">wait_for_reply_unchecked</span>(<span class="ident">cookie</span>)<span class="question-mark">?</span>  <span class="comment">// connection error may happen</span>

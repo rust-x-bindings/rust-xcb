@@ -26141,91 +26141,13 @@
 <span id="26141">26141</span>
 <span id="26142">26142</span>
 <span id="26143">26143</span>
-<span id="26144">26144</span>
-<span id="26145">26145</span>
-<span id="26146">26146</span>
-<span id="26147">26147</span>
-<span id="26148">26148</span>
-<span id="26149">26149</span>
-<span id="26150">26150</span>
-<span id="26151">26151</span>
-<span id="26152">26152</span>
-<span id="26153">26153</span>
-<span id="26154">26154</span>
-<span id="26155">26155</span>
-<span id="26156">26156</span>
-<span id="26157">26157</span>
-<span id="26158">26158</span>
-<span id="26159">26159</span>
-<span id="26160">26160</span>
-<span id="26161">26161</span>
-<span id="26162">26162</span>
-<span id="26163">26163</span>
-<span id="26164">26164</span>
-<span id="26165">26165</span>
-<span id="26166">26166</span>
-<span id="26167">26167</span>
-<span id="26168">26168</span>
-<span id="26169">26169</span>
-<span id="26170">26170</span>
-<span id="26171">26171</span>
-<span id="26172">26172</span>
-<span id="26173">26173</span>
-<span id="26174">26174</span>
-<span id="26175">26175</span>
-<span id="26176">26176</span>
-<span id="26177">26177</span>
-<span id="26178">26178</span>
-<span id="26179">26179</span>
-<span id="26180">26180</span>
-<span id="26181">26181</span>
-<span id="26182">26182</span>
-<span id="26183">26183</span>
-<span id="26184">26184</span>
-<span id="26185">26185</span>
-<span id="26186">26186</span>
-<span id="26187">26187</span>
-<span id="26188">26188</span>
-<span id="26189">26189</span>
-<span id="26190">26190</span>
-<span id="26191">26191</span>
-<span id="26192">26192</span>
-<span id="26193">26193</span>
-<span id="26194">26194</span>
-<span id="26195">26195</span>
-<span id="26196">26196</span>
-<span id="26197">26197</span>
-<span id="26198">26198</span>
-<span id="26199">26199</span>
-<span id="26200">26200</span>
-<span id="26201">26201</span>
-<span id="26202">26202</span>
-<span id="26203">26203</span>
-<span id="26204">26204</span>
-<span id="26205">26205</span>
-<span id="26206">26206</span>
-<span id="26207">26207</span>
-<span id="26208">26208</span>
-<span id="26209">26209</span>
-<span id="26210">26210</span>
-<span id="26211">26211</span>
-<span id="26212">26212</span>
-<span id="26213">26213</span>
-<span id="26214">26214</span>
-<span id="26215">26215</span>
-<span id="26216">26216</span>
-<span id="26217">26217</span>
-<span id="26218">26218</span>
-<span id="26219">26219</span>
-<span id="26220">26220</span>
-<span id="26221">26221</span>
-<span id="26222">26222</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::ext</span>::<span class="kw-2">*</span>;
+<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::lat1_str</span>::{<span class="ident">Lat1Str</span>, <span class="ident">Lat1StrF</span>, <span class="ident">Lat1String</span>};
 
 <span class="kw">use</span> <span class="ident">bitflags::bitflags</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
@@ -32671,26 +32593,17 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">12usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_name_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">12usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_data</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> ((<span class="number">12usize</span> <span class="op">+</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>))
                 <span class="op">+</span> <span class="ident">base::align_pad</span>(
@@ -32699,21 +32612,8 @@
                 ));
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_data_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">authorization_protocol_data_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> ((<span class="number">12usize</span> <span class="op">+</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>))
-                <span class="op">+</span> <span class="ident">base::align_pad</span>(
-                    (<span class="number">12usize</span> <span class="op">+</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>)),
-                    <span class="number">4</span>,
-                ));
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">authorization_protocol_data_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -32780,8 +32680,8 @@
         <span class="ident">byte_order</span>: <span class="ident">u8</span>,
         <span class="ident">protocol_major_version</span>: <span class="ident">u16</span>,
         <span class="ident">protocol_minor_version</span>: <span class="ident">u16</span>,
-        <span class="ident">authorization_protocol_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
-        <span class="ident">authorization_protocol_data</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">authorization_protocol_name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
+        <span class="ident">authorization_protocol_data</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
     ) -&gt; <span class="ident">SetupRequestBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -32808,13 +32708,13 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
                 (<span class="ident">authorization_protocol_data</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">2</span>; <span class="comment">// pad</span>
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">authorization_protocol_name</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">authorization_protocol_name</span>.<span class="ident">len</span>()]
+                .<span class="ident">copy_from_slice</span>(<span class="ident">authorization_protocol_name</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">authorization_protocol_name</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">authorization_protocol_data</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">authorization_protocol_data</span>.<span class="ident">len</span>()]
+                .<span class="ident">copy_from_slice</span>(<span class="ident">authorization_protocol_data</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">authorization_protocol_data</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
 
             <span class="ident">SetupRequestBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
@@ -32994,22 +32894,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">8usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">reason_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">8usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">reason_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -33063,7 +32954,7 @@
         <span class="ident">protocol_major_version</span>: <span class="ident">u16</span>,
         <span class="ident">protocol_minor_version</span>: <span class="ident">u16</span>,
         <span class="ident">length</span>: <span class="ident">u16</span>,
-        <span class="ident">reason</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">reason</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
     ) -&gt; <span class="ident">SetupFailedBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
@@ -33081,9 +32972,8 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">protocol_major_version</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">protocol_minor_version</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">length</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">reason</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">reason</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">reason</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">reason</span>.<span class="ident">len</span>();
 
             <span class="ident">SetupFailedBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
         }
@@ -33204,22 +33094,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">8usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">length</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> <span class="number">4usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">reason_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">8usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> ((<span class="self">self</span>.<span class="ident">length</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> <span class="number">4usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -33267,7 +33148,7 @@
 
     <span class="doccomment">/// Construct a new [SetupAuthenticateBuf].</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">status</span>: <span class="ident">u8</span>, <span class="ident">length</span>: <span class="ident">u16</span>, <span class="ident">reason</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">SetupAuthenticateBuf</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">status</span>: <span class="ident">u8</span>, <span class="ident">length</span>: <span class="ident">u16</span>, <span class="ident">reason</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">SetupAuthenticateBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// status</span>
@@ -33280,9 +33161,8 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">status</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">5</span>; <span class="comment">// pad</span>
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">length</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">reason</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">reason</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">reason</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">reason</span>.<span class="ident">len</span>();
 
             <span class="ident">SetupAuthenticateBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
         }
@@ -33536,22 +33416,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vendor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vendor</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">40usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">vendor_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">vendor_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">40usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">vendor_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 
@@ -33680,7 +33551,7 @@
         <span class="ident">bitmap_format_scanline_pad</span>: <span class="ident">u8</span>,
         <span class="ident">min_keycode</span>: <span class="ident">Keycode</span>,
         <span class="ident">max_keycode</span>: <span class="ident">Keycode</span>,
-        <span class="ident">vendor</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>,
+        <span class="ident">vendor</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>],
         <span class="ident">pixmap_formats</span>: <span class="kw-2">&amp;</span>[<span class="ident">Format</span>],
         <span class="ident">roots</span>: <span class="kw-2">&amp;</span>[<span class="ident">ScreenBuf</span>],
     ) -&gt; <span class="ident">SetupBuf</span> {
@@ -33735,9 +33606,8 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">min_keycode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">max_keycode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>; <span class="comment">// pad</span>
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">vendor</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">vendor</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">vendor</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">vendor</span>.<span class="ident">len</span>();
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">base::align_pad</span>(<span class="ident">wire_off</span>, <span class="number">4</span>);
             <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">pixmap_formats</span> {
                 <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -34666,22 +34536,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">1usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">1usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -34722,7 +34583,7 @@
 
     <span class="doccomment">/// Construct a new [StrBuf].</span>
     <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">unused_assignments</span>, <span class="ident">unused_unsafe</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">StrBuf</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">name</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="ident">StrBuf</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_sz</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="ident">wire_sz</span> <span class="op">+</span><span class="op">=</span> <span class="number">1</span>; <span class="comment">// name_len</span>
@@ -34731,9 +34592,8 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">name</span>.<span class="ident">len</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="kw">for</span> <span class="ident">el</span> <span class="kw">in</span> <span class="ident">name</span>.<span class="ident">as_bytes</span>() {
-                <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">el</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            }
+            <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..<span class="ident">wire_off</span> <span class="op">+</span> <span class="ident">name</span>.<span class="ident">len</span>()].<span class="ident">copy_from_slice</span>(<span class="ident">name</span>);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">name</span>.<span class="ident">len</span>();
 
             <span class="ident">StrBuf</span> { <span class="ident">data</span>: <span class="ident">wire_buf</span> }
         }
@@ -39065,7 +38925,7 @@
 <span class="doccomment">/// // Resolve the _NET_WM_NAME atom.</span>
 <span class="doccomment">/// let cookie = conn.send_request(&amp;x::InternAtom {</span>
 <span class="doccomment">///     only_if_exists: false,</span>
-<span class="doccomment">///     name: &quot;_NET_WM_NAME&quot;,</span>
+<span class="doccomment">///     name: b&quot;_NET_WM_NAME&quot;,</span>
 <span class="doccomment">/// });</span>
 <span class="doccomment">/// let reply = conn.wait_for_reply(cookie)?;</span>
 <span class="doccomment">/// let wm_name = reply.atom();</span>
@@ -39081,7 +38941,7 @@
     <span class="doccomment">/// Return a valid atom id only if the atom already exists.</span>
     <span class="kw">pub</span> <span class="ident">only_if_exists</span>: <span class="ident">bool</span>,
     <span class="doccomment">/// The name of the atom.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">InternAtom</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -39206,22 +39066,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> <span class="number">32usize</span>;
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -43014,7 +42865,7 @@
     <span class="doccomment">/// The ID with which you will refer to the font, created by [Connection::generate_id][crate::Connection::generate_id].</span>
     <span class="kw">pub</span> <span class="ident">fid</span>: <span class="ident">Font</span>,
     <span class="doccomment">/// A pattern describing an X core font.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">OpenFont</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -43964,7 +43815,7 @@
     <span class="doccomment">/// The asterisk (*) is a wildcard for any number of characters. The question mark</span>
     <span class="doccomment">/// (?) is a wildcard for a single character. Use of uppercase or lowercase does</span>
     <span class="doccomment">/// not matter.</span>
-    <span class="kw">pub</span> <span class="ident">pattern</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">pattern</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ListFonts</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -44239,22 +44090,13 @@
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">std::str::Utf8Error</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="number">60usize</span> <span class="op">+</span> ((<span class="self">self</span>.<span class="ident">properties_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> <span class="number">8usize</span>));
             <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
-            <span class="ident">std::str::from_utf8</span>(<span class="ident">raw</span>)
-        }
-    }
-
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">name_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw">unsafe</span> {
-            <span class="kw">let</span> <span class="ident">offset</span> <span class="op">=</span> (<span class="number">60usize</span> <span class="op">+</span> ((<span class="self">self</span>.<span class="ident">properties_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="op">*</span> <span class="number">8usize</span>));
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> (<span class="self">self</span>.<span class="ident">name_len</span>() <span class="kw">as</span> <span class="ident">usize</span>) <span class="kw">as</span> <span class="kw">_</span>;
-            <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">wire_ptr</span>().<span class="ident">add</span>(<span class="ident">offset</span>);
-            <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>)
+            <span class="kw">let</span> <span class="ident">bytes</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>);
+            <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">bytes</span>)
         }
     }
 }
@@ -44374,7 +44216,7 @@
     <span class="doccomment">/// The asterisk (*) is a wildcard for any number of characters. The question mark</span>
     <span class="doccomment">/// (?) is a wildcard for a single character. Use of uppercase or lowercase does</span>
     <span class="doccomment">/// not matter.</span>
-    <span class="kw">pub</span> <span class="ident">pattern</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">pattern</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ListFontsWithInfo</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -46516,7 +46358,7 @@
     <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">i16</span>,
     <span class="doccomment">/// The string to draw. Only the first 255 characters are relevant due to the data</span>
     <span class="doccomment">/// type of `string_len`.</span>
-    <span class="kw">pub</span> <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">string</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">ImageText8</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -47586,7 +47428,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">AllocNamedColor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">cmap</span>: <span class="ident">Colormap</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">AllocNamedColor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -48292,7 +48134,7 @@
     <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">ColorFlag</span>,
     <span class="kw">pub</span> <span class="ident">cmap</span>: <span class="ident">Colormap</span>,
     <span class="kw">pub</span> <span class="ident">pixel</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">StoreNamedColor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -48759,7 +48601,7 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">LookupColor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="kw">pub</span> <span class="ident">cmap</span>: <span class="ident">Colormap</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">LookupColor</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
@@ -49493,7 +49335,7 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">QueryExtension</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The name of the extension to query, for example &quot;RANDR&quot;. This is case</span>
     <span class="doccomment">/// sensitive!</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> <span class="ident">str</span>,
+    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">u8</span>],
 }
 
 <span class="kw">unsafe</span> <span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> <span class="ident">base::RawRequest</span> <span class="kw">for</span> <span class="ident">QueryExtension</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
