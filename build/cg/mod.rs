@@ -472,6 +472,10 @@ impl CodeGen {
         writeln!(out, "use crate::ext;")?;
         writeln!(out, "use crate::ffi::base::*;")?;
         writeln!(out, "use crate::ffi::ext::*;")?;
+        writeln!(
+            out,
+            "use crate::lat1_str::{{Lat1Str, Lat1String, Lat1StrF}};"
+        )?;
         for di in &self.depinfo {
             writeln!(out, "use crate::{};", di.xcb_mod)?;
         }

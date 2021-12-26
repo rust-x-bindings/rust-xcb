@@ -215,7 +215,7 @@ impl CodeGen {
                         writeln!(out, "    {}({}),", c.name, q_rs_typ)?;
                     }
                     Field::List { rs_typ, .. } if rs_typ == "char" => {
-                        writeln!(out, "    {}(String),", c.name)?;
+                        writeln!(out, "    {}(Lat1String),", c.name)?;
                     }
                     Field::List {
                         r#enum: Some(r#enum),
@@ -288,7 +288,7 @@ impl CodeGen {
                             }
                         }
                         Field::List { name, rs_typ, .. } if rs_typ == "char" => {
-                            writeln!(out, "        {}: String,", name)?;
+                            writeln!(out, "        {}: Lat1String,", name)?;
                         }
                         Field::List {
                             name,
@@ -508,8 +508,13 @@ impl CodeGen {
                             name,
                             len_expr,
                         )?;
-                        writeln!(out, "{}let {} = std::str::from_utf8({}_bytes).expect(\"Invalid UTF-8 for {}::{}\");", cg::ind(3), name, name, rs_typ, name)?;
-                        writeln!(out, "{}let {} = String::from({});", cg::ind(3), name, name)?;
+                        writeln!(
+                            out,
+                            "{}let {} = Lat1String::from_bytes({}_bytes);",
+                            cg::ind(3),
+                            name,
+                            name
+                        )?;
                         writeln!(out, "{}offset += {}.len();", cg::ind(3), name)?;
                     }
                     Field::List {
@@ -1124,8 +1129,9 @@ impl CodeGen {
                     Field::List { name, rs_typ, .. } if rs_typ == "char" => {
                         writeln!(
                             out,
-                            "{}(&mut wire_buf[offset..]).copy_from_slice({}.as_bytes());",
+                            "{}(&mut wire_buf[offset..offset+{}.len()]).copy_from_slice({}.as_bytes());",
                             cg::ind(ind + 2),
+                            name,
                             name
                         )?;
                         writeln!(out, "{}offset += {}.len();", cg::ind(ind + 2), name)?;

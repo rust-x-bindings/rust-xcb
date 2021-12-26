@@ -194,7 +194,7 @@ impl CodeGen {
                     let FieldInfo {
                         name,
                         module,
-                        mut rs_typ,
+                        rs_typ,
                         typ,
                         wire_sz,
                         has_wire_layout: hfl,
@@ -221,7 +221,6 @@ impl CodeGen {
 
                     let fixed_str = matches!((rs_typ.as_str(), &wire_sz), ("char", Expr::Value(_)));
                     if fixed_str {
-                        rs_typ = "u8".into();
                     } else if !hfl || !matches!(wire_sz, Expr::Value(_)) {
                         has_wire_layout = false;
                     }
@@ -581,6 +580,18 @@ impl CodeGen {
                         doc.emit(out, 1)?;
                     }
                     writeln!(out, "    pub {}: {},", name, q_rs_typ)?;
+                }
+                Field::List {
+                    name,
+                    rs_typ,
+                    len_expr: Expr::Value(len),
+                    doc,
+                    ..
+                } if rs_typ == "char" => {
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(out, "    pub {}: Lat1StrF<{}>,", name, len)?;
                 }
                 Field::List {
                     name,
@@ -1176,6 +1187,14 @@ impl CodeGen {
                 }
                 Field::List {
                     name,
+                    rs_typ,
+                    len_expr: Expr::Value(len),
+                    ..
+                } if rs_typ == "char" => {
+                    writeln!(out, "{}{}: &[u8; {}],", cg::ind(2), name, len)?;
+                }
+                Field::List {
+                    name,
                     module,
                     rs_typ,
                     len_expr: Expr::Value(len),
@@ -1195,7 +1214,7 @@ impl CodeGen {
                     writeln!(out, "{}{}: &[{}Buf],", cg::ind(2), name, q_rs_typ)?;
                 }
                 Field::List { name, rs_typ, .. } if rs_typ == "char" => {
-                    writeln!(out, "{}{}: &str,", cg::ind(2), name)?;
+                    writeln!(out, "{}{}: &[u8],", cg::ind(2), name)?;
                 }
                 Field::List {
                     name,
@@ -1378,12 +1397,20 @@ impl CodeGen {
                         value_expr,
                     )?;
                 }
+                Field::List { name, rs_typ, .. } if rs_typ == "char" => {
+                    writeln!(
+                        out,
+                        "{}wire_buf[wire_off .. wire_off + {}.len()].copy_from_slice({});",
+                        cg::ind(3),
+                        name,
+                        name
+                    )?;
+                    writeln!(out, "{}wire_off += {}.len();", cg::ind(3), name)?;
+                }
                 Field::List {
                     name, rs_typ, mask, ..
                 } => {
-                    let transform = if rs_typ == "char" {
-                        ".as_bytes()".to_string()
-                    } else if mask.is_some() {
+                    let transform = if mask.is_some() {
                         format!(".iter().map(|el| el.bits() as {})", rs_typ)
                     } else {
                         String::new()
@@ -1752,22 +1779,60 @@ impl CodeGen {
                     name,
                     rs_typ,
                     wire_off,
+                    len_expr: Expr::Value(len),
+                    doc,
+                    ..
+                } if rs_typ == "char" => {
+                    writeln!(out)?;
+                    // According X protocol spec, strings are latin-1 encoded
+                    // Therefore we return them only as bytes, and user may convert them as string
+                    // see rust-xcb#34 and rust-xcb#96
+                    if let Some(doc) = doc {
+                        doc.emit(out, 1)?;
+                    }
+                    writeln!(
+                        out,
+                        "{}pub fn {}(&self) -> &Lat1StrF<{}> {{",
+                        cg::ind(1),
+                        name,
+                        len
+                    )?;
+
+                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
+                    )?;
+                    writeln!(
+                        out,
+                        "{}&*(self.wire_ptr().add(offset) as *const Lat1StrF<{}>)",
+                        cg::ind(3),
+                        len
+                    )?;
+                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+                }
+                Field::List {
+                    name,
+                    rs_typ,
+                    wire_off,
                     len_expr,
                     doc,
                     ..
                 } if rs_typ == "char" => {
                     let params = len_expr.params_str();
+                    writeln!(out)?;
+                    // According X protocol spec, strings are latin-1 encoded
+                    // Therefore we return them only as bytes, and user may convert them as string
+                    // see rust-xcb#34 and rust-xcb#96
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
-                    // String returned from X may not be valid utf-8.
-                    // To overcome this, we provide two methods:
-                    //   - one that returns Result<&str, Utf8Error>
-                    //   - one that returns &[u8]
-                    // see rust-xcb#96
                     writeln!(
                         out,
-                        "{}pub fn {}(&self{}) -> Result<&str, std::str::Utf8Error> {{",
+                        "{}pub fn {}(&self{}) -> &Lat1Str {{",
                         cg::ind(1),
                         name,
                         params
@@ -1789,40 +1854,10 @@ impl CodeGen {
                     writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
                     writeln!(
                         out,
-                        "{}let raw = std::slice::from_raw_parts(ptr, len);",
+                        "{}let bytes = std::slice::from_raw_parts(ptr, len);",
                         cg::ind(3)
                     )?;
-                    writeln!(out, "{}std::str::from_utf8(raw)", cg::ind(3))?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
-                    writeln!(out, "{}}}", cg::ind(1))?;
-
-                    writeln!(out)?;
-                    if let Some(doc) = doc {
-                        doc.emit(out, 1)?;
-                    }
-                    writeln!(
-                        out,
-                        "{}pub fn {}_raw(&self{}) -> &[u8] {{",
-                        cg::ind(1),
-                        name,
-                        params
-                    )?;
-
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(
-                        out,
-                        "{}let offset = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(wire_off, "self.", "()", fields)
-                    )?;
-                    writeln!(
-                        out,
-                        "{}let len = {} as _;",
-                        cg::ind(3),
-                        self.build_rs_expr(len_expr, "self.", "()", fields)
-                    )?;
-                    writeln!(out, "{}let ptr = self.wire_ptr().add(offset);", cg::ind(3))?;
-                    writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
+                    writeln!(out, "{}Lat1Str::from_bytes(bytes)", cg::ind(3))?;
                     writeln!(out, "{}}}", cg::ind(2))?;
                     writeln!(out, "{}}}", cg::ind(1))?;
                 }

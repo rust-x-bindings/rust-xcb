@@ -649,7 +649,7 @@ impl CodeGen {
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
-                    writeln!(out, "    pub {}: &'a str,", name)?;
+                    writeln!(out, "    pub {}: &'a [u8],", name)?;
                 }
                 Field::List {
                     name,
