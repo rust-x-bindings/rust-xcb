@@ -163,7 +163,7 @@ pub trait ResolveWireEvent: Sized {
     /// # Safety
     /// `event` must be a valid, non-null event returned by `xcb_wait_for_event`
     /// or similar function
-    unsafe fn resolve_wire_event(first_event: u8, event: *mut xcb_generic_event_t) -> Self;
+    unsafe fn resolve_wire_event(first_event: u8, event: *mut xcb_generic_event_t) -> Option<Self>;
 }
 
 /// Trait for the resolution of raw wire GE_GENERIC event to a unified event enum.

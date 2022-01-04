@@ -106,6 +106,9 @@ pub enum Event {
     #[cfg(feature = "xv")]
     /// The event is issued from the `XVideo` extension.
     Xv(xv::Event),
+
+    /// The event was not recognized, it was likely issued from a disabled extension.
+    Unknown,
 }
 
 pub(crate) unsafe fn resolve_event(
@@ -139,90 +142,100 @@ pub(crate) unsafe fn resolve_event(
             match data.ext {
                 #[cfg(feature = "damage")]
                 Extension::Damage => {
-                    return Event::Damage(damage::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Damage(
+                        damage::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "dri2")]
                 Extension::Dri2 => {
-                    return Event::Dri2(dri2::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Dri2(
+                        dri2::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "glx")]
                 Extension::Glx => {
-                    return Event::Glx(glx::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Glx(
+                        glx::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "present")]
                 Extension::Present => {
-                    return Event::Present(present::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Present(
+                        present::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "randr")]
                 Extension::RandR => {
-                    return Event::RandR(randr::Event::resolve_wire_event(data.first_event, event));
+                    return Event::RandR(
+                        randr::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "screensaver")]
                 Extension::ScreenSaver => {
-                    return Event::ScreenSaver(screensaver::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::ScreenSaver(
+                        screensaver::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "shape")]
                 Extension::Shape => {
-                    return Event::Shape(shape::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Shape(
+                        shape::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "shm")]
                 Extension::Shm => {
-                    return Event::Shm(shm::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Shm(
+                        shm::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "sync")]
                 Extension::Sync => {
-                    return Event::Sync(sync::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Sync(
+                        sync::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xfixes")]
                 Extension::XFixes => {
-                    return Event::XFixes(xfixes::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::XFixes(
+                        xfixes::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xinput")]
                 Extension::Input => {
-                    return Event::Input(xinput::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Input(
+                        xinput::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xkb")]
                 Extension::Xkb => {
-                    return Event::Xkb(xkb::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Xkb(
+                        xkb::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xprint")]
                 Extension::XPrint => {
-                    return Event::XPrint(xprint::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::XPrint(
+                        xprint::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xv")]
                 Extension::Xv => {
-                    return Event::Xv(xv::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Xv(
+                        xv::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 _ => {}
@@ -230,5 +243,7 @@ pub(crate) unsafe fn resolve_event(
         }
     }
 
-    Event::X(x::Event::resolve_wire_event(0, event))
+    x::Event::resolve_wire_event(0, event)
+        .map(Event::X)
+        .unwrap_or(Event::Unknown)
 }
