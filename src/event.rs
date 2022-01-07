@@ -108,20 +108,20 @@ pub enum Event {
     Xv(xv::Event),
 
     /// The event was not recognized, it was likely issued from a disabled extension.
-    Unresolved(UnresolvedEvent),
+    Unknown(UnknownEvent),
 }
 
 /// an event was not recognized as part of the core protocol or any enabled extension
-pub struct UnresolvedEvent {
+pub struct UnknownEvent {
     raw: *mut xcb_generic_event_t,
 }
 
-impl BaseEvent for UnresolvedEvent {
+impl BaseEvent for UnknownEvent {
     const EXTENSION: Option<Extension> = None;
     const NUMBER: u32 = u32::MAX;
 
     unsafe fn from_raw(raw: *mut xcb_generic_event_t) -> Self {
-        UnresolvedEvent { raw }
+        UnknownEvent { raw }
     }
 
     unsafe fn into_raw(self) -> *mut xcb_generic_event_t {
@@ -139,13 +139,13 @@ impl BaseEvent for UnresolvedEvent {
     }
 }
 
-impl std::fmt::Debug for UnresolvedEvent {
+impl std::fmt::Debug for UnknownEvent {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_tuple("UnresolvedEvent").finish()
+        f.debug_tuple("UnknownEvent").finish()
     }
 }
 
-impl Drop for UnresolvedEvent {
+impl Drop for UnknownEvent {
     fn drop(&mut self) {
         unsafe { libc::free(self.raw as *mut _) }
     }
@@ -285,5 +285,5 @@ pub(crate) unsafe fn resolve_event(
 
     x::Event::resolve_wire_event(0, event)
         .map(Event::X)
-        .unwrap_or_else(|| Event::Unresolved(UnresolvedEvent { raw: event }))
+        .unwrap_or_else(|| Event::Unknown(UnknownEvent { raw: event }))
 }
