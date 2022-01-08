@@ -135,7 +135,8 @@ impl BaseEvent for UnknownEvent {
     }
 
     fn as_slice(&self) -> &[u8] {
-        &[]
+        // All basic event types are 32 bytes
+        unsafe { std::slice::from_raw_parts(self.raw as *const u8, 32) }
     }
 }
 
@@ -285,5 +286,10 @@ pub(crate) unsafe fn resolve_event(
 
     x::Event::resolve_wire_event(0, event)
         .map(Event::X)
-        .unwrap_or_else(|| Event::Unknown(UnknownEvent { raw: event }))
+        .unwrap_or_else(|| {
+            // SAFETY the event type is checked above and the function panicked if it was
+            // not a basic event (XCB_GE_GENERIC)
+            let unknown = unsafe { UnknownEvent::from_raw(event) };
+            Event::Unknown(unknown)
+        })
 }
