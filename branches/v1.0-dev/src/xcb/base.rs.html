@@ -1827,7 +1827,7 @@
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// `event` must be a valid, non-null event returned by `xcb_wait_for_event`</span>
     <span class="doccomment">/// or similar function</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>;
 }
 
 <span class="doccomment">/// Trait for the resolution of raw wire GE_GENERIC event to a unified event enum.</span>

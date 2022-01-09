@@ -3289,6 +3289,13 @@
 <span id="3289">3289</span>
 <span id="3290">3290</span>
 <span id="3291">3291</span>
+<span id="3292">3292</span>
+<span id="3293">3293</span>
+<span id="3294">3294</span>
+<span id="3295">3295</span>
+<span id="3296">3296</span>
+<span id="3297">3297</span>
+<span id="3298">3298</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from dri2.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -3657,7 +3664,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(
+        <span class="ident">first_event</span>: <span class="ident">u8</span>,
+        <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
+    ) -&gt; <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">raw</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">raw</span>).<span class="ident">response_type</span> <span class="op">&amp;</span> <span class="number">0x7F</span>;
         <span class="macro">debug_assert!</span>(<span class="ident">response_type</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;This is not an event but an error!&quot;</span>);
@@ -3666,8 +3676,12 @@
             <span class="string">&quot;This is a GE_GENERIC event!&quot;</span>
         );
         <span class="kw">match</span> <span class="ident">response_type</span> <span class="op">-</span> <span class="ident">first_event</span> {
-            <span class="number">0</span> =&gt; <span class="ident">Event::BufferSwapComplete</span>(<span class="ident">BufferSwapCompleteEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">1</span> =&gt; <span class="ident">Event::InvalidateBuffers</span>(<span class="ident">InvalidateBuffersEvent::from_raw</span>(<span class="ident">raw</span>)),
+            <span class="number">0</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::BufferSwapComplete</span>(
+                <span class="ident">BufferSwapCompleteEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">1</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::InvalidateBuffers</span>(<span class="ident">InvalidateBuffersEvent::from_raw</span>(
+                <span class="ident">raw</span>,
+            ))),
             <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(
                 <span class="string">&quot;Could not resolve dri2 Event with response_type {} and first_event {}&quot;</span>,
                 <span class="ident">response_type</span>, <span class="ident">first_event</span>

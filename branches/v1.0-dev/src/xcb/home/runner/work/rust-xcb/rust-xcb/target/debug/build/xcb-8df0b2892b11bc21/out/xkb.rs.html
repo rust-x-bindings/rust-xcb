@@ -17556,6 +17556,17 @@
 <span id="17556">17556</span>
 <span id="17557">17557</span>
 <span id="17558">17558</span>
+<span id="17559">17559</span>
+<span id="17560">17560</span>
+<span id="17561">17561</span>
+<span id="17562">17562</span>
+<span id="17563">17563</span>
+<span id="17564">17564</span>
+<span id="17565">17565</span>
+<span id="17566">17566</span>
+<span id="17567">17567</span>
+<span id="17568">17568</span>
+<span id="17569">17569</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -20577,7 +20588,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(
+        <span class="ident">first_event</span>: <span class="ident">u8</span>,
+        <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
+    ) -&gt; <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">raw</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">raw</span>).<span class="ident">response_type</span> <span class="op">&amp;</span> <span class="number">0x7F</span>;
         <span class="macro">debug_assert!</span>(<span class="ident">response_type</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;This is not an event but an error!&quot;</span>);
@@ -20589,18 +20603,26 @@
         <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">u8</span>;
         <span class="kw">let</span> <span class="ident">xkb_type</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">ptr</span>.<span class="ident">add</span>(<span class="number">1</span>));
         <span class="kw">match</span> <span class="ident">xkb_type</span> {
-            <span class="number">0</span> =&gt; <span class="ident">Event::NewKeyboardNotify</span>(<span class="ident">NewKeyboardNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">1</span> =&gt; <span class="ident">Event::MapNotify</span>(<span class="ident">MapNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">2</span> =&gt; <span class="ident">Event::StateNotify</span>(<span class="ident">StateNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">3</span> =&gt; <span class="ident">Event::ControlsNotify</span>(<span class="ident">ControlsNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">4</span> =&gt; <span class="ident">Event::IndicatorStateNotify</span>(<span class="ident">IndicatorStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">5</span> =&gt; <span class="ident">Event::IndicatorMapNotify</span>(<span class="ident">IndicatorMapNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">6</span> =&gt; <span class="ident">Event::NamesNotify</span>(<span class="ident">NamesNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">7</span> =&gt; <span class="ident">Event::CompatMapNotify</span>(<span class="ident">CompatMapNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">8</span> =&gt; <span class="ident">Event::BellNotify</span>(<span class="ident">BellNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">9</span> =&gt; <span class="ident">Event::ActionMessage</span>(<span class="ident">ActionMessageEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">10</span> =&gt; <span class="ident">Event::AccessXNotify</span>(<span class="ident">AccessXNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">11</span> =&gt; <span class="ident">Event::ExtensionDeviceNotify</span>(<span class="ident">ExtensionDeviceNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
+            <span class="number">0</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::NewKeyboardNotify</span>(<span class="ident">NewKeyboardNotifyEvent::from_raw</span>(
+                <span class="ident">raw</span>,
+            ))),
+            <span class="number">1</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::MapNotify</span>(<span class="ident">MapNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">2</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::StateNotify</span>(<span class="ident">StateNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">3</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ControlsNotify</span>(<span class="ident">ControlsNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">4</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::IndicatorStateNotify</span>(
+                <span class="ident">IndicatorStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">5</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::IndicatorMapNotify</span>(
+                <span class="ident">IndicatorMapNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">6</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::NamesNotify</span>(<span class="ident">NamesNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">7</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::CompatMapNotify</span>(<span class="ident">CompatMapNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">8</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::BellNotify</span>(<span class="ident">BellNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">9</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ActionMessage</span>(<span class="ident">ActionMessageEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">10</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::AccessXNotify</span>(<span class="ident">AccessXNotifyEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">11</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ExtensionDeviceNotify</span>(
+                <span class="ident">ExtensionDeviceNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
             <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(
                 <span class="string">&quot;Could not resolve xkb Event with response_type {} and first_event {}&quot;</span>,
                 <span class="ident">response_type</span>, <span class="ident">first_event</span>

@@ -26494,6 +26494,31 @@
 <span id="26494">26494</span>
 <span id="26495">26495</span>
 <span id="26496">26496</span>
+<span id="26497">26497</span>
+<span id="26498">26498</span>
+<span id="26499">26499</span>
+<span id="26500">26500</span>
+<span id="26501">26501</span>
+<span id="26502">26502</span>
+<span id="26503">26503</span>
+<span id="26504">26504</span>
+<span id="26505">26505</span>
+<span id="26506">26506</span>
+<span id="26507">26507</span>
+<span id="26508">26508</span>
+<span id="26509">26509</span>
+<span id="26510">26510</span>
+<span id="26511">26511</span>
+<span id="26512">26512</span>
+<span id="26513">26513</span>
+<span id="26514">26514</span>
+<span id="26515">26515</span>
+<span id="26516">26516</span>
+<span id="26517">26517</span>
+<span id="26518">26518</span>
+<span id="26519">26519</span>
+<span id="26520">26520</span>
+<span id="26521">26521</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -31584,7 +31609,10 @@
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(<span class="ident">first_event</span>: <span class="ident">u8</span>, <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span> {
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_event</span>(
+        <span class="ident">first_event</span>: <span class="ident">u8</span>,
+        <span class="ident">raw</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>,
+    ) -&gt; <span class="ident">std::option::Option</span><span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span> {
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">raw</span>.<span class="ident">is_null</span>());
         <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">raw</span>).<span class="ident">response_type</span> <span class="op">&amp;</span> <span class="number">0x7F</span>;
         <span class="macro">debug_assert!</span>(<span class="ident">response_type</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span>, <span class="string">&quot;This is not an event but an error!&quot;</span>);
@@ -31593,23 +31621,45 @@
             <span class="string">&quot;This is a GE_GENERIC event!&quot;</span>
         );
         <span class="kw">match</span> <span class="ident">response_type</span> <span class="op">-</span> <span class="ident">first_event</span> {
-            <span class="number">0</span> =&gt; <span class="ident">Event::DeviceValuator</span>(<span class="ident">DeviceValuatorEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">1</span> =&gt; <span class="ident">Event::DeviceKeyPress</span>(<span class="ident">DeviceKeyPressEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">2</span> =&gt; <span class="ident">Event::DeviceKeyRelease</span>(<span class="ident">DeviceKeyReleaseEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">3</span> =&gt; <span class="ident">Event::DeviceButtonPress</span>(<span class="ident">DeviceButtonPressEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">4</span> =&gt; <span class="ident">Event::DeviceButtonRelease</span>(<span class="ident">DeviceButtonReleaseEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">5</span> =&gt; <span class="ident">Event::DeviceMotionNotify</span>(<span class="ident">DeviceMotionNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">6</span> =&gt; <span class="ident">Event::DeviceFocusIn</span>(<span class="ident">DeviceFocusInEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">7</span> =&gt; <span class="ident">Event::DeviceFocusOut</span>(<span class="ident">DeviceFocusOutEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">8</span> =&gt; <span class="ident">Event::ProximityIn</span>(<span class="ident">ProximityInEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">9</span> =&gt; <span class="ident">Event::ProximityOut</span>(<span class="ident">ProximityOutEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">10</span> =&gt; <span class="ident">Event::DeviceStateNotify</span>(<span class="ident">DeviceStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">11</span> =&gt; <span class="ident">Event::DeviceMappingNotify</span>(<span class="ident">DeviceMappingNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">12</span> =&gt; <span class="ident">Event::ChangeDeviceNotify</span>(<span class="ident">ChangeDeviceNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">13</span> =&gt; <span class="ident">Event::DeviceKeyStateNotify</span>(<span class="ident">DeviceKeyStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">14</span> =&gt; <span class="ident">Event::DeviceButtonStateNotify</span>(<span class="ident">DeviceButtonStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">15</span> =&gt; <span class="ident">Event::DevicePresenceNotify</span>(<span class="ident">DevicePresenceNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
-            <span class="number">16</span> =&gt; <span class="ident">Event::DevicePropertyNotify</span>(<span class="ident">DevicePropertyNotifyEvent::from_raw</span>(<span class="ident">raw</span>)),
+            <span class="number">0</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceValuator</span>(<span class="ident">DeviceValuatorEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">1</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceKeyPress</span>(<span class="ident">DeviceKeyPressEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">2</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceKeyRelease</span>(<span class="ident">DeviceKeyReleaseEvent::from_raw</span>(
+                <span class="ident">raw</span>,
+            ))),
+            <span class="number">3</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceButtonPress</span>(<span class="ident">DeviceButtonPressEvent::from_raw</span>(
+                <span class="ident">raw</span>,
+            ))),
+            <span class="number">4</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceButtonRelease</span>(
+                <span class="ident">DeviceButtonReleaseEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">5</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceMotionNotify</span>(
+                <span class="ident">DeviceMotionNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">6</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceFocusIn</span>(<span class="ident">DeviceFocusInEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">7</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceFocusOut</span>(<span class="ident">DeviceFocusOutEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">8</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ProximityIn</span>(<span class="ident">ProximityInEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">9</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ProximityOut</span>(<span class="ident">ProximityOutEvent::from_raw</span>(<span class="ident">raw</span>))),
+            <span class="number">10</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceStateNotify</span>(<span class="ident">DeviceStateNotifyEvent::from_raw</span>(
+                <span class="ident">raw</span>,
+            ))),
+            <span class="number">11</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceMappingNotify</span>(
+                <span class="ident">DeviceMappingNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">12</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::ChangeDeviceNotify</span>(
+                <span class="ident">ChangeDeviceNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">13</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceKeyStateNotify</span>(
+                <span class="ident">DeviceKeyStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">14</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DeviceButtonStateNotify</span>(
+                <span class="ident">DeviceButtonStateNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">15</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DevicePresenceNotify</span>(
+                <span class="ident">DevicePresenceNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
+            <span class="number">16</span> =&gt; <span class="prelude-val">Some</span>(<span class="ident">Event::DevicePropertyNotify</span>(
+                <span class="ident">DevicePropertyNotifyEvent::from_raw</span>(<span class="ident">raw</span>),
+            )),
             <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(
                 <span class="string">&quot;Could not resolve xinput Event with response_type {} and first_event {}&quot;</span>,
                 <span class="ident">response_type</span>, <span class="ident">first_event</span>
