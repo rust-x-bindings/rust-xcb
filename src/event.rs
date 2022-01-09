@@ -1,4 +1,4 @@
-use crate::base::{ResolveWireEvent, ResolveWireGeEvent};
+use crate::base::{BaseEvent, ResolveWireEvent, ResolveWireGeEvent};
 use crate::ext::{Extension, ExtensionData};
 use crate::ffi::*;
 use crate::x;
@@ -106,6 +106,50 @@ pub enum Event {
     #[cfg(feature = "xv")]
     /// The event is issued from the `XVideo` extension.
     Xv(xv::Event),
+
+    /// The event was not recognized, it was likely issued from a disabled extension.
+    Unknown(UnknownEvent),
+}
+
+/// an event was not recognized as part of the core protocol or any enabled extension
+pub struct UnknownEvent {
+    raw: *mut xcb_generic_event_t,
+}
+
+impl BaseEvent for UnknownEvent {
+    const EXTENSION: Option<Extension> = None;
+    const NUMBER: u32 = u32::MAX;
+
+    unsafe fn from_raw(raw: *mut xcb_generic_event_t) -> Self {
+        UnknownEvent { raw }
+    }
+
+    unsafe fn into_raw(self) -> *mut xcb_generic_event_t {
+        let raw = self.raw;
+        std::mem::forget(self);
+        raw
+    }
+
+    fn as_raw(&self) -> *mut xcb_generic_event_t {
+        self.raw
+    }
+
+    fn as_slice(&self) -> &[u8] {
+        // All basic event types are 32 bytes
+        unsafe { std::slice::from_raw_parts(self.raw as *const u8, 32) }
+    }
+}
+
+impl std::fmt::Debug for UnknownEvent {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_tuple("UnknownEvent").finish()
+    }
+}
+
+impl Drop for UnknownEvent {
+    fn drop(&mut self) {
+        unsafe { libc::free(self.raw as *mut _) }
+    }
 }
 
 pub(crate) unsafe fn resolve_event(
@@ -139,90 +183,100 @@ pub(crate) unsafe fn resolve_event(
             match data.ext {
                 #[cfg(feature = "damage")]
                 Extension::Damage => {
-                    return Event::Damage(damage::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Damage(
+                        damage::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "dri2")]
                 Extension::Dri2 => {
-                    return Event::Dri2(dri2::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Dri2(
+                        dri2::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "glx")]
                 Extension::Glx => {
-                    return Event::Glx(glx::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Glx(
+                        glx::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "present")]
                 Extension::Present => {
-                    return Event::Present(present::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Present(
+                        present::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "randr")]
                 Extension::RandR => {
-                    return Event::RandR(randr::Event::resolve_wire_event(data.first_event, event));
+                    return Event::RandR(
+                        randr::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "screensaver")]
                 Extension::ScreenSaver => {
-                    return Event::ScreenSaver(screensaver::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::ScreenSaver(
+                        screensaver::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "shape")]
                 Extension::Shape => {
-                    return Event::Shape(shape::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Shape(
+                        shape::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "shm")]
                 Extension::Shm => {
-                    return Event::Shm(shm::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Shm(
+                        shm::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "sync")]
                 Extension::Sync => {
-                    return Event::Sync(sync::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Sync(
+                        sync::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xfixes")]
                 Extension::XFixes => {
-                    return Event::XFixes(xfixes::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::XFixes(
+                        xfixes::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xinput")]
                 Extension::Input => {
-                    return Event::Input(xinput::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::Input(
+                        xinput::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xkb")]
                 Extension::Xkb => {
-                    return Event::Xkb(xkb::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Xkb(
+                        xkb::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xprint")]
                 Extension::XPrint => {
-                    return Event::XPrint(xprint::Event::resolve_wire_event(
-                        data.first_event,
-                        event,
-                    ));
+                    return Event::XPrint(
+                        xprint::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 #[cfg(feature = "xv")]
                 Extension::Xv => {
-                    return Event::Xv(xv::Event::resolve_wire_event(data.first_event, event));
+                    return Event::Xv(
+                        xv::Event::resolve_wire_event(data.first_event, event).unwrap(),
+                    );
                 }
 
                 _ => {}
@@ -230,5 +284,12 @@ pub(crate) unsafe fn resolve_event(
         }
     }
 
-    Event::X(x::Event::resolve_wire_event(0, event))
+    x::Event::resolve_wire_event(0, event)
+        .map(Event::X)
+        .unwrap_or_else(|| {
+            // SAFETY the event type is checked above and the function panicked if it was
+            // not a basic event (XCB_GE_GENERIC)
+            let unknown = unsafe { UnknownEvent::from_raw(event) };
+            Event::Unknown(unknown)
+        })
 }

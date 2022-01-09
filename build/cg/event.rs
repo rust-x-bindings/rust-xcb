@@ -568,7 +568,7 @@ impl CodeGen {
     fn emit_resolve_wire_event<O: Write>(&self, out: &mut O) -> io::Result<()> {
         writeln!(out)?;
         writeln!(out, "impl base::ResolveWireEvent for Event {{")?;
-        writeln!(out, "{}unsafe fn resolve_wire_event(first_event: u8, raw: *mut xcb_generic_event_t) -> Self {{", cg::ind(1))?;
+        writeln!(out, "{}unsafe fn resolve_wire_event(first_event: u8, raw: *mut xcb_generic_event_t) -> std::option::Option<Self> {{", cg::ind(1))?;
         writeln!(out, "{}debug_assert!(!raw.is_null());", cg::ind(2))?;
         writeln!(
             out,
@@ -604,22 +604,26 @@ impl CodeGen {
 
             writeln!(
                 out,
-                "{}{} => Event::{}({}::from_raw(raw)),",
+                "{}{} => Some(Event::{}({}::from_raw(raw))),",
                 cg::ind(3),
                 event.number,
                 event.variant,
                 event.rs_typ
             )?;
         }
-        writeln!(out, "{}_ => unreachable!(", cg::ind(3))?;
-        writeln!(
-            out,
-            "{}\"Could not resolve {} Event with response_type {{}} and first_event {{}}\",",
-            cg::ind(4),
-            self.xcb_mod
-        )?;
-        writeln!(out, "{}response_type, first_event", cg::ind(4))?;
-        writeln!(out, "{}),", cg::ind(3))?;
+        if self.xcb_mod == "xproto" {
+            writeln!(out, "{}_ => None,", cg::ind(3))?;
+        } else {
+            writeln!(out, "{}_ => unreachable!(", cg::ind(3))?;
+            writeln!(
+                out,
+                "{}\"Could not resolve {} Event with response_type {{}} and first_event {{}}\",",
+                cg::ind(4),
+                self.xcb_mod
+            )?;
+            writeln!(out, "{}response_type, first_event", cg::ind(4))?;
+            writeln!(out, "{}),", cg::ind(3))?;
+        }
         writeln!(out, "{}}}", cg::ind(2))?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
