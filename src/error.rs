@@ -97,6 +97,14 @@ pub enum ProtocolError {
     Xv(xv::Error, Option<&'static str>),
 }
 
+impl std::fmt::Display for ProtocolError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        std::fmt::Debug::fmt(self, f)
+    }
+}
+
+impl std::error::Error for ProtocolError {}
+
 pub(crate) unsafe fn resolve_error(
     error: *mut xcb_generic_error_t,
     extension_data: &[ExtensionData],

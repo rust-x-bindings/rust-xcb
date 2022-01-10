@@ -579,6 +579,24 @@ pub enum Error {
     Protocol(ProtocolError),
 }
 
+impl Display for Error {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        match self {
+            Error::Connection(_) => f.write_str("xcb connection error"),
+            Error::Protocol(_) => f.write_str("xcb protocol error"),
+        }
+    }
+}
+
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            Error::Connection(err) => Some(err),
+            Error::Protocol(err) => Some(err),
+        }
+    }
+}
+
 impl From<ConnError> for Error {
     fn from(err: ConnError) -> Error {
         Error::Connection(err)
