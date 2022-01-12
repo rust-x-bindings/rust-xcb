@@ -86,6 +86,9 @@ name = "connect"
 name = "drawing"
 
 [[example]]
+name = "get_all_windows"
+
+[[example]]
 name = "opengl_window"
 required-features = ["glx", "xlib_xcb", "dri2"]
 
