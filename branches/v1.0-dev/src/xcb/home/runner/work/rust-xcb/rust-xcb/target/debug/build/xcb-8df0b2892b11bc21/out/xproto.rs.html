@@ -26167,6 +26167,8 @@
 <span id="26167">26167</span>
 <span id="26168">26168</span>
 <span id="26169">26169</span>
+<span id="26170">26170</span>
+<span id="26171">26171</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -39525,6 +39527,8 @@
         }
     }
 
+    <span class="doccomment">/// The value of the property. The type is known only at runtime through the [format] field.</span>
+    <span class="doccomment">/// It must be casted to the proper type accordingly with the `P` type parameter.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">value</span><span class="op">&lt;</span><span class="ident">P</span>: <span class="ident">PropEl</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">P</span>] {
         <span class="macro">assert_eq!</span>(
             <span class="self">self</span>.<span class="ident">format</span>(),
