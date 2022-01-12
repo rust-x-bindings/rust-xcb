@@ -26151,6 +26151,22 @@
 <span id="26151">26151</span>
 <span id="26152">26152</span>
 <span id="26153">26153</span>
+<span id="26154">26154</span>
+<span id="26155">26155</span>
+<span id="26156">26156</span>
+<span id="26157">26157</span>
+<span id="26158">26158</span>
+<span id="26159">26159</span>
+<span id="26160">26160</span>
+<span id="26161">26161</span>
+<span id="26162">26162</span>
+<span id="26163">26163</span>
+<span id="26164">26164</span>
+<span id="26165">26165</span>
+<span id="26166">26166</span>
+<span id="26167">26167</span>
+<span id="26168">26168</span>
+<span id="26169">26169</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -26524,7 +26540,7 @@
         <span class="ident">root_y</span>: <span class="ident">i16</span>,
         <span class="ident">event_x</span>: <span class="ident">i16</span>,
         <span class="ident">event_y</span>: <span class="ident">i16</span>,
-        <span class="ident">state</span>: <span class="ident">u16</span>,
+        <span class="ident">state</span>: <span class="ident">KeyButMask</span>,
         <span class="ident">same_screen</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="ident">KeyPressEvent</span> {
         <span class="kw">unsafe</span> {
@@ -26545,7 +26561,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="kw">let</span> <span class="ident">same_screen</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">same_screen</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
             <span class="ident">same_screen</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
@@ -26767,7 +26783,7 @@
         <span class="ident">root_y</span>: <span class="ident">i16</span>,
         <span class="ident">event_x</span>: <span class="ident">i16</span>,
         <span class="ident">event_y</span>: <span class="ident">i16</span>,
-        <span class="ident">state</span>: <span class="ident">u16</span>,
+        <span class="ident">state</span>: <span class="ident">KeyButMask</span>,
         <span class="ident">same_screen</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="ident">ButtonPressEvent</span> {
         <span class="kw">unsafe</span> {
@@ -26788,7 +26804,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="kw">let</span> <span class="ident">same_screen</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">same_screen</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
             <span class="ident">same_screen</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
@@ -27001,7 +27017,7 @@
 
 <span class="kw">impl</span> <span class="ident">MotionNotifyEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">detail</span>: <span class="ident">u8</span>,
+        <span class="ident">detail</span>: <span class="ident">Motion</span>,
         <span class="ident">time</span>: <span class="ident">Timestamp</span>,
         <span class="ident">root</span>: <span class="ident">Window</span>,
         <span class="ident">event</span>: <span class="ident">Window</span>,
@@ -27010,7 +27026,7 @@
         <span class="ident">root_y</span>: <span class="ident">i16</span>,
         <span class="ident">event_x</span>: <span class="ident">i16</span>,
         <span class="ident">event_y</span>: <span class="ident">i16</span>,
-        <span class="ident">state</span>: <span class="ident">u16</span>,
+        <span class="ident">state</span>: <span class="ident">KeyButMask</span>,
         <span class="ident">same_screen</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="ident">MotionNotifyEvent</span> {
         <span class="kw">unsafe</span> {
@@ -27021,7 +27037,8 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">detail</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">detail</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -27031,7 +27048,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="kw">let</span> <span class="ident">same_screen</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">same_screen</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
             <span class="ident">same_screen</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
@@ -27242,7 +27259,7 @@
 
 <span class="kw">impl</span> <span class="ident">EnterNotifyEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">detail</span>: <span class="ident">u8</span>,
+        <span class="ident">detail</span>: <span class="ident">NotifyDetail</span>,
         <span class="ident">time</span>: <span class="ident">Timestamp</span>,
         <span class="ident">root</span>: <span class="ident">Window</span>,
         <span class="ident">event</span>: <span class="ident">Window</span>,
@@ -27251,8 +27268,8 @@
         <span class="ident">root_y</span>: <span class="ident">i16</span>,
         <span class="ident">event_x</span>: <span class="ident">i16</span>,
         <span class="ident">event_y</span>: <span class="ident">i16</span>,
-        <span class="ident">state</span>: <span class="ident">u16</span>,
-        <span class="ident">mode</span>: <span class="ident">u8</span>,
+        <span class="ident">state</span>: <span class="ident">KeyButMask</span>,
+        <span class="ident">mode</span>: <span class="ident">NotifyMode</span>,
         <span class="ident">same_screen_focus</span>: <span class="ident">u8</span>,
     ) -&gt; <span class="ident">EnterNotifyEvent</span> {
         <span class="kw">unsafe</span> {
@@ -27263,7 +27280,8 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">detail</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">detail</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -27273,8 +27291,9 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event_y</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">state</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">mode</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">same_screen_focus</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">EnterNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
@@ -27494,7 +27513,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">FocusInEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">detail</span>: <span class="ident">u8</span>, <span class="ident">event</span>: <span class="ident">Window</span>, <span class="ident">mode</span>: <span class="ident">u8</span>) -&gt; <span class="ident">FocusInEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">detail</span>: <span class="ident">NotifyDetail</span>, <span class="ident">event</span>: <span class="ident">Window</span>, <span class="ident">mode</span>: <span class="ident">NotifyMode</span>) -&gt; <span class="ident">FocusInEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -27503,10 +27522,11 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">detail</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">detail</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">mode</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">FocusInEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -28246,7 +28266,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">VisibilityNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">state</span>: <span class="ident">u8</span>) -&gt; <span class="ident">VisibilityNotifyEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">state</span>: <span class="ident">Visibility</span>) -&gt; <span class="ident">VisibilityNotifyEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -28257,7 +28277,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">state</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">VisibilityNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -29480,7 +29500,7 @@
 
 <span class="kw">impl</span> <span class="ident">ConfigureRequestEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
-        <span class="ident">stack_mode</span>: <span class="ident">u8</span>,
+        <span class="ident">stack_mode</span>: <span class="ident">StackMode</span>,
         <span class="ident">parent</span>: <span class="ident">Window</span>,
         <span class="ident">window</span>: <span class="ident">Window</span>,
         <span class="ident">sibling</span>: <span class="ident">Window</span>,
@@ -29489,7 +29509,7 @@
         <span class="ident">width</span>: <span class="ident">u16</span>,
         <span class="ident">height</span>: <span class="ident">u16</span>,
         <span class="ident">border_width</span>: <span class="ident">u16</span>,
-        <span class="ident">value_mask</span>: <span class="ident">u16</span>,
+        <span class="ident">value_mask</span>: <span class="ident">ConfigWindowMask</span>,
     ) -&gt; <span class="ident">ConfigureRequestEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
@@ -29499,7 +29519,8 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">stack_mode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">stack_mode</span>) <span class="kw">as</span> <span class="ident">u8</span>)
+                .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">parent</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29509,7 +29530,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">width</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">height</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">border_width</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">value_mask</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">value_mask</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u16</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">ConfigureRequestEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -29973,7 +29994,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">CirculateNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">event</span>: <span class="ident">Window</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">place</span>: <span class="ident">u8</span>) -&gt; <span class="ident">CirculateNotifyEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">event</span>: <span class="ident">Window</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">place</span>: <span class="ident">Place</span>) -&gt; <span class="ident">CirculateNotifyEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -29985,7 +30006,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">place</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">place</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">CirculateNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -30117,7 +30138,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">PropertyNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">atom</span>: <span class="ident">Atom</span>, <span class="ident">time</span>: <span class="ident">Timestamp</span>, <span class="ident">state</span>: <span class="ident">u8</span>) -&gt; <span class="ident">PropertyNotifyEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">window</span>: <span class="ident">Window</span>,
+        <span class="ident">atom</span>: <span class="ident">Atom</span>,
+        <span class="ident">time</span>: <span class="ident">Timestamp</span>,
+        <span class="ident">state</span>: <span class="ident">Property</span>,
+    ) -&gt; <span class="ident">PropertyNotifyEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -30130,7 +30156,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">atom</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">state</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">PropertyNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -30732,7 +30758,12 @@
 }
 
 <span class="kw">impl</span> <span class="ident">ColormapNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">colormap</span>: <span class="ident">Colormap</span>, <span class="ident">new_</span>: <span class="ident">bool</span>, <span class="ident">state</span>: <span class="ident">u8</span>) -&gt; <span class="ident">ColormapNotifyEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
+        <span class="ident">window</span>: <span class="ident">Window</span>,
+        <span class="ident">colormap</span>: <span class="ident">Colormap</span>,
+        <span class="ident">new_</span>: <span class="ident">bool</span>,
+        <span class="ident">state</span>: <span class="ident">ColormapState</span>,
+    ) -&gt; <span class="ident">ColormapNotifyEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -30746,7 +30777,7 @@
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">colormap</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="kw">let</span> <span class="ident">new_</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">new_</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">new_</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">state</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">ColormapNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_event_t</span>)
         }
@@ -31051,7 +31082,7 @@
 }
 
 <span class="kw">impl</span> <span class="ident">MappingNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">request</span>: <span class="ident">u8</span>, <span class="ident">first_keycode</span>: <span class="ident">Keycode</span>, <span class="ident">count</span>: <span class="ident">u8</span>) -&gt; <span class="ident">MappingNotifyEvent</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">request</span>: <span class="ident">Mapping</span>, <span class="ident">first_keycode</span>: <span class="ident">Keycode</span>, <span class="ident">count</span>: <span class="ident">u8</span>) -&gt; <span class="ident">MappingNotifyEvent</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">libc::malloc</span>(<span class="number">32</span>) <span class="kw">as</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u8</span>;
             <span class="kw">let</span> <span class="ident">wire_buf</span> <span class="op">=</span> <span class="ident">std::slice::from_raw_parts_mut</span>(<span class="ident">ptr</span>, <span class="number">32</span>);
@@ -31061,7 +31092,8 @@
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">request</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">request</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">first_keycode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">count</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 

@@ -984,6 +984,8 @@
 <span id="984">984</span>
 <span id="985">985</span>
 <span id="986">986</span>
+<span id="987">987</span>
+<span id="988">988</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from screensaver.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Reply</span>, <span class="ident">Wired</span>, <span class="ident">Xid</span>};
@@ -1079,11 +1081,11 @@
 <span class="kw">impl</span> <span class="ident">NotifyEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">event_base</span>: <span class="ident">u8</span>,
-        <span class="ident">state</span>: <span class="ident">u8</span>,
+        <span class="ident">state</span>: <span class="ident">State</span>,
         <span class="ident">time</span>: <span class="ident">xproto::Timestamp</span>,
         <span class="ident">root</span>: <span class="ident">xproto::Window</span>,
         <span class="ident">window</span>: <span class="ident">xproto::Window</span>,
-        <span class="ident">kind</span>: <span class="ident">u8</span>,
+        <span class="ident">kind</span>: <span class="ident">Kind</span>,
         <span class="ident">forced</span>: <span class="ident">bool</span>,
     ) -&gt; <span class="ident">NotifyEvent</span> {
         <span class="kw">unsafe</span> {
@@ -1094,12 +1096,14 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">state</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">state</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">kind</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
+                (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">kind</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="kw">let</span> <span class="ident">forced</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">forced</span> { <span class="number">1</span> } <span class="kw">else</span> { <span class="number">0</span> };
             <span class="ident">forced</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 

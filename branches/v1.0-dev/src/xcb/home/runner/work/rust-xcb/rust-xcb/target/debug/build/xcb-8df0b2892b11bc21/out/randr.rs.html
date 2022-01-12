@@ -10940,13 +10940,13 @@
 <span class="kw">impl</span> <span class="ident">ScreenChangeNotifyEvent</span> {
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(
         <span class="ident">event_base</span>: <span class="ident">u8</span>,
-        <span class="ident">rotation</span>: <span class="ident">u8</span>,
+        <span class="ident">rotation</span>: <span class="ident">Rotation</span>,
         <span class="ident">timestamp</span>: <span class="ident">xproto::Timestamp</span>,
         <span class="ident">config_timestamp</span>: <span class="ident">xproto::Timestamp</span>,
         <span class="ident">root</span>: <span class="ident">xproto::Window</span>,
         <span class="ident">request_window</span>: <span class="ident">xproto::Window</span>,
         <span class="ident">size_id</span>: <span class="ident">u16</span>,
-        <span class="ident">subpixel_order</span>: <span class="ident">u16</span>,
+        <span class="ident">subpixel_order</span>: <span class="ident">render::SubPixel</span>,
         <span class="ident">width</span>: <span class="ident">u16</span>,
         <span class="ident">height</span>: <span class="ident">u16</span>,
         <span class="ident">mwidth</span>: <span class="ident">u16</span>,
@@ -10960,14 +10960,15 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">rotation</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">rotation</span>.<span class="ident">bits</span>() <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">timestamp</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">config_timestamp</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">root</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">request_window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">size_id</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">subpixel_order</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">subpixel_order</span>) <span class="kw">as</span> <span class="ident">u16</span>)
+                .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">width</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">height</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mwidth</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -11173,20 +11174,19 @@
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">wire_off</span> <span class="op">=</span> <span class="number">0usize</span>;
             <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> <span class="number">1u8</span> <span class="op">+</span> <span class="ident">event_base</span>;
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
-            <span class="kw">let</span> <span class="ident">sub_code</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">u</span> {
-                <span class="ident">NotifyData::Cc</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::CrtcChange</span>) <span class="kw">as</span> <span class="kw">_</span>,
-                <span class="ident">NotifyData::Oc</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::OutputChange</span>) <span class="kw">as</span> <span class="kw">_</span>,
-                <span class="ident">NotifyData::Op</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::OutputProperty</span>) <span class="kw">as</span> <span class="kw">_</span>,
-                <span class="ident">NotifyData::Pc</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::ProviderChange</span>) <span class="kw">as</span> <span class="kw">_</span>,
-                <span class="ident">NotifyData::Pp</span> { .. } =&gt; {
-                    <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::ProviderProperty</span>) <span class="kw">as</span> <span class="kw">_</span>
-                }
-                <span class="ident">NotifyData::Rc</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::ResourceChange</span>) <span class="kw">as</span> <span class="kw">_</span>,
-                <span class="ident">NotifyData::Lc</span> { .. } =&gt; <span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">Notify::Lease</span>) <span class="kw">as</span> <span class="kw">_</span>,
+            <span class="kw">let</span> <span class="ident">sub_code</span> <span class="op">=</span> <span class="kw">match</span> <span class="ident">u</span> {
+                <span class="ident">NotifyData::Cc</span> { .. } =&gt; <span class="ident">Notify::CrtcChange</span>,
+                <span class="ident">NotifyData::Oc</span> { .. } =&gt; <span class="ident">Notify::OutputChange</span>,
+                <span class="ident">NotifyData::Op</span> { .. } =&gt; <span class="ident">Notify::OutputProperty</span>,
+                <span class="ident">NotifyData::Pc</span> { .. } =&gt; <span class="ident">Notify::ProviderChange</span>,
+                <span class="ident">NotifyData::Pp</span> { .. } =&gt; <span class="ident">Notify::ProviderProperty</span>,
+                <span class="ident">NotifyData::Rc</span> { .. } =&gt; <span class="ident">Notify::ResourceChange</span>,
+                <span class="ident">NotifyData::Lc</span> { .. } =&gt; <span class="ident">Notify::Lease</span>,
             };
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
-            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sub_code</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">sub_code</span>) <span class="kw">as</span> <span class="ident">u8</span>)
+                .<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">u</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
