@@ -378,7 +378,8 @@ mod xproto {
         const FORMAT: u8 = 32;
     }
 
-    impl PropEl for Window { // _NET_CLIENT_LIST returns a list of windows
+    impl PropEl for Window {
+        // _NET_CLIENT_LIST returns a list of windows
         const FORMAT: u8 = 32;
     }
 
