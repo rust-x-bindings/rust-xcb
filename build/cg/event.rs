@@ -1,6 +1,6 @@
 use super::r#struct::{make_field, ResolvedFields};
 use super::{CodeGen, Event, Field, UnionVariant, UnionVariantContent, WireSz};
-use crate::cg::r#struct::RANDR_SUBCODES;
+use crate::cg::r#struct::{enum_mask_qualified_rs_typ, RANDR_SUBCODES};
 use crate::cg::{self, Expr, StructStyle, TypeInfo};
 use crate::cg::{util, QualifiedRsTyp};
 use crate::ir;
@@ -399,10 +399,12 @@ impl CodeGen {
                     name,
                     module,
                     rs_typ,
+                    r#enum,
+                    mask,
                     struct_style: None | Some(StructStyle::FixBuf | StructStyle::WireLayout),
                     ..
                 } => {
-                    let q_rs_typ = (module, rs_typ).qualified_rs_typ();
+                    let q_rs_typ = enum_mask_qualified_rs_typ(module, rs_typ, r#enum, mask);
                     writeln!(out, "        {}: {},", name, q_rs_typ)?;
                 }
                 Field::List {
@@ -464,11 +466,11 @@ impl CodeGen {
             writeln!(out, "{}}};", cg::ind(3))?;
         }
         if self.xcb_mod == "randr" && event.rs_typ == "NotifyEvent" {
-            writeln!(out, "{}let sub_code: u8 = match u {{", cg::ind(3))?;
+            writeln!(out, "{}let sub_code = match u {{", cg::ind(3))?;
             for code in RANDR_SUBCODES {
                 writeln!(
                     out,
-                    "{}NotifyData::{}{{..}} => std::mem::transmute::<_, u32>(Notify::{}) as _,",
+                    "{}NotifyData::{}{{..}} => Notify::{},",
                     cg::ind(4),
                     code.2,
                     code.0
@@ -494,6 +496,31 @@ impl CodeGen {
                 ""
             };
             match f {
+                Field::Field {
+                    name,
+                    rs_typ,
+                    r#enum: Some(_),
+                    ..
+                } => {
+                    writeln!(out,
+                        "{}{}(std::mem::transmute::<_, u32>({}) as {}).serialize(&mut wire_buf[wire_off ..]);",
+                        cg::ind(3), assignment, name, rs_typ)?;
+                }
+                Field::Field {
+                    name,
+                    rs_typ,
+                    mask: Some(_),
+                    ..
+                } => {
+                    writeln!(
+                        out,
+                        "{}{}({}.bits() as {}).serialize(&mut wire_buf[wire_off ..]);",
+                        cg::ind(3),
+                        assignment,
+                        name,
+                        rs_typ
+                    )?;
+                }
                 Field::Field {
                     name,
                     rs_typ,
