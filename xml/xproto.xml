@@ -3154,6 +3154,12 @@ The length of value. You should use the corresponding accessor instead of this
 field.
       ]]>
                 </field>
+                <field name="value">
+                    <![CDATA[
+The value of the property. The type is known only at runtime through the [format] field.
+It must be casted to the proper type accordingly with the `P` type parameter.
+      ]]>
+                </field>
             </doc>
         </reply>
         <doc>

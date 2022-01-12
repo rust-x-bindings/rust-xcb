@@ -378,6 +378,11 @@ mod xproto {
         const FORMAT: u8 = 32;
     }
 
+    impl PropEl for Window {
+        // _NET_CLIENT_LIST returns a list of windows
+        const FORMAT: u8 = 32;
+    }
+
     include!(concat!(env!("OUT_DIR"), "/xproto.rs"));
 }
 pub mod bigreq {
