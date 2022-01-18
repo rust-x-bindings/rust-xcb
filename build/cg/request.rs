@@ -3,6 +3,7 @@ use super::{CodeGen, Expr, Field, Request};
 use crate::cg::{self, Doc, QualifiedRsTyp, Reply, StructStyle};
 use crate::ir::{self};
 
+use std::borrow::Cow;
 use std::io::{self, Write};
 
 impl CodeGen {
@@ -1234,9 +1235,9 @@ impl CodeGen {
                 name,
                 module,
                 rs_typ,
+                is_prop,
                 ..
             } => {
-                let q_rs_typ = (module, rs_typ).qualified_rs_typ();
                 writeln!(
                     out,
                     "{}sections[{}].iov_base = self.{}.as_ptr() as *mut _;",
@@ -1244,13 +1245,18 @@ impl CodeGen {
                     num * 2 + 2,
                     name,
                 )?;
+                let typ_sz: Cow<str> = if *is_prop {
+                    Cow::Borrowed("P")
+                } else {
+                    Cow::Owned((module, rs_typ).qualified_rs_typ())
+                };
                 writeln!(
                     out,
                     "{}sections[{}].iov_len = self.{}.len() * std::mem::size_of::<{}>();",
                     cg::ind(2),
                     num * 2 + 2,
                     name,
-                    q_rs_typ,
+                    typ_sz
                 )?;
             }
             Field::Switch { name, .. } => {
