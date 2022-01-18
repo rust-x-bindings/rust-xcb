@@ -63,6 +63,7 @@ pub struct SwitchCase {
     pub fields: Vec<Field>,
 }
 
+#[allow(clippy::enum_variant_names)]
 #[derive(Debug, Clone)]
 pub enum Field {
     Pad(usize),
