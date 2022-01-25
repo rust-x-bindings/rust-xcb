@@ -100,6 +100,7 @@ struct SwitchCase {
     fields: Vec<Field>,
 }
 
+#[allow(clippy::enum_variant_names)]
 #[derive(Clone, Debug)]
 enum Field {
     Field {
