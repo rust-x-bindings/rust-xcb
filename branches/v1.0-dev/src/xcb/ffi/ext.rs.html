@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;ffi&#x2F;ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../xcb/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;ffi&#x2F;ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../../storage.js"></script><script src="../../../crates.js"></script><script defer src="../../../main.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../../xcb/index.html'><div class='logo-container rust-logo'><img src='../../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -297,14 +298,14 @@
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_extension_t</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">global_id</span>: <span class="ident">c_int</span>,
 }
 
 <span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_protocol_request_t</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ext</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ext</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_extension_t</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">opcode</span>: <span class="ident">u8</span>,
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">isvoid</span>: <span class="ident">u8</span>,
 }
@@ -320,10 +321,10 @@
 <span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;xcb&quot;</span>)]</span>
 <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
     ) -&gt; <span class="ident">c_uint</span>;
 
     <span class="doccomment">/**
@@ -355,19 +356,19 @@
      * so they must be valid!
      */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request_with_fds</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
         <span class="ident">num_fds</span>: <span class="ident">c_uint</span>,
-        <span class="ident">fds</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>,
+        <span class="ident">fds</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
     ) -&gt; <span class="ident">c_uint</span>;
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
     ) -&gt; <span class="ident">u64</span>;
 
     <span class="doccomment">/**
@@ -400,12 +401,12 @@
      * so they must be valid!
      */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request_with_fds64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*</span><span class="kw">const</span> <span class="ident">xcb_protocol_request_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
+        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
         <span class="ident">num_fds</span>: <span class="ident">c_uint</span>,
-        <span class="ident">fds</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>,
+        <span class="ident">fds</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
     ) -&gt; <span class="ident">u64</span>;
 
     <span class="doccomment">/**
@@ -420,7 +421,7 @@
      * that run xcb_send_fd(); xcb_send_request(); could mix up their file
      * descriptors. Instead, xcb_send_request_with_fds() should be used.
      */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_fd</span>(<span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">fd</span>: <span class="ident">c_int</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_fd</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">fd</span>: <span class="ident">c_int</span>);
 
     <span class="doccomment">/**
      * @brief Take over the write side of the socket
@@ -450,11 +451,11 @@
      * xcb_request_check().
      */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_take_socket</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">return_socket</span>: <span class="kw">fn</span>(<span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>),
-        <span class="ident">closure</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">return_socket</span>: <span class="kw">fn</span>(<span class="ident">closure</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>),
+        <span class="ident">closure</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
         <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">sent</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">u64</span>,
+        <span class="ident">sent</span>: <span class="kw-2">*mut</span> <span class="ident">u64</span>,
     ) -&gt; <span class="ident">c_int</span>;
 
     <span class="doccomment">/**
@@ -477,37 +478,37 @@
      * xcb_discard_reply().
      */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_writev</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">iovec</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
         <span class="ident">count</span>: <span class="ident">c_int</span>,
         <span class="ident">requests</span>: <span class="ident">u64</span>,
     ) -&gt; <span class="ident">c_int</span>;
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">c_uint</span>,
-        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">u64</span>,
-        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">c_uint</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
         <span class="ident">request</span>: <span class="ident">u64</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
-        <span class="ident">e</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>;
+        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
+        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
 
     <span class="doccomment">/**
      * @brief Don&#39;t use this, only needed by the generated code.
@@ -517,12 +518,11 @@
      * @return Pointer to the location where received file descriptors are stored.
      */</span>
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_reply_fds</span>(
-        <span class="ident">c</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_void</span>,
+        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
+        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
         <span class="ident">replylen</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">c_int</span>;
+    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_int</span>;
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-search-index-js="../../../search-index.js" data-search-js="../../../search.js"></div>
-    <script src="../../../main.js"></script><script src="../../../source-script.js"></script><script src="../../../source-files.js"></script>
 </body></html>
