@@ -253,6 +253,20 @@ impl CodeGen {
             writeln!(out, "}}")?;
 
             writeln!(out)?;
+            writeln!(out, "impl base::Raw<{}> for {} {{", raw_typ, event.rs_typ)?;
+            writeln!(
+                out,
+                "    unsafe fn from_raw(raw: *mut {}) -> Self {{ {} {{ raw }} }}",
+                raw_typ, event.rs_typ
+            )?;
+            writeln!(out)?;
+            writeln!(out, "    fn as_raw(&self) -> *mut {} {{", raw_typ)?;
+            writeln!(out, "        self.raw")?;
+            writeln!(out, "    }}")?;
+
+            writeln!(out, "}}")?;
+
+            writeln!(out)?;
             writeln!(out, "impl {} for {} {{", trait_impl, event.rs_typ)?;
             if event.is_xge {
                 writeln!(
@@ -274,23 +288,6 @@ impl CodeGen {
                 )?;
             }
             writeln!(out, "    const NUMBER: u32 = {};", event.number)?;
-            writeln!(out)?;
-            writeln!(
-                out,
-                "    unsafe fn from_raw(raw: *mut {}) -> Self {{ {} {{ raw }} }}",
-                raw_typ, event.rs_typ
-            )?;
-            writeln!(out)?;
-            writeln!(out, "    unsafe fn into_raw(self) -> *mut {} {{", raw_typ)?;
-            writeln!(out, "        let raw = self.raw;")?;
-            writeln!(out, "        std::mem::forget(self);")?;
-            writeln!(out, "        raw")?;
-            writeln!(out, "    }}")?;
-            writeln!(out)?;
-            writeln!(out, "    fn as_raw(&self) -> *mut {} {{", raw_typ)?;
-            writeln!(out, "        self.raw")?;
-            writeln!(out, "    }}")?;
-
             writeln!(out)?;
             writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
             writeln!(out, "        unsafe {{")?;

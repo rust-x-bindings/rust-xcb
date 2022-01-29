@@ -130,6 +130,23 @@ impl CodeGen {
             writeln!(out, "}}")?;
 
             writeln!(out)?;
+            writeln!(
+                out,
+                "impl base::Raw<xcb_generic_error_t> for {} {{",
+                error.rs_typ
+            )?;
+            writeln!(
+                out,
+                "    unsafe fn from_raw(raw: *mut xcb_generic_error_t) -> Self {{ {} {{ raw }} }}",
+                error.rs_typ
+            )?;
+            writeln!(out)?;
+            writeln!(out, "    fn as_raw(&self) -> *mut xcb_generic_error_t {{")?;
+            writeln!(out, "        self.raw")?;
+            writeln!(out, "    }}")?;
+            writeln!(out, "}}")?;
+
+            writeln!(out)?;
             writeln!(out, "impl base::BaseError for {} {{", error.rs_typ)?;
             if let Some(ext_info) = self.ext_info.as_ref() {
                 writeln!(
@@ -149,25 +166,6 @@ impl CodeGen {
             } else {
                 writeln!(out, "    const NUMBER: u32 = u32::MAX;")?;
             }
-            writeln!(out)?;
-            writeln!(
-                out,
-                "    unsafe fn from_raw(raw: *mut xcb_generic_error_t) -> Self {{ {} {{ raw }} }}",
-                error.rs_typ
-            )?;
-            writeln!(out)?;
-            writeln!(
-                out,
-                "    unsafe fn into_raw(self) -> *mut xcb_generic_error_t {{"
-            )?;
-            writeln!(out, "        let raw = self.raw;")?;
-            writeln!(out, "        std::mem::forget(self);")?;
-            writeln!(out, "        raw")?;
-            writeln!(out, "    }}")?;
-            writeln!(out)?;
-            writeln!(out, "    fn as_raw(&self) -> *mut xcb_generic_error_t {{")?;
-            writeln!(out, "        self.raw")?;
-            writeln!(out, "    }}")?;
             writeln!(out)?;
             writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
             writeln!(out, "        unsafe {{")?;

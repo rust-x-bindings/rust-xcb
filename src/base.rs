@@ -53,28 +53,34 @@ pub trait XidNew: Xid {
     unsafe fn new(res_id: u32) -> Self;
 }
 
+/// Trait for types that own a C allocated pointer and are represented by the data pointed to.
+pub trait Raw<T>: Sized {
+    /// Build `Self` from a raw pointer
+    ///
+    /// # Safety
+    /// `raw` must be a valid pointer to the representation of Self, and be allocated with `libc::malloc`
+    unsafe fn from_raw(raw: *mut T) -> Self;
+
+    /// Convert self into a raw pointer
+    ///
+    /// Returned value should be freed with `libc::free` or sent back to [from_row] to avoid memory leak.
+    fn into_raw(self) -> *mut T {
+        let raw = self.as_raw();
+        mem::forget(self);
+        raw
+    }
+
+    /// Obtain the raw pointer representation
+    fn as_raw(&self) -> *mut T;
+}
+
 /// Trait for base events (aka. non GE_GENERIC events)
-pub trait BaseEvent {
+pub trait BaseEvent: Raw<xcb_generic_event_t> {
     /// The extension associated to this event, or `None` for the main protocol
     const EXTENSION: Option<Extension>;
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Build an event from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_generic_event_t) -> Self;
-
-    /// Convert the event into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event
-    unsafe fn into_raw(self) -> *mut xcb_generic_event_t;
-
-    /// Obtain the event as a raw pointer
-    fn as_raw(&self) -> *mut xcb_generic_event_t;
 
     /// Access to the raw event data
     fn as_slice(&self) -> &[u8];
@@ -89,27 +95,12 @@ pub trait BaseEvent {
 ///
 /// This should be completely transparent to the user, as [Event] is
 /// resolving all types of events together.
-pub trait GeEvent {
+pub trait GeEvent: Raw<xcb_ge_generic_event_t> {
     /// The extension associated to this event
     const EXTENSION: Extension;
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Build an event from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_ge_generic_event_t) -> Self;
-
-    /// Convert the event into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event
-    unsafe fn into_raw(self) -> *mut xcb_ge_generic_event_t;
-
-    /// Obtain the event as a raw pointer
-    fn as_raw(&self) -> *mut xcb_ge_generic_event_t;
 
     /// Access to the raw event data
     fn as_slice(&self) -> &[u8];
@@ -121,27 +112,12 @@ pub trait GeEvent {
 ///
 /// This should be completely transparent to the user, as [ProtocolError] is
 /// resolving all types of errors together.
-pub trait BaseError {
+pub trait BaseError: Raw<xcb_generic_error_t> {
     /// The extension associated to this error, or `None` for the main protocol
     const EXTENSION: Option<Extension>;
 
     /// The number associated to this error
     const NUMBER: u32;
-
-    /// Build an error from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the error, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_generic_error_t) -> Self;
-
-    /// Convert the error into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new error
-    unsafe fn into_raw(self) -> *mut xcb_generic_error_t;
-
-    /// Obtain the error as a raw pointer
-    fn as_raw(&self) -> *mut xcb_generic_error_t;
 
     /// Access to the raw error data
     fn as_slice(&self) -> &[u8];
@@ -151,7 +127,7 @@ pub trait BaseError {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::x::Event] and [crate::Event]
-pub trait ResolveWireEvent: Sized {
+pub(crate) trait ResolveWireEvent: Sized {
     /// Resolve a pointer to `xcb_generic_event_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_event`
     ///
@@ -170,7 +146,7 @@ pub trait ResolveWireEvent: Sized {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::xinput::Event] and [crate::Event]
-pub trait ResolveWireGeEvent: Sized {
+pub(crate) trait ResolveWireGeEvent: Sized {
     /// Resolve a pointer to `xcb_ge_generic_event_t` to `Self`, inferring the correct subtype
     /// using `event_type` field.
     ///
@@ -188,7 +164,7 @@ pub trait ResolveWireGeEvent: Sized {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::x::Error] and [crate::ProtocolError]
-pub trait ResolveWireError {
+pub(crate) trait ResolveWireError {
     /// Convert a pointer to `xcb_generic_error_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_error`.
     ///

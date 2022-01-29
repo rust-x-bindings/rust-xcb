@@ -1,4 +1,4 @@
-use crate::base::{BaseEvent, ResolveWireEvent, ResolveWireGeEvent};
+use crate::base::{BaseEvent, Raw, ResolveWireEvent, ResolveWireGeEvent};
 use crate::ext::{Extension, ExtensionData};
 use crate::ffi::*;
 use crate::x;
@@ -116,23 +116,19 @@ pub struct UnknownEvent {
     raw: *mut xcb_generic_event_t,
 }
 
-impl BaseEvent for UnknownEvent {
-    const EXTENSION: Option<Extension> = None;
-    const NUMBER: u32 = u32::MAX;
-
+impl Raw<xcb_generic_event_t> for UnknownEvent {
     unsafe fn from_raw(raw: *mut xcb_generic_event_t) -> Self {
         UnknownEvent { raw }
-    }
-
-    unsafe fn into_raw(self) -> *mut xcb_generic_event_t {
-        let raw = self.raw;
-        std::mem::forget(self);
-        raw
     }
 
     fn as_raw(&self) -> *mut xcb_generic_event_t {
         self.raw
     }
+}
+
+impl BaseEvent for UnknownEvent {
+    const EXTENSION: Option<Extension> = None;
+    const NUMBER: u32 = u32::MAX;
 
     fn as_slice(&self) -> &[u8] {
         // All basic event types are 32 bytes
