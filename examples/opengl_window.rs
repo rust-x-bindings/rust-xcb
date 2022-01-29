@@ -1,6 +1,6 @@
 use xcb::ffi::xcb_generic_event_t;
 use xcb::{self, dri2, glx, x};
-use xcb::{BaseEvent, Xid};
+use xcb::{Raw, Xid};
 
 use x11::glx::*;
 use x11::xlib;
