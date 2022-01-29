@@ -309,7 +309,7 @@ impl CodeGen {
 
             self.emit_debug_impl(out, &event.rs_typ, &event.fields)?;
 
-            self.emit_wired_impl(out, &event.rs_typ, event.is_xge)?;
+            self.emit_wired_impl(out, &event.rs_typ, event.is_xge, raw_typ)?;
 
             writeln!(out)?;
             writeln!(out, "impl Drop for {} {{", event.rs_typ)?;
@@ -688,7 +688,13 @@ impl CodeGen {
         Ok(())
     }
 
-    fn emit_wired_impl<O: Write>(&self, out: &mut O, rs_typ: &str, is_xge: bool) -> io::Result<()> {
+    fn emit_wired_impl<O: Write>(
+        &self,
+        out: &mut O,
+        rs_typ: &str,
+        is_xge: bool,
+        raw_typ: &str,
+    ) -> io::Result<()> {
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
@@ -743,6 +749,33 @@ impl CodeGen {
         } else {
             writeln!(out, "{}32", cg::ind(2))?;
         }
+        writeln!(out, "{}}}", cg::ind(1))?;
+
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}unsafe fn unserialize(ptr: *const u8, _params: (), offset: &mut usize) -> Self {{",
+            cg::ind(1)
+        )?;
+        writeln!(
+            out,
+            "{}let sz = Self::compute_wire_len(ptr, ());",
+            cg::ind(2)
+        )?;
+        writeln!(out, "{}*offset += sz;", cg::ind(2))?;
+        writeln!(
+            out,
+            "{}let raw = libc::malloc(sz) as *mut {};",
+            cg::ind(2),
+            raw_typ
+        )?;
+        writeln!(
+            out,
+            "{}std::ptr::copy(ptr as *const {}, raw, sz);",
+            cg::ind(2),
+            raw_typ
+        )?;
+        writeln!(out, "{}{} {{ raw }}", cg::ind(2), rs_typ)?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
         Ok(())

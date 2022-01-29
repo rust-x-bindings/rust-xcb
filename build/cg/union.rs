@@ -384,15 +384,25 @@ impl CodeGen {
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
-        writeln!(out)?;
-        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(out)?;
-        writeln!(
+        if type_field.is_some() {
+            writeln!(out)?;
+            writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+            writeln!(out, "    type Params = ();")?;
+            writeln!(out)?;
+            writeln!(
             out,
             "    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {{ {} }}", wire_sz
         )?;
-        writeln!(out, "}}")?;
+            writeln!(out, "    unsafe fn unserialize(ptr: *const u8, _params: (), offset: &mut usize) -> Self {{")?;
+            writeln!(out, "        let sz = Self::compute_wire_len(ptr, ());")?;
+            writeln!(out, "        *offset += sz;")?;
+            writeln!(
+                out,
+                "        Self::from_data(std::slice::from_raw_parts(ptr, sz))"
+            )?;
+            writeln!(out, "    }}")?;
+            writeln!(out, "}}")?;
+        }
 
         Ok(())
     }

@@ -71,7 +71,10 @@ fn test_dynbuf_from_data() {
     let mut data = depth_data(&[32, 24], 4);
 
     assert_eq!(data.len(), 60);
-    assert_eq!(unsafe { x::Depth::compute_wire_len(data.as_ptr(), ()) }, 56);
+    assert_eq!(
+        unsafe { <&x::Depth as WiredIn>::compute_wire_len(data.as_ptr(), ()) },
+        56
+    );
     {
         let depth = unsafe { x::Depth::from_data(&data[0..56]) };
         assert_eq!(depth.depth(), 16);

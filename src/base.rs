@@ -201,6 +201,17 @@ pub(crate) trait WiredIn {
     /// This function is highly unsafe as the pointer must point to data that is a valid
     /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
     unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
+
+    /// Unserialize an instance of `Self` from the X wire
+    ///
+    /// `offset` value is increased by the number of bytes corresponding to the representation of `Self`.
+    /// This allows for efficient chaining of unserialization as the data offset is either known at
+    /// compile time, or has to be computed anyway.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn unserialize(ptr: *const u8, params: Self::Params, offset: &mut usize) -> Self;
 }
 
 macro_rules! impl_wired_simple {
@@ -224,6 +235,15 @@ macro_rules! impl_wired_simple {
 
             unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
                 mem::size_of::<Self>()
+            }
+
+            unsafe fn unserialize(
+                ptr: *const u8,
+                _params: Self::Params,
+                offset: &mut usize,
+            ) -> Self {
+                *offset += mem::size_of::<Self>();
+                *(ptr as *const Self)
             }
         }
     };
@@ -257,6 +277,12 @@ impl<T: XidNew> WiredIn for T {
 
     unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
         4
+    }
+
+    unsafe fn unserialize(ptr: *const u8, _params: Self::Params, offset: &mut usize) -> Self {
+        *offset += 4;
+        let xid = *(ptr as *const u32);
+        T::new(xid)
     }
 }
 
@@ -1272,8 +1298,9 @@ impl Connection {
     pub fn get_setup(&self) -> &Setup {
         unsafe {
             let ptr = xcb_get_setup(self.c);
-            let len = Setup::compute_wire_len(ptr, ());
-            Setup::from_data(slice::from_raw_parts(ptr, len))
+            // let len = <&Setup as WiredIn>::compute_wire_len(ptr, ());
+            let mut _offset = 0;
+            <&Setup as WiredIn>::unserialize(ptr, (), &mut _offset)
         }
     }
 

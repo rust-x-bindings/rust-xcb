@@ -334,9 +334,9 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         if is_mask {
-            self.emit_mask_switch_impl(out, rs_typ, maskenum, cases, params_struct)?;
+            self.emit_mask_switch_impl(out, rs_typ, maskenum, cases)?;
         } else {
-            self.emit_enum_switch_impl(out, rs_typ, maskenum, cases, params_struct)?;
+            self.emit_enum_switch_impl(out, rs_typ, maskenum, cases)?;
         }
 
         writeln!(out)?;
@@ -352,20 +352,24 @@ impl CodeGen {
 
         writeln!(out)?;
         if is_mask {
-            writeln!(out, "impl base::WiredIn for &[{}] {{", rs_typ)?;
+            writeln!(out, "impl base::WiredIn for Vec<{}> {{", rs_typ)?;
         } else {
             writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
         }
         writeln!(out, "    type Params = {};", params_struct.rs_typ)?;
         self.emit_switch_compute_wire_len(out, expr, rs_typ, cases, params_struct, is_mask)?;
+
+        self.emit_switch_unserialize(out, expr, rs_typ, is_mask, cases, params_struct)?;
+
         writeln!(out, "}}")?;
 
         Ok(())
     }
 
-    fn emit_switch_ctor<O: Write>(
+    fn emit_switch_unserialize<O: Write>(
         &self,
         out: &mut O,
+        expr: &Expr,
         rs_typ: &str,
         is_mask: bool,
         cases: &[SwitchCase],
@@ -376,9 +380,10 @@ impl CodeGen {
         } else {
             rs_typ.to_string()
         };
+        writeln!(out)?;
         writeln!(out, "    #[allow(unused_assignments)]")?;
         writeln!(out,
-            "    pub(crate) unsafe fn from_wire_data(wire_data: *const u8, expr: usize, params: {}) -> {} {{",
+            "    unsafe fn unserialize(wire_data: *const u8, params: {}, out_offset: &mut usize) -> {} {{",
             params_struct.rs_typ, return_typ)?;
 
         writeln!(out, "{}let {}{{", cg::ind(2), params_struct.rs_typ)?;
@@ -386,6 +391,13 @@ impl CodeGen {
             writeln!(out, "{}{},", cg::ind(3), p)?;
         }
         writeln!(out, "{}}} = params;", cg::ind(2))?;
+
+        writeln!(
+            out,
+            "{}let expr = {};",
+            cg::ind(2),
+            self.build_rs_expr(expr, "", "", &[])
+        )?;
 
         if is_mask {
             writeln!(out, "{}let mut result = Vec::new();", cg::ind(2))?;
@@ -437,23 +449,14 @@ impl CodeGen {
                             "",
                             "",
                         );
-                        writeln!(out, "{}let {} = {{", cg::ind(3), name)?;
                         writeln!(
                             out,
-                            "{}    let sz = {}::compute_wire_len(wire_data.add(offset), {});",
+                            "{}let {} = {}Buf::unserialize(wire_data.add(offset), {}, &mut offset);",
                             cg::ind(3),
+                            name,
                             q_rs_typ,
                             params_expr
                         )?;
-                        writeln!(out, "{}    let data = std::slice::from_raw_parts(wire_data.add(offset), sz);", cg::ind(3))?;
-                        writeln!(out, "{}    offset += sz;", cg::ind(3))?;
-                        writeln!(
-                            out,
-                            "{}    {}Buf::from_data(data.to_vec())",
-                            cg::ind(3),
-                            q_rs_typ
-                        )?;
-                        writeln!(out, "{}}};", cg::ind(3))?;
                     }
                     Field::Field {
                         name,
@@ -621,35 +624,23 @@ impl CodeGen {
                             cg::ind(3),
                             self.build_rs_expr(len_expr, "", "", &[])
                         )?;
-                        writeln!(out, "{}let ptr = wire_data.add(offset);", cg::ind(4))?;
-                        writeln!(
-                            out,
-                            "{}let sz = {}::compute_wire_len(ptr, {}_params);",
-                            cg::ind(4),
-                            q_rs_typ,
-                            name,
-                        )?;
-                        writeln!(
-                            out,
-                            "{}let data = std::slice::from_raw_parts(ptr, sz);",
-                            cg::ind(4)
-                        )?;
-                        if *is_union {
+                        let rs_typ_suff = if *is_union {
                             assert!(
                                 union_typefield.is_some(),
                                 "cannot build a union here without type field"
                             );
-                            writeln!(out, "{}let el = {}::from_data(data);", cg::ind(4), q_rs_typ,)?;
+                            ""
                         } else {
-                            writeln!(
+                            "Buf"
+                        };
+                        writeln!(
                                 out,
-                                "{}let el = {}Buf::from_data(data.to_vec());",
+                                "{}let el = {}{}::unserialize(wire_data.add(offset), {}_params, &mut offset);",
                                 cg::ind(4),
                                 q_rs_typ,
+                                rs_typ_suff,name,
                             )?;
-                        }
                         writeln!(out, "{}{}.push(el);", cg::ind(4), name,)?;
-                        writeln!(out, "{}offset += sz;", cg::ind(4),)?;
                         writeln!(out, "{}}}", cg::ind(3))?;
                     }
                     Field::Switch {
@@ -657,7 +648,6 @@ impl CodeGen {
                         module,
                         rs_typ,
                         params_struct,
-                        expr,
                         is_mask,
                         ..
                     } => {
@@ -665,22 +655,13 @@ impl CodeGen {
                         let params_expr =
                             self.build_params_expr(Some(params_struct), module.as_deref(), "", "");
                         // do not supply fields because the masks are defined as integer here
-                        let expr = self.build_rs_expr(expr, "", "", &[]);
                         let impl_type = if *is_mask {
-                            format!("<&[{}]>", q_rs_typ)
+                            format!("<Vec<{}>>", q_rs_typ)
                         } else {
                             q_rs_typ.clone()
                         };
                         writeln!(out, "{}let {}_params = {};", cg::ind(3), name, params_expr)?;
-                        writeln!(out, "{}let {}_expr = {};", cg::ind(3), name, expr)?;
-                        writeln!(out, "{}let {} = {}::from_wire_data(wire_data.add(offset), {}_expr, {}_params);", cg::ind(3), name, q_rs_typ, name, name)?;
-                        writeln!(
-                            out,
-                            "{}offset += {}::compute_wire_len(wire_data.add(offset), {}_params);",
-                            cg::ind(3),
-                            impl_type,
-                            name
-                        )?;
+                        writeln!(out, "{}let {} = {}::unserialize(wire_data.add(offset), {}_params, &mut offset);", cg::ind(3), name, impl_type, name)?;
                     }
                     Field::Pad {
                         wire_sz: Expr::Value(sz),
@@ -702,6 +683,8 @@ impl CodeGen {
                     f => unreachable!("{:#?}", f),
                 }
             }
+
+            writeln!(out, "{}*out_offset += offset;", cg::ind(3))?;
 
             let (open, close) = if visible_fields_len(&sc.fields) == 1 {
                 ("(", ")")
@@ -1216,14 +1199,10 @@ impl CodeGen {
         rs_typ: &str,
         mask: &(Option<String>, String),
         cases: &[SwitchCase],
-        params_struct: &ParamsStruct,
     ) -> io::Result<()> {
         let mask = (&mask.0, &mask.1).qualified_rs_typ();
         writeln!(out)?;
         writeln!(out, "impl {} {{", rs_typ)?;
-
-        self.emit_switch_ctor(out, rs_typ, true, cases, params_struct)?;
-
         writeln!(
             out,
             "    pub(crate) fn get_mask(slice: &[{}]) -> {} {{",
@@ -1286,15 +1265,10 @@ impl CodeGen {
         rs_typ: &str,
         r#enum: &(Option<String>, String),
         cases: &[SwitchCase],
-        params_struct: &ParamsStruct,
     ) -> io::Result<()> {
         let r#enum = (&r#enum.0, &r#enum.1).qualified_rs_typ();
         writeln!(out)?;
         writeln!(out, "impl {} {{", rs_typ)?;
-
-        self.emit_switch_ctor(out, rs_typ, false, cases, params_struct)?;
-
-        writeln!(out)?;
         writeln!(out, "    pub(crate) fn get_enum(&self) -> {} {{", r#enum)?;
         writeln!(out, "        match self {{")?;
         for c in cases {
