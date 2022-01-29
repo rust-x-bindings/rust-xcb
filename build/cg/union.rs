@@ -256,13 +256,6 @@ impl CodeGen {
 
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(out)?;
-        writeln!(
-            out,
-            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {{ {} }}", wire_sz
-        )?;
-        writeln!(out)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ {} }}", wire_sz)?;
         writeln!(out)?;
         writeln!(
@@ -389,6 +382,16 @@ impl CodeGen {
         writeln!(out, "        }}")?;
         writeln!(out, "        {}", wire_sz)?;
         writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(out)?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {{ {} }}", wire_sz
+        )?;
         writeln!(out, "}}")?;
 
         Ok(())

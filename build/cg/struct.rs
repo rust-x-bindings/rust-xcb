@@ -622,13 +622,6 @@ impl CodeGen {
 
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(
-            out,
-            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
-            wire_sz
-        )?;
-        writeln!(out)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ {} }}", wire_sz)?;
         writeln!(out)?;
         writeln!(
@@ -645,6 +638,16 @@ impl CodeGen {
         writeln!(out, "        wire_buf.copy_from_slice(me);")?;
         writeln!(out, "        {}", wire_sz)?;
         writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
+            wire_sz
+        )?;
         writeln!(out, "}}")?;
 
         Ok(())
@@ -706,13 +709,6 @@ impl CodeGen {
 
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(
-            out,
-            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
-            wire_sz
-        )?;
-        writeln!(out)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ {} }}", wire_sz)?;
         writeln!(out)?;
         writeln!(
@@ -722,6 +718,16 @@ impl CodeGen {
         writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
         writeln!(out, "        self.data.len()")?;
         writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
+            wire_sz
+        )?;
         writeln!(out, "}}")?;
 
         self.emit_debug_impl(out, rs_typ, fields)?;
@@ -784,14 +790,6 @@ impl CodeGen {
 
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
-        self.emit_compute_func(
-            out,
-            "compute_wire_len",
-            params_struct,
-            &compute_wire_len_stmts,
-        )?;
-        writeln!(out)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ self.data.len() }}")?;
         writeln!(out)?;
         writeln!(
@@ -801,6 +799,17 @@ impl CodeGen {
         writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
         writeln!(out, "        self.data.len()")?;
         writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
+        self.emit_compute_func(
+            out,
+            "compute_wire_len",
+            params_struct,
+            &compute_wire_len_stmts,
+        )?;
         writeln!(out, "}}")?;
 
         writeln!(out)?;

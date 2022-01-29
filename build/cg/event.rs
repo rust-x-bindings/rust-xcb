@@ -691,22 +691,6 @@ impl CodeGen {
     fn emit_wired_impl<O: Write>(&self, out: &mut O, rs_typ: &str, is_xge: bool) -> io::Result<()> {
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(out)?;
-        writeln!(
-            out,
-            "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
-            cg::ind(1),
-            if is_xge { "" } else { "_" }
-        )?;
-        if is_xge {
-            writeln!(out, "{}32 + 4 * (*(ptr.add(4) as *const u32) as usize)", cg::ind(2))?;
-        } else {
-            writeln!(out, "{}32", cg::ind(2))?;
-        }
-        writeln!(out, "{}}}", cg::ind(1))?;
-
-        writeln!(out)?;
         writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
         if is_xge {
             writeln!(out, "{}32 + 4 * self.length() as usize", cg::ind(2))?;
@@ -737,6 +721,28 @@ impl CodeGen {
             cg::ind(2)
         )?;
         writeln!(out, "{}self.wire_len()", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
+            cg::ind(1),
+            if is_xge { "" } else { "_" }
+        )?;
+        if is_xge {
+            writeln!(
+                out,
+                "{}32 + 4 * (*(ptr.add(4) as *const u32) as usize)",
+                cg::ind(2)
+            )?;
+        } else {
+            writeln!(out, "{}32", cg::ind(2))?;
+        }
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
         Ok(())

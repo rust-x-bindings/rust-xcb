@@ -170,22 +170,10 @@ pub(crate) trait ResolveWireError {
     unsafe fn resolve_wire_error(first_error: u8, error: *mut xcb_generic_error_t) -> Self;
 }
 
-/// Trait for types that can serialize themselves over the X wire.
+/// Trait for types that can serialize themselves to the X wire.
 ///
-/// This trait is used internally for requests serialization, or in some accessors
-/// that have to compute the size of some wire data.
+/// This trait is used internally for requests serialization.
 pub(crate) trait WiredOut {
-    /// type to external context necessary to compute the length
-    type Params: Copy;
-
-    /// Compute the length of serialized data of an instance starting by `ptr`.
-    ///
-    /// # Safety
-    /// This function is highly unsafe as the pointer must point to data that is a valid
-    /// wired representation of `Self`. Failure to respect this will lead to reading
-    /// of invalid memory.
-    unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
-
     /// Compute the length of wired serialized data of self
     fn wire_len(&self) -> usize;
 
@@ -202,15 +190,22 @@ pub(crate) trait WiredOut {
     fn serialize(&self, wire_buf: &mut [u8]) -> usize;
 }
 
+/// Trait for types that can unserialize themselves from the X wire.
+pub(crate) trait WiredIn {
+    /// type of external context necessary to figure out the representation of the data
+    type Params: Copy;
+
+    /// Compute the length of serialized data of an instance starting by `ptr`.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
+}
+
 macro_rules! impl_wired_simple {
     ($typ:ty) => {
         impl WiredOut for $typ {
-            type Params = ();
-
-            unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
-                mem::size_of::<Self>()
-            }
-
             fn wire_len(&self) -> usize {
                 mem::size_of::<Self>()
             }
@@ -220,6 +215,14 @@ macro_rules! impl_wired_simple {
                 unsafe {
                     *(wire_buf.as_mut_ptr() as *mut Self) = *self;
                 }
+                mem::size_of::<Self>()
+            }
+        }
+
+        impl WiredIn for $typ {
+            type Params = ();
+
+            unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
                 mem::size_of::<Self>()
             }
         }
@@ -236,12 +239,6 @@ impl_wired_simple!(i32);
 impl_wired_simple!(f32);
 
 impl<T: Xid> WiredOut for T {
-    type Params = ();
-
-    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
-        4
-    }
-
     fn wire_len(&self) -> usize {
         4
     }
@@ -251,6 +248,14 @@ impl<T: Xid> WiredOut for T {
         unsafe {
             *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();
         }
+        4
+    }
+}
+
+impl<T: XidNew> WiredIn for T {
+    type Params = ();
+
+    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
         4
     }
 }
