@@ -700,7 +700,7 @@ impl CodeGen {
             if is_xge { "" } else { "_" }
         )?;
         if is_xge {
-            writeln!(out, "{}*(ptr.add(4) as *const u32) as usize", cg::ind(2))?;
+            writeln!(out, "{}32 + 4 * (*(ptr.add(4) as *const u32) as usize)", cg::ind(2))?;
         } else {
             writeln!(out, "{}32", cg::ind(2))?;
         }
