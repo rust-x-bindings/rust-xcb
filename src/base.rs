@@ -63,7 +63,7 @@ pub trait Raw<T>: Sized {
 
     /// Convert self into a raw pointer
     ///
-    /// Returned value should be freed with `libc::free` or sent back to [from_raw] to avoid memory leak.
+    /// Returned value should be freed with `libc::free` or sent back to `from_raw` to avoid memory leak.
     fn into_raw(self) -> *mut T {
         let raw = self.as_raw();
         mem::forget(self);
