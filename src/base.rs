@@ -207,7 +207,7 @@ pub trait ResolveWireError {
 ///
 /// This trait is used internally for requests serialization, or in some accessors
 /// that have to compute the size of some wire data.
-pub trait Wired {
+pub(crate) trait Wired {
     /// type to external context necessary to compute the length
     type Params: Copy;
 
