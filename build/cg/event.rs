@@ -288,15 +288,6 @@ impl CodeGen {
                 )?;
             }
             writeln!(out, "    const NUMBER: u32 = {};", event.number)?;
-            writeln!(out)?;
-            writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
-            writeln!(out, "        unsafe {{")?;
-            writeln!(
-                out,
-                "            std::slice::from_raw_parts(self.raw as *const u8, self.wire_len())",
-            )?;
-            writeln!(out, "        }}")?;
-            writeln!(out, "    }}")?;
 
             writeln!(out, "}}")?;
 
@@ -737,7 +728,12 @@ impl CodeGen {
         )?;
         writeln!(
             out,
-            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(self.as_slice());",
+            "{}let raw_slice = unsafe {{ std::slice::from_raw_parts(self.raw as *const u8, self.wire_len()) }};",
+            cg::ind(2)
+        )?;
+        writeln!(
+            out,
+            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(raw_slice);",
             cg::ind(2)
         )?;
         writeln!(out, "{}self.wire_len()", cg::ind(2))?;

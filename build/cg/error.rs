@@ -166,16 +166,6 @@ impl CodeGen {
             } else {
                 writeln!(out, "    const NUMBER: u32 = u32::MAX;")?;
             }
-            writeln!(out)?;
-            writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
-            writeln!(out, "        unsafe {{")?;
-            writeln!(
-                out,
-                "            std::slice::from_raw_parts(self.raw as *const u8, {})",
-                self.build_rs_expr(&error.wire_sz, "", "", &[])
-            )?;
-            writeln!(out, "        }}")?;
-            writeln!(out, "    }}")?;
             writeln!(out, "}}")?;
 
             writeln!(out)?;

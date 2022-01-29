@@ -81,9 +81,6 @@ pub trait BaseEvent: Raw<xcb_generic_event_t> {
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Access to the raw event data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// A trait for GE_GENERIC events
@@ -101,9 +98,6 @@ pub trait GeEvent: Raw<xcb_ge_generic_event_t> {
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Access to the raw event data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// A trait to designate base protocol errors.
@@ -118,9 +112,6 @@ pub trait BaseError: Raw<xcb_generic_error_t> {
 
     /// The number associated to this error
     const NUMBER: u32;
-
-    /// Access to the raw error data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// Trait for the resolution of raw wire event to a unified event enum.

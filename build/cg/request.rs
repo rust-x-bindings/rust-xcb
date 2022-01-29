@@ -949,6 +949,13 @@ impl CodeGen {
                 Field::Field { name, .. } | Field::List { name, .. }
                     if sends_event && name == "event" =>
                 {
+                    writeln!(
+                        out,
+                        "{}let raw_{}_slice = std::slice::from_raw_parts(self.{}.as_raw() as *const u8, 32);",
+                        cg::ind(2),
+                        name,
+                        name
+                    )?;
                     writeln!(out, "{}std::slice::from_raw_parts_mut(", cg::ind(2))?;
                     writeln!(
                         out,
@@ -957,12 +964,7 @@ impl CodeGen {
                         num,
                         offset,
                     )?;
-                    writeln!(
-                        out,
-                        "{}).copy_from_slice(self.{}.as_slice());",
-                        cg::ind(2),
-                        name
-                    )?;
+                    writeln!(out, "{}).copy_from_slice(raw_{}_slice);", cg::ind(2), name)?;
                     offset += 32;
                 }
                 Field::Field {

@@ -129,11 +129,6 @@ impl Raw<xcb_generic_event_t> for UnknownEvent {
 impl BaseEvent for UnknownEvent {
     const EXTENSION: Option<Extension> = None;
     const NUMBER: u32 = u32::MAX;
-
-    fn as_slice(&self) -> &[u8] {
-        // All basic event types are 32 bytes
-        unsafe { std::slice::from_raw_parts(self.raw as *const u8, 32) }
-    }
 }
 
 impl std::fmt::Debug for UnknownEvent {
