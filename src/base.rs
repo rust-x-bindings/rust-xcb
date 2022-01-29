@@ -174,7 +174,7 @@ pub(crate) trait ResolveWireError {
 ///
 /// This trait is used internally for requests serialization, or in some accessors
 /// that have to compute the size of some wire data.
-pub(crate) trait Wired {
+pub(crate) trait WiredOut {
     /// type to external context necessary to compute the length
     type Params: Copy;
 
@@ -204,7 +204,7 @@ pub(crate) trait Wired {
 
 macro_rules! impl_wired_simple {
     ($typ:ty) => {
-        impl Wired for $typ {
+        impl WiredOut for $typ {
             type Params = ();
 
             unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
@@ -235,7 +235,7 @@ impl_wired_simple!(i16);
 impl_wired_simple!(i32);
 impl_wired_simple!(f32);
 
-impl<T: Xid> Wired for T {
+impl<T: Xid> WiredOut for T {
     type Params = ();
 
     unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {

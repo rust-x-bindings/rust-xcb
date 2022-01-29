@@ -255,7 +255,7 @@ impl CodeGen {
         };
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    type Params = ();")?;
         writeln!(out)?;
         writeln!(

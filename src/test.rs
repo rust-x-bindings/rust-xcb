@@ -1,4 +1,4 @@
-use crate::base::{self, Wired};
+use crate::base::{self, WiredOut};
 use crate::x;
 
 fn visual_data(bits_per_rgb_value: u8) -> Vec<u8> {

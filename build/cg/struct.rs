@@ -621,7 +621,7 @@ impl CodeGen {
         self.emit_sizeof_test(out, rs_typ, wire_sz)?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    type Params = ();")?;
         writeln!(
             out,
@@ -705,7 +705,7 @@ impl CodeGen {
         self.emit_sizeof_test(out, rs_typ, wire_sz)?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    type Params = ();")?;
         writeln!(
             out,
@@ -783,7 +783,7 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
         self.emit_compute_func(
             out,

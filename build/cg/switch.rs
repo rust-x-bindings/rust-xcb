@@ -341,9 +341,9 @@ impl CodeGen {
 
         writeln!(out)?;
         if is_mask {
-            writeln!(out, "impl base::Wired for &[{}] {{", rs_typ)?;
+            writeln!(out, "impl base::WiredOut for &[{}] {{", rs_typ)?;
         } else {
-            writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+            writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         }
         writeln!(out, "    type Params = {};", params_struct.rs_typ)?;
         self.emit_switch_compute_wire_len(out, expr, rs_typ, cases, params_struct, is_mask)?;

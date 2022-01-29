@@ -690,7 +690,7 @@ impl CodeGen {
 
     fn emit_wired_impl<O: Write>(&self, out: &mut O, rs_typ: &str, is_xge: bool) -> io::Result<()> {
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    type Params = ();")?;
         writeln!(out)?;
         writeln!(
