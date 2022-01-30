@@ -253,6 +253,20 @@ impl CodeGen {
             writeln!(out, "}}")?;
 
             writeln!(out)?;
+            writeln!(out, "impl base::Raw<{}> for {} {{", raw_typ, event.rs_typ)?;
+            writeln!(
+                out,
+                "    unsafe fn from_raw(raw: *mut {}) -> Self {{ {} {{ raw }} }}",
+                raw_typ, event.rs_typ
+            )?;
+            writeln!(out)?;
+            writeln!(out, "    fn as_raw(&self) -> *mut {} {{", raw_typ)?;
+            writeln!(out, "        self.raw")?;
+            writeln!(out, "    }}")?;
+
+            writeln!(out, "}}")?;
+
+            writeln!(out)?;
             writeln!(out, "impl {} for {} {{", trait_impl, event.rs_typ)?;
             if event.is_xge {
                 writeln!(
@@ -274,32 +288,6 @@ impl CodeGen {
                 )?;
             }
             writeln!(out, "    const NUMBER: u32 = {};", event.number)?;
-            writeln!(out)?;
-            writeln!(
-                out,
-                "    unsafe fn from_raw(raw: *mut {}) -> Self {{ {} {{ raw }} }}",
-                raw_typ, event.rs_typ
-            )?;
-            writeln!(out)?;
-            writeln!(out, "    unsafe fn into_raw(self) -> *mut {} {{", raw_typ)?;
-            writeln!(out, "        let raw = self.raw;")?;
-            writeln!(out, "        std::mem::forget(self);")?;
-            writeln!(out, "        raw")?;
-            writeln!(out, "    }}")?;
-            writeln!(out)?;
-            writeln!(out, "    fn as_raw(&self) -> *mut {} {{", raw_typ)?;
-            writeln!(out, "        self.raw")?;
-            writeln!(out, "    }}")?;
-
-            writeln!(out)?;
-            writeln!(out, "    fn as_slice(&self) -> &[u8] {{")?;
-            writeln!(out, "        unsafe {{")?;
-            writeln!(
-                out,
-                "            std::slice::from_raw_parts(self.raw as *const u8, self.wire_len())",
-            )?;
-            writeln!(out, "        }}")?;
-            writeln!(out, "    }}")?;
 
             writeln!(out, "}}")?;
 
@@ -321,7 +309,7 @@ impl CodeGen {
 
             self.emit_debug_impl(out, &event.rs_typ, &event.fields)?;
 
-            self.emit_wired_impl(out, &event.rs_typ, event.is_xge)?;
+            self.emit_wired_impl(out, &event.rs_typ, event.is_xge, raw_typ)?;
 
             writeln!(out)?;
             writeln!(out, "impl Drop for {} {{", event.rs_typ)?;
@@ -700,25 +688,15 @@ impl CodeGen {
         Ok(())
     }
 
-    fn emit_wired_impl<O: Write>(&self, out: &mut O, rs_typ: &str, is_xge: bool) -> io::Result<()> {
+    fn emit_wired_impl<O: Write>(
+        &self,
+        out: &mut O,
+        rs_typ: &str,
+        is_xge: bool,
+        raw_typ: &str,
+    ) -> io::Result<()> {
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(out)?;
-        writeln!(
-            out,
-            "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
-            cg::ind(1),
-            if is_xge { "" } else { "_" }
-        )?;
-        if is_xge {
-            writeln!(out, "{}*(ptr.add(4) as *const u32) as usize", cg::ind(2))?;
-        } else {
-            writeln!(out, "{}32", cg::ind(2))?;
-        }
-        writeln!(out, "{}}}", cg::ind(1))?;
-
-        writeln!(out)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
         if is_xge {
             writeln!(out, "{}32 + 4 * self.length() as usize", cg::ind(2))?;
@@ -740,10 +718,64 @@ impl CodeGen {
         )?;
         writeln!(
             out,
-            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(self.as_slice());",
+            "{}let raw_slice = unsafe {{ std::slice::from_raw_parts(self.raw as *const u8, self.wire_len()) }};",
+            cg::ind(2)
+        )?;
+        writeln!(
+            out,
+            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(raw_slice);",
             cg::ind(2)
         )?;
         writeln!(out, "{}self.wire_len()", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
+            cg::ind(1),
+            if is_xge { "" } else { "_" }
+        )?;
+        if is_xge {
+            writeln!(
+                out,
+                "{}32 + 4 * (*(ptr.add(4) as *const u32) as usize)",
+                cg::ind(2)
+            )?;
+        } else {
+            writeln!(out, "{}32", cg::ind(2))?;
+        }
+        writeln!(out, "{}}}", cg::ind(1))?;
+
+        writeln!(out)?;
+        writeln!(
+            out,
+            "{}unsafe fn unserialize(ptr: *const u8, _params: (), offset: &mut usize) -> Self {{",
+            cg::ind(1)
+        )?;
+        writeln!(
+            out,
+            "{}let sz = Self::compute_wire_len(ptr, ());",
+            cg::ind(2)
+        )?;
+        writeln!(out, "{}*offset += sz;", cg::ind(2))?;
+        writeln!(
+            out,
+            "{}let raw = libc::malloc(sz) as *mut {};",
+            cg::ind(2),
+            raw_typ
+        )?;
+        writeln!(
+            out,
+            "{}std::ptr::copy(ptr as *const {}, raw, sz);",
+            cg::ind(2),
+            raw_typ
+        )?;
+        writeln!(out, "{}{} {{ raw }}", cg::ind(2), rs_typ)?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
         Ok(())

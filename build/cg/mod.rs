@@ -468,7 +468,7 @@ impl CodeGen {
         writeln!(out)?;
         writeln!(
             out,
-            "use crate::base::{{self, BaseError, BaseEvent, GeEvent, Reply, Wired, Xid}};"
+            "use crate::base::{{self, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid}};"
         )?;
         writeln!(out, "use crate::ext;")?;
         writeln!(out, "use crate::ffi::base::*;")?;

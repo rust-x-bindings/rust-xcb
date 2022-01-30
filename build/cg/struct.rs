@@ -9,6 +9,7 @@ use super::{
     TypeInfo, WireSz,
 };
 
+use std::borrow::Cow;
 use std::io::{self, Write};
 
 /// struct of external parameters passed to functions such as compute_len
@@ -621,14 +622,7 @@ impl CodeGen {
         self.emit_sizeof_test(out, rs_typ, wire_sz)?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(
-            out,
-            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
-            wire_sz
-        )?;
-        writeln!(out)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ {} }}", wire_sz)?;
         writeln!(out)?;
         writeln!(
@@ -644,6 +638,23 @@ impl CodeGen {
         writeln!(out, "        }};")?;
         writeln!(out, "        wire_buf.copy_from_slice(me);")?;
         writeln!(out, "        {}", wire_sz)?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
+            wire_sz
+        )?;
+        writeln!(
+            out,
+            "    unsafe fn unserialize(ptr: *const u8, _params: (), offset: &mut usize) -> Self {{"
+        )?;
+        writeln!(out, "        *offset += {};", wire_sz)?;
+        writeln!(out, "        *(ptr as *const {})", rs_typ)?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
@@ -705,14 +716,7 @@ impl CodeGen {
         self.emit_sizeof_test(out, rs_typ, wire_sz)?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = ();")?;
-        writeln!(
-            out,
-            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
-            wire_sz
-        )?;
-        writeln!(out)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ {} }}", wire_sz)?;
         writeln!(out)?;
         writeln!(
@@ -721,6 +725,23 @@ impl CodeGen {
         )?;
         writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
         writeln!(out, "        self.data.len()")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {} {{", rs_typ)?;
+        writeln!(out, "    type Params = ();")?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {{ {} }}",
+            wire_sz
+        )?;
+        writeln!(
+            out,
+            "    unsafe fn unserialize(ptr: *const u8, _params: (), offset: &mut usize) -> Self {{"
+        )?;
+        writeln!(out, "        *offset += {};", wire_sz)?;
+        writeln!(out, "        *(ptr as *const {})", rs_typ)?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
@@ -759,7 +780,7 @@ impl CodeGen {
         if params_struct.is_none() {
             writeln!(
                 out,
-                "        debug_assert_eq!(data.as_ref().len(), {}::compute_wire_len(data.as_ref().as_ptr(), ()));",
+                "        debug_assert_eq!(data.as_ref().len(), <&{} as base::WiredIn>::compute_wire_len(data.as_ref().as_ptr(), ()));",
                 rs_typ
             )?;
         }
@@ -783,15 +804,7 @@ impl CodeGen {
         writeln!(out, "}}")?;
 
         writeln!(out)?;
-        writeln!(out, "impl base::Wired for {} {{", rs_typ)?;
-        writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
-        self.emit_compute_func(
-            out,
-            "compute_wire_len",
-            params_struct,
-            &compute_wire_len_stmts,
-        )?;
-        writeln!(out)?;
+        writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "    fn wire_len(&self) -> usize {{ self.data.len() }}")?;
         writeln!(out)?;
         writeln!(
@@ -800,6 +813,30 @@ impl CodeGen {
         )?;
         writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
         writeln!(out, "        self.data.len()")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for &{} {{", rs_typ)?;
+        writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
+        self.emit_compute_func(
+            out,
+            "compute_wire_len",
+            params_struct,
+            &compute_wire_len_stmts,
+        )?;
+        writeln!(
+            out,
+            "    unsafe fn unserialize(ptr: *const u8, params: {}, offset: &mut usize) -> Self {{",
+            params_struct.rs_typ(),
+        )?;
+        writeln!(out, "        let sz = Self::compute_wire_len(ptr, params);")?;
+        writeln!(out, "        *offset += sz;")?;
+        writeln!(
+            out,
+            "        let data = std::slice::from_raw_parts(ptr, sz);"
+        )?;
+        writeln!(out, "        {}::from_data(data)", rs_typ)?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
@@ -819,7 +856,7 @@ impl CodeGen {
         if params_struct.is_none() {
             writeln!(
                 out,
-                "        debug_assert_eq!({}::compute_wire_len(data.as_ptr(), ()), data.len());",
+                "        debug_assert_eq!(<&{}>::compute_wire_len(data.as_ptr(), ()), data.len());",
                 rs_typ
             )?;
         }
@@ -828,6 +865,31 @@ impl CodeGen {
 
         self.emit_struct_ctor(out, rs_typ, fields, wire_sz)?;
 
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl base::WiredIn for {}Buf {{", rs_typ)?;
+        writeln!(out, "    type Params = {};", params_struct.rs_typ())?;
+        writeln!(
+            out,
+            "    unsafe fn compute_wire_len(ptr: *const u8, params: {}) -> usize {{",
+            params_struct.rs_typ(),
+        )?;
+        writeln!(out, "    <&{}>::compute_wire_len(ptr, params)", rs_typ)?;
+        writeln!(out, "}}")?;
+        writeln!(
+            out,
+            "    unsafe fn unserialize(ptr: *const u8, params: {}, offset: &mut usize) -> Self {{",
+            params_struct.rs_typ(),
+        )?;
+        writeln!(out, "        let sz = Self::compute_wire_len(ptr, params);")?;
+        writeln!(out, "        *offset += sz;")?;
+        writeln!(
+            out,
+            "        let data = std::slice::from_raw_parts(ptr, sz);"
+        )?;
+        writeln!(out, "        {}Buf::from_data(data.to_vec())", rs_typ)?;
+        writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
         writeln!(out)?;
@@ -904,7 +966,7 @@ impl CodeGen {
                 );
                 stmts.push(format!("// {}", name));
                 stmts.push(format!(
-                    "sz += {}::compute_wire_len(ptr.add({}sz), {});",
+                    "sz += <&{}>::compute_wire_len(ptr.add({}sz), {});",
                     q_rs_typ, struct_offset, params_expr
                 ));
             }
@@ -957,7 +1019,7 @@ impl CodeGen {
                 );
                 if *is_fieldref {
                     stmts.push(format!(
-                        "    let len = {}::compute_wire_len(ptr.add({}sz), {});",
+                        "    let len = <&{}>::compute_wire_len(ptr.add({}sz), {});",
                         q_rs_typ, struct_offset, params_expr
                     ));
                     stmts.push(format!(
@@ -968,7 +1030,7 @@ impl CodeGen {
                     stmts.push("    sz += len;".to_string());
                 } else {
                     stmts.push(format!(
-                        "    sz += {}::compute_wire_len(ptr.add({}sz), {});",
+                        "    sz += <&{}>::compute_wire_len(ptr.add({}sz), {});",
                         q_rs_typ, struct_offset, params_expr
                     ));
                 }
@@ -1024,7 +1086,7 @@ impl CodeGen {
                 );
                 let q_rs_typ = (module, rs_typ).qualified_rs_typ();
                 let impl_type = if *is_mask {
-                    format!("<&[{}]>", q_rs_typ)
+                    format!("<Vec<{}>>", q_rs_typ)
                 } else {
                     q_rs_typ
                 };
@@ -1664,7 +1726,7 @@ impl CodeGen {
                     if let Some(StructStyle::DynBuf) = struct_style {
                         writeln!(
                             out,
-                            "{}let len = {}::compute_wire_len(self.wire_ptr().add(offset), {});",
+                            "{}let len = <&{}>::compute_wire_len(self.wire_ptr().add(offset), {});",
                             cg::ind(3),
                             q_rs_typ,
                             params_expr
@@ -2130,7 +2192,6 @@ impl CodeGen {
                     module,
                     rs_typ,
                     params_struct,
-                    expr,
                     wire_off,
                     is_mask,
                     doc,
@@ -2139,10 +2200,13 @@ impl CodeGen {
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
-                    let return_typ = if *is_mask {
-                        format!("Vec<{}>", rs_typ)
+                    let (impl_typ, return_typ) = if *is_mask {
+                        (
+                            Cow::from(format!("<Vec<{}>>", rs_typ)),
+                            Cow::from(format!("Vec<{}>", rs_typ)),
+                        )
                     } else {
-                        rs_typ.to_string()
+                        (Cow::from(rs_typ), Cow::from(rs_typ))
                     };
                     writeln!(
                         out,
@@ -2188,16 +2252,14 @@ impl CodeGen {
                         "",
                         "",
                     );
-                    let switch_expr = self.build_rs_expr(expr, "self.", "()", fields);
                     let offset_expr = self.build_rs_expr(wire_off, "self.", "()", fields);
                     writeln!(out, "{}let params = {};", cg::ind(2), params_expr)?;
-                    writeln!(out, "{}let offset = {};", cg::ind(2), offset_expr)?;
-                    writeln!(out, "{}let switch = {};", cg::ind(2), switch_expr)?;
+                    writeln!(out, "{}let mut offset = {};", cg::ind(2), offset_expr)?;
                     writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(out, "{}{}::from_wire_data(", cg::ind(3), rs_typ,)?;
+                    writeln!(out, "{}{}::unserialize(", cg::ind(3), impl_typ)?;
                     writeln!(
                         out,
-                        "{}self.wire_ptr().add(offset), switch, params",
+                        "{}self.wire_ptr().add(offset), params, &mut offset",
                         cg::ind(4),
                     )?;
                     writeln!(out, "{})", cg::ind(3))?;
@@ -2427,17 +2489,13 @@ impl CodeGen {
         writeln!(out, "            None")?;
         writeln!(out, "        }} else {{ unsafe {{")?;
         writeln!(out, "            self.rem -= 1;")?;
+        writeln!(out, "            let mut offset = 0;")?;
         writeln!(
             out,
-            "            let len = {}::compute_wire_len(self.ptr, self.params);",
+            "            let res = <&{}>::unserialize(self.ptr, self.params, &mut offset);",
             rs_typ
         )?;
-        writeln!(
-            out,
-            "            let res = {}::from_data(std::slice::from_raw_parts(self.ptr, len));",
-            rs_typ
-        )?;
-        writeln!(out, "            self.ptr = self.ptr.add(len);")?;
+        writeln!(out, "            self.ptr = self.ptr.add(offset);")?;
         writeln!(out, "            Some(res)")?;
         writeln!(out, "        }}}}")?;
         writeln!(out, "    }}")?;

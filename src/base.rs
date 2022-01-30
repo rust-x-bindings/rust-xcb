@@ -53,31 +53,34 @@ pub trait XidNew: Xid {
     unsafe fn new(res_id: u32) -> Self;
 }
 
+/// Trait for types that own a C allocated pointer and are represented by the data pointed to.
+pub trait Raw<T>: Sized {
+    /// Build `Self` from a raw pointer
+    ///
+    /// # Safety
+    /// `raw` must be a valid pointer to the representation of Self, and be allocated with `libc::malloc`
+    unsafe fn from_raw(raw: *mut T) -> Self;
+
+    /// Convert self into a raw pointer
+    ///
+    /// Returned value should be freed with `libc::free` or sent back to `from_raw` to avoid memory leak.
+    fn into_raw(self) -> *mut T {
+        let raw = self.as_raw();
+        mem::forget(self);
+        raw
+    }
+
+    /// Obtain the raw pointer representation
+    fn as_raw(&self) -> *mut T;
+}
+
 /// Trait for base events (aka. non GE_GENERIC events)
-pub trait BaseEvent {
+pub trait BaseEvent: Raw<xcb_generic_event_t> {
     /// The extension associated to this event, or `None` for the main protocol
     const EXTENSION: Option<Extension>;
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Build an event from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_generic_event_t) -> Self;
-
-    /// Convert the event into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event
-    unsafe fn into_raw(self) -> *mut xcb_generic_event_t;
-
-    /// Obtain the event as a raw pointer
-    fn as_raw(&self) -> *mut xcb_generic_event_t;
-
-    /// Access to the raw event data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// A trait for GE_GENERIC events
@@ -89,30 +92,12 @@ pub trait BaseEvent {
 ///
 /// This should be completely transparent to the user, as [Event] is
 /// resolving all types of events together.
-pub trait GeEvent {
+pub trait GeEvent: Raw<xcb_ge_generic_event_t> {
     /// The extension associated to this event
     const EXTENSION: Extension;
 
     /// The number associated to this event
     const NUMBER: u32;
-
-    /// Build an event from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_ge_generic_event_t) -> Self;
-
-    /// Convert the event into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event
-    unsafe fn into_raw(self) -> *mut xcb_ge_generic_event_t;
-
-    /// Obtain the event as a raw pointer
-    fn as_raw(&self) -> *mut xcb_ge_generic_event_t;
-
-    /// Access to the raw event data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// A trait to designate base protocol errors.
@@ -121,37 +106,19 @@ pub trait GeEvent {
 ///
 /// This should be completely transparent to the user, as [ProtocolError] is
 /// resolving all types of errors together.
-pub trait BaseError {
+pub trait BaseError: Raw<xcb_generic_error_t> {
     /// The extension associated to this error, or `None` for the main protocol
     const EXTENSION: Option<Extension>;
 
     /// The number associated to this error
     const NUMBER: u32;
-
-    /// Build an error from a raw pointer
-    ///
-    /// # Safety
-    /// `raw` must be a valid pointer to the error, and be allocated with `libc::malloc`
-    unsafe fn from_raw(raw: *mut xcb_generic_error_t) -> Self;
-
-    /// Convert the error into a raw pointer
-    ///
-    /// # Safety
-    /// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new error
-    unsafe fn into_raw(self) -> *mut xcb_generic_error_t;
-
-    /// Obtain the error as a raw pointer
-    fn as_raw(&self) -> *mut xcb_generic_error_t;
-
-    /// Access to the raw error data
-    fn as_slice(&self) -> &[u8];
 }
 
 /// Trait for the resolution of raw wire event to a unified event enum.
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::x::Event] and [crate::Event]
-pub trait ResolveWireEvent: Sized {
+pub(crate) trait ResolveWireEvent: Sized {
     /// Resolve a pointer to `xcb_generic_event_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_event`
     ///
@@ -170,7 +137,7 @@ pub trait ResolveWireEvent: Sized {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::xinput::Event] and [crate::Event]
-pub trait ResolveWireGeEvent: Sized {
+pub(crate) trait ResolveWireGeEvent: Sized {
     /// Resolve a pointer to `xcb_ge_generic_event_t` to `Self`, inferring the correct subtype
     /// using `event_type` field.
     ///
@@ -188,7 +155,7 @@ pub trait ResolveWireGeEvent: Sized {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::x::Error] and [crate::ProtocolError]
-pub trait ResolveWireError {
+pub(crate) trait ResolveWireError {
     /// Convert a pointer to `xcb_generic_error_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_error`.
     ///
@@ -203,22 +170,10 @@ pub trait ResolveWireError {
     unsafe fn resolve_wire_error(first_error: u8, error: *mut xcb_generic_error_t) -> Self;
 }
 
-/// Trait for types that can serialize themselves over the X wire.
+/// Trait for types that can serialize themselves to the X wire.
 ///
-/// This trait is used internally for requests serialization, or in some accessors
-/// that have to compute the size of some wire data.
-pub trait Wired {
-    /// type to external context necessary to compute the length
-    type Params: Copy;
-
-    /// Compute the length of serialized data of an instance starting by `ptr`.
-    ///
-    /// # Safety
-    /// This function is highly unsafe as the pointer must point to data that is a valid
-    /// wired representation of `Self`. Failure to respect this will lead to reading
-    /// of invalid memory.
-    unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
-
+/// This trait is used internally for requests serialization.
+pub(crate) trait WiredOut {
     /// Compute the length of wired serialized data of self
     fn wire_len(&self) -> usize;
 
@@ -235,15 +190,33 @@ pub trait Wired {
     fn serialize(&self, wire_buf: &mut [u8]) -> usize;
 }
 
+/// Trait for types that can unserialize themselves from the X wire.
+pub(crate) trait WiredIn {
+    /// type of external context necessary to figure out the representation of the data
+    type Params: Copy;
+
+    /// Compute the length of serialized data of an instance starting by `ptr`.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
+
+    /// Unserialize an instance of `Self` from the X wire
+    ///
+    /// `offset` value is increased by the number of bytes corresponding to the representation of `Self`.
+    /// This allows for efficient chaining of unserialization as the data offset is either known at
+    /// compile time, or has to be computed anyway.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn unserialize(ptr: *const u8, params: Self::Params, offset: &mut usize) -> Self;
+}
+
 macro_rules! impl_wired_simple {
     ($typ:ty) => {
-        impl Wired for $typ {
-            type Params = ();
-
-            unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
-                mem::size_of::<Self>()
-            }
-
+        impl WiredOut for $typ {
             fn wire_len(&self) -> usize {
                 mem::size_of::<Self>()
             }
@@ -254,6 +227,23 @@ macro_rules! impl_wired_simple {
                     *(wire_buf.as_mut_ptr() as *mut Self) = *self;
                 }
                 mem::size_of::<Self>()
+            }
+        }
+
+        impl WiredIn for $typ {
+            type Params = ();
+
+            unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
+                mem::size_of::<Self>()
+            }
+
+            unsafe fn unserialize(
+                ptr: *const u8,
+                _params: Self::Params,
+                offset: &mut usize,
+            ) -> Self {
+                *offset += mem::size_of::<Self>();
+                *(ptr as *const Self)
             }
         }
     };
@@ -268,13 +258,7 @@ impl_wired_simple!(i16);
 impl_wired_simple!(i32);
 impl_wired_simple!(f32);
 
-impl<T: Xid> Wired for T {
-    type Params = ();
-
-    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
-        4
-    }
-
+impl<T: Xid> WiredOut for T {
     fn wire_len(&self) -> usize {
         4
     }
@@ -285,6 +269,20 @@ impl<T: Xid> Wired for T {
             *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();
         }
         4
+    }
+}
+
+impl<T: XidNew> WiredIn for T {
+    type Params = ();
+
+    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
+        4
+    }
+
+    unsafe fn unserialize(ptr: *const u8, _params: Self::Params, offset: &mut usize) -> Self {
+        *offset += 4;
+        let xid = *(ptr as *const u32);
+        T::new(xid)
     }
 }
 
@@ -1300,8 +1298,9 @@ impl Connection {
     pub fn get_setup(&self) -> &Setup {
         unsafe {
             let ptr = xcb_get_setup(self.c);
-            let len = Setup::compute_wire_len(ptr, ());
-            Setup::from_data(slice::from_raw_parts(ptr, len))
+            // let len = <&Setup as WiredIn>::compute_wire_len(ptr, ());
+            let mut _offset = 0;
+            <&Setup as WiredIn>::unserialize(ptr, (), &mut _offset)
         }
     }
 
