@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # This is a script that runs the code generation and export a copy of it under gen/$1.
-# This is NOT the main code generation script, but a tool to help looking at the code,
-# (which is otherwise lost somewhere under target/) and performing diffs with previous versions
+# This is NOT the main code generation script, but a tool to help looking at the generated code
+# (which is otherwise lost somewhere under target/) and performing diffs with previous versions.
 
 if [ -z "$1" ]
 then
