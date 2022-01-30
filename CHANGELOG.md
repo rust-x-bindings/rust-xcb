@@ -5,11 +5,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased-WIP]
-- new safer API
-  - implement the extensions in RUST directly
-  - safe enums for Errors and Events
+- new 1.0 API
+  - implement the extensions in RUST directly (no need to link to C extension libraries)
+  - XCB resolves protocol events and errors to safe enumerations
   - requests are structures that can be passed to `Connection::send_request`
-  - checked/unchecked and void/non-void requests are type safe (each request has two cookie type)
+  - typesafe cookies for checked/unchecked and void/non-void requests
+  - typesafe XIDs
+  - `bitflags` masks
+  - `debug_atom_names` feature
+  - improvements of the `Debug` implementations
+  - many, many other improvement and fixes
 - support for xcb-1.14
 - support for xinput extension
 
