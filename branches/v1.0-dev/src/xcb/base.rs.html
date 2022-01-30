@@ -1680,7 +1680,6 @@
 <span id="1679">1679</span>
 <span id="1680">1680</span>
 <span id="1681">1681</span>
-<span id="1682">1682</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -1736,31 +1735,34 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">res_id</span>: <span class="ident">u32</span>) -&gt; <span class="self">Self</span>;
 }
 
+<span class="doccomment">/// Trait for types that own a C allocated pointer and are represented by the data pointed to.</span>
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Raw</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>: <span class="ident">Sized</span> {
+    <span class="doccomment">/// Build `Self` from a raw pointer</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// `raw` must be a valid pointer to the representation of Self, and be allocated with `libc::malloc`</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">T</span>) -&gt; <span class="self">Self</span>;
+
+    <span class="doccomment">/// Convert self into a raw pointer</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// Returned value should be freed with `libc::free` or sent back to `from_raw` to avoid memory leak.</span>
+    <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">T</span> {
+        <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">as_raw</span>();
+        <span class="ident">mem::forget</span>(<span class="self">self</span>);
+        <span class="ident">raw</span>
+    }
+
+    <span class="doccomment">/// Obtain the raw pointer representation</span>
+    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">T</span>;
+}
+
 <span class="doccomment">/// Trait for base events (aka. non GE_GENERIC events)</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BaseEvent</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BaseEvent</span>: <span class="ident">Raw</span><span class="op">&lt;</span><span class="ident">xcb_generic_event_t</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The extension associated to this event, or `None` for the main protocol</span>
     <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Extension</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The number associated to this event</span>
     <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span>;
-
-    <span class="doccomment">/// Build an event from a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span>;
-
-    <span class="doccomment">/// Convert the event into a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
-
-    <span class="doccomment">/// Obtain the event as a raw pointer</span>
-    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
-
-    <span class="doccomment">/// Access to the raw event data</span>
-    <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
 }
 
 <span class="doccomment">/// A trait for GE_GENERIC events</span>
@@ -1772,30 +1774,12 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This should be completely transparent to the user, as [Event] is</span>
 <span class="doccomment">/// resolving all types of events together.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GeEvent</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">GeEvent</span>: <span class="ident">Raw</span><span class="op">&lt;</span><span class="ident">xcb_ge_generic_event_t</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The extension associated to this event</span>
     <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="ident">Extension</span>;
 
     <span class="doccomment">/// The number associated to this event</span>
     <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span>;
-
-    <span class="doccomment">/// Build an event from a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// `raw` must be a valid pointer to the event, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_ge_generic_event_t</span>) -&gt; <span class="self">Self</span>;
-
-    <span class="doccomment">/// Convert the event into a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new event</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_ge_generic_event_t</span>;
-
-    <span class="doccomment">/// Obtain the event as a raw pointer</span>
-    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_ge_generic_event_t</span>;
-
-    <span class="doccomment">/// Access to the raw event data</span>
-    <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
 }
 
 <span class="doccomment">/// A trait to designate base protocol errors.</span>
@@ -1804,37 +1788,19 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// This should be completely transparent to the user, as [ProtocolError] is</span>
 <span class="doccomment">/// resolving all types of errors together.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BaseError</span> {
+<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">BaseError</span>: <span class="ident">Raw</span><span class="op">&lt;</span><span class="ident">xcb_generic_error_t</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The extension associated to this error, or `None` for the main protocol</span>
     <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Extension</span><span class="op">&gt;</span>;
 
     <span class="doccomment">/// The number associated to this error</span>
     <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span>;
-
-    <span class="doccomment">/// Build an error from a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// `raw` must be a valid pointer to the error, and be allocated with `libc::malloc`</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>) -&gt; <span class="self">Self</span>;
-
-    <span class="doccomment">/// Convert the error into a raw pointer</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// returned value should be freed with `libc::free` to avoid memory leak, or used to build a new error</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">into_raw</span>(<span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>;
-
-    <span class="doccomment">/// Obtain the error as a raw pointer</span>
-    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>;
-
-    <span class="doccomment">/// Access to the raw error data</span>
-    <span class="kw">fn</span> <span class="ident">as_slice</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>];
 }
 
 <span class="doccomment">/// Trait for the resolution of raw wire event to a unified event enum.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// `Self` is normally an enum of several event subtypes.</span>
 <span class="doccomment">/// See [crate::x::Event] and [crate::Event]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ResolveWireEvent</span>: <span class="ident">Sized</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">ResolveWireEvent</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// Resolve a pointer to `xcb_generic_event_t` to `Self`, inferring the correct subtype</span>
     <span class="doccomment">/// using `response_type` field and `first_event`</span>
     <span class="doccomment">///</span>
@@ -1853,7 +1819,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// `Self` is normally an enum of several event subtypes.</span>
 <span class="doccomment">/// See [crate::xinput::Event] and [crate::Event]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ResolveWireGeEvent</span>: <span class="ident">Sized</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">ResolveWireGeEvent</span>: <span class="ident">Sized</span> {
     <span class="doccomment">/// Resolve a pointer to `xcb_ge_generic_event_t` to `Self`, inferring the correct subtype</span>
     <span class="doccomment">/// using `event_type` field.</span>
     <span class="doccomment">///</span>
@@ -1871,7 +1837,7 @@
 <span class="doccomment">///</span>
 <span class="doccomment">/// `Self` is normally an enum of several event subtypes.</span>
 <span class="doccomment">/// See [crate::x::Error] and [crate::ProtocolError]</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">ResolveWireError</span> {
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">ResolveWireError</span> {
     <span class="doccomment">/// Convert a pointer to `xcb_generic_error_t` to `Self`, inferring the correct subtype</span>
     <span class="doccomment">/// using `response_type` field and `first_error`.</span>
     <span class="doccomment">///</span>
@@ -1886,22 +1852,10 @@
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_wire_error</span>(<span class="ident">first_error</span>: <span class="ident">u8</span>, <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>) -&gt; <span class="self">Self</span>;
 }
 
-<span class="doccomment">/// Trait for types that can serialize themselves over the X wire.</span>
+<span class="doccomment">/// Trait for types that can serialize themselves to the X wire.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This trait is used internally for requests serialization, or in some accessors</span>
-<span class="doccomment">/// that have to compute the size of some wire data.</span>
-<span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">Wired</span> {
-    <span class="doccomment">/// type to external context necessary to compute the length</span>
-    <span class="kw">type</span> <span class="ident">Params</span>: <span class="ident">Copy</span>;
-
-    <span class="doccomment">/// Compute the length of serialized data of an instance starting by `ptr`.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// This function is highly unsafe as the pointer must point to data that is a valid</span>
-    <span class="doccomment">/// wired representation of `Self`. Failure to respect this will lead to reading</span>
-    <span class="doccomment">/// of invalid memory.</span>
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span>;
-
+<span class="doccomment">/// This trait is used internally for requests serialization.</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">WiredOut</span> {
     <span class="doccomment">/// Compute the length of wired serialized data of self</span>
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span>;
 
@@ -1918,15 +1872,33 @@
     <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span>;
 }
 
+<span class="doccomment">/// Trait for types that can unserialize themselves from the X wire.</span>
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">trait</span> <span class="ident">WiredIn</span> {
+    <span class="doccomment">/// type of external context necessary to figure out the representation of the data</span>
+    <span class="kw">type</span> <span class="ident">Params</span>: <span class="ident">Copy</span>;
+
+    <span class="doccomment">/// Compute the length of serialized data of an instance starting by `ptr`.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// This function is highly unsafe as the pointer must point to data that is a valid</span>
+    <span class="doccomment">/// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span>;
+
+    <span class="doccomment">/// Unserialize an instance of `Self` from the X wire</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// `offset` value is increased by the number of bytes corresponding to the representation of `Self`.</span>
+    <span class="doccomment">/// This allows for efficient chaining of unserialization as the data offset is either known at</span>
+    <span class="doccomment">/// compile time, or has to be computed anyway.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// This function is highly unsafe as the pointer must point to data that is a valid</span>
+    <span class="doccomment">/// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.</span>
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unserialize</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::Params</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="self">Self</span>;
+}
+
 <span class="macro">macro_rules!</span> <span class="ident">impl_wired_simple</span> {
     (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span>:<span class="ident">ty</span>) =&gt; {
-        <span class="kw">impl</span> <span class="ident">Wired</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
-            <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
-
-            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span> {
-                <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
-            }
-
+        <span class="kw">impl</span> <span class="ident">WiredOut</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
             <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
                 <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
             }
@@ -1937,6 +1909,23 @@
                     <span class="kw-2">*</span>(<span class="ident">wire_buf</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="self">Self</span>) <span class="op">=</span> <span class="kw-2">*</span><span class="self">self</span>;
                 }
                 <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
+            }
+        }
+
+        <span class="kw">impl</span> <span class="ident">WiredIn</span> <span class="kw">for</span> <span class="macro-nonterminal">$</span><span class="macro-nonterminal">typ</span> {
+            <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span> {
+                <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>()
+            }
+
+            <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unserialize</span>(
+                <span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>,
+                <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>,
+                <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>,
+            ) -&gt; <span class="self">Self</span> {
+                <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">mem::size_of</span>::<span class="op">&lt;</span><span class="self">Self</span><span class="op">&gt;</span>();
+                <span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="self">Self</span>)
             }
         }
     };
@@ -1951,13 +1940,7 @@
 <span class="macro">impl_wired_simple!</span>(<span class="ident">i32</span>);
 <span class="macro">impl_wired_simple!</span>(<span class="ident">f32</span>);
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Xid</span><span class="op">&gt;</span> <span class="ident">Wired</span> <span class="kw">for</span> <span class="ident">T</span> {
-    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
-
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span> {
-        <span class="number">4</span>
-    }
-
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Xid</span><span class="op">&gt;</span> <span class="ident">WiredOut</span> <span class="kw">for</span> <span class="ident">T</span> {
     <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
         <span class="number">4</span>
     }
@@ -1968,6 +1951,20 @@
             <span class="kw-2">*</span>(<span class="ident">wire_buf</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u32</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">resource_id</span>();
         }
         <span class="number">4</span>
+    }
+}
+
+<span class="kw">impl</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">XidNew</span><span class="op">&gt;</span> <span class="ident">WiredIn</span> <span class="kw">for</span> <span class="ident">T</span> {
+    <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>) -&gt; <span class="ident">usize</span> {
+        <span class="number">4</span>
+    }
+
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unserialize</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: <span class="ident"><span class="self">Self</span>::Params</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
+        <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">+</span><span class="op">=</span> <span class="number">4</span>;
+        <span class="kw">let</span> <span class="ident">xid</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u32</span>);
+        <span class="ident">T::new</span>(<span class="ident">xid</span>)
     }
 }
 
@@ -2983,8 +2980,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_setup</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Setup</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ptr</span> <span class="op">=</span> <span class="ident">xcb_get_setup</span>(<span class="self">self</span>.<span class="ident">c</span>);
-            <span class="kw">let</span> <span class="ident">len</span> <span class="op">=</span> <span class="ident">Setup::compute_wire_len</span>(<span class="ident">ptr</span>, ());
-            <span class="ident">Setup::from_data</span>(<span class="ident">slice::from_raw_parts</span>(<span class="ident">ptr</span>, <span class="ident">len</span>))
+            <span class="comment">// let len = &lt;&amp;Setup as WiredIn&gt;::compute_wire_len(ptr, ());</span>
+            <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">_offset</span> <span class="op">=</span> <span class="number">0</span>;
+            <span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">Setup</span> <span class="kw">as</span> <span class="ident">WiredIn</span><span class="op">&gt;</span><span class="ident">::unserialize</span>(<span class="ident">ptr</span>, (), <span class="kw-2">&amp;mut</span> <span class="ident">_offset</span>)
         }
     }
 
