@@ -218,7 +218,7 @@ impl CodeGen {
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
-        return Ok(());
+        Ok(())
     }
 
     fn emit_predefined_atom_names<O: Write>(
