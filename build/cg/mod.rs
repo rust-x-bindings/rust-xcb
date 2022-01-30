@@ -55,6 +55,7 @@ enum TypeInfo {
         module: Option<String>,
         rs_typ: String,
         items: Vec<(String, u32, Option<String>)>,
+        altenum_typ: Option<(Option<String>, String)>,
         doc: Option<Doc>,
     },
     Mask {
@@ -79,6 +80,7 @@ enum TypeInfo {
         wire_sz: Expr,
         type_field: Option<UnionTypeField>,
         impl_clone: bool,
+        emit: bool,
     },
     Switch {
         module: Option<String>,
@@ -634,9 +636,13 @@ impl CodeGen {
                     self.emit_xidunion(out, rs_typ, variants)?;
                 }
                 TypeInfo::Enum {
-                    rs_typ, items, doc, ..
+                    rs_typ,
+                    items,
+                    altenum_typ,
+                    doc,
+                    ..
                 } => {
-                    self.emit_enum(out, rs_typ, items, doc.as_ref())?;
+                    self.emit_enum(out, rs_typ, items, altenum_typ, doc.as_ref())?;
                 }
                 TypeInfo::Mask {
                     rs_typ, items, doc, ..
@@ -668,6 +674,7 @@ impl CodeGen {
                     wire_sz,
                     type_field,
                     impl_clone,
+                    emit: true,
                     ..
                 } => {
                     self.emit_union(out, rs_typ, variants, wire_sz, type_field, *impl_clone)?;
@@ -703,6 +710,10 @@ impl CodeGen {
             "STRING8" => "CARD8",
             _ => old_typ,
         };
+        if self.xcb_mod == "xinput" && new_typ == "DeviceId" {
+            self.handle_xinput_deviceid_typedef();
+            return;
+        }
         let rs_typ = rust_type_name(new_typ);
         let (old_module, old_typ) = extract_module(old_typ);
         let old_typinfo = self.find_typinfo(old_module, old_typ);
@@ -793,6 +804,18 @@ impl CodeGen {
         }
     }
 
+    fn register_altenum_typ(
+        &mut self,
+        enum_typ: &str,
+        module: Option<&str>,
+        new_altenum_typ: &str,
+    ) {
+        let typinfo = self.find_typinfo_mut(None, enum_typ);
+        if let Some(TypeInfo::Enum { altenum_typ, .. }) = typinfo {
+            *altenum_typ = Some((module.map(str::to_owned), new_altenum_typ.into()))
+        }
+    }
+
     fn get_depinfo(&self, module: &str) -> &DepInfo {
         self.depinfo
             .iter()
@@ -817,6 +840,18 @@ impl CodeGen {
         }
     }
 
+    fn find_typinfo_mut(&mut self, module: Option<&str>, typ: &str) -> Option<&mut TypeInfo> {
+        if let Some(module) = module {
+            if module == self.xcb_mod {
+                self.typinfos.get_mut(typ)
+            } else {
+                None
+            }
+        } else {
+            self.typinfos.get_mut(typ)
+        }
+    }
+
     /// Same as find_typinfo, but recurse down in case the result is a typedef
     fn find_typinfo_recurse(&self, module: Option<&str>, typ: &str) -> &TypeInfo {
         let typinfo = self.find_typinfo(module, typ);
@@ -828,6 +863,23 @@ impl CodeGen {
             } => self.find_typinfo_recurse(old_module.as_ref().map(|m| m.as_str()), old_typ),
             typinfo => typinfo,
         }
+    }
+
+    fn handle_xinput_deviceid_typedef(&mut self) {
+        let typinfo = TypeInfo::Union {
+            module: None,
+            rs_typ: "Device".into(),
+            variants: Vec::new(),
+            wire_sz: Expr::Value(2),
+            type_field: None,
+            impl_clone: true,
+            emit: false,
+        };
+        self.register_typ("DeviceId".into(), typinfo);
+    }
+
+    fn handle_xinput_device_enum(&self) {
+        // Do not emit anything
     }
 }
 

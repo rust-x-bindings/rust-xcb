@@ -3,7 +3,7 @@ use xcb::{x, xinput};
 
 #[derive(Debug)]
 struct StylusDevice {
-    id: xinput::DeviceId,
+    dev: xinput::Device,
     name: String,
 }
 
@@ -52,7 +52,7 @@ fn main() -> xcb::Result<()> {
             let name = device_list.names().nth(i).unwrap().name().to_utf8();
             if name.contains(&find_device) {
                 device = Some(StylusDevice {
-                    id: dev.device_id() as xinput::DeviceId,
+                    dev: xinput::Device::from_id(dev.device_id() as _),
                     name: name.to_string(),
                 });
                 break;
@@ -61,10 +61,10 @@ fn main() -> xcb::Result<()> {
         device.expect("could not find a stylus device")
     };
 
-    println!("found device \"{}\" ({})", device.name, device.id);
+    println!("found device \"{}\" ({:?})", device.name, device.dev);
 
     let cookie = conn.send_request(&xinput::OpenDevice {
-        device_id: device.id as u8,
+        device_id: device.dev.id() as u8,
     });
     conn.wait_for_reply(cookie)?;
 
@@ -101,16 +101,15 @@ fn main() -> xcb::Result<()> {
         data: title.as_bytes(),
     });
 
-    let info = conn.wait_for_reply(conn.send_request(&xinput::XiQueryDevice {
-        deviceid: device.id,
-    }));
+    let info =
+        conn.wait_for_reply(conn.send_request(&xinput::XiQueryDevice { device: device.dev }));
 
     println!("{:#?}", info);
 
     conn.send_request(&xinput::XiSelectEvents {
         window,
         masks: &[xinput::EventMaskBuf::new(
-            device.id,
+            device.dev,
             &[xinput::XiEventMask::MOTION
                 | xinput::XiEventMask::BUTTON_PRESS
                 | xinput::XiEventMask::BUTTON_RELEASE],

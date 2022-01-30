@@ -33,6 +33,7 @@ impl CodeGen {
             wire_sz,
             type_field,
             impl_clone: true,
+            emit: true,
         };
         self.register_typ(typ.to_string(), typ_info);
     }
