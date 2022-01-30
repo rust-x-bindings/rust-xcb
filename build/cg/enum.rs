@@ -131,11 +131,7 @@ impl CodeGen {
                     )?;
                 }
 
-                emit_enum = match (self.xcb_mod.as_str(), rs_typ) {
-                    ("xkb", "Id") => true,
-                    ("xproto", "InputFocus") => true,
-                    _ => false,
-                };
+                emit_enum = matches!((self.xcb_mod.as_str(), rs_typ),  ("xkb", "Id") | ("xproto", "InputFocus"));
             }
         }
 

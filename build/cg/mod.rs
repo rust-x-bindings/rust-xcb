@@ -805,10 +805,8 @@ impl CodeGen {
         new_altenum_typ: &str,
     ) {
         let typinfo = self.find_typinfo_mut(None, enum_typ);
-        if let Some(mut typinfo) = typinfo {
-            if let TypeInfo::Enum { altenum_typ, .. } = &mut typinfo {
-                *altenum_typ = Some((module.map(str::to_owned), new_altenum_typ.into()))
-            }
+        if let Some(TypeInfo::Enum { altenum_typ, .. }) = typinfo {
+            *altenum_typ = Some((module.map(str::to_owned), new_altenum_typ.into()))
         }
     }
 
