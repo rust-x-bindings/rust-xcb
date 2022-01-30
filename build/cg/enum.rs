@@ -13,6 +13,11 @@ impl CodeGen {
             .any(|item| matches!(item, ir::EnumItem::Bit { .. }));
         let mut rs_typ = cg::rust_type_name(typ);
 
+        if self.xcb_mod == "xinput" && typ == "Device" {
+            self.handle_xinput_device_enum();
+            return;
+        }
+
         // solving name conflicts that may happen with XID of the same name
         if rs_typ == "Event" || self.rs_typs[&rs_typ] > 1 {
             *self.rs_typs.get_mut(&rs_typ).unwrap() -= 1;

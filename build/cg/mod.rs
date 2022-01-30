@@ -80,6 +80,7 @@ enum TypeInfo {
         wire_sz: Expr,
         type_field: Option<UnionTypeField>,
         impl_clone: bool,
+        emit: bool,
     },
     Switch {
         module: Option<String>,
@@ -673,6 +674,7 @@ impl CodeGen {
                     wire_sz,
                     type_field,
                     impl_clone,
+                    emit: true,
                     ..
                 } => {
                     self.emit_union(out, rs_typ, variants, wire_sz, type_field, *impl_clone)?;
@@ -708,6 +710,10 @@ impl CodeGen {
             "STRING8" => "CARD8",
             _ => old_typ,
         };
+        if self.xcb_mod == "xinput" && new_typ == "DeviceId" {
+            self.handle_xinput_deviceid_typedef();
+            return;
+        }
         let rs_typ = rust_type_name(new_typ);
         let (old_module, old_typ) = extract_module(old_typ);
         let old_typinfo = self.find_typinfo(old_module, old_typ);
@@ -857,6 +863,23 @@ impl CodeGen {
             } => self.find_typinfo_recurse(old_module.as_ref().map(|m| m.as_str()), old_typ),
             typinfo => typinfo,
         }
+    }
+
+    fn handle_xinput_deviceid_typedef(&mut self) {
+        let typinfo = TypeInfo::Union {
+            module: None,
+            rs_typ: "Device".into(),
+            variants: Vec::new(),
+            wire_sz: Expr::Value(2),
+            type_field: None,
+            impl_clone: true,
+            emit: false,
+        };
+        self.register_typ("DeviceId".into(), typinfo);
+    }
+
+    fn handle_xinput_device_enum(&self) {
+        // Do not emit anything
     }
 }
 

@@ -120,7 +120,7 @@ impl CodeGen {
                     ..
                 } => {
                     let FieldInfo {
-                        name,
+                        mut name,
                         module,
                         rs_typ,
                         wire_sz,
@@ -143,6 +143,15 @@ impl CodeGen {
 
                     if let Some(altenum) = altenum {
                         self.register_altenum_typ(altenum, module.as_deref(), typ);
+                    }
+
+                    if self.xcb_mod == "xinput" && typ == "DeviceId" {
+                        name = match name.as_str() {
+                            "deviceid" => "device".into(),
+                            "device_id" => "device".into(),
+                            "sourceid" => "source".into(),
+                            _ => name,
+                        };
                     }
 
                     let wire_sz = wire_sz.reduce();
@@ -1753,7 +1762,6 @@ impl CodeGen {
                     module,
                     rs_typ,
                     wire_off,
-                    wire_sz,
                     is_copy: false,
                     is_union: true,
                     need_compute_offset,
@@ -1764,29 +1772,27 @@ impl CodeGen {
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
-                    writeln!(out, "    fn {}(&self) -> {} {{", name, q_rs_typ)?;
+                    writeln!(out, "    pub fn {}(&self) -> {} {{", name, q_rs_typ)?;
                     writeln!(out, "        unsafe {{")?;
                     if *need_compute_offset {
                         writeln!(
                             out,
-                            "            let offset = Self::compute_{}_offset(self.wire_ptr());",
+                            "            let mut offset = Self::compute_{}_offset(self.wire_ptr());",
                             name
                         )?;
                     } else {
                         writeln!(
                             out,
-                            "            let offset = {};",
+                            "            let mut offset = {};",
                             self.build_rs_expr(wire_off, "self.", "()", fields)
                         )?;
                     }
                     writeln!(
                         out,
-                        "{}let len = {};",
+                        "{}{}::unserialize(self.wire_ptr().add(offset), (), &mut offset)",
                         cg::ind(3),
-                        self.build_rs_expr(wire_sz, "self.", "()", fields)
+                        q_rs_typ
                     )?;
-                    writeln!(out, "{}let data = std::slice::from_raw_parts(self.wire_ptr().add(offset), len);", cg::ind(3))?;
-                    writeln!(out, "{}{}::from_data(data)", cg::ind(3), q_rs_typ)?;
                     writeln!(out, "        }}")?;
                     writeln!(out, "    }}")?;
                 }

@@ -177,6 +177,7 @@ impl CodeGen {
             module: None,
             type_field: None,
             impl_clone: false,
+            emit: true,
         };
         self.register_typ(typ, typ_info);
     }

@@ -465,6 +465,55 @@ pub mod xinput {
     #![allow(unused_mut)]
     #![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
+
+    #[derive(Copy, Clone, Debug)]
+    pub enum Device {
+        All,
+        AllMaster,
+        Id(u16),
+    }
+
+    impl Device {
+        pub fn from_id(id: u16) -> Self {
+            match id {
+                0 => Device::All,
+                1 => Device::AllMaster,
+                id => Device::Id(id),
+            }
+        }
+
+        pub fn id(&self) -> u16 {
+            match self {
+                Device::All => 0,
+                Device::AllMaster => 1,
+                Device::Id(id) => *id,
+            }
+        }
+    }
+
+    impl WiredOut for Device {
+        fn wire_len(&self) -> usize {
+            2
+        }
+        fn serialize(&self, wire_buf: &mut [u8]) -> usize {
+            assert!(wire_buf.len() >= 2);
+            unsafe { *(wire_buf.as_mut_ptr() as *mut u16) = self.id(); }
+            2
+        }
+    }
+
+    impl WiredIn for Device {
+        type Params = ();
+        unsafe fn compute_wire_len(_ptr: *const u8, _params: ()) -> usize {
+            2
+        }
+        unsafe fn unserialize(ptr: *const u8, params: Self::Params, offset: &mut usize) -> Self {
+            *offset = 2;
+            let id = *(ptr as *const u16);
+            Device::from_id(id)
+        }
+    }
+
     include!(concat!(env!("OUT_DIR"), "/xinput.rs"));
 }
 
