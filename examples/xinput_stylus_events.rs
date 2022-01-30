@@ -101,9 +101,8 @@ fn main() -> xcb::Result<()> {
         data: title.as_bytes(),
     });
 
-    let info = conn.wait_for_reply(conn.send_request(&xinput::XiQueryDevice {
-        device: device.dev,
-    }));
+    let info =
+        conn.wait_for_reply(conn.send_request(&xinput::XiQueryDevice { device: device.dev }));
 
     println!("{:#?}", info);
 

@@ -354,7 +354,6 @@ mod xproto {
     /// `GRAB_ANY` can be used in various requests such as `GrabKey`, `UngrabKey`, `xinput::GrabDeviceKey`...
     pub const GRAB_ANY: Keycode = 0;
 
-
     /// Trait for element in a property list
     ///
     /// In events (e.g. `GetProperty::value`), it allows to assert that the format
@@ -497,7 +496,9 @@ pub mod xinput {
         }
         fn serialize(&self, wire_buf: &mut [u8]) -> usize {
             assert!(wire_buf.len() >= 2);
-            unsafe { *(wire_buf.as_mut_ptr() as *mut u16) = self.id(); }
+            unsafe {
+                *(wire_buf.as_mut_ptr() as *mut u16) = self.id();
+            }
             2
         }
     }
