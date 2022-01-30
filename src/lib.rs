@@ -351,6 +351,10 @@ mod xproto {
     /// `NO_SYMBOL` fills in unused entries in `Keysym` tables
     pub const NO_SYMBOL: Keysym = 0;
 
+    /// Can be used for some properties in [GetProperty::r#type] or
+    /// [randr::GetOutputProperty::r#type](crate::randr::GetOutputProperty::r#type)
+    pub const GET_PROPERTY_TYPE_ANY: Atom = Atom { res_id: 0 };
+
     /// Trait for element in a property list
     ///
     /// In events (e.g. `GetProperty::value`), it allows to assert that the format

@@ -116,6 +116,7 @@ impl CodeGen {
                     typ,
                     r#enum,
                     mask,
+                    altenum,
                     ..
                 } => {
                     let FieldInfo {
@@ -139,6 +140,10 @@ impl CodeGen {
 
                     let r#enum = r#enum.as_ref().map(|typ| self.get_mod_rs_typ(typ));
                     let mask = mask.as_ref().map(|typ| self.get_mod_rs_typ(typ));
+
+                    if let Some(altenum) = altenum {
+                        self.register_altenum_typ(altenum, module.as_deref(), typ);
+                    }
 
                     let wire_sz = wire_sz.reduce();
 

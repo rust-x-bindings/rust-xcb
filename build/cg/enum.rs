@@ -40,6 +40,7 @@ impl CodeGen {
                 module: None,
                 rs_typ,
                 items,
+                altenum_typ: None,
                 doc,
             }
         };
@@ -96,110 +97,147 @@ impl CodeGen {
         out: &mut O,
         rs_typ: &str,
         items: &[(String, u32, Option<String>)],
+        altenum_typ: &Option<(Option<String>, String)>,
         doc: Option<&Doc>,
     ) -> io::Result<()> {
-        writeln!(out)?;
-        if self.xcb_mod == "xproto" && rs_typ == "AtomEnum" {
-            for item in items {
-                if let Some(text) = &item.2 {
-                    emit_doc_text(out, 0, text)?;
-                }
-                writeln!(
-                    out,
-                    "pub const ATOM_{}: Atom = Atom{{ res_id: {} }};",
-                    util::tit_split(&item.0).to_ascii_uppercase(),
-                    item.1
-                )?;
-            }
-
-            if self.dbg_atom_names {
-                writeln!(out)?;
-                writeln!(
-                    out,
-                    "/// Get the name of an Atom if it is in the predefined list"
-                )?;
-                writeln!(
-                    out,
-                    "pub(crate) fn predefined_atom_name(atom: Atom) -> Option<&'static str> {{"
-                )?;
-                writeln!(out, "{}match atom.resource_id() {{", cg::ind(1))?;
-                for item in items {
-                    writeln!(out, "{}{} => Some(\"{}\"),", cg::ind(2), item.1, item.0)?;
-                }
-                writeln!(out, "{}_ => None,", cg::ind(2))?;
-                writeln!(out, "{}}}", cg::ind(1))?;
-                writeln!(out, "}}")?;
-            }
-
-            return Ok(());
-        }
-
-        if let Some(doc) = doc {
-            doc.emit(out, 0)?;
-        }
-
         if self.xcb_mod == "xproto" && rs_typ == "SendEventDest" {
-            writeln!(out, "#[derive(Copy, Clone, Debug)]")?;
-            writeln!(out, "pub enum SendEventDest {{")?;
+            return self.emit_send_event_dest(out, items);
+        }
+
+        let mut emit_enum = true;
+
+        if let Some(altenum_typ) = altenum_typ {
+            let typinfo = self.find_typinfo(altenum_typ.0.as_deref(), &altenum_typ.1);
+            if let TypeInfo::Xid {
+                rs_typ: xid_rs_typ, ..
+            } = typinfo
+            {
+                writeln!(out)?;
+                for item in items {
+                    if let Some(text) = &item.2 {
+                        emit_doc_text(out, 0, text)?;
+                    }
+                    let name_rs_typ = if rs_typ.ends_with("Enum") {
+                        &rs_typ[0..rs_typ.len() - 4]
+                    } else {
+                        rs_typ
+                    };
+                    let name =
+                        format!("{}_{}", name_rs_typ, util::tit_split(&item.0)).to_uppercase();
+                    writeln!(
+                        out,
+                        "pub const {}: {} = {} {{ res_id: {} }};",
+                        name, xid_rs_typ, xid_rs_typ, item.1
+                    )?;
+                }
+
+                emit_enum = match (self.xcb_mod.as_str(), rs_typ) {
+                    ("xkb", "Id") => true,
+                    ("xproto", "InputFocus") => true,
+                    _ => false,
+                };
+            }
+        }
+
+        if emit_enum {
+            writeln!(out)?;
+            if let Some(doc) = doc {
+                doc.emit(out, 0)?;
+            }
+            writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq)]")?;
+            writeln!(out, "#[repr(u32)]")?;
+            writeln!(out, "pub enum {} {{", rs_typ)?;
             for item in items {
                 if let Some(text) = &item.2 {
                     emit_doc_text(out, 1, text)?;
                 }
-                writeln!(out, "    {},", item.0)?;
+                writeln!(out, "    {} = {},", item.0, item.1)?;
             }
-            writeln!(out, "    Window(Window),")?;
             writeln!(out, "}}")?;
-
-            writeln!(out)?;
-            writeln!(out, "impl SendEventDest {{")?;
-            writeln!(out, "    pub fn resource_id(&self) -> u32 {{")?;
-            writeln!(out, "        match self {{")?;
-            for item in items {
-                writeln!(
-                    out,
-                    "{}SendEventDest::{} => {},",
-                    cg::ind(3),
-                    item.0,
-                    item.1
-                )?;
-            }
-            writeln!(
-                out,
-                "{}SendEventDest::Window(w) => w.resource_id(),",
-                cg::ind(3)
-            )?;
-            writeln!(out, "        }}")?;
-            writeln!(out, "    }}")?;
-            writeln!(out)?;
-            writeln!(
-                out,
-                "    pub fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
-            )?;
-            writeln!(out, "        debug_assert!(wire_buf.len() >= 4);")?;
-            writeln!(out, "        unsafe {{")?;
-            writeln!(
-                out,
-                "            *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();"
-            )?;
-            writeln!(out, "        }}")?;
-            writeln!(out, "        4")?;
-            writeln!(out, "    }}")?;
-            writeln!(out, "}}")?;
-
-            return Ok(());
         }
 
-        writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq)]")?;
-        writeln!(out, "#[repr(u32)]")?;
-        writeln!(out, "pub enum {} {{", rs_typ)?;
+        if self.xcb_mod == "xproto" && rs_typ == "AtomEnum" && self.dbg_atom_names {
+            self.emit_predefined_atom_names(out, items)?;
+        }
+
+        Ok(())
+    }
+    fn emit_send_event_dest<O: Write>(
+        &self,
+        out: &mut O,
+        items: &[(String, u32, Option<String>)],
+    ) -> io::Result<()> {
+        writeln!(out, "#[derive(Copy, Clone, Debug)]")?;
+        writeln!(out, "pub enum SendEventDest {{")?;
         for item in items {
             if let Some(text) = &item.2 {
                 emit_doc_text(out, 1, text)?;
             }
-            writeln!(out, "    {} = {},", item.0, item.1)?;
+            writeln!(out, "    {},", item.0)?;
         }
+        writeln!(out, "    Window(Window),")?;
         writeln!(out, "}}")?;
 
+        writeln!(out)?;
+        writeln!(out, "impl SendEventDest {{")?;
+        writeln!(out, "    pub fn resource_id(&self) -> u32 {{")?;
+        writeln!(out, "        match self {{")?;
+        for item in items {
+            writeln!(
+                out,
+                "{}SendEventDest::{} => {},",
+                cg::ind(3),
+                item.0,
+                item.1
+            )?;
+        }
+        writeln!(
+            out,
+            "{}SendEventDest::Window(w) => w.resource_id(),",
+            cg::ind(3)
+        )?;
+        writeln!(out, "        }}")?;
+        writeln!(out, "    }}")?;
+        writeln!(out)?;
+        writeln!(
+            out,
+            "    pub fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
+        )?;
+        writeln!(out, "        debug_assert!(wire_buf.len() >= 4);")?;
+        writeln!(out, "        unsafe {{")?;
+        writeln!(
+            out,
+            "            *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();"
+        )?;
+        writeln!(out, "        }}")?;
+        writeln!(out, "        4")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        return Ok(());
+    }
+
+    fn emit_predefined_atom_names<O: Write>(
+        &self,
+        out: &mut O,
+        items: &[(String, u32, Option<String>)],
+    ) -> io::Result<()> {
+        writeln!(out)?;
+        writeln!(
+            out,
+            "/// Get the name of an Atom if it is in the predefined list"
+        )?;
+        writeln!(
+            out,
+            "pub(crate) fn predefined_atom_name(atom: Atom) -> Option<&'static str> {{"
+        )?;
+        writeln!(out, "{}match atom.resource_id() {{", cg::ind(1))?;
+        for item in items {
+            writeln!(out, "{}{} => Some(\"{}\"),", cg::ind(2), item.1, item.0)?;
+        }
+        writeln!(out, "{}_ => None,", cg::ind(2))?;
+        writeln!(out, "{}}}", cg::ind(1))?;
+        writeln!(out, "}}")?;
         Ok(())
     }
 

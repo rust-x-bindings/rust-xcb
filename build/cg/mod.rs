@@ -55,6 +55,7 @@ enum TypeInfo {
         module: Option<String>,
         rs_typ: String,
         items: Vec<(String, u32, Option<String>)>,
+        altenum_typ: Option<(Option<String>, String)>,
         doc: Option<Doc>,
     },
     Mask {
@@ -634,9 +635,13 @@ impl CodeGen {
                     self.emit_xidunion(out, rs_typ, variants)?;
                 }
                 TypeInfo::Enum {
-                    rs_typ, items, doc, ..
+                    rs_typ,
+                    items,
+                    altenum_typ,
+                    doc,
+                    ..
                 } => {
-                    self.emit_enum(out, rs_typ, items, doc.as_ref())?;
+                    self.emit_enum(out, rs_typ, items, altenum_typ, doc.as_ref())?;
                 }
                 TypeInfo::Mask {
                     rs_typ, items, doc, ..
@@ -793,6 +798,20 @@ impl CodeGen {
         }
     }
 
+    fn register_altenum_typ(
+        &mut self,
+        enum_typ: &str,
+        module: Option<&str>,
+        new_altenum_typ: &str,
+    ) {
+        let typinfo = self.find_typinfo_mut(None, enum_typ);
+        if let Some(mut typinfo) = typinfo {
+            if let TypeInfo::Enum { altenum_typ, .. } = &mut typinfo {
+                *altenum_typ = Some((module.map(str::to_owned), new_altenum_typ.into()))
+            }
+        }
+    }
+
     fn get_depinfo(&self, module: &str) -> &DepInfo {
         self.depinfo
             .iter()
@@ -814,6 +833,18 @@ impl CodeGen {
                 .iter()
                 .find_map(|di| di.typinfos.get(typ))
                 .unwrap_or_else(|| panic!("could not resolve typeinfo {:?}::{}", module, typ))
+        }
+    }
+
+    fn find_typinfo_mut(&mut self, module: Option<&str>, typ: &str) -> Option<&mut TypeInfo> {
+        if let Some(module) = module {
+            if module == self.xcb_mod {
+                self.typinfos.get_mut(typ)
+            } else {
+                None
+            }
+        } else {
+            self.typinfos.get_mut(typ)
         }
     }
 
