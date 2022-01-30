@@ -31,7 +31,7 @@
  - Missing API tweaks / fixes:
     - [x] Cw::EventMask should take an EventMask
     - [x] fix xkb::GetMapReplyMap::VirtualMods takes ModMask
-    - [ ] use altenum in xinput for Device (All, Master or Id (or slave?))
+    - [x] use altenum in xinput for Device (All, Master or Id (or slave?))
     - [x] xinput::ListInputDevice has incomplete InputInfo
     - [x] remove fieldrefs in switches
     - [x] Debug props should match format
