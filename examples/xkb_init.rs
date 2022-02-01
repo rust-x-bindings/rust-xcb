@@ -1,7 +1,10 @@
 use xcb::xkb;
 
 fn main() -> xcb::Result<()> {
-    let (conn, _) = xcb::Connection::connect_with_extensions(None, &[xcb::Extension::Xkb], &[])?;
+    // Connect to the xserver using the value on $DISPLAY env variable
+    let (conn, _) = xcb::ConnBuilder::new()
+        .with_extensions(&[xcb::Extension::Xkb])
+        .build()?;
 
     // we need at least xkb-1.0 to be available on client
     // machine

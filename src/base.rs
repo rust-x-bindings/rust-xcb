@@ -1578,6 +1578,129 @@ impl Drop for Connection {
     }
 }
 
+
+/// Any type that can be used as target or to resolve a target, be it, its name,
+/// a file descriptor, etc ...
+pub trait ConnTarget<'a> {
+    fn connect(
+        &self,
+        mandatory_ext: Option<&'a [Extension]>,
+        optional_ext:  Option<&'a [Extension]>,
+        auth_info:     Option<AuthInfo<'a>>
+    ) -> ConnResult<(Connection, i32)>;
+}
+
+impl<'a, T> ConnTarget<'a> for T 
+where
+    T: AsRef<str> + 'a
+{
+    fn connect(
+        &self,
+        mandatory_ext: Option<&'a [Extension]>,
+        optional_ext:  Option<&'a [Extension]>,
+        auth_info:     Option<AuthInfo<'a>>
+    ) -> ConnResult<(Connection, i32)> {
+        // Decide which `connect_*` function to call
+        if auth_info.is_none() {
+            if mandatory_ext.is_none() && optional_ext.is_none() {
+                return Connection::connect(Some(self.as_ref()));
+            }
+            return Connection::connect_with_extensions(
+                Some(self.as_ref()),
+                mandatory_ext.unwrap_or_default(),
+                optional_ext.unwrap_or_default());
+        } else {
+            if mandatory_ext.is_none() && optional_ext.is_none() {
+                return Connection::connect_to_display_with_auth_info(
+                    Some(self.as_ref()),
+                    auth_info.unwrap());
+            }
+            return Connection::connect_to_display_with_auth_info_and_extensions(
+                Some(self.as_ref()),
+                auth_info.unwrap(),
+                mandatory_ext.unwrap_or_default(),
+                optional_ext.unwrap_or_default());
+        }
+    }
+}
+
+pub struct ConnBuilder<'a> {
+    mandatory_ext: Option<&'a [Extension]>,
+    optional_ext:  Option<&'a [Extension]>,
+    auth_info:     Option<AuthInfo<'a>>,
+    target: Option<Box<dyn ConnTarget<'a> + 'a>>,
+    // xlib isn't any kind of target so I just use a boolean
+    to_xlib: bool
+}
+
+impl<'a> ConnBuilder<'a> {
+    /// Initializes the builder with default values. If no other options
+    /// or targets specified it will try to use `DISPLAY` environment variable
+    pub fn new() -> Self {
+        Self {
+            mandatory_ext: None,
+            optional_ext:  None,
+            auth_info:     None,
+            target:        None,
+            to_xlib:       false
+        }
+    }
+
+    pub fn with_extensions(mut self, ext: &'a [Extension]) -> Self {
+        self.mandatory_ext = Some(ext);
+        self
+    }
+
+    pub fn with_optional_extensions(mut self, ext: &'a [Extension]) -> Self {
+        self.optional_ext = Some(ext);
+        self
+    }
+
+    pub fn to_display(mut self, display_name: impl AsRef<str> + 'a) -> Self {
+        self.target = Some(Box::new(display_name));
+        self
+    }
+
+    pub fn build(self) -> ConnResult<(Connection, i32)> {
+        if let Some(target) = self.target {
+            // if there is target just use the target
+            return target.connect(
+                self.mandatory_ext, self.optional_ext, self.auth_info);
+        } 
+
+        #[cfg(feature = "xlib")]
+        if self.to_xlib {
+            // TODO: xlib with auth not supported, report it. Maybe adding an error
+            // variant to `ConnError`?
+            if self.auth_info.is_some() {
+                panic!("Targetting xlib with `AuthInfo` not supported");
+            }
+
+            // Decide the correct function to user
+            if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                return Connection::connect_with_xlib_display();
+            } else { 
+                return Connection::connect_with_xlib_display_and_extensions(
+                    self.mandatory_ext.unwrap_or_default(),
+                    self.optional_ext.unwrap_or_default());
+            } 
+        }
+
+        #[cfg(not(feature = "xlib"))]
+        if self.to_xlib {
+            panic!("Usage of `xlib` feature without this being enabled");
+        }
+
+        // default case, pass None as display name ($DISPLAY)
+        if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+            return Connection::connect(None);
+        }
+        return Connection::connect_with_extensions(None,
+            self.mandatory_ext.unwrap_or_default(),
+            self.optional_ext.unwrap_or_default());
+    }
+}
+
 #[cfg(feature = "debug_atom_names")]
 mod dan {
     use super::{Connection, Xid};
