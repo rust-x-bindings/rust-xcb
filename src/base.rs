@@ -888,6 +888,7 @@ impl Connection {
     ///
     /// # Safety
     /// The `conn` pointer must point to a valid `xcb_connection_t`
+    #[inline(always)]
     pub unsafe fn from_raw_conn_and_extensions(
         conn: *mut xcb_connection_t,
         mandatory: &[Extension],
@@ -946,6 +947,7 @@ impl Connection {
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`
     #[cfg(feature = "xlib_xcb")]
+    #[inline(always)]
     pub unsafe fn from_xlib_display(dpy: *mut xlib::Display) -> Connection {
         Self::from_xlib_display_and_extensions(dpy, &[], &[])
     }
@@ -964,6 +966,7 @@ impl Connection {
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`.
     #[cfg(feature = "xlib_xcb")]
+    #[inlint(always)]
     pub unsafe fn from_xlib_display_and_extensions(
         dpy: *mut xlib::Display,
         mandatory: &[Extension],
@@ -1578,59 +1581,25 @@ impl Drop for Connection {
     }
 }
 
+/// The target of a connection
+enum ConnTarget {
+    /// Try to connect using the name of the display
+    // See `ConnBuilder::to_display()` for proper explanation why this 
+    // apparent unnecesary allocation
+    DisplayName(Box<str>),
 
-/// Any type that can be used as target or to resolve a target, be it, its name,
-/// a file descriptor, etc ...
-pub trait ConnTarget<'a> {
-    fn connect(
-        &self,
-        mandatory_ext: Option<&'a [Extension]>,
-        optional_ext:  Option<&'a [Extension]>,
-        auth_info:     Option<AuthInfo<'a>>
-    ) -> ConnResult<(Connection, i32)>;
-}
+    /// Try to connect using a file descriptor
+    Fd(RawFd),
 
-impl<'a, T> ConnTarget<'a> for T 
-where
-    T: AsRef<str> + 'a
-{
-    fn connect(
-        &self,
-        mandatory_ext: Option<&'a [Extension]>,
-        optional_ext:  Option<&'a [Extension]>,
-        auth_info:     Option<AuthInfo<'a>>
-    ) -> ConnResult<(Connection, i32)> {
-        // Decide which `connect_*` function to call
-        if auth_info.is_none() {
-            if mandatory_ext.is_none() && optional_ext.is_none() {
-                return Connection::connect(Some(self.as_ref()));
-            }
-            return Connection::connect_with_extensions(
-                Some(self.as_ref()),
-                mandatory_ext.unwrap_or_default(),
-                optional_ext.unwrap_or_default());
-        } else {
-            if mandatory_ext.is_none() && optional_ext.is_none() {
-                return Connection::connect_to_display_with_auth_info(
-                    Some(self.as_ref()),
-                    auth_info.unwrap());
-            }
-            return Connection::connect_to_display_with_auth_info_and_extensions(
-                Some(self.as_ref()),
-                auth_info.unwrap(),
-                mandatory_ext.unwrap_or_default(),
-                optional_ext.unwrap_or_default());
-        }
-    }
+    /// Try to connect relying in Xlib (needed for OpenGL)
+    Xlib
 }
 
 pub struct ConnBuilder<'a> {
     mandatory_ext: Option<&'a [Extension]>,
     optional_ext:  Option<&'a [Extension]>,
     auth_info:     Option<AuthInfo<'a>>,
-    target: Option<Box<dyn ConnTarget<'a> + 'a>>,
-    // xlib isn't any kind of target so I just use a boolean
-    to_xlib: bool
+    target:        Option<ConnTarget>,
 }
 
 impl<'a> ConnBuilder<'a> {
@@ -1642,7 +1611,6 @@ impl<'a> ConnBuilder<'a> {
             optional_ext:  None,
             auth_info:     None,
             target:        None,
-            to_xlib:       false
         }
     }
 
@@ -1656,48 +1624,95 @@ impl<'a> ConnBuilder<'a> {
         self
     }
 
-    pub fn to_display(mut self, display_name: impl AsRef<str> + 'a) -> Self {
-        self.target = Some(Box::new(display_name));
+    pub fn to_display(mut self, display_name: impl AsRef<str>) -> Self {
+        // In order tu support `impl AsRef<str>` it's needed to own it, because the 
+        // trait does not transfer ownership by some reason maybe with markers could
+        // be solved.
+        self.target = Some(ConnTarget::DisplayName(
+                Box::from(display_name.as_ref())));
+        self
+    }
+
+    pub fn to_fd(mut self, fd: impl AsRawFd) -> Self {
+        self.target = Some(ConnTarget::Fd(fd.as_raw_fd()));
+        self
+    }
+
+    pub fn to_xlib(mut self) -> Self {
+        self.target = Some(ConnTarget::Xlib);
         self
     }
 
     pub fn build(self) -> ConnResult<(Connection, i32)> {
-        if let Some(target) = self.target {
-            // if there is target just use the target
-            return target.connect(
-                self.mandatory_ext, self.optional_ext, self.auth_info);
-        } 
+        match self.target {
+            Some(ConnTarget::DisplayName(ref name)) => {
+                // Decide which `connect_*` function to call
+                if self.auth_info.is_none() {
+                    if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                        return Connection::connect(Some(name));
+                    }
+                    return Connection::connect_with_extensions(
+                        Some(name),
+                        self.mandatory_ext.unwrap_or_default(),
+                        self.optional_ext.unwrap_or_default());
+                } else {
+                    if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                        return Connection::connect_to_display_with_auth_info(
+                            Some(name),
+                            self.auth_info.unwrap());
+                    }
+                    return Connection::connect_to_display_with_auth_info_and_extensions(
+                        Some(name),
+                        self.auth_info.unwrap(),
+                        self.mandatory_ext.unwrap_or_default(),
+                        self.optional_ext.unwrap_or_default());
+                }
+            },
+            Some(ConnTarget::Fd(fd)) => {
+                // Decide which `connect_to_fd*` function to call
+                if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                    return Connection::connect_to_fd(
+                        fd,
+                        self.auth_info).map(|conn| (conn, 0));
+                }
+                return Connection::connect_to_fd_with_extensions(
+                    fd,
+                    self.auth_info,
+                    self.mandatory_ext.unwrap_or_default(),
+                    self.optional_ext.unwrap_or_default()).map(|conn| (conn, 0));
 
-        #[cfg(feature = "xlib")]
-        if self.to_xlib {
-            // TODO: xlib with auth not supported, report it. Maybe adding an error
-            // variant to `ConnError`?
-            if self.auth_info.is_some() {
-                panic!("Targetting xlib with `AuthInfo` not supported");
-            }
+            },
+            #[cfg(feature = "xlib")]
+            Some(ConnTarget::Xlib) => {
+                // TODO: xlib with auth not supported, report it. Maybe 
+                // adding an error variant to `ConnError`?
+                if self.auth_info.is_some() {
+                    panic!("Targetting xlib with `AuthInfo` not supported");
+                }
 
-            // Decide the correct function to user
-            if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
-                return Connection::connect_with_xlib_display();
-            } else { 
-                return Connection::connect_with_xlib_display_and_extensions(
+                // Decide the correct function to user
+                if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                    return Connection::connect_with_xlib_display();
+                } else { 
+                    return Connection::connect_with_xlib_display_and_extensions(
+                        self.mandatory_ext.unwrap_or_default(),
+                        self.optional_ext.unwrap_or_default());
+                } 
+            },
+            #[cfg(not(feature = "xlib"))]
+            Some(ConnTarget::Xlib) => 
+                panic!("Usage of `xlib` feature without this being enabled"),
+            None => {
+                // default case, pass None as display name ($DISPLAY)
+                if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
+                    return Connection::connect(None);
+                }
+                return Connection::connect_with_extensions(None,
                     self.mandatory_ext.unwrap_or_default(),
                     self.optional_ext.unwrap_or_default());
-            } 
-        }
 
-        #[cfg(not(feature = "xlib"))]
-        if self.to_xlib {
-            panic!("Usage of `xlib` feature without this being enabled");
-        }
-
-        // default case, pass None as display name ($DISPLAY)
-        if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
-            return Connection::connect(None);
-        }
-        return Connection::connect_with_extensions(None,
-            self.mandatory_ext.unwrap_or_default(),
-            self.optional_ext.unwrap_or_default());
+            }
+        };
     }
 }
 
