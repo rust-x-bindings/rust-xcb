@@ -894,8 +894,6 @@ impl Connection {
         mandatory: &[Extension],
         optional: &[Extension],
     ) -> Connection {
-        assert!(!conn.is_null());
-        assert!(check_connection_error(conn).is_ok());
 
         #[cfg(feature = "debug_atom_names")]
         let dbg_atom_names = {
@@ -966,16 +964,13 @@ impl Connection {
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`.
     #[cfg(feature = "xlib_xcb")]
-    #[inlint(always)]
+    #[inline(always)]
     pub unsafe fn from_xlib_display_and_extensions(
         dpy: *mut xlib::Display,
         mandatory: &[Extension],
         optional: &[Extension],
     ) -> Connection {
-        assert!(!dpy.is_null(), "attempt connect with null display");
         let c = XGetXCBConnection(dpy);
-
-        assert!(check_connection_error(c).is_ok());
 
         #[cfg(feature = "debug_atom_names")]
         let dbg_atom_names = {
@@ -1592,10 +1587,39 @@ enum ConnTarget {
     Fd(RawFd),
 
     /// Try to connect relying in Xlib (needed for OpenGL)
-    Xlib
+    #[cfg(feature = "xlib_xcb")]
+    Xlib,
+
+    /// Build the connection from another existing raw connection
+    FromRawConnection(*mut xcb_connection_t),
+
+    /// Build the connection from an existing Xlib display
+    #[cfg(feature = "xlib_xcb")]
+    FromXlibDisplay(*mut xlib::Display),
 }
 
+/// Builder of a new [Connection] to the X server. 
+///
+/// A connection can be created pointing
+/// to a display name (defaults to `$DISPLAY` env variable), a file descriptor or 
+/// relying on Xlib to create a new [xlib::Display], and can be created from an 
+/// existing object like a raw connection (`*mut xcb_connection_t`) or an existing
+/// Xlib `Display`
+///
+/// Returns the [Connection] and the number of the screen pointing to (by
+/// default 0 selected)
+///
+/// # Example
+/// ```no_run
+/// fn main() {
+///     // Connect to the xserver using the value on $DISPLAY env variable
+///     let (conn, screen_no) = xcb::ConnBuilder::new()
+///         .with_extensions(&[xcb::Extension::Xcb])
+///         .build()?;
+/// }
+/// ```
 pub struct ConnBuilder<'a> {
+    // By default everyone None
     mandatory_ext: Option<&'a [Extension]>,
     optional_ext:  Option<&'a [Extension]>,
     auth_info:     Option<AuthInfo<'a>>,
@@ -1614,35 +1638,91 @@ impl<'a> ConnBuilder<'a> {
         }
     }
 
+    /// Setups a list of mandatory extensions to create the connection
+    /// See [Extension] for more details
     pub fn with_extensions(mut self, ext: &'a [Extension]) -> Self {
         self.mandatory_ext = Some(ext);
         self
     }
 
+    /// Setups a list of optional extensions to create the connection
+    /// See [Extension] for more details
     pub fn with_optional_extensions(mut self, ext: &'a [Extension]) -> Self {
         self.optional_ext = Some(ext);
         self
     }
 
+    /// Creates the `Connection` pointing to a specified display name
     pub fn to_display(mut self, display_name: impl AsRef<str>) -> Self {
         // In order tu support `impl AsRef<str>` it's needed to own it, because the 
         // trait does not transfer ownership by some reason maybe with markers could
-        // be solved.
+        // be solved, usage of `Box<str>` instead of `String` because its size 
+        // does not need to be dynamic
         self.target = Some(ConnTarget::DisplayName(
                 Box::from(display_name.as_ref())));
         self
     }
 
+    /// Creates the `Connection` pointing to a specified file descriptor
     pub fn to_fd(mut self, fd: impl AsRawFd) -> Self {
         self.target = Some(ConnTarget::Fd(fd.as_raw_fd()));
         self
     }
 
+    /// Creates the `Connection` relying in Xlib, by default Xlib will own the 
+    /// event queue.
+    #[cfg(feature = "xlib_xcb")]
     pub fn to_xlib(mut self) -> Self {
         self.target = Some(ConnTarget::Xlib);
         self
     }
+    
+    /// Create the connection from a raw existing one.
+    ///
+    /// # Panics
+    /// Panics if the connection isn't valid
+    // NOTE(cdecompilador): This function was unsafe, but because its requirements
+    // are checked at runtime (panics) there are no possible unsafe actions
+    pub fn from_raw_conn(mut self, conn: *mut xcb_connection_t) -> Self {
+        // Check that the `conn` isn't null and that is a valid
+        assert!(!conn.is_null(), "attempt to connect with null xcb_connection_t");
+        unsafe {
+            assert!(check_connection_error(conn).is_ok(),
+                "attempt to connect with invalid xcb_connection_t");
+        }
 
+        self.target = Some(ConnTarget::FromRawConnection(conn));
+        self
+    }
+
+    /// Create the connection from an existing xlib display
+    ///
+    /// # Panics
+    /// Panics if the xlib display isn't valid
+    // NOTE(cdecompilador): This function was unsafe, but because its requirements
+    // are checked at runtime (panics) there are no possible unsafe actions
+    #[cfg(feature = "xlib_xcb")]
+    pub fn from_xlib_display(mut self, dpy: *mut xlib::Display) -> Self {
+        // Check that the display isn't null and that is valid
+        assert!(!dpy.is_null(), "attempt connect with null display");
+        unsafe {
+            assert!(check_connection_error(XGetXCBConnection(dpy)).is_ok(),
+                "attempt to connect with invalid xlib display");
+        }
+
+        // FIXME(cdecompilador): When the connection is built the 
+        // `XGetXCBConnection` will be called once again, move that functionality
+        // here or pass that value to the `ConnTarget`
+        self.target = Some(ConnTarget::FromXlibDisplay(dpy));
+        self
+    }
+
+    /// Builds the connection with the specified build options, if now `to_*` or
+    /// `from_*` options given defaults to connect using the contents of the
+    /// environment variable `$DISPLAY` as display name.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
     pub fn build(self) -> ConnResult<(Connection, i32)> {
         match self.target {
             Some(ConnTarget::DisplayName(ref name)) => {
@@ -1679,10 +1759,12 @@ impl<'a> ConnBuilder<'a> {
                     fd,
                     self.auth_info,
                     self.mandatory_ext.unwrap_or_default(),
+                    // FIXME(cdecompilador): Not sure if screen_no should 
+                    // default to 0 here
                     self.optional_ext.unwrap_or_default()).map(|conn| (conn, 0));
 
             },
-            #[cfg(feature = "xlib")]
+            #[cfg(feature = "xlib_xcb")]
             Some(ConnTarget::Xlib) => {
                 // TODO: xlib with auth not supported, report it. Maybe 
                 // adding an error variant to `ConnError`?
@@ -1699,9 +1781,40 @@ impl<'a> ConnBuilder<'a> {
                         self.optional_ext.unwrap_or_default());
                 } 
             },
-            #[cfg(not(feature = "xlib"))]
-            Some(ConnTarget::Xlib) => 
-                panic!("Usage of `xlib` feature without this being enabled"),
+            Some(ConnTarget::FromRawConnection(conn)) => {
+                if self.auth_info.is_some() {
+                    panic!("`AuthInfo` not supported while creating `Connection` \
+                            from existing raw connection");
+                }
+
+                // NOTE(cdecompilador): Used this function instead of 
+                // `from_raw_conn` because that func is just a wrapper around this one.
+                // FIXME(cdecompilador): Not sure if screen_no should default to 0 here
+                // SAFETY: Already checked that `conn` is valid
+                return Ok((unsafe { Connection::from_raw_conn_and_extensions(
+                    conn,
+                    self.mandatory_ext.unwrap_or_default(),
+                    self.optional_ext.unwrap_or_default()) }, 0));
+            },
+            #[cfg(feature = "xlib_xcb")]
+            Some(ConnTarget::FromXlibDisplay(display)) => {
+                if self.auth_info.is_some() {
+                    panic!("`AuthInfo` not supported while creating `Connection` \
+                            from existing xlib display");
+                }
+
+                // NOTE(cdecompilador): Used this function instead of 
+                // `from_xlib_display` because that func is just a wrapper around 
+                // this one. 
+                // FIXME(cdecompilador): Not sure if screen_no should default to 0 here
+                // SAFETY: Already checked that `display` is valid
+                return Ok((unsafe { Connection::from_xlib_display_and_extensions(
+                    display,
+                    self.mandatory_ext.unwrap_or_default(),
+                    // FIXME(cdecompilador): Not sure if screen_no should 
+                    // default to 0 here
+                    self.optional_ext.unwrap_or_default()) }, 0))
+            },
             None => {
                 // default case, pass None as display name ($DISPLAY)
                 if self.mandatory_ext.is_none() && self.optional_ext.is_none() {
@@ -1714,6 +1827,7 @@ impl<'a> ConnBuilder<'a> {
             }
         };
     }
+
 }
 
 #[cfg(feature = "debug_atom_names")]
