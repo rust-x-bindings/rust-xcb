@@ -1813,26 +1813,28 @@ impl CodeGen {
                         cg::ind(1),
                         name
                     )?;
-                    writeln!(
-                        out,
-                        "{}assert_eq!(self.format(), P::FORMAT, \"mismatched format of {}::{}::{}\");",
-                        cg::ind(2),
-                        self.xcb_mod,
-                        struct_rs_typ,
-                        name
-                    )?;
                     writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    writeln!(
-                        out,
-                        "{}let offset = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(wire_off, "self.", "()", fields)
-                    )?;
+                    // #154: format can be zero when len is zero
                     writeln!(
                         out,
                         "{}let len = {};",
                         cg::ind(3),
                         self.build_rs_expr(len_expr, "self.", "()", fields)
+                    )?;
+                    writeln!(out, "{}if len == 0 {{ return &[]; }}", cg::ind(3))?;
+                    writeln!(
+                        out,
+                        "{}assert_eq!(self.format(), P::FORMAT, \"mismatched format of {}::{}::{}\");",
+                        cg::ind(3),
+                        self.xcb_mod,
+                        struct_rs_typ,
+                        name
+                    )?;
+                    writeln!(
+                        out,
+                        "{}let offset = {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_off, "self.", "()", fields)
                     )?;
                     writeln!(
                         out,
