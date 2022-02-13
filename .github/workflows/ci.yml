@@ -54,12 +54,6 @@ jobs:
             libxcb-xvmc0-dev \
             libx11-xcb-dev
 
-      - name: Run cargo check
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-          args: --all-features
-
       - name: Run cargo clippy
         uses: actions-rs/cargo@v1
         with:
