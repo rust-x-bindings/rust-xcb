@@ -1,291 +1,521 @@
-/*
- * Copyright (C) 2013 James Miller <james@aatch.net>
- * Copyright (c) 2016
- *         Remi Thebault <remi.thebault@gmail.com>
- *         Thomas Bracht Laumann Jespersen <laumann.thomas@gmail.com>
- *
- * Permission is hereby granted, free of charge, to any
- * person obtaining a copy of this software and associated
- * documentation files (the "Software"), to deal in the
- * Software without restriction, including without
- * limitation the rights to use, copy, modify, merge,
- * publish, distribute, sublicense, and/or sell copies of
- * the Software, and to permit persons to whom the Software
- * is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice
- * shall be included in all copies or substantial portions
- * of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
- * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
- * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
- * SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
- * CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
- * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
- * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
- * DEALINGS IN THE SOFTWARE.
- */
-
-use ffi::base::*;
-use ffi::ext::xcb_extension_t;
-#[cfg(feature = "xlib_xcb")]
-use ffi::xlib_xcb::*;
-use ffi::xproto::*;
-use xproto::*;
+use crate::error::{self, ProtocolError};
+use crate::event::{self, Event};
+use crate::ext::{Extension, ExtensionData};
+#[cfg(feature = "present")]
+use crate::present;
+use crate::x::{Atom, Keysym, Setup, Timestamp};
+#[cfg(feature = "xinput")]
+use crate::xinput;
+use crate::{cache_extensions_data, ffi::*};
 
 #[cfg(feature = "xlib_xcb")]
 use x11::xlib;
 
-use libc::{self, c_char, c_int, c_void};
-use std::option::Option;
+use bitflags::bitflags;
 
-use std::error;
-use std::fmt;
-use std::marker::PhantomData;
+use libc::{c_char, c_int};
+
+use std::cell::RefCell;
+use std::ffi::{CStr, CString};
+use std::fmt::{self, Display, Formatter};
+use std::marker::{self, PhantomData};
 use std::mem;
-use std::ptr::{null, null_mut};
-// std::num::Zero is unstable in rustc 1.5 => remove the Zero defined
-// hereunder as soon as Zero gets stabilized (or replaced by something else)
-//use std::num::Zero;
-use std::cmp::Ordering;
-use std::ffi::CString;
-use std::ops::{BitAnd, BitOr};
-use std::os::unix::io::{AsRawFd, RawFd};
+use std::os::unix::prelude::{AsRawFd, RawFd};
+use std::ptr;
+use std::result;
+use std::slice;
 
-/// Current protocol version
-pub const X_PROTOCOL: u32 = 11;
-/// Current minor version
-pub const X_PROTOCOL_REVISION: u32 = 0;
-/// X_TCP_PORT + display number = server port for TCP transport
-pub const X_TCP_PORT: u32 = 6000;
+/// A X resource trait
+pub trait Xid {
+    /// Build a null X resource
+    fn none() -> Self;
 
-/// Opaque type used as key for `Connection::get_extension_data`
-pub type Extension = xcb_extension_t;
+    /// Get the underlying id of the resource
+    fn resource_id(&self) -> u32;
 
-/// `xcb::NONE` is the universal null resource or null atom parameter value
-/// for many core X requests
-pub const NONE: u32 = 0;
-/// `xcb::COPY_FROM_PARENT` can be used for many `xcb::create_window` parameters
-pub const COPY_FROM_PARENT: u32 = 0;
-/// `xcb::CURRENT_TIME` can be used in most requests that take an `xcb::Timestamp`
-pub const CURRENT_TIME: u32 = 0;
-/// `xcb::NO_SYMBOL` fills in unused entries in `xcb::Keysym` tables
-pub const NO_SYMBOL: u32 = 0;
-
-/// `StructPtr` is a wrapper for pointer to struct owned by XCB
-/// that must not be freed
-/// it is instead bound to the lifetime of its parent that it borrows immutably
-pub struct StructPtr<'a, T: 'a> {
-    pub ptr: *mut T,
-    phantom: PhantomData<&'a T>,
-}
-
-/// `Event` wraps a pointer to `xcb_*_event_t`
-/// this pointer will be freed when the `Event` goes out of scope
-pub struct Event<T> {
-    pub ptr: *mut T,
-}
-
-impl<T> Event<T> {
-    pub fn response_type(&self) -> u8 {
-        unsafe {
-            let gev: *mut xcb_generic_event_t = mem::transmute(self.ptr);
-            (*gev).response_type
-        }
+    /// Check whether this resource is null or not
+    fn is_none(&self) -> bool {
+        self.resource_id() == 0
     }
 }
 
-impl<T> Drop for Event<T> {
-    fn drop(&mut self) {
-        unsafe {
-            libc::free(self.ptr as *mut c_void);
+/// Trait for X resources that can be created directly from `Connection::generate_id`
+///
+/// The resources that cannot be created that way are the Xid unions, which are created
+/// from their underlying resource.
+pub trait XidNew: Xid {
+    /// Build a new X resource
+    ///
+    /// # Safety
+    /// res_id must be obtained from `xcb_generate_id`. `0` is also a valid value to create a null resource.
+    /// Users should not use this function directly but rather use
+    /// `Connection::generate_id`
+    unsafe fn new(res_id: u32) -> Self;
+}
+
+/// Trait for types that own a C allocated pointer and are represented by the data pointed to.
+pub trait Raw<T>: Sized {
+    /// Build `Self` from a raw pointer
+    ///
+    /// # Safety
+    /// `raw` must be a valid pointer to the representation of Self, and be allocated with `libc::malloc`
+    unsafe fn from_raw(raw: *mut T) -> Self;
+
+    /// Convert self into a raw pointer
+    ///
+    /// Returned value should be freed with `libc::free` or sent back to `from_raw` to avoid memory leak.
+    fn into_raw(self) -> *mut T {
+        let raw = self.as_raw();
+        mem::forget(self);
+        raw
+    }
+
+    /// Obtain the raw pointer representation
+    fn as_raw(&self) -> *mut T;
+}
+
+/// Trait for base events (aka. non GE_GENERIC events)
+pub trait BaseEvent: Raw<xcb_generic_event_t> {
+    /// The extension associated to this event, or `None` for the main protocol
+    const EXTENSION: Option<Extension>;
+
+    /// The number associated to this event
+    const NUMBER: u32;
+}
+
+/// A trait for GE_GENERIC events
+///
+/// A GE_GENERIC event is an extension event that does not follow
+/// the regular `response_type` offset.
+/// This system was introduced because the protocol eventually run
+/// out of event numbers.
+///
+/// This should be completely transparent to the user, as [Event] is
+/// resolving all types of events together.
+pub trait GeEvent: Raw<xcb_ge_generic_event_t> {
+    /// The extension associated to this event
+    const EXTENSION: Extension;
+
+    /// The number associated to this event
+    const NUMBER: u32;
+}
+
+/// A trait to designate base protocol errors.
+///
+/// The base errors follow the usual resolution idiom of `error_code` offset.
+///
+/// This should be completely transparent to the user, as [ProtocolError] is
+/// resolving all types of errors together.
+pub trait BaseError: Raw<xcb_generic_error_t> {
+    /// The extension associated to this error, or `None` for the main protocol
+    const EXTENSION: Option<Extension>;
+
+    /// The number associated to this error
+    const NUMBER: u32;
+}
+
+/// Trait for the resolution of raw wire event to a unified event enum.
+///
+/// `Self` is normally an enum of several event subtypes.
+/// See [crate::x::Event] and [crate::Event]
+pub(crate) trait ResolveWireEvent: Sized {
+    /// Resolve a pointer to `xcb_generic_event_t` to `Self`, inferring the correct subtype
+    /// using `response_type` field and `first_event`
+    ///
+    /// # Panics
+    /// Panics if the event subtype cannot be resolved to `Self`. That is,
+    /// `response_type` field must be checked beforehand to be in range with
+    /// `first_event`.
+    ///
+    /// # Safety
+    /// `event` must be a valid, non-null event returned by `xcb_wait_for_event`
+    /// or similar function
+    unsafe fn resolve_wire_event(first_event: u8, event: *mut xcb_generic_event_t) -> Option<Self>;
+}
+
+/// Trait for the resolution of raw wire GE_GENERIC event to a unified event enum.
+///
+/// `Self` is normally an enum of several event subtypes.
+/// See [crate::xinput::Event] and [crate::Event]
+pub(crate) trait ResolveWireGeEvent: Sized {
+    /// Resolve a pointer to `xcb_ge_generic_event_t` to `Self`, inferring the correct subtype
+    /// using `event_type` field.
+    ///
+    /// # Panics
+    /// Panics if the event subtype cannot be resolved for `Self`. That is, `event_type`
+    /// must be checked beforehand to be in range.
+    ///
+    /// # Safety
+    /// `event` must be a valid, non-null event returned by `xcb_wait_for_event`
+    /// or similar function
+    unsafe fn resolve_wire_ge_event(event: *mut xcb_ge_generic_event_t) -> Self;
+}
+
+/// Trait for the resolution of raw wire error to a unified error enum.
+///
+/// `Self` is normally an enum of several event subtypes.
+/// See [crate::x::Error] and [crate::ProtocolError]
+pub(crate) trait ResolveWireError {
+    /// Convert a pointer to `xcb_generic_error_t` to `Self`, inferring the correct subtype
+    /// using `response_type` field and `first_error`.
+    ///
+    /// # Panics
+    /// Panics if the error subtype cannot be resolved for `self`. That is,
+    /// `response_type` field must be checked beforehand to be in range with
+    /// `first_error`.
+    ///
+    /// # Safety
+    /// `err` must be a valid, non-null error obtained by `xcb_wait_for_reply`
+    /// or similar function
+    unsafe fn resolve_wire_error(first_error: u8, error: *mut xcb_generic_error_t) -> Self;
+}
+
+/// Trait for types that can serialize themselves to the X wire.
+///
+/// This trait is used internally for requests serialization.
+pub(crate) trait WiredOut {
+    /// Compute the length of wired serialized data of self
+    fn wire_len(&self) -> usize;
+
+    /// Serialize `self` over the X wire and returns how many bytes were written.
+    ///
+    /// `wire_buf` must be larger or as long as the value returned by `wire_len`.
+    /// `serialize` MUST write the data in its entirety at once, at the begining of `wire_buf`.
+    /// That is, it returns the same value as `wire_len`.
+    /// The interest in returning the value is that it is easy to compute in `serialize` and allow
+    /// to easily chain serialization of fields in a struct.
+    ///
+    /// # Panics
+    /// Panics if `wire_buf` is too small to contain the serialized representation of `self`.
+    fn serialize(&self, wire_buf: &mut [u8]) -> usize;
+}
+
+/// Trait for types that can unserialize themselves from the X wire.
+pub(crate) trait WiredIn {
+    /// type of external context necessary to figure out the representation of the data
+    type Params: Copy;
+
+    /// Compute the length of serialized data of an instance starting by `ptr`.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn compute_wire_len(ptr: *const u8, params: Self::Params) -> usize;
+
+    /// Unserialize an instance of `Self` from the X wire
+    ///
+    /// `offset` value is increased by the number of bytes corresponding to the representation of `Self`.
+    /// This allows for efficient chaining of unserialization as the data offset is either known at
+    /// compile time, or has to be computed anyway.
+    ///
+    /// # Safety
+    /// This function is highly unsafe as the pointer must point to data that is a valid
+    /// wired representation of `Self`. Failure to respect this will lead to dereferencing invalid memory.
+    unsafe fn unserialize(ptr: *const u8, params: Self::Params, offset: &mut usize) -> Self;
+}
+
+macro_rules! impl_wired_simple {
+    ($typ:ty) => {
+        impl WiredOut for $typ {
+            fn wire_len(&self) -> usize {
+                mem::size_of::<Self>()
+            }
+
+            fn serialize(&self, wire_buf: &mut [u8]) -> usize {
+                debug_assert!(wire_buf.len() >= mem::size_of::<Self>());
+                unsafe {
+                    *(wire_buf.as_mut_ptr() as *mut Self) = *self;
+                }
+                mem::size_of::<Self>()
+            }
         }
+
+        impl WiredIn for $typ {
+            type Params = ();
+
+            unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
+                mem::size_of::<Self>()
+            }
+
+            unsafe fn unserialize(
+                ptr: *const u8,
+                _params: Self::Params,
+                offset: &mut usize,
+            ) -> Self {
+                *offset += mem::size_of::<Self>();
+                *(ptr as *const Self)
+            }
+        }
+    };
+}
+
+impl_wired_simple!(u8);
+impl_wired_simple!(u16);
+impl_wired_simple!(u32);
+impl_wired_simple!(u64);
+impl_wired_simple!(i8);
+impl_wired_simple!(i16);
+impl_wired_simple!(i32);
+impl_wired_simple!(f32);
+
+impl<T: Xid> WiredOut for T {
+    fn wire_len(&self) -> usize {
+        4
+    }
+
+    fn serialize(&self, wire_buf: &mut [u8]) -> usize {
+        debug_assert!(wire_buf.len() >= 4);
+        unsafe {
+            *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();
+        }
+        4
     }
 }
 
-#[cfg(feature = "thread")]
-unsafe impl<T> Send for Event<T> {}
-#[cfg(feature = "thread")]
-unsafe impl<T> Sync for Event<T> {}
+impl<T: XidNew> WiredIn for T {
+    type Params = ();
 
-/// Casts the generic event to the right event. Assumes that the given
-/// event is really the correct type.
-pub unsafe fn cast_event<'r, T>(event: &'r GenericEvent) -> &'r T {
-    mem::transmute(event)
+    unsafe fn compute_wire_len(_ptr: *const u8, _params: Self::Params) -> usize {
+        4
+    }
+
+    unsafe fn unserialize(ptr: *const u8, _params: Self::Params, offset: &mut usize) -> Self {
+        *offset += 4;
+        let xid = *(ptr as *const u32);
+        T::new(xid)
+    }
 }
 
-/// `Error` wraps a pointer to `xcb_*_error_t`
-/// this pointer will be freed when the `Error` goes out of scope
+/// Trait for request replies
+pub trait Reply {
+    /// Build the reply struct from a raw pointer.
+    ///
+    /// # Safety
+    /// `raw` must be a pointer to a valid wire representation of `Self`, allocated with [`libc::malloc`].
+    unsafe fn from_raw(raw: *const u8) -> Self;
+
+    /// Consume the reply struct into a raw pointer.
+    ///
+    /// # Safety
+    /// The returned pointer must be freed with [`libc::free`] to avoid any memory leak, or be used
+    /// to build another reply.
+    unsafe fn into_raw(self) -> *const u8;
+}
+
+/// General trait for cookies returned by requests.
+pub trait Cookie {
+    /// # Safety
+    /// `seq` must be a valid cookie for a given `Request` or `Reply`.
+    unsafe fn from_sequence(seq: u64) -> Self;
+
+    /// The raw sequence number associated with the cookie.
+    fn sequence(&self) -> u64;
+}
+
+/// A marker trait for a cookie that allows synchronized error checking.
+///
+/// # Safety
+/// Cookies not implementing this trait acknowledge that the error is sent to the event loop
+///
+/// See also [Connection::send_request], [Connection::send_request_checked] and [Connection::check_request]
+pub unsafe trait CookieChecked: Cookie {}
+
+/// A trait for checked cookies of requests that send a reply.
+///
+/// # Safety
+/// Cookies implementing this trait acknowledge that their error is checked when the reply is fetched from the server.
+/// This is the default cookie type for requests with reply.
+///
+/// See also [Connection::send_request], [Connection::wait_for_reply]
+pub unsafe trait CookieWithReplyChecked: CookieChecked {
+    /// The reply type associated with the cookie
+    type Reply: Reply;
+}
+
+/// A trait for unchecked cookies of requests that send a reply.
+///
+/// # Safety
+/// Cookies implementing this trait acknowledge that their error is not checked when the reply is fetched from the server
+/// but in the event loop.
+///
+/// See also [Connection::send_request_unchecked], [Connection::wait_for_event]
+pub unsafe trait CookieWithReplyUnchecked: Cookie {
+    /// The reply type associated with the cookie
+    type Reply: Reply;
+}
+
+/// The default cookie type returned by void-requests.
+///
+/// See [Connection::send_request]
 #[derive(Debug)]
-pub struct Error<T> {
-    pub ptr: *mut T,
+pub struct VoidCookie {
+    seq: u64,
 }
 
-impl<T> Error<T> {
-    pub fn response_type(&self) -> u8 {
-        unsafe {
-            let ger: *mut xcb_generic_error_t = mem::transmute(self.ptr);
-            (*ger).response_type
-        }
+impl Cookie for VoidCookie {
+    unsafe fn from_sequence(seq: u64) -> Self {
+        VoidCookie { seq }
     }
-    pub fn error_code(&self) -> u8 {
-        unsafe {
-            let ger: *mut xcb_generic_error_t = mem::transmute(self.ptr);
-            (*ger).error_code
-        }
+
+    fn sequence(&self) -> u64 {
+        self.seq
     }
 }
 
-impl<T> Drop for Error<T> {
-    fn drop(&mut self) {
-        unsafe {
-            libc::free(self.ptr as *mut c_void);
-        }
-    }
-}
-
-impl<T> fmt::Display for Error<T> {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(
-            f,
-            "xcb::Error {{ response_type: {}, error_code: {} }}",
-            self.response_type(),
-            self.error_code()
-        )
-    }
-}
-impl<T: fmt::Debug> error::Error for Error<T> {
-    fn description(&self) -> &str {
-        "xcb::Error"
-    }
-}
-
-// Error are readonly and can be safely sent and shared with other threads
-unsafe impl<T> Send for Error<T> {}
-unsafe impl<T> Sync for Error<T> {}
-
-/// Casts the generic error to the right error. Assumes that the given
-/// error is really the correct type.
-pub unsafe fn cast_error<'r, T>(error: &'r GenericError) -> &'r T {
-    mem::transmute(error)
-}
-
-/// wraps a cookie as returned by a request function.
-/// Instantiations of `Cookie` that are not `VoidCookie`
-/// should provide a `get_reply` method to return a `Reply`
-pub struct Cookie<'a, T: Copy + CookieSeq> {
-    pub cookie: T,
-    pub conn: &'a Connection,
-    pub checked: bool,
-}
-
-pub type VoidCookie<'a> = Cookie<'a, xcb_void_cookie_t>;
-
-impl<'a> VoidCookie<'a> {
-    pub fn request_check(self) -> Result<(), ReplyError> {
-        unsafe {
-            let c: xcb_void_cookie_t = mem::transmute(self.cookie);
-            let err = xcb_request_check(self.conn.get_raw_conn(), c);
-
-            let conn_is_ok = self.conn.has_error().is_ok();
-            std::mem::forget(self);
-            match (err.is_null(), conn_is_ok) {
-                (true, true) => Ok(()),
-                (true, false) => Err(ReplyError::NullResponse),
-                (false, _) => Err(ReplyError::GenericError {
-                    0: GenericError { ptr: err },
-                }),
-            }
-        }
-    }
-}
-
-impl CookieSeq for xcb_void_cookie_t {
-    fn sequence(&self) -> libc::c_uint {
-        self.sequence
-    }
-}
-
-pub trait CookieSeq {
-    fn sequence(&self) -> libc::c_uint;
-}
-
-impl<'a, T: Copy + CookieSeq> Drop for Cookie<'a, T> {
-    fn drop(&mut self) {
-        unsafe { xcb_discard_reply(self.conn.get_raw_conn(), self.cookie.sequence()) };
-    }
-}
-
-#[cfg(feature = "thread")]
-unsafe impl<'a, T: Copy + CookieSeq> Send for Cookie<'a, T> {}
-#[cfg(feature = "thread")]
-unsafe impl<'a, T: Copy + CookieSeq> Sync for Cookie<'a, T> {}
-
-/// Wraps a pointer to a `xcb_*_reply_t`
-/// the pointer is freed when the `Reply` goes out of scope
-pub struct Reply<T> {
-    pub ptr: *mut T,
-}
-
-impl<T> Drop for Reply<T> {
-    fn drop(&mut self) {
-        unsafe {
-            libc::free(self.ptr as *mut c_void);
-        }
-    }
-}
-
-#[cfg(feature = "thread")]
-unsafe impl<T> Send for Reply<T> {}
-#[cfg(feature = "thread")]
-unsafe impl<T> Sync for Reply<T> {}
-
-pub type GenericEvent = Event<xcb_generic_event_t>;
-pub type GenericError = Error<xcb_generic_error_t>;
-pub type GenericReply = Reply<xcb_generic_reply_t>;
-
+/// The checked cookie type returned by void-requests.
+///
+/// See [Connection::send_request_checked]
 #[derive(Debug)]
-pub enum ReplyError {
-    NullResponse,
-    GenericError(GenericError),
+pub struct VoidCookieChecked {
+    seq: u64,
 }
 
-impl std::fmt::Display for ReplyError {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> Result<(), std::fmt::Error> {
-        write!(f, "xcb::ReplyError: ")?;
-        match self {
-            Self::NullResponse => {
-                write!(
-                    f,
-                    "Unexpected null pointer(check pending errors on connection)"
-                )
-            }
-            Self::GenericError(g) => {
-                write!(f, "{}", g)
-            }
-        }
+impl Cookie for VoidCookieChecked {
+    unsafe fn from_sequence(seq: u64) -> Self {
+        VoidCookieChecked { seq }
+    }
+
+    fn sequence(&self) -> u64 {
+        self.seq
     }
 }
 
-impl std::error::Error for ReplyError {
-    fn description(&self) -> &str {
-        "xcb::ReplyError"
-    }
+unsafe impl CookieChecked for VoidCookieChecked {}
+
+/// Trait implemented by all requests to send the serialized data over the wire.
+///
+/// # Safety
+/// Types implementing this trait acknowledge that the returned value of `raw_request` correspond
+/// to a cookie for `Self` request and is checked or unchecked depending on the `checked` flag value.
+pub unsafe trait RawRequest {
+    /// Actual implementation of the request sending
+    ///
+    /// Send the request over the `conn` wire and return a cookie sequence fitting with the `checked` flag
+    /// of `Self`
+    fn raw_request(&self, conn: &Connection, checked: bool) -> u64;
 }
 
-//TODO: Implement wrapper functions for constructing auth_info
-pub type AuthInfo = xcb_auth_info_t;
+/// Trait implemented by requests types.
+///
+/// See [crate::x::CreateWindow] as an example.
+pub trait Request: RawRequest {
+    /// The default cookie associated to this request.
+    type Cookie: Cookie;
 
+    /// `false` if the request returns a reply, `true` otherwise.
+    const IS_VOID: bool;
+}
+
+/// Marker trait for requests that do not return a reply.
+///
+/// These trait is implicitely associated with [`VoidCookie`] and [`VoidCookieChecked`].
+pub trait RequestWithoutReply: Request {}
+
+/// Trait for requests that return a reply.
+pub trait RequestWithReply: Request {
+    /// Reply associated with the request
+    type Reply: Reply;
+    /// Default cookie type for the request, as returned by [Connection::send_request].
+    type Cookie: CookieWithReplyChecked<Reply = Self::Reply>;
+    /// Unchecked cookie type for the request, as returned by [Connection::send_request_unchecked].
+    type CookieUnchecked: CookieWithReplyUnchecked<Reply = Self::Reply>;
+}
+
+/// Determines whether Xlib or XCB owns the event queue of [`Connection`].
+///
+/// See [`Connection::set_event_queue_owner`].
 #[cfg(feature = "xlib_xcb")]
+#[derive(Debug)]
 pub enum EventQueueOwner {
+    /// XCB owns the event queue
     Xcb,
+    /// Xlib owns the event queue
     Xlib,
 }
 
-/// Error type that is returned by `Connection::has_error`
+/// Container for authentication information to connect to the X server
+///
+/// See [Connection::connect_to_display_with_auth_info] and [Connection::connect_to_fd].
+#[derive(Copy, Clone, Debug)]
+pub struct AuthInfo<'a> {
+    /// String containing the authentication protocol name,
+    /// such as "MIT-MAGIC-COOKIE-1" or "XDM-AUTHORIZATION-1".
+    pub name: &'a str,
+    /// data interpreted in a protocol specific manner
+    pub data: &'a str,
+}
+
+/// Display info returned by [`parse_display`]
+#[derive(Debug)]
+pub struct DisplayInfo {
+    /// The hostname
+    host: String,
+    /// The display number
+    display: i32,
+    /// The screen number
+    screen: i32,
+}
+
+/// Parses a display string in the form documented by [X (7x)](https://linux.die.net/man/7/x).
+///
+/// Returns `Some(DisplayInfo)` on success and `None` otherwise.
+/// Has no side effects on failure.
+///
+/// If `name` empty, it uses the environment variable `DISPLAY`.
+///
+/// If `name` does not contain a screen number, `DisplayInfo::screen` is set to `0`.
+pub fn parse_display(name: &str) -> Option<DisplayInfo> {
+    unsafe {
+        let name = CString::new(name).unwrap();
+        let mut hostp: *mut c_char = ptr::null_mut();
+        let mut display = 0i32;
+        let mut screen = 0i32;
+
+        let success = xcb_parse_display(
+            name.as_ptr(),
+            &mut hostp as *mut _,
+            &mut display as *mut _,
+            &mut screen as *mut _,
+        );
+
+        if success != 0 {
+            let host = CStr::from_ptr(hostp as *const _)
+                .to_str()
+                .unwrap()
+                .to_string();
+
+            libc::free(hostp as *mut _);
+
+            Some(DisplayInfo {
+                host,
+                display,
+                screen,
+            })
+        } else {
+            None
+        }
+    }
+}
+
+/// A struct that serve as an identifier for internal special queue in XCB
+///
+/// See [Connection::register_for_special_xge].
+#[cfg(any(feature = "xinput", feature = "present"))]
+#[derive(Debug)]
+pub struct SpecialEventId {
+    raw: *mut xcb_special_event_t,
+    stamp: Timestamp,
+}
+
+#[cfg(any(feature = "xinput", feature = "present"))]
+impl SpecialEventId {
+    /// The X timestamp associated with this special event Id
+    pub fn stamp(&self) -> Timestamp {
+        self.stamp
+    }
+}
+
+/// Error type that is returned by `Connection::has_error`.
 #[derive(Debug)]
 pub enum ConnError {
     /// xcb connection errors because of socket, pipe and other stream errors.
@@ -301,8 +531,6 @@ pub enum ConnError {
     /// Connection closed because the server does not have a screen
     /// matching the display.
     ClosedInvalidScreen,
-    /// Connection closed because some FD passing operation failed
-    ClosedFdPassingFailed,
 }
 
 impl ConnError {
@@ -318,48 +546,510 @@ impl ConnError {
             ConnError::ClosedInvalidScreen => {
                 "Connection closed, the server does not have a screen matching the display"
             }
-            ConnError::ClosedFdPassingFailed => {
-                "Connection closed, file-descriptor passing operation failed"
-            }
         }
     }
 }
 
-impl fmt::Display for ConnError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+impl Display for ConnError {
+    fn fmt(&self, f: &mut Formatter) -> fmt::Result {
         self.to_str().fmt(f)
     }
 }
 
-impl error::Error for ConnError {
+impl std::error::Error for ConnError {
     fn description(&self) -> &str {
         self.to_str()
     }
 }
 
-pub type ConnResult<T> = Result<T, ConnError>;
+/// The result type associated with [ConnError].
+pub type ConnResult<T> = result::Result<T, ConnError>;
 
-/// xcb::Connection handles communication with the X server.
-/// It wraps an `xcb_connection_t` object and
-/// will call `xcb_disconnect` when the `Connection` goes out of scope
-pub struct Connection {
-    c: *mut xcb_connection_t,
-    #[cfg(feature = "xlib_xcb")]
-    dpy: *mut xlib::Display,
+/// The result type associated with [ProtocolError].
+pub type ProtocolResult<T> = result::Result<T, ProtocolError>;
+
+/// The general error type for Rust-XCB.
+#[derive(Debug)]
+pub enum Error {
+    /// I/O error issued from the connection.
+    Connection(ConnError),
+    /// A protocol related error issued by the X server.
+    Protocol(ProtocolError),
 }
 
-#[cfg(feature = "thread")]
+impl Display for Error {
+    fn fmt(&self, f: &mut Formatter<'_>) -> fmt::Result {
+        match self {
+            Error::Connection(_) => f.write_str("xcb connection error"),
+            Error::Protocol(_) => f.write_str("xcb protocol error"),
+        }
+    }
+}
+
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            Error::Connection(err) => Some(err),
+            Error::Protocol(err) => Some(err),
+        }
+    }
+}
+
+impl From<ConnError> for Error {
+    fn from(err: ConnError) -> Error {
+        Error::Connection(err)
+    }
+}
+
+impl From<ProtocolError> for Error {
+    fn from(err: ProtocolError) -> Error {
+        Error::Protocol(err)
+    }
+}
+
+/// The general result type for Rust-XCB.
+pub type Result<T> = result::Result<T, Error>;
+
+/// `Connection` is the central object of XCB.
+///
+/// It handles all communications with the X server.
+/// It dispatches the requests, receives the replies, poll/wait the events.
+/// It also resolves the errors and events from X server.
+///
+/// `Connection` is thread safe.
+///
+/// It internally wraps an `xcb_connection_t` object and
+/// will call `xcb_disconnect` when the `Connection` goes out of scope.
+pub struct Connection {
+    c: *mut xcb_connection_t,
+
+    #[cfg(feature = "xlib_xcb")]
+    dpy: *mut xlib::Display,
+
+    ext_data: Vec<ExtensionData>,
+
+    // Following field is used to handle the
+    // rare (if existing) cases of multiple connections
+    // per application.
+    // Only the first established connections is used
+    // to print the name of atoms during Debug
+    #[cfg(feature = "debug_atom_names")]
+    dbg_atom_names: bool,
+}
+
 unsafe impl Send for Connection {}
-#[cfg(feature = "thread")]
 unsafe impl Sync for Connection {}
 
 impl Connection {
-    /// Forces any buffered output to be written to the server. Blocks
-    /// until the write is complete.
+    /// Connects to the X server.
     ///
-    /// Return `true` on success, `false` otherwise.
-    pub fn flush(&self) -> bool {
-        unsafe { xcb_flush(self.c) > 0 }
+    /// Connects to the X server specified by `display_name.` If
+    /// `display_name` is `None,` uses the value of the `DISPLAY` environment
+    /// variable.
+    ///
+    /// If no screen is preferred, the second member of the tuple is set to 0.
+    ///
+    /// # Example
+    /// ```no_run
+    /// fn main() -> xcb::Result<()> {
+    ///     let (conn, screen) = xcb::Connection::connect(None)?;
+    ///     Ok(())
+    /// }
+    /// ```
+    pub fn connect(display_name: Option<&str>) -> ConnResult<(Connection, i32)> {
+        Self::connect_with_extensions(display_name, &[], &[])
+    }
+
+    /// Connects to the X server and cache extension data.
+    ///
+    /// Connects to the X server specified by `display_name.` If
+    /// `display_name` is `None,` uses the value of the `DISPLAY` environment
+    /// variable.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// If no screen is preferred, the second member of the tuple is set to 0.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
+    ///
+    /// # Example
+    /// ```no_run
+    /// fn main() -> xcb::Result<()> {
+    ///     let (conn, screen) = xcb::Connection::connect_with_extensions(
+    ///         None, &[xcb::Extension::Input, xcb::Extension::Xkb], &[]
+    ///     )?;
+    ///     Ok(())
+    /// }
+    /// ```
+    pub fn connect_with_extensions(
+        display_name: Option<&str>,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> ConnResult<(Connection, i32)> {
+        let mut screen_num: c_int = 0;
+        let displayname = display_name.map(|s| CString::new(s).unwrap());
+        unsafe {
+            let conn = if let Some(display) = displayname {
+                xcb_connect(display.as_ptr(), &mut screen_num)
+            } else {
+                xcb_connect(ptr::null(), &mut screen_num)
+            };
+
+            check_connection_error(conn)?;
+
+            let conn = Self::from_raw_conn_and_extensions(conn, mandatory, optional);
+            conn.has_error().map(|_| (conn, screen_num as i32))
+        }
+    }
+
+    /// Open a new connection with Xlib.
+    ///
+    /// The event queue owner defaults to Xlib.
+    /// One would need to open an XCB connection with Xlib in order to use
+    /// OpenGL.
+    #[cfg(feature = "xlib_xcb")]
+    pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
+        unsafe {
+            let dpy = xlib::XOpenDisplay(ptr::null());
+
+            check_connection_error(XGetXCBConnection(dpy))?;
+
+            let conn = Self::from_xlib_display(dpy);
+
+            conn.has_error()
+                .map(|_| (conn, xlib::XDefaultScreen(dpy) as i32))
+        }
+    }
+
+    /// Open a new connection with Xlib and cache the provided extensions data.
+    ///
+    /// Data of extensions specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// The event queue owner defaults to Xlib.
+    /// One would need to open an XCB connection with Xlib in order to use
+    /// OpenGL.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
+    #[cfg(feature = "xlib_xcb")]
+    pub fn connect_with_xlib_display_and_extensions(
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> ConnResult<(Connection, i32)> {
+        unsafe {
+            let dpy = xlib::XOpenDisplay(ptr::null());
+
+            check_connection_error(XGetXCBConnection(dpy))?;
+
+            let conn = Self::from_xlib_display_and_extensions(dpy, mandatory, optional);
+
+            conn.has_error()
+                .map(|_| (conn, xlib::XDefaultScreen(dpy) as i32))
+        }
+    }
+
+    /// Connects to the X server with an open socket file descriptor and optional authentification info.
+    ///
+    /// Connects to an X server, given the open socket fd and the
+    /// `auth_info`. The file descriptor `fd` is bidirectionally connected to an X server.
+    /// If the connection should be unauthenticated, `auth_info` must be `None`.
+    pub fn connect_to_fd(fd: RawFd, auth_info: Option<AuthInfo<'_>>) -> ConnResult<Self> {
+        Self::connect_to_fd_with_extensions(fd, auth_info, &[], &[])
+    }
+
+    /// Connects to the X server with an open socket file descriptor and optional authentification info.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// Connects to an X server, given the open socket fd and the
+    /// `auth_info`. The file descriptor `fd` is bidirectionally connected to an X server.
+    /// If the connection should be unauthenticated, `auth_info` must be `None`.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
+    pub fn connect_to_fd_with_extensions(
+        fd: RawFd,
+        auth_info: Option<AuthInfo<'_>>,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> ConnResult<Self> {
+        let mut auth_info = auth_info.map(|auth_info| {
+            let auth_name = CString::new(auth_info.name).unwrap();
+            let auth_data = CString::new(auth_info.data).unwrap();
+
+            let auth_info = xcb_auth_info_t {
+                namelen: auth_name.as_bytes().len() as _,
+                name: auth_name.as_ptr() as *mut _,
+                datalen: auth_data.as_bytes().len() as _,
+                data: auth_data.as_ptr() as *mut _,
+            };
+            // return the strings too otherwise they would drop
+            (auth_info, auth_name, auth_data)
+        });
+
+        let ai_ptr = if let Some(auth_info) = auth_info.as_mut() {
+            &mut auth_info.0 as *mut _
+        } else {
+            ptr::null_mut()
+        };
+
+        let conn = unsafe {
+            let conn = xcb_connect_to_fd(fd, ai_ptr);
+            check_connection_error(conn)?;
+
+            Self::from_raw_conn_and_extensions(conn, mandatory, optional)
+        };
+
+        conn.has_error().map(|_| conn)
+    }
+
+    /// Connects to the X server, using an authorization information.
+    ///
+    /// Connects to the X server specified by `display_name`, using the
+    /// authorization `auth_info`. If a particular screen on that server, it is
+    /// returned in the second tuple member, which is otherwise set to `0`.
+    pub fn connect_to_display_with_auth_info(
+        display_name: Option<&str>,
+        auth_info: AuthInfo<'_>,
+    ) -> ConnResult<(Connection, i32)> {
+        Self::connect_to_display_with_auth_info_and_extensions(display_name, auth_info, &[], &[])
+    }
+
+    /// Connects to the X server, using an authorization information.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// Connects to the X server specified by `display_name`, using the
+    /// authorization `auth_info`. If a particular screen on that server, it is
+    /// returned in the second tuple member, which is otherwise set to `0`.
+    ///
+    /// # Panics
+    /// Panics if one of the mandatory extension is not present.
+    pub fn connect_to_display_with_auth_info_and_extensions(
+        display_name: Option<&str>,
+        auth_info: AuthInfo<'_>,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> ConnResult<(Connection, i32)> {
+        let mut screen_num: c_int = 0;
+        let display_name = display_name.map(|s| CString::new(s).unwrap());
+
+        unsafe {
+            let display_name = if let Some(display_name) = &display_name {
+                display_name.as_ptr()
+            } else {
+                ptr::null()
+            };
+
+            let auth_name = CString::new(auth_info.name).unwrap();
+            let auth_data = CString::new(auth_info.data).unwrap();
+
+            let mut auth_info = xcb_auth_info_t {
+                namelen: auth_name.as_bytes().len() as _,
+                name: auth_name.as_ptr() as *mut _,
+                datalen: auth_data.as_bytes().len() as _,
+                data: auth_data.as_ptr() as *mut _,
+            };
+
+            let conn = xcb_connect_to_display_with_auth_info(
+                display_name,
+                &mut auth_info as *mut _,
+                &mut screen_num as *mut _,
+            );
+
+            check_connection_error(conn)?;
+
+            let conn = Self::from_raw_conn_and_extensions(conn, mandatory, optional);
+            conn.has_error().map(|_| (conn, screen_num as i32))
+        }
+    }
+
+    /// builds a new Connection object from an available connection
+    ///
+    /// # Safety
+    /// The `conn` pointer must point to a valid `xcb_connection_t`
+    pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
+        Self::from_raw_conn_and_extensions(conn, &[], &[])
+    }
+
+    /// Builds a new `Connection` object from an available connection and cache the extension data
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// # Panics
+    /// Panics if the connection is null or in error state.
+    /// Panics if one of the mandatory extension is not present.
+    ///
+    /// # Safety
+    /// The `conn` pointer must point to a valid `xcb_connection_t`
+    pub unsafe fn from_raw_conn_and_extensions(
+        conn: *mut xcb_connection_t,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> Connection {
+        assert!(!conn.is_null());
+        assert!(check_connection_error(conn).is_ok());
+
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = conn;
+                true
+            } else {
+                false
+            }
+        };
+
+        let ext_data = cache_extensions_data(conn, mandatory, optional);
+
+        #[cfg(not(feature = "xlib_xcb"))]
+        #[cfg(not(feature = "debug_atom_names"))]
+        return Connection { c: conn, ext_data };
+
+        #[cfg(not(feature = "xlib_xcb"))]
+        #[cfg(feature = "debug_atom_names")]
+        return Connection {
+            c: conn,
+            ext_data,
+            dbg_atom_names,
+        };
+
+        #[cfg(feature = "xlib_xcb")]
+        #[cfg(not(feature = "debug_atom_names"))]
+        return Connection {
+            c: conn,
+            dpy: ptr::null_mut(),
+            ext_data,
+        };
+
+        #[cfg(feature = "xlib_xcb")]
+        #[cfg(feature = "debug_atom_names")]
+        return Connection {
+            c: conn,
+            dpy: ptr::null_mut(),
+            ext_data,
+            dbg_atom_names,
+        };
+    }
+
+    /// Initialize a new `Connection` from an existing Xlib display.
+    ///
+    /// Wraps a `xlib::Display` and get an XCB connection from an exisiting object
+    /// `xlib::XCloseDisplay` will be called when the returned object is dropped.
+    ///
+    /// # Safety
+    /// The `dpy` pointer must be a pointer to a valid `xlib::Display`
+    #[cfg(feature = "xlib_xcb")]
+    pub unsafe fn from_xlib_display(dpy: *mut xlib::Display) -> Connection {
+        Self::from_xlib_display_and_extensions(dpy, &[], &[])
+    }
+
+    /// Initialize a new `Connection` from an existing Xlib display.
+    ///
+    /// Wraps a `xlib::Display` and get an XCB connection from an exisiting object
+    /// `xlib::XCloseDisplay` will be called when the returned object is dropped.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// # Panics
+    /// Panics if the connection is null or in error state.
+    ///
+    /// # Safety
+    /// The `dpy` pointer must be a pointer to a valid `xlib::Display`.
+    #[cfg(feature = "xlib_xcb")]
+    pub unsafe fn from_xlib_display_and_extensions(
+        dpy: *mut xlib::Display,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> Connection {
+        assert!(!dpy.is_null(), "attempt connect with null display");
+        let c = XGetXCBConnection(dpy);
+
+        assert!(check_connection_error(c).is_ok());
+
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = c;
+                true
+            } else {
+                false
+            }
+        };
+
+        let ext_data = cache_extensions_data(c, mandatory, optional);
+
+        #[cfg(feature = "debug_atom_names")]
+        return Connection {
+            c,
+            dpy,
+            ext_data,
+            dbg_atom_names,
+        };
+
+        #[cfg(not(feature = "debug_atom_names"))]
+        return Connection { c, dpy, ext_data };
+    }
+
+    /// Get the extensions activated for this connection.
+    ///
+    /// You may use this to check if an optional extension is present or not.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # fn main() -> xcb::Result<()> {
+    ///     // Xkb is mandatory, Input is optional
+    ///     let (conn, screen) = xcb::Connection::connect_with_extensions(
+    ///         None, &[xcb::Extension::Xkb], &[xcb::Extension::Input]
+    ///     )?;
+    ///     // now we check if Input is present or not
+    ///     let has_input_ext = conn.active_extensions().any(|e| e == xcb::Extension::Input);
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn active_extensions(&self) -> impl Iterator<Item = Extension> + '_ {
+        self.ext_data.iter().map(|eed| eed.ext)
+    }
+
+    /// Returns the inner ffi `xcb_connection_t` pointer
+    pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
+        self.c
+    }
+
+    /// Consumes this object, returning the inner ffi `xcb_connection_t` pointer
+    pub fn into_raw_conn(self) -> *mut xcb_connection_t {
+        let c = self.c;
+        mem::forget(self);
+        c
+    }
+
+    /// Returns the inner ffi `xlib::Display` pointer.
+    #[cfg(feature = "xlib_xcb")]
+    pub fn get_raw_dpy(&self) -> *mut xlib::Display {
+        self.dpy
+    }
+
+    /// Sets the owner of the event queue in the case if the connection is opened
+    /// with the Xlib interface. In that case, the default owner is Xlib.
+    #[cfg(feature = "xlib_xcb")]
+    pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
+        debug_assert!(!self.dpy.is_null());
+        unsafe {
+            XSetEventQueueOwner(
+                self.dpy,
+                match owner {
+                    EventQueueOwner::Xcb => XCBOwnsEventQueue,
+                    EventQueueOwner::Xlib => XlibOwnsEventQueue,
+                },
+            );
+        }
     }
 
     /// Returns the maximum request length that this server accepts.
@@ -382,79 +1072,220 @@ impl Connection {
     /// Without blocking, does as much work as possible toward computing
     /// the maximum request length accepted by the X server.
     ///
-    /// Invoking this function may cause a call to xcb_big_requests_enable,
+    /// Invoking this function may send the [crate::bigreq::Enable] request,
     /// but will not block waiting for the reply.
-    /// xcb_get_maximum_request_length will return the prefetched data
+    /// [Connection::get_maximum_request_length] will return the prefetched data
     /// after possibly blocking while the reply is retrieved.
     ///
     /// Note that in order for this function to be fully non-blocking, the
-    /// application must previously have called
-    /// `c.prefetch_extension_data(xcb::big_requests::id())` and the reply
-    /// must have already arrived.
+    /// application must previously have called [crate::bigreq::prefetch_extension_data].
     pub fn prefetch_maximum_request_length(&self) {
         unsafe {
             xcb_prefetch_maximum_request_length(self.c);
         }
     }
 
-    /// Returns the next event or error from the server.
+    /// Allocates an XID for a new object.
     ///
-    /// Returns the next event or error from the server, or returns `None` in
-    /// the event of an I/O error. Blocks until either an event or error
-    /// arrive, or an I/O error occurs.
-    pub fn wait_for_event(&self) -> Option<GenericEvent> {
+    /// Returned value is typically used in requests such as `CreateWindow`.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// # let conn = xcb::Connection::connect(None)?.0;
+    /// let window: x::Window = conn.generate_id();
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub fn generate_id<T: XidNew>(&self) -> T {
+        unsafe { XidNew::new(xcb_generate_id(self.c)) }
+    }
+
+    /// Forces any buffered output to be written to the server.
+    ///
+    /// Forces any buffered output to be written to the server. Blocks
+    /// until the write is complete.
+    ///
+    /// There are several occasions ones want to flush the connection.
+    /// One of them is before entering or re-entering the event loop after performing unchecked requests.
+    pub fn flush(&self) -> ConnResult<()> {
         unsafe {
-            let event = xcb_wait_for_event(self.c);
-            if event.is_null() {
-                None
+            let ret = xcb_flush(self.c);
+            if ret > 0 {
+                Ok(())
             } else {
-                Some(GenericEvent { ptr: event })
+                self.has_error()?;
+                unreachable!()
             }
         }
     }
 
-    /// Returns the next event or error from the server.
+    unsafe fn handle_wait_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Event> {
+        if ev.is_null() {
+            self.has_error()?;
+            panic!("xcb_wait_for_event returned null with I/O error");
+        } else if is_error(ev) {
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
+        } else {
+            Ok(event::resolve_event(ev, &self.ext_data))
+        }
+    }
+
+    unsafe fn handle_poll_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Option<Event>> {
+        if ev.is_null() {
+            self.has_error()?;
+            Ok(None)
+        } else if is_error(ev) {
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
+        } else {
+            Ok(Some(event::resolve_event(ev, &self.ext_data)))
+        }
+    }
+
+    /// Blocks and returns the next event or error from the server.
+    ///
+    /// # Example
+    /// ```no_run
+    /// use xcb::x;
+    /// fn main() -> xcb::Result<()> {
+    /// #   let conn = xcb::Connection::connect(None)?.0;
+    ///     // ...
+    ///     loop {
+    ///         let event = match conn.wait_for_event() {
+    ///             Err(xcb::Error::Connection(err)) => {
+    ///                 panic!("unexpected I/O error: {}", err);
+    ///             }
+    ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err), _req_name))) => {
+    ///                 // may be this particular error is fine?
+    ///                 continue;
+    ///             }
+    ///             Err(xcb::Error::Protocol(err)) => {
+    ///                 panic!("unexpected protocol error: {:#?}", err);
+    ///             }
+    ///             Ok(event) => event,
+    ///         };
+    ///         match event {
+    ///             xcb::Event::X(x::Event::KeyPress(ev)) => {
+    ///                 // do stuff with the key press
+    ///             }
+    ///             // handle other events
+    ///             _ => {
+    ///                 break Ok(());
+    ///             }
+    ///         }
+    ///     }
+    ///  }
+    /// ```
+    pub fn wait_for_event(&self) -> Result<Event> {
+        unsafe {
+            let ev = xcb_wait_for_event(self.c);
+            self.handle_wait_for_event(ev)
+        }
+    }
+
+    /// Returns the next event or error from the server without blocking.
     ///
     /// Returns the next event or error from the server, if one is
-    /// available, or returns `None` otherwise. If no event is available, that
+    /// available. If no event is available, that
     /// might be because an I/O error like connection close occurred while
     /// attempting to read the next event, in which case the connection is
     /// shut down when this function returns.
-    pub fn poll_for_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_event(&self) -> Result<Option<Event>> {
         unsafe {
-            let event = xcb_poll_for_event(self.c);
-            if event.is_null() {
-                None
-            } else {
-                Some(GenericEvent { ptr: event })
-            }
+            let ev = xcb_poll_for_event(self.c);
+            self.handle_poll_for_event(ev)
         }
     }
 
     /// Returns the next event without reading from the connection.
     ///
-    /// This is a version of `poll_for_event` that only examines the
+    /// This is a version of [Connection::poll_for_event] that only examines the
     /// event queue for new events. The function doesn't try to read new
     /// events from the connection if no queued events are found.
     ///
     /// This function is useful for callers that know in advance that all
     /// interesting events have already been read from the connection. For
-    /// example, callers might use `wait_for_reply` and be interested
+    /// example, callers might use [Connection::wait_for_reply] and be interested
     /// only of events that preceded a specific reply.
-    pub fn poll_for_queued_event(&self) -> Option<GenericEvent> {
+    pub fn poll_for_queued_event(&self) -> ProtocolResult<Option<Event>> {
         unsafe {
-            let event = xcb_poll_for_queued_event(self.c);
-            if event.is_null() {
-                None
+            let ev = xcb_poll_for_queued_event(self.c);
+            if ev.is_null() {
+                Ok(None)
+            } else if is_error(ev) {
+                Err(error::resolve_error(ev as *mut _, &self.ext_data))
             } else {
-                Some(GenericEvent { ptr: event })
+                Ok(Some(event::resolve_event(ev, &self.ext_data)))
             }
+        }
+    }
+
+    /// Start listening for a special event.
+    ///
+    /// Effectively creates an internal special queue for this event
+    /// XGE events are only defined in the `xinput` and `present` extensions
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn register_for_special_xge<XGE: GeEvent>(&self) -> SpecialEventId {
+        unsafe {
+            let ext: *mut xcb_extension_t = match XGE::EXTENSION {
+                #[cfg(feature = "xinput")]
+                Extension::Input => &mut xinput::FFI_EXT as *mut _,
+                #[cfg(feature = "present")]
+                Extension::Present => &mut present::FFI_EXT as *mut _,
+                _ => unreachable!("only Input and Present have XGE events"),
+            };
+
+            let mut stamp: Timestamp = 0;
+
+            let raw = xcb_register_for_special_xge(self.c, ext, XGE::NUMBER, &mut stamp as *mut _);
+
+            SpecialEventId { raw, stamp }
+        }
+    }
+
+    /// Stop listening to a special event
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn unregister_for_special_xge(&self, se: SpecialEventId) {
+        unsafe {
+            xcb_unregister_for_special_xge(self.c, se.raw);
+        }
+    }
+
+    /// Returns the next event from a special queue, blocking until one arrives
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn wait_for_special_event(&self, se: SpecialEventId) -> Result<Event> {
+        unsafe {
+            let ev = xcb_wait_for_special_event(self.c, se.raw);
+            self.handle_wait_for_event(ev)
+        }
+    }
+
+    /// Returns the next event from a special queue
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn poll_for_special_event(&self, se: SpecialEventId) -> Result<Option<Event>> {
+        unsafe {
+            let ev = xcb_poll_for_special_event(self.c, se.raw);
+            self.handle_poll_for_event(ev)
+        }
+    }
+
+    /// Discards the reply for a request.
+    ///
+    /// Discards the reply for a request. Additionally, any error generated
+    /// by the request is also discarded (unless it was an _unchecked request
+    /// and the error has already arrived).
+    ///
+    /// This function will not block even if the reply is not yet available.
+    fn discard_reply<C: Cookie>(&self, cookie: C) {
+        unsafe {
+            xcb_discard_reply64(self.c, cookie.sequence());
         }
     }
 
     /// Access the data returned by the server.
     ///
-    /// Accessor for the data returned by the server when the `Connection`
+    /// Accessor for the data returned by the server when the connection
     /// was initialized. This data includes
     /// - the server's required format for images,
     /// - a list of available visuals,
@@ -464,234 +1295,255 @@ impl Connection {
     /// - and other assorted information.
     ///
     /// See the X protocol specification for more details.
-    pub fn get_setup(&self) -> Setup {
+    pub fn get_setup(&self) -> &Setup {
         unsafe {
-            let setup = xcb_get_setup(self.c);
-            if setup.is_null() {
-                panic!("NULL setup on connection")
-            }
-            mem::transmute(setup)
+            let ptr = xcb_get_setup(self.c);
+            // let len = <&Setup as WiredIn>::compute_wire_len(ptr, ());
+            let mut _offset = 0;
+            <&Setup as WiredIn>::unserialize(ptr, (), &mut _offset)
         }
     }
 
     /// Test whether the connection has shut down due to a fatal error.
     ///
-    /// Some errors that occur in the context of a `Connection`
+    /// Some errors that occur in the context of a connection
     /// are unrecoverable. When such an error occurs, the
     /// connection is shut down and further operations on the
-    /// `Connection` have no effect, but memory will not be freed until
-    /// the `Connection` is dropped.
+    /// connection have no effect.
     pub fn has_error(&self) -> ConnResult<()> {
-        unsafe {
-            match xcb_connection_has_error(self.c) {
-                0 => Ok(()),
-                XCB_CONN_ERROR => Err(ConnError::Connection),
-                XCB_CONN_CLOSED_EXT_NOTSUPPORTED => Err(ConnError::ClosedExtNotSupported),
-                XCB_CONN_CLOSED_MEM_INSUFFICIENT => Err(ConnError::ClosedMemInsufficient),
-                XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
-                XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
-                XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
-                XCB_CONN_CLOSED_FDPASSING_FAILED => Err(ConnError::ClosedFdPassingFailed),
-                _ => {
-                    warn!("XCB: unexpected error code from xcb_connection_has_error");
-                    warn!("XCB: Default to ConnError::Connection");
-                    Err(ConnError::Connection)
-                }
-            }
-        }
+        unsafe { check_connection_error(self.c) }
     }
 
-    /// Allocates an XID for a new object.
+    /// Send a request to the X server.
     ///
-    /// Allocates an XID for a new object. Typically used just prior to
-    /// various object creation functions, such as `xcb::create_window`.
-    pub fn generate_id(&self) -> u32 {
-        unsafe { xcb_generate_id(self.c) }
-    }
-
-    /// Returns the inner ffi `xcb_connection_t` pointer
-    pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
-        self.c
-    }
-
-    /// Consumes this object, returning the inner ffi `xcb_connection_t` pointer
-    pub fn into_raw_conn(self) -> *mut xcb_connection_t {
-        let c = self.c;
-        mem::forget(self);
-        c
-    }
-
-    /// Returns the inner ffi `xlib::Display` pointer.
-    #[cfg(feature = "xlib_xcb")]
-    pub fn get_raw_dpy(&self) -> *mut xlib::Display {
-        self.dpy
-    }
-
-    /// Prefetch of extension data into the extension cache
+    /// This function never blocks. A cookie is returned to keep track of the request.
+    /// If the request expect a reply, the cookie can be used to retrieve the reply
     ///
-    /// This function allows a "prefetch" of extension data into the
-    /// extension cache. Invoking the function may cause a call to
-    /// xcb_query_extension, but will not block waiting for the
-    /// reply. xcb_get_extension_data will return the prefetched data after
-    /// possibly blocking while it is retrieved.
-    pub fn prefetch_extension_data(&self, ext: &mut Extension) {
-        unsafe {
-            xcb_prefetch_extension_data(self.c, ext);
-        }
-    }
-
-    /// Caches reply information from QueryExtension requests.
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// #   let setup = conn.get_setup();
+    /// #   let screen = setup.roots().nth(screen_num as usize).unwrap();
+    /// #   let window: x::Window = conn.generate_id();
+    ///     // Example of void request.
+    ///     // Error (if any) will be sent to the event loop (see `wait_for_event`).
+    ///     // In this case, the cookie can be discarded.
+    ///     conn.send_request(&x::CreateWindow {
+    ///         depth: x::COPY_FROM_PARENT as u8,
+    ///         wid: window,
+    ///         parent: screen.root(),
+    ///         x: 0,
+    ///         y: 0,
+    ///         width: 150,
+    ///         height: 150,
+    ///         border_width: 10,
+    ///         class: x::WindowClass::InputOutput,
+    ///         visual: screen.root_visual(),
+    ///         value_list: &[
+    ///             x::Cw::BackPixel(screen.white_pixel()),
+    ///             x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS),
+    ///         ],
+    ///     });
     ///
-    /// This function is the primary interface to the "extension cache",
-    /// which caches reply information from QueryExtension
-    /// requests. Invoking this function may cause a call to
-    /// xcb_query_extension to retrieve extension information from the
-    /// server, and may block until extension data is received from the
-    /// server.
-    pub fn get_extension_data<'a>(&'a self, ext: &mut Extension) -> Option<QueryExtensionData<'a>> {
-        unsafe {
-            let ptr = xcb_get_extension_data(self.c, ext);
-            if !ptr.is_null() {
-                Some(QueryExtensionData {
-                    ptr: ptr,
-                    _marker: PhantomData,
-                })
-            } else {
-                None
-            }
-        }
+    ///     // Example of request with reply. The error (if any) is obtained with the reply.
+    ///     let cookie = conn.send_request(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     });
+    ///     let wm_protocols_atom: x::Atom = conn
+    ///             .wait_for_reply(cookie)?
+    ///             .atom();
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn send_request<R>(&self, req: &R) -> R::Cookie
+    where
+        R: Request,
+    {
+        unsafe { R::Cookie::from_sequence(req.raw_request(self, !R::IS_VOID)) }
     }
 
-    /// Sets the owner of the event queue in the case if the connection is opened
-    /// with the XLib interface. the default owner is XLib.
-    #[cfg(feature = "xlib_xcb")]
-    pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
-        debug_assert!(!self.dpy.is_null());
-        unsafe {
-            XSetEventQueueOwner(
-                self.dpy,
-                match owner {
-                    EventQueueOwner::Xcb => XCBOwnsEventQueue,
-                    EventQueueOwner::Xlib => XlibOwnsEventQueue,
-                },
-            );
-        }
-    }
-
-    /// Connects to the X server.
-    /// `displayname:` The name of the display.
+    /// Send a checked request to the X server.
     ///
-    /// Connects to the X server specified by `displayname.` If
-    /// `displayname` is `None,` uses the value of the DISPLAY environment
-    /// variable.
+    /// Checked requests do not expect a reply, but the returned cookie can be used to check for
+    /// errors using `Connection::check_request`.
     ///
-    /// Returns Ok(connection object, preferred screen) in case of success, or
-    /// Err(ConnError) in case of error. If no screen is preferred, the second
-    /// member of the tuple is set to 0.
-    pub fn connect(displayname: Option<&str>) -> ConnResult<(Connection, i32)> {
-        let mut screen_num: c_int = 0;
-        let displayname = displayname.map(|s| CString::new(s).unwrap());
-        unsafe {
-            let cconn = if let Some(display) = displayname {
-                xcb_connect(display.as_ptr(), &mut screen_num)
-            } else {
-                xcb_connect(null(), &mut screen_num)
-            };
-
-            // xcb doc says that a valid object is always returned
-            // so we simply assert without handling this in the return
-            assert!(!cconn.is_null(), "had incorrect pointer");
-
-            let conn = Self::from_raw_conn(cconn);
-
-            conn.has_error().map(|_| (conn, screen_num as i32))
-        }
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// #   let window: x::Window = conn.generate_id();
+    ///     let cookie = conn.send_request_checked(&x::MapWindow { window });
+    ///     conn.check_request(cookie)?;
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn send_request_checked<R>(&self, req: &R) -> VoidCookieChecked
+    where
+        R: RequestWithoutReply,
+    {
+        unsafe { VoidCookieChecked::from_sequence(req.raw_request(self, true)) }
     }
 
-    /// Open a new connection with XLib.
-    /// The event queue owner defaults to XLib
-    /// One would need to open an XCB connection with Xlib in order to use
-    /// OpenGL.
-    #[cfg(feature = "xlib_xcb")]
-    pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
-        unsafe {
-            let dpy = xlib::XOpenDisplay(null());
-            let cconn = XGetXCBConnection(dpy);
-            assert!(
-                !dpy.is_null() && !cconn.is_null(),
-                "XLib could not connect to the X server"
-            );
-
-            let conn = Connection { c: cconn, dpy: dpy };
-
-            conn.has_error()
-                .map(|_| (conn, xlib::XDefaultScreen(dpy) as i32))
-        }
-    }
-
-    /// wraps a `xlib::Display` and get an XCB connection from an exisiting object
-    /// `xlib::XCloseDisplay` will be called when the returned object is dropped
-    #[cfg(feature = "xlib_xcb")]
-    pub unsafe fn new_from_xlib_display(dpy: *mut xlib::Display) -> Connection {
-        assert!(!dpy.is_null(), "attempt connect with null display");
-        Connection {
-            c: XGetXCBConnection(dpy),
-            dpy: dpy,
-        }
-    }
-
-    /// Connects to the X server, using an authorization information.
-    /// display: The name of the display.
-    /// auth_info: The authorization information.
-    /// screen: A pointer to a preferred screen number.
-    /// Returns A newly allocated `Connection` structure.
+    /// Send an unchecked request to the X server.
     ///
-    /// Connects to the X server specified by displayname, using the
-    /// authorization auth.
-    /// The second member of the returned tuple is the preferred screen, or 0
-    pub fn connect_with_auth_info(
-        displayname: Option<&str>,
-        auth_info: &AuthInfo,
-    ) -> ConnResult<(Connection, i32)> {
-        unsafe {
-            let mut screen_num: c_int = 0;
-            let displayname = displayname.map(|s| CString::new(s).unwrap());
-            let cconn = if let Some(display) = displayname {
-                xcb_connect_to_display_with_auth_info(
-                    display.as_ptr(),
-                    mem::transmute(auth_info),
-                    &mut screen_num,
-                )
-            } else {
-                xcb_connect_to_display_with_auth_info(
-                    null(),
-                    mem::transmute(auth_info),
-                    &mut screen_num,
-                )
-            };
-
-            // xcb doc says that a valid object is always returned
-            // so we simply assert without handling this in the return
-            assert!(!cconn.is_null(), "had incorrect pointer");
-
-            let conn = Self::from_raw_conn(cconn);
-
-            conn.has_error().map(|_| (conn, screen_num as i32))
-        }
+    /// Unchecked requests expect a reply that is to be retrieved by [Connection::wait_for_reply_unchecked].
+    /// Unchecked means that the error is not checked when the reply is fetched. Instead, the error will
+    /// be sent to the event loop
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    ///     let cookie = conn.send_request_unchecked(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     });
+    ///     let wm_protocols_atom: Option<x::Atom> = conn
+    ///             .wait_for_reply_unchecked(cookie)?
+    ///             .map(|rep| rep.atom());
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn send_request_unchecked<R>(&self, req: &R) -> R::CookieUnchecked
+    where
+        R: RequestWithReply,
+    {
+        unsafe { R::CookieUnchecked::from_sequence(req.raw_request(self, false)) }
     }
 
-    /// builds a new Connection object from an available connection
-    pub unsafe fn from_raw_conn(conn: *mut xcb_connection_t) -> Connection {
-        assert!(!conn.is_null());
-
-        #[cfg(not(feature = "xlib_xcb"))]
-        return Connection { c: conn };
-
-        #[cfg(feature = "xlib_xcb")]
-        return Connection {
-            c: conn,
-            dpy: null_mut(),
+    /// Check a checked request for errors.
+    ///
+    /// The cookie supplied to this function must have resulted
+    /// from a call to [Connection::send_request_checked].  This function will block
+    /// until one of two conditions happens.  If an error is received, it will be
+    /// returned.  If a reply to a subsequent request has already arrived, no error
+    /// can arrive for this request, so this function will return `Ok(())`.
+    ///
+    /// Note that this function will perform a sync if needed to ensure that the
+    /// sequence number will advance beyond that provided in cookie; this is a
+    /// convenience to avoid races in determining whether the sync is needed.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// #   let window: x::Window = conn.generate_id();
+    ///     conn.check_request(conn.send_request_checked(&x::MapWindow { window }))?;
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn check_request(&self, cookie: VoidCookieChecked) -> ProtocolResult<()> {
+        let cookie = xcb_void_cookie_t {
+            seq: cookie.sequence() as u32,
         };
+        let error = unsafe { xcb_request_check(self.c, cookie) };
+        if error.is_null() {
+            Ok(())
+        } else {
+            unsafe {
+                let res = error::resolve_error(error, &self.ext_data);
+                Err(res)
+            }
+        }
+    }
+
+    /// Get the reply of a previous request, or an error if one occured.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    ///     let cookie = conn.send_request(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     });
+    ///     let wm_protocols_atom: x::Atom = conn
+    ///             .wait_for_reply(cookie)?
+    ///             .atom();
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn wait_for_reply<C>(&self, cookie: C) -> Result<C::Reply>
+    where
+        C: CookieWithReplyChecked,
+    {
+        unsafe {
+            let mut error: *mut xcb_generic_error_t = std::ptr::null_mut();
+            let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), &mut error as *mut _);
+            match (reply.is_null(), error.is_null()) {
+                (true, true) => {
+                    self.has_error()?;
+                    unreachable!("xcb_wait_for_reply64 returned null without I/O error");
+                }
+                (true, false) => {
+                    let error = error::resolve_error(error, &self.ext_data);
+                    Err(error.into())
+                }
+                (false, true) => Ok(C::Reply::from_raw(reply as *const u8)),
+                (false, false) => unreachable!("xcb_wait_for_reply64 returned two pointers"),
+            }
+        }
+    }
+
+    /// Get the reply of a previous unchecked request.
+    ///
+    /// If an error occured, `None` is returned and the error will be delivered to the event loop.
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    ///     let cookie = conn.send_request_unchecked(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     });
+    ///     let wm_protocols_atom: Option<x::Atom> = conn
+    ///             .wait_for_reply_unchecked(cookie)?  // connection error may happen
+    ///             .map(|rep| rep.atom());
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn wait_for_reply_unchecked<C>(&self, cookie: C) -> ConnResult<Option<C::Reply>>
+    where
+        C: CookieWithReplyUnchecked,
+    {
+        unsafe {
+            let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), ptr::null_mut());
+            if reply.is_null() {
+                self.has_error()?;
+                Ok(None)
+            } else {
+                Ok(Some(C::Reply::from_raw(reply as *const u8)))
+            }
+        }
+    }
+
+    /// Obtain number of bytes read from the connection.
+    ///
+    /// Returns cumulative number of bytes received from the connection.
+    ///
+    /// This retrieves the total number of bytes read from this connection,
+    /// to be used for diagnostic/monitoring/informative purposes.
+    pub fn total_read(&self) -> usize {
+        unsafe { xcb_total_read(self.c) as usize }
+    }
+
+    /// Obtain number of bytes written to the connection.
+    ///
+    /// Returns cumulative number of bytes sent to the connection.
+    ///
+    /// This retrieves the total number of bytes written to this connection,
+    /// to be used for diagnostic/monitoring/informative purposes.
+    pub fn total_written(&self) -> usize {
+        unsafe { xcb_total_written(self.c) as usize }
     }
 }
 
@@ -703,6 +1555,13 @@ impl AsRawFd for Connection {
 
 impl Drop for Connection {
     fn drop(&mut self) {
+        #[cfg(feature = "debug_atom_names")]
+        if self.dbg_atom_names {
+            unsafe {
+                dan::DAN_CONN = ptr::null_mut();
+            }
+        }
+
         #[cfg(not(feature = "xlib_xcb"))]
         unsafe {
             xcb_disconnect(self.c);
@@ -719,141 +1578,104 @@ impl Drop for Connection {
     }
 }
 
-// Mimics xproto::QueryExtensionReply, but without the Drop trait.
-// Used for Connection::get_extension_data whose returned value
-// must not be freed.
-// Named QueryExtensionData to avoid name collision
-pub struct QueryExtensionData<'a> {
-    ptr: *const xcb_query_extension_reply_t,
-    _marker: PhantomData<&'a ()>,
-}
+#[cfg(feature = "debug_atom_names")]
+mod dan {
+    use super::{Connection, Xid};
+    use crate::ffi::base::xcb_connection_t;
+    use crate::x;
 
-impl<'a> QueryExtensionData<'a> {
-    pub fn present(&self) -> bool {
-        unsafe { (*self.ptr).present != 0 }
-    }
-    pub fn major_opcode(&self) -> u8 {
-        unsafe { (*self.ptr).major_opcode }
-    }
-    pub fn first_event(&self) -> u8 {
-        unsafe { (*self.ptr).first_event }
-    }
-    pub fn first_error(&self) -> u8 {
-        unsafe { (*self.ptr).first_error }
-    }
-}
+    use std::fmt;
+    use std::mem;
+    use std::ptr;
+    use std::str;
 
-pub trait Zero {
-    fn zero() -> Self;
-}
+    pub(crate) static mut DAN_CONN: *mut xcb_connection_t = ptr::null_mut();
 
-impl Zero for u8 {
-    fn zero() -> u8 {
-        0
-    }
-}
-impl Zero for u16 {
-    fn zero() -> u16 {
-        0
-    }
-}
-impl Zero for u32 {
-    fn zero() -> u32 {
-        0
-    }
-}
-impl Zero for u64 {
-    fn zero() -> u64 {
-        0
-    }
-}
-impl Zero for usize {
-    fn zero() -> usize {
-        0
-    }
-}
-impl Zero for i8 {
-    fn zero() -> i8 {
-        0
-    }
-}
-impl Zero for i16 {
-    fn zero() -> i16 {
-        0
-    }
-}
-impl Zero for i32 {
-    fn zero() -> i32 {
-        0
-    }
-}
-impl Zero for i64 {
-    fn zero() -> i64 {
-        0
-    }
-}
-impl Zero for isize {
-    fn zero() -> isize {
-        0
-    }
-}
-impl Zero for f32 {
-    fn zero() -> f32 {
-        0f32
-    }
-}
-impl Zero for f64 {
-    fn zero() -> f64 {
-        0f64
-    }
-}
+    impl fmt::Debug for x::Atom {
+        fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+            let mut write = |name: &str| -> fmt::Result {
+                f.write_fmt(format_args!("Atom(\"{}\" ; {})", name, self.resource_id()))
+            };
+            if let Some(name) = x::predefined_atom_name(*self) {
+                write(name)
+            } else {
+                let conn = unsafe { Connection::from_raw_conn(DAN_CONN) };
 
-/// pack bitfields tuples into vector usable for FFI requests
-/// ```
-///     let values = [
-///         (xcb::CW_EVENT_MASK, xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS),
-///         (xcb::CW_BACK_PIXEL, 0xffffffff),
-///     ];
-///     let ffi_values = (
-///         xcb::CW_BACK_PIXEL | xcb::CW_EVENT_MASK,
-///         [
-///             Oxffffffff,
-///             xcb::EVENT_MASK_EXPOSURE | xcb::EVENT_MASK_KEY_PRESS,
-///             0
-///         ]
-///     );
-///     assert_eq!(pack_bitfield(&mut values), ffi_values);
-/// ```
+                let cookie = conn.send_request(&x::GetAtomName { atom: *self });
+                let reply = conn.wait_for_reply(cookie).map_err(|err| {
+                    eprintln!(
+                        "Error during fmt::Debug of x::Atom (fetching atom name): {:#?}",
+                        err
+                    );
+                    fmt::Error
+                })?;
 
-pub fn pack_bitfield<T, L>(bf: &mut Vec<(T, L)>) -> (T, Vec<L>)
-where
-    T: Ord + Zero + Copy + BitAnd<Output = T> + BitOr<Output = T>,
-    L: Copy,
-{
-    bf.sort_by(|a, b| {
-        let &(a, _) = a;
-        let &(b, _) = b;
-        if a < b {
-            Ordering::Less
-        } else if a > b {
-            Ordering::Greater
-        } else {
-            Ordering::Equal
-        }
-    });
+                let name = reply.name().to_utf8();
+                write(&name)?;
 
-    let mut mask = T::zero();
-    let mut list: Vec<L> = Vec::new();
-
-    for el in bf.iter() {
-        let &(f, v) = el;
-        if mask & f > T::zero() {
-            continue;
-        } else {
-            mask = mask | f;
-            list.push(v);
+                mem::forget(conn);
+                Ok(())
+            }
         }
     }
+}
 
-    (mask, list)
+unsafe fn check_connection_error(conn: *mut xcb_connection_t) -> ConnResult<()> {
+    match xcb_connection_has_error(conn) {
+        0 => Ok(()),
+        XCB_CONN_ERROR => Err(ConnError::Connection),
+        XCB_CONN_CLOSED_EXT_NOTSUPPORTED => Err(ConnError::ClosedExtNotSupported),
+        XCB_CONN_CLOSED_MEM_INSUFFICIENT => Err(ConnError::ClosedMemInsufficient),
+        XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
+        XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
+        XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
+        _ => {
+            log::warn!("XCB: unexpected error code from xcb_connection_has_error");
+            log::warn!("XCB: Default to ConnError::Connection");
+            Err(ConnError::Connection)
+        }
+    }
+}
+
+unsafe fn is_error(ev: *mut xcb_generic_event_t) -> bool {
+    debug_assert!(!ev.is_null());
+    (*ev).response_type == 0
+}
+
+bitflags! {
+    pub(crate) struct RequestFlags: u32 {
+        const NONE = 0;
+        const CHECKED = 1;
+        const RAW = 2;
+        const DISCARD_REPLY = 4;
+        const REPLY_FDS = 8;
+    }
+}
+
+/// Compute the necessary padding after `base` to have `align` alignment
+pub(crate) fn align_pad(base: usize, align: usize) -> usize {
+    debug_assert!(align.is_power_of_two(), "`align` must be a power of two");
+
+    let base = base as isize;
+    let align = align as isize;
+    (-base & (align - 1)) as usize
+}
+
+#[test]
+fn test_align_pad() {
+    // align 1
+    assert_eq!(align_pad(0, 1), 0);
+    assert_eq!(align_pad(1234, 1), 0);
+    assert_eq!(align_pad(1235, 1), 0);
+    // align 2
+    assert_eq!(align_pad(0, 2), 0);
+    assert_eq!(align_pad(1233, 2), 1);
+    assert_eq!(align_pad(1234, 2), 0);
+    // align 4
+    assert_eq!(align_pad(0, 4), 0);
+    assert_eq!(align_pad(12, 4), 0);
+    assert_eq!(align_pad(13, 4), 3);
+    assert_eq!(align_pad(14, 4), 2);
+    assert_eq!(align_pad(15, 4), 1);
+    assert_eq!(align_pad(16, 4), 0);
 }

@@ -1,5 +1,3 @@
-extern crate xcb;
-
 fn main() {
     let dpy = ":0";
     if let Ok((_, _)) = xcb::Connection::connect(Some(&dpy)) {
