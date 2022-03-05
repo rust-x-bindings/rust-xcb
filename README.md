@@ -1,10 +1,3 @@
-## New API in preparation
-
-This is the ReadMe of the versions `0.x` which will soon be deprecated.
-
-`v1.0` is currently in preparation and first beta is released. See branch [v1.0-dev](https://github.com/rust-x-bindings/rust-xcb/tree/v1.0-dev).
-
-
 # Rust XCB
 
 Rust-XCB is a safe Rust interface to [XCB](http://xcb.freedesktop.org).
@@ -17,13 +10,13 @@ xcb = "1.0.0-beta"
 ```
 
 __Documentation__:
-https://rust-x-bindings.github.io/rust-xcb/branches/v1.0-dev/xcb/
+https://rust-x-bindings.github.io/rust-xcb/xcb/
 
 Rust-XCB is constituted of the following components:
  - the core library
  - the X protocol and its extensions
 
-See [CONTRIBUTING.md](https://github.com/rust-x-bindings/rust-xcb/blob/v1.0-dev/CONTRIBUTING.md) for contributions.
+See [CONTRIBUTING.md](https://github.com/rust-x-bindings/rust-xcb/blob/main/CONTRIBUTING.md) for contributions.
 
 ## The core library
 
