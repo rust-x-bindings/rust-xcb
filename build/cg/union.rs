@@ -101,7 +101,7 @@ impl CodeGen {
                     });
                 }
                 ir::Field::Pad(..) => unreachable!("pad in union??"),
-                _ => unreachable!("{:#?}"),
+                f => unreachable!("{:#?}", f),
             }
         }
         (vec, wire_sz, None)

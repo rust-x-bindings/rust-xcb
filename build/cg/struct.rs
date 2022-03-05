@@ -1592,7 +1592,7 @@ impl CodeGen {
                     ..
                 } if r#enum.is_some() || mask.is_some() => {
                     let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                    let ret_q_rs_typ = r#enum.as_ref().or_else(|| mask.as_ref()).unwrap();
+                    let ret_q_rs_typ = r#enum.as_ref().or(mask.as_ref()).unwrap();
                     let ret_q_rs_typ = {
                         let (module, rs_typ) = ret_q_rs_typ;
                         (module, rs_typ).qualified_rs_typ()
@@ -1981,7 +1981,7 @@ impl CodeGen {
                     mask,
                     ..
                 } if rs_typ == "u32" && (r#enum.is_some() || mask.is_some()) => {
-                    let q_rs_typ = r#enum.as_ref().or_else(|| mask.as_ref()).unwrap();
+                    let q_rs_typ = r#enum.as_ref().or(mask.as_ref()).unwrap();
                     let q_rs_typ = {
                         let (module, rs_typ) = q_rs_typ;
                         (module, rs_typ).qualified_rs_typ()
@@ -2567,7 +2567,7 @@ pub(super) fn enum_mask_qualified_rs_typ(
 ) -> String {
     let mod_rs_typ = r#enum
         .as_ref()
-        .or_else(|| mask.as_ref())
+        .or(mask.as_ref())
         .map(|(m, t)| (m.as_ref().map(|m| m.as_str()), t.as_str()))
         .or_else(|| Some((module.as_ref().map(|m| m.as_str()), rs_typ)))
         .unwrap();

@@ -135,9 +135,8 @@ pub(crate) unsafe fn resolve_error(
         (best, emitting_ext)
     };
 
-    let emitted_by;
-    if let Some(ext) = emitting_ext {
-        emitted_by = match ext {
+    let emitted_by = if let Some(ext) = emitting_ext {
+        match ext {
             Extension::BigRequests => crate::bigreq::request_name(minor_code),
             Extension::XcMisc => crate::xc_misc::request_name(minor_code),
 
@@ -224,10 +223,10 @@ pub(crate) unsafe fn resolve_error(
 
             #[cfg(feature = "xvmc")]
             Extension::XvMc => crate::xvmc::request_name(minor_code),
-        };
+        }
     } else {
-        emitted_by = crate::x::request_name(minor_code);
-    }
+        crate::x::request_name(minor_code)
+    };
 
     if let Some(ext_data) = best {
         match ext_data.ext {

@@ -107,12 +107,11 @@ impl CodeGen {
             "pub(crate) fn request_name(opcode: u16) -> std::option::Option<&'static str> {{"
         )?;
         writeln!(out, "{}match opcode {{", cg::ind(1))?;
-        let module;
-        if self.ext_info.is_some() {
-            module = self.xcb_mod.as_str();
+        let module = if self.ext_info.is_some() {
+            self.xcb_mod.as_str()
         } else {
-            module = "x";
-        }
+            "x"
+        };
         for r in &self.requests {
             writeln!(
                 out,

@@ -1075,11 +1075,10 @@ impl CodeGen {
                         } else {
                             None
                         };
-                        let expr;
-                        if let Some(fieldref_value) = fieldref_value {
-                            expr = fieldref_value
+                        let expr = if let Some(fieldref_value) = fieldref_value {
+                            fieldref_value
                         } else {
-                            expr = name.clone() + ".bits()"
+                            name.clone() + ".bits()"
                         };
                         writeln!(
                             out,
