@@ -30,9 +30,6 @@ version = "2.19.0"
 optional = true
 features = ["xlib"]
 
-[package.metadata.docs.rs]
-all-features = true
-
 [features]
 debug_atom_names = []
 xlib_xcb = ["x11/xlib"]
