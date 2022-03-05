@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["cfg_if","libc","log","x11","xcb"];
+window.ALL_CRATES = ["bitflags","cfg_if","libc","log","x11","xcb"];

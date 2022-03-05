@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../xcb/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src&#x2F;lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.png" alt="logo"></a><nav class="sub"><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="18" height="18" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="18" height="18" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -396,11 +398,315 @@
 <span id="396">396</span>
 <span id="397">397</span>
 <span id="398">398</span>
+<span id="399">399</span>
+<span id="400">400</span>
+<span id="401">401</span>
+<span id="402">402</span>
+<span id="403">403</span>
+<span id="404">404</span>
+<span id="405">405</span>
+<span id="406">406</span>
+<span id="407">407</span>
+<span id="408">408</span>
+<span id="409">409</span>
+<span id="410">410</span>
+<span id="411">411</span>
+<span id="412">412</span>
+<span id="413">413</span>
+<span id="414">414</span>
+<span id="415">415</span>
+<span id="416">416</span>
+<span id="417">417</span>
+<span id="418">418</span>
+<span id="419">419</span>
+<span id="420">420</span>
+<span id="421">421</span>
+<span id="422">422</span>
+<span id="423">423</span>
+<span id="424">424</span>
+<span id="425">425</span>
+<span id="426">426</span>
+<span id="427">427</span>
+<span id="428">428</span>
+<span id="429">429</span>
+<span id="430">430</span>
+<span id="431">431</span>
+<span id="432">432</span>
+<span id="433">433</span>
+<span id="434">434</span>
+<span id="435">435</span>
+<span id="436">436</span>
+<span id="437">437</span>
+<span id="438">438</span>
+<span id="439">439</span>
+<span id="440">440</span>
+<span id="441">441</span>
+<span id="442">442</span>
+<span id="443">443</span>
+<span id="444">444</span>
+<span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
+<span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
+<span id="484">484</span>
+<span id="485">485</span>
+<span id="486">486</span>
+<span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
+<span id="543">543</span>
+<span id="544">544</span>
+<span id="545">545</span>
+<span id="546">546</span>
+<span id="547">547</span>
+<span id="548">548</span>
+<span id="549">549</span>
+<span id="550">550</span>
+<span id="551">551</span>
+<span id="552">552</span>
+<span id="553">553</span>
+<span id="554">554</span>
+<span id="555">555</span>
+<span id="556">556</span>
+<span id="557">557</span>
+<span id="558">558</span>
+<span id="559">559</span>
+<span id="560">560</span>
+<span id="561">561</span>
+<span id="562">562</span>
+<span id="563">563</span>
+<span id="564">564</span>
+<span id="565">565</span>
+<span id="566">566</span>
+<span id="567">567</span>
+<span id="568">568</span>
+<span id="569">569</span>
+<span id="570">570</span>
+<span id="571">571</span>
+<span id="572">572</span>
+<span id="573">573</span>
+<span id="574">574</span>
+<span id="575">575</span>
+<span id="576">576</span>
+<span id="577">577</span>
+<span id="578">578</span>
+<span id="579">579</span>
+<span id="580">580</span>
+<span id="581">581</span>
+<span id="582">582</span>
+<span id="583">583</span>
+<span id="584">584</span>
+<span id="585">585</span>
+<span id="586">586</span>
+<span id="587">587</span>
+<span id="588">588</span>
+<span id="589">589</span>
+<span id="590">590</span>
+<span id="591">591</span>
+<span id="592">592</span>
+<span id="593">593</span>
+<span id="594">594</span>
+<span id="595">595</span>
+<span id="596">596</span>
+<span id="597">597</span>
+<span id="598">598</span>
+<span id="599">599</span>
+<span id="600">600</span>
+<span id="601">601</span>
+<span id="602">602</span>
+<span id="603">603</span>
+<span id="604">604</span>
+<span id="605">605</span>
+<span id="606">606</span>
+<span id="607">607</span>
+<span id="608">608</span>
+<span id="609">609</span>
+<span id="610">610</span>
+<span id="611">611</span>
+<span id="612">612</span>
+<span id="613">613</span>
+<span id="614">614</span>
+<span id="615">615</span>
+<span id="616">616</span>
+<span id="617">617</span>
+<span id="618">618</span>
+<span id="619">619</span>
+<span id="620">620</span>
+<span id="621">621</span>
+<span id="622">622</span>
+<span id="623">623</span>
+<span id="624">624</span>
+<span id="625">625</span>
+<span id="626">626</span>
+<span id="627">627</span>
+<span id="628">628</span>
+<span id="629">629</span>
+<span id="630">630</span>
+<span id="631">631</span>
+<span id="632">632</span>
+<span id="633">633</span>
+<span id="634">634</span>
+<span id="635">635</span>
+<span id="636">636</span>
+<span id="637">637</span>
+<span id="638">638</span>
+<span id="639">639</span>
+<span id="640">640</span>
+<span id="641">641</span>
+<span id="642">642</span>
+<span id="643">643</span>
+<span id="644">644</span>
+<span id="645">645</span>
+<span id="646">646</span>
+<span id="647">647</span>
+<span id="648">648</span>
+<span id="649">649</span>
+<span id="650">650</span>
+<span id="651">651</span>
+<span id="652">652</span>
+<span id="653">653</span>
+<span id="654">654</span>
+<span id="655">655</span>
+<span id="656">656</span>
+<span id="657">657</span>
+<span id="658">658</span>
+<span id="659">659</span>
+<span id="660">660</span>
+<span id="661">661</span>
+<span id="662">662</span>
+<span id="663">663</span>
+<span id="664">664</span>
+<span id="665">665</span>
+<span id="666">666</span>
+<span id="667">667</span>
+<span id="668">668</span>
+<span id="669">669</span>
+<span id="670">670</span>
+<span id="671">671</span>
+<span id="672">672</span>
+<span id="673">673</span>
+<span id="674">674</span>
+<span id="675">675</span>
+<span id="676">676</span>
+<span id="677">677</span>
+<span id="678">678</span>
+<span id="679">679</span>
+<span id="680">680</span>
+<span id="681">681</span>
+<span id="682">682</span>
+<span id="683">683</span>
+<span id="684">684</span>
+<span id="685">685</span>
+<span id="686">686</span>
+<span id="687">687</span>
+<span id="688">688</span>
+<span id="689">689</span>
+<span id="690">690</span>
+<span id="691">691</span>
+<span id="692">692</span>
+<span id="693">693</span>
+<span id="694">694</span>
+<span id="695">695</span>
+<span id="696">696</span>
+<span id="697">697</span>
+<span id="698">698</span>
+<span id="699">699</span>
+<span id="700">700</span>
+<span id="701">701</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
  *         Remi Thebault &lt;remi.thebault@gmail.com&gt;
  *         Thomas Bracht Laumann Jespersen &lt;laumann.thomas@gmail.com&gt;
+ * Copyright (c) 2017-2021 Remi Thebault &lt;remi.thebault@gmail.com&gt;
  *
  * Permission is hereby granted, free of charge, to any
  * person obtaining a copy of this software and associated
@@ -429,372 +735,673 @@
 
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
 <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_imports</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_snake_case</span>)]</span>
-<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_unsafe</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_parens</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::len_without_is_empty</span>)]</span>
+<span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::diverging_sub_expression</span>)]</span>
 
 <span class="doccomment">//! Rust bindings to the XCB library.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! The X protocol C-language Binding (XCB - https://xcb.freedesktop.org/) is a</span>
-<span class="doccomment">//! replacement for Xlib featuring a small footprint, latency hiding,</span>
-<span class="doccomment">//! direct access to the protocol, improved threading support, and extensibility.</span>
+<span class="doccomment">//! The X protocol C-language Binding (XCB - &lt;https://xcb.freedesktop.org/&gt;) is</span>
+<span class="doccomment">//! a replacement for Xlib featuring a small footprint, latency hiding, direct</span>
+<span class="doccomment">//! access to the protocol, improved threading support, and extensibility.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The communication is established with the X server by the creation of a</span>
-<span class="doccomment">//! `Connection` object.</span>
+<span class="doccomment">//! [Connection] object.</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! A client communicates with the server by sending requests. There are 2 types</span>
 <span class="doccomment">//! of requests:</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!   - void requests: requests that do not expect an answer (e.g. `ChangeProperty`)</span>
-<span class="doccomment">//!   - non-void requests: requests that need a `Reply` (e.g. `GetProperty`)</span>
+<span class="doccomment">//!   - void requests: requests that do not expect an answer</span>
+<span class="doccomment">//!     (e.g. [x::ChangeProperty])</span>
+<span class="doccomment">//!   - non-void requests: requests that need a `Reply` (e.g. [x::GetProperty])</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! Void requests are normally unchecked. They are issued by the client, that</span>
-<span class="doccomment">//! will normally not do anything else about it. For each such request, it exists</span>
-<span class="doccomment">//! a variant with `_checked` suffix (e.g. `change_property` and `change_property_checked`)</span>
-<span class="doccomment">//! that allows to receive a confirmation reply from the server via</span>
-<span class="doccomment">//! `Connection::request_check`.</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! Conversely, non-void requests are normally checked. When the client retrieves</span>
-<span class="doccomment">//! the `Reply`, it can check for an `Error`. For each such request, it exists a variant</span>
-<span class="doccomment">//! with `_unchecked` suffix (e.g. `get_property` and `get_property_unchecked`).</span>
-<span class="doccomment">//! If this variant is used, the `Reply` is retrieved assuming that there was no error.</span>
+<span class="doccomment">//! Requests are passed to the server by filling a request structure e.g.</span>
+<span class="doccomment">//! [x::CreateWindow] and passing it to [Connection::send_request].</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! The server can also communicate with clients by sending `Event`s.</span>
-<span class="doccomment">//! The client listens to events with calls such as `Connection::wait_for_event`</span>
-<span class="doccomment">//! (blocking) or `Connection::poll_for_event` (non-blocking).</span>
+<span class="doccomment">//! The client listens to events with calls such as [Connection::wait_for_event]</span>
+<span class="doccomment">//! (blocking) or [Connection::poll_for_event] (non-blocking).</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! API documentation is detailed in modules `base` and `xproto`.</span>
+<span class="doccomment">//! The [x] module contains definitions of the core X protocol.</span>
+<span class="doccomment">//! Each extension is defined in its own module such as [xkb] or [render], and</span>
+<span class="doccomment">//! is activated by a cargo feature of the same name.</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//!  - `base`: contains `Connection` and a few utils</span>
-<span class="doccomment">//!  - `xproto`: X protocol requests and events</span>
+<span class="doccomment">//! # Example</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! X protocol extensions are activated with cargo features</span>
+<span class="doccomment">//! Here is a walk-through of a simple `xcb` client.</span>
+<span class="doccomment">//! ```no_run</span>
+<span class="doccomment">//! // we import the necessary modules (only the core X module in this application).</span>
+<span class="doccomment">//! use xcb::{x};</span>
+<span class="doccomment">//! // we need to import the `Xid` trait for the `resource_id` call down there.</span>
+<span class="doccomment">//! use xcb::{Xid};</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! // Many xcb functions return a `xcb::Result` or compatible result.</span>
+<span class="doccomment">//! fn main() -&gt; xcb::Result&lt;()&gt; {</span>
+<span class="doccomment">//!     // Connect to the X server.</span>
+<span class="doccomment">//!     let (conn, screen_num) = xcb::Connection::connect(None)?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // Fetch the `x::Setup` and get the main `x::Screen` object.</span>
+<span class="doccomment">//!     let setup = conn.get_setup();</span>
+<span class="doccomment">//!     let screen = setup.roots().nth(screen_num as usize).unwrap();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // Generate an `Xid` for the client window.</span>
+<span class="doccomment">//!     // The type inference is needed here.</span>
+<span class="doccomment">//!     let window: x::Window = conn.generate_id();</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // We can now create a window. For this we pass a `Request`</span>
+<span class="doccomment">//!     // object to the `send_request_checked` method. The method</span>
+<span class="doccomment">//!     // returns a cookie that will be used to check for success.</span>
+<span class="doccomment">//!     let cookie = conn.send_request_checked(&amp;x::CreateWindow {</span>
+<span class="doccomment">//!         depth: x::COPY_FROM_PARENT as u8,</span>
+<span class="doccomment">//!         wid: window,</span>
+<span class="doccomment">//!         parent: screen.root(),</span>
+<span class="doccomment">//!         x: 0,</span>
+<span class="doccomment">//!         y: 0,</span>
+<span class="doccomment">//!         width: 150,</span>
+<span class="doccomment">//!         height: 150,</span>
+<span class="doccomment">//!         border_width: 0,</span>
+<span class="doccomment">//!         class: x::WindowClass::InputOutput,</span>
+<span class="doccomment">//!         visual: screen.root_visual(),</span>
+<span class="doccomment">//!         // this list must be in same order than `Cw` enum order</span>
+<span class="doccomment">//!         value_list: &amp;[</span>
+<span class="doccomment">//!             x::Cw::BackPixel(screen.white_pixel()),</span>
+<span class="doccomment">//!             x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS)</span>
+<span class="doccomment">//!         ],</span>
+<span class="doccomment">//!     });</span>
+<span class="doccomment">//!     // We now check if the window creation worked.</span>
+<span class="doccomment">//!     // A cookie can&#39;t be cloned; it is moved to the function.</span>
+<span class="doccomment">//!     conn.check_request(cookie)?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // Let&#39;s change the window title</span>
+<span class="doccomment">//!     let cookie = conn.send_request_checked(&amp;x::ChangeProperty {</span>
+<span class="doccomment">//!         mode: x::PropMode::Replace,</span>
+<span class="doccomment">//!         window,</span>
+<span class="doccomment">//!         property: x::ATOM_WM_NAME,</span>
+<span class="doccomment">//!         r#type: x::ATOM_STRING,</span>
+<span class="doccomment">//!         data: b&quot;My XCB Window&quot;,</span>
+<span class="doccomment">//!     });</span>
+<span class="doccomment">//!     // And check for success again</span>
+<span class="doccomment">//!     conn.check_request(cookie);</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // We now show (&quot;map&quot; in X terminology) the window.</span>
+<span class="doccomment">//!     // This time we do not check for success, so we discard the cookie.</span>
+<span class="doccomment">//!     conn.send_request(&amp;x::MapWindow {</span>
+<span class="doccomment">//!         window,</span>
+<span class="doccomment">//!     });</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // We need a few atoms for our application.</span>
+<span class="doccomment">//!     // We send a few requests in a row and wait for the replies after.</span>
+<span class="doccomment">//!     let (wm_protocols, wm_del_window, wm_state, wm_state_maxv, wm_state_maxh) = {</span>
+<span class="doccomment">//!         let cookies = (</span>
+<span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
+<span class="doccomment">//!                 only_if_exists: true,</span>
+<span class="doccomment">//!                 name: b&quot;WM_PROTOCOLS&quot;,</span>
+<span class="doccomment">//!             }),</span>
+<span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
+<span class="doccomment">//!                 only_if_exists: true,</span>
+<span class="doccomment">//!                 name: b&quot;WM_DELETE_WINDOW&quot;,</span>
+<span class="doccomment">//!             }),</span>
+<span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
+<span class="doccomment">//!                 only_if_exists: true,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE&quot;,</span>
+<span class="doccomment">//!             }),</span>
+<span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
+<span class="doccomment">//!                 only_if_exists: true,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_VERT&quot;,</span>
+<span class="doccomment">//!             }),</span>
+<span class="doccomment">//!             conn.send_request(&amp;x::InternAtom {</span>
+<span class="doccomment">//!                 only_if_exists: true,</span>
+<span class="doccomment">//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_HORZ&quot;,</span>
+<span class="doccomment">//!             }),</span>
+<span class="doccomment">//!         );</span>
+<span class="doccomment">//!         (</span>
+<span class="doccomment">//!             conn.wait_for_reply(cookies.0)?.atom(),</span>
+<span class="doccomment">//!             conn.wait_for_reply(cookies.1)?.atom(),</span>
+<span class="doccomment">//!             conn.wait_for_reply(cookies.2)?.atom(),</span>
+<span class="doccomment">//!             conn.wait_for_reply(cookies.3)?.atom(),</span>
+<span class="doccomment">//!             conn.wait_for_reply(cookies.4)?.atom(),</span>
+<span class="doccomment">//!         )</span>
+<span class="doccomment">//!     };</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // We now activate the window close event by sending the following request.</span>
+<span class="doccomment">//!     // If we don&#39;t do this we can still close the window by clicking on the &quot;x&quot; button,</span>
+<span class="doccomment">//!     // but the event loop is notified through a connection shutdown error.</span>
+<span class="doccomment">//!     conn.check_request(conn.send_request_checked(&amp;x::ChangeProperty {</span>
+<span class="doccomment">//!         mode: x::PropMode::Replace,</span>
+<span class="doccomment">//!         window,</span>
+<span class="doccomment">//!         property: wm_protocols,</span>
+<span class="doccomment">//!         r#type: x::ATOM_ATOM,</span>
+<span class="doccomment">//!         data: &amp;[wm_del_window],</span>
+<span class="doccomment">//!     }))?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // Previous request was checked, so a flush is not necessary in this case.</span>
+<span class="doccomment">//!     // Otherwise, here is how to perform a connection flush.</span>
+<span class="doccomment">//!     conn.flush()?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     let mut maximized = false;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!     // We enter the main event loop</span>
+<span class="doccomment">//!     loop {</span>
+<span class="doccomment">//!         match conn.wait_for_event()? {</span>
+<span class="doccomment">//!             xcb::Event::X(x::Event::KeyPress(ev)) =&gt; {</span>
+<span class="doccomment">//!                 if ev.detail() == 0x3a {</span>
+<span class="doccomment">//!                     // The M key was pressed</span>
+<span class="doccomment">//!                     // (M only on qwerty keyboards. Keymap support is done</span>
+<span class="doccomment">//!                     // with the `xkb` extension and the `xkbcommon-rs` crate)</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!                     // We toggle maximized state, for this we send a message</span>
+<span class="doccomment">//!                     // by building a `x::ClientMessageEvent` with the proper</span>
+<span class="doccomment">//!                     // atoms and send it to the server.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!                     let data = x::ClientMessageData::Data32([</span>
+<span class="doccomment">//!                         if maximized { 0 } else { 1 },</span>
+<span class="doccomment">//!                         wm_state_maxv.resource_id(),</span>
+<span class="doccomment">//!                         wm_state_maxh.resource_id(),</span>
+<span class="doccomment">//!                         0,</span>
+<span class="doccomment">//!                         0,</span>
+<span class="doccomment">//!                     ]);</span>
+<span class="doccomment">//!                     let event = x::ClientMessageEvent::new(window, wm_state, data);</span>
+<span class="doccomment">//!                     let cookie = conn.send_request_checked(&amp;x::SendEvent {</span>
+<span class="doccomment">//!                         propagate: false,</span>
+<span class="doccomment">//!                         destination: x::SendEventDest::Window(screen.root()),</span>
+<span class="doccomment">//!                         event_mask: x::EventMask::STRUCTURE_NOTIFY,</span>
+<span class="doccomment">//!                         event: &amp;event,</span>
+<span class="doccomment">//!                     });</span>
+<span class="doccomment">//!                     conn.check_request(cookie)?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!                     // Same as before, if we don&#39;t check for error, we have to flush</span>
+<span class="doccomment">//!                     // the connection.</span>
+<span class="doccomment">//!                     // conn.flush()?;</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!                     maximized = !maximized;</span>
+<span class="doccomment">//!                 } else if ev.detail() == 0x18 {</span>
+<span class="doccomment">//!                     // Q (on qwerty)</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//!                     // We exit the event loop (and the program)</span>
+<span class="doccomment">//!                     break Ok(());</span>
+<span class="doccomment">//!                 }</span>
+<span class="doccomment">//!             }</span>
+<span class="doccomment">//!             xcb::Event::X(x::Event::ClientMessage(ev)) =&gt; {</span>
+<span class="doccomment">//!                 // We have received a message from the server</span>
+<span class="doccomment">//!                 if let x::ClientMessageData::Data32([atom, ..]) = ev.data() {</span>
+<span class="doccomment">//!                     if atom == wm_del_window.resource_id() {</span>
+<span class="doccomment">//!                         // The received atom is &quot;WM_DELETE_WINDOW&quot;.</span>
+<span class="doccomment">//!                         // We can check here if the user needs to save before</span>
+<span class="doccomment">//!                         // exit, or in our case, exit right away.</span>
+<span class="doccomment">//!                         break Ok(());</span>
+<span class="doccomment">//!                     }</span>
+<span class="doccomment">//!                 }</span>
+<span class="doccomment">//!             }</span>
+<span class="doccomment">//!             _ =&gt; {}</span>
+<span class="doccomment">//!         }</span>
+<span class="doccomment">//!     }</span>
+<span class="doccomment">//! }</span>
+<span class="doccomment">//! ```</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! # Cargo features</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The following Cargo features are available</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## `xlib_xcb`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! This feature activates the use of `xlib::Display` to connect to XCB, therefore making</span>
+<span class="doccomment">//! available both Xlib and XCB functions to the same connection.</span>
+<span class="doccomment">//! While XCB is sufficient to handle all communication with the X server, some things can</span>
+<span class="doccomment">//! still only be done by Xlib. E.g. hardware initialization for OpenGL is done by Xlib only.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## `debug_atom_names`</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! When this feature is activated, the `fmt::Debug` implementation for `x::Atom` will print</span>
+<span class="doccomment">//! out the name of the atom in addition to its value.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! E.g. the feature would turn `Atom { res_id: 303 }` into `Atom(&quot;Abs Pressure&quot; ; 303)`.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! This can be useful in situations where you are not sure which atom you have to intern</span>
+<span class="doccomment">//! in order to look up some data in a reply.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! It should be noted that the feature sets global variable to have access to</span>
+<span class="doccomment">//! the connection in the `fmt::Debug` implementation, and that the `Debug` print</span>
+<span class="doccomment">//! have side effects (`x::GetAtomName` requests) which can sometimes not be desirable.</span>
+<span class="doccomment">//! The feature should therefore only be activated when needed.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! ## Extension features</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! The following X extensions are activated by a cargo feature:</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! | Extension name                | Cargo feature |</span>
+<span class="doccomment">//! |-------------------------------|---------------|</span>
+<span class="doccomment">//! | `Composite`                   | `composite`   |</span>
+<span class="doccomment">//! | `DAMAGE`                      | `damage`      |</span>
+<span class="doccomment">//! | `DPMS`                        | `dpms`        |</span>
+<span class="doccomment">//! | `DRI2`                        | `dri2`        |</span>
+<span class="doccomment">//! | `DRI3`                        | `dri3`        |</span>
+<span class="doccomment">//! | `Generic Event Extension`     | `ge`          |</span>
+<span class="doccomment">//! | `GLX`                         | `glx`         |</span>
+<span class="doccomment">//! | `Present`                     | `present`     |</span>
+<span class="doccomment">//! | `RANDR`                       | `randr`       |</span>
+<span class="doccomment">//! | `RECORD`                      | `record`      |</span>
+<span class="doccomment">//! | `RENDER`                      | `render`      |</span>
+<span class="doccomment">//! | `X-Resource`                  | `res`         |</span>
+<span class="doccomment">//! | `MIT-SCREEN-SAVER`            | `screensaver` |</span>
+<span class="doccomment">//! | `SHAPE`                       | `shape`       |</span>
+<span class="doccomment">//! | `MIT-SHM`                     | `shm`         |</span>
+<span class="doccomment">//! | `SYNC`                        | `sync`        |</span>
+<span class="doccomment">//! | `XEVIE`                       | `xevie`       |</span>
+<span class="doccomment">//! | `XFree86-DRI`                 | `xf86dri`     |</span>
+<span class="doccomment">//! | `XFree86-VidModeExtension`    | `xf86vidmode` |</span>
+<span class="doccomment">//! | `XFIXES`                      | `xfixes`      |</span>
+<span class="doccomment">//! | `XINERAMA`                    | `xinerama`    |</span>
+<span class="doccomment">//! | `XInputExtension`             | `xinput`      |</span>
+<span class="doccomment">//! | `XKEYBOARD`                   | `xkb`         |</span>
+<span class="doccomment">//! | `XpExtension`                 | `xprint`      |</span>
+<span class="doccomment">//! | `SELinux`                     | `xselinux`    |</span>
+<span class="doccomment">//! | `TEST`                        | `xtest`       |</span>
+<span class="doccomment">//! | `XVideo`                      | `xv`          |</span>
+<span class="doccomment">//! | `XVideo-MotionCompensation`   | `xvmc`        |</span>
 
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">libc</span>;
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">x11</span>;
+<span class="kw">mod</span> <span class="ident">base</span>;
+<span class="kw">mod</span> <span class="ident">error</span>;
+<span class="kw">mod</span> <span class="ident">event</span>;
+<span class="kw">mod</span> <span class="ident">ext</span>;
+<span class="kw">mod</span> <span class="ident">lat1_str</span>;
 
-<span class="attribute">#[<span class="ident">macro_use</span>]</span>
-<span class="kw">extern</span> <span class="kw">crate</span> <span class="ident">log</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">error</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">event</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">lat1_str</span>::<span class="kw-2">*</span>;
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">base</span>;
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x</span> {
+    <span class="doccomment">//! The core X protocol definitions</span>
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xproto</span> {
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xproto</span>::<span class="kw-2">*</span>;
+}
+
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ffi</span> {
+    <span class="doccomment">//! Module for Foreign Function Interface bindings.</span>
+
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">improper_ctypes</span>)]</span>
+
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">base</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">ext</span>;
+
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod</span> <span class="ident">xlib_xcb</span>;
+
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ext</span>::<span class="kw-2">*</span>;
+
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">xlib_xcb</span>::<span class="kw-2">*</span>;
+}
+
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
+<span class="kw">mod</span> <span class="ident">test</span>;
+
+<span class="kw">mod</span> <span class="ident">xproto</span> {
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::new_ret_no_self</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
+
+    <span class="doccomment">/// `COPY_FROM_PARENT` can be used for many `CreateWindow` fields</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">COPY_FROM_PARENT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// `CURRENT_TIME` can be used in most requests that take a `Timestamp`</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CURRENT_TIME</span>: <span class="ident">Timestamp</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// `NO_SYMBOL` fills in unused entries in `Keysym` tables</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">NO_SYMBOL</span>: <span class="ident">Keysym</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// `GRAB_ANY` can be used in various requests such as `GrabKey`, `UngrabKey`, `xinput::GrabDeviceKey`...</span>
+    <span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GRAB_ANY</span>: <span class="ident">Keycode</span> <span class="op">=</span> <span class="number">0</span>;
+
+    <span class="doccomment">/// Trait for element in a property list</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In events (e.g. `GetProperty::value`), it allows to assert that the format</span>
+    <span class="doccomment">/// correspond to the type cast and therefore to do the cast safely at runtime.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// In request (e.g. `ChangeProperty::data`), it allows to infer the format value</span>
+    <span class="doccomment">/// from the type of passed data.</span>
+    <span class="kw">pub</span> <span class="kw">trait</span> <span class="ident">PropEl</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u8</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">8</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u16</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">16</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">u32</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">Atom</span> {
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    }
+
+    <span class="kw">impl</span> <span class="ident">PropEl</span> <span class="kw">for</span> <span class="ident">Window</span> {
+        <span class="comment">// _NET_CLIENT_LIST returns a list of windows</span>
+        <span class="kw">const</span> <span class="ident">FORMAT</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">32</span>;
+    }
+
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xproto.rs&quot;</span>));
 }
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">big_requests</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/big_requests.rs&quot;</span>));
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">bigreq</span> {
+    <span class="doccomment">//! The `BIG-REQUESTS` extension.</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/bigreq.rs&quot;</span>));
 }
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xc_misc</span> {
+    <span class="doccomment">//! The `XC-MISC` extension.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xc_misc.rs&quot;</span>));
 }
 
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">base</span>::<span class="kw-2">*</span>;
-<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">xproto</span>::<span class="kw-2">*</span>;
-
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">composite</span> {
+    <span class="doccomment">//! The `Composite` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `composite` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/composite.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">damage</span> {
+    <span class="doccomment">//! The `DAMAGE` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `damage` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/damage.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dpms</span> {
+    <span class="doccomment">//! The `DPMS` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `dpms` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dpms.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dri2</span> {
+    <span class="doccomment">//! The `DRI2` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `dri2` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dri2.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dri3</span> {
+    <span class="doccomment">//! The `DRI3` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `dri3` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dri3.rs&quot;</span>));
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;genericevent&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">genericevent</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/genericevent.rs&quot;</span>));
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ge</span> {
+    <span class="doccomment">//! The `Generic Event Extension` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `ge` cargo feature.</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ge.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">glx</span> {
+    <span class="doccomment">//! The `GLX` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `glx` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/glx.rs&quot;</span>));
 }
 
-<span class="comment">// #[cfg(feature = &quot;input&quot;)]</span>
-<span class="comment">// pub mod input {</span>
-<span class="comment">//     include!(concat!(env!(&quot;OUT_DIR&quot;), &quot;/input.rs&quot;));</span>
-<span class="comment">// }</span>
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xinput</span> {
+    <span class="doccomment">//! The `XInputExtension` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xinput` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_mut</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
+
+    <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Device</span> {
+        <span class="ident">All</span>,
+        <span class="ident">AllMaster</span>,
+        <span class="ident">Id</span>(<span class="ident">u16</span>),
+    }
+
+    <span class="kw">impl</span> <span class="ident">Device</span> {
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_id</span>(<span class="ident">id</span>: <span class="ident">u16</span>) -&gt; <span class="self">Self</span> {
+            <span class="kw">match</span> <span class="ident">id</span> {
+                <span class="number">0</span> =&gt; <span class="ident">Device::All</span>,
+                <span class="number">1</span> =&gt; <span class="ident">Device::AllMaster</span>,
+                <span class="ident">id</span> =&gt; <span class="ident">Device::Id</span>(<span class="ident">id</span>),
+            }
+        }
+
+        <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">id</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
+            <span class="kw">match</span> <span class="self">self</span> {
+                <span class="ident">Device::All</span> =&gt; <span class="number">0</span>,
+                <span class="ident">Device::AllMaster</span> =&gt; <span class="number">1</span>,
+                <span class="ident">Device::Id</span>(<span class="ident">id</span>) =&gt; <span class="kw-2">*</span><span class="ident">id</span>,
+            }
+        }
+    }
+
+    <span class="kw">impl</span> <span class="ident">WiredOut</span> <span class="kw">for</span> <span class="ident">Device</span> {
+        <span class="kw">fn</span> <span class="ident">wire_len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
+            <span class="number">2</span>
+        }
+        <span class="kw">fn</span> <span class="ident">serialize</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">wire_buf</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">u8</span>]) -&gt; <span class="ident">usize</span> {
+            <span class="macro">assert!</span>(<span class="ident">wire_buf</span>.<span class="ident">len</span>() <span class="op">&gt;</span><span class="op">=</span> <span class="number">2</span>);
+            <span class="kw">unsafe</span> {
+                <span class="kw-2">*</span>(<span class="ident">wire_buf</span>.<span class="ident">as_mut_ptr</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">u16</span>) <span class="op">=</span> <span class="self">self</span>.<span class="ident">id</span>();
+            }
+            <span class="number">2</span>
+        }
+    }
+
+    <span class="kw">impl</span> <span class="ident">WiredIn</span> <span class="kw">for</span> <span class="ident">Device</span> {
+        <span class="kw">type</span> <span class="ident">Params</span> <span class="op">=</span> ();
+        <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">compute_wire_len</span>(<span class="ident">_ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">_params</span>: ()) -&gt; <span class="ident">usize</span> {
+            <span class="number">2</span>
+        }
+        <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">unserialize</span>(<span class="ident">ptr</span>: <span class="kw-2">*const</span> <span class="ident">u8</span>, <span class="ident">params</span>: <span class="ident"><span class="self">Self</span>::Params</span>, <span class="ident">offset</span>: <span class="kw-2">&amp;mut</span> <span class="ident">usize</span>) -&gt; <span class="self">Self</span> {
+            <span class="kw-2">*</span><span class="ident">offset</span> <span class="op">=</span> <span class="number">2</span>;
+            <span class="kw">let</span> <span class="ident">id</span> <span class="op">=</span> <span class="kw-2">*</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*const</span> <span class="ident">u16</span>);
+            <span class="ident">Device::from_id</span>(<span class="ident">id</span>)
+        }
+    }
+
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xinput.rs&quot;</span>));
+}
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">present</span> {
+    <span class="doccomment">//! The `Present` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `present` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/present.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">randr</span> {
+    <span class="doccomment">//! The `RANDR` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `randr` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/randr.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">record</span> {
+    <span class="doccomment">//! The `RECORD` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `record` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/record.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">render</span> {
+    <span class="doccomment">//! The `RENDER` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `render` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/render.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">res</span> {
+    <span class="doccomment">//! The `X-Resource` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `res` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/res.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">screensaver</span> {
+    <span class="doccomment">//! The `MIT-SCREEN-SAVER` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `screensaver` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/screensaver.rs&quot;</span>));
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;selinux&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">selinux</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/selinux.rs&quot;</span>));
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xselinux</span> {
+    <span class="doccomment">//! The `SELinux` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xselinux` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xselinux.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shape</span> {
+    <span class="doccomment">//! The `SHAPE` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `shape` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/shape.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shm</span> {
+    <span class="doccomment">//! The `MIT-SHM` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `shm` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/shm.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sync</span> {
+    <span class="doccomment">//! The `SYNC` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `sync` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/sync.rs&quot;</span>));
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;test&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">test</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/test.rs&quot;</span>));
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xtest</span> {
+    <span class="doccomment">//! The `XTEST` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xtest` cargo feature.</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xtest.rs&quot;</span>));
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;x_print&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x_print</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/x_print.rs&quot;</span>));
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xprint</span> {
+    <span class="doccomment">//! The `XpExtension` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xprint` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xprint.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xevie</span> {
+    <span class="doccomment">//! The `XEVIE` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xevie` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xevie.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xf86dri</span> {
+    <span class="doccomment">//! The `XFree86-DRI` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xf86dri` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xf86dri.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xf86vidmode</span> {
+    <span class="doccomment">//! The `XFree86-VidModeExtension` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xf86vidmode` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xf86vidmode.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xfixes</span> {
+    <span class="doccomment">//! The `XFIXES` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xfixes` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xfixes.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xinerama</span> {
+    <span class="doccomment">//! The `XINERAMA` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xinerama` cargo feature.</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xinerama.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xkb</span> {
+    <span class="doccomment">//! The `XKEYBOARD` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xkb` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">unused_variables</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xkb.rs&quot;</span>));
-}
-
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xvmc</span> {
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xvmc.rs&quot;</span>));
 }
 
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
 <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xv</span> {
+    <span class="doccomment">//! The `XVideo` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xv` cargo feature.</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::unit_arg</span>)]</span>
+    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">clippy::too_many_arguments</span>)]</span>
     <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xv.rs&quot;</span>));
 }
 
-<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ffi</span> {
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">non_camel_case_types</span>)]</span>
-    <span class="attribute">#![<span class="ident">allow</span>(<span class="ident">improper_ctypes</span>)]</span>
-
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">base</span>;
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">ext</span>;
-
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xproto</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xproto.rs&quot;</span>));
-    }
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">big_requests</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/big_requests.rs&quot;</span>));
-    }
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xc_misc</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xc_misc.rs&quot;</span>));
-    }
-
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi::base</span>::<span class="kw-2">*</span>;
-    <span class="kw">pub</span> <span class="kw">use</span> <span class="ident">ffi::xproto</span>::<span class="kw-2">*</span>;
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xlib_xcb</span>;
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">composite</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/composite.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">damage</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/damage.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dpms</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/dpms.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dri2</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/dri2.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">dri3</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/dri3.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;genericevent&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">genericevent</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/genericevent.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">glx</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/glx.rs&quot;</span>));
-    }
-
-    <span class="comment">// #[cfg(feature = &quot;input&quot;)]</span>
-    <span class="comment">// pub mod input {</span>
-    <span class="comment">//     include!(concat!(env!(&quot;OUT_DIR&quot;), &quot;/ffi/input.rs&quot;));</span>
-    <span class="comment">// }</span>
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">present</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/present.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">randr</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/randr.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">record</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/record.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">render</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/render.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">res</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/res.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">screensaver</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/screensaver.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;selinux&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">selinux</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/selinux.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shape</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/shape.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">shm</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/shm.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">sync</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/sync.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;test&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">test</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/test.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;x_print&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">x_print</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/x_print.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xevie</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xevie.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xf86dri</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xf86dri.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xf86vidmode</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xf86vidmode.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xfixes</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xfixes.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xinerama</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xinerama.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xkb</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xkb.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xvmc</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xvmc.rs&quot;</span>));
-    }
-
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xv</span> {
-        <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ffi/xv.rs&quot;</span>));
-    }
+<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">mod</span> <span class="ident">xvmc</span> {
+    <span class="doccomment">//! The `XVideo-MotionCompensation` X extension.</span>
+    <span class="doccomment">//!</span>
+    <span class="doccomment">//! Accessible with the `xvmc` cargo feature.</span>
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xvmc.rs&quot;</span>));
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div>
-    <script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.59.0 (9d1b2106e 2022-02-23)" ></div>
 </body></html>

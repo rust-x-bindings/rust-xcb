@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["MAJOR_VERSION",""],["MINOR_VERSION",""],["QUERY_VERSION",""]],"fn":[["id",""],["query_version",""],["query_version_unchecked",""]],"type":[["QueryVersionCookie",""],["QueryVersionReply",""]]});
