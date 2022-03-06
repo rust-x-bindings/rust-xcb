@@ -354,6 +354,8 @@ mod xproto {
     /// `GRAB_ANY` can be used in various requests such as `GrabKey`, `UngrabKey`, `xinput::GrabDeviceKey`...
     pub const GRAB_ANY: Keycode = 0;
 
+    pub const ATOM_ANY: Atom = Atom { res_id: 0 };
+
     /// Trait for element in a property list
     ///
     /// In events (e.g. `GetProperty::value`), it allows to assert that the format
