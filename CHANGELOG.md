@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased-WIP]
+## [1.0.0] - 2022-03-06 - rtbo
 - new 1.0 API
   - implement the extensions in RUST directly (no need to link to C extension libraries)
   - XCB resolves protocol events and errors to safe enumerations
@@ -14,9 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - `bitflags` masks
   - `debug_atom_names` feature
   - improvements of the `Debug` implementations
-  - many, many other improvement and fixes
+  - many, many other improvement and fixes, (~90% of github issues are resolved)
 - support for xcb-1.14
 - support for xinput extension
+- get rid of the `log` dependency
 
 ## [0.10.1] - 2021-09-23 - rtbo
 - fix some code generation affecting the `present` extension
