@@ -1458,6 +1458,27 @@ impl Connection {
         }
     }
 
+    /// Send the request to the server and check it
+    ///
+    /// This is a sugar for `conn.check_request(conn.send_request_checked(req))`
+    ///
+    /// # Example
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// #   let window: x::Window = conn.generate_id();
+    ///     conn.send_and_check_request(&x::MapWindow { window })?;
+    /// #   Ok(())
+    /// # }
+    /// ```
+    pub fn send_and_check_request<R>(&self, req: &R) -> ProtocolResult<()>
+    where
+        R: RequestWithoutReply,
+    {
+        self.check_request(self.send_request_checked(req))
+    }
+
     /// Get the reply of a previous request, or an error if one occured.
     ///
     /// # Example

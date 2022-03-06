@@ -69,13 +69,13 @@ fn main() -> xcb::Result<()> {
 
     // activate the sending of close event through `x::Event::ClientMessage`
     // either the request must be checked as follow, or conn.flush() must be called before entering the loop
-    conn.check_request(conn.send_request_checked(&x::ChangeProperty {
+    conn.send_and_check_request(&x::ChangeProperty {
         mode: x::PropMode::Replace,
         window,
         property: atoms.wm_protocols,
         r#type: x::ATOM_ATOM,
         data: &[atoms.wm_del_window],
-    }))?;
+    })?;
 
     let mut maximized = false;
 
