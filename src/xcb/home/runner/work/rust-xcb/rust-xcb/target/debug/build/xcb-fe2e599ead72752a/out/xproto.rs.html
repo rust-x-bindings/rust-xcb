@@ -26585,7 +26585,7 @@
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="self">self</span>, <span class="ident">iovec</span>};
 <span class="kw">use</span> <span class="ident">std::convert::TryInto</span>;
 <span class="kw">use</span> <span class="ident">std::hash</span>::{<span class="ident">Hash</span>, <span class="ident">Hasher</span>};
-<span class="kw">use</span> <span class="ident">std::os::unix::prelude::RawFd</span>;
+<span class="kw">use</span> <span class="ident">std::os::unix::io::RawFd</span>;
 
 <span class="doccomment">/// The `RequestError` error.</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">RequestError</span> {
