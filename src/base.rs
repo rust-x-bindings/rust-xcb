@@ -531,6 +531,8 @@ pub enum ConnError {
     /// Connection closed because the server does not have a screen
     /// matching the display.
     ClosedInvalidScreen,
+    /// Connection closed because some file descriptor passing operation failed.
+    ClosedFdPassingFailed,
 }
 
 impl ConnError {
@@ -545,6 +547,9 @@ impl ConnError {
             ConnError::ClosedParseErr => "Connection closed, error during parsing display string",
             ConnError::ClosedInvalidScreen => {
                 "Connection closed, the server does not have a screen matching the display"
+            }
+            ConnError::ClosedFdPassingFailed => {
+                "Connection closed, some file descriptor passing operation failed"
             }
         }
     }
@@ -1629,11 +1634,8 @@ unsafe fn check_connection_error(conn: *mut xcb_connection_t) -> ConnResult<()> 
         XCB_CONN_CLOSED_REQ_LEN_EXCEED => Err(ConnError::ClosedReqLenExceed),
         XCB_CONN_CLOSED_PARSE_ERR => Err(ConnError::ClosedParseErr),
         XCB_CONN_CLOSED_INVALID_SCREEN => Err(ConnError::ClosedInvalidScreen),
-        _ => {
-            log::warn!("XCB: unexpected error code from xcb_connection_has_error");
-            log::warn!("XCB: Default to ConnError::Connection");
-            Err(ConnError::Connection)
-        }
+        XCB_CONN_CLOSED_FDPASSING_FAILED => Err(ConnError::ClosedFdPassingFailed),
+        code => unreachable!("unexpected error code from XCB: {}", code),
     }
 }
 
