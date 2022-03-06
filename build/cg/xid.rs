@@ -54,7 +54,7 @@ impl CodeGen {
         };
 
         writeln!(out)?;
-        writeln!(out, "#[derive(Copy, Clone, {}PartialEq, Eq)]", dbg)?;
+        writeln!(out, "#[derive(Copy, Clone, {}PartialEq, Eq, Hash)]", dbg)?;
         writeln!(out, "#[repr(C)]")?;
         writeln!(out, "pub struct {} {{", rs_typ)?;
         writeln!(out, "    res_id: u32,")?;
@@ -140,6 +140,12 @@ impl CodeGen {
         writeln!(out, "}}")?;
         writeln!(out)?;
         writeln!(out, "impl Eq for {} {{}}", rs_typ)?;
+        writeln!(out)?;
+        writeln!(out, "impl Hash for {} {{", rs_typ)?;
+        writeln!(out, "    fn hash<H: Hasher>(&self, state: &mut H) {{")?;
+        writeln!(out, "        self.resource_id().hash(state);")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
 
         for v in variants {
             let variant = if v.variant == "XprotoWindow" {
