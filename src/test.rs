@@ -160,3 +160,24 @@ fn test_cw_is_sorted_distinct() {
         x::Cw::BitGravity(x::Gravity::Center),
     ]));
 }
+
+#[test]
+fn atom_hashmap() {
+    use std::collections::HashMap;
+
+    let map = {
+        let mut map = HashMap::new();
+        map.insert(x::ATOM_ATOM, "Atom");
+        map.insert(x::ATOM_CURSOR, "Cursor");
+        map.insert(x::ATOM_PIXMAP, "Pixmap");
+        map.insert(x::ATOM_STRING, "String");
+        map.insert(x::ATOM_WINDOW, "Window");
+        map
+    };
+
+    assert_eq!(map.get(&x::ATOM_ATOM), Some(&"Atom"));
+    assert_eq!(map.get(&x::ATOM_CURSOR), Some(&"Cursor"));
+    assert_eq!(map.get(&x::ATOM_PIXMAP), Some(&"Pixmap"));
+    assert_eq!(map.get(&x::ATOM_STRING), Some(&"String"));
+    assert_eq!(map.get(&x::ATOM_WINDOW), Some(&"Window"));
+}
