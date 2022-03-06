@@ -490,7 +490,7 @@ impl CodeGen {
         writeln!(out, "use libc::{{self, iovec}};")?;
         writeln!(out, "use std::convert::TryInto;")?;
         writeln!(out, "use std::hash::{{Hash, Hasher}};")?;
-        writeln!(out, "use std::os::unix::prelude::RawFd;")?;
+        writeln!(out, "use std::os::unix::io::RawFd;")?;
 
         if let Some(ext_info) = self.ext_info.as_ref() {
             writeln!(out)?;
