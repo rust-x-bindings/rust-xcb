@@ -17,7 +17,6 @@ edition = "2018"
 all-features = true
 
 [build-dependencies]
-libc = "0.2.102"
 quick-xml = "0.22.0"
 
 [dependencies]
