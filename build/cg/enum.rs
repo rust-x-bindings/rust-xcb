@@ -160,10 +160,6 @@ impl CodeGen {
             writeln!(out, "}}")?;
         }
 
-        if self.xcb_mod == "xproto" && rs_typ == "AtomEnum" && self.dbg_atom_names {
-            self.emit_predefined_atom_names(out, items)?;
-        }
-
         Ok(())
     }
     fn emit_send_event_dest<O: Write>(
@@ -218,30 +214,6 @@ impl CodeGen {
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
-        Ok(())
-    }
-
-    fn emit_predefined_atom_names<O: Write>(
-        &self,
-        out: &mut O,
-        items: &[(String, u32, Option<String>)],
-    ) -> io::Result<()> {
-        writeln!(out)?;
-        writeln!(
-            out,
-            "/// Get the name of an Atom if it is in the predefined list"
-        )?;
-        writeln!(
-            out,
-            "pub(crate) fn predefined_atom_name(atom: Atom) -> Option<&'static str> {{"
-        )?;
-        writeln!(out, "{}match atom.resource_id() {{", cg::ind(1))?;
-        for item in items {
-            writeln!(out, "{}{} => Some(\"{}\"),", cg::ind(2), item.1, item.0)?;
-        }
-        writeln!(out, "{}_ => None,", cg::ind(2))?;
-        writeln!(out, "{}}}", cg::ind(1))?;
-        writeln!(out, "}}")?;
         Ok(())
     }
 
