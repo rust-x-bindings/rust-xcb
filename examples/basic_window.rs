@@ -1,5 +1,15 @@
 use xcb::{x, Xid};
 
+xcb::atoms_struct!(
+    struct Atoms {
+        wm_protocols    => b"WM_PROTOCOLS",
+        wm_del_window   => b"WM_DELETE_WINDOW",
+        wm_state        => b"_NET_WM_STATE",
+        wm_state_maxv   => b"_NET_WM_STATE_MAXIMIZED_VERT",
+        wm_state_maxh   => b"_NET_WM_STATE_MAXIMIZED_HORZ",
+    }
+);
+
 fn main() -> xcb::Result<()> {
     let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
     let setup = conn.get_setup();
@@ -55,46 +65,16 @@ fn main() -> xcb::Result<()> {
     assert_eq!(reply.value::<u8>(), title.as_bytes());
 
     // retrieving a few atoms
-    let (wm_protocols, wm_del_window, wm_state, wm_state_maxv, wm_state_maxh) = {
-        let cookies = (
-            conn.send_request(&x::InternAtom {
-                only_if_exists: true,
-                name: b"WM_PROTOCOLS",
-            }),
-            conn.send_request(&x::InternAtom {
-                only_if_exists: true,
-                name: b"WM_DELETE_WINDOW",
-            }),
-            conn.send_request(&x::InternAtom {
-                only_if_exists: true,
-                name: b"_NET_WM_STATE",
-            }),
-            conn.send_request(&x::InternAtom {
-                only_if_exists: true,
-                name: b"_NET_WM_STATE_MAXIMIZED_VERT",
-            }),
-            conn.send_request(&x::InternAtom {
-                only_if_exists: true,
-                name: b"_NET_WM_STATE_MAXIMIZED_HORZ",
-            }),
-        );
-        (
-            conn.wait_for_reply(cookies.0)?.atom(),
-            conn.wait_for_reply(cookies.1)?.atom(),
-            conn.wait_for_reply(cookies.2)?.atom(),
-            conn.wait_for_reply(cookies.3)?.atom(),
-            conn.wait_for_reply(cookies.4)?.atom(),
-        )
-    };
+    let atoms = Atoms::intern_all(&conn)?;
 
     // activate the sending of close event through `x::Event::ClientMessage`
     // either the request must be checked as follow, or conn.flush() must be called before entering the loop
     conn.check_request(conn.send_request_checked(&x::ChangeProperty {
         mode: x::PropMode::Replace,
         window,
-        property: wm_protocols,
+        property: atoms.wm_protocols,
         r#type: x::ATOM_ATOM,
-        data: &[wm_del_window],
+        data: &[atoms.wm_del_window],
     }))?;
 
     let mut maximized = false;
@@ -122,13 +102,13 @@ fn main() -> xcb::Result<()> {
 
                     let data = x::ClientMessageData::Data32([
                         if maximized { 0 } else { 1 },
-                        wm_state_maxv.resource_id(),
-                        wm_state_maxh.resource_id(),
+                        atoms.wm_state_maxv.resource_id(),
+                        atoms.wm_state_maxh.resource_id(),
                         0,
                         0,
                     ]);
 
-                    let event = x::ClientMessageEvent::new(window, wm_state, data);
+                    let event = x::ClientMessageEvent::new(window, atoms.wm_state, data);
 
                     conn.send_request(&x::SendEvent {
                         propagate: false,
@@ -147,7 +127,7 @@ fn main() -> xcb::Result<()> {
             }
             xcb::Event::X(x::Event::ClientMessage(ev)) => {
                 if let x::ClientMessageData::Data32([atom, ..]) = ev.data() {
-                    if atom == wm_del_window.resource_id() {
+                    if atom == atoms.wm_del_window.resource_id() {
                         // window "x" button clicked by user, we gracefully exit
                         break Ok(());
                     }
