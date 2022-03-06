@@ -1681,6 +1681,8 @@
 <span id="1679">1679</span>
 <span id="1680">1680</span>
 <span id="1681">1681</span>
+<span id="1682">1682</span>
+<span id="1683">1683</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2214,6 +2216,8 @@
     <span class="doccomment">/// Connection closed because the server does not have a screen</span>
     <span class="doccomment">/// matching the display.</span>
     <span class="ident">ClosedInvalidScreen</span>,
+    <span class="doccomment">/// Connection closed because some file descriptor passing operation failed.</span>
+    <span class="ident">ClosedFdPassingFailed</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ConnError</span> {
@@ -2228,6 +2232,9 @@
             <span class="ident">ConnError::ClosedParseErr</span> =&gt; <span class="string">&quot;Connection closed, error during parsing display string&quot;</span>,
             <span class="ident">ConnError::ClosedInvalidScreen</span> =&gt; {
                 <span class="string">&quot;Connection closed, the server does not have a screen matching the display&quot;</span>
+            }
+            <span class="ident">ConnError::ClosedFdPassingFailed</span> =&gt; {
+                <span class="string">&quot;Connection closed, some file descriptor passing operation failed&quot;</span>
             }
         }
     }
@@ -3312,11 +3319,8 @@
         <span class="ident">XCB_CONN_CLOSED_REQ_LEN_EXCEED</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ConnError::ClosedReqLenExceed</span>),
         <span class="ident">XCB_CONN_CLOSED_PARSE_ERR</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ConnError::ClosedParseErr</span>),
         <span class="ident">XCB_CONN_CLOSED_INVALID_SCREEN</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ConnError::ClosedInvalidScreen</span>),
-        <span class="kw">_</span> =&gt; {
-            <span class="macro">log::warn!</span>(<span class="string">&quot;XCB: unexpected error code from xcb_connection_has_error&quot;</span>);
-            <span class="macro">log::warn!</span>(<span class="string">&quot;XCB: Default to ConnError::Connection&quot;</span>);
-            <span class="prelude-val">Err</span>(<span class="ident">ConnError::Connection</span>)
-        }
+        <span class="ident">XCB_CONN_CLOSED_FDPASSING_FAILED</span> =&gt; <span class="prelude-val">Err</span>(<span class="ident">ConnError::ClosedFdPassingFailed</span>),
+        <span class="ident">code</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;unexpected error code from XCB: {}&quot;</span>, <span class="ident">code</span>),
     }
 }
 
