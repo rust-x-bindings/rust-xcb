@@ -403,12 +403,13 @@ mod xproto {
 /// # Example
 /// ```no_run
 /// # use xcb::x;
-/// xcb::atoms_struct!(
+/// xcb::atoms_struct! {
+///     #[derive(Copy, Clone, Debug)]
 ///     struct Atoms {
 ///         wm_protocols    => b"WM_PROTOCOLS",
 ///         wm_del_window   => b"WM_DELETE_WINDOW",
 ///     }
-/// );
+/// }
 ///
 /// fn main() -> xcb::Result<()> {
 /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
@@ -429,11 +430,15 @@ mod xproto {
 /// ```
 #[macro_export]
 macro_rules! atoms_struct {
-    ( $vis:vis struct $Atoms:ident {
-        $(
-            $field:ident => $name:expr,
-        )*
-    } ) => {
+    (
+        $(#[$outer:meta])*
+        $vis:vis struct $Atoms:ident {
+            $(
+                $field:ident => $name:expr,
+            )*
+        }
+    ) => {
+        $(#[$outer])*
         $vis struct $Atoms {
             $($field: xcb::x::Atom,)*
         }
@@ -453,7 +458,7 @@ macro_rules! atoms_struct {
                 })
             }
         }
-    }
+    };
 }
 
 pub mod bigreq {
