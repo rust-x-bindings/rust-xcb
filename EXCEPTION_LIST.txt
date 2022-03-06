@@ -3,7 +3,7 @@ An exception is a difference of code generation based on hard-coded name.
 
 - switch_exceptions (cg/mod.rs)
 - mask_exceptions (cg/mod.rs)
-- enum exceptions (x::SendEventDest and x::predefined_atom_names in cg/enum.rs)
+- enum exceptions (x::SendEventDest in cg/enum.rs)
 - requests that receive event in parameters (cg/request.rs)
 - ClientMessageEvent::new: format is inferred from data (cg/event.rs)
 - ClientMessageEvent::data: variant inferred from format (handle_client_message_data in cg/struct.rs)

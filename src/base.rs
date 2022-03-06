@@ -1619,29 +1619,26 @@ mod dan {
 
     impl fmt::Debug for x::Atom {
         fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-            let mut write = |name: &str| -> fmt::Result {
-                f.write_fmt(format_args!("Atom(\"{}\" ; {})", name, self.resource_id()))
-            };
-            if let Some(name) = x::predefined_atom_name(*self) {
-                write(name)
-            } else {
-                let conn = unsafe { Connection::from_raw_conn(DAN_CONN) };
-
-                let cookie = conn.send_request(&x::GetAtomName { atom: *self });
-                let reply = conn.wait_for_reply(cookie).map_err(|err| {
-                    eprintln!(
-                        "Error during fmt::Debug of x::Atom (fetching atom name): {:#?}",
-                        err
-                    );
-                    fmt::Error
-                })?;
-
-                let name = reply.name().to_utf8();
-                write(&name)?;
-
-                mem::forget(conn);
-                Ok(())
+            if self.resource_id() == 0 {
+                return f.write_str("ATOM_NONE");
             }
+
+            let conn = unsafe { Connection::from_raw_conn(DAN_CONN) };
+
+            let cookie = conn.send_request(&x::GetAtomName { atom: *self });
+            let reply = conn.wait_for_reply(cookie).map_err(|err| {
+                eprintln!(
+                    "Error during fmt::Debug of x::Atom (fetching atom name): {:#?}",
+                    err
+                );
+                fmt::Error
+            })?;
+
+            let name = reply.name().to_utf8();
+            f.write_fmt(format_args!("Atom(\"{}\" ; {})", name, self.resource_id()))?;
+
+            mem::forget(conn);
+            Ok(())
         }
     }
 }
