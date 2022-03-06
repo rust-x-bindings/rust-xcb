@@ -1,6 +1,7 @@
 use xcb::{x, Xid};
 
-xcb::atoms_struct!(
+xcb::atoms_struct! {
+    #[derive(Debug)]
     struct Atoms {
         wm_protocols    => b"WM_PROTOCOLS",
         wm_del_window   => b"WM_DELETE_WINDOW",
@@ -8,7 +9,7 @@ xcb::atoms_struct!(
         wm_state_maxv   => b"_NET_WM_STATE_MAXIMIZED_VERT",
         wm_state_maxh   => b"_NET_WM_STATE_MAXIMIZED_HORZ",
     }
-);
+}
 
 fn main() -> xcb::Result<()> {
     let (conn, screen_num) = xcb::Connection::connect(None).unwrap();
@@ -66,6 +67,7 @@ fn main() -> xcb::Result<()> {
 
     // retrieving a few atoms
     let atoms = Atoms::intern_all(&conn)?;
+    println!("atoms = {:#?}", atoms);
 
     // activate the sending of close event through `x::Event::ClientMessage`
     // either the request must be checked as follow, or conn.flush() must be called before entering the loop
