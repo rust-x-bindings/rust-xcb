@@ -541,6 +541,13 @@ impl CodeGen {
                 info.cookie_rs_typ, info.cookie_rs_typ
             )?;
         }
+        if rs_typ == "InternAtom" {
+            writeln!(out, "///")?;
+            writeln!(
+                out,
+                "/// See also [`xcb::atoms_struct`](crate::atoms_struct)."
+            )?;
+        }
         writeln!(out, "#[derive(Clone, Debug)]")?;
         writeln!(out, "pub struct {}{} {{", rs_typ, generic_decl)?;
         for p in params {

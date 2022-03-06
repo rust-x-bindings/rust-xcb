@@ -2882,12 +2882,12 @@ The `window` to query.
             <brief>Get atom identifier by name</brief>
             <description>
                 <![CDATA[
-Retrieves the identifier (xcb_atom_t TODO) for the atom with the specified
-name. Atoms are used in protocols like EWMH, for example to store window titles
+Retrieves the identifier for the atom with the specified name.
+Atoms are used in protocols like EWMH, for example to store window titles
 (`_NET_WM_NAME` atom) as property of a window.
 
-If `only_if_exists` is 0, the atom will be created if it does not already exist.
-If `only_if_exists` is 1, `XCB_ATOM_NONE` will be returned if the atom does
+If `only_if_exists` is `false`, the atom will be created if it does not already exist.
+If `only_if_exists` is `true`, [`ATOM_NONE`] will be returned if the atom does
 not yet exist.
       ]]>
             </description>

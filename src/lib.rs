@@ -390,10 +390,77 @@ mod xproto {
 
     include!(concat!(env!("OUT_DIR"), "/xproto.rs"));
 }
+
+/// An helper macro that generate a struct of atoms.
+///
+/// The struct provide a constructor `intern_all` that takes a `Connection` as parameter,
+/// interns all the atoms and return `xcb::Result<[struct name]>`.
+/// `intern_all` takes advantage of XCB asynchronous design by sending all the
+/// [`x::InternAtom`] requests before starting to wait for the first reply.
+/// Fields that refer to atoms not existing in the server are set to `x::ATOM_NONE`
+/// (i.e. `only_if_exists` is always set to `true`).
+///
+/// # Example
+/// ```no_run
+/// # use xcb::x;
+/// xcb::atoms_struct!(
+///     struct Atoms {
+///         wm_protocols    => b"WM_PROTOCOLS",
+///         wm_del_window   => b"WM_DELETE_WINDOW",
+///     }
+/// );
+///
+/// fn main() -> xcb::Result<()> {
+/// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
+/// #   let window = conn.generate_id();
+///     // ...
+///     let atoms = Atoms::intern_all(&conn)?;
+///
+///     conn.check_request(conn.send_request_checked(&x::ChangeProperty {
+///         mode: x::PropMode::Replace,
+///         window,
+///         property: atoms.wm_protocols,
+///         r#type: x::ATOM_ATOM,
+///         data: &[atoms.wm_del_window],
+///     }))?;
+///     // ...
+/// #   Ok(())
+/// }
+/// ```
+#[macro_export]
+macro_rules! atoms_struct {
+    ( $vis:vis struct $Atoms:ident {
+        $(
+            $field:ident => $name:expr,
+        )*
+    } ) => {
+        $vis struct $Atoms {
+            $($field: xcb::x::Atom,)*
+        }
+        impl $Atoms {
+            pub fn intern_all(conn: &xcb::Connection) -> xcb::Result<$Atoms> {
+                $(
+                    let $field = conn.send_request(&xcb::x::InternAtom {
+                        only_if_exists: true,
+                        name: $name,
+                    });
+                )*
+                $(
+                    let $field = conn.wait_for_reply($field)?.atom();
+                )*
+                Ok($Atoms {
+                    $($field,)*
+                })
+            }
+        }
+    }
+}
+
 pub mod bigreq {
     //! The `BIG-REQUESTS` extension.
     include!(concat!(env!("OUT_DIR"), "/bigreq.rs"));
 }
+
 pub mod xc_misc {
     //! The `XC-MISC` extension.
     include!(concat!(env!("OUT_DIR"), "/xc_misc.rs"));
