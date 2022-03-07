@@ -400,14 +400,16 @@ mod xproto {
 /// Fields that refer to atoms not existing in the server are set to `x::ATOM_NONE`
 /// (i.e. `only_if_exists` is always set to `true`).
 ///
+/// Both the struct and each field can receive visibility attributes.
+///
 /// # Example
 /// ```no_run
 /// # use xcb::x;
 /// xcb::atoms_struct! {
 ///     #[derive(Copy, Clone, Debug)]
-///     struct Atoms {
-///         wm_protocols    => b"WM_PROTOCOLS",
-///         wm_del_window   => b"WM_DELETE_WINDOW",
+///     pub(crate) struct Atoms {
+///         pub wm_protocols    => b"WM_PROTOCOLS",
+///         pub wm_del_window   => b"WM_DELETE_WINDOW",
 ///     }
 /// }
 ///
