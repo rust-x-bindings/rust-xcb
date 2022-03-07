@@ -410,6 +410,8 @@ mod xproto {
 ///     pub(crate) struct Atoms {
 ///         pub wm_protocols    => b"WM_PROTOCOLS",
 ///         pub wm_del_window   => b"WM_DELETE_WINDOW",
+///         /// Supported EWMH hints
+///         pub net_supported  => b"_NET_SUPPORTED",
 ///     }
 /// }
 ///
