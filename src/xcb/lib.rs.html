@@ -775,6 +775,8 @@
 <span id="773">773</span>
 <span id="774">774</span>
 <span id="775">775</span>
+<span id="776">776</span>
+<span id="777">777</span>
 </pre><pre class="rust"><code><span class="comment">/*
  * Copyright (C) 2013 James Miller &lt;james@aatch.net&gt;
  * Copyright (c) 2016
@@ -1177,14 +1179,16 @@
 <span class="doccomment">/// Fields that refer to atoms not existing in the server are set to `x::ATOM_NONE`</span>
 <span class="doccomment">/// (i.e. `only_if_exists` is always set to `true`).</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// Both the struct and each field can receive visibility attributes.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// # Example</span>
 <span class="doccomment">/// ```no_run</span>
 <span class="doccomment">/// # use xcb::x;</span>
 <span class="doccomment">/// xcb::atoms_struct! {</span>
 <span class="doccomment">///     #[derive(Copy, Clone, Debug)]</span>
-<span class="doccomment">///     struct Atoms {</span>
-<span class="doccomment">///         wm_protocols    =&gt; b&quot;WM_PROTOCOLS&quot;,</span>
-<span class="doccomment">///         wm_del_window   =&gt; b&quot;WM_DELETE_WINDOW&quot;,</span>
+<span class="doccomment">///     pub(crate) struct Atoms {</span>
+<span class="doccomment">///         pub wm_protocols    =&gt; b&quot;WM_PROTOCOLS&quot;,</span>
+<span class="doccomment">///         pub wm_del_window   =&gt; b&quot;WM_DELETE_WINDOW&quot;,</span>
 <span class="doccomment">///     }</span>
 <span class="doccomment">/// }</span>
 <span class="doccomment">///</span>
