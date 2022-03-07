@@ -6,7 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
-- Xid types (x::Atom, x::Window, ...) impl Hash
+- Xid types (`x::Atom`, `x::Window`, ...) implement `Hash`
+- `atoms_struct!` macro
+- `Connection::send_and_check_request`
+
+### Changed
+- Some documentation improvements.
 
 ## [1.0.0] - 2022-03-06 - rtbo
 - new 1.0 API
