@@ -436,13 +436,13 @@ macro_rules! atoms_struct {
         $(#[$outer:meta])*
         $vis:vis struct $Atoms:ident {
             $(
-                $fvis:vis $field:ident => $name:expr,
+                $(#[$fmeta:meta])* $fvis:vis $field:ident => $name:expr,
             )*
         }
     ) => {
         $(#[$outer])*
         $vis struct $Atoms {
-            $($fvis $field: xcb::x::Atom,)*
+            $($(#[$fmeta])* $fvis $field: xcb::x::Atom,)*
         }
         impl $Atoms {
             pub fn intern_all(conn: &xcb::Connection) -> xcb::Result<$Atoms> {
