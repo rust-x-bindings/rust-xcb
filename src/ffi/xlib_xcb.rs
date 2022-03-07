@@ -38,18 +38,28 @@ use libc::c_uint;
 use x11::xlib;
 
 /// Type for [XSetEventQueueOwner] owner parameter
+///
+/// This item is behind the `xlib_xcb` cargo feature.
 pub type XEventQueueOwner = c_uint;
 
 /// Xlib owns the event queue
+///
+/// This item is behind the `xlib_xcb` cargo feature.
 pub const XlibOwnsEventQueue: XEventQueueOwner = 0;
 
 /// XCB owns the event queue
+///
+/// This item is behind the `xlib_xcb` cargo feature.
 pub const XCBOwnsEventQueue: XEventQueueOwner = 1;
 
 #[link(name = "X11-xcb")]
 extern "C" {
     /// Get an XCB connection from the `xlib::Display`.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     pub fn XGetXCBConnection(dpy: *mut xlib::Display) -> *mut xcb_connection_t;
     /// Set the owner of the X client event queue.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     pub fn XSetEventQueueOwner(dpy: *mut xlib::Display, owner: XEventQueueOwner);
 }
