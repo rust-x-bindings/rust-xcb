@@ -1701,6 +1701,22 @@
 <span id="1699">1699</span>
 <span id="1700">1700</span>
 <span id="1701">1701</span>
+<span id="1702">1702</span>
+<span id="1703">1703</span>
+<span id="1704">1704</span>
+<span id="1705">1705</span>
+<span id="1706">1706</span>
+<span id="1707">1707</span>
+<span id="1708">1708</span>
+<span id="1709">1709</span>
+<span id="1710">1710</span>
+<span id="1711">1711</span>
+<span id="1712">1712</span>
+<span id="1713">1713</span>
+<span id="1714">1714</span>
+<span id="1715">1715</span>
+<span id="1716">1716</span>
+<span id="1717">1717</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2126,6 +2142,8 @@
 
 <span class="doccomment">/// Determines whether Xlib or XCB owns the event queue of [`Connection`].</span>
 <span class="doccomment">///</span>
+<span class="doccomment">/// This item is behind the `xlib_xcb` cargo feature.</span>
+<span class="doccomment">///</span>
 <span class="doccomment">/// See [`Connection::set_event_queue_owner`].</span>
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
@@ -2417,6 +2435,8 @@
     <span class="doccomment">/// The event queue owner defaults to Xlib.</span>
     <span class="doccomment">/// One would need to open an XCB connection with Xlib in order to use</span>
     <span class="doccomment">/// OpenGL.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_with_xlib_display</span>() -&gt; <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
@@ -2439,6 +2459,8 @@
     <span class="doccomment">/// The event queue owner defaults to Xlib.</span>
     <span class="doccomment">/// One would need to open an XCB connection with Xlib in order to use</span>
     <span class="doccomment">/// OpenGL.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">/// Panics if one of the mandatory extension is not present.</span>
@@ -2651,6 +2673,8 @@
     <span class="doccomment">/// Wraps a `xlib::Display` and get an XCB connection from an exisiting object</span>
     <span class="doccomment">/// `xlib::XCloseDisplay` will be called when the returned object is dropped.</span>
     <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
+    <span class="doccomment">///</span>
     <span class="doccomment">/// # Safety</span>
     <span class="doccomment">/// The `dpy` pointer must be a pointer to a valid `xlib::Display`</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
@@ -2665,6 +2689,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Extension data specified by `mandatory` and `optional` is cached to allow</span>
     <span class="doccomment">/// the resolution of events and errors in these extensions.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Panics</span>
     <span class="doccomment">/// Panics if the connection is null or in error state.</span>
@@ -2739,6 +2765,8 @@
     }
 
     <span class="doccomment">/// Returns the inner ffi `xlib::Display` pointer.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">get_raw_dpy</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xlib::Display</span> {
         <span class="self">self</span>.<span class="ident">dpy</span>
@@ -2746,6 +2774,8 @@
 
     <span class="doccomment">/// Sets the owner of the event queue in the case if the connection is opened</span>
     <span class="doccomment">/// with the Xlib interface. In that case, the default owner is Xlib.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is behind the `xlib_xcb` cargo feature.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">set_event_queue_owner</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">owner</span>: <span class="ident">EventQueueOwner</span>) {
         <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="self">self</span>.<span class="ident">dpy</span>.<span class="ident">is_null</span>());
@@ -2933,6 +2963,8 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// Effectively creates an internal special queue for this event</span>
     <span class="doccomment">/// XGE events are only defined in the `xinput` and `present` extensions</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This function is present only if either of the `xinput` or `present` cargo features are active.</span>
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">any</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>))]</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">register_for_special_xge</span><span class="op">&lt;</span><span class="ident">XGE</span>: <span class="ident">GeEvent</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">SpecialEventId</span> {
         <span class="kw">unsafe</span> {
