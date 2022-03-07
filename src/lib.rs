@@ -410,6 +410,8 @@ mod xproto {
 ///     pub(crate) struct Atoms {
 ///         pub wm_protocols    => b"WM_PROTOCOLS",
 ///         pub wm_del_window   => b"WM_DELETE_WINDOW",
+///         /// Supported EWMH hints
+///         pub net_supported  => b"_NET_SUPPORTED",
 ///     }
 /// }
 ///
@@ -436,13 +438,13 @@ macro_rules! atoms_struct {
         $(#[$outer:meta])*
         $vis:vis struct $Atoms:ident {
             $(
-                $fvis:vis $field:ident => $name:expr,
+                $(#[$fmeta:meta])* $fvis:vis $field:ident => $name:expr,
             )*
         }
     ) => {
         $(#[$outer])*
         $vis struct $Atoms {
-            $($fvis $field: xcb::x::Atom,)*
+            $($(#[$fmeta])* $fvis $field: xcb::x::Atom,)*
         }
         impl $Atoms {
             pub fn intern_all(conn: &xcb::Connection) -> xcb::Result<$Atoms> {
