@@ -423,6 +423,8 @@ pub trait RequestWithReply: Request {
 
 /// Determines whether Xlib or XCB owns the event queue of [`Connection`].
 ///
+/// This item is behind the `xlib_xcb` cargo feature.
+///
 /// See [`Connection::set_event_queue_owner`].
 #[cfg(feature = "xlib_xcb")]
 #[derive(Debug)]
@@ -714,6 +716,8 @@ impl Connection {
     /// The event queue owner defaults to Xlib.
     /// One would need to open an XCB connection with Xlib in order to use
     /// OpenGL.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     #[cfg(feature = "xlib_xcb")]
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
@@ -736,6 +740,8 @@ impl Connection {
     /// The event queue owner defaults to Xlib.
     /// One would need to open an XCB connection with Xlib in order to use
     /// OpenGL.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     ///
     /// # Panics
     /// Panics if one of the mandatory extension is not present.
@@ -948,6 +954,8 @@ impl Connection {
     /// Wraps a `xlib::Display` and get an XCB connection from an exisiting object
     /// `xlib::XCloseDisplay` will be called when the returned object is dropped.
     ///
+    /// This function is behind the `xlib_xcb` cargo feature.
+    ///
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`
     #[cfg(feature = "xlib_xcb")]
@@ -962,6 +970,8 @@ impl Connection {
     ///
     /// Extension data specified by `mandatory` and `optional` is cached to allow
     /// the resolution of events and errors in these extensions.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     ///
     /// # Panics
     /// Panics if the connection is null or in error state.
@@ -1036,6 +1046,8 @@ impl Connection {
     }
 
     /// Returns the inner ffi `xlib::Display` pointer.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     #[cfg(feature = "xlib_xcb")]
     pub fn get_raw_dpy(&self) -> *mut xlib::Display {
         self.dpy
@@ -1043,6 +1055,8 @@ impl Connection {
 
     /// Sets the owner of the event queue in the case if the connection is opened
     /// with the Xlib interface. In that case, the default owner is Xlib.
+    ///
+    /// This function is behind the `xlib_xcb` cargo feature.
     #[cfg(feature = "xlib_xcb")]
     pub fn set_event_queue_owner(&self, owner: EventQueueOwner) {
         debug_assert!(!self.dpy.is_null());
@@ -1230,6 +1244,8 @@ impl Connection {
     ///
     /// Effectively creates an internal special queue for this event
     /// XGE events are only defined in the `xinput` and `present` extensions
+    ///
+    /// This function is present only if either of the `xinput` or `present` cargo features are active.
     #[cfg(any(feature = "xinput", feature = "present"))]
     pub fn register_for_special_xge<XGE: GeEvent>(&self) -> SpecialEventId {
         unsafe {
