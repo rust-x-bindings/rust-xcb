@@ -1128,6 +1128,12 @@ impl Connection {
     ///
     /// There are several occasions ones want to flush the connection.
     /// One of them is before entering or re-entering the event loop after performing unchecked requests.
+    ///
+    /// The main difference between `flush` and `check_request` is that `flush` will not report protocol errors.
+    /// If a protocol error is emitted by an unchecked void request, it will be reported through the event loop.
+    ///
+    /// See also: [wait_for_event](Connection::wait_for_event), [check_request](Connection::check_request),
+    /// [send_and_check_request](Connection::send_and_check_request).
     pub fn flush(&self) -> ConnResult<()> {
         unsafe {
             let ret = xcb_flush(self.c);
@@ -1338,7 +1344,8 @@ impl Connection {
     /// Send a request to the X server.
     ///
     /// This function never blocks. A cookie is returned to keep track of the request.
-    /// If the request expect a reply, the cookie can be used to retrieve the reply
+    /// If the request expect a reply, the cookie can be used to retrieve the reply with
+    /// [Connection::wait_for_reply].
     ///
     /// # Example
     /// ```no_run
@@ -1474,9 +1481,14 @@ impl Connection {
         }
     }
 
-    /// Send the request to the server and check it
+    /// Send the request to the server and check it.
     ///
     /// This is a sugar for `conn.check_request(conn.send_request_checked(req))`
+    ///
+    /// This method is useful as well in place of code sending a void request
+    /// and flushing the connection right after. Checking the request effectively
+    /// flushes the connection, but in addition reports possible protocol errors
+    /// at the calling site instead of reporting them through the event loop.
     ///
     /// # Example
     /// ```no_run
