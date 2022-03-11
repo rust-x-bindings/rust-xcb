@@ -1717,6 +1717,18 @@
 <span id="1715">1715</span>
 <span id="1716">1716</span>
 <span id="1717">1717</span>
+<span id="1718">1718</span>
+<span id="1719">1719</span>
+<span id="1720">1720</span>
+<span id="1721">1721</span>
+<span id="1722">1722</span>
+<span id="1723">1723</span>
+<span id="1724">1724</span>
+<span id="1725">1725</span>
+<span id="1726">1726</span>
+<span id="1727">1727</span>
+<span id="1728">1728</span>
+<span id="1729">1729</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2847,6 +2859,12 @@
     <span class="doccomment">///</span>
     <span class="doccomment">/// There are several occasions ones want to flush the connection.</span>
     <span class="doccomment">/// One of them is before entering or re-entering the event loop after performing unchecked requests.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// The main difference between `flush` and `check_request` is that `flush` will not report protocol errors.</span>
+    <span class="doccomment">/// If a protocol error is emitted by an unchecked void request, it will be reported through the event loop.</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// See also: [wait_for_event](Connection::wait_for_event), [check_request](Connection::check_request),</span>
+    <span class="doccomment">/// [send_and_check_request](Connection::send_and_check_request).</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">flush</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">ConnResult</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">ret</span> <span class="op">=</span> <span class="ident">xcb_flush</span>(<span class="self">self</span>.<span class="ident">c</span>);
@@ -3057,7 +3075,8 @@
     <span class="doccomment">/// Send a request to the X server.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This function never blocks. A cookie is returned to keep track of the request.</span>
-    <span class="doccomment">/// If the request expect a reply, the cookie can be used to retrieve the reply</span>
+    <span class="doccomment">/// If the request expect a reply, the cookie can be used to retrieve the reply with</span>
+    <span class="doccomment">/// [Connection::wait_for_reply].</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```no_run</span>
@@ -3193,9 +3212,14 @@
         }
     }
 
-    <span class="doccomment">/// Send the request to the server and check it</span>
+    <span class="doccomment">/// Send the request to the server and check it.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// This is a sugar for `conn.check_request(conn.send_request_checked(req))`</span>
+    <span class="doccomment">///</span>
+    <span class="doccomment">/// This method is useful as well in place of code sending a void request</span>
+    <span class="doccomment">/// and flushing the connection right after. Checking the request effectively</span>
+    <span class="doccomment">/// flushes the connection, but in addition reports possible protocol errors</span>
+    <span class="doccomment">/// at the calling site instead of reporting them through the event loop.</span>
     <span class="doccomment">///</span>
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```no_run</span>
