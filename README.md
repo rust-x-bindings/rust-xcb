@@ -6,7 +6,7 @@ with the X server.
 
 ```toml
 [dependencies]
-xcb = "1.0.0"
+xcb = "1.1.0"
 ```
 
 __Documentation__:
