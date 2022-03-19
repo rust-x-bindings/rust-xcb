@@ -5,7 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
- - Fix padding offset in events constructors ([x11-clipboard/#26](https://github.com/quininer/x11-clipboard/pull/26))
+
+## [1.1.1] - 2022-03-19 - rtbo
+### Fixed
+ - Padding offset in events constructors ([x11-clipboard/#26](https://github.com/quininer/x11-clipboard/pull/26))
 
 ## [1.1.0] - 2022-03-16 - rtbo
 ### Added
