@@ -564,6 +564,14 @@ impl CodeGen {
                         )?;
                     }
                 }
+                Field::Pad { wire_sz, .. } if i < event.fields.len() - 1 => {
+                    writeln!(
+                        out,
+                        "{}wire_off += {};",
+                        cg::ind(3),
+                        self.build_rs_expr(wire_sz, "", "", &[])
+                    )?;
+                }
                 Field::Pad { .. } => {}
                 f => unreachable!("{:#?}", f),
             }

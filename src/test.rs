@@ -1,5 +1,5 @@
-use crate::base::{self, WiredIn, WiredOut};
-use crate::x;
+use crate::base::{self, BaseEvent, WiredIn, WiredOut, XidNew};
+use crate::x::{self};
 
 fn visual_data(bits_per_rgb_value: u8) -> Vec<u8> {
     vec![
@@ -180,4 +180,21 @@ fn atom_hashmap() {
     assert_eq!(map.get(&x::ATOM_PIXMAP), Some(&"Pixmap"));
     assert_eq!(map.get(&x::ATOM_STRING), Some(&"String"));
     assert_eq!(map.get(&x::ATOM_WINDOW), Some(&"Window"));
+}
+
+#[test]
+fn test_event_new() {
+    let time = x::CURRENT_TIME;
+    let requestor = unsafe { x::Window::new(12) };
+    let selection = x::ATOM_STRING;
+    let target = x::ATOM_FAMILY_NAME;
+    let property = x::ATOM_RGB_COLOR_MAP;
+    let ev = x::SelectionNotifyEvent::new(time, requestor, selection, target, property);
+    assert_eq!(ev.response_type(), x::SelectionNotifyEvent::NUMBER as u8);
+    assert_eq!(ev.sequence(), 0u16);
+    assert_eq!(ev.time(), time);
+    assert_eq!(ev.requestor(), requestor);
+    assert_eq!(ev.selection(), selection);
+    assert_eq!(ev.target(), target);
+    assert_eq!(ev.property(), property);
 }
