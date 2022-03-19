@@ -1298,6 +1298,8 @@
 <span id="1296">1296</span>
 <span id="1297">1297</span>
 <span id="1298">1298</span>
+<span id="1299">1299</span>
+<span id="1300">1300</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from shm.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -1420,10 +1422,12 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">drawable</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">minor_event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">major_event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">shmseg</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">offset</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 

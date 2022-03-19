@@ -5032,6 +5032,7 @@
 <span id="5030">5030</span>
 <span id="5031">5031</span>
 <span id="5032">5032</span>
+<span id="5033">5033</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xv.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -5538,6 +5539,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">port</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);

@@ -26499,6 +26499,27 @@
 <span id="26497">26497</span>
 <span id="26498">26498</span>
 <span id="26499">26499</span>
+<span id="26500">26500</span>
+<span id="26501">26501</span>
+<span id="26502">26502</span>
+<span id="26503">26503</span>
+<span id="26504">26504</span>
+<span id="26505">26505</span>
+<span id="26506">26506</span>
+<span id="26507">26507</span>
+<span id="26508">26508</span>
+<span id="26509">26509</span>
+<span id="26510">26510</span>
+<span id="26511">26511</span>
+<span id="26512">26512</span>
+<span id="26513">26513</span>
+<span id="26514">26514</span>
+<span id="26515">26515</span>
+<span id="26516">26516</span>
+<span id="26517">26517</span>
+<span id="26518">26518</span>
+<span id="26519">26519</span>
+<span id="26520">26520</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -28103,6 +28124,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -28292,6 +28314,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">drawable</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">x</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -28481,6 +28504,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">drawable</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">minor_opcode</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -28620,6 +28644,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">state</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -28759,6 +28784,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">parent</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -28946,6 +28972,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29077,6 +29104,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29219,6 +29247,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29360,6 +29389,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">parent</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29497,6 +29527,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -29674,6 +29705,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -30106,6 +30138,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -30254,6 +30287,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">width</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -30392,9 +30426,11 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">event</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">4usize</span>;
             (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">place</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
 
             <span class="ident">CirculateNotifyEvent::from_raw</span>(<span class="ident">ptr</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>)
@@ -30545,6 +30581,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">atom</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -30699,6 +30736,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">owner</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -30844,6 +30882,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">owner</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -31018,6 +31057,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">time</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">requestor</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -31181,6 +31221,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">window</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">colormap</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
@@ -31508,6 +31549,7 @@
             <span class="kw">let</span> <span class="ident">sequence</span> <span class="op">=</span> <span class="number">0u16</span>;
 
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">response_type</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
+            <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="number">1usize</span>;
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span> <span class="ident">sequence</span>.<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
             <span class="ident">wire_off</span> <span class="op">+</span><span class="op">=</span>
                 (<span class="ident">std::mem::transmute</span>::<span class="op">&lt;</span><span class="kw">_</span>, <span class="ident">u32</span><span class="op">&gt;</span>(<span class="ident">request</span>) <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">serialize</span>(<span class="kw-2">&amp;mut</span> <span class="ident">wire_buf</span>[<span class="ident">wire_off</span>..]);
