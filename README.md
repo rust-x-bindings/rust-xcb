@@ -4,11 +4,6 @@ Rust-XCB is a safe Rust interface to [XCB](http://xcb.freedesktop.org).
 Rust-XCB uses under the hood the core XCB functions to connect and communicate
 with the X server.
 
-```toml
-[dependencies]
-xcb = "1.1.0"
-```
-
 __Documentation__:
 https://rust-x-bindings.github.io/rust-xcb/xcb/
 
