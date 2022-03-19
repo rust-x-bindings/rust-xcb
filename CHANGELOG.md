@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.1] - 2022-03-19 - rtbo
+### Fixed
+ - Padding offset in events constructors ([x11-clipboard/#26](https://github.com/quininer/x11-clipboard/pull/26))
+
 ## [1.1.0] - 2022-03-16 - rtbo
 ### Added
 - Xid types (`x::Atom`, `x::Window`, ...) implement `Hash`
