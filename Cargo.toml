@@ -63,6 +63,7 @@ xvmc = [ "xv" ]
 
 [dev-dependencies]
 gl = "0.14.0"
+png = "0.17.5"
 
 [dev-dependencies.x11]
 version = "2.19.1"
@@ -119,6 +120,9 @@ name = "screen_info"
 [[example]]
 name = "xinput_stylus_events"
 required-features = ["xinput"]
+
+[[example]]
+name = "screenshot"
 
 [[example]]
 name = "xkb_init"
