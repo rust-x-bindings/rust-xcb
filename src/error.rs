@@ -16,6 +16,9 @@ use crate::randr;
 #[cfg(feature = "render")]
 use crate::render;
 
+#[cfg(feature = "screensaver")]
+use crate::screensaver;
+
 #[cfg(feature = "shm")]
 use crate::shm;
 
@@ -63,6 +66,10 @@ pub enum ProtocolError {
     #[cfg(feature = "render")]
     /// The error is issued from the `RENDER` extension.
     Render(render::Error, Option<&'static str>),
+
+    #[cfg(feature = "screensaver")]
+    /// The error is issues from the `MIT-SCREEN-SAVER` extension.
+    ScreenSaver(screensaver::Error, Option<&'static str>),
 
     #[cfg(feature = "shm")]
     /// The error is issued from the `MIT-SHM` extension.
@@ -251,6 +258,12 @@ pub(crate) unsafe fn resolve_error(
             #[cfg(feature = "shm")]
             Extension::Shm => ProtocolError::Shm(
                 shm::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
+            ),
+
+            #[cfg(feature = "screensaver")]
+            Extension::ScreenSaver => ProtocolError::ScreenSaver(
+                screensaver::Error::resolve_wire_error(ext_data.first_error, error),
                 emitted_by,
             ),
 
