@@ -115,27 +115,36 @@ pub(crate) unsafe fn resolve_error(
     let major_code = (*error).major_code;
     let minor_code = (*error).minor_code;
 
-    let (best, emitting_ext) = {
-        let mut best: Option<&ExtensionData> = None;
-        let mut emitting_ext = None;
+    // two distinct resolutions:
+    // resolve the request that emit the error, done with major and minor code
+    // resolve the error itself, done with error_code
+
+    // major_code < 128: core protocol request, the major_code is the request number
+    // otherwise: major_code is extension major_code and minor_code is the request number
+
+    let (error_ext_data, request_ext) = {
+        let mut request_ext = None;
+        let mut error_best: Option<&ExtensionData> = None;
+
         for data in extension_data {
             if data.major_opcode == major_code {
-                emitting_ext = Some(data.ext);
+                request_ext = Some(data.ext);
             }
-            if error_code >= data.first_error {
-                if let Some(ed) = best {
+            if data.first_error > 0 && error_code >= data.first_error {
+                if let Some(ed) = error_best {
                     if data.first_error > ed.first_error {
-                        best = Some(data);
+                        error_best = Some(data);
                     }
                 } else {
-                    best = Some(data);
+                    error_best = Some(data);
                 }
             }
         }
-        (best, emitting_ext)
+
+        (error_best, request_ext)
     };
 
-    let emitted_by = if let Some(ext) = emitting_ext {
+    let emitted_by = if let Some(ext) = request_ext {
         match ext {
             Extension::BigRequests => crate::bigreq::request_name(minor_code),
             Extension::XcMisc => crate::xc_misc::request_name(minor_code),
@@ -225,10 +234,10 @@ pub(crate) unsafe fn resolve_error(
             Extension::XvMc => crate::xvmc::request_name(minor_code),
         }
     } else {
-        crate::x::request_name(minor_code)
+        crate::x::request_name(major_code as u16)
     };
 
-    if let Some(ext_data) = best {
+    if let Some(ext_data) = error_ext_data {
         match ext_data.ext {
             #[cfg(feature = "damage")]
             Extension::Damage => ProtocolError::Damage(
@@ -296,7 +305,7 @@ pub(crate) unsafe fn resolve_error(
                 emitted_by,
             ),
 
-            _ => unreachable!("Could not match extension event"),
+            ext => unreachable!("Could not match extension error from: {:#?}", ext),
         }
     } else {
         ProtocolError::X(x::Error::resolve_wire_error(0, error), emitted_by)
