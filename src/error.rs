@@ -122,7 +122,7 @@ pub(crate) unsafe fn resolve_error(
             if data.major_opcode == major_code {
                 emitting_ext = Some(data.ext);
             }
-            if error_code >= data.first_error {
+            if data.first_error > 0 && error_code >= data.first_error {
                 if let Some(ed) = best {
                     if data.first_error > ed.first_error {
                         best = Some(data);
@@ -225,7 +225,7 @@ pub(crate) unsafe fn resolve_error(
             Extension::XvMc => crate::xvmc::request_name(minor_code),
         }
     } else {
-        crate::x::request_name(minor_code)
+        crate::x::request_name(major_code as u16)
     };
 
     if let Some(ext_data) = best {
