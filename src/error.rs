@@ -303,7 +303,7 @@ pub(crate) unsafe fn resolve_error(
     }
 }
 
-#[cfg(all(feature = "xinput", feature = "xkb"))]
+#[cfg(all(feature = "xinput", feature = "xkb", feature = "screensaver"))]
 #[test]
 fn test_resolve_error() {
     // resolve a core error with core request
@@ -418,6 +418,30 @@ fn test_resolve_error() {
     let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
     assert!(
         matches!(err, ProtocolError::Input(xinput::Error::Mode(_), Some(req_name)) if req_name == "xinput::CloseDevice")
+    );
+    mem::forget(err);
+
+    // mimic a regular X error (value) with extension that do not have errors (screensaver)
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 2,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 0,
+        major_code: 1,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [ExtensionData {
+        ext: Extension::ScreenSaver,
+        major_opcode: 144,
+        first_event: 92,
+        first_error: 0,
+    }];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::X(x::Error::Value(_), Some(req_name)) if req_name == "x::CreateWindow")
     );
     mem::forget(err);
 }
