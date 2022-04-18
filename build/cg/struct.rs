@@ -2419,6 +2419,9 @@ impl CodeGen {
                         format
                     )?;
                 }
+                // Format of zero indicates a null length, in which case the type doesn't matter.
+                // If length happens to be non-zero, the method will panic.
+                writeln!(out, "{}0 => Box::new(self.{}::<u32>()),", cg::ind(3), name)?;
                 writeln!(
                     out,
                     "{}format => unreachable!(\"impossible prop format: {{}}\", format),",
