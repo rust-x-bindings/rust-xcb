@@ -122,7 +122,7 @@ pub(crate) unsafe fn resolve_error(
             if data.major_opcode == major_code {
                 emitting_ext = Some(data.ext);
             }
-            if error_code >= data.first_error {
+            if data.first_error > 0 && error_code >= data.first_error {
                 if let Some(ed) = best {
                     if data.first_error > ed.first_error {
                         best = Some(data);
@@ -225,7 +225,7 @@ pub(crate) unsafe fn resolve_error(
             Extension::XvMc => crate::xvmc::request_name(minor_code),
         }
     } else {
-        crate::x::request_name(minor_code)
+        crate::x::request_name(major_code as u16)
     };
 
     if let Some(ext_data) = best {
@@ -303,7 +303,7 @@ pub(crate) unsafe fn resolve_error(
     }
 }
 
-#[cfg(all(feature = "xinput", feature = "xkb"))]
+#[cfg(all(feature = "xinput", feature = "xkb", feature = "screensaver"))]
 #[test]
 fn test_resolve_error() {
     // resolve a core error with core request
@@ -312,8 +312,8 @@ fn test_resolve_error() {
         error_code: 2,
         sequence: 12000,
         resource_id: 12,
-        minor_code: 4,
-        major_code: 0,
+        minor_code: 0,
+        major_code: 4,
         pad0: 0,
         pad: [0; 5],
         full_sequence: 12000,
@@ -418,6 +418,30 @@ fn test_resolve_error() {
     let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
     assert!(
         matches!(err, ProtocolError::Input(xinput::Error::Mode(_), Some(req_name)) if req_name == "xinput::CloseDevice")
+    );
+    mem::forget(err);
+
+    // mimic a regular X error (value) with extension that do not have errors (screensaver)
+    let mut error = xcb_generic_error_t {
+        response_type: 0,
+        error_code: 2,
+        sequence: 12000,
+        resource_id: 12,
+        minor_code: 0,
+        major_code: 1,
+        pad0: 0,
+        pad: [0; 5],
+        full_sequence: 12000,
+    };
+    let extension_data = [ExtensionData {
+        ext: Extension::ScreenSaver,
+        major_opcode: 144,
+        first_event: 92,
+        first_error: 0,
+    }];
+    let err = unsafe { resolve_error(&mut error as *mut _, &extension_data) };
+    assert!(
+        matches!(err, ProtocolError::X(x::Error::Value(_), Some(req_name)) if req_name == "x::CreateWindow")
     );
     mem::forget(err);
 }
