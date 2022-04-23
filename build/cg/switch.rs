@@ -742,12 +742,16 @@ impl CodeGen {
             )?;
             writeln!(out, "{}}}", cg::ind(2))?;
         }
-        writeln!(
-            out,
-            "{}unreachable!(\"Could not match any expression for {}\");",
-            cg::ind(2),
-            rs_typ
-        )?;
+        if is_mask {
+            writeln!(out, "{}result", cg::ind(2))?;
+        } else {
+            writeln!(
+                out,
+                "{}unreachable!(\"Could not match any expression for {}\");",
+                cg::ind(2),
+                rs_typ
+            )?;
+        }
         writeln!(out, "    }}")?;
 
         Ok(())
