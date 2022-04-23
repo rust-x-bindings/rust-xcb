@@ -85,6 +85,10 @@ name = "connect"
 name = "drawing"
 
 [[example]]
+name = "get_keyboard_names"
+required-features = ["xkb", "xinput", "xlib_xcb"]
+
+[[example]]
 name = "get_all_windows"
 
 [[example]]
