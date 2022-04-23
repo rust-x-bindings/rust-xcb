@@ -26582,7 +26582,7 @@
                 <span class="ident">extdev_details</span>: <span class="ident">XiFeature::from_bits</span>(<span class="ident">extdev_details</span> <span class="kw">as</span> <span class="ident">u32</span>).<span class="ident">unwrap</span>(),
             });
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for SelectEventsDetails&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -26993,7 +26993,7 @@
             <span class="kw-2">*</span><span class="ident">out_offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">offset</span>;
             <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetMapReplyMap::VirtualModMap</span>(<span class="ident">vmodmap_rtrn</span>));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for GetMapReplyMap&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -27394,7 +27394,7 @@
             <span class="kw-2">*</span><span class="ident">out_offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">offset</span>;
             <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">SetMapValues::VirtualModMap</span>(<span class="ident">vmodmap</span>));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for SetMapValues&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -27919,7 +27919,7 @@
             <span class="kw-2">*</span><span class="ident">out_offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">offset</span>;
             <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetNamesReplyValueList::RgNames</span>(<span class="ident">radio_group_names</span>));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for GetNamesReplyValueList&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -28444,7 +28444,7 @@
             <span class="kw-2">*</span><span class="ident">out_offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">offset</span>;
             <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">SetNamesValues::RgNames</span>(<span class="ident">radio_group_names</span>));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for SetNamesValues&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -28857,7 +28857,7 @@
             <span class="kw-2">*</span><span class="ident">out_offset</span> <span class="op">+</span><span class="op">=</span> <span class="ident">offset</span>;
             <span class="ident">result</span>.<span class="ident">push</span>(<span class="ident">GetKbdByNameReplyRepliesMap::VirtualModMap</span>(<span class="ident">vmodmap_rtrn</span>));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for GetKbdByNameReplyRepliesMap&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -29390,7 +29390,7 @@
                 <span class="ident">radio_group_names</span>,
             ));
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for GetKbdByNameReplyRepliesValueList&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
@@ -30481,7 +30481,7 @@
                 <span class="ident">label_font</span>,
             });
         }
-        <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match any expression for GetKbdByNameReplyReplies&quot;</span>);
+        <span class="ident">result</span>
     }
 }
 
