@@ -1664,8 +1664,16 @@ impl CodeGen {
                     ..
                 } => {
                     let q_rs_typ = (module, rs_typ).qualified_rs_typ();
-                    // lenfield visibility is not necessary, lists are exposed as sliced
-                    let visibility = if *is_fieldref { "" } else { "pub " };
+                    // NOTE: fieldref fields usually refer to lengths of lists, so in those cases
+                    //       it's not necessary to make them public as we expose lists as Rust
+                    //       slices. However, when those fields are named width or height, they're
+                    //       not simply the length of a slice, and they must be exposed so that the
+                    //       user can treat the slice as an image.
+                    let visibility = if *is_fieldref && !(name == "width" || name == "height") {
+                        ""
+                    } else {
+                        "pub "
+                    };
                     if let Some(doc) = doc {
                         doc.emit(out, 1)?;
                     }
