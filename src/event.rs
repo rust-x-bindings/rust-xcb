@@ -126,7 +126,7 @@ impl Event {
             #[cfg(feature = "randr")]
             Self::RandR(e) => e.as_raw(),
             #[cfg(feature = "screensaver")]
-            Self::ScreenSaver(e) =>e.as_raw(),
+            Self::ScreenSaver(e) => e.as_raw(),
             #[cfg(feature = "shape")]
             Self::Shape(e) => e.as_raw(),
             #[cfg(feature = "shm")]

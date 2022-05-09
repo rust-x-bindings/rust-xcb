@@ -358,7 +358,11 @@ impl CodeGen {
                 // We can't emit the different type, but it is "OK" to cast
                 // it as xcb_generic_event_t as the response_type can be
                 // used to distinguish the correct type
-                writeln!(out, "      Self::{}(e) => e.as_raw() as *mut xcb_generic_event_t,", event.variant)?;
+                writeln!(
+                    out,
+                    "      Self::{}(e) => e.as_raw() as *mut xcb_generic_event_t,",
+                    event.variant
+                )?;
             } else {
                 writeln!(out, "      Self::{}(e) => e.as_raw(),", event.variant)?;
             }
