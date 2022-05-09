@@ -330,6 +330,7 @@ impl CodeGen {
                         cases,
                         &mut vec,
                         need_compute_offset,
+                        doc,
                     );
                     expr.fetch_fieldrefs_owned(&mut fieldrefs);
                     if let Field::Switch { params_struct, .. } = &field {

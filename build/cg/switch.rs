@@ -1,6 +1,7 @@
 use super::r#enum::{self};
 use super::r#struct::{ParamsStruct, ResolvedFields};
 use super::{CodeGen, Expr, Field, SwitchCase, TypeInfo};
+use crate::cg::doc::Doc;
 use crate::cg::r#struct::enum_mask_qualified_rs_typ;
 use crate::cg::request::{fieldref_get_value, request_fieldref_emitted};
 use crate::cg::{self, util, QualifiedRsTyp, StructStyle};
@@ -20,6 +21,7 @@ impl CodeGen {
         cases: &[ir::SwitchCase],
         prev_fields: &mut [Field],
         need_compute_offset: bool,
+        doc: Option<&Doc>,
     ) -> Field {
         // switch types are made-up, so we create the typ (same as intended rs_typ)
         let typ = parent_rs_typ.to_string() + &util::tit_cap(name);
@@ -36,6 +38,8 @@ impl CodeGen {
                 break;
             }
         }
+
+        let doc = self.doc_lookup_field(doc, name);
 
         let is_mask = {
             let check1 = cases.iter().all(|sc| sc.bit);
@@ -163,7 +167,7 @@ impl CodeGen {
             expr: expr.clone(),
             is_mask,
             need_compute_offset,
-            doc: None,
+            doc,
         };
 
         self.register_typ(typ, typinfo);
