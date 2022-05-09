@@ -1158,7 +1158,8 @@ impl Connection {
     }
 
     /// Resolve an xcb_generic_event_t pointer into an Event.
-    /// The pointer must not be NULL.
+    /// # Safety
+    /// The caller is repsonsible to ensure that the `ev` pointer is not NULL.
     /// The ownership of the pointer is effectively transferred to the
     /// returned Event and it will be destroyed when the Event is
     /// dropped.
