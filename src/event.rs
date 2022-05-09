@@ -111,6 +111,43 @@ pub enum Event {
     Unknown(UnknownEvent),
 }
 
+impl Event {
+    pub fn as_raw(&self) -> *mut xcb_generic_event_t {
+        match self {
+            Self::X(e) => e.as_raw(),
+            #[cfg(feature = "damage")]
+            Self::Damage(e) => e.as_raw(),
+            #[cfg(feature = "dri2")]
+            Self::Dri2(e) => e.as_raw(),
+            #[cfg(feature = "glx")]
+            Self::Glx(e) => e.as_raw(),
+            #[cfg(feature = "present")]
+            Self::Present(e) => e.as_raw(),
+            #[cfg(feature = "randr")]
+            Self::RandR(e) => e.as_raw(),
+            #[cfg(feature = "screensaver")]
+            Self::ScreenSaver(e) => e.as_raw(),
+            #[cfg(feature = "shape")]
+            Self::Shape(e) => e.as_raw(),
+            #[cfg(feature = "shm")]
+            Self::Shm(e) => e.as_raw(),
+            #[cfg(feature = "sync")]
+            Self::Sync(e) => e.as_raw(),
+            #[cfg(feature = "xfixes")]
+            Self::XFixes(e) => e.as_raw(),
+            #[cfg(feature = "xinput")]
+            Self::Input(e) => e.as_raw(),
+            #[cfg(feature = "xkb")]
+            Self::Xkb(e) => e.as_raw(),
+            #[cfg(feature = "xprint")]
+            Self::XPrint(e) => e.as_raw(),
+            #[cfg(feature = "xv")]
+            Self::Xv(e) => e.as_raw(),
+            Self::Unknown(e) => e.as_raw(),
+        }
+    }
+}
+
 /// an event was not recognized as part of the core protocol or any enabled extension
 pub struct UnknownEvent {
     raw: *mut xcb_generic_event_t,

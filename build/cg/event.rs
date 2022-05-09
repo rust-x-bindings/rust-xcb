@@ -345,6 +345,32 @@ impl CodeGen {
         }
         writeln!(out, "}}")?;
 
+        writeln!(out)?;
+        writeln!(out, "impl Event {{")?;
+        writeln!(out, "  pub fn as_raw(&self) -> *mut xcb_generic_event_t {{")?;
+        writeln!(out, "    match self {{")?;
+        for event in &self.events {
+            if event.is_xge && self.xcb_mod == "xproto" {
+                // same comment as above
+                continue;
+            }
+            if event.is_xge {
+                // We can't emit the different type, but it is "OK" to cast
+                // it as xcb_generic_event_t as the response_type can be
+                // used to distinguish the correct type
+                writeln!(
+                    out,
+                    "      Self::{}(e) => e.as_raw() as *mut xcb_generic_event_t,",
+                    event.variant
+                )?;
+            } else {
+                writeln!(out, "      Self::{}(e) => e.as_raw(),", event.variant)?;
+            }
+        }
+        writeln!(out, "    }}")?;
+        writeln!(out, "  }}")?;
+        writeln!(out, "}}")?;
+
         let has_xge = self.events.iter().any(|ev| ev.is_xge);
         let has_non_xge = !self.events.iter().all(|ev| ev.is_xge);
         let _last_event = self.events.iter().map(|ev| ev.number).max().unwrap();

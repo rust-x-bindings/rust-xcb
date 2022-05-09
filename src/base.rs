@@ -1157,6 +1157,16 @@ impl Connection {
         }
     }
 
+    /// Resolve an xcb_generic_event_t pointer into an Event.
+    /// # Safety
+    /// The caller is repsonsible to ensure that the `ev` pointer is not NULL.
+    /// The ownership of the pointer is effectively transferred to the
+    /// returned Event and it will be destroyed when the Event is
+    /// dropped.
+    pub unsafe fn resolve_event(&self, ev: &mut xcb_generic_event_t) -> Event {
+        event::resolve_event(ev, &self.ext_data)
+    }
+
     unsafe fn handle_poll_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Option<Event>> {
         if ev.is_null() {
             self.has_error()?;
