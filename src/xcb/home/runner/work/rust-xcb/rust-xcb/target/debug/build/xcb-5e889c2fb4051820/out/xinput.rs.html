@@ -27304,6 +27304,56 @@
 <span id="27299">27299</span>
 <span id="27300">27300</span>
 <span id="27301">27301</span>
+<span id="27302">27302</span>
+<span id="27303">27303</span>
+<span id="27304">27304</span>
+<span id="27305">27305</span>
+<span id="27306">27306</span>
+<span id="27307">27307</span>
+<span id="27308">27308</span>
+<span id="27309">27309</span>
+<span id="27310">27310</span>
+<span id="27311">27311</span>
+<span id="27312">27312</span>
+<span id="27313">27313</span>
+<span id="27314">27314</span>
+<span id="27315">27315</span>
+<span id="27316">27316</span>
+<span id="27317">27317</span>
+<span id="27318">27318</span>
+<span id="27319">27319</span>
+<span id="27320">27320</span>
+<span id="27321">27321</span>
+<span id="27322">27322</span>
+<span id="27323">27323</span>
+<span id="27324">27324</span>
+<span id="27325">27325</span>
+<span id="27326">27326</span>
+<span id="27327">27327</span>
+<span id="27328">27328</span>
+<span id="27329">27329</span>
+<span id="27330">27330</span>
+<span id="27331">27331</span>
+<span id="27332">27332</span>
+<span id="27333">27333</span>
+<span id="27334">27334</span>
+<span id="27335">27335</span>
+<span id="27336">27336</span>
+<span id="27337">27337</span>
+<span id="27338">27338</span>
+<span id="27339">27339</span>
+<span id="27340">27340</span>
+<span id="27341">27341</span>
+<span id="27342">27342</span>
+<span id="27343">27343</span>
+<span id="27344">27344</span>
+<span id="27345">27345</span>
+<span id="27346">27346</span>
+<span id="27347">27347</span>
+<span id="27348">27348</span>
+<span id="27349">27349</span>
+<span id="27350">27350</span>
+<span id="27351">27351</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xinput.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -32426,6 +32476,56 @@
     <span class="ident">RawTouchEnd</span>(<span class="ident">RawTouchEndEvent</span>),
     <span class="ident">BarrierHit</span>(<span class="ident">BarrierHitEvent</span>),
     <span class="ident">BarrierLeave</span>(<span class="ident">BarrierLeaveEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::DeviceValuator</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceKeyPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceKeyRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceButtonPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceButtonRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceMotionNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceFocusIn</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceFocusOut</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ProximityIn</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ProximityOut</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceStateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceMappingNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ChangeDeviceNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceKeyStateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceButtonStateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DevicePresenceNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DevicePropertyNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DeviceChanged</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::KeyPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::KeyRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::ButtonPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::ButtonRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::Motion</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::Enter</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::Leave</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::FocusIn</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::FocusOut</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::Hierarchy</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::Property</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawKeyPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawKeyRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawButtonPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawButtonRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawMotion</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::TouchBegin</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::TouchUpdate</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::TouchEnd</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::TouchOwnership</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawTouchBegin</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawTouchUpdate</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RawTouchEnd</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::BarrierHit</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::BarrierLeave</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

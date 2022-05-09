@@ -26524,6 +26524,46 @@
 <span id="26519">26519</span>
 <span id="26520">26520</span>
 <span id="26521">26521</span>
+<span id="26522">26522</span>
+<span id="26523">26523</span>
+<span id="26524">26524</span>
+<span id="26525">26525</span>
+<span id="26526">26526</span>
+<span id="26527">26527</span>
+<span id="26528">26528</span>
+<span id="26529">26529</span>
+<span id="26530">26530</span>
+<span id="26531">26531</span>
+<span id="26532">26532</span>
+<span id="26533">26533</span>
+<span id="26534">26534</span>
+<span id="26535">26535</span>
+<span id="26536">26536</span>
+<span id="26537">26537</span>
+<span id="26538">26538</span>
+<span id="26539">26539</span>
+<span id="26540">26540</span>
+<span id="26541">26541</span>
+<span id="26542">26542</span>
+<span id="26543">26543</span>
+<span id="26544">26544</span>
+<span id="26545">26545</span>
+<span id="26546">26546</span>
+<span id="26547">26547</span>
+<span id="26548">26548</span>
+<span id="26549">26549</span>
+<span id="26550">26550</span>
+<span id="26551">26551</span>
+<span id="26552">26552</span>
+<span id="26553">26553</span>
+<span id="26554">26554</span>
+<span id="26555">26555</span>
+<span id="26556">26556</span>
+<span id="26557">26557</span>
+<span id="26558">26558</span>
+<span id="26559">26559</span>
+<span id="26560">26560</span>
+<span id="26561">26561</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -31704,6 +31744,46 @@
     <span class="ident">ColormapNotify</span>(<span class="ident">ColormapNotifyEvent</span>),
     <span class="ident">ClientMessage</span>(<span class="ident">ClientMessageEvent</span>),
     <span class="ident">MappingNotify</span>(<span class="ident">MappingNotifyEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::KeyPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::KeyRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ButtonPress</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ButtonRelease</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::MotionNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::EnterNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::LeaveNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::FocusIn</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::FocusOut</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::KeymapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::Expose</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::GraphicsExposure</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::NoExposure</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::VisibilityNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::CreateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::DestroyNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::UnmapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::MapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::MapRequest</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ReparentNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ConfigureNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ConfigureRequest</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::GravityNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ResizeRequest</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::CirculateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::CirculateRequest</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::PropertyNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::SelectionClear</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::SelectionRequest</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::SelectionNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ColormapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ClientMessage</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::MappingNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

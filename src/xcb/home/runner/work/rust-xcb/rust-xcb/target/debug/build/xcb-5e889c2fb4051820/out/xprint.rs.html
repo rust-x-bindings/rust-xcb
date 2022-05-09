@@ -4153,6 +4153,15 @@
 <span id="4148">4148</span>
 <span id="4149">4149</span>
 <span id="4150">4150</span>
+<span id="4151">4151</span>
+<span id="4152">4152</span>
+<span id="4153">4153</span>
+<span id="4154">4154</span>
+<span id="4155">4155</span>
+<span id="4156">4156</span>
+<span id="4157">4157</span>
+<span id="4158">4158</span>
+<span id="4159">4159</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xprint.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -4656,6 +4665,15 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span> {
     <span class="ident">Notify</span>(<span class="ident">NotifyEvent</span>),
     <span class="ident">AttributNotify</span>(<span class="ident">AttributNotifyEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Notify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::AttributNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

@@ -1904,6 +1904,18 @@
 <span id="1899">1899</span>
 <span id="1900">1900</span>
 <span id="1901">1901</span>
+<span id="1902">1902</span>
+<span id="1903">1903</span>
+<span id="1904">1904</span>
+<span id="1905">1905</span>
+<span id="1906">1906</span>
+<span id="1907">1907</span>
+<span id="1908">1908</span>
+<span id="1909">1909</span>
+<span id="1910">1910</span>
+<span id="1911">1911</span>
+<span id="1912">1912</span>
+<span id="1913">1913</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from present.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -3044,6 +3056,18 @@
     <span class="ident">CompleteNotify</span>(<span class="ident">CompleteNotifyEvent</span>),
     <span class="ident">IdleNotify</span>(<span class="ident">IdleNotifyEvent</span>),
     <span class="ident">RedirectNotify</span>(<span class="ident">RedirectNotifyEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::Generic</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ConfigureNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::CompleteNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::IdleNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+            <span class="ident"><span class="self">Self</span>::RedirectNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>() <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

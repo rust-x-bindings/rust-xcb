@@ -18039,6 +18039,25 @@
 <span id="18034">18034</span>
 <span id="18035">18035</span>
 <span id="18036">18036</span>
+<span id="18037">18037</span>
+<span id="18038">18038</span>
+<span id="18039">18039</span>
+<span id="18040">18040</span>
+<span id="18041">18041</span>
+<span id="18042">18042</span>
+<span id="18043">18043</span>
+<span id="18044">18044</span>
+<span id="18045">18045</span>
+<span id="18046">18046</span>
+<span id="18047">18047</span>
+<span id="18048">18048</span>
+<span id="18049">18049</span>
+<span id="18050">18050</span>
+<span id="18051">18051</span>
+<span id="18052">18052</span>
+<span id="18053">18053</span>
+<span id="18054">18054</span>
+<span id="18055">18055</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -21110,6 +21129,25 @@
     <span class="ident">ActionMessage</span>(<span class="ident">ActionMessageEvent</span>),
     <span class="ident">AccessXNotify</span>(<span class="ident">AccessXNotifyEvent</span>),
     <span class="ident">ExtensionDeviceNotify</span>(<span class="ident">ExtensionDeviceNotifyEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::NewKeyboardNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::MapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::StateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ControlsNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::IndicatorStateNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::IndicatorMapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::NamesNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::CompatMapNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::BellNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ActionMessage</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::AccessXNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::ExtensionDeviceNotify</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

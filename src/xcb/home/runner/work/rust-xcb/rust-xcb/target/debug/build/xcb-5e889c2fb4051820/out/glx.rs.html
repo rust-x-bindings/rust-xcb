@@ -18387,6 +18387,15 @@
 <span id="18382">18382</span>
 <span id="18383">18383</span>
 <span id="18384">18384</span>
+<span id="18385">18385</span>
+<span id="18386">18386</span>
+<span id="18387">18387</span>
+<span id="18388">18388</span>
+<span id="18389">18389</span>
+<span id="18390">18390</span>
+<span id="18391">18391</span>
+<span id="18392">18392</span>
+<span id="18393">18393</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from glx.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -19059,6 +19068,15 @@
 <span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span> {
     <span class="ident">PbufferClobber</span>(<span class="ident">PbufferClobberEvent</span>),
     <span class="ident">BufferSwapComplete</span>(<span class="ident">BufferSwapCompleteEvent</span>),
+}
+
+<span class="kw">impl</span> <span class="ident">Event</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
+        <span class="kw">match</span> <span class="self">self</span> {
+            <span class="ident"><span class="self">Self</span>::PbufferClobber</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+            <span class="ident"><span class="self">Self</span>::BufferSwapComplete</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+        }
+    }
 }
 
 <span class="kw">impl</span> <span class="ident">base::ResolveWireEvent</span> <span class="kw">for</span> <span class="ident">Event</span> {

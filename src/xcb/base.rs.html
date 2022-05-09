@@ -1732,6 +1732,16 @@
 <span id="1727">1727</span>
 <span id="1728">1728</span>
 <span id="1729">1729</span>
+<span id="1730">1730</span>
+<span id="1731">1731</span>
+<span id="1732">1732</span>
+<span id="1733">1733</span>
+<span id="1734">1734</span>
+<span id="1735">1735</span>
+<span id="1736">1736</span>
+<span id="1737">1737</span>
+<span id="1738">1738</span>
+<span id="1739">1739</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2889,6 +2899,16 @@
         } <span class="kw">else</span> {
             <span class="prelude-val">Ok</span>(<span class="ident">event::resolve_event</span>(<span class="ident">ev</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ext_data</span>))
         }
+    }
+
+    <span class="doccomment">/// Resolve an xcb_generic_event_t pointer into an Event.</span>
+    <span class="doccomment">/// # Safety</span>
+    <span class="doccomment">/// The caller is repsonsible to ensure that the `ev` pointer is not NULL.</span>
+    <span class="doccomment">/// The ownership of the pointer is effectively transferred to the</span>
+    <span class="doccomment">/// returned Event and it will be destroyed when the Event is</span>
+    <span class="doccomment">/// dropped.</span>
+    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ev</span>: <span class="kw-2">&amp;mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="ident">Event</span> {
+        <span class="ident">event::resolve_event</span>(<span class="ident">ev</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">ext_data</span>)
     }
 
     <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">handle_poll_for_event</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">ev</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Event</span><span class="op">&gt;</span><span class="op">&gt;</span> {
