@@ -2023,7 +2023,7 @@ Must be zero if the `class` is `InputOnly` or a [MatchError] occurs.
             <field name="value_list">
                 <![CDATA[
 A set of attributes to attach to the window.
-The list must be defined in the same order than the [`Cw`](crate::x::Cw) enum.
+The list must be defined in the same order as the [`Cw`](crate::x::Cw) enum.
 ]]>
             </field>
             <error type="Colormap">
