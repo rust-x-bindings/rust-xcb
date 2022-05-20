@@ -535,6 +535,9 @@ pub enum ConnError {
     ClosedInvalidScreen,
     /// Connection closed because some file descriptor passing operation failed.
     ClosedFdPassingFailed,
+    /// XOpenDisplay returned NULL
+    #[cfg(feature = "xlib_xcb")]
+    XOpenDisplay,
 }
 
 impl ConnError {
@@ -552,6 +555,10 @@ impl ConnError {
             }
             ConnError::ClosedFdPassingFailed => {
                 "Connection closed, some file descriptor passing operation failed"
+            }
+            #[cfg(feature = "xlib_xcb")]
+            ConnError::XOpenDisplay => {
+                "XOpenDisplay failed to open a display. Check the $DISPLAY env var"
             }
         }
     }
@@ -722,6 +729,9 @@ impl Connection {
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(ptr::null());
+            if dpy.is_null() {
+                return Err(ConnError::XOpenDisplay);
+            }
 
             check_connection_error(XGetXCBConnection(dpy))?;
 
@@ -752,6 +762,9 @@ impl Connection {
     ) -> ConnResult<(Connection, i32)> {
         unsafe {
             let dpy = xlib::XOpenDisplay(ptr::null());
+            if dpy.is_null() {
+                return Err(ConnError::XOpenDisplay);
+            }
 
             check_connection_error(XGetXCBConnection(dpy))?;
 
