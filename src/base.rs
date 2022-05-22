@@ -1656,6 +1656,7 @@ mod dan {
     pub(crate) static mut DAN_CONN: *mut xcb_connection_t = ptr::null_mut();
 
     impl fmt::Debug for x::Atom {
+        #[allow(clippy::print_in_format_impl)]
         fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
             if self.resource_id() == 0 {
                 return f.write_str("ATOM_NONE");
