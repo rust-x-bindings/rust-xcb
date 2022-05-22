@@ -317,7 +317,7 @@ pub(crate) unsafe fn resolve_event(
         .unwrap_or_else(|| {
             // SAFETY the event type is checked above and the function panicked if it was
             // not a basic event (XCB_GE_GENERIC)
-            let unknown = unsafe { UnknownEvent::from_raw(event) };
+            let unknown = UnknownEvent::from_raw(event);
             Event::Unknown(unknown)
         })
 }
