@@ -4,7 +4,7 @@ name: Continuous Integration
 
 jobs:
   check:
-    name: Lint, Build and Test
+    name: Build and Test
     runs-on: ubuntu-latest
     env:
       RUSTDOCFLAGS: -Dwarnings
@@ -18,12 +18,6 @@ jobs:
           profile: minimal
           toolchain: stable
           override: true
-
-      - name: Run cargo fmt
-        uses: actions-rs/cargo@v1
-        with:
-          command: fmt
-          args: --all -- --check
 
       - name: Install dependencies
         run: |
@@ -53,12 +47,6 @@ jobs:
             libxcb-xv0-dev \
             libxcb-xvmc0-dev \
             libx11-xcb-dev
-
-      - name: Run cargo clippy
-        uses: actions-rs/cargo@v1
-        with:
-          command: clippy
-          args: --all-features -- -D warnings
 
       - name: Run cargo build
         uses: actions-rs/cargo@v1
