@@ -1743,6 +1743,19 @@
 <span id="1738">1738</span>
 <span id="1739">1739</span>
 <span id="1740">1740</span>
+<span id="1741">1741</span>
+<span id="1742">1742</span>
+<span id="1743">1743</span>
+<span id="1744">1744</span>
+<span id="1745">1745</span>
+<span id="1746">1746</span>
+<span id="1747">1747</span>
+<span id="1748">1748</span>
+<span id="1749">1749</span>
+<span id="1750">1750</span>
+<span id="1751">1751</span>
+<span id="1752">1752</span>
+<span id="1753">1753</span>
 </pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::error</span>::{<span class="self">self</span>, <span class="ident">ProtocolError</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::event</span>::{<span class="self">self</span>, <span class="ident">Event</span>};
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
@@ -2280,6 +2293,9 @@
     <span class="ident">ClosedInvalidScreen</span>,
     <span class="doccomment">/// Connection closed because some file descriptor passing operation failed.</span>
     <span class="ident">ClosedFdPassingFailed</span>,
+    <span class="doccomment">/// XOpenDisplay returned NULL</span>
+    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+    <span class="ident">XOpenDisplay</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">ConnError</span> {
@@ -2297,6 +2313,10 @@
             }
             <span class="ident">ConnError::ClosedFdPassingFailed</span> =&gt; {
                 <span class="string">&quot;Connection closed, some file descriptor passing operation failed&quot;</span>
+            }
+            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xlib_xcb&quot;</span>)]</span>
+            <span class="ident">ConnError::XOpenDisplay</span> =&gt; {
+                <span class="string">&quot;XOpenDisplay failed to open a display. Check the $DISPLAY env var&quot;</span>
             }
         }
     }
@@ -2467,6 +2487,9 @@
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">connect_with_xlib_display</span>() -&gt; <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
+            <span class="kw">if</span> <span class="ident">dpy</span>.<span class="ident">is_null</span>() {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ConnError::XOpenDisplay</span>);
+            }
 
             <span class="ident">check_connection_error</span>(<span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>))<span class="question-mark">?</span>;
 
@@ -2497,6 +2520,9 @@
     ) -&gt; <span class="ident">ConnResult</span><span class="op">&lt;</span>(<span class="ident">Connection</span>, <span class="ident">i32</span>)<span class="op">&gt;</span> {
         <span class="kw">unsafe</span> {
             <span class="kw">let</span> <span class="ident">dpy</span> <span class="op">=</span> <span class="ident">xlib::XOpenDisplay</span>(<span class="ident">ptr::null</span>());
+            <span class="kw">if</span> <span class="ident">dpy</span>.<span class="ident">is_null</span>() {
+                <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">ConnError::XOpenDisplay</span>);
+            }
 
             <span class="ident">check_connection_error</span>(<span class="ident">XGetXCBConnection</span>(<span class="ident">dpy</span>))<span class="question-mark">?</span>;
 
