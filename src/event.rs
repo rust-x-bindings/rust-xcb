@@ -207,7 +207,7 @@ pub(crate) unsafe fn resolve_event(
     }
 
     for data in extension_data {
-        if response_type >= data.first_event {
+        if response_type >= data.first_event && data.first_event != 0 {
             match data.ext {
                 #[cfg(feature = "damage")]
                 Extension::Damage => {
