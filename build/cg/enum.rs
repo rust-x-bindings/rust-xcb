@@ -148,7 +148,7 @@ impl CodeGen {
             if let Some(doc) = doc {
                 doc.emit(out, 0)?;
             }
-            writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq)]")?;
+            writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq, Eq)]")?;
             writeln!(out, "#[repr(u32)]")?;
             writeln!(out, "pub enum {} {{", rs_typ)?;
             for item in items {
@@ -244,7 +244,7 @@ impl CodeGen {
 }
 pub(super) fn map_enum_item_name(name: &str) -> String {
     let mut name = util::tit_cap(name);
-    if name.chars().next().unwrap().is_digit(10) {
+    if name.chars().next().unwrap().is_ascii_digit() {
         name.insert(0, 'N');
     }
     name
@@ -252,7 +252,7 @@ pub(super) fn map_enum_item_name(name: &str) -> String {
 
 pub(super) fn map_mask_item_name(name: &str) -> String {
     let mut name = util::tit_split(name).to_ascii_uppercase();
-    if name.chars().next().unwrap().is_digit(10) {
+    if name.chars().next().unwrap().is_ascii_digit() {
         name.insert(0, 'N');
     }
     name

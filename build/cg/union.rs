@@ -365,7 +365,7 @@ impl CodeGen {
                             } => {
                                 writeln!(
                                     out,
-                                    "{}(&mut wire_buf[{}..{}]).copy_from_slice({});",
+                                    "{}wire_buf[{}..{}].copy_from_slice({});",
                                     cg::ind(4),
                                     off,
                                     *off + *sz,

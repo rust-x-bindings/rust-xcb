@@ -168,6 +168,18 @@ impl BaseEvent for UnknownEvent {
     const NUMBER: u32 = u32::MAX;
 }
 
+impl UnknownEvent {
+    pub fn response_type(&self) -> u8 {
+        unsafe { (*self.raw).response_type }
+    }
+    pub fn sequence(&self) -> u16 {
+        unsafe { (*self.raw).sequence }
+    }
+    pub fn full_sequence(&self) -> u32 {
+        unsafe { (*self.raw).full_sequence }
+    }
+}
+
 impl std::fmt::Debug for UnknownEvent {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_tuple("UnknownEvent").finish()
@@ -207,7 +219,7 @@ pub(crate) unsafe fn resolve_event(
     }
 
     for data in extension_data {
-        if response_type >= data.first_event {
+        if response_type >= data.first_event && data.first_event != 0 {
             match data.ext {
                 #[cfg(feature = "damage")]
                 Extension::Damage => {
