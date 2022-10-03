@@ -661,19 +661,7 @@ impl CodeGen {
                 event.rs_typ
             )?;
         }
-        if self.xcb_mod == "xproto" {
-            writeln!(out, "{}_ => None,", cg::ind(3))?;
-        } else {
-            writeln!(out, "{}_ => unreachable!(", cg::ind(3))?;
-            writeln!(
-                out,
-                "{}\"Could not resolve {} Event with response_type {{}} and first_event {{}}\",",
-                cg::ind(4),
-                self.xcb_mod
-            )?;
-            writeln!(out, "{}response_type, first_event", cg::ind(4))?;
-            writeln!(out, "{}),", cg::ind(3))?;
-        }
+        writeln!(out, "{}_ => None,", cg::ind(3))?;
         writeln!(out, "{}}}", cg::ind(2))?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
