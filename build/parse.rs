@@ -807,12 +807,10 @@ impl<B: BufRead> Parser<B> {
                     let name = expect_attribute(e.attributes(), b"name")?;
                     Ok(Some(Field::Fd(name)))
                 }
-                tag => {
-                    return Err(Error::Parse(format!(
-                        "Unexpected <{} /> in field",
-                        str::from_utf8(tag)?
-                    )))
-                }
+                tag => Err(Error::Parse(format!(
+                    "Unexpected <{} /> in field",
+                    str::from_utf8(tag)?
+                ))),
             }
         } else {
             match e.name() {
@@ -885,12 +883,10 @@ impl<B: BufRead> Parser<B> {
                     let (expr, cases) = self.parse_switch()?;
                     Ok(Some(Field::Switch(name, expr, cases)))
                 }
-                tag => {
-                    return Err(Error::Parse(format!(
-                        "Unexpected <{}> in field",
-                        str::from_utf8(tag)?
-                    )))
-                }
+                tag => Err(Error::Parse(format!(
+                    "Unexpected <{}> in field",
+                    str::from_utf8(tag)?
+                ))),
             }
         }
     }

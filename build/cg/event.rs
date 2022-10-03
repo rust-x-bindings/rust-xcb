@@ -746,7 +746,7 @@ impl CodeGen {
         )?;
         writeln!(
             out,
-            "{}(&mut wire_buf[0 .. self.wire_len()]).copy_from_slice(raw_slice);",
+            "{}wire_buf[0 .. self.wire_len()].copy_from_slice(raw_slice);",
             cg::ind(2)
         )?;
         writeln!(out, "{}self.wire_len()", cg::ind(2))?;

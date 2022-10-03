@@ -755,6 +755,7 @@ pub mod xkb {
     //!
     //! Accessible with the `xkb` cargo feature.
     #![allow(unused_variables)]
+    #![allow(clippy::let_unit_value)]
     #![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/xkb.rs"));
