@@ -1,1 +1,1 @@
-initSidebarItems({"type":[["BOOL",""],["BYTE",""],["CARD16",""],["CARD32",""],["CARD64",""],["CARD8",""],["INT16",""],["INT32",""],["INT64",""],["INT8",""]]});
+window.SIDEBAR_ITEMS = {"type":[["BOOL",""],["BYTE",""],["CARD16",""],["CARD32",""],["CARD64",""],["CARD8",""],["INT16",""],["INT32",""],["INT64",""],["INT8",""]]};
