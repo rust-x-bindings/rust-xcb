@@ -1624,6 +1624,12 @@ impl Connection {
     }
 }
 
+impl AsRef<Connection> for Connection {
+    fn as_ref(&self) -> &Connection {
+        self
+    }
+}
+
 impl AsRawFd for Connection {
     fn as_raw_fd(&self) -> RawFd {
         unsafe { xcb_get_file_descriptor(self.c) }
