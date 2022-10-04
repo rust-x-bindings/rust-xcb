@@ -26559,6 +26559,16 @@
 <span id="26559">26559</span>
 <span id="26560">26560</span>
 <span id="26561">26561</span>
+<span id="26562">26562</span>
+<span id="26563">26563</span>
+<span id="26564">26564</span>
+<span id="26565">26565</span>
+<span id="26566">26566</span>
+<span id="26567">26567</span>
+<span id="26568">26568</span>
+<span id="26569">26569</span>
+<span id="26570">26570</span>
+<span id="26571">26571</span>
 </pre><pre class="rust"><code><span class="comment">// This source file is generated automatically from xproto.xml</span>
 
 <span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="self">self</span>, <span class="ident">BaseError</span>, <span class="ident">BaseEvent</span>, <span class="ident">GeEvent</span>, <span class="ident">Raw</span>, <span class="ident">Reply</span>, <span class="ident">WiredIn</span>, <span class="ident">WiredOut</span>, <span class="ident">Xid</span>};
@@ -37946,6 +37956,8 @@
     <span class="doccomment">/// The special value `XCB_COPY_FROM_PARENT` means the visual is taken from the</span>
     <span class="doccomment">/// `parent` window.</span>
     <span class="kw">pub</span> <span class="ident">visual</span>: <span class="ident">Visualid</span>,
+    <span class="doccomment">/// A set of attributes to attach to the window.</span>
+    <span class="doccomment">/// The list must be defined in the same order as the [`Cw`](crate::x::Cw) enum.</span>
     <span class="kw">pub</span> <span class="ident">value_list</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Cw</span>],
 }
 
@@ -38025,6 +38037,9 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeWindowAttributes</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The window to change.</span>
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
+    <span class="doccomment">/// Values for each of the attributes specified in the bitmask `value_mask`. The</span>
+    <span class="doccomment">/// order has to correspond to the order of possible `value_mask` bits. See the</span>
+    <span class="doccomment">/// example.</span>
     <span class="kw">pub</span> <span class="ident">value_list</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Cw</span>],
 }
 
@@ -38940,6 +38955,8 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ConfigureWindow</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The window to configure.</span>
     <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
+    <span class="doccomment">/// New values, corresponding to the attributes in value_mask. The order has to</span>
+    <span class="doccomment">/// correspond to the order of possible `value_mask` bits. See the example.</span>
     <span class="kw">pub</span> <span class="ident">value_list</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">ConfigWindow</span>],
 }
 
@@ -45636,6 +45653,9 @@
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ChangeGc</span><span class="op">&lt;</span><span class="lifetime">&#39;a</span><span class="op">&gt;</span> {
     <span class="doccomment">/// The graphics context to change.</span>
     <span class="kw">pub</span> <span class="ident">gc</span>: <span class="ident">Gcontext</span>,
+    <span class="doccomment">/// Values for each of the components specified in the bitmask `value_mask`. The</span>
+    <span class="doccomment">/// order has to correspond to the order of possible `value_mask` bits. See the</span>
+    <span class="doccomment">/// example.</span>
     <span class="kw">pub</span> <span class="ident">value_list</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a</span> [<span class="ident">Gc</span>],
 }
 
