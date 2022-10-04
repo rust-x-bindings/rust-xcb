@@ -491,6 +491,9 @@ impl CodeGen {
         writeln!(out, "use std::convert::TryInto;")?;
         writeln!(out, "use std::hash::{{Hash, Hasher}};")?;
         writeln!(out, "use std::os::unix::io::RawFd;")?;
+        if self.xcb_mod == "xproto" {
+            writeln!(out, "use std::cmp::Ordering;")?;
+        }
 
         if let Some(ext_info) = self.ext_info.as_ref() {
             writeln!(out)?;

@@ -54,7 +54,11 @@ impl CodeGen {
         };
 
         writeln!(out)?;
-        writeln!(out, "#[derive(Copy, Clone, {}PartialEq, Eq, Hash)]", dbg)?;
+        writeln!(
+            out,
+            "#[derive(Copy, Clone, {}PartialEq, Eq, Hash, PartialOrd, Ord)]",
+            dbg
+        )?;
         writeln!(out, "#[repr(C)]")?;
         writeln!(out, "pub struct {} {{", rs_typ)?;
         writeln!(out, "    res_id: u32,")?;
