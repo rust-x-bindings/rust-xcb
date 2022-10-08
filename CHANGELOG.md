@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Changed
+ - `resolve_event` returns `Event::Unknown` instead of panicking when the event could not be resolved.
+ - Types such as `x::Cw` implement `Ord` and can be sorted dynamically (i.e. for `x::CreateWindow`)
+ - `atoms_struct!` macro can specify `only_if_exists`
 
 ## [1.1.1] - 2022-03-19 - rtbo
 ### Fixed
