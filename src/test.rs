@@ -162,6 +162,14 @@ fn test_cw_is_sorted_distinct() {
 }
 
 #[test]
+fn test_cw_cmp() {
+    assert!(x::Cw::BorderPixel(12) < x::Cw::BorderPixel(13));
+    assert!(x::Cw::BorderPixel(13) > x::Cw::BorderPixel(12));
+    assert!(x::Cw::BorderPixel(12) == x::Cw::BorderPixel(12));
+    assert!(x::Cw::BorderPixel(12) > x::Cw::BackPixel(13));
+}
+
+#[test]
 fn atom_hashmap() {
     use std::collections::HashMap;
 

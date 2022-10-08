@@ -148,7 +148,10 @@ impl CodeGen {
             if let Some(doc) = doc {
                 doc.emit(out, 0)?;
             }
-            writeln!(out, "#[derive(Copy, Clone, Debug, PartialEq, Eq)]")?;
+            writeln!(
+                out,
+                "#[derive(Copy, Clone, Debug, PartialEq, Eq, PartialOrd, Ord)]"
+            )?;
             writeln!(out, "#[repr(u32)]")?;
             writeln!(out, "pub enum {} {{", rs_typ)?;
             for item in items {

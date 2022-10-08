@@ -189,7 +189,12 @@ impl CodeGen {
         params_struct.emit(out)?;
 
         writeln!(out)?;
-        writeln!(out, "#[derive(Clone, Debug)]")?;
+        // implementing Eq and Ord only for xproto switches which are simple enough
+        if is_mask && self.xcb_mod == "xproto" {
+            writeln!(out, "#[derive(Clone, Debug, PartialEq, Eq)]")?;
+        } else {
+            writeln!(out, "#[derive(Clone, Debug)]")?;
+        }
         writeln!(out, "pub enum {} {{", rs_typ)?;
         for c in cases {
             if visible_fields_len(&c.fields) == 1 {
@@ -1263,6 +1268,46 @@ impl CodeGen {
         writeln!(out, "        }}")?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
+        // implementing Ord only for xproto switches which are simple enough
+        if self.xcb_mod == "xproto" {
+            writeln!(out)?;
+            writeln!(out, "impl Ord for {} {{", rs_typ)?;
+            writeln!(out, "    fn cmp(&self, other: &Self) -> Ordering {{")?;
+            writeln!(out, "        let o = self.get_ord().cmp(&other.get_ord());")?;
+            writeln!(out, "        match o {{")?;
+            writeln!(out, "            Ordering::Less | Ordering::Greater => o,")?;
+            writeln!(out, "            Ordering::Equal => {{")?;
+            writeln!(out, "                match (self, other) {{")?;
+            for c in cases.iter() {
+                writeln!(
+                    out,
+                    "{}({}::{}(val), {}::{}(oval)) => val.cmp(oval),",
+                    cg::ind(5),
+                    rs_typ,
+                    c.name,
+                    rs_typ,
+                    c.name
+                )?;
+            }
+            writeln!(
+                out,
+                "                    _ => unreachable!(\"Bug: o should not be Ordering::Equal\"),"
+            )?;
+            writeln!(out, "                }}")?;
+            writeln!(out, "            }}")?;
+            writeln!(out, "        }}")?;
+            writeln!(out, "    }}")?;
+            writeln!(out, "}}")?;
+            writeln!(out)?;
+            writeln!(out, "impl PartialOrd for {} {{", rs_typ)?;
+            writeln!(
+                out,
+                "    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {{"
+            )?;
+            writeln!(out, "        Some(self.cmp(other))")?;
+            writeln!(out, "    }}")?;
+            writeln!(out, "}}")?;
+        }
         Ok(())
     }
 
