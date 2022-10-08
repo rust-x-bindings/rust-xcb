@@ -412,6 +412,10 @@ mod xproto {
 ///         pub wm_del_window   => b"WM_DELETE_WINDOW",
 ///         /// Supported EWMH hints
 ///         pub net_supported  => b"_NET_SUPPORTED",
+///
+///         // You can also explicitly set the `only_if_exists` argument when interning
+///         // each atom with the following syntax (the default is `true`):
+///         pub custom_atom    => b"MY_CUSTOM_ATOM" only_if_exists = false,
 ///     }
 /// }
 ///
@@ -438,7 +442,7 @@ macro_rules! atoms_struct {
         $(#[$outer:meta])*
         $vis:vis struct $Atoms:ident {
             $(
-                $(#[$fmeta:meta])* $fvis:vis $field:ident => $name:expr,
+                $(#[$fmeta:meta])* $fvis:vis $field:ident => $name:tt $( only_if_exists = $only_if_exists:expr)?,
             )*
         }
     ) => {
@@ -447,10 +451,14 @@ macro_rules! atoms_struct {
             $($(#[$fmeta])* $fvis $field: xcb::x::Atom,)*
         }
         impl $Atoms {
+            #[allow(dead_code)]
             pub fn intern_all(conn: &xcb::Connection) -> xcb::Result<$Atoms> {
                 $(
+                    #[allow(unused_assignments)]
+                    let mut only_if_exists = true;
+                    $( only_if_exists = $only_if_exists; )?
                     let $field = conn.send_request(&xcb::x::InternAtom {
-                        only_if_exists: true,
+                        only_if_exists,
                         name: $name,
                     });
                 )*
