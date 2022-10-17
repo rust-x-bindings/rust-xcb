@@ -21,7 +21,7 @@ fn main() -> xcb::Result<()> {
         value_list: &[
             x::Cw::BackPixel(screen.white_pixel()),
             // events that will be waited for
-            x::Cw::EventMask(x::EventMask::EXPOSURE | x::EventMask::KEY_PRESS),
+            x::Cw::EventMask(x::EventMask::EXPOSURE),
         ],
     });
 
@@ -66,14 +66,6 @@ fn main() -> xcb::Result<()> {
 
                 /* We flush the request */
                 conn.flush()?;
-            }
-
-            xcb::Event::X(x::Event::KeyPress(key_press)) => {
-                println!("Key '{}' pressed", key_press.detail());
-                if key_press.detail() == 0x18 {
-                    // Q (on qwerty)
-                    break Ok(());
-                }
             }
             _ => {}
         }
