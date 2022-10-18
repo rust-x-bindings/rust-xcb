@@ -78,8 +78,8 @@ name = "connect_str"
 [[example]]
 name = "connect"
 
-# [[example]]
-# name = "draw_root_window"
+[[example]]
+name = "draw_root_window"
 
 [[example]]
 name = "drawing"
