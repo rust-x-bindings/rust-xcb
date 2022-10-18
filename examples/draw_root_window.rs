@@ -35,9 +35,11 @@ fn main() -> xcb::Result<()> {
             x::Gc::Background(screen.white_pixel()),
             x::Gc::LineWidth(1),
             x::Gc::LineStyle(x::LineStyle::OnOffDash),
-            x::Gc::GraphicsExposures(false),
+            x::Gc::SubwindowMode(x::SubwindowMode::IncludeInferiors),
         ],
     });
+
+    conn.send_request(&x::MapWindow { window });
 
     /* Flush the requests */
     conn.flush()?;
