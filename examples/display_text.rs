@@ -45,8 +45,8 @@ fn main() -> xcb::Result<()> {
         cid: gc,
         drawable: x::Drawable::Window(window),
         value_list: &[
-            x::Gc::Foreground(screen.black_pixel()),
-            x::Gc::Background(screen.white_pixel()),
+            x::Gc::Foreground(screen.white_pixel()),
+            x::Gc::Background(screen.black_pixel()),
             x::Gc::Font(font), // This line is optional: if absent the default font is used
             x::Gc::GraphicsExposures(false),
         ],
