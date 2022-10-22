@@ -79,6 +79,9 @@ name = "connect_str"
 name = "connect"
 
 [[example]]
+name = "display_text"
+
+[[example]]
 name = "draw_root_window"
 
 [[example]]
