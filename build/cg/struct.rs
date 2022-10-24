@@ -1669,8 +1669,11 @@ impl CodeGen {
                     //       it's not necessary to make them public as we expose lists as Rust
                     //       slices. However, when those fields are named width or height, they're
                     //       not simply the length of a slice, and they must be exposed so that the
-                    //       user can treat the slice as an image.
-                    let visibility = if *is_fieldref && !(name == "width" || name == "height") {
+                    //       user can treat the slice as an image. The format field is important for
+                    //       GetPropertyReply where the value getter would panic if formats mismatch.
+                    let visibility = if *is_fieldref
+                        && !(name == "width" || name == "height" || name == "format")
+                    {
                         ""
                     } else {
                         "pub "
