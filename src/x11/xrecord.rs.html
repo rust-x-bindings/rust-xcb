@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrecord.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrecord.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrecord.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrecord.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -118,125 +118,125 @@
 <span id="118">118</span>
 <span id="119">119</span>
 <span id="120">120</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uchar</span>, <span class="ident">c_ulong</span>, <span class="ident">c_ushort</span>};
+</span><span class="kw">use </span>std::os::raw::{c_char, c_int, c_uchar, c_ulong, c_ushort};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Time</span>, <span class="ident">XID</span>};
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Bool, Display, Time, XID};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xf86vmode</span>, <span class="ident">xtst</span>, [<span class="string">&quot;libXtst.so.6&quot;</span>, <span class="string">&quot;libXtst.so&quot;</span>], <span class="number">14</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordAllocRange</span> () -&gt; <span class="kw-2">*mut</span> <span class="ident">XRecordRange</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordCreateContext</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRecordRange</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordDisableContext</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordEnableContext</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> (<span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="kw-2">*mut</span> <span class="ident">XRecordInterceptData</span>)<span class="op">&gt;</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordEnableContextAsync</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span> (<span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="kw-2">*mut</span> <span class="ident">XRecordInterceptData</span>)<span class="op">&gt;</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordFreeContext</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordFreeData</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XRecordInterceptData</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordFreeState</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XRecordState</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordGetContext</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRecordState</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordIdBaseMask</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordProcessReplies</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordQueryVersion</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordRegisterClients</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRecordRange</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRecordUnregisterClients</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xf86vmode, xtst, [<span class="string">&quot;libXtst.so.6&quot;</span>, <span class="string">&quot;libXtst.so&quot;</span>], <span class="number">14</span>,
+  <span class="kw">pub fn </span>XRecordAllocRange () -&gt; <span class="kw-2">*mut </span>XRecordRange,
+  <span class="kw">pub fn </span>XRecordCreateContext (_6: <span class="kw-2">*mut </span>Display, _5: c_int, _4: <span class="kw-2">*mut </span>c_ulong, _3: c_int, _2: <span class="kw-2">*mut *mut </span>XRecordRange, _1: c_int) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRecordDisableContext (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordEnableContext (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>(<span class="kw-2">*mut </span>c_char, <span class="kw-2">*mut </span>XRecordInterceptData)&gt;, _1: <span class="kw-2">*mut </span>c_char) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordEnableContextAsync (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn </span>(<span class="kw-2">*mut </span>c_char, <span class="kw-2">*mut </span>XRecordInterceptData)&gt;, _1: <span class="kw-2">*mut </span>c_char) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordFreeContext (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordFreeData (_1: <span class="kw-2">*mut </span>XRecordInterceptData) -&gt; (),
+  <span class="kw">pub fn </span>XRecordFreeState (_1: <span class="kw-2">*mut </span>XRecordState) -&gt; (),
+  <span class="kw">pub fn </span>XRecordGetContext (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut *mut </span>XRecordState) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordIdBaseMask (_1: <span class="kw-2">*mut </span>Display) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRecordProcessReplies (_1: <span class="kw-2">*mut </span>Display) -&gt; (),
+  <span class="kw">pub fn </span>XRecordQueryVersion (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordRegisterClients (_7: <span class="kw-2">*mut </span>Display, _6: c_ulong, _5: c_int, _4: <span class="kw-2">*mut </span>c_ulong, _3: c_int, _2: <span class="kw-2">*mut *mut </span>XRecordRange, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XRecordUnregisterClients (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="kw-2">*mut </span>c_ulong, _1: c_int) -&gt; c_int,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="comment">//
+// constants
+//
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFromServerTime</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x01</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFromClientTime</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x02</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFromClientSequence</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x04</span>;
+</span><span class="kw">pub const </span>XRecordFromServerTime: c_int = <span class="number">0x01</span>;
+<span class="kw">pub const </span>XRecordFromClientTime: c_int = <span class="number">0x02</span>;
+<span class="kw">pub const </span>XRecordFromClientSequence: c_int = <span class="number">0x04</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordCurrentClients</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFutureClients</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordAllClients</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub const </span>XRecordCurrentClients: c_ulong = <span class="number">1</span>;
+<span class="kw">pub const </span>XRecordFutureClients: c_ulong = <span class="number">2</span>;
+<span class="kw">pub const </span>XRecordAllClients: c_ulong = <span class="number">3</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFromServer</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordFromClient</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordClientStarted</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordClientDied</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordStartOfData</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XRecordEndOfData</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub const </span>XRecordFromServer: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>XRecordFromClient: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>XRecordClientStarted: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>XRecordClientDied: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>XRecordStartOfData: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>XRecordEndOfData: c_int = <span class="number">5</span>;
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XRecordClientSpec</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XRecordContext</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
+</span><span class="kw">pub type </span>XRecordClientSpec = c_ulong;
+<span class="kw">pub type </span>XRecordContext = c_ulong;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordClientInfo</span> {
-    <span class="kw">pub</span> <span class="ident">client</span>: <span class="ident">XRecordClientSpec</span>,
-    <span class="kw">pub</span> <span class="ident">nranges</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">ranges</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRecordRange</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordClientInfo {
+    <span class="kw">pub </span>client: XRecordClientSpec,
+    <span class="kw">pub </span>nranges: c_ulong,
+    <span class="kw">pub </span>ranges: <span class="kw-2">*mut *mut </span>XRecordRange,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordExtRange</span> {
-    <span class="kw">pub</span> <span class="ident">ext_major</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">ext_minor</span>: <span class="ident">XRecordRange16</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordExtRange {
+    <span class="kw">pub </span>ext_major: XRecordRange8,
+    <span class="kw">pub </span>ext_minor: XRecordRange16,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordInterceptData</span> {
-    <span class="kw">pub</span> <span class="ident">id_base</span>: <span class="ident">XID</span>,
-    <span class="kw">pub</span> <span class="ident">server_time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">client_seq</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">category</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">client_swapped</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">data_len</span>: <span class="ident">c_ulong</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordInterceptData {
+    <span class="kw">pub </span>id_base: XID,
+    <span class="kw">pub </span>server_time: Time,
+    <span class="kw">pub </span>client_seq: c_ulong,
+    <span class="kw">pub </span>category: c_int,
+    <span class="kw">pub </span>client_swapped: Bool,
+    <span class="kw">pub </span>data: <span class="kw-2">*mut </span>c_uchar,
+    <span class="kw">pub </span>data_len: c_ulong,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordRange</span> {
-    <span class="kw">pub</span> <span class="ident">core_requests</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">core_replies</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">ext_requests</span>: <span class="ident">XRecordExtRange</span>,
-    <span class="kw">pub</span> <span class="ident">ext_replies</span>: <span class="ident">XRecordExtRange</span>,
-    <span class="kw">pub</span> <span class="ident">delivered_events</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">device_events</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">errors</span>: <span class="ident">XRecordRange8</span>,
-    <span class="kw">pub</span> <span class="ident">client_started</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">client_died</span>: <span class="ident">Bool</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordRange {
+    <span class="kw">pub </span>core_requests: XRecordRange8,
+    <span class="kw">pub </span>core_replies: XRecordRange8,
+    <span class="kw">pub </span>ext_requests: XRecordExtRange,
+    <span class="kw">pub </span>ext_replies: XRecordExtRange,
+    <span class="kw">pub </span>delivered_events: XRecordRange8,
+    <span class="kw">pub </span>device_events: XRecordRange8,
+    <span class="kw">pub </span>errors: XRecordRange8,
+    <span class="kw">pub </span>client_started: Bool,
+    <span class="kw">pub </span>client_died: Bool,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordRange8</span> {
-    <span class="kw">pub</span> <span class="ident">first</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">last</span>: <span class="ident">c_uchar</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordRange8 {
+    <span class="kw">pub </span>first: c_uchar,
+    <span class="kw">pub </span>last: c_uchar,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordRange16</span> {
-    <span class="kw">pub</span> <span class="ident">first</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">last</span>: <span class="ident">c_ushort</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordRange16 {
+    <span class="kw">pub </span>first: c_ushort,
+    <span class="kw">pub </span>last: c_ushort,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRecordState</span> {
-    <span class="kw">pub</span> <span class="ident">enabled</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">datum_flags</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">nclients</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">client_info</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRecordClientInfo</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRecordState {
+    <span class="kw">pub </span>enabled: Bool,
+    <span class="kw">pub </span>datum_flags: c_int,
+    <span class="kw">pub </span>nclients: c_ulong,
+    <span class="kw">pub </span>client_info: <span class="kw-2">*mut *mut </span>XRecordClientInfo,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

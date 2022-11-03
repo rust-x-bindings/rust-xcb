@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xshm.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xshm.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xshm.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xshm.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -54,61 +54,61 @@
 <span id="54">54</span>
 <span id="55">55</span>
 <span id="56">56</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Drawable</span>, <span class="ident">Pixmap</span>, <span class="ident">Visual</span>, <span class="ident">XImage</span>, <span class="ident">GC</span>};
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::xlib::{Bool, Display, Drawable, Pixmap, Visual, XImage, GC};
+<span class="kw">use </span>std::os::raw::{c_char, c_int, c_uint, c_ulong};
 
-<span class="macro">x11_link!</span> { <span class="ident">Xext</span>, <span class="ident">xext</span>, [<span class="string">&quot;libXext.so.6&quot;</span>, <span class="string">&quot;libXext.so&quot;</span>], <span class="number">10</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmQueryExtension</span>(<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmGetEventBase</span>(<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmQueryVersion</span>(<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Bool</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmPixmapFormat</span>(<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmAttach</span>(<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XShmSegmentInfo</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmDetach</span>(<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XShmSegmentInfo</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmPutImage</span>(<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">Drawable</span>, <span class="ident">_9</span>: <span class="ident">GC</span>, <span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">XImage</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">Bool</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmGetImage</span>(<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">Drawable</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XImage</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmCreateImage</span>(<span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Visual</span>, <span class="ident">_6</span>: <span class="ident">c_uint</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XShmSegmentInfo</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XImage</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XShmCreatePixMap</span>(<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">Drawable</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XShmSegmentInfo</span>, <span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">Pixmap</span>,
+<span class="macro">x11_link! </span>{ Xext, xext, [<span class="string">&quot;libXext.so.6&quot;</span>, <span class="string">&quot;libXext.so&quot;</span>], <span class="number">10</span>,
+    <span class="kw">pub fn </span>XShmQueryExtension(_1: <span class="kw-2">*mut </span>Display) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmGetEventBase(_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+    <span class="kw">pub fn </span>XShmQueryVersion(_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>c_int, _2: <span class="kw-2">*mut </span>c_int, _1: <span class="kw-2">*mut </span>Bool) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmPixmapFormat(_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+    <span class="kw">pub fn </span>XShmAttach(_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*mut </span>XShmSegmentInfo) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmDetach(_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*mut </span>XShmSegmentInfo) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmPutImage(_11: <span class="kw-2">*mut </span>Display, _10: Drawable, _9: GC, _8: <span class="kw-2">*mut </span>XImage, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: c_uint, _2: c_uint, _1: Bool) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmGetImage(_6: <span class="kw-2">*mut </span>Display, _5: Drawable, _4: <span class="kw-2">*mut </span>XImage, _3: c_int, _2: c_int, _1: c_uint) -&gt; Bool,
+    <span class="kw">pub fn </span>XShmCreateImage(_8: <span class="kw-2">*mut </span>Display, _7: <span class="kw-2">*mut </span>Visual, _6: c_uint, _5: c_int, _4: <span class="kw-2">*mut </span>c_char, _3: <span class="kw-2">*mut </span>XShmSegmentInfo, _2: c_uint, _1: c_uint) -&gt; <span class="kw-2">*mut </span>XImage,
+    <span class="kw">pub fn </span>XShmCreatePixMap(_7: <span class="kw-2">*mut </span>Display, _6: Drawable, _5: <span class="kw-2">*mut </span>c_char, _4: <span class="kw-2">*mut </span>XShmSegmentInfo, _3: c_uint, _2: c_uint, _1: c_uint) -&gt; Pixmap,
 
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+variadic:
+globals:
 }
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">ShmSeg</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
+<span class="kw">pub type </span>ShmSeg = c_ulong;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XShmCompletionEvent</span> {
-    <span class="doccomment">/// of event</span>
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// # of last request processed by server</span>
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_uint</span>,
-    <span class="doccomment">/// true if this came from a SendEvent request</span>
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="doccomment">/// Display the event was read from</span>
-    <span class="kw">pub</span> <span class="ident">diplay</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="doccomment">/// drawable of request</span>
-    <span class="kw">pub</span> <span class="ident">drawable</span>: <span class="kw-2">*mut</span> <span class="ident">Drawable</span>,
-    <span class="doccomment">/// ShmReqCode</span>
-    <span class="kw">pub</span> <span class="ident">major_code</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// X_ShmPutImage</span>
-    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// the ShmSeg used in the request</span>
-    <span class="kw">pub</span> <span class="ident">shmseg</span>: <span class="ident">ShmSeg</span>,
-    <span class="doccomment">/// the offset into ShmSeg used in the request</span>
-    <span class="kw">pub</span> <span class="ident">offset</span>: <span class="ident">c_ulong</span>,
+<span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XShmCompletionEvent {
+    <span class="doccomment">/// of event
+    </span><span class="kw">pub </span>_type: c_int,
+    <span class="doccomment">/// # of last request processed by server
+    </span><span class="kw">pub </span>serial: c_uint,
+    <span class="doccomment">/// true if this came from a SendEvent request
+    </span><span class="kw">pub </span>send_event: Bool,
+    <span class="doccomment">/// Display the event was read from
+    </span><span class="kw">pub </span>diplay: <span class="kw-2">*mut </span>Display,
+    <span class="doccomment">/// drawable of request
+    </span><span class="kw">pub </span>drawable: <span class="kw-2">*mut </span>Drawable,
+    <span class="doccomment">/// ShmReqCode
+    </span><span class="kw">pub </span>major_code: c_int,
+    <span class="doccomment">/// X_ShmPutImage
+    </span><span class="kw">pub </span>minor_code: c_int,
+    <span class="doccomment">/// the ShmSeg used in the request
+    </span><span class="kw">pub </span>shmseg: ShmSeg,
+    <span class="doccomment">/// the offset into ShmSeg used in the request
+    </span><span class="kw">pub </span>offset: c_ulong,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XShmSegmentInfo</span> {
-    <span class="doccomment">/// resource id</span>
-    <span class="kw">pub</span> <span class="ident">shmseg</span>: <span class="ident">ShmSeg</span>,
-    <span class="doccomment">/// kernel id</span>
-    <span class="kw">pub</span> <span class="ident">shmid</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// address in client</span>
-    <span class="kw">pub</span> <span class="ident">shmaddr</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="doccomment">/// how the server should attach it</span>
-    <span class="kw">pub</span> <span class="ident">readOnly</span>: <span class="ident">Bool</span>,
+<span class="attribute">#[derive(Copy, Clone, Debug, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XShmSegmentInfo {
+    <span class="doccomment">/// resource id
+    </span><span class="kw">pub </span>shmseg: ShmSeg,
+    <span class="doccomment">/// kernel id
+    </span><span class="kw">pub </span>shmid: c_int,
+    <span class="doccomment">/// address in client
+    </span><span class="kw">pub </span>shmaddr: <span class="kw-2">*mut </span>c_char,
+    <span class="doccomment">/// how the server should attach it
+    </span><span class="kw">pub </span>readOnly: Bool,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

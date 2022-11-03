@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/sync.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sync.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/sync.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>sync.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -190,197 +190,197 @@
 <span id="190">190</span>
 <span id="191">191</span>
 <span id="192">192</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">c_uchar</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>};
+</span><span class="kw">use </span>std::os::raw::{c_char, c_int, c_long, c_uchar, c_uint, c_ulong};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xlib</span>::{<span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Drawable</span>, <span class="ident">Status</span>, <span class="ident">Time</span>, <span class="ident">XID</span>};
+<span class="kw">use </span><span class="kw">crate</span>::xlib::{Bool, Display, Drawable, Status, Time, XID};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xext</span>, <span class="ident">xext</span>, [<span class="string">&quot;libXext.so.6&quot;</span>, <span class="string">&quot;libXext.so&quot;</span>], <span class="number">38</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncQueryExtension</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">event_base</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">error_base</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncInitialize</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_version</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minor_version</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncListSystemCounters</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">n_counters</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XSyncSystemCounter</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncFreeSystemCounterList</span>(<span class="ident">list</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncSystemCounter</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncCreateCounter</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">initial_value</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">XSyncCounter</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncSetCounter</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>, <span class="ident">value</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncChangeCounter</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>, <span class="ident">value</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncDestroyCounter</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">value</span>: <span class="ident">XSyncCounter</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncQueryCounter</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>, <span class="ident">value</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncAwait</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">wait_list</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncWaitCondition</span>, <span class="ident">n_conditions</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncCreateAlarm</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">values_mask</span>: <span class="ident">c_ulong</span>, <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncAlarmAttributes</span>) -&gt; <span class="ident">XSyncAlarm</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncDestroyAlarm</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">alarm</span>: <span class="ident">XSyncAlarm</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncQueryAlarm</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">alarm</span>: <span class="ident">XSyncAlarm</span>, <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncAlarmAttributes</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncChangeAlarm</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">alarm</span>: <span class="ident">XSyncAlarm</span>, <span class="ident">values_mask</span>: <span class="ident">c_ulong</span>, <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncAlarmAttributes</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncSetPriority</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">client_resource_id</span>: <span class="ident">XID</span>, <span class="ident">priority</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncGetPriority</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">client_resource_id</span>: <span class="ident">XID</span>, <span class="ident">priority</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncCreateFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">d</span>: <span class="ident">Drawable</span>, <span class="ident">initially_triggered</span>: <span class="ident">Bool</span>) -&gt; <span class="ident">XSyncFence</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncTriggerFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">fence</span>: <span class="ident">XSyncFence</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncResetFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">fence</span>: <span class="ident">XSyncFence</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncDestroyFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">fence</span>: <span class="ident">XSyncFence</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncQueryFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">fence</span>: <span class="ident">XSyncFence</span>, <span class="ident">triggered</span>: <span class="kw-2">*mut</span> <span class="ident">Bool</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncAwaitFence</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">fence_list</span>: <span class="kw-2">*const</span> <span class="ident">XSyncFence</span>, <span class="ident">n_fences</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncIntToValue</span>(<span class="ident">pv</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>, <span class="ident">i</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncIntsToValue</span>(<span class="ident">pv</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>, <span class="ident">l</span>: <span class="ident">c_uint</span>, <span class="ident">h</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueGreaterThan</span>(<span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueLessThan</span>(<span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueGreaterOrEqual</span>(<span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueLessOrEqual</span>(<span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueEqual</span>(<span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueIsNegative</span>(<span class="ident">v</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueIsZero</span>(<span class="ident">v</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueIsPositive</span>(<span class="ident">v</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueLow32</span>(<span class="ident">v</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueHigh32</span>(<span class="ident">v</span>: <span class="ident">XSyncValue</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueAdd</span>(<span class="ident">presult</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>, <span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>, <span class="ident">poverflow</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncValueSubtract</span>(<span class="ident">presult</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>, <span class="ident">a</span>: <span class="ident">XSyncValue</span>, <span class="ident">b</span>: <span class="ident">XSyncValue</span>, <span class="ident">poverflow</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncMaxValue</span>(<span class="ident">pv</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XSyncMinValue</span>(<span class="ident">pv</span>: <span class="kw-2">*mut</span> <span class="ident">XSyncValue</span>) -&gt; (),
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xext, xext, [<span class="string">&quot;libXext.so.6&quot;</span>, <span class="string">&quot;libXext.so&quot;</span>], <span class="number">38</span>,
+    <span class="kw">pub fn </span>XSyncQueryExtension(dpy: <span class="kw-2">*mut </span>Display, event_base: <span class="kw-2">*mut </span>c_int, error_base: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncInitialize(dpy: <span class="kw-2">*mut </span>Display, major_version: <span class="kw-2">*mut </span>c_int, minor_version: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncListSystemCounters(dpy: <span class="kw-2">*mut </span>Display, n_counters: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XSyncSystemCounter,
+    <span class="kw">pub fn </span>XSyncFreeSystemCounterList(list: <span class="kw-2">*mut </span>XSyncSystemCounter) -&gt; (),
+    <span class="kw">pub fn </span>XSyncCreateCounter(dpy: <span class="kw-2">*mut </span>Display, initial_value: XSyncValue) -&gt; XSyncCounter,
+    <span class="kw">pub fn </span>XSyncSetCounter(dpy: <span class="kw-2">*mut </span>Display, counter: XSyncCounter, value: XSyncValue) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncChangeCounter(dpy: <span class="kw-2">*mut </span>Display, counter: XSyncCounter, value: XSyncValue) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncDestroyCounter(dpy: <span class="kw-2">*mut </span>Display, value: XSyncCounter) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncQueryCounter(dpy: <span class="kw-2">*mut </span>Display, counter: XSyncCounter, value: <span class="kw-2">*mut </span>XSyncValue) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncAwait(dpy: <span class="kw-2">*mut </span>Display, wait_list: <span class="kw-2">*mut </span>XSyncWaitCondition, n_conditions: c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncCreateAlarm(dpy: <span class="kw-2">*mut </span>Display, values_mask: c_ulong, values: <span class="kw-2">*mut </span>XSyncAlarmAttributes) -&gt; XSyncAlarm,
+    <span class="kw">pub fn </span>XSyncDestroyAlarm(dpy: <span class="kw-2">*mut </span>Display, alarm: XSyncAlarm) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncQueryAlarm(dpy: <span class="kw-2">*mut </span>Display, alarm: XSyncAlarm, values: <span class="kw-2">*mut </span>XSyncAlarmAttributes) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncChangeAlarm(dpy: <span class="kw-2">*mut </span>Display, alarm: XSyncAlarm, values_mask: c_ulong, values: <span class="kw-2">*mut </span>XSyncAlarmAttributes) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncSetPriority(dpy: <span class="kw-2">*mut </span>Display, client_resource_id: XID, priority: c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncGetPriority(dpy: <span class="kw-2">*mut </span>Display, client_resource_id: XID, priority: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XSyncCreateFence(dpy: <span class="kw-2">*mut </span>Display, d: Drawable, initially_triggered: Bool) -&gt; XSyncFence,
+    <span class="kw">pub fn </span>XSyncTriggerFence(dpy: <span class="kw-2">*mut </span>Display, fence: XSyncFence) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncResetFence(dpy: <span class="kw-2">*mut </span>Display, fence: XSyncFence) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncDestroyFence(dpy: <span class="kw-2">*mut </span>Display, fence: XSyncFence) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncQueryFence(dpy: <span class="kw-2">*mut </span>Display, fence: XSyncFence, triggered: <span class="kw-2">*mut </span>Bool) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncAwaitFence(dpy: <span class="kw-2">*mut </span>Display, fence_list: <span class="kw-2">*const </span>XSyncFence, n_fences: c_int) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncIntToValue(pv: <span class="kw-2">*mut </span>XSyncValue, i: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XSyncIntsToValue(pv: <span class="kw-2">*mut </span>XSyncValue, l: c_uint, h: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XSyncValueGreaterThan(a: XSyncValue, b: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueLessThan(a: XSyncValue, b: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueGreaterOrEqual(a: XSyncValue, b: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueLessOrEqual(a: XSyncValue, b: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueEqual(a: XSyncValue, b: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueIsNegative(v: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueIsZero(v: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueIsPositive(v: XSyncValue) -&gt; Bool,
+    <span class="kw">pub fn </span>XSyncValueLow32(v: XSyncValue) -&gt; c_uint,
+    <span class="kw">pub fn </span>XSyncValueHigh32(v: XSyncValue) -&gt; c_int,
+    <span class="kw">pub fn </span>XSyncValueAdd(presult: <span class="kw-2">*mut </span>XSyncValue, a: XSyncValue, b: XSyncValue, poverflow: <span class="kw-2">*mut </span>c_int) -&gt; (),
+    <span class="kw">pub fn </span>XSyncValueSubtract(presult: <span class="kw-2">*mut </span>XSyncValue, a: XSyncValue, b: XSyncValue, poverflow: <span class="kw-2">*mut </span>c_int) -&gt; (),
+    <span class="kw">pub fn </span>XSyncMaxValue(pv: <span class="kw-2">*mut </span>XSyncValue) -&gt; (),
+    <span class="kw">pub fn </span>XSyncMinValue(pv: <span class="kw-2">*mut </span>XSyncValue) -&gt; (),
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncValueType</span> <span class="op">=</span> <span class="ident">c_uint</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncTestType</span> <span class="op">=</span> <span class="ident">c_uint</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncAlarmState</span> <span class="op">=</span> <span class="ident">c_uint</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncCounter</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncAlarm</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSyncFence</span> <span class="op">=</span> <span class="ident">XID</span>;
+</span><span class="kw">pub type </span>XSyncValueType = c_uint;
+<span class="kw">pub type </span>XSyncTestType = c_uint;
+<span class="kw">pub type </span>XSyncAlarmState = c_uint;
+<span class="kw">pub type </span>XSyncCounter = XID;
+<span class="kw">pub type </span>XSyncAlarm = XID;
+<span class="kw">pub type </span>XSyncFence = XID;
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncAlarmError</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">alarm</span>: <span class="ident">XSyncAlarm</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">request_code</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">c_uchar</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncAlarmError {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>alarm: XSyncAlarm,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>error_code: c_uchar,
+    <span class="kw">pub </span>request_code: c_uchar,
+    <span class="kw">pub </span>minor_code: c_uchar,
 }
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncCounterError</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">request_code</span>: <span class="ident">c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">c_uchar</span>,
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncValue</span> {
-    <span class="kw">pub</span> <span class="ident">hi</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">lo</span>: <span class="ident">c_uint</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncCounterError {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>counter: XSyncCounter,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>error_code: c_uchar,
+    <span class="kw">pub </span>request_code: c_uchar,
+    <span class="kw">pub </span>minor_code: c_uchar,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncTrigger</span> {
-    <span class="kw">pub</span> <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>,
-    <span class="kw">pub</span> <span class="ident">value_type</span>: <span class="ident">XSyncValueType</span>,
-    <span class="kw">pub</span> <span class="ident">wait_value</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">test_type</span>: <span class="ident">XSyncTestType</span>,
-}
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncWaitCondition</span> {
-    <span class="kw">pub</span> <span class="ident">trigger</span>: <span class="ident">XSyncTrigger</span>,
-    <span class="kw">pub</span> <span class="ident">event_threshold</span>: <span class="ident">XSyncValue</span>,
-}
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncAlarmAttributes</span> {
-    <span class="kw">pub</span> <span class="ident">trigger</span>: <span class="ident">XSyncTrigger</span>,
-    <span class="kw">pub</span> <span class="ident">delta</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">events</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">XSyncAlarmState</span>,
-}
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncCounterNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>,
-    <span class="kw">pub</span> <span class="ident">wait_value</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">counter_value</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">count</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">destroyed</span>: <span class="ident">Bool</span>,
-}
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncAlarmNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">alarm</span>: <span class="ident">XSyncAlarm</span>,
-    <span class="kw">pub</span> <span class="ident">counter_value</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">alarm_value</span>: <span class="ident">XSyncValue</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">XSyncAlarmState</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncValue {
+    <span class="kw">pub </span>hi: c_int,
+    <span class="kw">pub </span>lo: c_uint,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XSyncSystemCounter</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">counter</span>: <span class="ident">XSyncCounter</span>,
-    <span class="kw">pub</span> <span class="ident">resolution</span>: <span class="ident">XSyncValue</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncTrigger {
+    <span class="kw">pub </span>counter: XSyncCounter,
+    <span class="kw">pub </span>value_type: XSyncValueType,
+    <span class="kw">pub </span>wait_value: XSyncValue,
+    <span class="kw">pub </span>test_type: XSyncTestType,
+}
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncWaitCondition {
+    <span class="kw">pub </span>trigger: XSyncTrigger,
+    <span class="kw">pub </span>event_threshold: XSyncValue,
+}
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncAlarmAttributes {
+    <span class="kw">pub </span>trigger: XSyncTrigger,
+    <span class="kw">pub </span>delta: XSyncValue,
+    <span class="kw">pub </span>events: Bool,
+    <span class="kw">pub </span>state: XSyncAlarmState,
+}
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncCounterNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>counter: XSyncCounter,
+    <span class="kw">pub </span>wait_value: XSyncValue,
+    <span class="kw">pub </span>counter_value: XSyncValue,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>count: c_int,
+    <span class="kw">pub </span>destroyed: Bool,
+}
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncAlarmNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>alarm: XSyncAlarm,
+    <span class="kw">pub </span>counter_value: XSyncValue,
+    <span class="kw">pub </span>alarm_value: XSyncValue,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>state: XSyncAlarmState,
 }
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XSyncSystemCounter {
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>counter: XSyncCounter,
+    <span class="kw">pub </span>resolution: XSyncValue,
+}
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SYNC_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;SYNC&quot;</span>;
+<span class="comment">//
+// constants
+//
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SYNC_MAJOR_VERSION</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SYNC_MINOR_VERSION</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+</span><span class="kw">pub const </span>SYNC_NAME: <span class="kw-2">&amp;</span>str = <span class="string">&quot;SYNC&quot;</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCounterNotify</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncAlarmNotify</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncAlarmNotifyMask</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XSyncAlarmNotify</span>;
+<span class="kw">pub const </span>SYNC_MAJOR_VERSION: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>SYNC_MINOR_VERSION: c_int = <span class="number">1</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncNumberEvents</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub const </span>XSyncCounterNotify: c_long = <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncAlarmNotify: c_long = <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncAlarmNotifyMask: c_long = <span class="number">1 </span>&lt;&lt; XSyncAlarmNotify;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncBadCounter</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncBadAlarm</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncBadFence</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncNumberErrors</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="ident">XSyncBadFence</span> <span class="op">+</span> <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncNumberEvents: c_long = <span class="number">2</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCACounter</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCAValueType</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCAValue</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCATestType</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCADelta</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncCAEvents</span>: <span class="ident">c_long</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
+<span class="kw">pub const </span>XSyncBadCounter: c_long = <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncBadAlarm: c_long = <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncBadFence: c_long = <span class="number">2</span>;
+<span class="kw">pub const </span>XSyncNumberErrors: c_long = XSyncBadFence + <span class="number">1</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncValueType_XSyncAbsolute</span>: <span class="ident">XSyncValueType</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncValueType_XSyncRelative</span>: <span class="ident">XSyncValueType</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncCACounter: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncCAValueType: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncCAValue: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>XSyncCATestType: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+<span class="kw">pub const </span>XSyncCADelta: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+<span class="kw">pub const </span>XSyncCAEvents: c_long = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncTestType_XSyncPositiveTransition</span>: <span class="ident">XSyncTestType</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncTestType_XSyncNegativeTransition</span>: <span class="ident">XSyncTestType</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncTestType_XSyncPositiveComparison</span>: <span class="ident">XSyncTestType</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncTestType_XSyncNegativeComparison</span>: <span class="ident">XSyncTestType</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub const </span>XSyncValueType_XSyncAbsolute: XSyncValueType = <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncValueType_XSyncRelative: XSyncValueType = <span class="number">1</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncAlarmState_XSyncAlarmActive</span>: <span class="ident">XSyncAlarmState</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncAlarmState_XSyncAlarmInactive</span>: <span class="ident">XSyncAlarmState</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XSyncAlarmState_XSyncAlarmDestroyed</span>: <span class="ident">XSyncAlarmState</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub const </span>XSyncTestType_XSyncPositiveTransition: XSyncTestType = <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncTestType_XSyncNegativeTransition: XSyncTestType = <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncTestType_XSyncPositiveComparison: XSyncTestType = <span class="number">2</span>;
+<span class="kw">pub const </span>XSyncTestType_XSyncNegativeComparison: XSyncTestType = <span class="number">3</span>;
+
+<span class="kw">pub const </span>XSyncAlarmState_XSyncAlarmActive: XSyncAlarmState = <span class="number">0</span>;
+<span class="kw">pub const </span>XSyncAlarmState_XSyncAlarmInactive: XSyncAlarmState = <span class="number">1</span>;
+<span class="kw">pub const </span>XSyncAlarmState_XSyncAlarmDestroyed: XSyncAlarmState = <span class="number">2</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xpresent.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xpresent.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xpresent.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xpresent.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -164,171 +164,171 @@
 <span id="164">164</span>
 <span id="165">165</span>
 <span id="166">166</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>};
+</span><span class="kw">use </span>std::os::raw::{c_int, c_long, c_uint, c_ulong};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sync::XSyncFence</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xfixes::XserverRegion</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xlib</span>::{<span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Pixmap</span>, <span class="ident">Status</span>, <span class="ident">Window</span>, <span class="ident">XID</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xrandr::RRCrtc</span>;
+<span class="kw">use </span><span class="kw">crate</span>::sync::XSyncFence;
+<span class="kw">use </span><span class="kw">crate</span>::xfixes::XserverRegion;
+<span class="kw">use </span><span class="kw">crate</span>::xlib::{Bool, Display, Pixmap, Status, Window, XID};
+<span class="kw">use </span><span class="kw">crate</span>::xrandr::RRCrtc;
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xpresent</span>, <span class="ident">xpresent</span>, [<span class="string">&quot;libXpresent.so.1.0.0&quot;</span>, <span class="string">&quot;libXpresent.so&quot;</span>], <span class="number">8</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentQueryExtension</span>( <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_opcode_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">event_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">error_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentQueryVersion</span>( <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minor_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span> ) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentVersion</span>() -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentPixmap</span>( <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">pixmap</span>: <span class="ident">Pixmap</span>, <span class="ident">serial</span>: <span class="ident">u32</span>, <span class="ident">valid</span>: <span class="ident">XserverRegion</span>, <span class="ident">update</span>: <span class="ident">XserverRegion</span>, <span class="ident">x_off</span>: <span class="ident">c_int</span>, <span class="ident">y_off</span>: <span class="ident">c_int</span>, <span class="ident">target_crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">wait_fence</span>: <span class="ident">XSyncFence</span>, <span class="ident">idle_fence</span>: <span class="ident">XSyncFence</span>, <span class="ident">options</span>: <span class="ident">u32</span>, <span class="ident">target_msc</span>: <span class="ident">u64</span>, <span class="ident">divisor</span>: <span class="ident">u64</span>, <span class="ident">remainder</span>: <span class="ident">u64</span>, <span class="ident">notifies</span>: <span class="kw-2">*mut</span> <span class="ident">XPresentNotify</span>, <span class="ident">nnotifies</span>: <span class="ident">c_int</span> ) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentNotifyMSC</span>( <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">serial</span>: <span class="ident">u32</span>, <span class="ident">target_msc</span>: <span class="ident">u64</span>, <span class="ident">divisor</span>: <span class="ident">u64</span>, <span class="ident">remainder</span>: <span class="ident">u64</span> ) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentSelectInput</span>( <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">event_mask</span>: <span class="ident">c_uint</span> ) -&gt; <span class="ident">XID</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentFreeInput</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">event_id</span>: <span class="ident">XID</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPresentQueryCapabilities</span>(<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">target</span>: <span class="ident">XID</span>) -&gt; <span class="ident">u32</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xpresent, xpresent, [<span class="string">&quot;libXpresent.so.1.0.0&quot;</span>, <span class="string">&quot;libXpresent.so&quot;</span>], <span class="number">8</span>,
+    <span class="kw">pub fn </span>XPresentQueryExtension( dpy: <span class="kw-2">*mut </span>Display, major_opcode_return: <span class="kw-2">*mut </span>c_int, event_base_return: <span class="kw-2">*mut </span>c_int, error_base_return: <span class="kw-2">*mut </span>c_int) -&gt; Bool,
+    <span class="kw">pub fn </span>XPresentQueryVersion( dpy: <span class="kw-2">*mut </span>Display, major_version_return: <span class="kw-2">*mut </span>c_int, minor_version_return: <span class="kw-2">*mut </span>c_int ) -&gt; Status,
+    <span class="kw">pub fn </span>XPresentVersion() -&gt; c_int,
+    <span class="kw">pub fn </span>XPresentPixmap( dpy: <span class="kw-2">*mut </span>Display, window: Window, pixmap: Pixmap, serial: u32, valid: XserverRegion, update: XserverRegion, x_off: c_int, y_off: c_int, target_crtc: RRCrtc, wait_fence: XSyncFence, idle_fence: XSyncFence, options: u32, target_msc: u64, divisor: u64, remainder: u64, notifies: <span class="kw-2">*mut </span>XPresentNotify, nnotifies: c_int ) -&gt; (),
+    <span class="kw">pub fn </span>XPresentNotifyMSC( dpy: <span class="kw-2">*mut </span>Display, window: Window, serial: u32, target_msc: u64, divisor: u64, remainder: u64 ) -&gt; (),
+    <span class="kw">pub fn </span>XPresentSelectInput( dpy: <span class="kw-2">*mut </span>Display, window: Window, event_mask: c_uint ) -&gt; XID,
+    <span class="kw">pub fn </span>XPresentFreeInput(dpy: <span class="kw-2">*mut </span>Display, window: Window, event_id: XID) -&gt; (),
+    <span class="kw">pub fn </span>XPresentQueryCapabilities(dpy: <span class="kw-2">*mut </span>Display, target: XID) -&gt; u32,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// Types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// Types
+//
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPresentNotify</span> {
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">u32</span>,
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XPresentNotify {
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>serial: u32,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPresentEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XPresentEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: c_int,
+    <span class="kw">pub </span>evtype: c_int,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPresentIdleNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">eid</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">serial_number</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">pixmap</span>: <span class="ident">Pixmap</span>,
-    <span class="kw">pub</span> <span class="ident">idle_fence</span>: <span class="ident">XSyncFence</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XPresentIdleNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: c_int,
+    <span class="kw">pub </span>evtype: c_int,
+    <span class="kw">pub </span>eid: u32,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>serial_number: u32,
+    <span class="kw">pub </span>pixmap: Pixmap,
+    <span class="kw">pub </span>idle_fence: XSyncFence,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPresentCompleteNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">eid</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">serial_number</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">ust</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">msc</span>: <span class="ident">u64</span>,
-    <span class="kw">pub</span> <span class="ident">kind</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">u8</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XPresentCompleteNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: c_int,
+    <span class="kw">pub </span>evtype: c_int,
+    <span class="kw">pub </span>eid: u32,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>serial_number: u32,
+    <span class="kw">pub </span>ust: u64,
+    <span class="kw">pub </span>msc: u64,
+    <span class="kw">pub </span>kind: u8,
+    <span class="kw">pub </span>mode: u8,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPresentConfigureNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">eid</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">off_x</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">off_y</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">pixmap_width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">pixmap_height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">pixmap_flags</span>: <span class="ident">c_long</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub struct </span>XPresentConfigureNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: c_int,
+    <span class="kw">pub </span>evtype: c_int,
+    <span class="kw">pub </span>eid: u32,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>x: c_int,
+    <span class="kw">pub </span>y: c_int,
+    <span class="kw">pub </span>width: c_uint,
+    <span class="kw">pub </span>height: c_uint,
+    <span class="kw">pub </span>off_x: c_int,
+    <span class="kw">pub </span>off_y: c_int,
+    <span class="kw">pub </span>pixmap_width: c_int,
+    <span class="kw">pub </span>pixmap_height: c_int,
+    <span class="kw">pub </span>pixmap_flags: c_long,
 }
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="comment">//
+// constants
+//
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRESENT_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Present&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRESENT_MAJOR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRESENT_MINOR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+</span><span class="kw">pub const </span>PRESENT_NAME: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Present&quot;</span>;
+<span class="kw">pub const </span>PRESENT_MAJOR: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PRESENT_MINOR: c_int = <span class="number">2</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRESENT_REVISION</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PRESENT_VERSION</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="ident">PRESENT_MAJOR</span> <span class="op">*</span> <span class="number">10000</span> <span class="op">+</span> <span class="ident">PRESENT_MINOR</span> <span class="op">*</span> <span class="number">100</span> <span class="op">+</span> <span class="ident">PRESENT_REVISION</span>;
+<span class="kw">pub const </span>PRESENT_REVISION: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PRESENT_VERSION: c_int = PRESENT_MAJOR * <span class="number">10000 </span>+ PRESENT_MINOR * <span class="number">100 </span>+ PRESENT_REVISION;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentNumberErrors</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentNumberEvents</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="kw">pub const </span>PresentNumberErrors: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentNumberEvents: c_int = <span class="number">0</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PresentQueryVersion</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PresentPixmap</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PresentNotifyMSC</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PresentSelectInput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PresentQueryCapabilities</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>X_PresentQueryVersion: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>X_PresentPixmap: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>X_PresentNotifyMSC: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>X_PresentSelectInput: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>X_PresentQueryCapabilities: c_int = <span class="number">4</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentNumberRequests</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub const </span>PresentNumberRequests: c_int = <span class="number">5</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentOptionNone</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentOptionAsync</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentOptionCopy</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentOptionUST</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentOptionSuboptimal</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="kw">pub const </span>PresentOptionNone: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentOptionAsync: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PresentOptionCopy: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PresentOptionUST: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>PresentOptionSuboptimal: c_int = <span class="number">8</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentAllOptions</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="ident">PresentOptionNone</span>
-    <span class="op">|</span> <span class="ident">PresentOptionAsync</span>
-    <span class="op">|</span> <span class="ident">PresentOptionCopy</span>
-    <span class="op">|</span> <span class="ident">PresentOptionUST</span>
-    <span class="op">|</span> <span class="ident">PresentOptionSuboptimal</span>;
+<span class="kw">pub const </span>PresentAllOptions: c_int = PresentOptionNone
+    | PresentOptionAsync
+    | PresentOptionCopy
+    | PresentOptionUST
+    | PresentOptionSuboptimal;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCapabilityNone</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCapabilityAsync</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCapabilityFence</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCapabilityUST</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>PresentCapabilityNone: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentCapabilityAsync: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PresentCapabilityFence: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PresentCapabilityUST: c_int = <span class="number">4</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentAllCapabilities</span>: <span class="ident">c_int</span> <span class="op">=</span>
-    <span class="ident">PresentCapabilityAsync</span> <span class="op">|</span> <span class="ident">PresentCapabilityFence</span> <span class="op">|</span> <span class="ident">PresentCapabilityUST</span>;
+<span class="kw">pub const </span>PresentAllCapabilities: c_int =
+    PresentCapabilityAsync | PresentCapabilityFence | PresentCapabilityUST;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentConfigureNotify</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteNotify</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentIdleNotify</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub const </span>PresentConfigureNotify: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentCompleteNotify: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PresentIdleNotify: c_int = <span class="number">2</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentConfigureNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentIdleNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>PresentConfigureNotifyMask: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PresentCompleteNotifyMask: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PresentIdleNotifyMask: c_int = <span class="number">4</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentAllEvents</span>: <span class="ident">c_int</span> <span class="op">=</span>
-    <span class="ident">PresentConfigureNotifyMask</span> <span class="op">|</span> <span class="ident">PresentCompleteNotify</span> <span class="op">|</span> <span class="ident">PresentIdleNotifyMask</span>;
+<span class="kw">pub const </span>PresentAllEvents: c_int =
+    PresentConfigureNotifyMask | PresentCompleteNotify | PresentIdleNotifyMask;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteKindPixmap</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteKindNotifyMSC</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub const </span>PresentCompleteKindPixmap: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentCompleteKindNotifyMSC: c_int = <span class="number">1</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteModeCopy</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteModeFlip</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteModeSkip</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PresentCompleteModeSuboptimalCopy</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub const </span>PresentCompleteModeCopy: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PresentCompleteModeFlip: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PresentCompleteModeSkip: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PresentCompleteModeSuboptimalCopy: c_int = <span class="number">3</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

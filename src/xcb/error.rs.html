@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/error.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>error.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -445,452 +445,452 @@
 <span id="445">445</span>
 <span id="446">446</span>
 <span id="447">447</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base::ResolveWireError</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::x</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::base::ResolveWireError;
+<span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
+<span class="kw">use </span><span class="kw">crate</span>::ffi::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::x;
+<span class="kw">use </span>std::mem;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::damage</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::damage;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::glx</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::glx;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::randr</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::randr;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::render</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::render;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shm</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::shm;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sync</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::sync;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xf86vidmode;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xfixes</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xfixes;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xinput</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xinput;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xkb</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xkb;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xprint</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xprint;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xv</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xv;
 
-<span class="doccomment">/// A protocol error issued from the X server</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// The second member is the name of the request that emitted the error (if any).</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">ProtocolError</span> {
-    <span class="doccomment">/// The error is from the core X protocol.</span>
-    <span class="ident">X</span>(<span class="ident">x::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+<span class="doccomment">/// A protocol error issued from the X server
+///
+/// The second member is the name of the request that emitted the error (if any).
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>ProtocolError {
+    <span class="doccomment">/// The error is from the core X protocol.
+    </span>X(x::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `DAMAGE` extension.</span>
-    <span class="ident">Damage</span>(<span class="ident">damage::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `DAMAGE` extension.
+    </span>Damage(damage::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `GLX` extension.</span>
-    <span class="ident">Glx</span>(<span class="ident">glx::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `GLX` extension.
+    </span>Glx(glx::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `RANDR` extension.</span>
-    <span class="ident">RandR</span>(<span class="ident">randr::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `RANDR` extension.
+    </span>RandR(randr::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `RENDER` extension.</span>
-    <span class="ident">Render</span>(<span class="ident">render::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `RENDER` extension.
+    </span>Render(render::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `MIT-SHM` extension.</span>
-    <span class="ident">Shm</span>(<span class="ident">shm::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `MIT-SHM` extension.
+    </span>Shm(shm::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `SYNC` extension.</span>
-    <span class="ident">Sync</span>(<span class="ident">sync::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `SYNC` extension.
+    </span>Sync(sync::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XFree86-VidModeExtension` extension.</span>
-    <span class="ident">Xf86VidMode</span>(<span class="ident">xf86vidmode::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XFree86-VidModeExtension` extension.
+    </span>Xf86VidMode(xf86vidmode::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XFIXES` extension.</span>
-    <span class="ident">XFixes</span>(<span class="ident">xfixes::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XFIXES` extension.
+    </span>XFixes(xfixes::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XInputExtension` extension.</span>
-    <span class="ident">Input</span>(<span class="ident">xinput::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XInputExtension` extension.
+    </span>Input(xinput::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XKEYBOARD` extension.</span>
-    <span class="ident">Xkb</span>(<span class="ident">xkb::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XKEYBOARD` extension.
+    </span>Xkb(xkb::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XpExtension` extension.</span>
-    <span class="ident">XPrint</span>(<span class="ident">xprint::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XpExtension` extension.
+    </span>XPrint(xprint::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="doccomment">/// The error is issued from the `XVideo` extension.</span>
-    <span class="ident">Xv</span>(<span class="ident">xv::Error</span>, <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span><span class="op">&gt;</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+    </span><span class="doccomment">/// The error is issued from the `XVideo` extension.
+    </span>Xv(xv::Error, <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str&gt;),
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Display</span> <span class="kw">for</span> <span class="ident">ProtocolError</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="ident">std::fmt::Debug::fmt</span>(<span class="self">self</span>, <span class="ident">f</span>)
+<span class="kw">impl </span>std::fmt::Display <span class="kw">for </span>ProtocolError {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        std::fmt::Debug::fmt(<span class="self">self</span>, f)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::error::Error</span> <span class="kw">for</span> <span class="ident">ProtocolError</span> {}
+<span class="kw">impl </span>std::error::Error <span class="kw">for </span>ProtocolError {}
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_error</span>(
-    <span class="ident">error</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
-    <span class="ident">extension_data</span>: <span class="kw-2">&amp;</span>[<span class="ident">ExtensionData</span>],
-) -&gt; <span class="ident">ProtocolError</span> {
-    <span class="macro">debug_assert!</span>(<span class="op">!</span><span class="ident">error</span>.<span class="ident">is_null</span>());
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe fn </span>resolve_error(
+    error: <span class="kw-2">*mut </span>xcb_generic_error_t,
+    extension_data: <span class="kw-2">&amp;</span>[ExtensionData],
+) -&gt; ProtocolError {
+    <span class="macro">debug_assert!</span>(!error.is_null());
 
-    <span class="kw">let</span> <span class="ident">error_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">error_code</span>;
-    <span class="kw">let</span> <span class="ident">major_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">major_code</span>;
-    <span class="kw">let</span> <span class="ident">minor_code</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">error</span>).<span class="ident">minor_code</span>;
+    <span class="kw">let </span>error_code = (<span class="kw-2">*</span>error).error_code;
+    <span class="kw">let </span>major_code = (<span class="kw-2">*</span>error).major_code;
+    <span class="kw">let </span>minor_code = (<span class="kw-2">*</span>error).minor_code;
 
-    <span class="kw">let</span> (<span class="ident">best</span>, <span class="ident">emitting_ext</span>) <span class="op">=</span> {
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">best</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-        <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">extension_data</span> {
-            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">major_opcode</span> <span class="op">==</span> <span class="ident">major_code</span> {
-                <span class="ident">emitting_ext</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>.<span class="ident">ext</span>);
+    <span class="kw">let </span>(best, emitting_ext) = {
+        <span class="kw">let </span><span class="kw-2">mut </span>best: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>ExtensionData&gt; = <span class="prelude-val">None</span>;
+        <span class="kw">let </span><span class="kw-2">mut </span>emitting_ext = <span class="prelude-val">None</span>;
+        <span class="kw">for </span>data <span class="kw">in </span>extension_data {
+            <span class="kw">if </span>data.major_opcode == major_code {
+                emitting_ext = <span class="prelude-val">Some</span>(data.ext);
             }
-            <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">first_error</span> <span class="op">&gt;</span> <span class="number">0</span> <span class="op">&amp;&amp;</span> <span class="ident">error_code</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">data</span>.<span class="ident">first_error</span> {
-                <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ed</span>) <span class="op">=</span> <span class="ident">best</span> {
-                    <span class="kw">if</span> <span class="ident">data</span>.<span class="ident">first_error</span> <span class="op">&gt;</span> <span class="ident">ed</span>.<span class="ident">first_error</span> {
-                        <span class="ident">best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
+            <span class="kw">if </span>data.first_error &gt; <span class="number">0 </span>&amp;&amp; error_code &gt;= data.first_error {
+                <span class="kw">if let </span><span class="prelude-val">Some</span>(ed) = best {
+                    <span class="kw">if </span>data.first_error &gt; ed.first_error {
+                        best = <span class="prelude-val">Some</span>(data);
                     }
-                } <span class="kw">else</span> {
-                    <span class="ident">best</span> <span class="op">=</span> <span class="prelude-val">Some</span>(<span class="ident">data</span>);
+                } <span class="kw">else </span>{
+                    best = <span class="prelude-val">Some</span>(data);
                 }
             }
         }
-        (<span class="ident">best</span>, <span class="ident">emitting_ext</span>)
+        (best, emitting_ext)
     };
 
-    <span class="kw">let</span> <span class="ident">emitted_by</span> <span class="op">=</span> <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext</span>) <span class="op">=</span> <span class="ident">emitting_ext</span> {
-        <span class="kw">match</span> <span class="ident">ext</span> {
-            <span class="ident">Extension::BigRequests</span> =&gt; <span class="ident"><span class="kw">crate</span>::bigreq::request_name</span>(<span class="ident">minor_code</span>),
-            <span class="ident">Extension::XcMisc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xc_misc::request_name</span>(<span class="ident">minor_code</span>),
+    <span class="kw">let </span>emitted_by = <span class="kw">if let </span><span class="prelude-val">Some</span>(ext) = emitting_ext {
+        <span class="kw">match </span>ext {
+            Extension::BigRequests =&gt; <span class="kw">crate</span>::bigreq::request_name(minor_code),
+            Extension::XcMisc =&gt; <span class="kw">crate</span>::xc_misc::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-            <span class="ident">Extension::Composite</span> =&gt; <span class="ident"><span class="kw">crate</span>::composite::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+            </span>Extension::Composite =&gt; <span class="kw">crate</span>::composite::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> =&gt; <span class="ident"><span class="kw">crate</span>::damage::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+            </span>Extension::Damage =&gt; <span class="kw">crate</span>::damage::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-            <span class="ident">Extension::Dpms</span> =&gt; <span class="ident"><span class="kw">crate</span>::dpms::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+            </span>Extension::Dpms =&gt; <span class="kw">crate</span>::dpms::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-            <span class="ident">Extension::Dri2</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri2::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+            </span>Extension::Dri2 =&gt; <span class="kw">crate</span>::dri2::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-            <span class="ident">Extension::Dri3</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri3::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+            </span>Extension::Dri3 =&gt; <span class="kw">crate</span>::dri3::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-            <span class="ident">Extension::GenericEvent</span> =&gt; <span class="ident"><span class="kw">crate</span>::ge::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+            </span>Extension::GenericEvent =&gt; <span class="kw">crate</span>::ge::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> =&gt; <span class="ident"><span class="kw">crate</span>::glx::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+            </span>Extension::Glx =&gt; <span class="kw">crate</span>::glx::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-            <span class="ident">Extension::Present</span> =&gt; <span class="ident"><span class="kw">crate</span>::present::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+            </span>Extension::Present =&gt; <span class="kw">crate</span>::present::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> =&gt; <span class="ident"><span class="kw">crate</span>::randr::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+            </span>Extension::RandR =&gt; <span class="kw">crate</span>::randr::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-            <span class="ident">Extension::Record</span> =&gt; <span class="ident"><span class="kw">crate</span>::record::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+            </span>Extension::Record =&gt; <span class="kw">crate</span>::record::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-            <span class="ident">Extension::Render</span> =&gt; <span class="ident"><span class="kw">crate</span>::render::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+            </span>Extension::Render =&gt; <span class="kw">crate</span>::render::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-            <span class="ident">Extension::Res</span> =&gt; <span class="ident"><span class="kw">crate</span>::res::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+            </span>Extension::Res =&gt; <span class="kw">crate</span>::res::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-            <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="ident"><span class="kw">crate</span>::screensaver::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+            </span>Extension::ScreenSaver =&gt; <span class="kw">crate</span>::screensaver::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-            <span class="ident">Extension::Shape</span> =&gt; <span class="ident"><span class="kw">crate</span>::shape::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+            </span>Extension::Shape =&gt; <span class="kw">crate</span>::shape::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> =&gt; <span class="ident"><span class="kw">crate</span>::shm::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+            </span>Extension::Shm =&gt; <span class="kw">crate</span>::shm::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> =&gt; <span class="ident"><span class="kw">crate</span>::sync::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+            </span>Extension::Sync =&gt; <span class="kw">crate</span>::sync::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-            <span class="ident">Extension::Xevie</span> =&gt; <span class="ident"><span class="kw">crate</span>::xevie::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+            </span>Extension::Xevie =&gt; <span class="kw">crate</span>::xevie::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86dri::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+            </span>Extension::Xf86Dri =&gt; <span class="kw">crate</span>::xf86dri::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86vidmode::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+            </span>Extension::Xf86VidMode =&gt; <span class="kw">crate</span>::xf86vidmode::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident"><span class="kw">crate</span>::xfixes::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+            </span>Extension::XFixes =&gt; <span class="kw">crate</span>::xfixes::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-            <span class="ident">Extension::Xinerama</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinerama::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+            </span>Extension::Xinerama =&gt; <span class="kw">crate</span>::xinerama::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinput::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+            </span>Extension::Input =&gt; <span class="kw">crate</span>::xinput::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident"><span class="kw">crate</span>::xkb::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+            </span>Extension::Xkb =&gt; <span class="kw">crate</span>::xkb::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident"><span class="kw">crate</span>::xprint::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+            </span>Extension::XPrint =&gt; <span class="kw">crate</span>::xprint::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-            <span class="ident">Extension::SeLinux</span> =&gt; <span class="ident"><span class="kw">crate</span>::xselinux::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+            </span>Extension::SeLinux =&gt; <span class="kw">crate</span>::xselinux::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-            <span class="ident">Extension::Test</span> =&gt; <span class="ident"><span class="kw">crate</span>::xtest::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+            </span>Extension::Test =&gt; <span class="kw">crate</span>::xtest::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> =&gt; <span class="ident"><span class="kw">crate</span>::xv::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+            </span>Extension::Xv =&gt; <span class="kw">crate</span>::xv::request_name(minor_code),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-            <span class="ident">Extension::XvMc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xvmc::request_name</span>(<span class="ident">minor_code</span>),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+            </span>Extension::XvMc =&gt; <span class="kw">crate</span>::xvmc::request_name(minor_code),
         }
-    } <span class="kw">else</span> {
-        <span class="ident"><span class="kw">crate</span>::x::request_name</span>(<span class="ident">major_code</span> <span class="kw">as</span> <span class="ident">u16</span>)
+    } <span class="kw">else </span>{
+        <span class="kw">crate</span>::x::request_name(major_code <span class="kw">as </span>u16)
     };
 
-    <span class="kw">if</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">ext_data</span>) <span class="op">=</span> <span class="ident">best</span> {
-        <span class="kw">match</span> <span class="ident">ext_data</span>.<span class="ident">ext</span> {
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> =&gt; <span class="ident">ProtocolError::Damage</span>(
-                <span class="ident">damage::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+    <span class="kw">if let </span><span class="prelude-val">Some</span>(ext_data) = best {
+        <span class="kw">match </span>ext_data.ext {
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+            </span>Extension::Damage =&gt; ProtocolError::Damage(
+                damage::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> =&gt; <span class="ident">ProtocolError::Glx</span>(
-                <span class="ident">glx::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+            </span>Extension::Glx =&gt; ProtocolError::Glx(
+                glx::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> =&gt; <span class="ident">ProtocolError::RandR</span>(
-                <span class="ident">randr::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+            </span>Extension::RandR =&gt; ProtocolError::RandR(
+                randr::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> =&gt; <span class="ident">ProtocolError::Shm</span>(
-                <span class="ident">shm::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+            </span>Extension::Shm =&gt; ProtocolError::Shm(
+                shm::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> =&gt; <span class="ident">ProtocolError::Sync</span>(
-                <span class="ident">sync::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+            </span>Extension::Sync =&gt; ProtocolError::Sync(
+                sync::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident">ProtocolError::Xf86VidMode</span>(
-                <span class="ident">xf86vidmode::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+            </span>Extension::Xf86VidMode =&gt; ProtocolError::Xf86VidMode(
+                xf86vidmode::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident">ProtocolError::XFixes</span>(
-                <span class="ident">xfixes::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+            </span>Extension::XFixes =&gt; ProtocolError::XFixes(
+                xfixes::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> =&gt; <span class="ident">ProtocolError::Input</span>(
-                <span class="ident">xinput::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+            </span>Extension::Input =&gt; ProtocolError::Input(
+                xinput::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident">ProtocolError::Xkb</span>(
-                <span class="ident">xkb::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+            </span>Extension::Xkb =&gt; ProtocolError::Xkb(
+                xkb::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident">ProtocolError::XPrint</span>(
-                <span class="ident">xprint::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+            </span>Extension::XPrint =&gt; ProtocolError::XPrint(
+                xprint::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> =&gt; <span class="ident">ProtocolError::Xv</span>(
-                <span class="ident">xv::Error::resolve_wire_error</span>(<span class="ident">ext_data</span>.<span class="ident">first_error</span>, <span class="ident">error</span>),
-                <span class="ident">emitted_by</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+            </span>Extension::Xv =&gt; ProtocolError::Xv(
+                xv::Error::resolve_wire_error(ext_data.first_error, error),
+                emitted_by,
             ),
 
-            <span class="kw">_</span> =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension event&quot;</span>),
+            <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;Could not match extension event&quot;</span>),
         }
-    } <span class="kw">else</span> {
-        <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::resolve_wire_error</span>(<span class="number">0</span>, <span class="ident">error</span>), <span class="ident">emitted_by</span>)
+    } <span class="kw">else </span>{
+        ProtocolError::X(x::Error::resolve_wire_error(<span class="number">0</span>, error), emitted_by)
     }
 }
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">all</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>, <span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>))]</span>
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_resolve_error</span>() {
-    <span class="comment">// resolve a core error with core request</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
-        <span class="ident">response_type</span>: <span class="number">0</span>,
-        <span class="ident">error_code</span>: <span class="number">2</span>,
-        <span class="ident">sequence</span>: <span class="number">12000</span>,
-        <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">0</span>,
-        <span class="ident">major_code</span>: <span class="number">4</span>,
-        <span class="ident">pad0</span>: <span class="number">0</span>,
-        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
-        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+<span class="attribute">#[cfg(all(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;xkb&quot;</span>, feature = <span class="string">&quot;screensaver&quot;</span>))]
+#[test]
+</span><span class="kw">fn </span>test_resolve_error() {
+    <span class="comment">// resolve a core error with core request
+    </span><span class="kw">let </span><span class="kw-2">mut </span>error = xcb_generic_error_t {
+        response_type: <span class="number">0</span>,
+        error_code: <span class="number">2</span>,
+        sequence: <span class="number">12000</span>,
+        resource_id: <span class="number">12</span>,
+        minor_code: <span class="number">0</span>,
+        major_code: <span class="number">4</span>,
+        pad0: <span class="number">0</span>,
+        pad: [<span class="number">0</span>; <span class="number">5</span>],
+        full_sequence: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [];
-    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="kw">let </span>extension_data = [];
+    <span class="kw">let </span>err = <span class="kw">unsafe </span>{ resolve_error(<span class="kw-2">&amp;mut </span>error <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span>extension_data) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;x::DestroyWindow&quot;</span>)
+        <span class="macro">matches!</span>(err, ProtocolError::X(x::Error::Value(<span class="kw">_</span>), <span class="prelude-val">Some</span>(req_name)) <span class="kw">if </span>req_name == <span class="string">&quot;x::DestroyWindow&quot;</span>)
     );
-    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+    mem::forget(err);
 
-    <span class="comment">// resolve a core error with xinput request</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
-        <span class="ident">response_type</span>: <span class="number">0</span>,
-        <span class="ident">error_code</span>: <span class="number">2</span>,
-        <span class="ident">sequence</span>: <span class="number">12000</span>,
-        <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">4</span>,
-        <span class="ident">major_code</span>: <span class="number">100</span>,
-        <span class="ident">pad0</span>: <span class="number">0</span>,
-        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
-        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+    <span class="comment">// resolve a core error with xinput request
+    </span><span class="kw">let </span><span class="kw-2">mut </span>error = xcb_generic_error_t {
+        response_type: <span class="number">0</span>,
+        error_code: <span class="number">2</span>,
+        sequence: <span class="number">12000</span>,
+        resource_id: <span class="number">12</span>,
+        minor_code: <span class="number">4</span>,
+        major_code: <span class="number">100</span>,
+        pad0: <span class="number">0</span>,
+        pad: [<span class="number">0</span>; <span class="number">5</span>],
+        full_sequence: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Input</span>,
-            <span class="ident">major_opcode</span>: <span class="number">100</span>,
-            <span class="ident">first_event</span>: <span class="number">50</span>,
-            <span class="ident">first_error</span>: <span class="number">20</span>,
+    <span class="kw">let </span>extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: <span class="number">100</span>,
+            first_event: <span class="number">50</span>,
+            first_error: <span class="number">20</span>,
         },
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Xkb</span>,
-            <span class="ident">major_opcode</span>: <span class="number">200</span>,
-            <span class="ident">first_event</span>: <span class="number">80</span>,
-            <span class="ident">first_error</span>: <span class="number">40</span>,
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: <span class="number">200</span>,
+            first_event: <span class="number">80</span>,
+            first_error: <span class="number">40</span>,
         },
     ];
-    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="kw">let </span>err = <span class="kw">unsafe </span>{ resolve_error(<span class="kw-2">&amp;mut </span>error <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span>extension_data) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(err, ProtocolError::X(x::Error::Value(<span class="kw">_</span>), <span class="prelude-val">Some</span>(req_name)) <span class="kw">if </span>req_name == <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
-    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+    mem::forget(err);
 
-    <span class="comment">// resolve a xinput error with xinput request</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
-        <span class="ident">response_type</span>: <span class="number">0</span>,
-        <span class="ident">error_code</span>: <span class="number">22</span>,
-        <span class="ident">sequence</span>: <span class="number">12000</span>,
-        <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">4</span>,
-        <span class="ident">major_code</span>: <span class="number">100</span>,
-        <span class="ident">pad0</span>: <span class="number">0</span>,
-        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
-        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+    <span class="comment">// resolve a xinput error with xinput request
+    </span><span class="kw">let </span><span class="kw-2">mut </span>error = xcb_generic_error_t {
+        response_type: <span class="number">0</span>,
+        error_code: <span class="number">22</span>,
+        sequence: <span class="number">12000</span>,
+        resource_id: <span class="number">12</span>,
+        minor_code: <span class="number">4</span>,
+        major_code: <span class="number">100</span>,
+        pad0: <span class="number">0</span>,
+        pad: [<span class="number">0</span>; <span class="number">5</span>],
+        full_sequence: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Input</span>,
-            <span class="ident">major_opcode</span>: <span class="number">100</span>,
-            <span class="ident">first_event</span>: <span class="number">50</span>,
-            <span class="ident">first_error</span>: <span class="number">20</span>,
+    <span class="kw">let </span>extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: <span class="number">100</span>,
+            first_event: <span class="number">50</span>,
+            first_error: <span class="number">20</span>,
         },
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Xkb</span>,
-            <span class="ident">major_opcode</span>: <span class="number">200</span>,
-            <span class="ident">first_event</span>: <span class="number">80</span>,
-            <span class="ident">first_error</span>: <span class="number">40</span>,
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: <span class="number">200</span>,
+            first_event: <span class="number">80</span>,
+            first_error: <span class="number">40</span>,
         },
     ];
-    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="kw">let </span>err = <span class="kw">unsafe </span>{ resolve_error(<span class="kw-2">&amp;mut </span>error <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span>extension_data) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(err, ProtocolError::Input(xinput::Error::Mode(<span class="kw">_</span>), <span class="prelude-val">Some</span>(req_name)) <span class="kw">if </span>req_name == <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
-    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+    mem::forget(err);
 
-    <span class="comment">// same as previous, but reverse order of extension data</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
-        <span class="ident">response_type</span>: <span class="number">0</span>,
-        <span class="ident">error_code</span>: <span class="number">22</span>,
-        <span class="ident">sequence</span>: <span class="number">12000</span>,
-        <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">4</span>,
-        <span class="ident">major_code</span>: <span class="number">100</span>,
-        <span class="ident">pad0</span>: <span class="number">0</span>,
-        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
-        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+    <span class="comment">// same as previous, but reverse order of extension data
+    </span><span class="kw">let </span><span class="kw-2">mut </span>error = xcb_generic_error_t {
+        response_type: <span class="number">0</span>,
+        error_code: <span class="number">22</span>,
+        sequence: <span class="number">12000</span>,
+        resource_id: <span class="number">12</span>,
+        minor_code: <span class="number">4</span>,
+        major_code: <span class="number">100</span>,
+        pad0: <span class="number">0</span>,
+        pad: [<span class="number">0</span>; <span class="number">5</span>],
+        full_sequence: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Input</span>,
-            <span class="ident">major_opcode</span>: <span class="number">100</span>,
-            <span class="ident">first_event</span>: <span class="number">50</span>,
-            <span class="ident">first_error</span>: <span class="number">20</span>,
+    <span class="kw">let </span>extension_data = [
+        ExtensionData {
+            ext: Extension::Input,
+            major_opcode: <span class="number">100</span>,
+            first_event: <span class="number">50</span>,
+            first_error: <span class="number">20</span>,
         },
-        <span class="ident">ExtensionData</span> {
-            <span class="ident">ext</span>: <span class="ident">Extension::Xkb</span>,
-            <span class="ident">major_opcode</span>: <span class="number">200</span>,
-            <span class="ident">first_event</span>: <span class="number">80</span>,
-            <span class="ident">first_error</span>: <span class="number">40</span>,
+        ExtensionData {
+            ext: Extension::Xkb,
+            major_opcode: <span class="number">200</span>,
+            first_event: <span class="number">80</span>,
+            first_error: <span class="number">40</span>,
         },
     ];
-    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="kw">let </span>err = <span class="kw">unsafe </span>{ resolve_error(<span class="kw-2">&amp;mut </span>error <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span>extension_data) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::Input</span>(<span class="ident">xinput::Error::Mode</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;xinput::CloseDevice&quot;</span>)
+        <span class="macro">matches!</span>(err, ProtocolError::Input(xinput::Error::Mode(<span class="kw">_</span>), <span class="prelude-val">Some</span>(req_name)) <span class="kw">if </span>req_name == <span class="string">&quot;xinput::CloseDevice&quot;</span>)
     );
-    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+    mem::forget(err);
 
-    <span class="comment">// mimic a regular X error (value) with extension that do not have errors (screensaver)</span>
-    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">error</span> <span class="op">=</span> <span class="ident">xcb_generic_error_t</span> {
-        <span class="ident">response_type</span>: <span class="number">0</span>,
-        <span class="ident">error_code</span>: <span class="number">2</span>,
-        <span class="ident">sequence</span>: <span class="number">12000</span>,
-        <span class="ident">resource_id</span>: <span class="number">12</span>,
-        <span class="ident">minor_code</span>: <span class="number">0</span>,
-        <span class="ident">major_code</span>: <span class="number">1</span>,
-        <span class="ident">pad0</span>: <span class="number">0</span>,
-        <span class="ident">pad</span>: [<span class="number">0</span>; <span class="number">5</span>],
-        <span class="ident">full_sequence</span>: <span class="number">12000</span>,
+    <span class="comment">// mimic a regular X error (value) with extension that do not have errors (screensaver)
+    </span><span class="kw">let </span><span class="kw-2">mut </span>error = xcb_generic_error_t {
+        response_type: <span class="number">0</span>,
+        error_code: <span class="number">2</span>,
+        sequence: <span class="number">12000</span>,
+        resource_id: <span class="number">12</span>,
+        minor_code: <span class="number">0</span>,
+        major_code: <span class="number">1</span>,
+        pad0: <span class="number">0</span>,
+        pad: [<span class="number">0</span>; <span class="number">5</span>],
+        full_sequence: <span class="number">12000</span>,
     };
-    <span class="kw">let</span> <span class="ident">extension_data</span> <span class="op">=</span> [<span class="ident">ExtensionData</span> {
-        <span class="ident">ext</span>: <span class="ident">Extension::ScreenSaver</span>,
-        <span class="ident">major_opcode</span>: <span class="number">144</span>,
-        <span class="ident">first_event</span>: <span class="number">92</span>,
-        <span class="ident">first_error</span>: <span class="number">0</span>,
+    <span class="kw">let </span>extension_data = [ExtensionData {
+        ext: Extension::ScreenSaver,
+        major_opcode: <span class="number">144</span>,
+        first_event: <span class="number">92</span>,
+        first_error: <span class="number">0</span>,
     }];
-    <span class="kw">let</span> <span class="ident">err</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">resolve_error</span>(<span class="kw-2">&amp;mut</span> <span class="ident">error</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="ident">extension_data</span>) };
+    <span class="kw">let </span>err = <span class="kw">unsafe </span>{ resolve_error(<span class="kw-2">&amp;mut </span>error <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span>extension_data) };
     <span class="macro">assert!</span>(
-        <span class="macro">matches!</span>(<span class="ident">err</span>, <span class="ident">ProtocolError::X</span>(<span class="ident">x::Error::Value</span>(<span class="kw">_</span>), <span class="prelude-val">Some</span>(<span class="ident">req_name</span>)) <span class="kw">if</span> <span class="ident">req_name</span> <span class="op">==</span> <span class="string">&quot;x::CreateWindow&quot;</span>)
+        <span class="macro">matches!</span>(err, ProtocolError::X(x::Error::Value(<span class="kw">_</span>), <span class="prelude-val">Some</span>(req_name)) <span class="kw">if </span>req_name == <span class="string">&quot;x::CreateWindow&quot;</span>)
     );
-    <span class="ident">mem::forget</span>(<span class="ident">err</span>);
+    mem::forget(err);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

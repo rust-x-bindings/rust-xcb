@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xinput2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xinput2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xinput2.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xinput2.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -868,875 +868,875 @@
 <span id="868">868</span>
 <span id="869">869</span>
 <span id="870">870</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xfixes::PointerBarrier</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Atom</span>, <span class="ident">Display</span>, <span class="ident">Time</span>, <span class="ident">Window</span>};
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_double</span>, <span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">c_uchar</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>};
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">super</span>::xfixes::PointerBarrier;
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Atom, Display, Time, Window};
+<span class="kw">use </span>std::os::raw::{c_double, c_int, c_long, c_uchar, c_uint, c_ulong};
 
-<span class="comment">//</span>
-<span class="comment">// macro translations</span>
-<span class="comment">//</span>
-<span class="kw">fn</span> <span class="ident">mask_byte</span>(<span class="ident">mask_flag</span>: <span class="ident">i32</span>) -&gt; <span class="ident">usize</span> {
-    (<span class="ident">mask_flag</span> <span class="op">&gt;</span><span class="op">&gt;</span> <span class="number">3</span>) <span class="kw">as</span> <span class="ident">usize</span>
+<span class="comment">//
+// macro translations
+//
+</span><span class="kw">fn </span>mask_byte(mask_flag: i32) -&gt; usize {
+    (mask_flag &gt;&gt; <span class="number">3</span>) <span class="kw">as </span>usize
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XISetMask</span>(<span class="ident">mask</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">::std::os::raw::c_uchar</span>], <span class="ident">event</span>: <span class="ident">i32</span>) {
-    <span class="ident">mask</span>[<span class="ident">mask_byte</span>(<span class="ident">event</span>)] <span class="op">|</span><span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">event</span> <span class="op">&amp;</span> <span class="number">7</span>);
+<span class="kw">pub fn </span>XISetMask(mask: <span class="kw-2">&amp;mut </span>[::std::os::raw::c_uchar], event: i32) {
+    mask[mask_byte(event)] |= <span class="number">1 </span>&lt;&lt; (event &amp; <span class="number">7</span>);
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIClearMask</span>(<span class="ident">mask</span>: <span class="kw-2">&amp;mut</span> [<span class="ident">::std::os::raw::c_uchar</span>], <span class="ident">event</span>: <span class="ident">i32</span>) {
-    <span class="ident">mask</span>[<span class="ident">mask_byte</span>(<span class="ident">event</span>)] <span class="op">&amp;=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">event</span> <span class="op">&amp;</span> <span class="number">7</span>);
+<span class="kw">pub fn </span>XIClearMask(mask: <span class="kw-2">&amp;mut </span>[::std::os::raw::c_uchar], event: i32) {
+    mask[mask_byte(event)] &amp;= <span class="number">1 </span>&lt;&lt; (event &amp; <span class="number">7</span>);
 }
 
-<span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIMaskIsSet</span>(<span class="ident">mask</span>: <span class="kw-2">&amp;</span>[<span class="ident">::std::os::raw::c_uchar</span>], <span class="ident">event</span>: <span class="ident">i32</span>) -&gt; <span class="ident">bool</span> {
-    (<span class="ident">mask</span>[<span class="ident">mask_byte</span>(<span class="ident">event</span>)] <span class="op">&amp;</span> (<span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> (<span class="ident">event</span> <span class="op">&amp;</span> <span class="number">7</span>))) <span class="op">!</span><span class="op">=</span> <span class="number">0</span>
+<span class="kw">pub fn </span>XIMaskIsSet(mask: <span class="kw-2">&amp;</span>[::std::os::raw::c_uchar], event: i32) -&gt; bool {
+    (mask[mask_byte(event)] &amp; (<span class="number">1 </span>&lt;&lt; (event &amp; <span class="number">7</span>))) != <span class="number">0
+</span>}
+
+<span class="comment">//
+// functions
+//
+</span><span class="macro">x11_link! </span>{ XInput2, xi, [<span class="string">&quot;libXi.so.6&quot;</span>, <span class="string">&quot;libXi.so&quot;</span>], <span class="number">34</span>,
+  <span class="kw">pub fn </span>XIAllowEvents (_4: <span class="kw-2">*mut </span>Display, _3: c_int, _2: c_int, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIAllowTouchEvents (_5: <span class="kw-2">*mut </span>Display, _4: c_int, _3: c_uint, _2: c_ulong, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XIBarrierReleasePointer (_4: <span class="kw-2">*mut </span>Display, _3: c_int, _2: c_ulong, _1: c_uint) -&gt; (),
+  <span class="kw">pub fn </span>XIBarrierReleasePointers (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>XIBarrierReleasePointerInfo, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XIChangeHierarchy (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>XIAnyHierarchyChangeInfo, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XIChangeProperty (_8: <span class="kw-2">*mut </span>Display, _7: c_int, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: <span class="kw-2">*mut </span>c_uchar, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XIDefineCursor (_4: <span class="kw-2">*mut </span>Display, _3: c_int, _2: c_ulong, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIDeleteProperty (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: c_ulong) -&gt; (),
+  <span class="kw">pub fn </span>XIFreeDeviceInfo (_1: <span class="kw-2">*mut </span>XIDeviceInfo) -&gt; (),
+  <span class="kw">pub fn </span>XIGetClientPointer (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGetFocus (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: <span class="kw-2">*mut </span>c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGetProperty (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: c_long, _8: c_long, _7: c_int, _6: c_ulong, _5: <span class="kw-2">*mut </span>c_ulong, _4: <span class="kw-2">*mut </span>c_int, _3: <span class="kw-2">*mut </span>c_ulong, _2: <span class="kw-2">*mut </span>c_ulong, _1: <span class="kw-2">*mut *mut </span>c_uchar) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGetSelectedEvents (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XIEventMask,
+  <span class="kw">pub fn </span>XIGrabButton (_11: <span class="kw-2">*mut </span>Display, _10: c_int, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: <span class="kw-2">*mut </span>XIEventMask, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGrabDevice (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: c_ulong, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*mut </span>XIEventMask) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGrabEnter (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: <span class="kw-2">*mut </span>XIEventMask, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGrabFocusIn (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: <span class="kw-2">*mut </span>XIEventMask, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGrabKeycode (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_int, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: <span class="kw-2">*mut </span>XIEventMask, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIGrabTouchBegin (_7: <span class="kw-2">*mut </span>Display, _6: c_int, _5: c_ulong, _4: c_int, _3: <span class="kw-2">*mut </span>XIEventMask, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIListProperties (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>c_ulong,
+  <span class="kw">pub fn </span>XIQueryDevice (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XIDeviceInfo,
+  <span class="kw">pub fn </span>XIQueryPointer (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: <span class="kw-2">*mut </span>c_ulong, _8: <span class="kw-2">*mut </span>c_ulong, _7: <span class="kw-2">*mut </span>c_double, _6: <span class="kw-2">*mut </span>c_double, _5: <span class="kw-2">*mut </span>c_double, _4: <span class="kw-2">*mut </span>c_double, _3: <span class="kw-2">*mut </span>XIButtonState, _2: <span class="kw-2">*mut </span>XIModifierState, _1: <span class="kw-2">*mut </span>XIModifierState) -&gt; c_int,
+  <span class="kw">pub fn </span>XIQueryVersion (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XISelectEvents (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="kw-2">*mut </span>XIEventMask, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XISetClientPointer (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XISetFocus (_4: <span class="kw-2">*mut </span>Display, _3: c_int, _2: c_ulong, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUndefineCursor (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabButton (_6: <span class="kw-2">*mut </span>Display, _5: c_int, _4: c_int, _3: c_ulong, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabDevice (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: c_ulong) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabEnter (_5: <span class="kw-2">*mut </span>Display, _4: c_int, _3: c_ulong, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabFocusIn (_5: <span class="kw-2">*mut </span>Display, _4: c_int, _3: c_ulong, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabKeycode (_6: <span class="kw-2">*mut </span>Display, _5: c_int, _4: c_int, _3: c_ulong, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIUngrabTouchBegin (_5: <span class="kw-2">*mut </span>Display, _4: c_int, _3: c_ulong, _2: c_int, _1: <span class="kw-2">*mut </span>XIGrabModifiers) -&gt; c_int,
+  <span class="kw">pub fn </span>XIWarpPointer (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: c_ulong, _6: c_double, _5: c_double, _4: c_uint, _3: c_uint, _2: c_double, _1: c_double) -&gt; c_int,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
-<span class="macro">x11_link!</span> { <span class="ident">XInput2</span>, <span class="ident">xi</span>, [<span class="string">&quot;libXi.so.6&quot;</span>, <span class="string">&quot;libXi.so&quot;</span>], <span class="number">34</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIAllowEvents</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIAllowTouchEvents</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIBarrierReleasePointer</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIBarrierReleasePointers</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XIBarrierReleasePointerInfo</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIChangeHierarchy</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XIAnyHierarchyChangeInfo</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIChangeProperty</span> (<span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIDefineCursor</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIDeleteProperty</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIFreeDeviceInfo</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIDeviceInfo</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGetClientPointer</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGetFocus</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGetProperty</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_long</span>, <span class="ident">_8</span>: <span class="ident">c_long</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGetSelectedEvents</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabButton</span> (<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">c_int</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabDevice</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabEnter</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabFocusIn</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabKeycode</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIGrabTouchBegin</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIListProperties</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIQueryDevice</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIDeviceInfo</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIQueryPointer</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">c_double</span>, <span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">c_double</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">c_double</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">c_double</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XIButtonState</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XIModifierState</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIModifierState</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIQueryVersion</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XISelectEvents</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XIEventMask</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XISetClientPointer</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XISetFocus</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUndefineCursor</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabButton</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabDevice</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabEnter</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabFocusIn</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabKeycode</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIUngrabTouchBegin</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XIGrabModifiers</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XIWarpPointer</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_double</span>, <span class="ident">_5</span>: <span class="ident">c_double</span>, <span class="ident">_4</span>: <span class="ident">c_uint</span>, <span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="ident">c_double</span>, <span class="ident">_1</span>: <span class="ident">c_double</span>) -&gt; <span class="ident">c_int</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
-}
+<span class="comment">//
+// constants
+// (auto-generated with cmacros)
+//
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">// (auto-generated with cmacros)</span>
-<span class="comment">//</span>
+</span><span class="kw">pub const </span>XInput_2_0: i32 = <span class="number">7</span>;
+<span class="kw">pub const </span>XI_2_Major: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XI_2_Minor: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XIPropertyDeleted: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIPropertyCreated: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIPropertyModified: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIPropModeReplace: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIPropModePrepend: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIPropModeAppend: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XINotifyNormal: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XINotifyGrab: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XINotifyUngrab: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XINotifyWhileGrabbed: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XINotifyPassiveGrab: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XINotifyPassiveUngrab: i32 = <span class="number">5</span>;
+<span class="kw">pub const </span>XINotifyAncestor: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XINotifyVirtual: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XINotifyInferior: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XINotifyNonlinear: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XINotifyNonlinearVirtual: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XINotifyPointer: i32 = <span class="number">5</span>;
+<span class="kw">pub const </span>XINotifyPointerRoot: i32 = <span class="number">6</span>;
+<span class="kw">pub const </span>XINotifyDetailNone: i32 = <span class="number">7</span>;
+<span class="kw">pub const </span>XIGrabModeSync: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIGrabModeAsync: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIGrabModeTouch: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIGrabSuccess: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIAlreadyGrabbed: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIGrabInvalidTime: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIGrabNotViewable: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XIGrabFrozen: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XIGrabtypeButton: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIGrabtypeKeycode: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIGrabtypeEnter: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIGrabtypeFocusIn: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XIGrabtypeTouchBegin: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XIAnyButton: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIAnyKeycode: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIAsyncDevice: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XISyncDevice: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIReplayDevice: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIAsyncPairedDevice: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XIAsyncPair: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XISyncPair: i32 = <span class="number">5</span>;
+<span class="kw">pub const </span>XIAcceptTouch: i32 = <span class="number">6</span>;
+<span class="kw">pub const </span>XIRejectTouch: i32 = <span class="number">7</span>;
+<span class="kw">pub const </span>XISlaveSwitch: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIDeviceChange: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIMasterAdded: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>XIMasterRemoved: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>XISlaveAdded: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>XISlaveRemoved: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+<span class="kw">pub const </span>XISlaveAttached: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+<span class="kw">pub const </span>XISlaveDetached: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+<span class="kw">pub const </span>XIDeviceEnabled: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
+<span class="kw">pub const </span>XIDeviceDisabled: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+<span class="kw">pub const </span>XIAddMaster: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIRemoveMaster: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIAttachSlave: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XIDetachSlave: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XIAttachToMaster: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIFloating: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIModeRelative: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIModeAbsolute: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIMasterPointer: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIMasterKeyboard: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XISlavePointer: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XISlaveKeyboard: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XIFloatingSlave: i32 = <span class="number">5</span>;
+<span class="kw">pub const </span>XIKeyClass: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIButtonClass: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIValuatorClass: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIScrollClass: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XITouchClass: i32 = <span class="number">8</span>;
+<span class="kw">pub const </span>XIScrollTypeVertical: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIScrollTypeHorizontal: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIScrollFlagNoEmulation: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>XIScrollFlagPreferred: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>XIKeyRepeat: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+<span class="kw">pub const </span>XIPointerEmulated: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+<span class="kw">pub const </span>XITouchPendingEnd: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">16</span>;
+<span class="kw">pub const </span>XITouchEmulatingPointer: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">17</span>;
+<span class="kw">pub const </span>XIBarrierPointerReleased: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>XIBarrierDeviceIsGrabbed: i32 = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>XIDirectTouch: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XIDependentTouch: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XIAllDevices: i32 = <span class="number">0</span>;
+<span class="kw">pub const </span>XIAllMasterDevices: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XI_DeviceChanged: i32 = <span class="number">1</span>;
+<span class="kw">pub const </span>XI_KeyPress: i32 = <span class="number">2</span>;
+<span class="kw">pub const </span>XI_KeyRelease: i32 = <span class="number">3</span>;
+<span class="kw">pub const </span>XI_ButtonPress: i32 = <span class="number">4</span>;
+<span class="kw">pub const </span>XI_ButtonRelease: i32 = <span class="number">5</span>;
+<span class="kw">pub const </span>XI_Motion: i32 = <span class="number">6</span>;
+<span class="kw">pub const </span>XI_Enter: i32 = <span class="number">7</span>;
+<span class="kw">pub const </span>XI_Leave: i32 = <span class="number">8</span>;
+<span class="kw">pub const </span>XI_FocusIn: i32 = <span class="number">9</span>;
+<span class="kw">pub const </span>XI_FocusOut: i32 = <span class="number">10</span>;
+<span class="kw">pub const </span>XI_HierarchyChanged: i32 = <span class="number">11</span>;
+<span class="kw">pub const </span>XI_PropertyEvent: i32 = <span class="number">12</span>;
+<span class="kw">pub const </span>XI_RawKeyPress: i32 = <span class="number">13</span>;
+<span class="kw">pub const </span>XI_RawKeyRelease: i32 = <span class="number">14</span>;
+<span class="kw">pub const </span>XI_RawButtonPress: i32 = <span class="number">15</span>;
+<span class="kw">pub const </span>XI_RawButtonRelease: i32 = <span class="number">16</span>;
+<span class="kw">pub const </span>XI_RawMotion: i32 = <span class="number">17</span>;
+<span class="kw">pub const </span>XI_TouchBegin: i32 = <span class="number">18 </span><span class="comment">/* XI 2.2 */</span>;
+<span class="kw">pub const </span>XI_TouchUpdate: i32 = <span class="number">19</span>;
+<span class="kw">pub const </span>XI_TouchEnd: i32 = <span class="number">20</span>;
+<span class="kw">pub const </span>XI_TouchOwnership: i32 = <span class="number">21</span>;
+<span class="kw">pub const </span>XI_RawTouchBegin: i32 = <span class="number">22</span>;
+<span class="kw">pub const </span>XI_RawTouchUpdate: i32 = <span class="number">23</span>;
+<span class="kw">pub const </span>XI_RawTouchEnd: i32 = <span class="number">24</span>;
+<span class="kw">pub const </span>XI_BarrierHit: i32 = <span class="number">25 </span><span class="comment">/* XI 2.3 */</span>;
+<span class="kw">pub const </span>XI_BarrierLeave: i32 = <span class="number">26</span>;
+<span class="kw">pub const </span>XI_LASTEVENT: i32 = XI_BarrierLeave;
+<span class="kw">pub const </span>XI_DeviceChangedMask: i32 = <span class="number">1 </span>&lt;&lt; XI_DeviceChanged;
+<span class="kw">pub const </span>XI_KeyPressMask: i32 = <span class="number">1 </span>&lt;&lt; XI_KeyPress;
+<span class="kw">pub const </span>XI_KeyReleaseMask: i32 = <span class="number">1 </span>&lt;&lt; XI_KeyRelease;
+<span class="kw">pub const </span>XI_ButtonPressMask: i32 = <span class="number">1 </span>&lt;&lt; XI_ButtonPress;
+<span class="kw">pub const </span>XI_ButtonReleaseMask: i32 = <span class="number">1 </span>&lt;&lt; XI_ButtonRelease;
+<span class="kw">pub const </span>XI_MotionMask: i32 = <span class="number">1 </span>&lt;&lt; XI_Motion;
+<span class="kw">pub const </span>XI_EnterMask: i32 = <span class="number">1 </span>&lt;&lt; XI_Enter;
+<span class="kw">pub const </span>XI_LeaveMask: i32 = <span class="number">1 </span>&lt;&lt; XI_Leave;
+<span class="kw">pub const </span>XI_FocusInMask: i32 = <span class="number">1 </span>&lt;&lt; XI_FocusIn;
+<span class="kw">pub const </span>XI_FocusOutMask: i32 = <span class="number">1 </span>&lt;&lt; XI_FocusOut;
+<span class="kw">pub const </span>XI_HierarchyChangedMask: i32 = <span class="number">1 </span>&lt;&lt; XI_HierarchyChanged;
+<span class="kw">pub const </span>XI_PropertyEventMask: i32 = <span class="number">1 </span>&lt;&lt; XI_PropertyEvent;
+<span class="kw">pub const </span>XI_RawKeyPressMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawKeyPress;
+<span class="kw">pub const </span>XI_RawKeyReleaseMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawKeyRelease;
+<span class="kw">pub const </span>XI_RawButtonPressMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawButtonPress;
+<span class="kw">pub const </span>XI_RawButtonReleaseMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawButtonRelease;
+<span class="kw">pub const </span>XI_RawMotionMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawMotion;
+<span class="kw">pub const </span>XI_TouchBeginMask: i32 = <span class="number">1 </span>&lt;&lt; XI_TouchBegin;
+<span class="kw">pub const </span>XI_TouchEndMask: i32 = <span class="number">1 </span>&lt;&lt; XI_TouchEnd;
+<span class="kw">pub const </span>XI_TouchOwnershipChangedMask: i32 = <span class="number">1 </span>&lt;&lt; XI_TouchOwnership;
+<span class="kw">pub const </span>XI_TouchUpdateMask: i32 = <span class="number">1 </span>&lt;&lt; XI_TouchUpdate;
+<span class="kw">pub const </span>XI_RawTouchBeginMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawTouchBegin;
+<span class="kw">pub const </span>XI_RawTouchEndMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawTouchEnd;
+<span class="kw">pub const </span>XI_RawTouchUpdateMask: i32 = <span class="number">1 </span>&lt;&lt; XI_RawTouchUpdate;
+<span class="kw">pub const </span>XI_BarrierHitMask: i32 = <span class="number">1 </span>&lt;&lt; XI_BarrierHit;
+<span class="kw">pub const </span>XI_BarrierLeaveMask: i32 = <span class="number">1 </span>&lt;&lt; XI_BarrierLeave;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XInput_2_0</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_2_Major</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_2_Minor</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropertyDeleted</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropertyCreated</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropertyModified</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropModeReplace</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropModePrepend</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPropModeAppend</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyNormal</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyGrab</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyUngrab</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyWhileGrabbed</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyPassiveGrab</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyPassiveUngrab</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyAncestor</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyVirtual</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyInferior</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyNonlinear</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyNonlinearVirtual</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyPointer</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyPointerRoot</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XINotifyDetailNone</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabModeSync</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabModeAsync</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabModeTouch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabSuccess</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAlreadyGrabbed</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabInvalidTime</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabNotViewable</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabFrozen</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabtypeButton</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabtypeKeycode</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabtypeEnter</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabtypeFocusIn</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIGrabtypeTouchBegin</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAnyButton</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAnyKeycode</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAsyncDevice</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISyncDevice</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIReplayDevice</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAsyncPairedDevice</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAsyncPair</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISyncPair</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAcceptTouch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIRejectTouch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveSwitch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDeviceChange</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIMasterAdded</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIMasterRemoved</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveAdded</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveRemoved</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveAttached</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveDetached</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDeviceEnabled</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDeviceDisabled</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAddMaster</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIRemoveMaster</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAttachSlave</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDetachSlave</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAttachToMaster</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIFloating</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIModeRelative</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIModeAbsolute</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIMasterPointer</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIMasterKeyboard</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlavePointer</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XISlaveKeyboard</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIFloatingSlave</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIKeyClass</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIButtonClass</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIValuatorClass</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIScrollClass</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XITouchClass</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIScrollTypeVertical</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIScrollTypeHorizontal</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIScrollFlagNoEmulation</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIScrollFlagPreferred</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIKeyRepeat</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIPointerEmulated</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XITouchPendingEnd</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XITouchEmulatingPointer</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">17</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIBarrierPointerReleased</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIBarrierDeviceIsGrabbed</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDirectTouch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIDependentTouch</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAllDevices</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XIAllMasterDevices</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_DeviceChanged</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_KeyPress</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_KeyRelease</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_ButtonPress</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_ButtonRelease</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_Motion</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_Enter</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_Leave</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_FocusIn</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_FocusOut</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_HierarchyChanged</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_PropertyEvent</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawKeyPress</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawKeyRelease</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawButtonPress</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawButtonRelease</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawMotion</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">17</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchBegin</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">18</span> <span class="comment">/* XI 2.2 */</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchUpdate</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">19</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchEnd</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchOwnership</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">21</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchBegin</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">22</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchUpdate</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">23</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchEnd</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">24</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_BarrierHit</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">25</span> <span class="comment">/* XI 2.3 */</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_BarrierLeave</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">26</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_LASTEVENT</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="ident">XI_BarrierLeave</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_DeviceChangedMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_DeviceChanged</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_KeyPressMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_KeyPress</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_KeyReleaseMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_KeyRelease</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_ButtonPressMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_ButtonPress</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_ButtonReleaseMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_ButtonRelease</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_MotionMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_Motion</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_EnterMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_Enter</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_LeaveMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_Leave</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_FocusInMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_FocusIn</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_FocusOutMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_FocusOut</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_HierarchyChangedMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_HierarchyChanged</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_PropertyEventMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_PropertyEvent</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawKeyPressMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawKeyPress</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawKeyReleaseMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawKeyRelease</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawButtonPressMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawButtonPress</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawButtonReleaseMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawButtonRelease</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawMotionMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawMotion</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchBeginMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_TouchBegin</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchEndMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_TouchEnd</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchOwnershipChangedMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_TouchOwnership</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_TouchUpdateMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_TouchUpdate</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchBeginMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawTouchBegin</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchEndMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawTouchEnd</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_RawTouchUpdateMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_RawTouchUpdate</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_BarrierHitMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_BarrierHit</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XI_BarrierLeaveMask</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="ident">XI_BarrierLeave</span>;
+<span class="comment">//
+// structs
+// (auto-generated with rust-bindgen)
+//
 
-<span class="comment">//</span>
-<span class="comment">// structs</span>
-<span class="comment">// (auto-generated with rust-bindgen)</span>
-<span class="comment">//</span>
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIAddMasterInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_char</span>,
-    <span class="kw">pub</span> <span class="ident">send_core</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">enable</span>: <span class="ident">::std::os::raw::c_int</span>,
+</span><span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIAddMasterInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>::std::os::raw::c_char,
+    <span class="kw">pub </span>send_core: ::std::os::raw::c_int,
+    <span class="kw">pub </span>enable: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIAddMasterInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIAddMasterInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIAddMasterInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIRemoveMasterInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">return_mode</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">return_pointer</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">return_keyboard</span>: <span class="ident">::std::os::raw::c_int</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIRemoveMasterInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIRemoveMasterInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIAddMasterInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIAttachSlaveInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">new_master</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIRemoveMasterInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>return_mode: ::std::os::raw::c_int,
+    <span class="kw">pub </span>return_pointer: ::std::os::raw::c_int,
+    <span class="kw">pub </span>return_keyboard: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIAttachSlaveInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIRemoveMasterInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIAttachSlaveInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIDetachSlaveInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIDetachSlaveInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIDetachSlaveInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIRemoveMasterInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIAnyHierarchyChangeInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_bindgen_data_</span>: [<span class="ident">u64</span>; <span class="number">3usize</span>],
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIAttachSlaveInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>new_master: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">XIAnyHierarchyChangeInfo</span> {
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">_type</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_int</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">::std::mem::transmute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_bindgen_data_</span>);
-        <span class="ident">::std::mem::transmute</span>(<span class="ident">raw</span>.<span class="ident">offset</span>(<span class="number">0</span>))
-    }
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">add</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIAddMasterInfo</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">::std::mem::transmute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_bindgen_data_</span>);
-        <span class="ident">::std::mem::transmute</span>(<span class="ident">raw</span>.<span class="ident">offset</span>(<span class="number">0</span>))
-    }
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">remove</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIRemoveMasterInfo</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">::std::mem::transmute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_bindgen_data_</span>);
-        <span class="ident">::std::mem::transmute</span>(<span class="ident">raw</span>.<span class="ident">offset</span>(<span class="number">0</span>))
-    }
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">attach</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIAttachSlaveInfo</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">::std::mem::transmute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_bindgen_data_</span>);
-        <span class="ident">::std::mem::transmute</span>(<span class="ident">raw</span>.<span class="ident">offset</span>(<span class="number">0</span>))
-    }
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">detach</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIDetachSlaveInfo</span> {
-        <span class="kw">let</span> <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">u8</span> <span class="op">=</span> <span class="ident">::std::mem::transmute</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">_bindgen_data_</span>);
-        <span class="ident">::std::mem::transmute</span>(<span class="ident">raw</span>.<span class="ident">offset</span>(<span class="number">0</span>))
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIAttachSlaveInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIAnyHierarchyChangeInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIAnyHierarchyChangeInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIAttachSlaveInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIModifierState</span> {
-    <span class="kw">pub</span> <span class="ident">base</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">latched</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">locked</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">effective</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIDetachSlaveInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIModifierState</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIDetachSlaveInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIModifierState</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XIGroupState</span> <span class="op">=</span> <span class="ident">XIModifierState</span>;
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIButtonState</span> {
-    <span class="kw">pub</span> <span class="ident">mask_len</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mask</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_uchar</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIButtonState</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIButtonState</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIDetachSlaveInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIValuatorState</span> {
-    <span class="kw">pub</span> <span class="ident">mask_len</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mask</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_uchar</span>,
-    <span class="kw">pub</span> <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_double</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIAnyHierarchyChangeInfo {
+    <span class="kw">pub </span>_bindgen_data_: [u64; <span class="number">3usize</span>],
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIValuatorState</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
+<span class="kw">impl </span>XIAnyHierarchyChangeInfo {
+    <span class="kw">pub unsafe fn </span>_type(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>::std::os::raw::c_int {
+        <span class="kw">let </span>raw: <span class="kw-2">*mut </span>u8 = ::std::mem::transmute(<span class="kw-2">&amp;</span><span class="self">self</span>._bindgen_data_);
+        ::std::mem::transmute(raw.offset(<span class="number">0</span>))
+    }
+    <span class="kw">pub unsafe fn </span>add(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>XIAddMasterInfo {
+        <span class="kw">let </span>raw: <span class="kw-2">*mut </span>u8 = ::std::mem::transmute(<span class="kw-2">&amp;</span><span class="self">self</span>._bindgen_data_);
+        ::std::mem::transmute(raw.offset(<span class="number">0</span>))
+    }
+    <span class="kw">pub unsafe fn </span>remove(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>XIRemoveMasterInfo {
+        <span class="kw">let </span>raw: <span class="kw-2">*mut </span>u8 = ::std::mem::transmute(<span class="kw-2">&amp;</span><span class="self">self</span>._bindgen_data_);
+        ::std::mem::transmute(raw.offset(<span class="number">0</span>))
+    }
+    <span class="kw">pub unsafe fn </span>attach(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>XIAttachSlaveInfo {
+        <span class="kw">let </span>raw: <span class="kw-2">*mut </span>u8 = ::std::mem::transmute(<span class="kw-2">&amp;</span><span class="self">self</span>._bindgen_data_);
+        ::std::mem::transmute(raw.offset(<span class="number">0</span>))
+    }
+    <span class="kw">pub unsafe fn </span>detach(<span class="kw-2">&amp;mut </span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>XIDetachSlaveInfo {
+        <span class="kw">let </span>raw: <span class="kw-2">*mut </span>u8 = ::std::mem::transmute(<span class="kw-2">&amp;</span><span class="self">self</span>._bindgen_data_);
+        ::std::mem::transmute(raw.offset(<span class="number">0</span>))
     }
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIValuatorState</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIAnyHierarchyChangeInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIEventMask</span> {
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mask_len</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mask</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_uchar</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIEventMask</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIEventMask</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIAnyClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIAnyClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIAnyClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIAnyHierarchyChangeInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIButtonClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_buttons</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">labels</span>: <span class="kw-2">*mut</span> <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">XIButtonState</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIModifierState {
+    <span class="kw">pub </span>base: ::std::os::raw::c_int,
+    <span class="kw">pub </span>latched: ::std::os::raw::c_int,
+    <span class="kw">pub </span>locked: ::std::os::raw::c_int,
+    <span class="kw">pub </span>effective: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIButtonClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIModifierState {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIButtonClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIKeyClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_keycodes</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">keycodes</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_int</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIKeyClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIKeyClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIModifierState {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIValuatorClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">number</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">label</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">min</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">max</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">value</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">resolution</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="kw">pub type </span>XIGroupState = XIModifierState;
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIButtonState {
+    <span class="kw">pub </span>mask_len: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mask: <span class="kw-2">*mut </span>::std::os::raw::c_uchar,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIValuatorClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIButtonState {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIValuatorClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIButtonState {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIScrollClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">number</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">scroll_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">increment</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIValuatorState {
+    <span class="kw">pub </span>mask_len: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mask: <span class="kw-2">*mut </span>::std::os::raw::c_uchar,
+    <span class="kw">pub </span>values: <span class="kw-2">*mut </span>::std::os::raw::c_double,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIScrollClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIValuatorState {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIScrollClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIValuatorState {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XITouchClassInfo</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_touches</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIEventMask {
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mask_len: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mask: <span class="kw-2">*mut </span>::std::os::raw::c_uchar,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XITouchClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIEventMask {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XITouchClassInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIDeviceInfo</span> {
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_char</span>,
-    <span class="kw">pub</span> <span class="ident">_use</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">attachment</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">enabled</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_classes</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">classes</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XIAnyClassInfo</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIDeviceInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIDeviceInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIEventMask {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIGrabModifiers</span> {
-    <span class="kw">pub</span> <span class="ident">modifiers</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">status</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIAnyClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIGrabModifiers</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIAnyClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIGrabModifiers</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">BarrierEventID</span> <span class="op">=</span> <span class="ident">::std::os::raw::c_uint</span>;
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIBarrierReleasePointerInfo</span> {
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">barrier</span>: <span class="ident">PointerBarrier</span>,
-    <span class="kw">pub</span> <span class="ident">eventid</span>: <span class="ident">BarrierEventID</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIBarrierReleasePointerInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIBarrierReleasePointerInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIAnyClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIButtonClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_buttons: ::std::os::raw::c_int,
+    <span class="kw">pub </span>labels: <span class="kw-2">*mut </span>Atom,
+    <span class="kw">pub </span>state: XIButtonState,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIButtonClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
-    }
-}
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIHierarchyInfo</span> {
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">attachment</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">_use</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">enabled</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
-}
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIHierarchyInfo</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
-}
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIHierarchyInfo</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIButtonClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIHierarchyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_info</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">info</span>: <span class="kw-2">*mut</span> <span class="ident">XIHierarchyInfo</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIKeyClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_keycodes: ::std::os::raw::c_int,
+    <span class="kw">pub </span>keycodes: <span class="kw-2">*mut </span>::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIHierarchyEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIKeyClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIHierarchyEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIKeyClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIDeviceChangedEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">reason</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">num_classes</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">classes</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XIAnyClassInfo</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIValuatorClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>number: ::std::os::raw::c_int,
+    <span class="kw">pub </span>label: Atom,
+    <span class="kw">pub </span>min: ::std::os::raw::c_double,
+    <span class="kw">pub </span>max: ::std::os::raw::c_double,
+    <span class="kw">pub </span>value: ::std::os::raw::c_double,
+    <span class="kw">pub </span>resolution: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mode: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIDeviceChangedEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIValuatorClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIDeviceChangedEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIValuatorClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIDeviceEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">detail</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">root</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">event</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">child</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">root_x</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">root_y</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">event_x</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">event_y</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">buttons</span>: <span class="ident">XIButtonState</span>,
-    <span class="kw">pub</span> <span class="ident">valuators</span>: <span class="ident">XIValuatorState</span>,
-    <span class="kw">pub</span> <span class="ident">mods</span>: <span class="ident">XIModifierState</span>,
-    <span class="kw">pub</span> <span class="ident">group</span>: <span class="ident">XIGroupState</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIScrollClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>number: ::std::os::raw::c_int,
+    <span class="kw">pub </span>scroll_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>increment: ::std::os::raw::c_double,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIDeviceEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIScrollClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIDeviceEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIScrollClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIRawEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">detail</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">valuators</span>: <span class="ident">XIValuatorState</span>,
-    <span class="kw">pub</span> <span class="ident">raw_values</span>: <span class="kw-2">*mut</span> <span class="ident">::std::os::raw::c_double</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XITouchClassInfo {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>mode: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_touches: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIRawEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XITouchClassInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIRawEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XITouchClassInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIEnterEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">detail</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">root</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">event</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">child</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">root_x</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">root_y</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">event_x</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">event_y</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">focus</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">same_screen</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">buttons</span>: <span class="ident">XIButtonState</span>,
-    <span class="kw">pub</span> <span class="ident">mods</span>: <span class="ident">XIModifierState</span>,
-    <span class="kw">pub</span> <span class="ident">group</span>: <span class="ident">XIGroupState</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIDeviceInfo {
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>::std::os::raw::c_char,
+    <span class="kw">pub </span>_use: ::std::os::raw::c_int,
+    <span class="kw">pub </span>attachment: ::std::os::raw::c_int,
+    <span class="kw">pub </span>enabled: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_classes: ::std::os::raw::c_int,
+    <span class="kw">pub </span>classes: <span class="kw-2">*mut *mut </span>XIAnyClassInfo,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIEnterEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIDeviceInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIEnterEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIDeviceInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XILeaveEvent</span> <span class="op">=</span> <span class="ident">XIEnterEvent</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XIFocusInEvent</span> <span class="op">=</span> <span class="ident">XIEnterEvent</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XIFocusOutEvent</span> <span class="op">=</span> <span class="ident">XIEnterEvent</span>;
-
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIPropertyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">what</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIGrabModifiers {
+    <span class="kw">pub </span>modifiers: ::std::os::raw::c_int,
+    <span class="kw">pub </span>status: ::std::os::raw::c_int,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIPropertyEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIGrabModifiers {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIPropertyEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIGrabModifiers {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XITouchOwnershipEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">touchid</span>: <span class="ident">::std::os::raw::c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">root</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">event</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">child</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
+<span class="kw">pub type </span>BarrierEventID = ::std::os::raw::c_uint;
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIBarrierReleasePointerInfo {
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>barrier: PointerBarrier,
+    <span class="kw">pub </span>eventid: BarrierEventID,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XITouchOwnershipEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
-    }
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIBarrierReleasePointerInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XITouchOwnershipEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIBarrierReleasePointerInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XIBarrierEvent</span> {
-    <span class="kw">pub</span> <span class="ident">_type</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">::std::os::raw::c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">evtype</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">time</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">deviceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sourceid</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">event</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">root</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">root_x</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">root_y</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">dx</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">dy</span>: <span class="ident">::std::os::raw::c_double</span>,
-    <span class="kw">pub</span> <span class="ident">dtime</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">flags</span>: <span class="ident">::std::os::raw::c_int</span>,
-    <span class="kw">pub</span> <span class="ident">barrier</span>: <span class="ident">PointerBarrier</span>,
-    <span class="kw">pub</span> <span class="ident">eventid</span>: <span class="ident">BarrierEventID</span>,
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
 }
-<span class="kw">impl</span> <span class="ident">::std::clone::Clone</span> <span class="kw">for</span> <span class="ident">XIBarrierEvent</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span> {
-        <span class="kw-2">*</span><span class="self">self</span>
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
-<span class="kw">impl</span> <span class="ident">::std::default::Default</span> <span class="kw">for</span> <span class="ident">XIBarrierEvent</span> {
-    <span class="kw">fn</span> <span class="ident">default</span>() -&gt; <span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="ident">::std::mem::zeroed</span>() }
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIHierarchyInfo {
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>attachment: ::std::os::raw::c_int,
+    <span class="kw">pub </span>_use: ::std::os::raw::c_int,
+    <span class="kw">pub </span>enabled: ::std::os::raw::c_int,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIHierarchyInfo {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIHierarchyInfo {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIHierarchyEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_info: ::std::os::raw::c_int,
+    <span class="kw">pub </span>info: <span class="kw-2">*mut </span>XIHierarchyInfo,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIHierarchyEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIHierarchyEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIDeviceChangedEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>reason: ::std::os::raw::c_int,
+    <span class="kw">pub </span>num_classes: ::std::os::raw::c_int,
+    <span class="kw">pub </span>classes: <span class="kw-2">*mut *mut </span>XIAnyClassInfo,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIDeviceChangedEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIDeviceChangedEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIDeviceEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>detail: ::std::os::raw::c_int,
+    <span class="kw">pub </span>root: Window,
+    <span class="kw">pub </span>event: Window,
+    <span class="kw">pub </span>child: Window,
+    <span class="kw">pub </span>root_x: ::std::os::raw::c_double,
+    <span class="kw">pub </span>root_y: ::std::os::raw::c_double,
+    <span class="kw">pub </span>event_x: ::std::os::raw::c_double,
+    <span class="kw">pub </span>event_y: ::std::os::raw::c_double,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+    <span class="kw">pub </span>buttons: XIButtonState,
+    <span class="kw">pub </span>valuators: XIValuatorState,
+    <span class="kw">pub </span>mods: XIModifierState,
+    <span class="kw">pub </span>group: XIGroupState,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIDeviceEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIDeviceEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIRawEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>detail: ::std::os::raw::c_int,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+    <span class="kw">pub </span>valuators: XIValuatorState,
+    <span class="kw">pub </span>raw_values: <span class="kw-2">*mut </span>::std::os::raw::c_double,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIRawEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIRawEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIEnterEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>detail: ::std::os::raw::c_int,
+    <span class="kw">pub </span>root: Window,
+    <span class="kw">pub </span>event: Window,
+    <span class="kw">pub </span>child: Window,
+    <span class="kw">pub </span>root_x: ::std::os::raw::c_double,
+    <span class="kw">pub </span>root_y: ::std::os::raw::c_double,
+    <span class="kw">pub </span>event_x: ::std::os::raw::c_double,
+    <span class="kw">pub </span>event_y: ::std::os::raw::c_double,
+    <span class="kw">pub </span>mode: ::std::os::raw::c_int,
+    <span class="kw">pub </span>focus: ::std::os::raw::c_int,
+    <span class="kw">pub </span>same_screen: ::std::os::raw::c_int,
+    <span class="kw">pub </span>buttons: XIButtonState,
+    <span class="kw">pub </span>mods: XIModifierState,
+    <span class="kw">pub </span>group: XIGroupState,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIEnterEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIEnterEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="kw">pub type </span>XILeaveEvent = XIEnterEvent;
+<span class="kw">pub type </span>XIFocusInEvent = XIEnterEvent;
+<span class="kw">pub type </span>XIFocusOutEvent = XIEnterEvent;
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIPropertyEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>property: Atom,
+    <span class="kw">pub </span>what: ::std::os::raw::c_int,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIPropertyEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIPropertyEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XITouchOwnershipEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>touchid: ::std::os::raw::c_uint,
+    <span class="kw">pub </span>root: Window,
+    <span class="kw">pub </span>event: Window,
+    <span class="kw">pub </span>child: Window,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XITouchOwnershipEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XITouchOwnershipEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
+    }
+}
+
+<span class="attribute">#[repr(C)]
+#[derive(Debug, Copy)]
+</span><span class="kw">pub struct </span>XIBarrierEvent {
+    <span class="kw">pub </span>_type: ::std::os::raw::c_int,
+    <span class="kw">pub </span>serial: ::std::os::raw::c_ulong,
+    <span class="kw">pub </span>send_event: ::std::os::raw::c_int,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>extension: ::std::os::raw::c_int,
+    <span class="kw">pub </span>evtype: ::std::os::raw::c_int,
+    <span class="kw">pub </span>time: Time,
+    <span class="kw">pub </span>deviceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>sourceid: ::std::os::raw::c_int,
+    <span class="kw">pub </span>event: Window,
+    <span class="kw">pub </span>root: Window,
+    <span class="kw">pub </span>root_x: ::std::os::raw::c_double,
+    <span class="kw">pub </span>root_y: ::std::os::raw::c_double,
+    <span class="kw">pub </span>dx: ::std::os::raw::c_double,
+    <span class="kw">pub </span>dy: ::std::os::raw::c_double,
+    <span class="kw">pub </span>dtime: ::std::os::raw::c_int,
+    <span class="kw">pub </span>flags: ::std::os::raw::c_int,
+    <span class="kw">pub </span>barrier: PointerBarrier,
+    <span class="kw">pub </span>eventid: BarrierEventID,
+}
+<span class="kw">impl </span>::std::clone::Clone <span class="kw">for </span>XIBarrierEvent {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self </span>{
+        <span class="kw-2">*</span><span class="self">self
+    </span>}
+}
+<span class="kw">impl </span>::std::default::Default <span class="kw">for </span>XIBarrierEvent {
+    <span class="kw">fn </span>default() -&gt; <span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ ::std::mem::zeroed() }
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

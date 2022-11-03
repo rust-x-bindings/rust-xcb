@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xinerama.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xinerama.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xinerama.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xinerama.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -50,57 +50,57 @@
 <span id="50">50</span>
 <span id="51">51</span>
 <span id="52">52</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_int</span>, <span class="ident">c_short</span>};
+</span><span class="kw">use </span>std::os::raw::{c_int, c_short};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Drawable</span>, <span class="ident">Status</span>, <span class="ident">Window</span>, <span class="ident">XID</span>};
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Bool, Display, Drawable, Status, Window, XID};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xlib</span>, <span class="ident">xinerama</span>, [<span class="string">&quot;libXinerama.so.1&quot;</span>, <span class="string">&quot;libXinerama.so&quot;</span>], <span class="number">10</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XineramaIsActive</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">Bool</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XineramaQueryExtension</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">event_base</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">error_base</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Bool</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XineramaQueryScreens</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">number</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XineramaScreenInfo</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XineramaQueryVersion</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_versionp</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minor_versionp</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXAllocInfo</span> () -&gt; <span class="kw-2">*mut</span> <span class="ident">XPanoramiXInfo</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXGetScreenCount</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">drawable</span>: <span class="ident">Drawable</span>, <span class="ident">panoramiX_info</span>: <span class="kw-2">*mut</span> <span class="ident">XPanoramiXInfo</span>) -&gt; <span class="ident">Status</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXGetScreenSize</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">drawable</span>: <span class="ident">Drawable</span>, <span class="ident">screen_num</span>: <span class="ident">c_int</span>, <span class="ident">panoramiX_info</span>: <span class="kw-2">*mut</span> <span class="ident">XPanoramiXInfo</span>) -&gt; <span class="ident">Status</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXGetState</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">drawable</span>: <span class="ident">Drawable</span>, <span class="ident">panoramiX_info</span>: <span class="kw-2">*mut</span> <span class="ident">XPanoramiXInfo</span>) -&gt; <span class="ident">Status</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXQueryExtension</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">event_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">error_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Bool</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XPanoramiXQueryVersion</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minor_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xlib, xinerama, [<span class="string">&quot;libXinerama.so.1&quot;</span>, <span class="string">&quot;libXinerama.so&quot;</span>], <span class="number">10</span>,
+  <span class="kw">pub fn </span>XineramaIsActive (dpy: <span class="kw-2">*mut </span>Display) -&gt; Bool,
+  <span class="kw">pub fn </span>XineramaQueryExtension (dpy: <span class="kw-2">*mut </span>Display, event_base: <span class="kw-2">*mut </span>c_int, error_base: <span class="kw-2">*mut </span>c_int) -&gt; Bool,
+  <span class="kw">pub fn </span>XineramaQueryScreens (dpy: <span class="kw-2">*mut </span>Display, number: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XineramaScreenInfo,
+  <span class="kw">pub fn </span>XineramaQueryVersion (dpy: <span class="kw-2">*mut </span>Display, major_versionp: <span class="kw-2">*mut </span>c_int, minor_versionp: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+  <span class="kw">pub fn </span>XPanoramiXAllocInfo () -&gt; <span class="kw-2">*mut </span>XPanoramiXInfo,
+  <span class="kw">pub fn </span>XPanoramiXGetScreenCount (dpy: <span class="kw-2">*mut </span>Display, drawable: Drawable, panoramiX_info: <span class="kw-2">*mut </span>XPanoramiXInfo) -&gt; Status,
+  <span class="kw">pub fn </span>XPanoramiXGetScreenSize (dpy: <span class="kw-2">*mut </span>Display, drawable: Drawable, screen_num: c_int, panoramiX_info: <span class="kw-2">*mut </span>XPanoramiXInfo) -&gt; Status,
+  <span class="kw">pub fn </span>XPanoramiXGetState (dpy: <span class="kw-2">*mut </span>Display, drawable: Drawable, panoramiX_info: <span class="kw-2">*mut </span>XPanoramiXInfo) -&gt; Status,
+  <span class="kw">pub fn </span>XPanoramiXQueryExtension (dpy: <span class="kw-2">*mut </span>Display, event_base_return: <span class="kw-2">*mut </span>c_int, error_base_return: <span class="kw-2">*mut </span>c_int) -&gt; Bool,
+  <span class="kw">pub fn </span>XPanoramiXQueryVersion (dpy: <span class="kw-2">*mut </span>Display, major_version_return: <span class="kw-2">*mut </span>c_int, minor_version_return: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XineramaScreenInfo</span> {
-    <span class="kw">pub</span> <span class="ident">screen_number</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">x_org</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y_org</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_short</span>,
+</span><span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XineramaScreenInfo {
+    <span class="kw">pub </span>screen_number: c_int,
+    <span class="kw">pub </span>x_org: c_short,
+    <span class="kw">pub </span>y_org: c_short,
+    <span class="kw">pub </span>width: c_short,
+    <span class="kw">pub </span>height: c_short,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XPanoramiXInfo</span> {
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">screen</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">State</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">ScreenCount</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">eventMask</span>: <span class="ident">XID</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XPanoramiXInfo {
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>screen: c_int,
+    <span class="kw">pub </span>State: c_int,
+    <span class="kw">pub </span>width: c_int,
+    <span class="kw">pub </span>height: c_int,
+    <span class="kw">pub </span>ScreenCount: c_int,
+    <span class="kw">pub </span>eventMask: XID,
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

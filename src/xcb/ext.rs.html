@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -421,428 +421,428 @@
 <span id="421">421</span>
 <span id="422">422</span>
 <span id="423">423</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="ident">Connection</span>, <span class="ident">Reply</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::{
-    <span class="ident">xcb_connection_t</span>, <span class="ident">xcb_extension_t</span>, <span class="ident">xcb_get_extension_data</span>, <span class="ident">xcb_prefetch_extension_data</span>,
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::base::{Connection, Reply};
+<span class="kw">use </span><span class="kw">crate</span>::ffi::{
+    xcb_connection_t, xcb_extension_t, xcb_get_extension_data, xcb_prefetch_extension_data,
 };
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::x</span>;
+<span class="kw">use </span><span class="kw">crate</span>::x;
 
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::mem</span>;
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::mem;
 
-<span class="doccomment">/// Refers to a X protocol extension.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>, <span class="ident">PartialEq</span>, <span class="ident">Eq</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Extension</span> {
-    <span class="doccomment">/// The `BIG-REQUESTS` extension.</span>
-    <span class="ident">BigRequests</span>,
+<span class="doccomment">/// Refers to a X protocol extension.
+</span><span class="attribute">#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+</span><span class="kw">pub enum </span>Extension {
+    <span class="doccomment">/// The `BIG-REQUESTS` extension.
+    </span>BigRequests,
 
-    <span class="doccomment">/// The `XCMISC` extension.</span>
-    <span class="ident">XcMisc</span>,
+    <span class="doccomment">/// The `XCMISC` extension.
+    </span>XcMisc,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-    <span class="doccomment">/// The `Composite` extension.</span>
-    <span class="doccomment">/// Available with the `composite` cargo feature.</span>
-    <span class="ident">Composite</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+    </span><span class="doccomment">/// The `Composite` extension.
+    /// Available with the `composite` cargo feature.
+    </span>Composite,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="doccomment">/// The `DAMAGE` extension.</span>
-    <span class="doccomment">/// Available with the `damage` cargo feature.</span>
-    <span class="ident">Damage</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+    </span><span class="doccomment">/// The `DAMAGE` extension.
+    /// Available with the `damage` cargo feature.
+    </span>Damage,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-    <span class="doccomment">/// The `DPMS` extension.</span>
-    <span class="doccomment">/// Available with the `dpms` cargo feature.</span>
-    <span class="ident">Dpms</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+    </span><span class="doccomment">/// The `DPMS` extension.
+    /// Available with the `dpms` cargo feature.
+    </span>Dpms,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-    <span class="doccomment">/// The `DRI2` extension.</span>
-    <span class="doccomment">/// Available with the `dri2` cargo feature.</span>
-    <span class="ident">Dri2</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+    </span><span class="doccomment">/// The `DRI2` extension.
+    /// Available with the `dri2` cargo feature.
+    </span>Dri2,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-    <span class="doccomment">/// The `DRI3` extension.</span>
-    <span class="doccomment">/// Available with the `dri3` cargo feature.</span>
-    <span class="ident">Dri3</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+    </span><span class="doccomment">/// The `DRI3` extension.
+    /// Available with the `dri3` cargo feature.
+    </span>Dri3,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-    <span class="doccomment">/// The `Generic Event Extension` extension.</span>
-    <span class="doccomment">/// Available with the `ge` cargo feature.</span>
-    <span class="ident">GenericEvent</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+    </span><span class="doccomment">/// The `Generic Event Extension` extension.
+    /// Available with the `ge` cargo feature.
+    </span>GenericEvent,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="doccomment">/// The `GLX` extension.</span>
-    <span class="doccomment">/// Available with the `glx` cargo feature.</span>
-    <span class="ident">Glx</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+    </span><span class="doccomment">/// The `GLX` extension.
+    /// Available with the `glx` cargo feature.
+    </span>Glx,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-    <span class="doccomment">/// The `Present` extension.</span>
-    <span class="doccomment">/// Available with the `present` cargo feature.</span>
-    <span class="ident">Present</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+    </span><span class="doccomment">/// The `Present` extension.
+    /// Available with the `present` cargo feature.
+    </span>Present,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="doccomment">/// The `RANDR` extension.</span>
-    <span class="doccomment">/// Available with the `randr` cargo feature.</span>
-    <span class="ident">RandR</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+    </span><span class="doccomment">/// The `RANDR` extension.
+    /// Available with the `randr` cargo feature.
+    </span>RandR,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-    <span class="doccomment">/// The `RECORD` extension.</span>
-    <span class="doccomment">/// Available with the `record` cargo feature.</span>
-    <span class="ident">Record</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+    </span><span class="doccomment">/// The `RECORD` extension.
+    /// Available with the `record` cargo feature.
+    </span>Record,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-    <span class="doccomment">/// The `RENDER` extension.</span>
-    <span class="doccomment">/// Available with the `render` cargo feature.</span>
-    <span class="ident">Render</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+    </span><span class="doccomment">/// The `RENDER` extension.
+    /// Available with the `render` cargo feature.
+    </span>Render,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-    <span class="doccomment">/// The `X-Resource` extension.</span>
-    <span class="doccomment">/// Available with the `res` cargo feature.</span>
-    <span class="ident">Res</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+    </span><span class="doccomment">/// The `X-Resource` extension.
+    /// Available with the `res` cargo feature.
+    </span>Res,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-    <span class="doccomment">/// The `MIT-SCREEN-SAVER` extension.</span>
-    <span class="doccomment">/// Available with the `screensaver` cargo feature.</span>
-    <span class="ident">ScreenSaver</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+    </span><span class="doccomment">/// The `MIT-SCREEN-SAVER` extension.
+    /// Available with the `screensaver` cargo feature.
+    </span>ScreenSaver,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-    <span class="doccomment">/// The `SHAPE` extension.</span>
-    <span class="doccomment">/// Available with the `shape` cargo feature.</span>
-    <span class="ident">Shape</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+    </span><span class="doccomment">/// The `SHAPE` extension.
+    /// Available with the `shape` cargo feature.
+    </span>Shape,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="doccomment">/// The `MIT-SHM` extension.</span>
-    <span class="doccomment">/// Available with the `shm` cargo feature.</span>
-    <span class="ident">Shm</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+    </span><span class="doccomment">/// The `MIT-SHM` extension.
+    /// Available with the `shm` cargo feature.
+    </span>Shm,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="doccomment">/// The `SYNC` extension.</span>
-    <span class="doccomment">/// Available with the `sync` cargo feature.</span>
-    <span class="ident">Sync</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+    </span><span class="doccomment">/// The `SYNC` extension.
+    /// Available with the `sync` cargo feature.
+    </span>Sync,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-    <span class="doccomment">/// The `XEVIE` extension.</span>
-    <span class="doccomment">/// Available with the `xevie` cargo feature.</span>
-    <span class="ident">Xevie</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+    </span><span class="doccomment">/// The `XEVIE` extension.
+    /// Available with the `xevie` cargo feature.
+    </span>Xevie,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFree86-DRI` extension.</span>
-    <span class="doccomment">/// Available with the `xf86dri` cargo feature.</span>
-    <span class="ident">Xf86Dri</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+    </span><span class="doccomment">/// The `XFree86-DRI` extension.
+    /// Available with the `xf86dri` cargo feature.
+    </span>Xf86Dri,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFree86-VidModeExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xf86vidmode` cargo feature.</span>
-    <span class="ident">Xf86VidMode</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+    </span><span class="doccomment">/// The `XFree86-VidModeExtension` extension.
+    /// Available with the `xf86vidmode` cargo feature.
+    </span>Xf86VidMode,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="doccomment">/// The `XFIXES` extension.</span>
-    <span class="doccomment">/// Available with the `xfixes` cargo feature.</span>
-    <span class="ident">XFixes</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+    </span><span class="doccomment">/// The `XFIXES` extension.
+    /// Available with the `xfixes` cargo feature.
+    </span>XFixes,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-    <span class="doccomment">/// The `XINERAMA` extension.</span>
-    <span class="doccomment">/// Available with the `xinerama` cargo feature.</span>
-    <span class="ident">Xinerama</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+    </span><span class="doccomment">/// The `XINERAMA` extension.
+    /// Available with the `xinerama` cargo feature.
+    </span>Xinerama,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-    <span class="doccomment">/// The `XInputExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xinput` cargo feature.</span>
-    <span class="ident">Input</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+    </span><span class="doccomment">/// The `XInputExtension` extension.
+    /// Available with the `xinput` cargo feature.
+    </span>Input,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="doccomment">/// The `XKEYBOARD` extension.</span>
-    <span class="doccomment">/// Available with the `xkb` cargo feature.</span>
-    <span class="ident">Xkb</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+    </span><span class="doccomment">/// The `XKEYBOARD` extension.
+    /// Available with the `xkb` cargo feature.
+    </span>Xkb,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-    <span class="doccomment">/// The `XpExtension` extension.</span>
-    <span class="doccomment">/// Available with the `xprint` cargo feature.</span>
-    <span class="ident">XPrint</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+    </span><span class="doccomment">/// The `XpExtension` extension.
+    /// Available with the `xprint` cargo feature.
+    </span>XPrint,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-    <span class="doccomment">/// The `SELinux` extension.</span>
-    <span class="doccomment">/// Available with the `xselinux` cargo feature.</span>
-    <span class="ident">SeLinux</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+    </span><span class="doccomment">/// The `SELinux` extension.
+    /// Available with the `xselinux` cargo feature.
+    </span>SeLinux,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-    <span class="doccomment">/// The `XTEST` extension.</span>
-    <span class="doccomment">/// Available with the `xtest` cargo feature.</span>
-    <span class="ident">Test</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+    </span><span class="doccomment">/// The `XTEST` extension.
+    /// Available with the `xtest` cargo feature.
+    </span>Test,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="doccomment">/// The `XVideo` extension.</span>
-    <span class="doccomment">/// Available with the `xv` cargo feature.</span>
-    <span class="ident">Xv</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+    </span><span class="doccomment">/// The `XVideo` extension.
+    /// Available with the `xv` cargo feature.
+    </span>Xv,
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-    <span class="doccomment">/// The `XVideo-MotionCompensation` extension.</span>
-    <span class="doccomment">/// Available with the `xvmc` cargo feature.</span>
-    <span class="ident">XvMc</span>,
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+    </span><span class="doccomment">/// The `XVideo-MotionCompensation` extension.
+    /// Available with the `xvmc` cargo feature.
+    </span>XvMc,
 }
 
-<span class="kw">impl</span> <span class="ident">Extension</span> {
-    <span class="doccomment">/// Returns the official X-Name of the extension,</span>
-    <span class="doccomment">/// such as `&quot;BIG-REQUESTS&quot;`.</span>
-    <span class="kw">fn</span> <span class="ident">xname</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident">Extension::BigRequests</span> =&gt; <span class="ident"><span class="kw">crate</span>::bigreq::XNAME</span>,
-            <span class="ident">Extension::XcMisc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xc_misc::XNAME</span>,
+<span class="kw">impl </span>Extension {
+    <span class="doccomment">/// Returns the official X-Name of the extension,
+    /// such as `&quot;BIG-REQUESTS&quot;`.
+    </span><span class="kw">fn </span>xname(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+        <span class="kw">match </span><span class="self">self </span>{
+            Extension::BigRequests =&gt; <span class="kw">crate</span>::bigreq::XNAME,
+            Extension::XcMisc =&gt; <span class="kw">crate</span>::xc_misc::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-            <span class="ident">Extension::Composite</span> =&gt; <span class="ident"><span class="kw">crate</span>::composite::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+            </span>Extension::Composite =&gt; <span class="kw">crate</span>::composite::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident">Extension::Damage</span> =&gt; <span class="ident"><span class="kw">crate</span>::damage::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+            </span>Extension::Damage =&gt; <span class="kw">crate</span>::damage::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-            <span class="ident">Extension::Dpms</span> =&gt; <span class="ident"><span class="kw">crate</span>::dpms::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+            </span>Extension::Dpms =&gt; <span class="kw">crate</span>::dpms::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-            <span class="ident">Extension::Dri2</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri2::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+            </span>Extension::Dri2 =&gt; <span class="kw">crate</span>::dri2::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-            <span class="ident">Extension::Dri3</span> =&gt; <span class="ident"><span class="kw">crate</span>::dri3::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+            </span>Extension::Dri3 =&gt; <span class="kw">crate</span>::dri3::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-            <span class="ident">Extension::GenericEvent</span> =&gt; <span class="ident"><span class="kw">crate</span>::ge::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+            </span>Extension::GenericEvent =&gt; <span class="kw">crate</span>::ge::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident">Extension::Glx</span> =&gt; <span class="ident"><span class="kw">crate</span>::glx::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+            </span>Extension::Glx =&gt; <span class="kw">crate</span>::glx::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-            <span class="ident">Extension::Present</span> =&gt; <span class="ident"><span class="kw">crate</span>::present::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+            </span>Extension::Present =&gt; <span class="kw">crate</span>::present::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident">Extension::RandR</span> =&gt; <span class="ident"><span class="kw">crate</span>::randr::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+            </span>Extension::RandR =&gt; <span class="kw">crate</span>::randr::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-            <span class="ident">Extension::Record</span> =&gt; <span class="ident"><span class="kw">crate</span>::record::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+            </span>Extension::Record =&gt; <span class="kw">crate</span>::record::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-            <span class="ident">Extension::Render</span> =&gt; <span class="ident"><span class="kw">crate</span>::render::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+            </span>Extension::Render =&gt; <span class="kw">crate</span>::render::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-            <span class="ident">Extension::Res</span> =&gt; <span class="ident"><span class="kw">crate</span>::res::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+            </span>Extension::Res =&gt; <span class="kw">crate</span>::res::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-            <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="ident"><span class="kw">crate</span>::screensaver::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+            </span>Extension::ScreenSaver =&gt; <span class="kw">crate</span>::screensaver::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-            <span class="ident">Extension::Shape</span> =&gt; <span class="ident"><span class="kw">crate</span>::shape::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+            </span>Extension::Shape =&gt; <span class="kw">crate</span>::shape::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident">Extension::Shm</span> =&gt; <span class="ident"><span class="kw">crate</span>::shm::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+            </span>Extension::Shm =&gt; <span class="kw">crate</span>::shm::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident">Extension::Sync</span> =&gt; <span class="ident"><span class="kw">crate</span>::sync::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+            </span>Extension::Sync =&gt; <span class="kw">crate</span>::sync::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-            <span class="ident">Extension::Xevie</span> =&gt; <span class="ident"><span class="kw">crate</span>::xevie::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+            </span>Extension::Xevie =&gt; <span class="kw">crate</span>::xevie::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86dri::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+            </span>Extension::Xf86Dri =&gt; <span class="kw">crate</span>::xf86dri::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-            <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="ident"><span class="kw">crate</span>::xf86vidmode::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+            </span>Extension::Xf86VidMode =&gt; <span class="kw">crate</span>::xf86vidmode::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident">Extension::XFixes</span> =&gt; <span class="ident"><span class="kw">crate</span>::xfixes::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+            </span>Extension::XFixes =&gt; <span class="kw">crate</span>::xfixes::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-            <span class="ident">Extension::Xinerama</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinerama::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+            </span>Extension::Xinerama =&gt; <span class="kw">crate</span>::xinerama::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident">Extension::Input</span> =&gt; <span class="ident"><span class="kw">crate</span>::xinput::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+            </span>Extension::Input =&gt; <span class="kw">crate</span>::xinput::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident">Extension::Xkb</span> =&gt; <span class="ident"><span class="kw">crate</span>::xkb::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+            </span>Extension::Xkb =&gt; <span class="kw">crate</span>::xkb::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident">Extension::XPrint</span> =&gt; <span class="ident"><span class="kw">crate</span>::xprint::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+            </span>Extension::XPrint =&gt; <span class="kw">crate</span>::xprint::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-            <span class="ident">Extension::SeLinux</span> =&gt; <span class="ident"><span class="kw">crate</span>::xselinux::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+            </span>Extension::SeLinux =&gt; <span class="kw">crate</span>::xselinux::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-            <span class="ident">Extension::Test</span> =&gt; <span class="ident"><span class="kw">crate</span>::xtest::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+            </span>Extension::Test =&gt; <span class="kw">crate</span>::xtest::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident">Extension::Xv</span> =&gt; <span class="ident"><span class="kw">crate</span>::xv::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+            </span>Extension::Xv =&gt; <span class="kw">crate</span>::xv::XNAME,
 
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-            <span class="ident">Extension::XvMc</span> =&gt; <span class="ident"><span class="kw">crate</span>::xvmc::XNAME</span>,
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+            </span>Extension::XvMc =&gt; <span class="kw">crate</span>::xvmc::XNAME,
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Extension</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="self">self</span>.<span class="ident">xname</span>().<span class="ident">fmt</span>(<span class="ident">f</span>)
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>Extension {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="self">self</span>.xname().fmt(f)
     }
 }
 
-<span class="doccomment">/// Extension data as returned by each extensions `get_extension_data`.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See [crate::bigreq::get_extension_data] as example.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">ExtensionData</span> {
-    <span class="kw">pub</span> <span class="ident">ext</span>: <span class="ident">Extension</span>,
-    <span class="kw">pub</span> <span class="ident">major_opcode</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">first_event</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">first_error</span>: <span class="ident">u8</span>,
+<span class="doccomment">/// Extension data as returned by each extensions `get_extension_data`.
+///
+/// See [crate::bigreq::get_extension_data] as example.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub struct </span>ExtensionData {
+    <span class="kw">pub </span>ext: Extension,
+    <span class="kw">pub </span>major_opcode: u8,
+    <span class="kw">pub </span>first_event: u8,
+    <span class="kw">pub </span>first_error: u8,
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">cache_extensions_data</span>(
-    <span class="ident">conn</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-    <span class="ident">mandatory</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
-    <span class="ident">optional</span>: <span class="kw-2">&amp;</span>[<span class="ident">Extension</span>],
-) -&gt; <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">ExtensionData</span><span class="op">&gt;</span> {
-    <span class="kw">unsafe</span> {
-        <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">mandatory</span> {
-            <span class="kw">let</span> <span class="ident">ext_id</span> <span class="op">=</span> <span class="ident">get_extension_id</span>(<span class="kw-2">*</span><span class="ident">ext</span>);
-            <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>, <span class="ident">ext_id</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>cache_extensions_data(
+    conn: <span class="kw-2">*mut </span>xcb_connection_t,
+    mandatory: <span class="kw-2">&amp;</span>[Extension],
+    optional: <span class="kw-2">&amp;</span>[Extension],
+) -&gt; Vec&lt;ExtensionData&gt; {
+    <span class="kw">unsafe </span>{
+        <span class="kw">for </span>ext <span class="kw">in </span>mandatory {
+            <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
+            xcb_prefetch_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
         }
-        <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">optional</span> {
-            <span class="kw">let</span> <span class="ident">ext_id</span> <span class="op">=</span> <span class="ident">get_extension_id</span>(<span class="kw-2">*</span><span class="ident">ext</span>);
-            <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">conn</span>, <span class="ident">ext_id</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
+        <span class="kw">for </span>ext <span class="kw">in </span>optional {
+            <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
+            xcb_prefetch_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
         }
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ext_data</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+        <span class="kw">let </span><span class="kw-2">mut </span>ext_data = Vec::new();
 
-        <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">mandatory</span> {
-            <span class="kw">let</span> <span class="ident">ext_id</span> <span class="op">=</span> <span class="ident">get_extension_id</span>(<span class="kw-2">*</span><span class="ident">ext</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>, <span class="ident">ext_id</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
-            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">x::QueryExtensionReply::from_raw</span>(<span class="ident">raw</span>);
+        <span class="kw">for </span>ext <span class="kw">in </span>mandatory {
+            <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
+            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            <span class="kw">let </span>reply = x::QueryExtensionReply::from_raw(raw);
 
             <span class="macro">assert!</span>(
-                <span class="ident">reply</span>.<span class="ident">present</span>(),
+                reply.present(),
                 <span class="string">&quot;mandatory extension {} is not present on this system&quot;</span>,
-                <span class="ident">ext</span>
+                ext
             );
-            <span class="ident">ext_data</span>.<span class="ident">push</span>(<span class="ident">ExtensionData</span> {
-                <span class="ident">ext</span>: <span class="kw-2">*</span><span class="ident">ext</span>,
-                <span class="ident">major_opcode</span>: <span class="ident">reply</span>.<span class="ident">major_opcode</span>(),
-                <span class="ident">first_event</span>: <span class="ident">reply</span>.<span class="ident">first_event</span>(),
-                <span class="ident">first_error</span>: <span class="ident">reply</span>.<span class="ident">first_error</span>(),
+            ext_data.push(ExtensionData {
+                ext: <span class="kw-2">*</span>ext,
+                major_opcode: reply.major_opcode(),
+                first_event: reply.first_event(),
+                first_error: reply.first_error(),
             });
-            <span class="ident">mem::forget</span>(<span class="ident">reply</span>);
+            mem::forget(reply);
         }
 
-        <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">optional</span> {
-            <span class="kw">let</span> <span class="ident">ext_id</span> <span class="op">=</span> <span class="ident">get_extension_id</span>(<span class="kw-2">*</span><span class="ident">ext</span>);
-            <span class="kw">let</span> <span class="ident">raw</span> <span class="op">=</span> <span class="ident">xcb_get_extension_data</span>(<span class="ident">conn</span>, <span class="ident">ext_id</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>);
-            <span class="kw">let</span> <span class="ident">reply</span> <span class="op">=</span> <span class="ident">x::QueryExtensionReply::from_raw</span>(<span class="ident">raw</span>);
+        <span class="kw">for </span>ext <span class="kw">in </span>optional {
+            <span class="kw">let </span>ext_id = get_extension_id(<span class="kw-2">*</span>ext);
+            <span class="kw">let </span>raw = xcb_get_extension_data(conn, ext_id <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>);
+            <span class="kw">let </span>reply = x::QueryExtensionReply::from_raw(raw);
 
-            <span class="kw">if</span> <span class="op">!</span><span class="ident">reply</span>.<span class="ident">present</span>() {
-                <span class="ident">mem::forget</span>(<span class="ident">reply</span>);
+            <span class="kw">if </span>!reply.present() {
+                mem::forget(reply);
                 <span class="kw">continue</span>;
             }
 
-            <span class="ident">ext_data</span>.<span class="ident">push</span>(<span class="ident">ExtensionData</span> {
-                <span class="ident">ext</span>: <span class="kw-2">*</span><span class="ident">ext</span>,
-                <span class="ident">major_opcode</span>: <span class="ident">reply</span>.<span class="ident">major_opcode</span>(),
-                <span class="ident">first_event</span>: <span class="ident">reply</span>.<span class="ident">first_event</span>(),
-                <span class="ident">first_error</span>: <span class="ident">reply</span>.<span class="ident">first_error</span>(),
+            ext_data.push(ExtensionData {
+                ext: <span class="kw-2">*</span>ext,
+                major_opcode: reply.major_opcode(),
+                first_event: reply.first_event(),
+                first_error: reply.first_error(),
             });
-            <span class="ident">mem::forget</span>(<span class="ident">reply</span>);
+            mem::forget(reply);
         }
 
-        <span class="comment">// we sort by event in reverse order to optimize the event algo</span>
-        <span class="ident">ext_data</span>.<span class="ident">sort_by</span>(<span class="op">|</span><span class="ident">a</span>, <span class="ident">b</span><span class="op">|</span> <span class="ident">b</span>.<span class="ident">first_event</span>.<span class="ident">cmp</span>(<span class="kw-2">&amp;</span><span class="ident">a</span>.<span class="ident">first_event</span>));
+        <span class="comment">// we sort by event in reverse order to optimize the event algo
+        </span>ext_data.sort_by(|a, b| b.first_event.cmp(<span class="kw-2">&amp;</span>a.first_event));
 
-        <span class="ident">ext_data</span>
+        ext_data
     }
 }
 
-<span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">get_extension_id</span>(<span class="ident">ext</span>: <span class="ident">Extension</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="kw-2">mut</span> <span class="ident">xcb_extension_t</span> {
-    <span class="kw">match</span> <span class="ident">ext</span> {
-        <span class="ident">Extension::BigRequests</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::bigreq::FFI_EXT</span>,
-        <span class="ident">Extension::XcMisc</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xc_misc::FFI_EXT</span>,
+<span class="kw">unsafe fn </span>get_extension_id(ext: Extension) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span><span class="kw-2">mut </span>xcb_extension_t {
+    <span class="kw">match </span>ext {
+        Extension::BigRequests =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::bigreq::FFI_EXT,
+        Extension::XcMisc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xc_misc::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;composite&quot;</span>)]</span>
-        <span class="ident">Extension::Composite</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::composite::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+        </span>Extension::Composite =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::composite::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-        <span class="ident">Extension::Damage</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::damage::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+        </span>Extension::Damage =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::damage::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dpms&quot;</span>)]</span>
-        <span class="ident">Extension::Dpms</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::dpms::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+        </span>Extension::Dpms =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dpms::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-        <span class="ident">Extension::Dri2</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::dri2::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+        </span>Extension::Dri2 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri2::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri3&quot;</span>)]</span>
-        <span class="ident">Extension::Dri3</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::dri3::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+        </span>Extension::Dri3 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri3::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;ge&quot;</span>)]</span>
-        <span class="ident">Extension::GenericEvent</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::ge::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+        </span>Extension::GenericEvent =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::ge::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-        <span class="ident">Extension::Glx</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::glx::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+        </span>Extension::Glx =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::glx::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-        <span class="ident">Extension::Present</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::present::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+        </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::present::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-        <span class="ident">Extension::RandR</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::randr::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+        </span>Extension::RandR =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::randr::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;record&quot;</span>)]</span>
-        <span class="ident">Extension::Record</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::record::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+        </span>Extension::Record =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::record::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;render&quot;</span>)]</span>
-        <span class="ident">Extension::Render</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::render::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+        </span>Extension::Render =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::render::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;res&quot;</span>)]</span>
-        <span class="ident">Extension::Res</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::res::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+        </span>Extension::Res =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::res::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-        <span class="ident">Extension::ScreenSaver</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::screensaver::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+        </span>Extension::ScreenSaver =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::screensaver::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-        <span class="ident">Extension::Shape</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::shape::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+        </span>Extension::Shape =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shape::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-        <span class="ident">Extension::Shm</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::shm::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+        </span>Extension::Shm =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shm::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-        <span class="ident">Extension::Sync</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::sync::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+        </span>Extension::Sync =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::sync::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xevie&quot;</span>)]</span>
-        <span class="ident">Extension::Xevie</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xevie::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+        </span>Extension::Xevie =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xevie::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86dri&quot;</span>)]</span>
-        <span class="ident">Extension::Xf86Dri</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xf86dri::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+        </span>Extension::Xf86Dri =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86dri::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xf86vidmode&quot;</span>)]</span>
-        <span class="ident">Extension::Xf86VidMode</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xf86vidmode::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+        </span>Extension::Xf86VidMode =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86vidmode::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-        <span class="ident">Extension::XFixes</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xfixes::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+        </span>Extension::XFixes =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xfixes::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinerama&quot;</span>)]</span>
-        <span class="ident">Extension::Xinerama</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xinerama::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+        </span>Extension::Xinerama =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinerama::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-        <span class="ident">Extension::Input</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xinput::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+        </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinput::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-        <span class="ident">Extension::Xkb</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xkb::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+        </span>Extension::Xkb =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xkb::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-        <span class="ident">Extension::XPrint</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xprint::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+        </span>Extension::XPrint =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xprint::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xselinux&quot;</span>)]</span>
-        <span class="ident">Extension::SeLinux</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xselinux::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+        </span>Extension::SeLinux =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xselinux::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xtest&quot;</span>)]</span>
-        <span class="ident">Extension::Test</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xtest::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+        </span>Extension::Test =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xtest::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-        <span class="ident">Extension::Xv</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xv::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+        </span>Extension::Xv =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xv::FFI_EXT,
 
-        <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xvmc&quot;</span>)]</span>
-        <span class="ident">Extension::XvMc</span> =&gt; <span class="kw-2">&amp;mut</span> <span class="ident"><span class="kw">crate</span>::xvmc::FFI_EXT</span>,
+        <span class="attribute">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+        </span>Extension::XvMc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xvmc::FFI_EXT,
     }
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

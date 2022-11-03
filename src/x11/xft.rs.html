@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xft.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xft.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xft.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xft.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -218,225 +218,225 @@
 <span id="218">218</span>
 <span id="219">219</span>
 <span id="220">220</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::<span class="kw-2">*</span>;
+</span><span class="kw">use </span>std::os::raw::<span class="kw-2">*</span>;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Display</span>, <span class="ident">Region</span>, <span class="ident">Visual</span>, <span class="ident">XRectangle</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xrender</span>::{<span class="ident">XGlyphInfo</span>, <span class="ident">XRenderColor</span>};
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Display, Region, Visual, XRectangle};
+<span class="kw">use </span><span class="kw">super</span>::xrender::{XGlyphInfo, XRenderColor};
 
-<span class="comment">//</span>
-<span class="comment">// external types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// external types
+//
 
-<span class="comment">// freetype</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FT_FaceRec</span> {}
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FT_UInt</span> <span class="op">=</span> <span class="ident">c_uint</span>;
+// freetype
+</span><span class="kw">pub enum </span>FT_FaceRec {}
+<span class="kw">pub type </span>FT_UInt = c_uint;
 
-<span class="comment">// fontconfig</span>
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">FcChar32</span> <span class="op">=</span> <span class="ident">c_uint</span>;
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FcCharSet</span> {}
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FcPattern</span> {}
+<span class="comment">// fontconfig
+</span><span class="kw">pub type </span>FcChar32 = c_uint;
+<span class="kw">pub enum </span>FcCharSet {}
+<span class="kw">pub enum </span>FcPattern {}
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FcEndian</span> {
-    <span class="ident">Big</span>,
-    <span class="ident">Little</span>,
+<span class="attribute">#[repr(C)]
+</span><span class="kw">pub enum </span>FcEndian {
+    Big,
+    Little,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">FcResult</span> {
-    <span class="ident">Match</span>,
-    <span class="ident">NoMatch</span>,
-    <span class="ident">TypeMismatch</span>,
-    <span class="ident">NoId</span>,
-    <span class="ident">OutOfMemory</span>,
+<span class="attribute">#[repr(C)]
+</span><span class="kw">pub enum </span>FcResult {
+    Match,
+    NoMatch,
+    TypeMismatch,
+    NoId,
+    OutOfMemory,
 }
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xft</span>, <span class="ident">xft</span>, [<span class="string">&quot;libXft.so.2&quot;</span>, <span class="string">&quot;libXft.so&quot;</span>], <span class="number">77</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftCharExists</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_0</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftCharFontSpecRender</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftCharFontSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftCharIndex</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_0</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftCharSpecRender</span> (<span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftCharSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftColorAllocName</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">Visual</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftColor</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftColorAllocValue</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Visual</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftColor</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftColorFree</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Visual</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftColor</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDefaultHasRender</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDefaultSet</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDefaultSubstitute</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawChange</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_0</span>: <span class="ident">c_ulong</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawCharFontSpec</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftCharFontSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawCharSpec</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftCharSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawColormap</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawCreate</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Visual</span>, <span class="ident">_0</span>: <span class="ident">c_ulong</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawCreateAlpha</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawCreateBitmap</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="ident">c_ulong</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawDestroy</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawDisplay</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawDrawable</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawGlyphFontSpec</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftGlyphFontSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawGlyphs</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawGlyphSpec</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftGlyphSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawPicture</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawRect</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_4</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_uint</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawSetClip</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_0</span>: <span class="ident">Region</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawSetClipRectangles</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRectangle</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawSetSubwindowMode</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawSrcPicture</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>) -&gt; <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawString16</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_ushort</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawString32</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawString8</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawStringUtf16</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_6</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_1</span>: <span class="ident">FcEndian</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawStringUtf8</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XftColor</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftDrawVisual</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftDraw</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">Visual</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontCheckGlyph</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontClose</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontCopy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontInfoCreate</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">FcPattern</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFontInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontInfoDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFontInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontInfoEqual</span> (<span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftFontInfo</span>, <span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">XftFontInfo</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontInfoHash</span> (<span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">XftFontInfo</span>) -&gt; <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontLoadGlyphs</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontMatch</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">FcPattern</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">FcResult</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontOpenInfo</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFontInfo</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontOpenName</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontOpenPattern</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontOpenXlfd</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontUnloadGlyphs</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftGetVersion</span> () -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftGlyphExtents</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftGlyphFontSpecRender</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftGlyphFontSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftGlyphRender</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftGlyphSpecRender</span> (<span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XftGlyphSpec</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftInit</span> (<span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftInitFtLibrary</span> () -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftLockFace</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">FT_FaceRec</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftNameParse</span> (<span class="ident">_0</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftNameUnparse</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextExtents16</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_ushort</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextExtents32</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextExtents8</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextExtentsUtf16</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_2</span>: <span class="ident">FcEndian</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextExtentsUtf8</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XGlyphInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender16</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_ushort</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender16BE</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender16LE</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender32</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender32BE</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender32LE</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRender8</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRenderUtf16</span> (<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">c_int</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_1</span>: <span class="ident">FcEndian</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftTextRenderUtf8</span> (<span class="ident">_10</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_9</span>: <span class="ident">c_int</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftUnlockFace</span> (<span class="ident">_0</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftXlfdParse</span> (<span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>,
-<span class="ident">variadic</span>:
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftFontOpen</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XftListFonts</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_0</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XftFontSet</span>,
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xft, xft, [<span class="string">&quot;libXft.so.2&quot;</span>, <span class="string">&quot;libXft.so&quot;</span>], <span class="number">77</span>,
+    <span class="kw">pub fn </span>XftCharExists (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*mut </span>XftFont, _0: c_uint) -&gt; c_int,
+    <span class="kw">pub fn </span>XftCharFontSpecRender (_7: <span class="kw-2">*mut </span>Display, _6: c_int, _5: c_ulong, _4: c_ulong, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>XftCharFontSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftCharIndex (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*mut </span>XftFont, _0: c_uint) -&gt; c_uint,
+    <span class="kw">pub fn </span>XftCharSpecRender (_8: <span class="kw-2">*mut </span>Display, _7: c_int, _6: c_ulong, _5: <span class="kw-2">*mut </span>XftFont, _4: c_ulong, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>XftCharSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftColorAllocName (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*const </span>Visual, _2: c_ulong, _1: <span class="kw-2">*const </span>c_char, _0: <span class="kw-2">*mut </span>XftColor) -&gt; c_int,
+    <span class="kw">pub fn </span>XftColorAllocValue (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>Visual, _2: c_ulong, _1: <span class="kw-2">*const </span>XRenderColor, _0: <span class="kw-2">*mut </span>XftColor) -&gt; c_int,
+    <span class="kw">pub fn </span>XftColorFree (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>Visual, _1: c_ulong, _0: <span class="kw-2">*mut </span>XftColor) -&gt; (),
+    <span class="kw">pub fn </span>XftDefaultHasRender (_0: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+    <span class="kw">pub fn </span>XftDefaultSet (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*mut </span>FcPattern) -&gt; c_int,
+    <span class="kw">pub fn </span>XftDefaultSubstitute (_2: <span class="kw-2">*mut </span>Display, _1: c_int, _0: <span class="kw-2">*mut </span>FcPattern) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawChange (_1: <span class="kw-2">*mut </span>XftDraw, _0: c_ulong) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawCharFontSpec (_3: <span class="kw-2">*mut </span>XftDraw, _2: <span class="kw-2">*const </span>XftColor, _1: <span class="kw-2">*const </span>XftCharFontSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawCharSpec (_4: <span class="kw-2">*mut </span>XftDraw, _3: <span class="kw-2">*const </span>XftColor, _2: <span class="kw-2">*mut </span>XftFont, _1: <span class="kw-2">*const </span>XftCharSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawColormap (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; c_ulong,
+    <span class="kw">pub fn </span>XftDrawCreate (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut </span>Visual, _0: c_ulong) -&gt; <span class="kw-2">*mut </span>XftDraw,
+    <span class="kw">pub fn </span>XftDrawCreateAlpha (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong, _0: c_int) -&gt; <span class="kw-2">*mut </span>XftDraw,
+    <span class="kw">pub fn </span>XftDrawCreateBitmap (_1: <span class="kw-2">*mut </span>Display, _0: c_ulong) -&gt; <span class="kw-2">*mut </span>XftDraw,
+    <span class="kw">pub fn </span>XftDrawDestroy (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawDisplay (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub fn </span>XftDrawDrawable (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; c_ulong,
+    <span class="kw">pub fn </span>XftDrawGlyphFontSpec (_3: <span class="kw-2">*mut </span>XftDraw, _2: <span class="kw-2">*const </span>XftColor, _1: <span class="kw-2">*const </span>XftGlyphFontSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawGlyphs (_6: <span class="kw-2">*mut </span>XftDraw, _5: <span class="kw-2">*const </span>XftColor, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawGlyphSpec (_4: <span class="kw-2">*mut </span>XftDraw, _3: <span class="kw-2">*const </span>XftColor, _2: <span class="kw-2">*mut </span>XftFont, _1: <span class="kw-2">*const </span>XftGlyphSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawPicture (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; c_ulong,
+    <span class="kw">pub fn </span>XftDrawRect (_5: <span class="kw-2">*mut </span>XftDraw, _4: <span class="kw-2">*const </span>XftColor, _3: c_int, _2: c_int, _1: c_uint, _0: c_uint) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawSetClip (_1: <span class="kw-2">*mut </span>XftDraw, _0: Region) -&gt; c_int,
+    <span class="kw">pub fn </span>XftDrawSetClipRectangles (_4: <span class="kw-2">*mut </span>XftDraw, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>XRectangle, _0: c_int) -&gt; c_int,
+    <span class="kw">pub fn </span>XftDrawSetSubwindowMode (_1: <span class="kw-2">*mut </span>XftDraw, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawSrcPicture (_1: <span class="kw-2">*mut </span>XftDraw, _0: <span class="kw-2">*const </span>XftColor) -&gt; c_ulong,
+    <span class="kw">pub fn </span>XftDrawString16 (_6: <span class="kw-2">*mut </span>XftDraw, _5: <span class="kw-2">*const </span>XftColor, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_ushort, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawString32 (_6: <span class="kw-2">*mut </span>XftDraw, _5: <span class="kw-2">*const </span>XftColor, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawString8 (_6: <span class="kw-2">*mut </span>XftDraw, _5: <span class="kw-2">*const </span>XftColor, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawStringUtf16 (_7: <span class="kw-2">*mut </span>XftDraw, _6: <span class="kw-2">*const </span>XftColor, _5: <span class="kw-2">*mut </span>XftFont, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>c_uchar, _1: FcEndian, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawStringUtf8 (_6: <span class="kw-2">*mut </span>XftDraw, _5: <span class="kw-2">*const </span>XftColor, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftDrawVisual (_0: <span class="kw-2">*mut </span>XftDraw) -&gt; <span class="kw-2">*mut </span>Visual,
+    <span class="kw">pub fn </span>XftFontCheckGlyph (_5: <span class="kw-2">*mut </span>Display, _4: <span class="kw-2">*mut </span>XftFont, _3: c_int, _2: c_uint, _1: <span class="kw-2">*mut </span>c_uint, _0: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+    <span class="kw">pub fn </span>XftFontClose (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*mut </span>XftFont) -&gt; (),
+    <span class="kw">pub fn </span>XftFontCopy (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*mut </span>XftFont) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftFontInfoCreate (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*const </span>FcPattern) -&gt; <span class="kw-2">*mut </span>XftFontInfo,
+    <span class="kw">pub fn </span>XftFontInfoDestroy (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*mut </span>XftFontInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftFontInfoEqual (_1: <span class="kw-2">*const </span>XftFontInfo, _0: <span class="kw-2">*const </span>XftFontInfo) -&gt; c_int,
+    <span class="kw">pub fn </span>XftFontInfoHash (_0: <span class="kw-2">*const </span>XftFontInfo) -&gt; c_uint,
+    <span class="kw">pub fn </span>XftFontLoadGlyphs (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: c_int, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftFontMatch (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: <span class="kw-2">*const </span>FcPattern, _0: <span class="kw-2">*mut </span>FcResult) -&gt; <span class="kw-2">*mut </span>FcPattern,
+    <span class="kw">pub fn </span>XftFontOpenInfo (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*mut </span>FcPattern, _0: <span class="kw-2">*mut </span>XftFontInfo) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftFontOpenName (_2: <span class="kw-2">*mut </span>Display, _1: c_int, _0: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftFontOpenPattern (_1: <span class="kw-2">*mut </span>Display, _0: <span class="kw-2">*mut </span>FcPattern) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftFontOpenXlfd (_2: <span class="kw-2">*mut </span>Display, _1: c_int, _0: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftFontUnloadGlyphs (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>XftFont, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftGetVersion () -&gt; c_int,
+    <span class="kw">pub fn </span>XftGlyphExtents (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: <span class="kw-2">*const </span>c_uint, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftGlyphFontSpecRender (_7: <span class="kw-2">*mut </span>Display, _6: c_int, _5: c_ulong, _4: c_ulong, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>XftGlyphFontSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftGlyphRender (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftGlyphSpecRender (_8: <span class="kw-2">*mut </span>Display, _7: c_int, _6: c_ulong, _5: <span class="kw-2">*mut </span>XftFont, _4: c_ulong, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>XftGlyphSpec, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftInit (_0: <span class="kw-2">*const </span>c_char) -&gt; c_int,
+    <span class="kw">pub fn </span>XftInitFtLibrary () -&gt; c_int,
+    <span class="kw">pub fn </span>XftLockFace (_0: <span class="kw-2">*mut </span>XftFont) -&gt; <span class="kw-2">*mut </span>FT_FaceRec,
+    <span class="kw">pub fn </span>XftNameParse (_0: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>FcPattern,
+    <span class="kw">pub fn </span>XftNameUnparse (_2: <span class="kw-2">*mut </span>FcPattern, _1: <span class="kw-2">*mut </span>c_char, _0: c_int) -&gt; c_int,
+    <span class="kw">pub fn </span>XftTextExtents16 (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: <span class="kw-2">*const </span>c_ushort, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftTextExtents32 (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: <span class="kw-2">*const </span>c_uint, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftTextExtents8 (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: <span class="kw-2">*const </span>c_uchar, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftTextExtentsUtf16 (_5: <span class="kw-2">*mut </span>Display, _4: <span class="kw-2">*mut </span>XftFont, _3: <span class="kw-2">*const </span>c_uchar, _2: FcEndian, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftTextExtentsUtf8 (_4: <span class="kw-2">*mut </span>Display, _3: <span class="kw-2">*mut </span>XftFont, _2: <span class="kw-2">*const </span>c_uchar, _1: c_int, _0: <span class="kw-2">*mut </span>XGlyphInfo) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender16 (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_ushort, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender16BE (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender16LE (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender32 (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uint, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender32BE (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender32LE (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRender8 (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRenderUtf16 (_11: <span class="kw-2">*mut </span>Display, _10: c_int, _9: c_ulong, _8: <span class="kw-2">*mut </span>XftFont, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>c_uchar, _1: FcEndian, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftTextRenderUtf8 (_10: <span class="kw-2">*mut </span>Display, _9: c_int, _8: c_ulong, _7: <span class="kw-2">*mut </span>XftFont, _6: c_ulong, _5: c_int, _4: c_int, _3: c_int, _2: c_int, _1: <span class="kw-2">*const </span>c_uchar, _0: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XftUnlockFace (_0: <span class="kw-2">*mut </span>XftFont) -&gt; (),
+    <span class="kw">pub fn </span>XftXlfdParse (_2: <span class="kw-2">*const </span>c_char, _1: c_int, _0: c_int) -&gt; <span class="kw-2">*mut </span>FcPattern,
+variadic:
+    <span class="kw">pub fn </span>XftFontOpen (_1: <span class="kw-2">*mut </span>Display, _0: c_int) -&gt; <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub fn </span>XftListFonts (_1: <span class="kw-2">*mut </span>Display, _0: c_int) -&gt; <span class="kw-2">*mut </span>XftFontSet,
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XftFontInfo</span> {}
+</span><span class="kw">pub enum </span>XftFontInfo {}
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftFont</span> {
-    <span class="kw">pub</span> <span class="ident">ascent</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">descent</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">max_advance_width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">charset</span>: <span class="kw-2">*mut</span> <span class="ident">FcCharSet</span>,
-    <span class="kw">pub</span> <span class="ident">pattern</span>: <span class="kw-2">*mut</span> <span class="ident">FcPattern</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftFont {
+    <span class="kw">pub </span>ascent: c_int,
+    <span class="kw">pub </span>descent: c_int,
+    <span class="kw">pub </span>height: c_int,
+    <span class="kw">pub </span>max_advance_width: c_int,
+    <span class="kw">pub </span>charset: <span class="kw-2">*mut </span>FcCharSet,
+    <span class="kw">pub </span>pattern: <span class="kw-2">*mut </span>FcPattern,
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XftDraw</span> {}
+<span class="kw">pub enum </span>XftDraw {}
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftColor</span> {
-    <span class="kw">pub</span> <span class="ident">pixel</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">color</span>: <span class="ident">XRenderColor</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftColor {
+    <span class="kw">pub </span>pixel: c_ulong,
+    <span class="kw">pub </span>color: XRenderColor,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftCharSpec</span> {
-    <span class="kw">pub</span> <span class="ident">ucs4</span>: <span class="ident">FcChar32</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftCharSpec {
+    <span class="kw">pub </span>ucs4: FcChar32,
+    <span class="kw">pub </span>x: c_short,
+    <span class="kw">pub </span>y: c_short,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftCharFontSpec</span> {
-    <span class="kw">pub</span> <span class="ident">font</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="ident">ucs4</span>: <span class="ident">FcChar32</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftCharFontSpec {
+    <span class="kw">pub </span>font: <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub </span>ucs4: FcChar32,
+    <span class="kw">pub </span>x: c_short,
+    <span class="kw">pub </span>y: c_short,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftFontSet</span> {
-    <span class="kw">pub</span> <span class="ident">nfont</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">sfont</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">fonts</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XftPattern</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftFontSet {
+    <span class="kw">pub </span>nfont: c_int,
+    <span class="kw">pub </span>sfont: c_int,
+    <span class="kw">pub </span>fonts: <span class="kw-2">*mut *mut </span>XftPattern,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftGlyphSpec</span> {
-    <span class="kw">pub</span> <span class="ident">glyph</span>: <span class="ident">FT_UInt</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftGlyphSpec {
+    <span class="kw">pub </span>glyph: FT_UInt,
+    <span class="kw">pub </span>x: c_short,
+    <span class="kw">pub </span>y: c_short,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XftGlyphFontSpec</span> {
-    <span class="kw">pub</span> <span class="ident">font</span>: <span class="kw-2">*mut</span> <span class="ident">XftFont</span>,
-    <span class="kw">pub</span> <span class="ident">glyph</span>: <span class="ident">FT_UInt</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XftGlyphFontSpec {
+    <span class="kw">pub </span>font: <span class="kw-2">*mut </span>XftFont,
+    <span class="kw">pub </span>glyph: FT_UInt,
+    <span class="kw">pub </span>x: c_short,
+    <span class="kw">pub </span>y: c_short,
 }
 
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">XftPattern</span> {}
+<span class="kw">pub enum </span>XftPattern {}
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="comment">//
+// constants
+//
 
-<span class="comment">// font attributes</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_FAMILY</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;family&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_STYLE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;style&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SLANT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;slant&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_WEIGHT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;weight&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SIZE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;size&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_PIXEL_SIZE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;pixelsize&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SPACING</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;spacing&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_FOUNDRY</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;foundry&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_ANTIALIAS</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;antialias&quot;</span>;
+// font attributes
+</span><span class="kw">pub const </span>XFT_FAMILY: <span class="kw-2">&amp;</span>str = <span class="string">&quot;family&quot;</span>;
+<span class="kw">pub const </span>XFT_STYLE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;style&quot;</span>;
+<span class="kw">pub const </span>XFT_SLANT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;slant&quot;</span>;
+<span class="kw">pub const </span>XFT_WEIGHT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;weight&quot;</span>;
+<span class="kw">pub const </span>XFT_SIZE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;size&quot;</span>;
+<span class="kw">pub const </span>XFT_PIXEL_SIZE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;pixelsize&quot;</span>;
+<span class="kw">pub const </span>XFT_SPACING: <span class="kw-2">&amp;</span>str = <span class="string">&quot;spacing&quot;</span>;
+<span class="kw">pub const </span>XFT_FOUNDRY: <span class="kw-2">&amp;</span>str = <span class="string">&quot;foundry&quot;</span>;
+<span class="kw">pub const </span>XFT_ANTIALIAS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;antialias&quot;</span>;
 
-<span class="comment">// slant values</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SLANT_ROMAN</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SLANT_ITALIC</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">100</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XFT_SLANT_OBLIQUE</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">110</span>;
+<span class="comment">// slant values
+</span><span class="kw">pub const </span>XFT_SLANT_ROMAN: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>XFT_SLANT_ITALIC: c_int = <span class="number">100</span>;
+<span class="kw">pub const </span>XFT_SLANT_OBLIQUE: c_int = <span class="number">110</span>;
 
-<span class="comment">// attribute types</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeVoid</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeInteger</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeDouble</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeString</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeBool</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XftTypeMatrix</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="comment">// attribute types
+</span><span class="kw">pub const </span>XftTypeVoid: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>XftTypeInteger: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>XftTypeDouble: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>XftTypeString: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>XftTypeBool: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>XftTypeMatrix: c_int = <span class="number">5</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

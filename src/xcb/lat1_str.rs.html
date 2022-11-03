@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lat1_str.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lat1_str.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lat1_str.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lat1_str.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -256,263 +256,263 @@
 <span id="256">256</span>
 <span id="257">257</span>
 <span id="258">258</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident">std::borrow::Cow</span>;
-<span class="kw">use</span> <span class="ident">std::fmt</span>;
-<span class="kw">use</span> <span class="ident">std::str</span>;
+</pre><pre class="rust"><code><span class="kw">use </span>std::borrow::Cow;
+<span class="kw">use </span>std::fmt;
+<span class="kw">use </span>std::str;
 
-<span class="doccomment">/// Error that can produce Latin-1 string operations</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Lat1Error</span> {
-    <span class="doccomment">/// Some non-ASCII characters were encountered.</span>
-    <span class="doccomment">/// This error is generated when attempting to borrow</span>
-    <span class="doccomment">/// a latin-1 string out of a UTF-8 string.</span>
-    <span class="doccomment">/// For such borrow, only the ASCII character set is allowed.</span>
-    <span class="doccomment">/// See [Lat1Str::try_from_ascii].</span>
-    <span class="ident">NonAscii</span>,
+<span class="doccomment">/// Error that can produce Latin-1 string operations
+</span><span class="attribute">#[derive(Debug, Copy, Clone)]
+</span><span class="kw">pub enum </span>Lat1Error {
+    <span class="doccomment">/// Some non-ASCII characters were encountered.
+    /// This error is generated when attempting to borrow
+    /// a latin-1 string out of a UTF-8 string.
+    /// For such borrow, only the ASCII character set is allowed.
+    /// See [Lat1Str::try_from_ascii].
+    </span>NonAscii,
 }
 
-<span class="doccomment">/// A slice to a Latin-1 (aka. ISO 8859-1) string.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// It is usually seen in its borrowed form, `&amp;Lat1Str`.</span>
-<span class="doccomment">/// Lat1Str contains a slice of bytes and is by definition always</span>
-<span class="doccomment">/// valid Latin-1.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This type is useful for XCB because strings in the X protocol are</span>
-<span class="doccomment">/// expected to be Latin-1 encoded.</span>
-<span class="doccomment">/// Although the X strings are Latin-1, in reality ASCII can be</span>
-<span class="doccomment">/// expected without too much risk, hence all the ASCII related functions.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// This does not account for strings passed as raw bytes</span>
-<span class="doccomment">/// to [x::ChangeProperty](crate::x::ChangeProperty) (e.g. to set a window title).</span>
-<span class="doccomment">/// These strings are passed as-is by the X server to the window compositor and</span>
-<span class="doccomment">/// encoding is implied by the property itself</span>
-<span class="doccomment">/// (e.g. UTF-8 for `_NET_WM_NAME` aka. window title).</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lat1Str</span> {
-    <span class="ident">data</span>: [<span class="ident">u8</span>],
+<span class="doccomment">/// A slice to a Latin-1 (aka. ISO 8859-1) string.
+///
+/// It is usually seen in its borrowed form, `&amp;Lat1Str`.
+/// Lat1Str contains a slice of bytes and is by definition always
+/// valid Latin-1.
+///
+/// This type is useful for XCB because strings in the X protocol are
+/// expected to be Latin-1 encoded.
+/// Although the X strings are Latin-1, in reality ASCII can be
+/// expected without too much risk, hence all the ASCII related functions.
+///
+/// This does not account for strings passed as raw bytes
+/// to [x::ChangeProperty](crate::x::ChangeProperty) (e.g. to set a window title).
+/// These strings are passed as-is by the X server to the window compositor and
+/// encoding is implied by the property itself
+/// (e.g. UTF-8 for `_NET_WM_NAME` aka. window title).
+</span><span class="kw">pub struct </span>Lat1Str {
+    data: [u8],
 }
 
-<span class="kw">impl</span> <span class="ident">Lat1Str</span> {
-    <span class="doccomment">/// Returns a reference to a Lat1Str that borrows the passed bytes</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span> {
-        <span class="kw">unsafe</span> { <span class="kw-2">&amp;</span><span class="kw-2">*</span>(<span class="ident">bytes</span> <span class="kw">as</span> <span class="kw-2">*const</span> [<span class="ident">u8</span>] <span class="kw">as</span> <span class="kw-2">*const</span> <span class="self">Self</span>) }
+<span class="kw">impl </span>Lat1Str {
+    <span class="doccomment">/// Returns a reference to a Lat1Str that borrows the passed bytes
+    </span><span class="kw">pub fn </span>from_bytes(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="kw-2">&amp;</span><span class="self">Self </span>{
+        <span class="kw">unsafe </span>{ <span class="kw-2">&amp;*</span>(bytes <span class="kw">as </span><span class="kw-2">*const </span>[u8] <span class="kw">as </span><span class="kw-2">*const </span><span class="self">Self</span>) }
     }
 
-    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes</span>
-    <span class="doccomment">/// only if `str` is pure ASCII.</span>
-    <span class="doccomment">/// Otherwise, a `Lat1Error::NonAscii` is returned.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_from_ascii</span>(<span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="self">Self</span>, <span class="ident">Lat1Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">str</span>.<span class="ident">is_ascii</span>() {
-            <span class="prelude-val">Ok</span>(<span class="ident"><span class="self">Self</span>::from_bytes</span>(<span class="ident">str</span>.<span class="ident">as_bytes</span>()))
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Lat1Error::NonAscii</span>)
+    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes
+    /// only if `str` is pure ASCII.
+    /// Otherwise, a `Lat1Error::NonAscii` is returned.
+    </span><span class="kw">pub fn </span>try_from_ascii(str: <span class="kw-2">&amp;</span>str) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span><span class="self">Self</span>, Lat1Error&gt; {
+        <span class="kw">if </span>str.is_ascii() {
+            <span class="prelude-val">Ok</span>(<span class="self">Self</span>::from_bytes(str.as_bytes()))
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(Lat1Error::NonAscii)
         }
     }
 
-    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes</span>
-    <span class="doccomment">/// only if `str` is pure ASCII.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Panics</span>
-    <span class="doccomment">/// This function panics if `str` contains non-ASCII chars.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_ascii</span>(<span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::try_from_ascii</span>(<span class="ident">str</span>).<span class="ident">unwrap</span>()
+    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes
+    /// only if `str` is pure ASCII.
+    ///
+    /// # Panics
+    /// This function panics if `str` contains non-ASCII chars.
+    </span><span class="kw">pub fn </span>from_ascii(str: <span class="kw-2">&amp;</span>str) -&gt; <span class="kw-2">&amp;</span><span class="self">Self </span>{
+        <span class="self">Self</span>::try_from_ascii(str).unwrap()
     }
 
-    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// If `str` contains non-ASCII characters, the returned string will not correspond</span>
-    <span class="doccomment">/// to the passed string (the latin-1 will contain utf-8 encoding).</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_ascii_unchecked</span>(<span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span> {
-        <span class="ident"><span class="self">Self</span>::from_bytes</span>(<span class="ident">str</span>.<span class="ident">as_bytes</span>())
+    <span class="doccomment">/// Returns a reference to a `Lat1Str` that borrows the passed string bytes.
+    ///
+    /// # Safety
+    /// If `str` contains non-ASCII characters, the returned string will not correspond
+    /// to the passed string (the latin-1 will contain utf-8 encoding).
+    </span><span class="kw">pub unsafe fn </span>from_ascii_unchecked(str: <span class="kw-2">&amp;</span>str) -&gt; <span class="kw-2">&amp;</span><span class="self">Self </span>{
+        <span class="self">Self</span>::from_bytes(str.as_bytes())
     }
 
-    <span class="doccomment">/// Returns a Latin-1 string built from a UTF-8 string</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `Cow::Borrowed` is returned if `str` contains only ASCII,</span>
-    <span class="doccomment">/// otherwise, a conversion from UTF-8 is performed and `Cow::Owned` is returned.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf8</span>(<span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">Lat1Str</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="ident">str</span>.<span class="ident">is_ascii</span>() {
-            <span class="ident">Cow::Borrowed</span>(<span class="ident">Lat1Str::from_bytes</span>(<span class="ident">str</span>.<span class="ident">as_bytes</span>()))
-        } <span class="kw">else</span> {
-            <span class="ident">Cow::Owned</span>(<span class="ident">Lat1String::from_utf8</span>(<span class="ident">str</span>))
+    <span class="doccomment">/// Returns a Latin-1 string built from a UTF-8 string
+    ///
+    /// `Cow::Borrowed` is returned if `str` contains only ASCII,
+    /// otherwise, a conversion from UTF-8 is performed and `Cow::Owned` is returned.
+    </span><span class="kw">pub fn </span>from_utf8(str: <span class="kw-2">&amp;</span>str) -&gt; Cow&lt;Lat1Str&gt; {
+        <span class="kw">if </span>str.is_ascii() {
+            Cow::Borrowed(Lat1Str::from_bytes(str.as_bytes()))
+        } <span class="kw">else </span>{
+            Cow::Owned(Lat1String::from_utf8(str))
         }
     }
 
-    <span class="doccomment">/// Checks whether the slice only contains ASCII characters.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">is_ascii</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">bool</span> {
-        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">is_ascii</span>()
+    <span class="doccomment">/// Checks whether the slice only contains ASCII characters.
+    </span><span class="kw">pub fn </span>is_ascii(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="self">self</span>.data.is_ascii()
     }
 
-    <span class="doccomment">/// Returns the number of characters in the string.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">len</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">usize</span> {
-        <span class="self">self</span>.<span class="ident">data</span>.<span class="ident">len</span>()
+    <span class="doccomment">/// Returns the number of characters in the string.
+    </span><span class="kw">pub fn </span>len(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
+        <span class="self">self</span>.data.len()
     }
 
-    <span class="doccomment">/// Returns the string as slice of bytes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_bytes</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] {
-        <span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>
+    <span class="doccomment">/// Returns the string as slice of bytes.
+    </span><span class="kw">pub fn </span>as_bytes(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>[u8] {
+        <span class="kw-2">&amp;</span><span class="self">self</span>.data
     }
 
-    <span class="doccomment">/// Returns the string in UTF-8 encoding, only if the string is pure ASCII.</span>
-    <span class="doccomment">/// Otherwise, a `Lat1Error::NonAscii` is returned.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">try_as_ascii</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">Lat1Error</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_ascii</span>() {
-            <span class="prelude-val">Ok</span>(<span class="kw">unsafe</span> { <span class="ident">str::from_utf8_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>) })
-        } <span class="kw">else</span> {
-            <span class="prelude-val">Err</span>(<span class="ident">Lat1Error::NonAscii</span>)
+    <span class="doccomment">/// Returns the string in UTF-8 encoding, only if the string is pure ASCII.
+    /// Otherwise, a `Lat1Error::NonAscii` is returned.
+    </span><span class="kw">pub fn </span>try_as_ascii(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="kw-2">&amp;</span>str, Lat1Error&gt; {
+        <span class="kw">if </span><span class="self">self</span>.is_ascii() {
+            <span class="prelude-val">Ok</span>(<span class="kw">unsafe </span>{ str::from_utf8_unchecked(<span class="kw-2">&amp;</span><span class="self">self</span>.data) })
+        } <span class="kw">else </span>{
+            <span class="prelude-val">Err</span>(Lat1Error::NonAscii)
         }
     }
 
-    <span class="doccomment">/// Returns the string in UTF-8 encoding, only if the string is pure ASCII.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Panics</span>
-    <span class="doccomment">/// This function panics if the string contains non-ASCII chars.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_ascii</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="self">self</span>.<span class="ident">try_as_ascii</span>().<span class="ident">unwrap</span>()
+    <span class="doccomment">/// Returns the string in UTF-8 encoding, only if the string is pure ASCII.
+    ///
+    /// # Panics
+    /// This function panics if the string contains non-ASCII chars.
+    </span><span class="kw">pub fn </span>as_ascii(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        <span class="self">self</span>.try_as_ascii().unwrap()
     }
 
-    <span class="doccomment">/// Returns the string in UTF-8 encoding.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// # Safety</span>
-    <span class="doccomment">/// If the string contains non-ASCII characters, the returned string will be</span>
-    <span class="doccomment">/// invalid UTF-8.</span>
-    <span class="kw">pub</span> <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">as_ascii_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">str</span> {
-        <span class="ident">str::from_utf8_unchecked</span>(<span class="kw-2">&amp;</span><span class="self">self</span>.<span class="ident">data</span>)
+    <span class="doccomment">/// Returns the string in UTF-8 encoding.
+    ///
+    /// # Safety
+    /// If the string contains non-ASCII characters, the returned string will be
+    /// invalid UTF-8.
+    </span><span class="kw">pub unsafe fn </span>as_ascii_unchecked(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
+        str::from_utf8_unchecked(<span class="kw-2">&amp;</span><span class="self">self</span>.data)
     }
 
-    <span class="doccomment">/// Returns the string converted to UTF-8.</span>
-    <span class="doccomment">///</span>
-    <span class="doccomment">/// `Cow::Borrowed` is returned if the string is pure ASCII,</span>
-    <span class="doccomment">/// otherwise a conversion to UTF-8 is performed and `Cow::Owned` is returned.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">to_utf8</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">Cow</span><span class="op">&lt;</span><span class="ident">str</span><span class="op">&gt;</span> {
-        <span class="kw">if</span> <span class="self">self</span>.<span class="ident">is_ascii</span>() {
-            <span class="ident">Cow::Borrowed</span>(<span class="kw">unsafe</span> { <span class="self">self</span>.<span class="ident">as_ascii_unchecked</span>() })
-        } <span class="kw">else</span> {
-            <span class="ident">Cow::Owned</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="kw-2">*</span><span class="ident">c</span> <span class="kw">as</span> <span class="ident">char</span>).<span class="ident">collect</span>())
-        }
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">std::borrow::ToOwned</span> <span class="kw">for</span> <span class="ident">Lat1Str</span> {
-    <span class="kw">type</span> <span class="ident">Owned</span> <span class="op">=</span> <span class="ident">Lat1String</span>;
-    <span class="kw">fn</span> <span class="ident">to_owned</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident"><span class="self">Self</span>::Owned</span> {
-        <span class="ident">Lat1String</span> {
-            <span class="ident">data</span>: <span class="self">self</span>.<span class="ident">as_bytes</span>().<span class="ident">to_vec</span>(),
+    <span class="doccomment">/// Returns the string converted to UTF-8.
+    ///
+    /// `Cow::Borrowed` is returned if the string is pure ASCII,
+    /// otherwise a conversion to UTF-8 is performed and `Cow::Owned` is returned.
+    </span><span class="kw">pub fn </span>to_utf8(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Cow&lt;str&gt; {
+        <span class="kw">if </span><span class="self">self</span>.is_ascii() {
+            Cow::Borrowed(<span class="kw">unsafe </span>{ <span class="self">self</span>.as_ascii_unchecked() })
+        } <span class="kw">else </span>{
+            Cow::Owned(<span class="self">self</span>.data.iter().map(|c| <span class="kw-2">*</span>c <span class="kw">as </span>char).collect())
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Lat1Str</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>)
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Lat1Str</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, <span class="ident">s</span>))
-    }
-}
-
-<span class="doccomment">/// A struct owning a Latin-1 (aka. ISO 8859-1) string.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// See [Lat1Str] for details.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Clone</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lat1String</span> {
-    <span class="ident">data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span>,
-}
-
-<span class="kw">impl</span> <span class="ident">Lat1String</span> {
-    <span class="doccomment">/// Construct a [Lat1String] from a slice of bytes.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">bytes</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>]) -&gt; <span class="self">Self</span> {
-        <span class="ident">Lat1String</span> {
-            <span class="ident">data</span>: <span class="ident">bytes</span>.<span class="ident">to_vec</span>(),
-        }
-    }
-
-    <span class="doccomment">/// Construct a [Lat1String] from UTF-8 (a conversion to Latin-1 is performed).</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_utf8</span>(<span class="ident">str</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">Lat1String</span> {
-            <span class="ident">data</span>: <span class="ident">str</span>.<span class="ident">chars</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">c</span><span class="op">|</span> <span class="ident">c</span> <span class="kw">as</span> <span class="ident">u8</span>).<span class="ident">collect</span>(),
+<span class="kw">impl </span>std::borrow::ToOwned <span class="kw">for </span>Lat1Str {
+    <span class="kw">type </span>Owned = Lat1String;
+    <span class="kw">fn </span>to_owned(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="self">Self</span>::Owned {
+        Lat1String {
+            data: <span class="self">self</span>.as_bytes().to_vec(),
         }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">Lat1String</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Lat1Str</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">as_slice</span>())
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>Lat1Str {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_str(<span class="kw-2">&amp;</span>s)
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::borrow::Borrow</span><span class="op">&lt;</span><span class="ident">Lat1Str</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">Lat1String</span> {
-    <span class="kw">fn</span> <span class="ident">borrow</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident">Lat1Str</span> {
-        <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">as_slice</span>())
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Lat1Str {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, s))
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Lat1String</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>)
+<span class="doccomment">/// A struct owning a Latin-1 (aka. ISO 8859-1) string.
+///
+/// See [Lat1Str] for details.
+</span><span class="attribute">#[derive(Clone)]
+</span><span class="kw">pub struct </span>Lat1String {
+    data: Vec&lt;u8&gt;,
+}
+
+<span class="kw">impl </span>Lat1String {
+    <span class="doccomment">/// Construct a [Lat1String] from a slice of bytes.
+    </span><span class="kw">pub fn </span>from_bytes(bytes: <span class="kw-2">&amp;</span>[u8]) -&gt; <span class="self">Self </span>{
+        Lat1String {
+            data: bytes.to_vec(),
+        }
+    }
+
+    <span class="doccomment">/// Construct a [Lat1String] from UTF-8 (a conversion to Latin-1 is performed).
+    </span><span class="kw">pub fn </span>from_utf8(str: <span class="kw-2">&amp;</span>str) -&gt; <span class="self">Self </span>{
+        Lat1String {
+            data: str.chars().map(|c| c <span class="kw">as </span>u8).collect(),
+        }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Lat1String</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, <span class="ident">s</span>))
+<span class="kw">impl </span>std::ops::Deref <span class="kw">for </span>Lat1String {
+    <span class="kw">type </span>Target = Lat1Str;
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        Lat1Str::from_bytes(<span class="self">self</span>.data.as_slice())
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="doccomment">/// Latin-1 (aka. ISO 8859-1) of fixed size</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> {
-    <span class="ident">data</span>: [<span class="ident">u8</span>; <span class="ident">N</span>],
-}
-
-<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">from_bytes</span>(<span class="ident">bytes</span>: [<span class="ident">u8</span>; <span class="ident">N</span>]) -&gt; <span class="self">Self</span> {
-        <span class="self">Self</span> { <span class="ident">data</span>: <span class="ident">bytes</span> }
+<span class="kw">impl </span>std::borrow::Borrow&lt;Lat1Str&gt; <span class="kw">for </span>Lat1String {
+    <span class="kw">fn </span>borrow(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>Lat1Str {
+        Lat1Str::from_bytes(<span class="self">self</span>.data.as_slice())
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">std::ops::Deref</span> <span class="kw">for</span> <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
-    <span class="kw">type</span> <span class="ident">Target</span> <span class="op">=</span> <span class="ident">Lat1Str</span>;
-    <span class="kw">fn</span> <span class="ident">deref</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="ident"><span class="self">Self</span>::Target</span> {
-        <span class="ident">Lat1Str::from_bytes</span>(<span class="self">self</span>.<span class="ident">data</span>.<span class="ident">as_slice</span>())
+<span class="kw">impl </span>fmt::Display <span class="kw">for </span>Lat1String {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_str(<span class="kw-2">&amp;</span>s)
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">fmt::Display</span> <span class="kw">for</span> <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_str</span>(<span class="kw-2">&amp;</span><span class="ident">s</span>)
+<span class="kw">impl </span>fmt::Debug <span class="kw">for </span>Lat1String {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, s))
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="kw">const</span> <span class="ident">N</span>: <span class="ident">usize</span><span class="op">&gt;</span> <span class="ident">fmt::Debug</span> <span class="kw">for</span> <span class="ident">Lat1StrF</span><span class="op">&lt;</span><span class="ident">N</span><span class="op">&gt;</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">fmt::Formatter</span>) -&gt; <span class="ident">fmt::Result</span> {
-        <span class="kw">let</span> <span class="ident">s</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">to_utf8</span>();
-        <span class="ident">f</span>.<span class="ident">write_fmt</span>(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, <span class="ident">s</span>))
+<span class="attribute">#[derive(Copy, Clone)]
+</span><span class="doccomment">/// Latin-1 (aka. ISO 8859-1) of fixed size
+</span><span class="kw">pub struct </span>Lat1StrF&lt;<span class="kw">const </span>N: usize&gt; {
+    data: [u8; N],
+}
+
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; Lat1StrF&lt;N&gt; {
+    <span class="kw">pub fn </span>from_bytes(bytes: [u8; N]) -&gt; <span class="self">Self </span>{
+        <span class="self">Self </span>{ data: bytes }
     }
 }
 
-<span class="attribute">#[<span class="ident">test</span>]</span>
-<span class="kw">fn</span> <span class="ident">test_latin_str</span>() {
-    <span class="kw">let</span> <span class="ident">utf8</span> <span class="op">=</span> <span class="string">&quot;Mon frère est là.&quot;</span>;
-    <span class="kw">let</span> <span class="ident">latin1</span>: <span class="kw-2">&amp;</span>[<span class="ident">u8</span>] <span class="op">=</span> <span class="kw-2">&amp;</span>[
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; std::ops::Deref <span class="kw">for </span>Lat1StrF&lt;N&gt; {
+    <span class="kw">type </span>Target = Lat1Str;
+    <span class="kw">fn </span>deref(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="self">Self</span>::Target {
+        Lat1Str::from_bytes(<span class="self">self</span>.data.as_slice())
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; fmt::Display <span class="kw">for </span>Lat1StrF&lt;N&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_str(<span class="kw-2">&amp;</span>s)
+    }
+}
+
+<span class="kw">impl</span>&lt;<span class="kw">const </span>N: usize&gt; fmt::Debug <span class="kw">for </span>Lat1StrF&lt;N&gt; {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter) -&gt; fmt::Result {
+        <span class="kw">let </span>s = <span class="self">self</span>.to_utf8();
+        f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;Lat1(\&quot;{}\&quot;)&quot;</span>, s))
+    }
+}
+
+<span class="attribute">#[test]
+</span><span class="kw">fn </span>test_latin_str() {
+    <span class="kw">let </span>utf8 = <span class="string">&quot;Mon frère est là.&quot;</span>;
+    <span class="kw">let </span>latin1: <span class="kw-2">&amp;</span>[u8] = <span class="kw-2">&amp;</span>[
         <span class="number">0x4D</span>, <span class="number">0x6F</span>, <span class="number">0x6E</span>, <span class="number">0x20</span>, <span class="number">0x66</span>, <span class="number">0x72</span>, <span class="number">0xE8</span>, <span class="number">0x72</span>, <span class="number">0x65</span>, <span class="number">0x20</span>, <span class="number">0x65</span>, <span class="number">0x73</span>, <span class="number">0x74</span>, <span class="number">0x20</span>, <span class="number">0x6C</span>,
         <span class="number">0xE0</span>, <span class="number">0x2E</span>,
     ];
 
-    <span class="kw">let</span> <span class="ident">ls</span> <span class="op">=</span> <span class="ident">Lat1String::from_utf8</span>(<span class="ident">utf8</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">ls</span>.<span class="ident">as_bytes</span>(), <span class="ident">latin1</span>);
+    <span class="kw">let </span>ls = Lat1String::from_utf8(utf8);
+    <span class="macro">assert_eq!</span>(ls.as_bytes(), latin1);
 
-    <span class="kw">let</span> <span class="ident">ls</span> <span class="op">=</span> <span class="ident">Lat1Str::from_bytes</span>(<span class="ident">latin1</span>);
-    <span class="macro">assert_eq!</span>(<span class="ident">ls</span>.<span class="ident">to_utf8</span>(), <span class="ident">utf8</span>);
+    <span class="kw">let </span>ls = Lat1Str::from_bytes(latin1);
+    <span class="macro">assert_eq!</span>(ls.to_utf8(), utf8);
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

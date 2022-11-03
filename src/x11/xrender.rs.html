@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrender.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrender.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrender.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrender.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -442,449 +442,449 @@
 <span id="442">442</span>
 <span id="443">443</span>
 <span id="444">444</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_double</span>, <span class="ident">c_int</span>, <span class="ident">c_short</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>, <span class="ident">c_ushort</span>};
+</span><span class="kw">use </span>std::os::raw::{c_char, c_double, c_int, c_short, c_uint, c_ulong, c_ushort};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Atom</span>, <span class="ident">Bool</span>, <span class="ident">Colormap</span>, <span class="ident">Cursor</span>, <span class="ident">Display</span>, <span class="ident">Pixmap</span>, <span class="ident">Region</span>, <span class="ident">Visual</span>, <span class="ident">XRectangle</span>, <span class="ident">XID</span>};
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Atom, Bool, Colormap, Cursor, Display, Pixmap, Region, Visual, XRectangle, XID};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xrender</span>, <span class="ident">xrender</span>, [<span class="string">&quot;libXrender.so.1&quot;</span>, <span class="string">&quot;libXrender.so&quot;</span>], <span class="number">44</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderAddGlyphs</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="kw-2">*const</span> <span class="ident">XGlyphInfo</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderAddTraps</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XTrap</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderChangePicture</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictureAttributes</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderComposite</span> (<span class="ident">_13</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_12</span>: <span class="ident">c_int</span>, <span class="ident">_11</span>: <span class="ident">c_ulong</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeDoublePoly</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">XPointDouble</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeString16</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_ushort</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeString32</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeString8</span> (<span class="ident">_12</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_11</span>: <span class="ident">c_int</span>, <span class="ident">_10</span>: <span class="ident">c_ulong</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeText16</span> (<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">c_int</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XGlyphElt16</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeText32</span> (<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">c_int</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XGlyphElt32</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeText8</span> (<span class="ident">_11</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_10</span>: <span class="ident">c_int</span>, <span class="ident">_9</span>: <span class="ident">c_ulong</span>, <span class="ident">_8</span>: <span class="ident">c_ulong</span>, <span class="ident">_7</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_6</span>: <span class="ident">c_int</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XGlyphElt8</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeTrapezoids</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XTrapezoid</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeTriangles</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XTriangle</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeTriFan</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XPointFixed</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCompositeTriStrip</span> (<span class="ident">_9</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_8</span>: <span class="ident">c_int</span>, <span class="ident">_7</span>: <span class="ident">c_ulong</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XPointFixed</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateAnimCursor</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XAnimCursor</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateConicalGradient</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="kw-2">*const</span> <span class="ident">XConicalGradient</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateCursor</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateGlyphSet</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateLinearGradient</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="kw-2">*const</span> <span class="ident">XLinearGradient</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreatePicture</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictureAttributes</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateRadialGradient</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="kw-2">*const</span> <span class="ident">XRadialGradient</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderCreateSolidFill</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFillRectangle</span> (<span class="ident">_8</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_7</span>: <span class="ident">c_int</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFillRectangles</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_int</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">XRenderColor</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRectangle</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFindFormat</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRenderPictFormat</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFindStandardFormat</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRenderPictFormat</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFindVisualFormat</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">Visual</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRenderPictFormat</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFreeGlyphs</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFreeGlyphSet</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderFreePicture</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderParseColor</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XRenderColor</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQueryExtension</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQueryFilters</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XFilters</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQueryFormats</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQueryPictIndexValues</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRenderPictFormat</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XIndexValue</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQuerySubpixelOrder</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderQueryVersion</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderReferenceGlyphSet</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_ulong</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderSetPictureClipRectangles</span> (<span class="ident">_6</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_int</span>, <span class="ident">_3</span>: <span class="ident">c_int</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XRectangle</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderSetPictureClipRegion</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="ident">Region</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderSetPictureFilter</span> (<span class="ident">_5</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_4</span>: <span class="ident">c_ulong</span>, <span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderSetPictureTransform</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XTransform</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRenderSetSubpixelOrder</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xrender, xrender, [<span class="string">&quot;libXrender.so.1&quot;</span>, <span class="string">&quot;libXrender.so&quot;</span>], <span class="number">44</span>,
+  <span class="kw">pub fn </span>XRenderAddGlyphs (_7: <span class="kw-2">*mut </span>Display, _6: c_ulong, _5: <span class="kw-2">*const </span>c_ulong, _4: <span class="kw-2">*const </span>XGlyphInfo, _3: c_int, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderAddTraps (_6: <span class="kw-2">*mut </span>Display, _5: c_ulong, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XTrap, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderChangePicture (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: c_ulong, _1: <span class="kw-2">*const </span>XRenderPictureAttributes) -&gt; (),
+  <span class="kw">pub fn </span>XRenderComposite (_13: <span class="kw-2">*mut </span>Display, _12: c_int, _11: c_ulong, _10: c_ulong, _9: c_ulong, _8: c_int, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeDoublePoly (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: c_ulong, _8: <span class="kw-2">*const </span>XRenderPictFormat, _7: c_int, _6: c_int, _5: c_int, _4: c_int, _3: <span class="kw-2">*const </span>XPointDouble, _2: c_int, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeString16 (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: c_ulong, _8: <span class="kw-2">*const </span>XRenderPictFormat, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>c_ushort, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeString32 (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: c_ulong, _8: <span class="kw-2">*const </span>XRenderPictFormat, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>c_uint, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeString8 (_12: <span class="kw-2">*mut </span>Display, _11: c_int, _10: c_ulong, _9: c_ulong, _8: <span class="kw-2">*const </span>XRenderPictFormat, _7: c_ulong, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeText16 (_11: <span class="kw-2">*mut </span>Display, _10: c_int, _9: c_ulong, _8: c_ulong, _7: <span class="kw-2">*const </span>XRenderPictFormat, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XGlyphElt16, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeText32 (_11: <span class="kw-2">*mut </span>Display, _10: c_int, _9: c_ulong, _8: c_ulong, _7: <span class="kw-2">*const </span>XRenderPictFormat, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XGlyphElt32, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeText8 (_11: <span class="kw-2">*mut </span>Display, _10: c_int, _9: c_ulong, _8: c_ulong, _7: <span class="kw-2">*const </span>XRenderPictFormat, _6: c_int, _5: c_int, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XGlyphElt8, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeTrapezoids (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: <span class="kw-2">*const </span>XRenderPictFormat, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XTrapezoid, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeTriangles (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: <span class="kw-2">*const </span>XRenderPictFormat, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XTriangle, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeTriFan (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: <span class="kw-2">*const </span>XRenderPictFormat, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XPointFixed, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCompositeTriStrip (_9: <span class="kw-2">*mut </span>Display, _8: c_int, _7: c_ulong, _6: c_ulong, _5: <span class="kw-2">*const </span>XRenderPictFormat, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XPointFixed, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderCreateAnimCursor (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: <span class="kw-2">*mut </span>XAnimCursor) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateConicalGradient (_5: <span class="kw-2">*mut </span>Display, _4: <span class="kw-2">*const </span>XConicalGradient, _3: <span class="kw-2">*const </span>c_int, _2: <span class="kw-2">*const </span>XRenderColor, _1: c_int) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateCursor (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: c_uint, _1: c_uint) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateGlyphSet (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>XRenderPictFormat) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateLinearGradient (_5: <span class="kw-2">*mut </span>Display, _4: <span class="kw-2">*const </span>XLinearGradient, _3: <span class="kw-2">*const </span>c_int, _2: <span class="kw-2">*const </span>XRenderColor, _1: c_int) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreatePicture (_5: <span class="kw-2">*mut </span>Display, _4: c_ulong, _3: <span class="kw-2">*const </span>XRenderPictFormat, _2: c_ulong, _1: <span class="kw-2">*const </span>XRenderPictureAttributes) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateRadialGradient (_5: <span class="kw-2">*mut </span>Display, _4: <span class="kw-2">*const </span>XRadialGradient, _3: <span class="kw-2">*const </span>c_int, _2: <span class="kw-2">*const </span>XRenderColor, _1: c_int) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderCreateSolidFill (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>XRenderColor) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderFillRectangle (_8: <span class="kw-2">*mut </span>Display, _7: c_int, _6: c_ulong, _5: <span class="kw-2">*const </span>XRenderColor, _4: c_int, _3: c_int, _2: c_uint, _1: c_uint) -&gt; (),
+  <span class="kw">pub fn </span>XRenderFillRectangles (_6: <span class="kw-2">*mut </span>Display, _5: c_int, _4: c_ulong, _3: <span class="kw-2">*const </span>XRenderColor, _2: <span class="kw-2">*const </span>XRectangle, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderFindFormat (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="kw-2">*const </span>XRenderPictFormat, _1: c_int) -&gt; <span class="kw-2">*mut </span>XRenderPictFormat,
+  <span class="kw">pub fn </span>XRenderFindStandardFormat (_2: <span class="kw-2">*mut </span>Display, _1: c_int) -&gt; <span class="kw-2">*mut </span>XRenderPictFormat,
+  <span class="kw">pub fn </span>XRenderFindVisualFormat (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>Visual) -&gt; <span class="kw-2">*mut </span>XRenderPictFormat,
+  <span class="kw">pub fn </span>XRenderFreeGlyphs (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: <span class="kw-2">*const </span>c_ulong, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderFreeGlyphSet (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; (),
+  <span class="kw">pub fn </span>XRenderFreePicture (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; (),
+  <span class="kw">pub fn </span>XRenderParseColor (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>c_char, _1: <span class="kw-2">*mut </span>XRenderColor) -&gt; c_int,
+  <span class="kw">pub fn </span>XRenderQueryExtension (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XRenderQueryFilters (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; <span class="kw-2">*mut </span>XFilters,
+  <span class="kw">pub fn </span>XRenderQueryFormats (_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+  <span class="kw">pub fn </span>XRenderQueryPictIndexValues (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*const </span>XRenderPictFormat, _1: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XIndexValue,
+  <span class="kw">pub fn </span>XRenderQuerySubpixelOrder (_2: <span class="kw-2">*mut </span>Display, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XRenderQueryVersion (_3: <span class="kw-2">*mut </span>Display, _2: <span class="kw-2">*mut </span>c_int, _1: <span class="kw-2">*mut </span>c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XRenderReferenceGlyphSet (_2: <span class="kw-2">*mut </span>Display, _1: c_ulong) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XRenderSetPictureClipRectangles (_6: <span class="kw-2">*mut </span>Display, _5: c_ulong, _4: c_int, _3: c_int, _2: <span class="kw-2">*const </span>XRectangle, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderSetPictureClipRegion (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: Region) -&gt; (),
+  <span class="kw">pub fn </span>XRenderSetPictureFilter (_5: <span class="kw-2">*mut </span>Display, _4: c_ulong, _3: <span class="kw-2">*const </span>c_char, _2: <span class="kw-2">*mut </span>c_int, _1: c_int) -&gt; (),
+  <span class="kw">pub fn </span>XRenderSetPictureTransform (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut </span>XTransform) -&gt; (),
+  <span class="kw">pub fn </span>XRenderSetSubpixelOrder (_3: <span class="kw-2">*mut </span>Display, _2: c_int, _1: c_int) -&gt; c_int,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Glyph</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">GlyphSet</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">PictFormat</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Picture</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XDouble</span> <span class="op">=</span> <span class="ident">c_double</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XFixed</span> <span class="op">=</span> <span class="ident">c_int</span>;
+</span><span class="kw">pub type </span>Glyph = XID;
+<span class="kw">pub type </span>GlyphSet = XID;
+<span class="kw">pub type </span>PictFormat = XID;
+<span class="kw">pub type </span>Picture = XID;
+<span class="kw">pub type </span>XDouble = c_double;
+<span class="kw">pub type </span>XFixed = c_int;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XAnimCursor</span> {
-    <span class="kw">pub</span> <span class="ident">cursor</span>: <span class="ident">Cursor</span>,
-    <span class="kw">pub</span> <span class="ident">delay</span>: <span class="ident">c_ulong</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XAnimCursor {
+    <span class="kw">pub </span>cursor: Cursor,
+    <span class="kw">pub </span>delay: c_ulong,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XAnimCursor</span> <span class="op">=</span> <span class="ident">_XAnimCursor</span>;
+<span class="kw">pub type </span>XAnimCursor = _XAnimCursor;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XCircle</span> {
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">radius</span>: <span class="ident">XFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XCircle {
+    <span class="kw">pub </span>x: XFixed,
+    <span class="kw">pub </span>y: XFixed,
+    <span class="kw">pub </span>radius: XFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XCircle</span> <span class="op">=</span> <span class="ident">_XCircle</span>;
+<span class="kw">pub type </span>XCircle = _XCircle;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XConicalGradient</span> {
-    <span class="kw">pub</span> <span class="ident">center</span>: <span class="ident">XPointFixed</span>,
-    <span class="kw">pub</span> <span class="ident">angle</span>: <span class="ident">XFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XConicalGradient {
+    <span class="kw">pub </span>center: XPointFixed,
+    <span class="kw">pub </span>angle: XFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XConicalGradient</span> <span class="op">=</span> <span class="ident">_XConicalGradient</span>;
+<span class="kw">pub type </span>XConicalGradient = _XConicalGradient;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XFilters</span> {
-    <span class="kw">pub</span> <span class="ident">nfilter</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">filter</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">nalias</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">alias</span>: <span class="kw-2">*mut</span> <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XFilters {
+    <span class="kw">pub </span>nfilter: c_int,
+    <span class="kw">pub </span>filter: <span class="kw-2">*mut *mut </span>c_char,
+    <span class="kw">pub </span>nalias: c_int,
+    <span class="kw">pub </span>alias: <span class="kw-2">*mut </span>c_short,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XFilters</span> <span class="op">=</span> <span class="ident">_XFilters</span>;
+<span class="kw">pub type </span>XFilters = _XFilters;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XGlyphElt8</span> {
-    <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">GlyphSet</span>,
-    <span class="kw">pub</span> <span class="ident">chars</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">nchars</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">xOff</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">yOff</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XGlyphElt8 {
+    <span class="kw">pub </span>glyphset: GlyphSet,
+    <span class="kw">pub </span>chars: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>nchars: c_int,
+    <span class="kw">pub </span>xOff: c_int,
+    <span class="kw">pub </span>yOff: c_int,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XGlyphElt8</span> <span class="op">=</span> <span class="ident">_XGlyphElt8</span>;
+<span class="kw">pub type </span>XGlyphElt8 = _XGlyphElt8;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XGlyphElt16</span> {
-    <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">GlyphSet</span>,
-    <span class="kw">pub</span> <span class="ident">chars</span>: <span class="kw-2">*mut</span> <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">nchars</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">xOff</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">yOff</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XGlyphElt16 {
+    <span class="kw">pub </span>glyphset: GlyphSet,
+    <span class="kw">pub </span>chars: <span class="kw-2">*mut </span>c_ushort,
+    <span class="kw">pub </span>nchars: c_int,
+    <span class="kw">pub </span>xOff: c_int,
+    <span class="kw">pub </span>yOff: c_int,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XGlyphElt16</span> <span class="op">=</span> <span class="ident">_XGlyphElt16</span>;
+<span class="kw">pub type </span>XGlyphElt16 = _XGlyphElt16;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XGlyphElt32</span> {
-    <span class="kw">pub</span> <span class="ident">glyphset</span>: <span class="ident">GlyphSet</span>,
-    <span class="kw">pub</span> <span class="ident">chars</span>: <span class="kw-2">*mut</span> <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">nchars</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">xOff</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">yOff</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XGlyphElt32 {
+    <span class="kw">pub </span>glyphset: GlyphSet,
+    <span class="kw">pub </span>chars: <span class="kw-2">*mut </span>c_uint,
+    <span class="kw">pub </span>nchars: c_int,
+    <span class="kw">pub </span>xOff: c_int,
+    <span class="kw">pub </span>yOff: c_int,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XGlyphElt32</span> <span class="op">=</span> <span class="ident">_XGlyphElt32</span>;
+<span class="kw">pub type </span>XGlyphElt32 = _XGlyphElt32;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XGlyphInfo</span> {
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">xOff</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">yOff</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XGlyphInfo {
+    <span class="kw">pub </span>width: c_ushort,
+    <span class="kw">pub </span>height: c_ushort,
+    <span class="kw">pub </span>x: c_short,
+    <span class="kw">pub </span>y: c_short,
+    <span class="kw">pub </span>xOff: c_short,
+    <span class="kw">pub </span>yOff: c_short,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XGlyphInfo</span> <span class="op">=</span> <span class="ident">_XGlyphInfo</span>;
+<span class="kw">pub type </span>XGlyphInfo = _XGlyphInfo;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XIndexValue</span> {
-    <span class="kw">pub</span> <span class="ident">pixel</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">c_ushort</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XIndexValue {
+    <span class="kw">pub </span>pixel: c_ulong,
+    <span class="kw">pub </span>red: c_ushort,
+    <span class="kw">pub </span>green: c_ushort,
+    <span class="kw">pub </span>blue: c_ushort,
+    <span class="kw">pub </span>alpha: c_ushort,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XIndexValue</span> <span class="op">=</span> <span class="ident">_XIndexValue</span>;
+<span class="kw">pub type </span>XIndexValue = _XIndexValue;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XLinearGradient</span> {
-    <span class="kw">pub</span> <span class="ident">p1</span>: <span class="ident">XPointFixed</span>,
-    <span class="kw">pub</span> <span class="ident">p2</span>: <span class="ident">XPointFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XLinearGradient {
+    <span class="kw">pub </span>p1: XPointFixed,
+    <span class="kw">pub </span>p2: XPointFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XLinearGradient</span> <span class="op">=</span> <span class="ident">_XLinearGradient</span>;
+<span class="kw">pub type </span>XLinearGradient = _XLinearGradient;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XLineFixed</span> {
-    <span class="kw">pub</span> <span class="ident">p1</span>: <span class="ident">XPointFixed</span>,
-    <span class="kw">pub</span> <span class="ident">p2</span>: <span class="ident">XPointFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XLineFixed {
+    <span class="kw">pub </span>p1: XPointFixed,
+    <span class="kw">pub </span>p2: XPointFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XLineFixed</span> <span class="op">=</span> <span class="ident">_XLineFixed</span>;
+<span class="kw">pub type </span>XLineFixed = _XLineFixed;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XPointDouble</span> {
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">XDouble</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">XDouble</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XPointDouble {
+    <span class="kw">pub </span>x: XDouble,
+    <span class="kw">pub </span>y: XDouble,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XPointDouble</span> <span class="op">=</span> <span class="ident">_XPointDouble</span>;
+<span class="kw">pub type </span>XPointDouble = _XPointDouble;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XPointFixed</span> {
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">XFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XPointFixed {
+    <span class="kw">pub </span>x: XFixed,
+    <span class="kw">pub </span>y: XFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XPointFixed</span> <span class="op">=</span> <span class="ident">_XPointFixed</span>;
+<span class="kw">pub type </span>XPointFixed = _XPointFixed;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XRadialGradient</span> {
-    <span class="kw">pub</span> <span class="ident">inner</span>: <span class="ident">XCircle</span>,
-    <span class="kw">pub</span> <span class="ident">outer</span>: <span class="ident">XCircle</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XRadialGradient {
+    <span class="kw">pub </span>inner: XCircle,
+    <span class="kw">pub </span>outer: XCircle,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XRadialGradient</span> <span class="op">=</span> <span class="ident">_XRadialGradient</span>;
+<span class="kw">pub type </span>XRadialGradient = _XRadialGradient;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRenderColor</span> {
-    <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">c_ushort</span>,
-}
-
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRenderDirectFormat</span> {
-    <span class="kw">pub</span> <span class="ident">red</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">redMask</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">green</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">greenMask</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">blueMask</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">alpha</span>: <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="ident">alphaMask</span>: <span class="ident">c_short</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRenderColor {
+    <span class="kw">pub </span>red: c_ushort,
+    <span class="kw">pub </span>green: c_ushort,
+    <span class="kw">pub </span>blue: c_ushort,
+    <span class="kw">pub </span>alpha: c_ushort,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRenderPictFormat</span> {
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">PictFormat</span>,
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">depth</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">direct</span>: <span class="ident">XRenderDirectFormat</span>,
-    <span class="kw">pub</span> <span class="ident">colormap</span>: <span class="ident">Colormap</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRenderDirectFormat {
+    <span class="kw">pub </span>red: c_short,
+    <span class="kw">pub </span>redMask: c_short,
+    <span class="kw">pub </span>green: c_short,
+    <span class="kw">pub </span>greenMask: c_short,
+    <span class="kw">pub </span>blue: c_short,
+    <span class="kw">pub </span>blueMask: c_short,
+    <span class="kw">pub </span>alpha: c_short,
+    <span class="kw">pub </span>alphaMask: c_short,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XRenderPictureAttributes</span> {
-    <span class="kw">pub</span> <span class="ident">repeat</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">alpha_map</span>: <span class="ident">Picture</span>,
-    <span class="kw">pub</span> <span class="ident">alpha_x_origin</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">alpha_y_origin</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">clip_x_origin</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">clip_y_origin</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">clip_mask</span>: <span class="ident">Pixmap</span>,
-    <span class="kw">pub</span> <span class="ident">graphics_exposures</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">subwindow_mode</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">poly_edge</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">poly_mode</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">dither</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">component_alpha</span>: <span class="ident">Bool</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRenderPictFormat {
+    <span class="kw">pub </span>id: PictFormat,
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>depth: c_int,
+    <span class="kw">pub </span>direct: XRenderDirectFormat,
+    <span class="kw">pub </span>colormap: Colormap,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XRenderPictureAttributes</span> <span class="op">=</span> <span class="ident">_XRenderPictureAttributes</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XSpanFix</span> {
-    <span class="kw">pub</span> <span class="ident">left</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">right</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">XFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XRenderPictureAttributes {
+    <span class="kw">pub </span>repeat: c_int,
+    <span class="kw">pub </span>alpha_map: Picture,
+    <span class="kw">pub </span>alpha_x_origin: c_int,
+    <span class="kw">pub </span>alpha_y_origin: c_int,
+    <span class="kw">pub </span>clip_x_origin: c_int,
+    <span class="kw">pub </span>clip_y_origin: c_int,
+    <span class="kw">pub </span>clip_mask: Pixmap,
+    <span class="kw">pub </span>graphics_exposures: Bool,
+    <span class="kw">pub </span>subwindow_mode: c_int,
+    <span class="kw">pub </span>poly_edge: c_int,
+    <span class="kw">pub </span>poly_mode: c_int,
+    <span class="kw">pub </span>dither: Atom,
+    <span class="kw">pub </span>component_alpha: Bool,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XSpanFix</span> <span class="op">=</span> <span class="ident">_XSpanFix</span>;
+<span class="kw">pub type </span>XRenderPictureAttributes = _XRenderPictureAttributes;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XTrap</span> {
-    <span class="kw">pub</span> <span class="ident">top</span>: <span class="ident">XSpanFix</span>,
-    <span class="kw">pub</span> <span class="ident">bottom</span>: <span class="ident">XSpanFix</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XSpanFix {
+    <span class="kw">pub </span>left: XFixed,
+    <span class="kw">pub </span>right: XFixed,
+    <span class="kw">pub </span>y: XFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XTrap</span> <span class="op">=</span> <span class="ident">_XTrap</span>;
+<span class="kw">pub type </span>XSpanFix = _XSpanFix;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XTrapezoid</span> {
-    <span class="kw">pub</span> <span class="ident">top</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">bottom</span>: <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">left</span>: <span class="ident">XLineFixed</span>,
-    <span class="kw">pub</span> <span class="ident">right</span>: <span class="ident">XLineFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XTrap {
+    <span class="kw">pub </span>top: XSpanFix,
+    <span class="kw">pub </span>bottom: XSpanFix,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XTrapezoid</span> <span class="op">=</span> <span class="ident">_XTrapezoid</span>;
+<span class="kw">pub type </span>XTrap = _XTrap;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XTriangle</span> {
-    <span class="kw">pub</span> <span class="ident">p1</span>: <span class="ident">XPointFixed</span>,
-    <span class="kw">pub</span> <span class="ident">p2</span>: <span class="ident">XPointFixed</span>,
-    <span class="kw">pub</span> <span class="ident">p3</span>: <span class="ident">XPointFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XTrapezoid {
+    <span class="kw">pub </span>top: XFixed,
+    <span class="kw">pub </span>bottom: XFixed,
+    <span class="kw">pub </span>left: XLineFixed,
+    <span class="kw">pub </span>right: XLineFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XTriangle</span> <span class="op">=</span> <span class="ident">_XTriangle</span>;
+<span class="kw">pub type </span>XTrapezoid = _XTrapezoid;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XTransform</span> {
-    <span class="kw">pub</span> <span class="ident">matrix</span>: [[<span class="ident">XFixed</span>; <span class="number">3</span>]; <span class="number">3</span>],
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XTriangle {
+    <span class="kw">pub </span>p1: XPointFixed,
+    <span class="kw">pub </span>p2: XPointFixed,
+    <span class="kw">pub </span>p3: XPointFixed,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XTransform</span> <span class="op">=</span> <span class="ident">_XTransform</span>;
+<span class="kw">pub type </span>XTriangle = _XTriangle;
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XTransform {
+    <span class="kw">pub </span>matrix: [[XFixed; <span class="number">3</span>]; <span class="number">3</span>],
+}
+<span class="kw">pub type </span>XTransform = _XTransform;
 
-<span class="comment">// pict format mask</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatID</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatType</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatDepth</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatRed</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatRedMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatGreen</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatGreenMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatBlue</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatBlueMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatAlpha</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatAlphaMask</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictFormatColormap</span>: <span class="ident">c_ulong</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
+<span class="comment">//
+// constants
+//
 
-<span class="comment">// error codes</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadPictFormat</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadPicture</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadPictOp</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadGlyphSet</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadGlyph</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RenderNumberErrors</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="ident">BadGlyph</span> <span class="op">+</span> <span class="number">1</span>;
+// pict format mask
+</span><span class="kw">pub const </span>PictFormatID: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>PictFormatType: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>PictFormatDepth: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>PictFormatRed: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+<span class="kw">pub const </span>PictFormatRedMask: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+<span class="kw">pub const </span>PictFormatGreen: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+<span class="kw">pub const </span>PictFormatGreenMask: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
+<span class="kw">pub const </span>PictFormatBlue: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+<span class="kw">pub const </span>PictFormatBlueMask: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">8</span>;
+<span class="kw">pub const </span>PictFormatAlpha: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">9</span>;
+<span class="kw">pub const </span>PictFormatAlphaMask: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">10</span>;
+<span class="kw">pub const </span>PictFormatColormap: c_ulong = <span class="number">1 </span>&lt;&lt; <span class="number">11</span>;
 
-<span class="comment">// pict types</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictTypeIndexed</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictTypeDirect</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="comment">// error codes
+</span><span class="kw">pub const </span>BadPictFormat: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>BadPicture: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>BadPictOp: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>BadGlyphSet: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>BadGlyph: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>RenderNumberErrors: c_int = BadGlyph + <span class="number">1</span>;
 
-<span class="comment">// ops</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpMinimum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpClear</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpSrc</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDst</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpOver</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpOverReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpIn</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpInReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpOut</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpOutReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpAtop</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpAtopReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpXor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpAdd</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpSaturate</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpMaximum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
+<span class="comment">// pict types
+</span><span class="kw">pub const </span>PictTypeIndexed: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PictTypeDirect: c_int = <span class="number">1</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointMinimum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointClear</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointSrc</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x11</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointDst</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x12</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointOver</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x13</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointOverReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x14</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointIn</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x15</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointInReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointOut</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x17</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointOutReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x18</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointAtop</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x19</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointAtopReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x1a</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointXor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x1b</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDisjointMaximum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x1b</span>;
+<span class="comment">// ops
+</span><span class="kw">pub const </span>PictOpMinimum: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PictOpClear: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PictOpSrc: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>PictOpDst: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PictOpOver: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>PictOpOverReverse: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>PictOpIn: c_int = <span class="number">5</span>;
+<span class="kw">pub const </span>PictOpInReverse: c_int = <span class="number">6</span>;
+<span class="kw">pub const </span>PictOpOut: c_int = <span class="number">7</span>;
+<span class="kw">pub const </span>PictOpOutReverse: c_int = <span class="number">8</span>;
+<span class="kw">pub const </span>PictOpAtop: c_int = <span class="number">9</span>;
+<span class="kw">pub const </span>PictOpAtopReverse: c_int = <span class="number">10</span>;
+<span class="kw">pub const </span>PictOpXor: c_int = <span class="number">11</span>;
+<span class="kw">pub const </span>PictOpAdd: c_int = <span class="number">12</span>;
+<span class="kw">pub const </span>PictOpSaturate: c_int = <span class="number">13</span>;
+<span class="kw">pub const </span>PictOpMaximum: c_int = <span class="number">13</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointMinimum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointClear</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointSrc</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x21</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointDst</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x22</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointOver</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x23</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointOverReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x24</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointIn</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x25</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointInReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x26</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointOut</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x27</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointOutReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x28</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointAtop</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x29</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointAtopReverse</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x2a</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointXor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x2b</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpConjointMaximum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x2b</span>;
+<span class="kw">pub const </span>PictOpDisjointMinimum: c_int = <span class="number">0x10</span>;
+<span class="kw">pub const </span>PictOpDisjointClear: c_int = <span class="number">0x10</span>;
+<span class="kw">pub const </span>PictOpDisjointSrc: c_int = <span class="number">0x11</span>;
+<span class="kw">pub const </span>PictOpDisjointDst: c_int = <span class="number">0x12</span>;
+<span class="kw">pub const </span>PictOpDisjointOver: c_int = <span class="number">0x13</span>;
+<span class="kw">pub const </span>PictOpDisjointOverReverse: c_int = <span class="number">0x14</span>;
+<span class="kw">pub const </span>PictOpDisjointIn: c_int = <span class="number">0x15</span>;
+<span class="kw">pub const </span>PictOpDisjointInReverse: c_int = <span class="number">0x16</span>;
+<span class="kw">pub const </span>PictOpDisjointOut: c_int = <span class="number">0x17</span>;
+<span class="kw">pub const </span>PictOpDisjointOutReverse: c_int = <span class="number">0x18</span>;
+<span class="kw">pub const </span>PictOpDisjointAtop: c_int = <span class="number">0x19</span>;
+<span class="kw">pub const </span>PictOpDisjointAtopReverse: c_int = <span class="number">0x1a</span>;
+<span class="kw">pub const </span>PictOpDisjointXor: c_int = <span class="number">0x1b</span>;
+<span class="kw">pub const </span>PictOpDisjointMaximum: c_int = <span class="number">0x1b</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpBlendMinimum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x30</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpMultiply</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x30</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpScreen</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x31</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpOverlay</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x32</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDarken</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x33</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpLighten</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x34</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpColorDodge</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x35</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpColorBurn</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x36</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpHardLight</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x37</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpSoftLight</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x38</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpDifference</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x39</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpExclusion</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3a</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpHSLHue</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3b</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpHSLSaturation</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3c</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpHSLColor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3d</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpHSLLuminosity</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3e</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictOpBlendMaximum</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x3e</span>;
+<span class="kw">pub const </span>PictOpConjointMinimum: c_int = <span class="number">0x20</span>;
+<span class="kw">pub const </span>PictOpConjointClear: c_int = <span class="number">0x20</span>;
+<span class="kw">pub const </span>PictOpConjointSrc: c_int = <span class="number">0x21</span>;
+<span class="kw">pub const </span>PictOpConjointDst: c_int = <span class="number">0x22</span>;
+<span class="kw">pub const </span>PictOpConjointOver: c_int = <span class="number">0x23</span>;
+<span class="kw">pub const </span>PictOpConjointOverReverse: c_int = <span class="number">0x24</span>;
+<span class="kw">pub const </span>PictOpConjointIn: c_int = <span class="number">0x25</span>;
+<span class="kw">pub const </span>PictOpConjointInReverse: c_int = <span class="number">0x26</span>;
+<span class="kw">pub const </span>PictOpConjointOut: c_int = <span class="number">0x27</span>;
+<span class="kw">pub const </span>PictOpConjointOutReverse: c_int = <span class="number">0x28</span>;
+<span class="kw">pub const </span>PictOpConjointAtop: c_int = <span class="number">0x29</span>;
+<span class="kw">pub const </span>PictOpConjointAtopReverse: c_int = <span class="number">0x2a</span>;
+<span class="kw">pub const </span>PictOpConjointXor: c_int = <span class="number">0x2b</span>;
+<span class="kw">pub const </span>PictOpConjointMaximum: c_int = <span class="number">0x2b</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictStandardARGB32</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictStandardRGB24</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictStandardA8</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictStandardA4</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PictStandardA1</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="kw">pub const </span>PictOpBlendMinimum: c_int = <span class="number">0x30</span>;
+<span class="kw">pub const </span>PictOpMultiply: c_int = <span class="number">0x30</span>;
+<span class="kw">pub const </span>PictOpScreen: c_int = <span class="number">0x31</span>;
+<span class="kw">pub const </span>PictOpOverlay: c_int = <span class="number">0x32</span>;
+<span class="kw">pub const </span>PictOpDarken: c_int = <span class="number">0x33</span>;
+<span class="kw">pub const </span>PictOpLighten: c_int = <span class="number">0x34</span>;
+<span class="kw">pub const </span>PictOpColorDodge: c_int = <span class="number">0x35</span>;
+<span class="kw">pub const </span>PictOpColorBurn: c_int = <span class="number">0x36</span>;
+<span class="kw">pub const </span>PictOpHardLight: c_int = <span class="number">0x37</span>;
+<span class="kw">pub const </span>PictOpSoftLight: c_int = <span class="number">0x38</span>;
+<span class="kw">pub const </span>PictOpDifference: c_int = <span class="number">0x39</span>;
+<span class="kw">pub const </span>PictOpExclusion: c_int = <span class="number">0x3a</span>;
+<span class="kw">pub const </span>PictOpHSLHue: c_int = <span class="number">0x3b</span>;
+<span class="kw">pub const </span>PictOpHSLSaturation: c_int = <span class="number">0x3c</span>;
+<span class="kw">pub const </span>PictOpHSLColor: c_int = <span class="number">0x3d</span>;
+<span class="kw">pub const </span>PictOpHSLLuminosity: c_int = <span class="number">0x3e</span>;
+<span class="kw">pub const </span>PictOpBlendMaximum: c_int = <span class="number">0x3e</span>;
 
-<span class="comment">// poly edge types</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PolyEdgeSharp</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PolyEdgeSmooth</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="kw">pub const </span>PictStandardARGB32: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PictStandardRGB24: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PictStandardA8: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>PictStandardA4: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>PictStandardA1: c_int = <span class="number">4</span>;
 
-<span class="comment">// poly modes</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PolyModePrecise</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">PolyModeImprecise</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="comment">// poly edge types
+</span><span class="kw">pub const </span>PolyEdgeSharp: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PolyEdgeSmooth: c_int = <span class="number">1</span>;
 
-<span class="comment">// picture attributes mask</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPRepeat</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPAlphaMap</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPAlphaXOrigin</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPAlphaYOrigin</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPClipXOrigin</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPClipYOrigin</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPClipMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPGraphicsExposure</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPSubwindowMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPPolyEdge</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPPolyMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPDither</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">11</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPComponentAlpha</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">12</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">CPLastBit</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
+<span class="comment">// poly modes
+</span><span class="kw">pub const </span>PolyModePrecise: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>PolyModeImprecise: c_int = <span class="number">1</span>;
 
-<span class="comment">// filter methods</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterNearest</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;nearest&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterBilinear</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;bilinear&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterConvolution</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;convolution&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterFast</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;fast&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterGood</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;good&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">FilterBest</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;best&quot;</span>;
+<span class="comment">// picture attributes mask
+</span><span class="kw">pub const </span>CPRepeat: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>CPAlphaMap: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>CPAlphaXOrigin: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>CPAlphaYOrigin: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+<span class="kw">pub const </span>CPClipXOrigin: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+<span class="kw">pub const </span>CPClipYOrigin: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+<span class="kw">pub const </span>CPClipMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
+<span class="kw">pub const </span>CPGraphicsExposure: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">7</span>;
+<span class="kw">pub const </span>CPSubwindowMode: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">8</span>;
+<span class="kw">pub const </span>CPPolyEdge: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">9</span>;
+<span class="kw">pub const </span>CPPolyMode: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">10</span>;
+<span class="kw">pub const </span>CPDither: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">11</span>;
+<span class="kw">pub const </span>CPComponentAlpha: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">12</span>;
+<span class="kw">pub const </span>CPLastBit: c_int = <span class="number">12</span>;
 
-<span class="comment">// subpixel orders</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelUnknown</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelHorizontalRGB</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelHorizontalBGR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelVerticalRGB</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelVerticalBGR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">SubPixelNone</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="comment">// filter methods
+</span><span class="kw">pub const </span>FilterNearest: <span class="kw-2">&amp;</span>str = <span class="string">&quot;nearest&quot;</span>;
+<span class="kw">pub const </span>FilterBilinear: <span class="kw-2">&amp;</span>str = <span class="string">&quot;bilinear&quot;</span>;
+<span class="kw">pub const </span>FilterConvolution: <span class="kw-2">&amp;</span>str = <span class="string">&quot;convolution&quot;</span>;
+<span class="kw">pub const </span>FilterFast: <span class="kw-2">&amp;</span>str = <span class="string">&quot;fast&quot;</span>;
+<span class="kw">pub const </span>FilterGood: <span class="kw-2">&amp;</span>str = <span class="string">&quot;good&quot;</span>;
+<span class="kw">pub const </span>FilterBest: <span class="kw-2">&amp;</span>str = <span class="string">&quot;best&quot;</span>;
 
-<span class="comment">// repeat attributes</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RepeatNone</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RepeatNormal</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RepeatPad</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RepeatReflect</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="comment">// subpixel orders
+</span><span class="kw">pub const </span>SubPixelUnknown: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>SubPixelHorizontalRGB: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>SubPixelHorizontalBGR: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>SubPixelVerticalRGB: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>SubPixelVerticalBGR: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>SubPixelNone: c_int = <span class="number">5</span>;
+
+<span class="comment">// repeat attributes
+</span><span class="kw">pub const </span>RepeatNone: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RepeatNormal: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RepeatPad: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RepeatReflect: c_int = <span class="number">3</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

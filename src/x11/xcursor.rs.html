@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xcursor.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xcursor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xcursor.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xcursor.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -192,199 +192,199 @@
 <span id="192">192</span>
 <span id="193">193</span>
 <span id="194">194</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">libc::FILE</span>;
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">c_uchar</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>, <span class="ident">c_void</span>};
+</span><span class="kw">use </span>libc::FILE;
+<span class="kw">use </span>std::os::raw::{c_char, c_int, c_long, c_uchar, c_uint, c_ulong, c_void};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xlib</span>::{<span class="ident">Cursor</span>, <span class="ident">Display</span>, <span class="ident">XColor</span>, <span class="ident">XImage</span>};
+<span class="kw">use </span><span class="kw">crate</span>::xlib::{Cursor, Display, XColor, XImage};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xcursor</span>, <span class="ident">xcursor</span>, [<span class="string">&quot;libXcursor.so.1&quot;</span>, <span class="string">&quot;libXcursor.so&quot;</span>], <span class="number">59</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorAnimateCreate</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorAnimate</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorAnimateDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorAnimate</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorAnimateNext</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorAnimate</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCommentCreate</span> (<span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorComment</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCommentDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorComment</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCommentsCreate</span> (<span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorComments</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCommentsDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorComments</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCursorsCreate</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorCursorsDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileLoad</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileLoadAllImages</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileLoadImage</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileLoadImages</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoad</span> (<span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoadAllImages</span> (<span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoadCursor</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoadCursors</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoadImage</span> (<span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameLoadImages</span> (<span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameSave</span> (<span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFilenameSaveImages</span> (<span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileSave</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorFileSaveImages</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">FILE</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorGetDefaultSize</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorGetTheme</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorGetThemeCore</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImageCreate</span> (<span class="ident">_2</span>: <span class="ident">c_int</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImageDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImageHash</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XImage</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImageLoadCursor</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImage</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImagesCreate</span> (<span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImagesDestroy</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImagesLoadCursor</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImagesLoadCursors</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorImagesSetName</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryLoadCursor</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryLoadCursors</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryLoadImage</span> (<span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryLoadImages</span> (<span class="ident">_3</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryPath</span> () -&gt; <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorLibraryShape</span> (<span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorNoticeCreateBitmap</span> (<span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_3</span>: <span class="ident">c_ulong</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorNoticePutBitmap</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_2</span>: <span class="ident">c_ulong</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XImage</span>) -&gt; (),
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorSetDefaultSize</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorSetTheme</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorSetThemeCore</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorShapeLoadCursor</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorShapeLoadCursors</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorShapeLoadImage</span> (<span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorShapeLoadImages</span> (<span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorSupportsAnim</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorSupportsARGB</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorTryShapeBitmapCursor</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="kw-2">*mut</span> <span class="ident">XColor</span>, <span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XColor</span>, <span class="ident">_2</span>: <span class="ident">c_uint</span>, <span class="ident">_1</span>: <span class="ident">c_uint</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorTryShapeCursor</span> (<span class="ident">_7</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">_6</span>: <span class="ident">c_ulong</span>, <span class="ident">_5</span>: <span class="ident">c_ulong</span>, <span class="ident">_4</span>: <span class="ident">c_uint</span>, <span class="ident">_3</span>: <span class="ident">c_uint</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XColor</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XColor</span>) -&gt; <span class="ident">c_ulong</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorXcFileLoad</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorXcFileLoadAllImages</span> (<span class="ident">_1</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorXcFileLoadImage</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorXcFileLoadImages</span> (<span class="ident">_2</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="ident">_1</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XcursorImages</span>,
-  <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XcursorXcFileSave</span> (<span class="ident">_3</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="ident">_2</span>: <span class="kw-2">*const</span> <span class="ident">XcursorComments</span>, <span class="ident">_1</span>: <span class="kw-2">*const</span> <span class="ident">XcursorImages</span>) -&gt; <span class="ident">c_int</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xcursor, xcursor, [<span class="string">&quot;libXcursor.so.1&quot;</span>, <span class="string">&quot;libXcursor.so&quot;</span>], <span class="number">59</span>,
+  <span class="kw">pub fn </span>XcursorAnimateCreate (_1: <span class="kw-2">*mut </span>XcursorCursors) -&gt; <span class="kw-2">*mut </span>XcursorAnimate,
+  <span class="kw">pub fn </span>XcursorAnimateDestroy (_1: <span class="kw-2">*mut </span>XcursorAnimate) -&gt; (),
+  <span class="kw">pub fn </span>XcursorAnimateNext (_1: <span class="kw-2">*mut </span>XcursorAnimate) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorCommentCreate (_2: c_uint, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorComment,
+  <span class="kw">pub fn </span>XcursorCommentDestroy (_1: <span class="kw-2">*mut </span>XcursorComment) -&gt; (),
+  <span class="kw">pub fn </span>XcursorCommentsCreate (_1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorComments,
+  <span class="kw">pub fn </span>XcursorCommentsDestroy (_1: <span class="kw-2">*mut </span>XcursorComments) -&gt; (),
+  <span class="kw">pub fn </span>XcursorCursorsCreate (_2: <span class="kw-2">*mut </span>Display, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorCursors,
+  <span class="kw">pub fn </span>XcursorCursorsDestroy (_1: <span class="kw-2">*mut </span>XcursorCursors) -&gt; (),
+  <span class="kw">pub fn </span>XcursorFileLoad (_3: <span class="kw-2">*mut </span>FILE, _2: <span class="kw-2">*mut *mut </span>XcursorComments, _1: <span class="kw-2">*mut *mut </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorFileLoadAllImages (_1: <span class="kw-2">*mut </span>FILE) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorFileLoadImage (_2: <span class="kw-2">*mut </span>FILE, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorFileLoadImages (_2: <span class="kw-2">*mut </span>FILE, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorFilenameLoad (_3: <span class="kw-2">*const </span>c_char, _2: <span class="kw-2">*mut *mut </span>XcursorComments, _1: <span class="kw-2">*mut *mut </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorFilenameLoadAllImages (_1: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorFilenameLoadCursor (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>c_char) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorFilenameLoadCursors (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>XcursorCursors,
+  <span class="kw">pub fn </span>XcursorFilenameLoadImage (_2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorFilenameLoadImages (_2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorFilenameSave (_3: <span class="kw-2">*const </span>c_char, _2: <span class="kw-2">*const </span>XcursorComments, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorFilenameSaveImages (_2: <span class="kw-2">*const </span>c_char, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorFileSave (_3: <span class="kw-2">*mut </span>FILE, _2: <span class="kw-2">*const </span>XcursorComments, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorFileSaveImages (_2: <span class="kw-2">*mut </span>FILE, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorGetDefaultSize (_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorGetTheme (_1: <span class="kw-2">*mut </span>Display) -&gt; <span class="kw-2">*mut </span>c_char,
+  <span class="kw">pub fn </span>XcursorGetThemeCore (_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorImageCreate (_2: c_int, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorImageDestroy (_1: <span class="kw-2">*mut </span>XcursorImage) -&gt; (),
+  <span class="kw">pub fn </span>XcursorImageHash (_2: <span class="kw-2">*mut </span>XImage, _1: <span class="kw-2">*mut </span>c_uchar) -&gt; (),
+  <span class="kw">pub fn </span>XcursorImageLoadCursor (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>XcursorImage) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorImagesCreate (_1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorImagesDestroy (_1: <span class="kw-2">*mut </span>XcursorImages) -&gt; (),
+  <span class="kw">pub fn </span>XcursorImagesLoadCursor (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorImagesLoadCursors (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; <span class="kw-2">*mut </span>XcursorCursors,
+  <span class="kw">pub fn </span>XcursorImagesSetName (_2: <span class="kw-2">*mut </span>XcursorImages, _1: <span class="kw-2">*const </span>c_char) -&gt; (),
+  <span class="kw">pub fn </span>XcursorLibraryLoadCursor (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>c_char) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorLibraryLoadCursors (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>c_char) -&gt; <span class="kw-2">*mut </span>XcursorCursors,
+  <span class="kw">pub fn </span>XcursorLibraryLoadImage (_3: <span class="kw-2">*const </span>c_char, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorLibraryLoadImages (_3: <span class="kw-2">*const </span>c_char, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorLibraryPath () -&gt; <span class="kw-2">*const </span>c_char,
+  <span class="kw">pub fn </span>XcursorLibraryShape (_1: <span class="kw-2">*const </span>c_char) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorNoticeCreateBitmap (_4: <span class="kw-2">*mut </span>Display, _3: c_ulong, _2: c_uint, _1: c_uint) -&gt; (),
+  <span class="kw">pub fn </span>XcursorNoticePutBitmap (_3: <span class="kw-2">*mut </span>Display, _2: c_ulong, _1: <span class="kw-2">*mut </span>XImage) -&gt; (),
+  <span class="kw">pub fn </span>XcursorSetDefaultSize (_2: <span class="kw-2">*mut </span>Display, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorSetTheme (_2: <span class="kw-2">*mut </span>Display, _1: <span class="kw-2">*const </span>c_char) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorSetThemeCore (_2: <span class="kw-2">*mut </span>Display, _1: c_int) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorShapeLoadCursor (_2: <span class="kw-2">*mut </span>Display, _1: c_uint) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorShapeLoadCursors (_2: <span class="kw-2">*mut </span>Display, _1: c_uint) -&gt; <span class="kw-2">*mut </span>XcursorCursors,
+  <span class="kw">pub fn </span>XcursorShapeLoadImage (_3: c_uint, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorShapeLoadImages (_3: c_uint, _2: <span class="kw-2">*const </span>c_char, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorSupportsAnim (_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorSupportsARGB (_1: <span class="kw-2">*mut </span>Display) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorTryShapeBitmapCursor (_7: <span class="kw-2">*mut </span>Display, _6: c_ulong, _5: c_ulong, _4: <span class="kw-2">*mut </span>XColor, _3: <span class="kw-2">*mut </span>XColor, _2: c_uint, _1: c_uint) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorTryShapeCursor (_7: <span class="kw-2">*mut </span>Display, _6: c_ulong, _5: c_ulong, _4: c_uint, _3: c_uint, _2: <span class="kw-2">*const </span>XColor, _1: <span class="kw-2">*const </span>XColor) -&gt; c_ulong,
+  <span class="kw">pub fn </span>XcursorXcFileLoad (_3: <span class="kw-2">*mut </span>XcursorFile, _2: <span class="kw-2">*mut *mut </span>XcursorComments, _1: <span class="kw-2">*mut *mut </span>XcursorImages) -&gt; c_int,
+  <span class="kw">pub fn </span>XcursorXcFileLoadAllImages (_1: <span class="kw-2">*mut </span>XcursorFile) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorXcFileLoadImage (_2: <span class="kw-2">*mut </span>XcursorFile, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImage,
+  <span class="kw">pub fn </span>XcursorXcFileLoadImages (_2: <span class="kw-2">*mut </span>XcursorFile, _1: c_int) -&gt; <span class="kw-2">*mut </span>XcursorImages,
+  <span class="kw">pub fn </span>XcursorXcFileSave (_3: <span class="kw-2">*mut </span>XcursorFile, _2: <span class="kw-2">*const </span>XcursorComments, _1: <span class="kw-2">*const </span>XcursorImages) -&gt; c_int,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorBool</span> <span class="op">=</span> <span class="ident">c_int</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorDim</span> <span class="op">=</span> <span class="ident">XcursorUInt</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorPixel</span> <span class="op">=</span> <span class="ident">XcursorUInt</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorUInt</span> <span class="op">=</span> <span class="ident">c_uint</span>;
+</span><span class="kw">pub type </span>XcursorBool = c_int;
+<span class="kw">pub type </span>XcursorDim = XcursorUInt;
+<span class="kw">pub type </span>XcursorPixel = XcursorUInt;
+<span class="kw">pub type </span>XcursorUInt = c_uint;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorAnimate</span> {
-    <span class="kw">pub</span> <span class="ident">cursors</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorCursors</span>,
-    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorAnimate {
+    <span class="kw">pub </span>cursors: <span class="kw-2">*mut </span>XcursorCursors,
+    <span class="kw">pub </span>sequence: c_int,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorAnimate</span> <span class="op">=</span> <span class="ident">_XcursorAnimate</span>;
+<span class="kw">pub type </span>XcursorAnimate = _XcursorAnimate;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorChunkHeader</span> {
-    <span class="kw">pub</span> <span class="ident">header</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">XcursorUInt</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorChunkHeader {
+    <span class="kw">pub </span>header: XcursorUInt,
+    <span class="kw">pub </span>type_: XcursorUInt,
+    <span class="kw">pub </span>subtype: XcursorUInt,
+    <span class="kw">pub </span>version: XcursorUInt,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorChunkHeader</span> <span class="op">=</span> <span class="ident">_XcursorChunkHeader</span>;
+<span class="kw">pub type </span>XcursorChunkHeader = _XcursorChunkHeader;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorComment</span> {
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">comment_type</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">comment</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorComment {
+    <span class="kw">pub </span>version: XcursorUInt,
+    <span class="kw">pub </span>comment_type: XcursorUInt,
+    <span class="kw">pub </span>comment: <span class="kw-2">*mut </span>c_char,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorComment</span> <span class="op">=</span> <span class="ident">_XcursorComment</span>;
+<span class="kw">pub type </span>XcursorComment = _XcursorComment;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorComments</span> {
-    <span class="kw">pub</span> <span class="ident">ncomment</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">comments</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorComment</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorComments {
+    <span class="kw">pub </span>ncomment: c_int,
+    <span class="kw">pub </span>comments: <span class="kw-2">*mut *mut </span>XcursorComment,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorComments</span> <span class="op">=</span> <span class="ident">_XcursorComments</span>;
+<span class="kw">pub type </span>XcursorComments = _XcursorComments;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorCursors</span> {
-    <span class="kw">pub</span> <span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">ref_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">ncursor</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">cursors</span>: <span class="kw-2">*mut</span> <span class="ident">Cursor</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorCursors {
+    <span class="kw">pub </span>dpy: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>ref_: c_int,
+    <span class="kw">pub </span>ncursor: c_int,
+    <span class="kw">pub </span>cursors: <span class="kw-2">*mut </span>Cursor,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorCursors</span> <span class="op">=</span> <span class="ident">_XcursorCursors</span>;
+<span class="kw">pub type </span>XcursorCursors = _XcursorCursors;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorFile</span> {
-    <span class="kw">pub</span> <span class="ident">closure</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-    <span class="kw">pub</span> <span class="ident">read</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>, <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">write</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>, <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span><span class="op">&gt;</span>,
-    <span class="kw">pub</span> <span class="ident">seek</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw">unsafe</span> <span class="kw">extern</span> <span class="string">&quot;C&quot;</span> <span class="kw">fn</span>(<span class="kw-2">*mut</span> <span class="ident">XcursorFile</span>, <span class="ident">c_long</span>, <span class="ident">c_int</span>) -&gt; <span class="ident">c_int</span><span class="op">&gt;</span>,
+<span class="attribute">#[derive(Debug, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorFile {
+    <span class="kw">pub </span>closure: <span class="kw-2">*mut </span>c_void,
+    <span class="kw">pub </span>read: <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn</span>(<span class="kw-2">*mut </span>XcursorFile, <span class="kw-2">*mut </span>c_uchar, c_int) -&gt; c_int&gt;,
+    <span class="kw">pub </span>write: <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn</span>(<span class="kw-2">*mut </span>XcursorFile, <span class="kw-2">*mut </span>c_uchar, c_int) -&gt; c_int&gt;,
+    <span class="kw">pub </span>seek: <span class="prelude-ty">Option</span>&lt;<span class="kw">unsafe extern </span><span class="string">&quot;C&quot; </span><span class="kw">fn</span>(<span class="kw-2">*mut </span>XcursorFile, c_long, c_int) -&gt; c_int&gt;,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorFile</span> <span class="op">=</span> <span class="ident">_XcursorFile</span>;
+<span class="kw">pub type </span>XcursorFile = _XcursorFile;
 
-<span class="kw">impl</span> <span class="ident">Clone</span> <span class="kw">for</span> <span class="ident">_XcursorFile</span> {
-    <span class="kw">fn</span> <span class="ident">clone</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">_XcursorFile</span> {
-        <span class="ident">_XcursorFile</span> {
-            <span class="ident">closure</span>: <span class="self">self</span>.<span class="ident">closure</span>,
-            <span class="ident">read</span>: <span class="self">self</span>.<span class="ident">read</span>,
-            <span class="ident">write</span>: <span class="self">self</span>.<span class="ident">write</span>,
-            <span class="ident">seek</span>: <span class="self">self</span>.<span class="ident">seek</span>,
+<span class="kw">impl </span>Clone <span class="kw">for </span>_XcursorFile {
+    <span class="kw">fn </span>clone(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; _XcursorFile {
+        _XcursorFile {
+            closure: <span class="self">self</span>.closure,
+            read: <span class="self">self</span>.read,
+            write: <span class="self">self</span>.write,
+            seek: <span class="self">self</span>.seek,
         }
     }
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorFileHeader</span> {
-    <span class="kw">pub</span> <span class="ident">magic</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">header</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">ntoc</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">tocs</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorFileToc</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorFileHeader {
+    <span class="kw">pub </span>magic: XcursorUInt,
+    <span class="kw">pub </span>header: XcursorUInt,
+    <span class="kw">pub </span>version: XcursorUInt,
+    <span class="kw">pub </span>ntoc: XcursorUInt,
+    <span class="kw">pub </span>tocs: <span class="kw-2">*mut </span>XcursorFileToc,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorFileHeader</span> <span class="op">=</span> <span class="ident">_XcursorFileHeader</span>;
+<span class="kw">pub type </span>XcursorFileHeader = _XcursorFileHeader;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorFileToc</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">position</span>: <span class="ident">XcursorUInt</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorFileToc {
+    <span class="kw">pub </span>type_: XcursorUInt,
+    <span class="kw">pub </span>subtype: XcursorUInt,
+    <span class="kw">pub </span>position: XcursorUInt,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorFileToc</span> <span class="op">=</span> <span class="ident">_XcursorFileToc</span>;
+<span class="kw">pub type </span>XcursorFileToc = _XcursorFileToc;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorImage</span> {
-    <span class="kw">pub</span> <span class="ident">version</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">XcursorDim</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">XcursorDim</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">XcursorDim</span>,
-    <span class="kw">pub</span> <span class="ident">xhot</span>: <span class="ident">XcursorDim</span>,
-    <span class="kw">pub</span> <span class="ident">yhot</span>: <span class="ident">XcursorDim</span>,
-    <span class="kw">pub</span> <span class="ident">delay</span>: <span class="ident">XcursorUInt</span>,
-    <span class="kw">pub</span> <span class="ident">pixels</span>: <span class="kw-2">*mut</span> <span class="ident">XcursorPixel</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorImage {
+    <span class="kw">pub </span>version: XcursorUInt,
+    <span class="kw">pub </span>size: XcursorDim,
+    <span class="kw">pub </span>width: XcursorDim,
+    <span class="kw">pub </span>height: XcursorDim,
+    <span class="kw">pub </span>xhot: XcursorDim,
+    <span class="kw">pub </span>yhot: XcursorDim,
+    <span class="kw">pub </span>delay: XcursorUInt,
+    <span class="kw">pub </span>pixels: <span class="kw-2">*mut </span>XcursorPixel,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorImage</span> <span class="op">=</span> <span class="ident">_XcursorImage</span>;
+<span class="kw">pub type </span>XcursorImage = _XcursorImage;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">_XcursorImages</span> {
-    <span class="kw">pub</span> <span class="ident">nimage</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">images</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XcursorImage</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>_XcursorImages {
+    <span class="kw">pub </span>nimage: c_int,
+    <span class="kw">pub </span>images: <span class="kw-2">*mut *mut </span>XcursorImage,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
 }
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XcursorImages</span> <span class="op">=</span> <span class="ident">_XcursorImages</span>;
+<span class="kw">pub type </span>XcursorImages = _XcursorImages;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

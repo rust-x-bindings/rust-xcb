@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/event.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>event.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/event.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>event.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../xcb/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -333,340 +333,340 @@
 <span id="333">333</span>
 <span id="334">334</span>
 <span id="335">335</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::base</span>::{<span class="ident">BaseEvent</span>, <span class="ident">Raw</span>, <span class="ident">ResolveWireEvent</span>, <span class="ident">ResolveWireGeEvent</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ext</span>::{<span class="ident">Extension</span>, <span class="ident">ExtensionData</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::x</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::base::{BaseEvent, Raw, ResolveWireEvent, ResolveWireGeEvent};
+<span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
+<span class="kw">use </span><span class="kw">crate</span>::ffi::<span class="kw-2">*</span>;
+<span class="kw">use </span><span class="kw">crate</span>::x;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::damage</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::damage;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::dri2</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::dri2;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::glx</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::glx;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::present</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::present;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::randr</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::randr;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::screensaver</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::screensaver;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shape</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::shape;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::shm</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::shm;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::sync</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::sync;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xfixes</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xfixes;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xinput</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xinput;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xkb</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xkb;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xprint</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xprint;
 
-<span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::xv</span>;
+<span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+</span><span class="kw">use </span><span class="kw">crate</span>::xv;
 
-<span class="doccomment">/// Unified Event type from the X server.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">Event</span> {
-    <span class="doccomment">/// The event is issued from the X core protocol.</span>
-    <span class="ident">X</span>(<span class="ident">x::Event</span>),
+<span class="doccomment">/// Unified Event type from the X server.
+</span><span class="attribute">#[derive(Debug)]
+</span><span class="kw">pub enum </span>Event {
+    <span class="doccomment">/// The event is issued from the X core protocol.
+    </span>X(x::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `DAMAGE` extension.</span>
-    <span class="ident">Damage</span>(<span class="ident">damage::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `DAMAGE` extension.
+    </span>Damage(damage::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `DRI2` extension.</span>
-    <span class="ident">Dri2</span>(<span class="ident">dri2::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `DRI2` extension.
+    </span>Dri2(dri2::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `GLX` extension.</span>
-    <span class="ident">Glx</span>(<span class="ident">glx::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `GLX` extension.
+    </span>Glx(glx::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `Present` extension.</span>
-    <span class="ident">Present</span>(<span class="ident">present::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `Present` extension.
+    </span>Present(present::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `RANDR` extension.</span>
-    <span class="ident">RandR</span>(<span class="ident">randr::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `RANDR` extension.
+    </span>RandR(randr::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `MIT-SCREEN-SAVER` extension.</span>
-    <span class="ident">ScreenSaver</span>(<span class="ident">screensaver::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `MIT-SCREEN-SAVER` extension.
+    </span>ScreenSaver(screensaver::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `SHAPE` extension.</span>
-    <span class="ident">Shape</span>(<span class="ident">shape::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `SHAPE` extension.
+    </span>Shape(shape::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `MIT-SHM` extension.</span>
-    <span class="ident">Shm</span>(<span class="ident">shm::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `MIT-SHM` extension.
+    </span>Shm(shm::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `SYNC` extension.</span>
-    <span class="ident">Sync</span>(<span class="ident">sync::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `SYNC` extension.
+    </span>Sync(sync::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `XFIXES` extension.</span>
-    <span class="ident">XFixes</span>(<span class="ident">xfixes::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `XFIXES` extension.
+    </span>XFixes(xfixes::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `XInputExtension` extension.</span>
-    <span class="ident">Input</span>(<span class="ident">xinput::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `XInputExtension` extension.
+    </span>Input(xinput::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `XKEYBOARD` extension.</span>
-    <span class="ident">Xkb</span>(<span class="ident">xkb::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `XKEYBOARD` extension.
+    </span>Xkb(xkb::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `XpExtension` extension.</span>
-    <span class="ident">XPrint</span>(<span class="ident">xprint::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `XpExtension` extension.
+    </span>XPrint(xprint::Event),
 
-    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-    <span class="doccomment">/// The event is issued from the `XVideo` extension.</span>
-    <span class="ident">Xv</span>(<span class="ident">xv::Event</span>),
+    <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+    </span><span class="doccomment">/// The event is issued from the `XVideo` extension.
+    </span>Xv(xv::Event),
 
-    <span class="doccomment">/// The event was not recognized, it was likely issued from a disabled extension.</span>
-    <span class="ident">Unknown</span>(<span class="ident">UnknownEvent</span>),
+    <span class="doccomment">/// The event was not recognized, it was likely issued from a disabled extension.
+    </span>Unknown(UnknownEvent),
 }
 
-<span class="kw">impl</span> <span class="ident">Event</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
-        <span class="kw">match</span> <span class="self">self</span> {
-            <span class="ident"><span class="self">Self</span>::X</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Damage</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Dri2</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Glx</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Present</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::RandR</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::ScreenSaver</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Shape</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Shm</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Sync</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::XFixes</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Input</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Xkb</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::XPrint</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-            <span class="ident"><span class="self">Self</span>::Xv</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
-            <span class="ident"><span class="self">Self</span>::Unknown</span>(<span class="ident">e</span>) =&gt; <span class="ident">e</span>.<span class="ident">as_raw</span>(),
+<span class="kw">impl </span>Event {
+    <span class="kw">pub fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t {
+        <span class="kw">match </span><span class="self">self </span>{
+            <span class="self">Self</span>::X(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+            </span><span class="self">Self</span>::Damage(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+            </span><span class="self">Self</span>::Dri2(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+            </span><span class="self">Self</span>::Glx(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+            </span><span class="self">Self</span>::Present(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+            </span><span class="self">Self</span>::RandR(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+            </span><span class="self">Self</span>::ScreenSaver(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+            </span><span class="self">Self</span>::Shape(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+            </span><span class="self">Self</span>::Shm(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+            </span><span class="self">Self</span>::Sync(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+            </span><span class="self">Self</span>::XFixes(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+            </span><span class="self">Self</span>::Input(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+            </span><span class="self">Self</span>::Xkb(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+            </span><span class="self">Self</span>::XPrint(e) =&gt; e.as_raw(),
+            <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+            </span><span class="self">Self</span>::Xv(e) =&gt; e.as_raw(),
+            <span class="self">Self</span>::Unknown(e) =&gt; e.as_raw(),
         }
     }
 }
 
-<span class="doccomment">/// an event was not recognized as part of the core protocol or any enabled extension</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">UnknownEvent</span> {
-    <span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
+<span class="doccomment">/// an event was not recognized as part of the core protocol or any enabled extension
+</span><span class="kw">pub struct </span>UnknownEvent {
+    raw: <span class="kw-2">*mut </span>xcb_generic_event_t,
 }
 
-<span class="kw">impl</span> <span class="ident">Raw</span><span class="op">&lt;</span><span class="ident">xcb_generic_event_t</span><span class="op">&gt;</span> <span class="kw">for</span> <span class="ident">UnknownEvent</span> {
-    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_raw</span>(<span class="ident">raw</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>) -&gt; <span class="self">Self</span> {
-        <span class="ident">UnknownEvent</span> { <span class="ident">raw</span> }
+<span class="kw">impl </span>Raw&lt;xcb_generic_event_t&gt; <span class="kw">for </span>UnknownEvent {
+    <span class="kw">unsafe fn </span>from_raw(raw: <span class="kw-2">*mut </span>xcb_generic_event_t) -&gt; <span class="self">Self </span>{
+        UnknownEvent { raw }
     }
 
-    <span class="kw">fn</span> <span class="ident">as_raw</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span> {
-        <span class="self">self</span>.<span class="ident">raw</span>
-    }
-}
-
-<span class="kw">impl</span> <span class="ident">BaseEvent</span> <span class="kw">for</span> <span class="ident">UnknownEvent</span> {
-    <span class="kw">const</span> <span class="ident">EXTENSION</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">Extension</span><span class="op">&gt;</span> <span class="op">=</span> <span class="prelude-val">None</span>;
-    <span class="kw">const</span> <span class="ident">NUMBER</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="ident">u32::MAX</span>;
-}
-
-<span class="kw">impl</span> <span class="ident">UnknownEvent</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">response_type</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u8</span> {
-        <span class="kw">unsafe</span> { (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">response_type</span> }
-    }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u16</span> {
-        <span class="kw">unsafe</span> { (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">sequence</span> }
-    }
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">full_sequence</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="ident">u32</span> {
-        <span class="kw">unsafe</span> { (<span class="kw-2">*</span><span class="self">self</span>.<span class="ident">raw</span>).<span class="ident">full_sequence</span> }
+    <span class="kw">fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t {
+        <span class="self">self</span>.raw
     }
 }
 
-<span class="kw">impl</span> <span class="ident">std::fmt::Debug</span> <span class="kw">for</span> <span class="ident">UnknownEvent</span> {
-    <span class="kw">fn</span> <span class="ident">fmt</span>(<span class="kw-2">&amp;</span><span class="self">self</span>, <span class="ident">f</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::fmt::Formatter</span><span class="op">&lt;</span><span class="lifetime">&#39;_</span><span class="op">&gt;</span>) -&gt; <span class="ident">std::fmt::Result</span> {
-        <span class="ident">f</span>.<span class="ident">debug_tuple</span>(<span class="string">&quot;UnknownEvent&quot;</span>).<span class="ident">finish</span>()
+<span class="kw">impl </span>BaseEvent <span class="kw">for </span>UnknownEvent {
+    <span class="kw">const </span>EXTENSION: <span class="prelude-ty">Option</span>&lt;Extension&gt; = <span class="prelude-val">None</span>;
+    <span class="kw">const </span>NUMBER: u32 = u32::MAX;
+}
+
+<span class="kw">impl </span>UnknownEvent {
+    <span class="kw">pub fn </span>response_type(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u8 {
+        <span class="kw">unsafe </span>{ (<span class="kw-2">*</span><span class="self">self</span>.raw).response_type }
+    }
+    <span class="kw">pub fn </span>sequence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u16 {
+        <span class="kw">unsafe </span>{ (<span class="kw-2">*</span><span class="self">self</span>.raw).sequence }
+    }
+    <span class="kw">pub fn </span>full_sequence(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; u32 {
+        <span class="kw">unsafe </span>{ (<span class="kw-2">*</span><span class="self">self</span>.raw).full_sequence }
     }
 }
 
-<span class="kw">impl</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">UnknownEvent</span> {
-    <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;mut</span> <span class="self">self</span>) {
-        <span class="kw">unsafe</span> { <span class="ident">libc::free</span>(<span class="self">self</span>.<span class="ident">raw</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="kw">_</span>) }
+<span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>UnknownEvent {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>std::fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; std::fmt::Result {
+        f.debug_tuple(<span class="string">&quot;UnknownEvent&quot;</span>).finish()
     }
 }
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">resolve_event</span>(
-    <span class="ident">event</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>,
-    <span class="ident">extension_data</span>: <span class="kw-2">&amp;</span>[<span class="ident">ExtensionData</span>],
-) -&gt; <span class="ident">Event</span> {
-    <span class="kw">let</span> <span class="ident">response_type</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">event</span>).<span class="ident">response_type</span> <span class="op">&amp;</span> <span class="number">0x7F</span>;
+<span class="kw">impl </span>Drop <span class="kw">for </span>UnknownEvent {
+    <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
+        <span class="kw">unsafe </span>{ libc::free(<span class="self">self</span>.raw <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>) }
+    }
+}
 
-    <span class="kw">if</span> <span class="ident">response_type</span> <span class="op">==</span> <span class="ident">XCB_GE_GENERIC</span> {
-        <span class="kw">let</span> <span class="ident">event</span> <span class="op">=</span> <span class="ident">event</span> <span class="kw">as</span> <span class="kw-2">*mut</span> <span class="ident">xcb_ge_generic_event_t</span>;
-        <span class="kw">let</span> <span class="ident">extension</span> <span class="op">=</span> (<span class="kw-2">*</span><span class="ident">event</span>).<span class="ident">extension</span>;
-        <span class="kw">for</span> <span class="ident">ext</span> <span class="kw">in</span> <span class="ident">extension_data</span> {
-            <span class="kw">if</span> <span class="ident">ext</span>.<span class="ident">major_opcode</span> <span class="op">==</span> <span class="ident">extension</span> {
-                <span class="kw">match</span> <span class="ident">ext</span>.<span class="ident">ext</span> {
-                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-                    <span class="ident">Extension::Present</span> =&gt; {
-                        <span class="kw">return</span> <span class="ident">Event::Present</span>(<span class="ident">present::Event::resolve_wire_ge_event</span>(<span class="ident">event</span>));
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">unsafe fn </span>resolve_event(
+    event: <span class="kw-2">*mut </span>xcb_generic_event_t,
+    extension_data: <span class="kw-2">&amp;</span>[ExtensionData],
+) -&gt; Event {
+    <span class="kw">let </span>response_type = (<span class="kw-2">*</span>event).response_type &amp; <span class="number">0x7F</span>;
+
+    <span class="kw">if </span>response_type == XCB_GE_GENERIC {
+        <span class="kw">let </span>event = event <span class="kw">as </span><span class="kw-2">*mut </span>xcb_ge_generic_event_t;
+        <span class="kw">let </span>extension = (<span class="kw-2">*</span>event).extension;
+        <span class="kw">for </span>ext <span class="kw">in </span>extension_data {
+            <span class="kw">if </span>ext.major_opcode == extension {
+                <span class="kw">match </span>ext.ext {
+                    <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+                    </span>Extension::Present =&gt; {
+                        <span class="kw">return </span>Event::Present(present::Event::resolve_wire_ge_event(event));
                     }
-                    <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-                    <span class="ident">Extension::Input</span> =&gt; {
-                        <span class="kw">return</span> <span class="ident">Event::Input</span>(<span class="ident">xinput::Event::resolve_wire_ge_event</span>(<span class="ident">event</span>));
+                    <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+                    </span>Extension::Input =&gt; {
+                        <span class="kw">return </span>Event::Input(xinput::Event::resolve_wire_ge_event(event));
                     }
-                    <span class="kw">_</span> =&gt; <span class="macro">panic!</span>(<span class="string">&quot;could not resolve Generic Event extension&quot;</span>),
+                    <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;could not resolve Generic Event extension&quot;</span>),
                 }
             }
         }
     }
 
-    <span class="kw">for</span> <span class="ident">data</span> <span class="kw">in</span> <span class="ident">extension_data</span> {
-        <span class="kw">if</span> <span class="ident">response_type</span> <span class="op">&gt;</span><span class="op">=</span> <span class="ident">data</span>.<span class="ident">first_event</span> <span class="op">&amp;&amp;</span> <span class="ident">data</span>.<span class="ident">first_event</span> <span class="op">!</span><span class="op">=</span> <span class="number">0</span> {
-            <span class="kw">match</span> <span class="ident">data</span>.<span class="ident">ext</span> {
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;damage&quot;</span>)]</span>
-                <span class="ident">Extension::Damage</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Damage</span>(
-                        <span class="ident">damage::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+    <span class="kw">for </span>data <span class="kw">in </span>extension_data {
+        <span class="kw">if </span>response_type &gt;= data.first_event &amp;&amp; data.first_event != <span class="number">0 </span>{
+            <span class="kw">match </span>data.ext {
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+                </span>Extension::Damage =&gt; {
+                    <span class="kw">return </span>Event::Damage(
+                        damage::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;dri2&quot;</span>)]</span>
-                <span class="ident">Extension::Dri2</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Dri2</span>(
-                        <span class="ident">dri2::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+                </span>Extension::Dri2 =&gt; {
+                    <span class="kw">return </span>Event::Dri2(
+                        dri2::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;glx&quot;</span>)]</span>
-                <span class="ident">Extension::Glx</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Glx</span>(
-                        <span class="ident">glx::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+                </span>Extension::Glx =&gt; {
+                    <span class="kw">return </span>Event::Glx(
+                        glx::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;present&quot;</span>)]</span>
-                <span class="ident">Extension::Present</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Present</span>(
-                        <span class="ident">present::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+                </span>Extension::Present =&gt; {
+                    <span class="kw">return </span>Event::Present(
+                        present::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;randr&quot;</span>)]</span>
-                <span class="ident">Extension::RandR</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::RandR</span>(
-                        <span class="ident">randr::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+                </span>Extension::RandR =&gt; {
+                    <span class="kw">return </span>Event::RandR(
+                        randr::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;screensaver&quot;</span>)]</span>
-                <span class="ident">Extension::ScreenSaver</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::ScreenSaver</span>(
-                        <span class="ident">screensaver::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+                </span>Extension::ScreenSaver =&gt; {
+                    <span class="kw">return </span>Event::ScreenSaver(
+                        screensaver::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shape&quot;</span>)]</span>
-                <span class="ident">Extension::Shape</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Shape</span>(
-                        <span class="ident">shape::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+                </span>Extension::Shape =&gt; {
+                    <span class="kw">return </span>Event::Shape(
+                        shape::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;shm&quot;</span>)]</span>
-                <span class="ident">Extension::Shm</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Shm</span>(
-                        <span class="ident">shm::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+                </span>Extension::Shm =&gt; {
+                    <span class="kw">return </span>Event::Shm(
+                        shm::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;sync&quot;</span>)]</span>
-                <span class="ident">Extension::Sync</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Sync</span>(
-                        <span class="ident">sync::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+                </span>Extension::Sync =&gt; {
+                    <span class="kw">return </span>Event::Sync(
+                        sync::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xfixes&quot;</span>)]</span>
-                <span class="ident">Extension::XFixes</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::XFixes</span>(
-                        <span class="ident">xfixes::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+                </span>Extension::XFixes =&gt; {
+                    <span class="kw">return </span>Event::XFixes(
+                        xfixes::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xinput&quot;</span>)]</span>
-                <span class="ident">Extension::Input</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Input</span>(
-                        <span class="ident">xinput::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+                </span>Extension::Input =&gt; {
+                    <span class="kw">return </span>Event::Input(
+                        xinput::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xkb&quot;</span>)]</span>
-                <span class="ident">Extension::Xkb</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Xkb</span>(
-                        <span class="ident">xkb::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+                </span>Extension::Xkb =&gt; {
+                    <span class="kw">return </span>Event::Xkb(
+                        xkb::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xprint&quot;</span>)]</span>
-                <span class="ident">Extension::XPrint</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::XPrint</span>(
-                        <span class="ident">xprint::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+                </span>Extension::XPrint =&gt; {
+                    <span class="kw">return </span>Event::XPrint(
+                        xprint::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">feature</span> <span class="op">=</span> <span class="string">&quot;xv&quot;</span>)]</span>
-                <span class="ident">Extension::Xv</span> =&gt; {
-                    <span class="kw">return</span> <span class="ident">Event::Xv</span>(
-                        <span class="ident">xv::Event::resolve_wire_event</span>(<span class="ident">data</span>.<span class="ident">first_event</span>, <span class="ident">event</span>).<span class="ident">unwrap</span>(),
+                <span class="attribute">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+                </span>Extension::Xv =&gt; {
+                    <span class="kw">return </span>Event::Xv(
+                        xv::Event::resolve_wire_event(data.first_event, event).unwrap(),
                     );
                 }
 
-                <span class="kw">_</span> =&gt; {}
+                <span class="kw">_ </span>=&gt; {}
             }
         }
     }
 
-    <span class="ident">x::Event::resolve_wire_event</span>(<span class="number">0</span>, <span class="ident">event</span>)
-        .<span class="ident">map</span>(<span class="ident">Event::X</span>)
-        .<span class="ident">unwrap_or_else</span>(<span class="op">|</span><span class="op">|</span> {
-            <span class="comment">// SAFETY the event type is checked above and the function panicked if it was</span>
-            <span class="comment">// not a basic event (XCB_GE_GENERIC)</span>
-            <span class="kw">let</span> <span class="ident">unknown</span> <span class="op">=</span> <span class="ident">UnknownEvent::from_raw</span>(<span class="ident">event</span>);
-            <span class="ident">Event::Unknown</span>(<span class="ident">unknown</span>)
+    x::Event::resolve_wire_event(<span class="number">0</span>, event)
+        .map(Event::X)
+        .unwrap_or_else(|| {
+            <span class="comment">// SAFETY the event type is checked above and the function panicked if it was
+            // not a basic event (XCB_GE_GENERIC)
+            </span><span class="kw">let </span>unknown = UnknownEvent::from_raw(event);
+            Event::Unknown(unknown)
         })
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

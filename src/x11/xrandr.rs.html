@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrandr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrandr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `/home/runner/.cargo/registry/src/github.com-1ecc6299db9ec823/x11-2.20.0/src/xrandr.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>xrandr.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../normalize.css"><link rel="stylesheet" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../ayu.css" disabled><link rel="stylesheet" href="../../dark.css" disabled><link rel="stylesheet" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../x11/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../x11/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -548,555 +548,555 @@
 <span id="548">548</span>
 <span id="549">549</span>
 <span id="550">550</span>
-</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries</span>
-<span class="comment">// The X11 libraries are available under the MIT license.</span>
-<span class="comment">// These bindings are public domain.</span>
+</pre><pre class="rust"><code><span class="comment">// x11-rs: Rust bindings for X11 libraries
+// The X11 libraries are available under the MIT license.
+// These bindings are public domain.
 
-<span class="kw">use</span> <span class="ident">std::os::raw</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_long</span>, <span class="ident">c_short</span>, <span class="ident">c_uchar</span>, <span class="ident">c_uint</span>, <span class="ident">c_ulong</span>, <span class="ident">c_ushort</span>};
+</span><span class="kw">use </span>std::os::raw::{c_char, c_int, c_long, c_short, c_uchar, c_uint, c_ulong, c_ushort};
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xlib</span>::{<span class="ident">Atom</span>, <span class="ident">Bool</span>, <span class="ident">Display</span>, <span class="ident">Drawable</span>, <span class="ident">Status</span>, <span class="ident">Time</span>, <span class="ident">Window</span>, <span class="ident">XEvent</span>, <span class="ident">XID</span>};
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::xrender</span>::{<span class="ident">XFixed</span>, <span class="ident">XTransform</span>};
+<span class="kw">use </span><span class="kw">super</span>::xlib::{Atom, Bool, Display, Drawable, Status, Time, Window, XEvent, XID};
+<span class="kw">use </span><span class="kw">super</span>::xrender::{XFixed, XTransform};
 
-<span class="comment">//</span>
-<span class="comment">// functions</span>
-<span class="comment">//</span>
+<span class="comment">//
+// functions
+//
 
-<span class="macro">x11_link!</span> { <span class="ident">Xrandr</span>, <span class="ident">xrandr</span>, [<span class="string">&quot;libXrandr.so.2&quot;</span>, <span class="string">&quot;libXrandr.so&quot;</span>], <span class="number">70</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRAddOutputMode</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">mode</span>: <span class="ident">RRMode</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRAllocGamma</span> (<span class="ident">size</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRCrtcGamma</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRAllocModeInfo</span> (<span class="ident">name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">nameLength</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRModeInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRAllocateMonitor</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">noutput</span>: <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRMonitorInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRChangeOutputProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">type_</span>: <span class="ident">Atom</span>, <span class="ident">format</span>: <span class="ident">c_int</span>, <span class="ident">mode</span>: <span class="ident">c_int</span>, <span class="ident">data</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">nelements</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRChangeProviderProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">type_</span>: <span class="ident">Atom</span>, <span class="ident">format</span>: <span class="ident">c_int</span>, <span class="ident">mode</span>: <span class="ident">c_int</span>, <span class="ident">data</span>: <span class="kw-2">*const</span> <span class="ident">c_uchar</span>, <span class="ident">nelements</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigCurrentConfiguration</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">rotation</span>: <span class="kw-2">*mut</span> <span class="ident">Rotation</span>) -&gt; <span class="ident">SizeID</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigCurrentRate</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>) -&gt; <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigRates</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">sizeID</span>: <span class="ident">c_int</span>, <span class="ident">nrates</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigRotations</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">current_rotation</span>: <span class="kw-2">*mut</span> <span class="ident">Rotation</span>) -&gt; <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigSizes</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">nsizes</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRScreenSize</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigTimes</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">config_timestamp</span>: <span class="kw-2">*mut</span> <span class="ident">Time</span>) -&gt; <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigureOutputProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">pending</span>: <span class="ident">Bool</span>, <span class="ident">range</span>: <span class="ident">Bool</span>, <span class="ident">num_values</span>: <span class="ident">c_int</span>, <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">c_long</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRConfigureProviderProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">pending</span>: <span class="ident">Bool</span>, <span class="ident">range</span>: <span class="ident">Bool</span>, <span class="ident">num_values</span>: <span class="ident">c_int</span>, <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">c_long</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRCreateMode</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">modeInfo</span>: <span class="kw-2">*mut</span> <span class="ident">XRRModeInfo</span>) -&gt; <span class="ident">RRMode</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRDeleteMonitor</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">name</span>: <span class="ident">Atom</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRDeleteOutputMode</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">mode</span>: <span class="ident">RRMode</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRDeleteOutputProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">property</span>: <span class="ident">Atom</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRDeleteProviderProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">property</span>: <span class="ident">Atom</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRDestroyMode</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">mode</span>: <span class="ident">RRMode</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeCrtcInfo</span> (<span class="ident">crtcInfo</span>: <span class="kw-2">*mut</span> <span class="ident">XRRCrtcInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeGamma</span> (<span class="ident">gamma</span>: <span class="kw-2">*mut</span> <span class="ident">XRRCrtcGamma</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeModeInfo</span> (<span class="ident">modeInfo</span>: <span class="kw-2">*mut</span> <span class="ident">XRRModeInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeMonitors</span> (<span class="ident">monitors</span>: <span class="kw-2">*mut</span> <span class="ident">XRRMonitorInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeOutputInfo</span> (<span class="ident">outputInfo</span>: <span class="kw-2">*mut</span> <span class="ident">XRROutputInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreePanning</span> (<span class="ident">panning</span>: <span class="kw-2">*mut</span> <span class="ident">XRRPanning</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeProviderInfo</span> (<span class="ident">provider</span>: <span class="kw-2">*mut</span> <span class="ident">XRRProviderInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeProviderResources</span> (<span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRProviderResources</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeScreenConfigInfo</span> (<span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRFreeScreenResources</span> (<span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetCrtcGamma</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRCrtcGamma</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetCrtcGammaSize</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetCrtcInfo</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRCrtcInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetCrtcTransform</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">attributes</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">XRRCrtcTransformAttributes</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetMonitors</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">get_active</span>: <span class="ident">Bool</span>, <span class="ident">nmonitors</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRMonitorInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetOutputInfo</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRROutputInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetOutputPrimary</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>) -&gt; <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetOutputProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">offset</span>: <span class="ident">c_long</span>, <span class="ident">length</span>: <span class="ident">c_long</span>, <span class="ident">_delete</span>: <span class="ident">Bool</span>, <span class="ident">pending</span>: <span class="ident">Bool</span>, <span class="ident">req_type</span>: <span class="ident">Atom</span>, <span class="ident">actual_type</span>: <span class="kw-2">*mut</span> <span class="ident">Atom</span>, <span class="ident">actual_format</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">nitems</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">bytes_after</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">prop</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetPanning</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRPanning</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetProviderInfo</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRProviderInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetProviderProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">property</span>: <span class="ident">Atom</span>, <span class="ident">offset</span>: <span class="ident">c_long</span>, <span class="ident">length</span>: <span class="ident">c_long</span>, <span class="ident">_delete</span>: <span class="ident">Bool</span>, <span class="ident">pending</span>: <span class="ident">Bool</span>, <span class="ident">req_type</span>: <span class="ident">Atom</span>, <span class="ident">actual_type</span>: <span class="kw-2">*mut</span> <span class="ident">Atom</span>, <span class="ident">actual_format</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">nitems</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">bytes_after</span>: <span class="kw-2">*mut</span> <span class="ident">c_ulong</span>, <span class="ident">prop</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_uchar</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetProviderResources</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRProviderResources</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetScreenInfo</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetScreenResources</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetScreenResourcesCurrent</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRGetScreenSizeRange</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">minWidth</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minHeight</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">maxWidth</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">maxHeight</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRListOutputProperties</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">nprop</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRListProviderProperties</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">nprop</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRQueryExtension</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">event_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">error_base_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRQueryOutputProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>, <span class="ident">property</span>: <span class="ident">Atom</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRPropertyInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRQueryProviderProperty</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">RRProvider</span>, <span class="ident">property</span>: <span class="ident">Atom</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRPropertyInfo</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRQueryVersion</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">major_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>, <span class="ident">minor_version_return</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRRates</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">screen</span>: <span class="ident">c_int</span>, <span class="ident">sizeID</span>: <span class="ident">c_int</span>, <span class="ident">nrates</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_short</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRRootToScreen</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">root</span>: <span class="ident">Window</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRRotations</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">screen</span>: <span class="ident">c_int</span>, <span class="ident">current_rotation</span>: <span class="kw-2">*mut</span> <span class="ident">Rotation</span>) -&gt; <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSelectInput</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">mask</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetCrtcConfig</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">timestamp</span>: <span class="ident">Time</span>, <span class="ident">x</span>: <span class="ident">c_int</span>, <span class="ident">y</span>: <span class="ident">c_int</span>, <span class="ident">mode</span>: <span class="ident">RRMode</span>, <span class="ident">rotation</span>: <span class="ident">Rotation</span>, <span class="ident">outputs</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>, <span class="ident">noutputs</span>: <span class="ident">c_int</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetCrtcGamma</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">gamma</span>: <span class="kw-2">*mut</span> <span class="ident">XRRCrtcGamma</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetCrtcTransform</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">transform</span>: <span class="kw-2">*mut</span> <span class="ident">XTransform</span>, <span class="ident">filter</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>, <span class="ident">params</span>: <span class="kw-2">*mut</span> <span class="ident">XFixed</span>, <span class="ident">nparams</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetMonitor</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">monitor</span>: <span class="kw-2">*mut</span> <span class="ident">XRRMonitorInfo</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetOutputPrimary</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">output</span>: <span class="ident">RROutput</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetPanning</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">resources</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenResources</span>, <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>, <span class="ident">panning</span>: <span class="kw-2">*mut</span> <span class="ident">XRRPanning</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetProviderOffloadSink</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">XID</span>, <span class="ident">sink_provider</span>: <span class="ident">XID</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetProviderOutputSource</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">provider</span>: <span class="ident">XID</span>, <span class="ident">source_provider</span>: <span class="ident">XID</span>) -&gt; <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetScreenConfig</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">draw</span>: <span class="ident">Drawable</span>, <span class="ident">size_index</span>: <span class="ident">c_int</span>, <span class="ident">rotation</span>: <span class="ident">Rotation</span>, <span class="ident">timestamp</span>: <span class="ident">Time</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetScreenConfigAndRate</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">config</span>: <span class="kw-2">*mut</span> <span class="ident">XRRScreenConfiguration</span>, <span class="ident">draw</span>: <span class="ident">Drawable</span>, <span class="ident">size_index</span>: <span class="ident">c_int</span>, <span class="ident">rotation</span>: <span class="ident">Rotation</span>, <span class="ident">rate</span>: <span class="ident">c_short</span>, <span class="ident">timestamp</span>: <span class="ident">Time</span>) -&gt; <span class="ident">Status</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSetScreenSize</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">window</span>: <span class="ident">Window</span>, <span class="ident">width</span>: <span class="ident">c_int</span>, <span class="ident">height</span>: <span class="ident">c_int</span>, <span class="ident">mmWidth</span>: <span class="ident">c_int</span>, <span class="ident">mmHeight</span>: <span class="ident">c_int</span>) -&gt; (),
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRSizes</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">screen</span>: <span class="ident">c_int</span>, <span class="ident">nsizes</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">XRRScreenSize</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRTimes</span> (<span class="ident">dpy</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>, <span class="ident">screen</span>: <span class="ident">c_int</span>, <span class="ident">config_timestamp</span>: <span class="kw-2">*mut</span> <span class="ident">Time</span>) -&gt; <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">XRRUpdateConfiguration</span> (<span class="ident">event</span>: <span class="kw-2">*mut</span> <span class="ident">XEvent</span>) -&gt; <span class="ident">c_int</span>,
-<span class="ident">variadic</span>:
-<span class="ident">globals</span>:
+</span><span class="macro">x11_link! </span>{ Xrandr, xrandr, [<span class="string">&quot;libXrandr.so.2&quot;</span>, <span class="string">&quot;libXrandr.so&quot;</span>], <span class="number">70</span>,
+    <span class="kw">pub fn </span>XRRAddOutputMode (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, mode: RRMode) -&gt; (),
+    <span class="kw">pub fn </span>XRRAllocGamma (size: c_int) -&gt; <span class="kw-2">*mut </span>XRRCrtcGamma,
+    <span class="kw">pub fn </span>XRRAllocModeInfo (name: <span class="kw-2">*const </span>c_char, nameLength: c_int) -&gt; <span class="kw-2">*mut </span>XRRModeInfo,
+    <span class="kw">pub fn </span>XRRAllocateMonitor (dpy: <span class="kw-2">*mut </span>Display, noutput: c_int) -&gt; <span class="kw-2">*mut </span>XRRMonitorInfo,
+    <span class="kw">pub fn </span>XRRChangeOutputProperty (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, property: Atom, type_: Atom, format: c_int, mode: c_int, data: <span class="kw-2">*const </span>c_uchar, nelements: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XRRChangeProviderProperty (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, property: Atom, type_: Atom, format: c_int, mode: c_int, data: <span class="kw-2">*const </span>c_uchar, nelements: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XRRConfigCurrentConfiguration (config: <span class="kw-2">*mut </span>XRRScreenConfiguration, rotation: <span class="kw-2">*mut </span>Rotation) -&gt; SizeID,
+    <span class="kw">pub fn </span>XRRConfigCurrentRate (config: <span class="kw-2">*mut </span>XRRScreenConfiguration) -&gt; c_short,
+    <span class="kw">pub fn </span>XRRConfigRates (config: <span class="kw-2">*mut </span>XRRScreenConfiguration, sizeID: c_int, nrates: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>c_short,
+    <span class="kw">pub fn </span>XRRConfigRotations (config: <span class="kw-2">*mut </span>XRRScreenConfiguration, current_rotation: <span class="kw-2">*mut </span>Rotation) -&gt; Rotation,
+    <span class="kw">pub fn </span>XRRConfigSizes (config: <span class="kw-2">*mut </span>XRRScreenConfiguration, nsizes: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XRRScreenSize,
+    <span class="kw">pub fn </span>XRRConfigTimes (config: <span class="kw-2">*mut </span>XRRScreenConfiguration, config_timestamp: <span class="kw-2">*mut </span>Time) -&gt; Time,
+    <span class="kw">pub fn </span>XRRConfigureOutputProperty (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, property: Atom, pending: Bool, range: Bool, num_values: c_int, values: <span class="kw-2">*mut </span>c_long) -&gt; (),
+    <span class="kw">pub fn </span>XRRConfigureProviderProperty (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, property: Atom, pending: Bool, range: Bool, num_values: c_int, values: <span class="kw-2">*mut </span>c_long) -&gt; (),
+    <span class="kw">pub fn </span>XRRCreateMode (dpy: <span class="kw-2">*mut </span>Display, window: Window, modeInfo: <span class="kw-2">*mut </span>XRRModeInfo) -&gt; RRMode,
+    <span class="kw">pub fn </span>XRRDeleteMonitor (dpy: <span class="kw-2">*mut </span>Display, window: Window, name: Atom) -&gt; (),
+    <span class="kw">pub fn </span>XRRDeleteOutputMode (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, mode: RRMode) -&gt; (),
+    <span class="kw">pub fn </span>XRRDeleteOutputProperty (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, property: Atom) -&gt; (),
+    <span class="kw">pub fn </span>XRRDeleteProviderProperty (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, property: Atom) -&gt; (),
+    <span class="kw">pub fn </span>XRRDestroyMode (dpy: <span class="kw-2">*mut </span>Display, mode: RRMode) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeCrtcInfo (crtcInfo: <span class="kw-2">*mut </span>XRRCrtcInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeGamma (gamma: <span class="kw-2">*mut </span>XRRCrtcGamma) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeModeInfo (modeInfo: <span class="kw-2">*mut </span>XRRModeInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeMonitors (monitors: <span class="kw-2">*mut </span>XRRMonitorInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeOutputInfo (outputInfo: <span class="kw-2">*mut </span>XRROutputInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreePanning (panning: <span class="kw-2">*mut </span>XRRPanning) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeProviderInfo (provider: <span class="kw-2">*mut </span>XRRProviderInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeProviderResources (resources: <span class="kw-2">*mut </span>XRRProviderResources) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeScreenConfigInfo (config: <span class="kw-2">*mut </span>XRRScreenConfiguration) -&gt; (),
+    <span class="kw">pub fn </span>XRRFreeScreenResources (resources: <span class="kw-2">*mut </span>XRRScreenResources) -&gt; (),
+    <span class="kw">pub fn </span>XRRGetCrtcGamma (dpy: <span class="kw-2">*mut </span>Display, crtc: RRCrtc) -&gt; <span class="kw-2">*mut </span>XRRCrtcGamma,
+    <span class="kw">pub fn </span>XRRGetCrtcGammaSize (dpy: <span class="kw-2">*mut </span>Display, crtc: RRCrtc) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRGetCrtcInfo (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, crtc: RRCrtc) -&gt; <span class="kw-2">*mut </span>XRRCrtcInfo,
+    <span class="kw">pub fn </span>XRRGetCrtcTransform (dpy: <span class="kw-2">*mut </span>Display, crtc: RRCrtc, attributes: <span class="kw-2">*mut *mut </span>XRRCrtcTransformAttributes) -&gt; Status,
+    <span class="kw">pub fn </span>XRRGetMonitors (dpy: <span class="kw-2">*mut </span>Display, window: Window, get_active: Bool, nmonitors: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XRRMonitorInfo,
+    <span class="kw">pub fn </span>XRRGetOutputInfo (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, output: RROutput) -&gt; <span class="kw-2">*mut </span>XRROutputInfo,
+    <span class="kw">pub fn </span>XRRGetOutputPrimary (dpy: <span class="kw-2">*mut </span>Display, window: Window) -&gt; RROutput,
+    <span class="kw">pub fn </span>XRRGetOutputProperty (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, property: Atom, offset: c_long, length: c_long, _delete: Bool, pending: Bool, req_type: Atom, actual_type: <span class="kw-2">*mut </span>Atom, actual_format: <span class="kw-2">*mut </span>c_int, nitems: <span class="kw-2">*mut </span>c_ulong, bytes_after: <span class="kw-2">*mut </span>c_ulong, prop: <span class="kw-2">*mut *mut </span>c_uchar) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRGetPanning (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, crtc: RRCrtc) -&gt; <span class="kw-2">*mut </span>XRRPanning,
+    <span class="kw">pub fn </span>XRRGetProviderInfo (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, provider: RRProvider) -&gt; <span class="kw-2">*mut </span>XRRProviderInfo,
+    <span class="kw">pub fn </span>XRRGetProviderProperty (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, property: Atom, offset: c_long, length: c_long, _delete: Bool, pending: Bool, req_type: Atom, actual_type: <span class="kw-2">*mut </span>Atom, actual_format: <span class="kw-2">*mut </span>c_int, nitems: <span class="kw-2">*mut </span>c_ulong, bytes_after: <span class="kw-2">*mut </span>c_ulong, prop: <span class="kw-2">*mut *mut </span>c_uchar) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRGetProviderResources (dpy: <span class="kw-2">*mut </span>Display, window: Window) -&gt; <span class="kw-2">*mut </span>XRRProviderResources,
+    <span class="kw">pub fn </span>XRRGetScreenInfo (dpy: <span class="kw-2">*mut </span>Display, window: Window) -&gt; <span class="kw-2">*mut </span>XRRScreenConfiguration,
+    <span class="kw">pub fn </span>XRRGetScreenResources (dpy: <span class="kw-2">*mut </span>Display, window: Window) -&gt; <span class="kw-2">*mut </span>XRRScreenResources,
+    <span class="kw">pub fn </span>XRRGetScreenResourcesCurrent (dpy: <span class="kw-2">*mut </span>Display, window: Window) -&gt; <span class="kw-2">*mut </span>XRRScreenResources,
+    <span class="kw">pub fn </span>XRRGetScreenSizeRange (dpy: <span class="kw-2">*mut </span>Display, window: Window, minWidth: <span class="kw-2">*mut </span>c_int, minHeight: <span class="kw-2">*mut </span>c_int, maxWidth: <span class="kw-2">*mut </span>c_int, maxHeight: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XRRListOutputProperties (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, nprop: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>Atom,
+    <span class="kw">pub fn </span>XRRListProviderProperties (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, nprop: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>Atom,
+    <span class="kw">pub fn </span>XRRQueryExtension (dpy: <span class="kw-2">*mut </span>Display, event_base_return: <span class="kw-2">*mut </span>c_int, error_base_return: <span class="kw-2">*mut </span>c_int) -&gt; Bool,
+    <span class="kw">pub fn </span>XRRQueryOutputProperty (dpy: <span class="kw-2">*mut </span>Display, output: RROutput, property: Atom) -&gt; <span class="kw-2">*mut </span>XRRPropertyInfo,
+    <span class="kw">pub fn </span>XRRQueryProviderProperty (dpy: <span class="kw-2">*mut </span>Display, provider: RRProvider, property: Atom) -&gt; <span class="kw-2">*mut </span>XRRPropertyInfo,
+    <span class="kw">pub fn </span>XRRQueryVersion (dpy: <span class="kw-2">*mut </span>Display, major_version_return: <span class="kw-2">*mut </span>c_int, minor_version_return: <span class="kw-2">*mut </span>c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XRRRates (dpy: <span class="kw-2">*mut </span>Display, screen: c_int, sizeID: c_int, nrates: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>c_short,
+    <span class="kw">pub fn </span>XRRRootToScreen (dpy: <span class="kw-2">*mut </span>Display, root: Window) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRRotations (dpy: <span class="kw-2">*mut </span>Display, screen: c_int, current_rotation: <span class="kw-2">*mut </span>Rotation) -&gt; Rotation,
+    <span class="kw">pub fn </span>XRRSelectInput (dpy: <span class="kw-2">*mut </span>Display, window: Window, mask: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XRRSetCrtcConfig (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, crtc: RRCrtc, timestamp: Time, x: c_int, y: c_int, mode: RRMode, rotation: Rotation, outputs: <span class="kw-2">*mut </span>RROutput, noutputs: c_int) -&gt; Status,
+    <span class="kw">pub fn </span>XRRSetCrtcGamma (dpy: <span class="kw-2">*mut </span>Display, crtc: RRCrtc, gamma: <span class="kw-2">*mut </span>XRRCrtcGamma) -&gt; (),
+    <span class="kw">pub fn </span>XRRSetCrtcTransform (dpy: <span class="kw-2">*mut </span>Display, crtc: RRCrtc, transform: <span class="kw-2">*mut </span>XTransform, filter: <span class="kw-2">*const </span>c_char, params: <span class="kw-2">*mut </span>XFixed, nparams: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XRRSetMonitor (dpy: <span class="kw-2">*mut </span>Display, window: Window, monitor: <span class="kw-2">*mut </span>XRRMonitorInfo) -&gt; (),
+    <span class="kw">pub fn </span>XRRSetOutputPrimary (dpy: <span class="kw-2">*mut </span>Display, window: Window, output: RROutput) -&gt; (),
+    <span class="kw">pub fn </span>XRRSetPanning (dpy: <span class="kw-2">*mut </span>Display, resources: <span class="kw-2">*mut </span>XRRScreenResources, crtc: RRCrtc, panning: <span class="kw-2">*mut </span>XRRPanning) -&gt; Status,
+    <span class="kw">pub fn </span>XRRSetProviderOffloadSink (dpy: <span class="kw-2">*mut </span>Display, provider: XID, sink_provider: XID) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRSetProviderOutputSource (dpy: <span class="kw-2">*mut </span>Display, provider: XID, source_provider: XID) -&gt; c_int,
+    <span class="kw">pub fn </span>XRRSetScreenConfig (dpy: <span class="kw-2">*mut </span>Display, config: <span class="kw-2">*mut </span>XRRScreenConfiguration, draw: Drawable, size_index: c_int, rotation: Rotation, timestamp: Time) -&gt; Status,
+    <span class="kw">pub fn </span>XRRSetScreenConfigAndRate (dpy: <span class="kw-2">*mut </span>Display, config: <span class="kw-2">*mut </span>XRRScreenConfiguration, draw: Drawable, size_index: c_int, rotation: Rotation, rate: c_short, timestamp: Time) -&gt; Status,
+    <span class="kw">pub fn </span>XRRSetScreenSize (dpy: <span class="kw-2">*mut </span>Display, window: Window, width: c_int, height: c_int, mmWidth: c_int, mmHeight: c_int) -&gt; (),
+    <span class="kw">pub fn </span>XRRSizes (dpy: <span class="kw-2">*mut </span>Display, screen: c_int, nsizes: <span class="kw-2">*mut </span>c_int) -&gt; <span class="kw-2">*mut </span>XRRScreenSize,
+    <span class="kw">pub fn </span>XRRTimes (dpy: <span class="kw-2">*mut </span>Display, screen: c_int, config_timestamp: <span class="kw-2">*mut </span>Time) -&gt; Time,
+    <span class="kw">pub fn </span>XRRUpdateConfiguration (event: <span class="kw-2">*mut </span>XEvent) -&gt; c_int,
+variadic:
+globals:
 }
 
-<span class="comment">//</span>
-<span class="comment">// types</span>
-<span class="comment">//</span>
+<span class="comment">//
+// types
+//
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Connection</span> <span class="op">=</span> <span class="ident">c_ushort</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">Rotation</span> <span class="op">=</span> <span class="ident">c_ushort</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SizeID</span> <span class="op">=</span> <span class="ident">c_ushort</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">SubpixelOrder</span> <span class="op">=</span> <span class="ident">c_ushort</span>;
+</span><span class="kw">pub type </span>Connection = c_ushort;
+<span class="kw">pub type </span>Rotation = c_ushort;
+<span class="kw">pub type </span>SizeID = c_ushort;
+<span class="kw">pub type </span>SubpixelOrder = c_ushort;
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RROutput</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RRCrtc</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RRMode</span> <span class="op">=</span> <span class="ident">XID</span>;
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">RRProvider</span> <span class="op">=</span> <span class="ident">XID</span>;
+<span class="kw">pub type </span>RROutput = XID;
+<span class="kw">pub type </span>RRCrtc = XID;
+<span class="kw">pub type </span>RRMode = XID;
+<span class="kw">pub type </span>RRProvider = XID;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRScreenSize</span> {
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mwidth</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mheight</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRScreenSize {
+    <span class="kw">pub </span>width: c_int,
+    <span class="kw">pub </span>height: c_int,
+    <span class="kw">pub </span>mwidth: c_int,
+    <span class="kw">pub </span>mheight: c_int,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRScreenConfiguration</span>;
+<span class="attribute">#[repr(C)]
+</span><span class="kw">pub struct </span>XRRScreenConfiguration;
 
-<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">XRRModeFlags</span> <span class="op">=</span> <span class="ident">c_ulong</span>;
+<span class="kw">pub type </span>XRRModeFlags = c_ulong;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRModeInfo</span> {
-    <span class="kw">pub</span> <span class="ident">id</span>: <span class="ident">RRMode</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">dotClock</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">hSyncStart</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">hSyncEnd</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">hTotal</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">hSkew</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">vSyncStart</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">vSyncEnd</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">vTotal</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">nameLength</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">modeFlags</span>: <span class="ident">XRRModeFlags</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRModeInfo {
+    <span class="kw">pub </span>id: RRMode,
+    <span class="kw">pub </span>width: c_uint,
+    <span class="kw">pub </span>height: c_uint,
+    <span class="kw">pub </span>dotClock: c_ulong,
+    <span class="kw">pub </span>hSyncStart: c_uint,
+    <span class="kw">pub </span>hSyncEnd: c_uint,
+    <span class="kw">pub </span>hTotal: c_uint,
+    <span class="kw">pub </span>hSkew: c_uint,
+    <span class="kw">pub </span>vSyncStart: c_uint,
+    <span class="kw">pub </span>vSyncEnd: c_uint,
+    <span class="kw">pub </span>vTotal: c_uint,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>nameLength: c_uint,
+    <span class="kw">pub </span>modeFlags: XRRModeFlags,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRScreenResources</span> {
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">configTimestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">ncrtc</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">crtcs</span>: <span class="kw-2">*mut</span> <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">noutput</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">outputs</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">nmode</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">modes</span>: <span class="kw-2">*mut</span> <span class="ident">XRRModeInfo</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRScreenResources {
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>configTimestamp: Time,
+    <span class="kw">pub </span>ncrtc: c_int,
+    <span class="kw">pub </span>crtcs: <span class="kw-2">*mut </span>RRCrtc,
+    <span class="kw">pub </span>noutput: c_int,
+    <span class="kw">pub </span>outputs: <span class="kw-2">*mut </span>RROutput,
+    <span class="kw">pub </span>nmode: c_int,
+    <span class="kw">pub </span>modes: <span class="kw-2">*mut </span>XRRModeInfo,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRROutputInfo</span> {
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">nameLen</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mm_width</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">mm_height</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">connection</span>: <span class="ident">Connection</span>,
-    <span class="kw">pub</span> <span class="ident">subpixel_order</span>: <span class="ident">SubpixelOrder</span>,
-    <span class="kw">pub</span> <span class="ident">ncrtc</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">crtcs</span>: <span class="kw-2">*mut</span> <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">nclone</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">clones</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">nmode</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">npreferred</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">modes</span>: <span class="kw-2">*mut</span> <span class="ident">RRMode</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRROutputInfo {
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>crtc: RRCrtc,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>nameLen: c_int,
+    <span class="kw">pub </span>mm_width: c_ulong,
+    <span class="kw">pub </span>mm_height: c_ulong,
+    <span class="kw">pub </span>connection: Connection,
+    <span class="kw">pub </span>subpixel_order: SubpixelOrder,
+    <span class="kw">pub </span>ncrtc: c_int,
+    <span class="kw">pub </span>crtcs: <span class="kw-2">*mut </span>RRCrtc,
+    <span class="kw">pub </span>nclone: c_int,
+    <span class="kw">pub </span>clones: <span class="kw-2">*mut </span>RROutput,
+    <span class="kw">pub </span>nmode: c_int,
+    <span class="kw">pub </span>npreferred: c_int,
+    <span class="kw">pub </span>modes: <span class="kw-2">*mut </span>RRMode,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRPropertyInfo</span> {
-    <span class="kw">pub</span> <span class="ident">pending</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">range</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">immutable</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">num_values</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">values</span>: <span class="kw-2">*mut</span> <span class="ident">c_long</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRPropertyInfo {
+    <span class="kw">pub </span>pending: Bool,
+    <span class="kw">pub </span>range: Bool,
+    <span class="kw">pub </span>immutable: Bool,
+    <span class="kw">pub </span>num_values: c_int,
+    <span class="kw">pub </span>values: <span class="kw-2">*mut </span>c_long,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRCrtcInfo</span> {
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">RRMode</span>,
-    <span class="kw">pub</span> <span class="ident">rotation</span>: <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="ident">noutput</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">outputs</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">rotations</span>: <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="ident">npossible</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">possible</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRCrtcInfo {
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>x: c_int,
+    <span class="kw">pub </span>y: c_int,
+    <span class="kw">pub </span>width: c_uint,
+    <span class="kw">pub </span>height: c_uint,
+    <span class="kw">pub </span>mode: RRMode,
+    <span class="kw">pub </span>rotation: Rotation,
+    <span class="kw">pub </span>noutput: c_int,
+    <span class="kw">pub </span>outputs: <span class="kw-2">*mut </span>RROutput,
+    <span class="kw">pub </span>rotations: Rotation,
+    <span class="kw">pub </span>npossible: c_int,
+    <span class="kw">pub </span>possible: <span class="kw-2">*mut </span>RROutput,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRCrtcGamma</span> {
-    <span class="kw">pub</span> <span class="ident">size</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">red</span>: <span class="kw-2">*mut</span> <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">green</span>: <span class="kw-2">*mut</span> <span class="ident">c_ushort</span>,
-    <span class="kw">pub</span> <span class="ident">blue</span>: <span class="kw-2">*mut</span> <span class="ident">c_ushort</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRCrtcGamma {
+    <span class="kw">pub </span>size: c_int,
+    <span class="kw">pub </span>red: <span class="kw-2">*mut </span>c_ushort,
+    <span class="kw">pub </span>green: <span class="kw-2">*mut </span>c_ushort,
+    <span class="kw">pub </span>blue: <span class="kw-2">*mut </span>c_ushort,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRCrtcTransformAttributes</span> {
-    <span class="kw">pub</span> <span class="ident">pendingTransform</span>: <span class="ident">XTransform</span>,
-    <span class="kw">pub</span> <span class="ident">pendingFilter</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">pendingNparams</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">pendingParams</span>: <span class="kw-2">*mut</span> <span class="ident">XFixed</span>,
-    <span class="kw">pub</span> <span class="ident">currentTransform</span>: <span class="ident">XTransform</span>,
-    <span class="kw">pub</span> <span class="ident">currentFilter</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">currentNparams</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">currentParams</span>: <span class="kw-2">*mut</span> <span class="ident">XFixed</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRCrtcTransformAttributes {
+    <span class="kw">pub </span>pendingTransform: XTransform,
+    <span class="kw">pub </span>pendingFilter: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>pendingNparams: c_int,
+    <span class="kw">pub </span>pendingParams: <span class="kw-2">*mut </span>XFixed,
+    <span class="kw">pub </span>currentTransform: XTransform,
+    <span class="kw">pub </span>currentFilter: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>currentNparams: c_int,
+    <span class="kw">pub </span>currentParams: <span class="kw-2">*mut </span>XFixed,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRPanning</span> {
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">left</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">top</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">track_left</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">track_top</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">track_width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">track_height</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">border_left</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">border_top</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">border_right</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">border_bottom</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRPanning {
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>left: c_uint,
+    <span class="kw">pub </span>top: c_uint,
+    <span class="kw">pub </span>width: c_uint,
+    <span class="kw">pub </span>height: c_uint,
+    <span class="kw">pub </span>track_left: c_uint,
+    <span class="kw">pub </span>track_top: c_uint,
+    <span class="kw">pub </span>track_width: c_uint,
+    <span class="kw">pub </span>track_height: c_uint,
+    <span class="kw">pub </span>border_left: c_int,
+    <span class="kw">pub </span>border_top: c_int,
+    <span class="kw">pub </span>border_right: c_int,
+    <span class="kw">pub </span>border_bottom: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRProviderResources</span> {
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">nproviders</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">providers</span>: <span class="kw-2">*mut</span> <span class="ident">RRProvider</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRProviderResources {
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>nproviders: c_int,
+    <span class="kw">pub </span>providers: <span class="kw-2">*mut </span>RRProvider,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRProviderInfo</span> {
-    <span class="kw">pub</span> <span class="ident">capabilities</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">ncrtcs</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">crtcs</span>: <span class="kw-2">*mut</span> <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">noutputs</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">outputs</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span> <span class="ident">nassociatedproviders</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">associated_providers</span>: <span class="kw-2">*mut</span> <span class="ident">RRProvider</span>,
-    <span class="kw">pub</span> <span class="ident">associated_capability</span>: <span class="kw-2">*mut</span> <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">nameLen</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRProviderInfo {
+    <span class="kw">pub </span>capabilities: c_uint,
+    <span class="kw">pub </span>ncrtcs: c_int,
+    <span class="kw">pub </span>crtcs: <span class="kw-2">*mut </span>RRCrtc,
+    <span class="kw">pub </span>noutputs: c_int,
+    <span class="kw">pub </span>outputs: <span class="kw-2">*mut </span>RROutput,
+    <span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
+    <span class="kw">pub </span>nassociatedproviders: c_int,
+    <span class="kw">pub </span>associated_providers: <span class="kw-2">*mut </span>RRProvider,
+    <span class="kw">pub </span>associated_capability: <span class="kw-2">*mut </span>c_uint,
+    <span class="kw">pub </span>nameLen: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRMonitorInfo</span> {
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">primary</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">automatic</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">noutput</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mwidth</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mheight</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">outputs</span>: <span class="kw-2">*mut</span> <span class="ident">RROutput</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRMonitorInfo {
+    <span class="kw">pub </span>name: Atom,
+    <span class="kw">pub </span>primary: Bool,
+    <span class="kw">pub </span>automatic: Bool,
+    <span class="kw">pub </span>noutput: c_int,
+    <span class="kw">pub </span>x: c_int,
+    <span class="kw">pub </span>y: c_int,
+    <span class="kw">pub </span>width: c_int,
+    <span class="kw">pub </span>height: c_int,
+    <span class="kw">pub </span>mwidth: c_int,
+    <span class="kw">pub </span>mheight: c_int,
+    <span class="kw">pub </span>outputs: <span class="kw-2">*mut </span>RROutput,
 }
 
-<span class="comment">//</span>
-<span class="comment">// event structures</span>
-<span class="comment">//</span>
+<span class="comment">//
+// event structures
+//
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRScreenChangeNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">root</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">config_timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">size_index</span>: <span class="ident">SizeID</span>,
-    <span class="kw">pub</span> <span class="ident">subpixel_order</span>: <span class="ident">SubpixelOrder</span>,
-    <span class="kw">pub</span> <span class="ident">rotation</span>: <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mwidth</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">mheight</span>: <span class="ident">c_int</span>,
+</span><span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRScreenChangeNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>root: Window,
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>config_timestamp: Time,
+    <span class="kw">pub </span>size_index: SizeID,
+    <span class="kw">pub </span>subpixel_order: SubpixelOrder,
+    <span class="kw">pub </span>rotation: Rotation,
+    <span class="kw">pub </span>width: c_int,
+    <span class="kw">pub </span>height: c_int,
+    <span class="kw">pub </span>mwidth: c_int,
+    <span class="kw">pub </span>mheight: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRROutputChangeNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">output</span>: <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">RRMode</span>,
-    <span class="kw">pub</span> <span class="ident">rotation</span>: <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="ident">connection</span>: <span class="ident">Connection</span>,
-    <span class="kw">pub</span> <span class="ident">subpixel_order</span>: <span class="ident">SubpixelOrder</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRROutputChangeNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>output: RROutput,
+    <span class="kw">pub </span>crtc: RRCrtc,
+    <span class="kw">pub </span>mode: RRMode,
+    <span class="kw">pub </span>rotation: Rotation,
+    <span class="kw">pub </span>connection: Connection,
+    <span class="kw">pub </span>subpixel_order: SubpixelOrder,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRCrtcChangeNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">crtc</span>: <span class="ident">RRCrtc</span>,
-    <span class="kw">pub</span> <span class="ident">mode</span>: <span class="ident">RRMode</span>,
-    <span class="kw">pub</span> <span class="ident">rotation</span>: <span class="ident">Rotation</span>,
-    <span class="kw">pub</span> <span class="ident">x</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">y</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">width</span>: <span class="ident">c_uint</span>,
-    <span class="kw">pub</span> <span class="ident">height</span>: <span class="ident">c_uint</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRCrtcChangeNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>crtc: RRCrtc,
+    <span class="kw">pub </span>mode: RRMode,
+    <span class="kw">pub </span>rotation: Rotation,
+    <span class="kw">pub </span>x: c_int,
+    <span class="kw">pub </span>y: c_int,
+    <span class="kw">pub </span>width: c_uint,
+    <span class="kw">pub </span>height: c_uint,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRROutputPropertyNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">output</span>: <span class="ident">RROutput</span>,
-    <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRROutputPropertyNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>output: RROutput,
+    <span class="kw">pub </span>property: Atom,
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>state: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRProviderChangeNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">provider</span>: <span class="ident">RRProvider</span>,
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">current_role</span>: <span class="ident">c_uint</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRProviderChangeNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>provider: RRProvider,
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>current_role: c_uint,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRProviderPropertyNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">provider</span>: <span class="ident">RRProvider</span>,
-    <span class="kw">pub</span> <span class="ident">property</span>: <span class="ident">Atom</span>,
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
-    <span class="kw">pub</span> <span class="ident">state</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRProviderPropertyNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>provider: RRProvider,
+    <span class="kw">pub </span>property: Atom,
+    <span class="kw">pub </span>timestamp: Time,
+    <span class="kw">pub </span>state: c_int,
 }
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Clone</span>, <span class="ident">Copy</span>, <span class="ident">PartialEq</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">XRRResourceChangeNotifyEvent</span> {
-    <span class="kw">pub</span> <span class="ident">type_</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">serial</span>: <span class="ident">c_ulong</span>,
-    <span class="kw">pub</span> <span class="ident">send_event</span>: <span class="ident">Bool</span>,
-    <span class="kw">pub</span> <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">Display</span>,
-    <span class="kw">pub</span> <span class="ident">window</span>: <span class="ident">Window</span>,
-    <span class="kw">pub</span> <span class="ident">subtype</span>: <span class="ident">c_int</span>,
-    <span class="kw">pub</span> <span class="ident">timestamp</span>: <span class="ident">Time</span>,
+<span class="attribute">#[derive(Debug, Clone, Copy, PartialEq)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>XRRResourceChangeNotifyEvent {
+    <span class="kw">pub </span>type_: c_int,
+    <span class="kw">pub </span>serial: c_ulong,
+    <span class="kw">pub </span>send_event: Bool,
+    <span class="kw">pub </span>display: <span class="kw-2">*mut </span>Display,
+    <span class="kw">pub </span>window: Window,
+    <span class="kw">pub </span>subtype: c_int,
+    <span class="kw">pub </span>timestamp: Time,
 }
 
-<span class="macro">event_conversions_and_tests!</span> {
-  <span class="ident">xrr_screen_change_notify</span>: <span class="ident">XRRScreenChangeNotifyEvent</span>,
-  <span class="ident">xrr_notify</span>: <span class="ident">XRRNotifyEvent</span>,
-  <span class="ident">xrr_output_change_notify</span>: <span class="ident">XRROutputChangeNotifyEvent</span>,
-  <span class="ident">xrr_crtc_change_notify</span>: <span class="ident">XRRCrtcChangeNotifyEvent</span>,
-  <span class="ident">xrr_output_property_notify</span>: <span class="ident">XRROutputPropertyNotifyEvent</span>,
-  <span class="ident">xrr_provider_change_notify</span>: <span class="ident">XRRProviderChangeNotifyEvent</span>,
-  <span class="ident">xrr_provider_property_notify</span>: <span class="ident">XRRProviderPropertyNotifyEvent</span>,
-  <span class="ident">xrr_resource_change_notify</span>: <span class="ident">XRRResourceChangeNotifyEvent</span>,
+<span class="macro">event_conversions_and_tests! </span>{
+  xrr_screen_change_notify: XRRScreenChangeNotifyEvent,
+  xrr_notify: XRRNotifyEvent,
+  xrr_output_change_notify: XRROutputChangeNotifyEvent,
+  xrr_crtc_change_notify: XRRCrtcChangeNotifyEvent,
+  xrr_output_property_notify: XRROutputPropertyNotifyEvent,
+  xrr_provider_change_notify: XRRProviderChangeNotifyEvent,
+  xrr_provider_property_notify: XRRProviderPropertyNotifyEvent,
+  xrr_resource_change_notify: XRRResourceChangeNotifyEvent,
 }
 
-<span class="comment">//</span>
-<span class="comment">// constants</span>
-<span class="comment">//</span>
+<span class="comment">//
+// constants
+//
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RANDR_NAME</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;RANDR&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RANDR_MAJOR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RANDR_MINOR</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+</span><span class="kw">pub const </span>RANDR_NAME: <span class="kw-2">&amp;</span>str = <span class="string">&quot;RANDR&quot;</span>;
+<span class="kw">pub const </span>RANDR_MAJOR: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RANDR_MINOR: c_int = <span class="number">5</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNumberErrors</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNumberEvents</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNumberRequests</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">45</span>;
+<span class="kw">pub const </span>RRNumberErrors: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>RRNumberEvents: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RRNumberRequests: c_int = <span class="number">45</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRQueryVersion</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RROldGetScreenInfo</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetScreenConfig</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RROldScreenChangeSelectInput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSelectInput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetScreenInfo</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub const </span>X_RRQueryVersion: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>X_RROldGetScreenInfo: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>X_RRSetScreenConfig: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>X_RROldScreenChangeSelectInput: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>X_RRSelectInput: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>X_RRGetScreenInfo: c_int = <span class="number">5</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetScreenSizeRange</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">6</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetScreenSize</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">7</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetScreenResources</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetOutputInfo</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">9</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRListOutputProperties</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">10</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRQueryOutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">11</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRConfigureOutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">12</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRChangeOutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">13</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRDeleteOutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">14</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetOutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">15</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRCreateMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRDestroyMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">17</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRAddOutputMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">18</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRDeleteOutputMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">19</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetCrtcInfo</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">20</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetCrtcConfig</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">21</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetCrtcGammaSize</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">22</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetCrtcGamma</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">23</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetCrtcGamma</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">24</span>;
+<span class="kw">pub const </span>X_RRGetScreenSizeRange: c_int = <span class="number">6</span>;
+<span class="kw">pub const </span>X_RRSetScreenSize: c_int = <span class="number">7</span>;
+<span class="kw">pub const </span>X_RRGetScreenResources: c_int = <span class="number">8</span>;
+<span class="kw">pub const </span>X_RRGetOutputInfo: c_int = <span class="number">9</span>;
+<span class="kw">pub const </span>X_RRListOutputProperties: c_int = <span class="number">10</span>;
+<span class="kw">pub const </span>X_RRQueryOutputProperty: c_int = <span class="number">11</span>;
+<span class="kw">pub const </span>X_RRConfigureOutputProperty: c_int = <span class="number">12</span>;
+<span class="kw">pub const </span>X_RRChangeOutputProperty: c_int = <span class="number">13</span>;
+<span class="kw">pub const </span>X_RRDeleteOutputProperty: c_int = <span class="number">14</span>;
+<span class="kw">pub const </span>X_RRGetOutputProperty: c_int = <span class="number">15</span>;
+<span class="kw">pub const </span>X_RRCreateMode: c_int = <span class="number">16</span>;
+<span class="kw">pub const </span>X_RRDestroyMode: c_int = <span class="number">17</span>;
+<span class="kw">pub const </span>X_RRAddOutputMode: c_int = <span class="number">18</span>;
+<span class="kw">pub const </span>X_RRDeleteOutputMode: c_int = <span class="number">19</span>;
+<span class="kw">pub const </span>X_RRGetCrtcInfo: c_int = <span class="number">20</span>;
+<span class="kw">pub const </span>X_RRSetCrtcConfig: c_int = <span class="number">21</span>;
+<span class="kw">pub const </span>X_RRGetCrtcGammaSize: c_int = <span class="number">22</span>;
+<span class="kw">pub const </span>X_RRGetCrtcGamma: c_int = <span class="number">23</span>;
+<span class="kw">pub const </span>X_RRSetCrtcGamma: c_int = <span class="number">24</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetScreenResourcesCurrent</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">25</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetCrtcTransform</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">26</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetCrtcTransform</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">27</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetPanning</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">28</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetPanning</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">29</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetOutputPrimary</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">30</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetOutputPrimary</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">31</span>;
+<span class="kw">pub const </span>X_RRGetScreenResourcesCurrent: c_int = <span class="number">25</span>;
+<span class="kw">pub const </span>X_RRSetCrtcTransform: c_int = <span class="number">26</span>;
+<span class="kw">pub const </span>X_RRGetCrtcTransform: c_int = <span class="number">27</span>;
+<span class="kw">pub const </span>X_RRGetPanning: c_int = <span class="number">28</span>;
+<span class="kw">pub const </span>X_RRSetPanning: c_int = <span class="number">29</span>;
+<span class="kw">pub const </span>X_RRSetOutputPrimary: c_int = <span class="number">30</span>;
+<span class="kw">pub const </span>X_RRGetOutputPrimary: c_int = <span class="number">31</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetProviders</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">32</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetProviderInfo</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">33</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetProviderOffloadSink</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">34</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetProviderOutputSource</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">35</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRListProviderProperties</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">36</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRQueryProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">37</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRConfigureProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">38</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRChangeProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">39</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRDeleteProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">40</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">41</span>;
+<span class="kw">pub const </span>X_RRGetProviders: c_int = <span class="number">32</span>;
+<span class="kw">pub const </span>X_RRGetProviderInfo: c_int = <span class="number">33</span>;
+<span class="kw">pub const </span>X_RRSetProviderOffloadSink: c_int = <span class="number">34</span>;
+<span class="kw">pub const </span>X_RRSetProviderOutputSource: c_int = <span class="number">35</span>;
+<span class="kw">pub const </span>X_RRListProviderProperties: c_int = <span class="number">36</span>;
+<span class="kw">pub const </span>X_RRQueryProviderProperty: c_int = <span class="number">37</span>;
+<span class="kw">pub const </span>X_RRConfigureProviderProperty: c_int = <span class="number">38</span>;
+<span class="kw">pub const </span>X_RRChangeProviderProperty: c_int = <span class="number">39</span>;
+<span class="kw">pub const </span>X_RRDeleteProviderProperty: c_int = <span class="number">40</span>;
+<span class="kw">pub const </span>X_RRGetProviderProperty: c_int = <span class="number">41</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRGetMonitors</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">42</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRSetMonitor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">43</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_RRDeleteMonitor</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">44</span>;
+<span class="kw">pub const </span>X_RRGetMonitors: c_int = <span class="number">42</span>;
+<span class="kw">pub const </span>X_RRSetMonitor: c_int = <span class="number">43</span>;
+<span class="kw">pub const </span>X_RRDeleteMonitor: c_int = <span class="number">44</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRTransformUnit</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRTransformScaleUp</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRTransformScaleDown</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRTransformProjective</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
+<span class="kw">pub const </span>RRTransformUnit: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>RRTransformScaleUp: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>RRTransformScaleDown: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>RRTransformProjective: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRScreenChangeNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRCrtcChangeNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RROutputChangeNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RROutputPropertyNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRProviderChangeNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRProviderPropertyNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">5</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRResourceChangeNotifyMask</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">6</span>;
+<span class="kw">pub const </span>RRScreenChangeNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>;
+<span class="kw">pub const </span>RRCrtcChangeNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>;
+<span class="kw">pub const </span>RROutputChangeNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>;
+<span class="kw">pub const </span>RROutputPropertyNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>;
+<span class="kw">pub const </span>RRProviderChangeNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">4</span>;
+<span class="kw">pub const </span>RRProviderPropertyNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">5</span>;
+<span class="kw">pub const </span>RRResourceChangeNotifyMask: c_int = <span class="number">1 </span>&lt;&lt; <span class="number">6</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRScreenChangeNotify</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_CrtcChange</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_OutputChange</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_OutputProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_ProviderChange</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_ProviderProperty</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRNotify_ResourceChange</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="kw">pub const </span>RRScreenChangeNotify: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RRNotify: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RRNotify_CrtcChange: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RRNotify_OutputChange: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RRNotify_OutputProperty: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RRNotify_ProviderChange: c_int = <span class="number">3</span>;
+<span class="kw">pub const </span>RRNotify_ProviderProperty: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>RRNotify_ResourceChange: c_int = <span class="number">5</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Rotate_0</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Rotate_90</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Rotate_180</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Rotate_270</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="kw">pub const </span>RR_Rotate_0: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RR_Rotate_90: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RR_Rotate_180: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>RR_Rotate_270: c_int = <span class="number">8</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Reflect_X</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">16</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Reflect_Y</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">32</span>;
+<span class="kw">pub const </span>RR_Reflect_X: c_int = <span class="number">16</span>;
+<span class="kw">pub const </span>RR_Reflect_Y: c_int = <span class="number">32</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRSetConfigSuccess</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRSetConfigInvalidConfigTime</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRSetConfigInvalidTime</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RRSetConfigFailed</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub const </span>RRSetConfigSuccess: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RRSetConfigInvalidConfigTime: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RRSetConfigInvalidTime: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RRSetConfigFailed: c_int = <span class="number">3</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_HSyncPositive</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000001</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_HSyncNegative</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000002</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_VSyncPositive</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000004</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_VSyncNegative</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000008</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Interlace</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000010</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_DoubleScan</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000020</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_CSync</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000040</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_CSyncPositive</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000080</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_CSyncNegative</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000100</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_HSkewPresent</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000200</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_BCast</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000400</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PixelMultiplex</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00000800</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_DoubleClock</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00001000</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_ClockDivideBy2</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0x00002000</span>;
+<span class="kw">pub const </span>RR_HSyncPositive: c_int = <span class="number">0x00000001</span>;
+<span class="kw">pub const </span>RR_HSyncNegative: c_int = <span class="number">0x00000002</span>;
+<span class="kw">pub const </span>RR_VSyncPositive: c_int = <span class="number">0x00000004</span>;
+<span class="kw">pub const </span>RR_VSyncNegative: c_int = <span class="number">0x00000008</span>;
+<span class="kw">pub const </span>RR_Interlace: c_int = <span class="number">0x00000010</span>;
+<span class="kw">pub const </span>RR_DoubleScan: c_int = <span class="number">0x00000020</span>;
+<span class="kw">pub const </span>RR_CSync: c_int = <span class="number">0x00000040</span>;
+<span class="kw">pub const </span>RR_CSyncPositive: c_int = <span class="number">0x00000080</span>;
+<span class="kw">pub const </span>RR_CSyncNegative: c_int = <span class="number">0x00000100</span>;
+<span class="kw">pub const </span>RR_HSkewPresent: c_int = <span class="number">0x00000200</span>;
+<span class="kw">pub const </span>RR_BCast: c_int = <span class="number">0x00000400</span>;
+<span class="kw">pub const </span>RR_PixelMultiplex: c_int = <span class="number">0x00000800</span>;
+<span class="kw">pub const </span>RR_DoubleClock: c_int = <span class="number">0x00001000</span>;
+<span class="kw">pub const </span>RR_ClockDivideBy2: c_int = <span class="number">0x00002000</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Connected</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Disconnected</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_UnknownConnection</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="kw">pub const </span>RR_Connected: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RR_Disconnected: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RR_UnknownConnection: c_int = <span class="number">2</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadRROutput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadRRCrtc</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadRRMode</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">BadRRProvider</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="kw">pub const </span>BadRROutput: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>BadRRCrtc: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>BadRRMode: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>BadRRProvider: c_int = <span class="number">3</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_BACKLIGHT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Backlight&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_RANDR_EDID</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;EDID&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_SIGNAL_FORMAT</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;SignalFormat&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_SIGNAL_PROPERTIES</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;SignalProperties&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_CONNECTOR_TYPE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ConnectorType&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_CONNECTOR_NUMBER</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;ConnectorNumber&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_COMPATIBILITY_LIST</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;CompatibilityList&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_CLONE_LIST</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;CloneList&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_BORDER</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;Border&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_BORDER_DIMENSIONS</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;BorderDimensions&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_GUID</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;GUID&quot;</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_PROPERTY_RANDR_TILE</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;TILE&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_BACKLIGHT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Backlight&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_RANDR_EDID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;EDID&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_SIGNAL_FORMAT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;SignalFormat&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_SIGNAL_PROPERTIES: <span class="kw-2">&amp;</span>str = <span class="string">&quot;SignalProperties&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_CONNECTOR_TYPE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;ConnectorType&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_CONNECTOR_NUMBER: <span class="kw-2">&amp;</span>str = <span class="string">&quot;ConnectorNumber&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_COMPATIBILITY_LIST: <span class="kw-2">&amp;</span>str = <span class="string">&quot;CompatibilityList&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_CLONE_LIST: <span class="kw-2">&amp;</span>str = <span class="string">&quot;CloneList&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_BORDER: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Border&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_BORDER_DIMENSIONS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BorderDimensions&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_GUID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;GUID&quot;</span>;
+<span class="kw">pub const </span>RR_PROPERTY_RANDR_TILE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;TILE&quot;</span>;
 
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Capability_None</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">0</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Capability_SourceOutput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">1</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Capability_SinkOutput</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">2</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Capability_SourceOffload</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">4</span>;
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RR_Capability_SinkOffload</span>: <span class="ident">c_int</span> <span class="op">=</span> <span class="number">8</span>;
+<span class="kw">pub const </span>RR_Capability_None: c_int = <span class="number">0</span>;
+<span class="kw">pub const </span>RR_Capability_SourceOutput: c_int = <span class="number">1</span>;
+<span class="kw">pub const </span>RR_Capability_SinkOutput: c_int = <span class="number">2</span>;
+<span class="kw">pub const </span>RR_Capability_SourceOffload: c_int = <span class="number">4</span>;
+<span class="kw">pub const </span>RR_Capability_SinkOffload: c_int = <span class="number">8</span>;
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="x11" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

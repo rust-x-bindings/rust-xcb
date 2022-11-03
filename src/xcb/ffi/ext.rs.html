@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xcb/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/ext.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xcb/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -289,42 +289,42 @@
  * OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  * DEALINGS IN THE SOFTWARE.
- */</span>
+ */
 
-<span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::ffi::base</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>, <span class="ident">iovec</span>};
+</span><span class="kw">use </span><span class="kw">crate</span>::ffi::base::<span class="kw-2">*</span>;
+<span class="kw">use </span>libc::{c_char, c_int, c_uint, c_void, iovec};
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>, <span class="ident">Copy</span>, <span class="ident">Clone</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_extension_t</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">global_id</span>: <span class="ident">c_int</span>,
+<span class="attribute">#[derive(Debug, Copy, Clone)]
+#[repr(C)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>xcb_extension_t {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) name: <span class="kw-2">*const </span>c_char,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) global_id: c_int,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_protocol_request_t</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">count</span>: <span class="ident">usize</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">ext</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_extension_t</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">opcode</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">isvoid</span>: <span class="ident">u8</span>,
+<span class="attribute">#[repr(C)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>xcb_protocol_request_t {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) count: usize,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) ext: <span class="kw-2">*mut </span>xcb_extension_t,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) opcode: u8,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) isvoid: u8,
 }
 
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">xcb_send_request_flags_t</span> {
-    <span class="ident">XCB_REQUEST_CHECKED</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">0</span>,
-    <span class="ident">XCB_REQUEST_RAW</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">1</span>,
-    <span class="ident">XCB_REQUEST_DISCARD_REPLY</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">2</span>,
-    <span class="ident">XCB_REQUEST_REPLY_FDS</span> <span class="op">=</span> <span class="number">1</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">3</span>,
+<span class="attribute">#[repr(C)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>xcb_send_request_flags_t {
+    XCB_REQUEST_CHECKED = <span class="number">1 </span>&lt;&lt; <span class="number">0</span>,
+    XCB_REQUEST_RAW = <span class="number">1 </span>&lt;&lt; <span class="number">1</span>,
+    XCB_REQUEST_DISCARD_REPLY = <span class="number">1 </span>&lt;&lt; <span class="number">2</span>,
+    XCB_REQUEST_REPLY_FDS = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>,
 }
 
-<span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;xcb&quot;</span>)]</span>
-<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
-    ) -&gt; <span class="ident">c_uint</span>;
+<span class="attribute">#[link(name = <span class="string">&quot;xcb&quot;</span>)]
+</span><span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_request(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        flags: c_int,
+        vector: <span class="kw-2">*mut </span>iovec,
+        request: <span class="kw-2">*const </span>xcb_protocol_request_t,
+    ) -&gt; c_uint;
 
     <span class="doccomment">/**
      * @brief Send a request to the server.
@@ -353,22 +353,22 @@
      *
      * Please note that xcb might use index -1 and -2 of the @p vector array internally,
      * so they must be valid!
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request_with_fds</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
-        <span class="ident">num_fds</span>: <span class="ident">c_uint</span>,
-        <span class="ident">fds</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-    ) -&gt; <span class="ident">c_uint</span>;
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_request_with_fds(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        flags: c_int,
+        vector: <span class="kw-2">*mut </span>iovec,
+        request: <span class="kw-2">*const </span>xcb_protocol_request_t,
+        num_fds: c_uint,
+        fds: <span class="kw-2">*mut </span>c_int,
+    ) -&gt; c_uint;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
-    ) -&gt; <span class="ident">u64</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_request64(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        flags: c_int,
+        vector: <span class="kw-2">*mut </span>iovec,
+        request: <span class="kw-2">*const </span>xcb_protocol_request_t,
+    ) -&gt; u64;
 
     <span class="doccomment">/**
      * @brief Send a request to the server, with 64-bit sequence number returned.
@@ -398,15 +398,15 @@
      *
      * Please note that xcb might use index -1 and -2 of the @p vector array internally,
      * so they must be valid!
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_request_with_fds64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
-        <span class="ident">request</span>: <span class="kw-2">*const</span> <span class="ident">xcb_protocol_request_t</span>,
-        <span class="ident">num_fds</span>: <span class="ident">c_uint</span>,
-        <span class="ident">fds</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-    ) -&gt; <span class="ident">u64</span>;
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_request_with_fds64(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        flags: c_int,
+        vector: <span class="kw-2">*mut </span>iovec,
+        request: <span class="kw-2">*const </span>xcb_protocol_request_t,
+        num_fds: c_uint,
+        fds: <span class="kw-2">*mut </span>c_int,
+    ) -&gt; u64;
 
     <span class="doccomment">/**
      * @brief Send a file descriptor to the server in the next call to xcb_send_request.
@@ -419,8 +419,8 @@
      * @deprecated This function cannot be used in a thread-safe way. Two threads
      * that run xcb_send_fd(); xcb_send_request(); could mix up their file
      * descriptors. Instead, xcb_send_request_with_fds() should be used.
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_send_fd</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">fd</span>: <span class="ident">c_int</span>);
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_fd(c: <span class="kw-2">*mut </span>xcb_connection_t, fd: c_int);
 
     <span class="doccomment">/**
      * @brief Take over the write side of the socket
@@ -448,14 +448,14 @@
      * want errors to go to xcb&#39;s normal error handling, but instead having to be
      * picked up via xcb_wait_for_reply(), xcb_poll_for_reply() or
      * xcb_request_check().
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_take_socket</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">return_socket</span>: <span class="kw">fn</span>(<span class="ident">closure</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>),
-        <span class="ident">closure</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-        <span class="ident">flags</span>: <span class="ident">c_int</span>,
-        <span class="ident">sent</span>: <span class="kw-2">*mut</span> <span class="ident">u64</span>,
-    ) -&gt; <span class="ident">c_int</span>;
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_take_socket(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        return_socket: <span class="kw">fn</span>(closure: <span class="kw-2">*mut </span>c_void),
+        closure: <span class="kw-2">*mut </span>c_void,
+        flags: c_int,
+        sent: <span class="kw-2">*mut </span>u64,
+    ) -&gt; c_int;
 
     <span class="doccomment">/**
      * @brief Send raw data to the X server.
@@ -475,39 +475,39 @@
      * reply. You can again use GetInputFocus for this. You do not have to wait for
      * any of the GetInputFocus replies, but can instead handle them via
      * xcb_discard_reply().
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_writev</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">vector</span>: <span class="kw-2">*mut</span> <span class="ident">iovec</span>,
-        <span class="ident">count</span>: <span class="ident">c_int</span>,
-        <span class="ident">requests</span>: <span class="ident">u64</span>,
-    ) -&gt; <span class="ident">c_int</span>;
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_writev(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        vector: <span class="kw-2">*mut </span>iovec,
+        count: c_int,
+        requests: u64,
+    ) -&gt; c_int;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">request</span>: <span class="ident">c_uint</span>,
-        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_wait_for_reply(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        request: c_uint,
+        e: <span class="kw-2">*mut *mut </span>xcb_generic_error_t,
+    ) -&gt; <span class="kw-2">*mut </span>c_void;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_reply64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">request</span>: <span class="ident">u64</span>,
-        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_wait_for_reply64(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        request: u64,
+        e: <span class="kw-2">*mut *mut </span>xcb_generic_error_t,
+    ) -&gt; <span class="kw-2">*mut </span>c_void;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">request</span>: <span class="ident">c_uint</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_poll_for_reply(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        request: c_uint,
+        reply: <span class="kw-2">*mut *mut </span>c_void,
+        e: <span class="kw-2">*mut *mut </span>xcb_generic_error_t,
+    ) -&gt; <span class="kw-2">*mut </span>c_void;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_reply64</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">request</span>: <span class="ident">u64</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-        <span class="ident">e</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_void</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_poll_for_reply64(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        request: u64,
+        reply: <span class="kw-2">*mut *mut </span>c_void,
+        e: <span class="kw-2">*mut *mut </span>xcb_generic_error_t,
+    ) -&gt; <span class="kw-2">*mut </span>c_void;
 
     <span class="doccomment">/**
      * @brief Don&#39;t use this, only needed by the generated code.
@@ -515,12 +515,12 @@
      * @param reply A reply that was received from the server
      * @param replylen The size of the reply.
      * @return Pointer to the location where received file descriptors are stored.
-     */</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_reply_fds</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">reply</span>: <span class="kw-2">*mut</span> <span class="ident">c_void</span>,
-        <span class="ident">replylen</span>: <span class="ident">usize</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">c_int</span>;
+     */
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_get_reply_fds(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        reply: <span class="kw-2">*mut </span>c_void,
+        replylen: usize,
+    ) -&gt; <span class="kw-2">*mut </span>c_int;
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>

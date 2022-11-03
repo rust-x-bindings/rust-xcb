@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/base.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xcb/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/base.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" href="../../../normalize.css"><link rel="stylesheet" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" href="../../../ayu.css" disabled><link rel="stylesheet" href="../../../dark.css" disabled><link rel="stylesheet" href="../../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../../storage.js"></script><script defer src="../../../source-script.js"></script><script defer src="../../../source-files.js"></script><script defer src="../../../main.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../../xcb/index.html"><div class="logo-container"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../../xcb/index.html"><img class="rust-logo" src="../../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -207,214 +207,214 @@
 <span id="207">207</span>
 <span id="208">208</span>
 <span id="209">209</span>
-</pre><pre class="rust"><code><span class="kw">use</span> <span class="ident"><span class="kw">crate</span>::AuthInfo</span>;
+</pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::AuthInfo;
 
-<span class="kw">use</span> <span class="ident"><span class="kw">super</span>::ext</span>::<span class="kw-2">*</span>;
-<span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>, <span class="ident">c_uint</span>, <span class="ident">c_void</span>};
+<span class="kw">use </span><span class="kw">super</span>::ext::<span class="kw-2">*</span>;
+<span class="kw">use </span>libc::{c_char, c_int, c_uint, c_void};
 
-<span class="doccomment">/// Current protocol version</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PROTOCOL</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">11</span>;
+<span class="doccomment">/// Current protocol version
+</span><span class="kw">pub const </span>X_PROTOCOL: u32 = <span class="number">11</span>;
 
-<span class="doccomment">/// Current minor version</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_PROTOCOL_REVISION</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">0</span>;
+<span class="doccomment">/// Current minor version
+</span><span class="kw">pub const </span>X_PROTOCOL_REVISION: u32 = <span class="number">0</span>;
 
-<span class="doccomment">/// X_TCP_PORT + display number = server port for TCP transport</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">X_TCP_PORT</span>: <span class="ident">u32</span> <span class="op">=</span> <span class="number">6000</span>;
+<span class="doccomment">/// X_TCP_PORT + display number = server port for TCP transport
+</span><span class="kw">pub const </span>X_TCP_PORT: u32 = <span class="number">6000</span>;
 
-<span class="doccomment">/// xcb connection errors because of socket, pipe and other stream errors.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_ERROR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">1</span>;
+<span class="doccomment">/// xcb connection errors because of socket, pipe and other stream errors.
+</span><span class="kw">pub const </span>XCB_CONN_ERROR: i32 = <span class="number">1</span>;
 
-<span class="doccomment">/// xcb connection shutdown because of extension not supported</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_EXT_NOTSUPPORTED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">2</span>;
+<span class="doccomment">/// xcb connection shutdown because of extension not supported
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_EXT_NOTSUPPORTED: i32 = <span class="number">2</span>;
 
-<span class="doccomment">/// malloc(), calloc() and realloc() error upon failure, for eg ENOMEM</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_MEM_INSUFFICIENT</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">3</span>;
+<span class="doccomment">/// malloc(), calloc() and realloc() error upon failure, for eg ENOMEM
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_MEM_INSUFFICIENT: i32 = <span class="number">3</span>;
 
-<span class="doccomment">/// Connection closed, exceeding request length that server accepts.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_REQ_LEN_EXCEED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">4</span>;
+<span class="doccomment">/// Connection closed, exceeding request length that server accepts.
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_REQ_LEN_EXCEED: i32 = <span class="number">4</span>;
 
-<span class="doccomment">/// Connection closed, error during parsing display string.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_PARSE_ERR</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">5</span>;
+<span class="doccomment">/// Connection closed, error during parsing display string.
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_PARSE_ERR: i32 = <span class="number">5</span>;
 
-<span class="doccomment">/// Connection closed because the server does not have a screen matching the display.</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_INVALID_SCREEN</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">6</span>;
+<span class="doccomment">/// Connection closed because the server does not have a screen matching the display.
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_INVALID_SCREEN: i32 = <span class="number">6</span>;
 
-<span class="doccomment">/// Connection closed because some FD passing operation failed</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_CONN_CLOSED_FDPASSING_FAILED</span>: <span class="ident">i32</span> <span class="op">=</span> <span class="number">7</span>;
+<span class="doccomment">/// Connection closed because some FD passing operation failed
+</span><span class="kw">pub const </span>XCB_CONN_CLOSED_FDPASSING_FAILED: i32 = <span class="number">7</span>;
 
-<span class="doccomment">/// XCB Connection structure.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A structure that contain all data that  XCB needs to communicate with an X server.</span>
-<span class="kw">pub</span> <span class="kw">enum</span> <span class="ident">xcb_connection_t</span> {}
+<span class="doccomment">/// XCB Connection structure.
+///
+/// A structure that contain all data that  XCB needs to communicate with an X server.
+</span><span class="kw">pub enum </span>xcb_connection_t {}
 
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum</span> <span class="ident">xcb_special_event_t</span> {}
+<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">enum </span>xcb_special_event_t {}
 
-<span class="doccomment">/// Generic event.</span>
-<span class="doccomment">///</span>
-<span class="doccomment">/// A generic event structure.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_generic_event_t</span> {
-    <span class="doccomment">/// Type of the response</span>
-    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// Padding</span>
-    <span class="kw">pub</span> <span class="ident">pad0</span>: <span class="ident">u8</span>,
-    <span class="doccomment">/// Sequence number</span>
-    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
-    <span class="doccomment">/// Padding</span>
-    <span class="kw">pub</span> <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">7</span>],
-    <span class="doccomment">/// full sequence</span>
-    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// Generic event.
+///
+/// A generic event structure.
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>xcb_generic_event_t {
+    <span class="doccomment">/// Type of the response
+    </span><span class="kw">pub </span>response_type: u8,
+    <span class="doccomment">/// Padding
+    </span><span class="kw">pub </span>pad0: u8,
+    <span class="doccomment">/// Sequence number
+    </span><span class="kw">pub </span>sequence: u16,
+    <span class="doccomment">/// Padding
+    </span><span class="kw">pub </span>pad: [u32; <span class="number">7</span>],
+    <span class="doccomment">/// full sequence
+    </span><span class="kw">pub </span>full_sequence: u32,
 }
 
-<span class="comment">// GE_GENERIC stuff is actually generated in X-proto, but we need it here in FFI form,</span>
-<span class="comment">// so it is just copy pasted from xproto.h</span>
+<span class="comment">// GE_GENERIC stuff is actually generated in X-proto, but we need it here in FFI form,
+// so it is just copy pasted from xproto.h
 
-<span class="doccomment">/// `response_type` number corresponding to a [xcb_ge_generic_event_t].</span>
-<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">XCB_GE_GENERIC</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">35</span>;
+</span><span class="doccomment">/// `response_type` number corresponding to a [xcb_ge_generic_event_t].
+</span><span class="kw">pub const </span>XCB_GE_GENERIC: u8 = <span class="number">35</span>;
 
-<span class="doccomment">/// FFI type for the Generic Event Extension.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_ge_generic_event_t</span> {
-    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">extension</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">length</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">event_type</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">pad0</span>: [<span class="ident">u8</span>; <span class="number">22</span>],
-    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// FFI type for the Generic Event Extension.
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>xcb_ge_generic_event_t {
+    <span class="kw">pub </span>response_type: u8,
+    <span class="kw">pub </span>extension: u8,
+    <span class="kw">pub </span>sequence: u16,
+    <span class="kw">pub </span>length: u32,
+    <span class="kw">pub </span>event_type: u16,
+    <span class="kw">pub </span>pad0: [u8; <span class="number">22</span>],
+    <span class="kw">pub </span>full_sequence: u32,
 }
 
-<span class="doccomment">/// Generic error</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">xcb_generic_error_t</span> {
-    <span class="kw">pub</span> <span class="ident">response_type</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">error_code</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">sequence</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">resource_id</span>: <span class="ident">u32</span>,
-    <span class="kw">pub</span> <span class="ident">minor_code</span>: <span class="ident">u16</span>,
-    <span class="kw">pub</span> <span class="ident">major_code</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">pad0</span>: <span class="ident">u8</span>,
-    <span class="kw">pub</span> <span class="ident">pad</span>: [<span class="ident">u32</span>; <span class="number">5</span>],
-    <span class="kw">pub</span> <span class="ident">full_sequence</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// Generic error
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+#[repr(C)]
+</span><span class="kw">pub struct </span>xcb_generic_error_t {
+    <span class="kw">pub </span>response_type: u8,
+    <span class="kw">pub </span>error_code: u8,
+    <span class="kw">pub </span>sequence: u16,
+    <span class="kw">pub </span>resource_id: u32,
+    <span class="kw">pub </span>minor_code: u16,
+    <span class="kw">pub </span>major_code: u8,
+    <span class="kw">pub </span>pad0: u8,
+    <span class="kw">pub </span>pad: [u32; <span class="number">5</span>],
+    <span class="kw">pub </span>full_sequence: u32,
 }
 
-<span class="doccomment">/// FFI type for a void request cookie.</span>
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>, <span class="ident">Clone</span>, <span class="ident">Debug</span>)]</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_void_cookie_t</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="ident">seq</span>: <span class="ident">u32</span>,
+<span class="doccomment">/// FFI type for a void request cookie.
+</span><span class="attribute">#[derive(Copy, Clone, Debug)]
+#[repr(C)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>xcb_void_cookie_t {
+    <span class="kw">pub</span>(<span class="kw">crate</span>) seq: u32,
 }
 
-<span class="doccomment">/// Container for authorization information.</span>
-<span class="doccomment">/// A container for authorization information to be sent to the X server</span>
-<span class="attribute">#[<span class="ident">repr</span>(<span class="ident">C</span>)]</span>
-<span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">xcb_auth_info_t</span> {
-    <span class="doccomment">/// length of the string name (as returned by strlen)</span>
-    <span class="kw">pub</span> <span class="ident">namelen</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// String containing the authentication protocol name,</span>
-    <span class="doccomment">/// such as &quot;MIT-MAGIC-COOKIE-1&quot; or &quot;XDM-AUTHORIZATION-1&quot;.</span>
-    <span class="kw">pub</span> <span class="ident">name</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-    <span class="doccomment">/// length of the data member</span>
-    <span class="kw">pub</span> <span class="ident">datalen</span>: <span class="ident">c_int</span>,
-    <span class="doccomment">/// data interpreted in a protocol specific manner</span>
-    <span class="kw">pub</span> <span class="ident">data</span>: <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
+<span class="doccomment">/// Container for authorization information.
+/// A container for authorization information to be sent to the X server
+</span><span class="attribute">#[repr(C)]
+</span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct </span>xcb_auth_info_t {
+    <span class="doccomment">/// length of the string name (as returned by strlen)
+    </span><span class="kw">pub </span>namelen: c_int,
+    <span class="doccomment">/// String containing the authentication protocol name,
+    /// such as &quot;MIT-MAGIC-COOKIE-1&quot; or &quot;XDM-AUTHORIZATION-1&quot;.
+    </span><span class="kw">pub </span>name: <span class="kw-2">*mut </span>c_char,
+    <span class="doccomment">/// length of the data member
+    </span><span class="kw">pub </span>datalen: c_int,
+    <span class="doccomment">/// data interpreted in a protocol specific manner
+    </span><span class="kw">pub </span>data: <span class="kw-2">*mut </span>c_char,
 }
 
-<span class="attribute">#[<span class="ident">link</span>(<span class="ident">name</span> <span class="op">=</span> <span class="string">&quot;xcb&quot;</span>)]</span>
-<span class="kw">extern</span> <span class="string">&quot;C&quot;</span> {
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_flush</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">c_int</span>;
+<span class="attribute">#[link(name = <span class="string">&quot;xcb&quot;</span>)]
+</span><span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_flush(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; c_int;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_maximum_request_length</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">u32</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_get_maximum_request_length(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; u32;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_prefetch_maximum_request_length</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">c_void</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_prefetch_maximum_request_length(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; c_void;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_event</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_wait_for_event(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_event</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_poll_for_event(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_queued_event</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_poll_for_queued_event(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_poll_for_special_event</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">se</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_special_event_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_poll_for_special_event(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        se: <span class="kw-2">*mut </span>xcb_special_event_t,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_wait_for_special_event</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">se</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_special_event_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_wait_for_special_event(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        se: <span class="kw-2">*mut </span>xcb_special_event_t,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_generic_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_register_for_special_xge</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">ext</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_extension_t</span>,
-        <span class="ident">eid</span>: <span class="ident">u32</span>,
-        <span class="ident">stamp</span>: <span class="kw-2">*mut</span> <span class="ident">u32</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_special_event_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_register_for_special_xge(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        ext: <span class="kw-2">*mut </span>xcb_extension_t,
+        eid: u32,
+        stamp: <span class="kw-2">*mut </span>u32,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_special_event_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_unregister_for_special_xge</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">se</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_special_event_t</span>,
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_unregister_for_special_xge(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        se: <span class="kw-2">*mut </span>xcb_special_event_t,
     );
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_request_check</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">cookie</span>: <span class="ident">xcb_void_cookie_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_generic_error_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_request_check(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        cookie: xcb_void_cookie_t,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_generic_error_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_discard_reply</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">sequence</span>: <span class="ident">c_uint</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_discard_reply(c: <span class="kw-2">*mut </span>xcb_connection_t, sequence: c_uint);
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_discard_reply64</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">sequence</span>: <span class="ident">u64</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_discard_reply64(c: <span class="kw-2">*mut </span>xcb_connection_t, sequence: u64);
 
-    <span class="comment">// We trick the result from `*const xcb_query_extension_reply_t` to `*const u8` to be compatible with</span>
-    <span class="comment">// `x::QueryExtensionReply::from_raw`</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_extension_data</span>(
-        <span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>,
-        <span class="ident">ext</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_extension_t</span>,
-    ) -&gt; <span class="kw-2">*const</span> <span class="ident">u8</span>;
+    <span class="comment">// We trick the result from `*const xcb_query_extension_reply_t` to `*const u8` to be compatible with
+    // `x::QueryExtensionReply::from_raw`
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_get_extension_data(
+        c: <span class="kw-2">*mut </span>xcb_connection_t,
+        ext: <span class="kw-2">*mut </span>xcb_extension_t,
+    ) -&gt; <span class="kw-2">*const </span>u8;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_prefetch_extension_data</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>, <span class="ident">ext</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_extension_t</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_prefetch_extension_data(c: <span class="kw-2">*mut </span>xcb_connection_t, ext: <span class="kw-2">*mut </span>xcb_extension_t);
 
-    <span class="comment">// We trick the result from `*const xcb_setup_t` to `*const u8` to be compatible with</span>
-    <span class="comment">// `x::Setup::from_data`</span>
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_setup</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="kw-2">*const</span> <span class="ident">u8</span>;
+    <span class="comment">// We trick the result from `*const xcb_setup_t` to `*const u8` to be compatible with
+    // `x::Setup::from_data`
+    </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_get_setup(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; <span class="kw-2">*const </span>u8;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_get_file_descriptor</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_get_file_descriptor(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; c_int;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_connection_has_error</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_connection_has_error(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; c_int;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_connect_to_fd</span>(
-        <span class="ident">fd</span>: <span class="ident">c_int</span>,
-        <span class="ident">auth_info</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_auth_info_t</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_connect_to_fd(
+        fd: c_int,
+        auth_info: <span class="kw-2">*mut </span>xcb_auth_info_t,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_connection_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_disconnect</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>);
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_disconnect(c: <span class="kw-2">*mut </span>xcb_connection_t);
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_parse_display</span>(
-        <span class="ident">name</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">host</span>: <span class="kw-2">*mut</span> <span class="kw-2">*mut</span> <span class="ident">c_char</span>,
-        <span class="ident">display</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-        <span class="ident">screen</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-    ) -&gt; <span class="ident">c_int</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_parse_display(
+        name: <span class="kw-2">*const </span>c_char,
+        host: <span class="kw-2">*mut *mut </span>c_char,
+        display: <span class="kw-2">*mut </span>c_int,
+        screen: <span class="kw-2">*mut </span>c_int,
+    ) -&gt; c_int;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_connect</span>(
-        <span class="ident">displayname</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">screenp</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_connect(
+        displayname: <span class="kw-2">*const </span>c_char,
+        screenp: <span class="kw-2">*mut </span>c_int,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_connection_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_connect_to_display_with_auth_info</span>(
-        <span class="ident">display</span>: <span class="kw-2">*const</span> <span class="ident">c_char</span>,
-        <span class="ident">auth</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_auth_info_t</span>,
-        <span class="ident">screen</span>: <span class="kw-2">*mut</span> <span class="ident">c_int</span>,
-    ) -&gt; <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_connect_to_display_with_auth_info(
+        display: <span class="kw-2">*const </span>c_char,
+        auth: <span class="kw-2">*mut </span>xcb_auth_info_t,
+        screen: <span class="kw-2">*mut </span>c_int,
+    ) -&gt; <span class="kw-2">*mut </span>xcb_connection_t;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_generate_id</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">u32</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_generate_id(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; u32;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_total_read</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">u64</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_total_read(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; u64;
 
-    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn</span> <span class="ident">xcb_total_written</span>(<span class="ident">c</span>: <span class="kw-2">*mut</span> <span class="ident">xcb_connection_t</span>) -&gt; <span class="ident">u64</span>;
+    <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_total_written(c: <span class="kw-2">*mut </span>xcb_connection_t) -&gt; u64;
 }
 </code></pre></div>
-</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../../" data-current-crate="xcb" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.65.0 (897e37553 2022-11-02)" ></div></body></html>
