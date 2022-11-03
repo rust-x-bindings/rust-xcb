@@ -5,10 +5,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [1.2.0] - 2022-11-03 - various authors
+### Fixed
+ - Segfault when DISPLAY is unset when using xlib
+ - Return `Unknown` instead of panic for unknown events (disabled feature) (#195)
+
 ### Changed
  - `resolve_event` returns `Event::Unknown` instead of panicking when the event could not be resolved.
  - Types such as `x::Cw` implement `Ord` and can be sorted dynamically (i.e. for `x::CreateWindow`)
  - `atoms_struct!` macro can specify `only_if_exists`
+ - add `Event::as_raw()`, `Connection::resolve_event()`
 
 ## [1.1.1] - 2022-03-19 - rtbo
 ### Fixed
