@@ -1636,6 +1636,14 @@ impl AsRawFd for Connection {
     }
 }
 
+// SAFETY: We provide a valid xcb_connection_t that is valid for as long as required by the trait.
+#[cfg(feature = "as-raw-xcb-connection")]
+unsafe impl as_raw_xcb_connection::AsRawXcbConnection for Connection {
+    fn as_raw_xcb_connection(&self) -> *mut as_raw_xcb_connection::xcb_connection_t {
+        self.get_raw_conn().cast()
+    }
+}
+
 impl Drop for Connection {
     fn drop(&mut self) {
         #[cfg(feature = "debug_atom_names")]
