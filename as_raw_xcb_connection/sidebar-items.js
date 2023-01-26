@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"enum":[["xcb_connection_t","XCB connection"]],"struct":[["ValidConnection","An assertion that this pointer is valid for as long as the underlying connection."]],"trait":[["AsRawXcbConnection","A trait to extract a raw `xcb_connection_t` from an object."]]};

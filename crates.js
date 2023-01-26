@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["bitflags","libc","x11","xcb"];
+window.ALL_CRATES = ["as_raw_xcb_connection","bitflags","libc","x11","xcb"];
