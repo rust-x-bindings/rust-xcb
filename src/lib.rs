@@ -118,7 +118,7 @@
 //!         data: b"My XCB Window",
 //!     });
 //!     // And check for success again
-//!     conn.check_request(cookie);
+//!     conn.check_request(cookie)?;
 //!
 //!     // We now show ("map" in X terminology) the window.
 //!     // This time we do not check for success, so we discard the cookie.
