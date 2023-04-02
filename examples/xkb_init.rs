@@ -11,7 +11,7 @@ fn main() -> xcb::Result<()> {
             wanted_minor: 0,
         }))?;
 
-        assert!(xkb_ver.supported(), "xkb-1.0 is not supported");
+        assert!(xkb_ver.supported(), "xkb-1.0 support is required");
     }
 
     // we now select what events we want to receive
