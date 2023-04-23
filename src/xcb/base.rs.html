@@ -1765,6 +1765,9 @@
 <a href="#1765" id="1765">1765</a>
 <a href="#1766" id="1766">1766</a>
 <a href="#1767" id="1767">1767</a>
+<a href="#1768" id="1768">1768</a>
+<a href="#1769" id="1769">1769</a>
+<a href="#1770" id="1770">1770</a>
 </pre><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
@@ -1990,10 +1993,11 @@
 
             <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
                 <span class="macro">debug_assert!</span>(wire_buf.len() &gt;= mem::size_of::&lt;<span class="self">Self</span>&gt;());
-                <span class="kw">unsafe </span>{
-                    <span class="kw-2">*</span>(wire_buf.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span><span class="self">Self</span>) = <span class="kw-2">*</span><span class="self">self</span>;
-                }
-                mem::size_of::&lt;<span class="self">Self</span>&gt;()
+                <span class="kw">let </span>buf_size = <span class="self">self</span>.wire_len();
+                <span class="kw">let </span>src =
+                    <span class="kw">unsafe </span>{ slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span><span class="self">Self </span><span class="kw">as </span><span class="kw-2">*const </span>u8, buf_size) };
+                wire_buf[..buf_size].copy_from_slice(src);
+                buf_size
             }
         }
 
@@ -2032,11 +2036,13 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="macro">debug_assert!</span>(wire_buf.len() &gt;= <span class="number">4</span>);
-        <span class="kw">unsafe </span>{
-            <span class="kw-2">*</span>(wire_buf.as_mut_ptr() <span class="kw">as </span><span class="kw-2">*mut </span>u32) = <span class="self">self</span>.resource_id();
-        }
-        <span class="number">4
-    </span>}
+        <span class="kw">let </span>buf_size = <span class="self">self</span>.wire_len();
+        <span class="kw">let </span>resource_id = <span class="self">self</span>.resource_id();
+        <span class="kw">let </span>src =
+            <span class="kw">unsafe </span>{ slice::from_raw_parts(<span class="kw-2">&amp;</span>resource_id <span class="kw">as </span><span class="kw-2">*const </span>u32 <span class="kw">as </span><span class="kw-2">*const </span>u8, buf_size) };
+        wire_buf[..buf_size].copy_from_slice(src);
+        buf_size
+    }
 }
 
 <span class="kw">impl</span>&lt;T: XidNew&gt; WiredIn <span class="kw">for </span>T {
