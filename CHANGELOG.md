@@ -6,9 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.2.1] - 2023-04-08 - various authors
+## [1.2.1] - 2023-04-23 - various authors
 ### Fixed
  - updated `quick-xml` as the old one will no longer be compatible with future rust versions
+ - fixed alignment issue
 
 ### Changed
  - Implement `AsRawXcbConnection` for `Connection`
