@@ -223,10 +223,11 @@ macro_rules! impl_wired_simple {
 
             fn serialize(&self, wire_buf: &mut [u8]) -> usize {
                 debug_assert!(wire_buf.len() >= mem::size_of::<Self>());
-                unsafe {
-                    *(wire_buf.as_mut_ptr() as *mut Self) = *self;
-                }
-                mem::size_of::<Self>()
+                let buf_size = self.wire_len();
+                let src =
+                    unsafe { slice::from_raw_parts(self as *const Self as *const u8, buf_size) };
+                wire_buf[..buf_size].copy_from_slice(src);
+                buf_size
             }
         }
 
@@ -265,10 +266,12 @@ impl<T: Xid> WiredOut for T {
 
     fn serialize(&self, wire_buf: &mut [u8]) -> usize {
         debug_assert!(wire_buf.len() >= 4);
-        unsafe {
-            *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();
-        }
-        4
+        let buf_size = self.wire_len();
+        let resource_id = self.resource_id();
+        let src =
+            unsafe { slice::from_raw_parts(&resource_id as *const u32 as *const u8, buf_size) };
+        wire_buf[..buf_size].copy_from_slice(src);
+        buf_size
     }
 }
 
