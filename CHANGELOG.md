@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.1] - 2023-04-08 - various authors
+### Fixed
+ - updated `quick-xml` as the old one will no longer be compatible with future rust versions
+
+### Changed
+ - Implement `AsRawXcbConnection` for `Connection`
+
 ## [1.2.0] - 2022-11-03 - various authors
 ### Fixed
  - Segfault when DISPLAY is unset when using xlib
