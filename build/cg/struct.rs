@@ -651,7 +651,10 @@ impl CodeGen {
             rs_typ, wire_sz
         )?;
         writeln!(out, "        }};")?;
-        writeln!(out, "        wire_buf.copy_from_slice(me);")?;
+        writeln!(
+            out,
+            "        (&mut wire_buf[..me.len()]).copy_from_slice(me);"
+        )?;
         writeln!(out, "        {}", wire_sz)?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
