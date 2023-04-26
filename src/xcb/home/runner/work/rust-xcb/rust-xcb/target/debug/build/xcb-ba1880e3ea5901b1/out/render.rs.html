@@ -5558,7 +5558,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Directformat <span class="kw">as _</span>, <span class="number">16</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">16
     </span>}
 }
@@ -5720,7 +5720,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Pictvisual <span class="kw">as _</span>, <span class="number">8</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">8
     </span>}
 }
@@ -6175,7 +6175,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Indexvalue <span class="kw">as _</span>, <span class="number">12</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">12
     </span>}
 }
@@ -6212,7 +6212,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Color <span class="kw">as _</span>, <span class="number">8</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">8
     </span>}
 }
@@ -6247,7 +6247,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Pointfix <span class="kw">as _</span>, <span class="number">8</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">8
     </span>}
 }
@@ -6282,7 +6282,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Linefix <span class="kw">as _</span>, <span class="number">16</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">16
     </span>}
 }
@@ -6318,7 +6318,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Triangle <span class="kw">as _</span>, <span class="number">24</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">24
     </span>}
 }
@@ -6355,7 +6355,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Trapezoid <span class="kw">as _</span>, <span class="number">40</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">40
     </span>}
 }
@@ -6394,7 +6394,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Glyphinfo <span class="kw">as _</span>, <span class="number">12</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">12
     </span>}
 }
@@ -6436,7 +6436,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Transform <span class="kw">as _</span>, <span class="number">36</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">36
     </span>}
 }
@@ -6471,7 +6471,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Animcursorelt <span class="kw">as _</span>, <span class="number">8</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">8
     </span>}
 }
@@ -6507,7 +6507,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Spanfix <span class="kw">as _</span>, <span class="number">12</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">12
     </span>}
 }
@@ -6542,7 +6542,7 @@
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
         <span class="kw">let </span>me = <span class="kw">unsafe </span>{ std::slice::from_raw_parts(<span class="self">self </span><span class="kw">as </span><span class="kw-2">*const </span>Trap <span class="kw">as _</span>, <span class="number">24</span>) };
-        wire_buf.copy_from_slice(me);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..me.len()]).copy_from_slice(me);
         <span class="number">24
     </span>}
 }
