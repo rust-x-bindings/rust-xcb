@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["XPanoramiXAllocInfo","XPanoramiXGetScreenCount","XPanoramiXGetScreenSize","XPanoramiXGetState","XPanoramiXQueryExtension","XPanoramiXQueryVersion","XineramaIsActive","XineramaQueryExtension","XineramaQueryScreens","XineramaQueryVersion"],"struct":["XPanoramiXInfo","XineramaScreenInfo"]};

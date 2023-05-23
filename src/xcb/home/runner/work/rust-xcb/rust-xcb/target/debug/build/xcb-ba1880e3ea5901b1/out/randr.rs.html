@@ -11611,7 +11611,7 @@
     }
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12017,7 +12017,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12190,7 +12190,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12320,7 +12320,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12425,7 +12425,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12548,7 +12548,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12640,7 +12640,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -12774,7 +12774,7 @@
     }
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
@@ -13069,7 +13069,7 @@
     </span>}
 
     <span class="kw">fn </span>serialize(<span class="kw-2">&amp;</span><span class="self">self</span>, wire_buf: <span class="kw-2">&amp;mut </span>[u8]) -&gt; usize {
-        wire_buf.copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
+        (<span class="kw-2">&amp;mut </span>wire_buf[..<span class="self">self</span>.data.len()]).copy_from_slice(<span class="kw-2">&amp;</span><span class="self">self</span>.data);
         <span class="self">self</span>.data.len()
     }
 }
