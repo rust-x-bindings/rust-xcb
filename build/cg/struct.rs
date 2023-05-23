@@ -741,7 +741,10 @@ impl CodeGen {
             out,
             "    fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
         )?;
-        writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
+        writeln!(
+            out,
+            "        (&mut wire_buf[..self.data.len()]).copy_from_slice(&self.data);"
+        )?;
         writeln!(out, "        self.data.len()")?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
@@ -829,7 +832,10 @@ impl CodeGen {
             out,
             "    fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
         )?;
-        writeln!(out, "        wire_buf.copy_from_slice(&self.data);")?;
+        writeln!(
+            out,
+            "        (&mut wire_buf[..self.data.len()]).copy_from_slice(&self.data);"
+        )?;
         writeln!(out, "        self.data.len()")?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
