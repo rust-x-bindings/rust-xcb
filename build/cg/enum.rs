@@ -206,14 +206,8 @@ impl CodeGen {
             out,
             "    pub fn serialize(&self, wire_buf: &mut [u8]) -> usize {{"
         )?;
-        writeln!(out, "        debug_assert!(wire_buf.len() >= 4);")?;
-        writeln!(out, "        unsafe {{")?;
-        writeln!(
-            out,
-            "            *(wire_buf.as_mut_ptr() as *mut u32) = self.resource_id();"
-        )?;
-        writeln!(out, "        }}")?;
-        writeln!(out, "        4")?;
+        writeln!(out, "        let id = self.resource_id();")?;
+        writeln!(out, "        WiredOut::serialize(&id, wire_buf)")?;
         writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
