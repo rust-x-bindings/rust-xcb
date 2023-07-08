@@ -180,6 +180,9 @@ impl UnknownEvent {
     }
 }
 
+unsafe impl Send for UnknownEvent {}
+unsafe impl Sync for UnknownEvent {}
+
 impl std::fmt::Debug for UnknownEvent {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_tuple("UnknownEvent").finish()
