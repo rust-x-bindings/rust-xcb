@@ -333,3 +333,12 @@ pub(crate) unsafe fn resolve_event(
             Event::Unknown(unknown)
         })
 }
+
+#[test]
+fn test_event_send_sync() {
+    fn assert_send<T: Send>() {}
+    fn assert_sync<T: Sync>() {}
+
+    assert_send::<Event>();
+    assert_sync::<Event>();
+}
