@@ -118,9 +118,8 @@ required-features = ["randr"]
 [[example]]
 name = "screen_info"
 
-# [[example]]
-# name = "threaded_window"
-# required-features = ["thread"]
+[[example]]
+name = "threaded_window"
 
 [[example]]
 name = "xinput_stylus_events"
