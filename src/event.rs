@@ -180,6 +180,9 @@ impl UnknownEvent {
     }
 }
 
+unsafe impl Send for UnknownEvent {}
+unsafe impl Sync for UnknownEvent {}
+
 impl std::fmt::Debug for UnknownEvent {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_tuple("UnknownEvent").finish()
@@ -332,4 +335,13 @@ pub(crate) unsafe fn resolve_event(
             let unknown = UnknownEvent::from_raw(event);
             Event::Unknown(unknown)
         })
+}
+
+#[test]
+fn test_event_send_sync() {
+    fn assert_send<T: Send>() {}
+    fn assert_sync<T: Sync>() {}
+
+    assert_send::<Event>();
+    assert_sync::<Event>();
 }
