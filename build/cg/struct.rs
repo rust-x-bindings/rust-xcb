@@ -2452,6 +2452,12 @@ impl CodeGen {
             }
         }
         writeln!(out, "        f.debug_struct(\"{}\")", rs_typ)?;
+        if rs_typ.ends_with("Event") && rs_typ != "Event" {
+            writeln!(
+                out,
+                "            .field(\"is_from_send_event\", &self.is_from_send_event())"
+            )?;
+        }
         for f in fields {
             match f {
                 Field::Field { name, .. } => {

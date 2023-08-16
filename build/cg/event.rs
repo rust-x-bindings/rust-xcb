@@ -295,6 +295,8 @@ impl CodeGen {
             writeln!(out)?;
             writeln!(out, "impl {} {{", event.rs_typ)?;
 
+            self.emit_is_from_send_event(out)?;
+
             if !event.is_xge {
                 // we enable contruction of classic events to pass to SendEvent request
                 self.emit_event_new(out, event)?;
@@ -384,6 +386,19 @@ impl CodeGen {
             // an extension generic event
             self.emit_resolve_wire_ge_event(out)?;
         }
+
+        Ok(())
+    }
+
+    fn emit_is_from_send_event<O: Write>(&self, out: &mut O) -> io::Result<()> {
+        writeln!(
+            out,
+            "    /// Whether the event was generated from a SendEvent request."
+        )?;
+        writeln!(out, "    pub fn is_from_send_event(&self) -> bool {{")?;
+        writeln!(out, "        (self.response_type() & 0x80) != 0")?;
+        writeln!(out, "    }}")?;
+        writeln!(out)?;
 
         Ok(())
     }

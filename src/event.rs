@@ -169,6 +169,10 @@ impl BaseEvent for UnknownEvent {
 }
 
 impl UnknownEvent {
+    /// Whether the event was generated from a SendEvent request.
+    pub fn is_from_send_event(&self) -> bool {
+        (self.response_type() & 0x80) != 0
+    }
     pub fn response_type(&self) -> u8 {
         unsafe { (*self.raw).response_type }
     }
