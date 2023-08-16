@@ -621,6 +621,50 @@ pub mod randr {
     #![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
     include!(concat!(env!("OUT_DIR"), "/randr.rs"));
+
+    /// For information on what the various properties mean, see the [RandR specification][randr-spec]
+    ///
+    /// [randr-spec]: https://cgit.freedesktop.org/xorg/proto/randrproto/tree/randrproto.txt#n1860
+    mod property {
+        #[doc(alias = "RR_PROPERTY_BACKLIGHT")]
+        pub const BACKLIGHT: &str = "Backlight";
+
+        #[doc(alias = "RR_PROPERTY_CLONE_LIST")]
+        pub const CLONE_LIST: &str = "CloneList";
+
+        #[doc(alias = "RR_PROPERTY_COMPATIBILITY_LIST")]
+        pub const COMPATIBILITY_LIST: &str = "CompatibilityList";
+
+        #[doc(alias = "RR_PROPERTY_CONNECTOR_NUMBER")]
+        pub const CONNECTOR_NUMBER: &str = "ConnectorNumber";
+
+        #[doc(alias = "RR_PROPERTY_CONNECTOR_TYPE")]
+        pub const CONNECTOR_TYPE: &str = "ConnectorType";
+
+        #[doc(alias = "RR_PROPERTY_RANDR_EDID")]
+        pub const EDID: &str = "EDID";
+
+        #[doc(alias = "RR_PROPERTY_SIGNAL_FORMAT")]
+        pub const SIGNAL_FORMAT: &str = "SignalFormat";
+
+        #[doc(alias = "RR_PROPERTY_SIGNAL_PROPERTIES")]
+        pub const SIGNAL_PROPERTIES: &str = "SignalProperties";
+
+        #[doc(alias = "RR_PROPERTY_BORDER")]
+        pub const BORDER: &str = "Border";
+
+        #[doc(alias = "RR_PROPERTY_BORDER_DIMENSIONS")]
+        pub const BORDER_DIMENSIONS: &str = "BorderDimensions";
+
+        #[doc(alias = "RR_PROPERTY_GUID")]
+        pub const GUID: &str = "GUID";
+
+        #[doc(alias = "RR_PROPERTY_RANDR_TILE")]
+        pub const TILE: &str = "TILE";
+
+        #[doc(alias = "RR_PROPERTY_NON_DESKTOP")]
+        pub const NON_DESKTOP: &str = "non-desktop";
+    }
 }
 
 #[cfg(feature = "record")]
