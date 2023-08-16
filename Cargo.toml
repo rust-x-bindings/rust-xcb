@@ -129,5 +129,5 @@ required-features = ["xinput"]
 name = "screenshot"
 
 [[example]]
-name = "xkb_init"
+name = "xkb_keyboard_and_mouse_events"
 required-features = ["xkb"]

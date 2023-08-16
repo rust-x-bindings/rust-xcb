@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This is a script that runs the code generation and export a copy of it under gen/$1.
 # This is NOT the main code generation script, but a tool to help looking at the generated code
