@@ -16,7 +16,7 @@ use bitflags::bitflags;
 use libc::{c_char, c_int};
 
 use std::cell::RefCell;
-use std::ffi::{CStr, CString};
+use std::ffi::{c_void, CStr, CString};
 use std::fmt::{self, Display, Formatter};
 use std::marker::{self, PhantomData};
 use std::mem;
@@ -1533,7 +1533,10 @@ impl Connection {
         self.check_request(self.send_request_checked(req))
     }
 
-    /// Get the reply of a previous request, or an error if one occured.
+    /// Gets the reply of a previous request, or an error if one occurred.
+    ///
+    /// This is blocking; it does not return until the reply has been received. For the non-blocking
+    /// version, see [`poll_for_reply`].
     ///
     /// # Example
     /// ```no_run
@@ -1550,12 +1553,14 @@ impl Connection {
     /// #   Ok(())
     /// # }
     /// ```
+    ///
+    /// [`poll_for_reply`]: Self::poll_for_reply
     pub fn wait_for_reply<C>(&self, cookie: C) -> Result<C::Reply>
     where
         C: CookieWithReplyChecked,
     {
         unsafe {
-            let mut error: *mut xcb_generic_error_t = std::ptr::null_mut();
+            let mut error: *mut xcb_generic_error_t = ptr::null_mut();
             let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), &mut error as *mut _);
             match (reply.is_null(), error.is_null()) {
                 (true, true) => {
@@ -1574,7 +1579,10 @@ impl Connection {
 
     /// Get the reply of a previous unchecked request.
     ///
-    /// If an error occured, `None` is returned and the error will be delivered to the event loop.
+    /// If an error occurred, `None` is returned and the error will be delivered to the event loop.
+    ///
+    /// This is blocking; it does not return until the reply has been received. For the non-blocking
+    /// version, see [`poll_for_reply_unchecked`].
     ///
     /// # Example
     /// ```no_run
@@ -1591,6 +1599,8 @@ impl Connection {
     /// #   Ok(())
     /// # }
     /// ```
+    ///
+    /// [`poll_for_reply_unchecked`]: Self::poll_for_reply_unchecked
     pub fn wait_for_reply_unchecked<C>(&self, cookie: C) -> ConnResult<Option<C::Reply>>
     where
         C: CookieWithReplyUnchecked,
@@ -1602,6 +1612,213 @@ impl Connection {
                 Ok(None)
             } else {
                 Ok(Some(C::Reply::from_raw(reply as *const u8)))
+            }
+        }
+    }
+
+    /// Gets the reply of a previous request if it has been received, or an error if one occurred.
+    ///
+    /// This is non-blocking; if no reply has been received yet, it returns [`None`]. For the
+    /// blocking version, see [`wait_for_reply`].
+    ///
+    /// # Examples
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #     let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// let (wm_protocols_cookie, wm_name_cookie) = (
+    ///     conn.send_request(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     }),
+    ///     conn.send_request(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_NAME",
+    ///     }),
+    /// );
+    /// let (wm_protocols_atom, wm_name_atom) = {
+    ///     let (
+    ///         mut wm_protocols_atom,
+    ///         mut wm_name_atom,
+    ///     ) = (None, None);
+    ///
+    ///     loop {
+    ///         // If `wm_protocols_atom` is yet to be received, poll for it.
+    ///         if wm_protocols_atom.is_none() {
+    ///             wm_protocols_atom = conn
+    ///                 .poll_for_reply(&wm_protocols_cookie)?
+    ///                 .atom();
+    ///         }
+    ///         // If `wm_name_atom` is yet to be received, poll for it.
+    ///         if wm_name_atom.is_none() {
+    ///             wm_name_atom = conn
+    ///                 .poll_for_reply(&wm_name_cookie)?
+    ///                 .atom();
+	///         }
+    ///
+    ///         // If both `wm_protocols_atom` and `wm_name_atom` have been
+    ///         // received, break from the loop.
+    ///         if let (
+    ///             Some(wm_protocols_atom),
+    ///             Some(wm_name_atom),
+    ///         ) = (wm_protocols_atom, wm_name_atom) {
+    ///             break (wm_protocols_atom, wm_name_atom);
+    ///         }
+    ///     }
+    /// };
+    /// #     Ok(())
+    /// # }
+    /// ```
+    ///
+    /// [`wait_for_reply`]: Self::wait_for_reply
+    pub fn poll_for_reply<C>(&self, cookie: &C) -> Result<Option<C::Reply>>
+    where
+        C: CookieWithReplyChecked,
+    {
+        unsafe {
+            let mut error: *mut xcb_generic_error_t = ptr::null_mut();
+            let mut reply: *mut c_void = ptr::null_mut();
+
+            let received = xcb_poll_for_reply64(
+                self.c,
+                cookie.sequence(),
+                &mut reply as *mut _,
+                &mut error as *mut _,
+            );
+
+            match (received.is_null(), error.is_null()) {
+                // null, I/O error
+                (true, false) => {
+                    let error = error::resolve_error(error, &self.ext_data);
+                    Err(error.into())
+                }
+                // not null, no I/O error
+                (false, true) => match received as c_int {
+                    // no reply received yet
+                    0 => Ok(None),
+                    // reply received
+                    1 if !reply.is_null() => Ok(Some(C::Reply::from_raw(reply as *const u8))),
+
+                    // claims to have received a reply, but reply is null
+                    1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
+                    // value other than expected 0 or 1
+                    other => {
+                        panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
+                    }
+                }
+
+                // null, no I/O error
+                (true, true) => {
+                    self.has_error()?;
+                    panic!("xcb_poll_for_reply64 returned null without I/O error");
+                }
+                // not null, I/O error
+                (false, false) => panic!("xcb_poll_for_reply64 returned two pointers"),
+            }
+        }
+    }
+
+    /// Gets the reply of a previous unchecked request if it has been received.
+    ///
+    /// If an error occurred, [`None`] is returned and the error is delivered to the event loop.
+    ///
+    /// This is non-blocking; if no reply has been received yet, it returns
+    /// <code>[Some]\([None])</code>. For the blocking version, see [`wait_for_reply_unchecked`].
+    ///
+    /// # Examples
+    /// ```no_run
+    /// # use xcb::x;
+    /// # fn main() -> xcb::Result<()> {
+    /// #     let (conn, screen_num) = xcb::Connection::connect(None)?;
+    /// let (wm_protocols_cookie, wm_name_cookie) = (
+    ///     conn.send_request_unchecked(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_PROTOCOLS",
+    ///     }),
+    ///     conn.send_request_unchecked(&x::InternAtom {
+    ///         only_if_exists: true,
+    ///         name: b"WM_NAME",
+    ///     }),
+    /// );
+    /// let (wm_protocols_atom, wm_name_atom) = {
+    ///     let (
+    ///         mut wm_protocols_atom,
+    ///         mut wm_name_atom,
+    ///     ) = (Some(None), Some(None));
+    ///
+    ///     loop {
+    ///         // If `wm_protocols_atom` is yet to be received, poll for it.
+    ///         if let Some(None) = wm_protocols_atom {
+    ///             wm_protocols_atom = conn
+    ///                 // connection error may happen
+    ///                 .poll_for_reply_unchecked(&wm_protocols_cookie)?
+    ///                 .atom();
+    ///         }
+    ///         // If `wm_name_atom` is yet to be received, poll for it.
+    ///         if let Some(None) = wm_name_atom {
+    ///             wm_name_atom = conn
+    ///                 // connection error may happen
+    ///                 .poll_for_reply_unchecked(&wm_name_cookie)?
+    ///                 .atom();
+    ///         }
+    ///
+    ///         match (wm_protocols_atom, wm_name_atom) {
+    ///             // If either `wm_protocols_atom` or `wm_name_atom` hasn't
+    ///             // been received, continue the loop.
+    ///             (Some(None), _) | (_, Some(None)) => continue,
+    ///
+    ///             // Otherwise, if both have been received, break from the
+    ///             // loop.
+    ///             (
+    ///                 wm_protocols_atom,
+    ///                 wm_name_atom,
+    ///             ) => break (
+    ///                 wm_protocols_atom.flatten(),
+    ///                 wm_name_atom.flatten(),
+    ///             ),
+    ///         }
+    ///     }
+    /// };
+    /// #     Ok(())
+    /// # }
+    /// ```
+    ///
+    /// [`wait_for_reply_unchecked`]: Self::wait_for_reply_unchecked
+    pub fn poll_for_reply_unchecked<C>(&self, cookie: &C) -> ConnResult<Option<Option<C::Reply>>>
+    where
+        C: CookieWithReplyUnchecked,
+    {
+        unsafe {
+            let mut reply: *mut c_void = ptr::null_mut();
+
+            let received = xcb_poll_for_reply64(
+                self.c,
+                cookie.sequence(),
+                &mut reply as *mut _,
+                ptr::null_mut(),
+            );
+
+            if received.is_null() {
+                // null
+
+                self.has_error()?;
+                Ok(None)
+            } else {
+                // not null
+
+                match received as c_int {
+                    // no reply received yet
+                    0 => Ok(Some(None)),
+                    // reply received
+                    1 if !reply.is_null() => Ok(Some(Some(C::Reply::from_raw(reply as *const u8)))),
+
+                    // claims to have received a reply, but reply is null
+                    1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
+                    // value other than expected 0 or 1
+                    other => {
+                        panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
+                    }
+                }
             }
         }
     }
