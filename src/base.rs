@@ -1647,14 +1647,14 @@ impl Connection {
     ///         if wm_protocols_atom.is_none() {
     ///             wm_protocols_atom = conn
     ///                 .poll_for_reply(&wm_protocols_cookie)?
-    ///                 .atom();
+    ///                 .map(|reply| reply.atom());
     ///         }
     ///         // If `wm_name_atom` is yet to be received, poll for it.
     ///         if wm_name_atom.is_none() {
     ///             wm_name_atom = conn
     ///                 .poll_for_reply(&wm_name_cookie)?
-    ///                 .atom();
-    ///         }
+    ///                 .map(|reply| reply.atom());
+	///         }
     ///
     ///         // If both `wm_protocols_atom` and `wm_name_atom` have been
     ///         // received, break from the loop.
@@ -1752,14 +1752,14 @@ impl Connection {
     ///             wm_protocols_atom = conn
     ///                 // connection error may happen
     ///                 .poll_for_reply_unchecked(&wm_protocols_cookie)?
-    ///                 .atom();
+    ///                 .map(|result| result.map(|reply| reply.atom()));
     ///         }
     ///         // If `wm_name_atom` is yet to be received, poll for it.
     ///         if let Some(None) = wm_name_atom {
     ///             wm_name_atom = conn
     ///                 // connection error may happen
     ///                 .poll_for_reply_unchecked(&wm_name_cookie)?
-    ///                 .atom();
+    ///                 .map(|result| result.map(|reply| reply.atom()));
     ///         }
     ///
     ///         match (wm_protocols_atom, wm_name_atom) {
