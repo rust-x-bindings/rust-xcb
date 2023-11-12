@@ -1654,7 +1654,7 @@ impl Connection {
     ///             wm_name_atom = conn
     ///                 .poll_for_reply(&wm_name_cookie)?
     ///                 .map(|reply| reply.atom());
-	///         }
+    ///         }
     ///
     ///         // If both `wm_protocols_atom` and `wm_name_atom` have been
     ///         // received, break from the loop.
