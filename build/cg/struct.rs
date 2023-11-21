@@ -1707,11 +1707,22 @@ impl CodeGen {
                     )?;
                     writeln!(
                         out,
-                        "{}let ptr = self.wire_ptr().add(offset) as *const {};",
+                        "{}let src = self.wire_ptr().add(offset) as *const {};",
                         cg::ind(3),
                         q_rs_typ
                     )?;
-                    writeln!(out, "            *ptr")?;
+                    writeln!(
+                        out,
+                        "{}let mut val = std::mem::MaybeUninit::<{}>::uninit();",
+                        cg::ind(3),
+                        q_rs_typ
+                    )?;
+                    writeln!(
+                        out,
+                        "{}std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), 1);",
+                        cg::ind(3)
+                    )?;
+                    writeln!(out, "            val.assume_init()")?;
                     writeln!(out, "        }}")?;
                     writeln!(out, "    }}")?;
                 }
