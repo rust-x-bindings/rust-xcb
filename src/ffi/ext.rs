@@ -238,14 +238,14 @@ extern "C" {
         request: c_uint,
         reply: *mut *mut c_void,
         e: *mut *mut xcb_generic_error_t,
-    ) -> *mut c_int;
+    ) -> c_int;
 
     pub(crate) fn xcb_poll_for_reply64(
         c: *mut xcb_connection_t,
         request: u64,
         reply: *mut *mut c_void,
         e: *mut *mut xcb_generic_error_t,
-    ) -> *mut c_int;
+    ) -> c_int;
 
     /**
      * @brief Don't use this, only needed by the generated code.
