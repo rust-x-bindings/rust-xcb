@@ -1703,7 +1703,8 @@ impl Connection {
             } else {
                 // an I/O error occurred
 
-                panic!("xcb_poll_for_reply64 returned two pointers");
+                let error = error::resolve_error(error, &self.ext_data);
+                Err(error.into())
             }
         }
     }
@@ -1788,26 +1789,17 @@ impl Connection {
                 ptr::null_mut(),
             );
 
-            if received.is_null() {
-                // null
+            match received as c_int {
+                // no reply received yet
+                0 => Ok(Some(None)),
+                // reply received
+                1 if !reply.is_null() => Ok(Some(Some(C::Reply::from_raw(reply as *const u8)))),
 
-                self.has_error()?;
-                Ok(None)
-            } else {
-                // not null
-
-                match received as c_int {
-                    // no reply received yet
-                    0 => Ok(Some(None)),
-                    // reply received
-                    1 if !reply.is_null() => Ok(Some(Some(C::Reply::from_raw(reply as *const u8)))),
-
-                    // claims to have received a reply, but reply is null
-                    1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
-                    // value other than expected 0 or 1
-                    other => {
-                        panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
-                    }
+                // claims to have received a reply, but reply is null
+                1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
+                // value other than expected 0 or 1
+                other => {
+                    panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
                 }
             }
         }
