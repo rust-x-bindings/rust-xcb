@@ -1686,17 +1686,11 @@ impl Connection {
                 &mut error as *mut _,
             );
 
-            match (received.is_null(), error.is_null()) {
-                // null, I/O error
-                (true, false) => {
-                    let error = error::resolve_error(error, &self.ext_data);
-                    Err(error.into())
-                }
-                // not null, no I/O error
-                (false, true) => match received as c_int {
-                    // no reply received yet
+            if error.is_null() {
+                // no I/O error
+
+                match received as c_int {
                     0 => Ok(None),
-                    // reply received
                     1 if !reply.is_null() => Ok(Some(C::Reply::from_raw(reply as *const u8))),
 
                     // claims to have received a reply, but reply is null
@@ -1706,14 +1700,10 @@ impl Connection {
                         panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
                     }
                 }
+            } else {
+                // an I/O error occurred
 
-                // null, no I/O error
-                (true, true) => {
-                    self.has_error()?;
-                    panic!("xcb_poll_for_reply64 returned null without I/O error");
-                }
-                // not null, I/O error
-                (false, false) => panic!("xcb_poll_for_reply64 returned two pointers"),
+                panic!("xcb_poll_for_reply64 returned two pointers");
             }
         }
     }
