@@ -1622,7 +1622,10 @@ impl CodeGen {
                         "            let ptr = self.wire_ptr().add(offset) as *const {};",
                         q_rs_typ
                     )?;
-                    writeln!(out, "            let val = *ptr as u32;")?;
+                    writeln!(
+                        out,
+                        "            let val = base::value_from_ptr(ptr) as u32;"
+                    )?;
                     writeln!(
                         out,
                         "            std::mem::transmute::<u32, {}>(val)",
@@ -1707,22 +1710,11 @@ impl CodeGen {
                     )?;
                     writeln!(
                         out,
-                        "{}let src = self.wire_ptr().add(offset) as *const {};",
+                        "{}let ptr = self.wire_ptr().add(offset) as *const {};",
                         cg::ind(3),
                         q_rs_typ
                     )?;
-                    writeln!(
-                        out,
-                        "{}let mut val = std::mem::MaybeUninit::<{}>::uninit();",
-                        cg::ind(3),
-                        q_rs_typ
-                    )?;
-                    writeln!(
-                        out,
-                        "{}std::ptr::copy_nonoverlapping(src, val.as_mut_ptr(), 1);",
-                        cg::ind(3)
-                    )?;
-                    writeln!(out, "            val.assume_init()")?;
+                    writeln!(out, "{}base::value_from_ptr(ptr)", cg::ind(3),)?;
                     writeln!(out, "        }}")?;
                     writeln!(out, "    }}")?;
                 }
