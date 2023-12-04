@@ -1750,6 +1750,17 @@ pub(crate) fn align_pad(base: usize, align: usize) -> usize {
     (-base & (align - 1)) as usize
 }
 
+/// Get a value from a pointer, using ptr::copy_nonoverlapping to avoid alignment issues
+///
+/// # Safety
+/// The pointer must point to a valid `T` value
+#[inline]
+pub(crate) unsafe fn value_from_ptr<T>(ptr: *const T) -> T {
+    let mut val = mem::MaybeUninit::<T>::uninit();
+    ptr::copy_nonoverlapping(ptr, val.as_mut_ptr(), 1);
+    val.assume_init()
+}
+
 #[test]
 fn test_align_pad() {
     // align 1
