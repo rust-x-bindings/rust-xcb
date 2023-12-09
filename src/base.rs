@@ -1540,18 +1540,7 @@ impl Connection {
         unsafe {
             let mut error: *mut xcb_generic_error_t = ptr::null_mut();
             let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), &mut error as *mut _);
-            match (reply.is_null(), error.is_null()) {
-                (true, true) => {
-                    self.has_error()?;
-                    unreachable!("xcb_wait_for_reply64 returned null without I/O error");
-                }
-                (true, false) => {
-                    let error = error::resolve_error(error, &self.ext_data);
-                    Err(error.into())
-                }
-                (false, true) => Ok(C::Reply::from_raw(reply as *const u8)),
-                (false, false) => unreachable!("xcb_wait_for_reply64 returned two pointers"),
-            }
+            self.handle_reply_checked::<C>(reply, error)
         }
     }
 
@@ -1585,12 +1574,7 @@ impl Connection {
     {
         unsafe {
             let reply = xcb_wait_for_reply64(self.c, cookie.sequence(), ptr::null_mut());
-            if reply.is_null() {
-                self.has_error()?;
-                Ok(None)
-            } else {
-                Ok(Some(C::Reply::from_raw(reply as *const u8)))
-            }
+            self.handle_reply_unchecked::<C>(reply)
         }
     }
 
@@ -1624,13 +1608,15 @@ impl Connection {
     ///         // If `wm_protocols_atom` is yet to be received, poll for it.
     ///         if wm_protocols_atom.is_none() {
     ///             wm_protocols_atom = conn
-    ///                 .poll_for_reply(&wm_protocols_cookie)?
+    ///                 .poll_for_reply(&wm_protocols_cookie)
+    ///                 .transpose()?
     ///                 .map(|reply| reply.atom());
     ///         }
     ///         // If `wm_name_atom` is yet to be received, poll for it.
     ///         if wm_name_atom.is_none() {
     ///             wm_name_atom = conn
-    ///                 .poll_for_reply(&wm_name_cookie)?
+    ///                 .poll_for_reply(&wm_name_cookie)
+    ///                 .transpose()?
     ///                 .map(|reply| reply.atom());
     ///         }
     ///
@@ -1649,7 +1635,7 @@ impl Connection {
     /// ```
     ///
     /// [`wait_for_reply`]: Self::wait_for_reply
-    pub fn poll_for_reply<C>(&self, cookie: &C) -> Result<Option<C::Reply>>
+    pub fn poll_for_reply<C>(&self, cookie: &C) -> Option<Result<C::Reply>>
     where
         C: CookieWithReplyChecked,
     {
@@ -1664,25 +1650,10 @@ impl Connection {
                 &mut error as *mut _,
             );
 
-            if error.is_null() {
-                // no I/O error
-
-                match received as c_int {
-                    0 => Ok(None),
-                    1 if !reply.is_null() => Ok(Some(C::Reply::from_raw(reply as *const u8))),
-
-                    // claims to have received a reply, but reply is null
-                    1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
-                    // value other than expected 0 or 1
-                    other => {
-                        panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
-                    }
-                }
-            } else {
-                // an I/O error occurred
-
-                let error = error::resolve_error(error, &self.ext_data);
-                Err(error.into())
+            match received {
+                0 => None,
+                1 => Some(self.handle_reply_checked::<C>(reply, error)),
+                _ => panic!("unexpected return value from xcb_poll_for_reply64"),
             }
         }
     }
@@ -1720,14 +1691,16 @@ impl Connection {
     ///         if let Some(None) = wm_protocols_atom {
     ///             wm_protocols_atom = conn
     ///                 // connection error may happen
-    ///                 .poll_for_reply_unchecked(&wm_protocols_cookie)?
+    ///                 .poll_for_reply_unchecked(&wm_protocols_cookie)
+    ///                 .transpose()?
     ///                 .map(|result| result.map(|reply| reply.atom()));
     ///         }
     ///         // If `wm_name_atom` is yet to be received, poll for it.
     ///         if let Some(None) = wm_name_atom {
     ///             wm_name_atom = conn
     ///                 // connection error may happen
-    ///                 .poll_for_reply_unchecked(&wm_name_cookie)?
+    ///                 .poll_for_reply_unchecked(&wm_name_cookie)
+    ///                 .transpose()?
     ///                 .map(|result| result.map(|reply| reply.atom()));
     ///         }
     ///
@@ -1753,7 +1726,7 @@ impl Connection {
     /// ```
     ///
     /// [`wait_for_reply_unchecked`]: Self::wait_for_reply_unchecked
-    pub fn poll_for_reply_unchecked<C>(&self, cookie: &C) -> ConnResult<Option<Option<C::Reply>>>
+    pub fn poll_for_reply_unchecked<C>(&self, cookie: &C) -> Option<ConnResult<Option<C::Reply>>>
     where
         C: CookieWithReplyUnchecked,
     {
@@ -1767,18 +1740,10 @@ impl Connection {
                 ptr::null_mut(),
             );
 
-            match received as c_int {
-                // no reply received yet
-                0 => Ok(Some(None)),
-                // reply received
-                1 if !reply.is_null() => Ok(Some(Some(C::Reply::from_raw(reply as *const u8)))),
-
-                // claims to have received a reply, but reply is null
-                1 => panic!("xcb_poll_for_reply64 returned 1 without reply"),
-                // value other than expected 0 or 1
-                other => {
-                    panic!("xcb_poll_for_reply64 returned {}, expected 0 or 1", other);
-                }
+            match received {
+                0 => None,
+                1 => Some(self.handle_reply_unchecked::<C>(reply)),
+                _ => panic!("unexpected return value from xcb_poll_for_reply64"),
             }
         }
     }
@@ -1801,8 +1766,8 @@ impl Connection {
     /// to be used for diagnostic/monitoring/informative purposes.
     pub fn total_written(&self) -> usize {
         unsafe { xcb_total_written(self.c) as usize }
-        }
     }
+}
 
 impl Connection {
     unsafe fn handle_wait_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Event> {
@@ -1824,6 +1789,40 @@ impl Connection {
             Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
         } else {
             Ok(Some(event::resolve_event(ev, &self.ext_data)))
+        }
+    }
+
+    unsafe fn handle_reply_checked<C>(
+        &self,
+        reply: *mut c_void,
+        error: *mut xcb_generic_error_t,
+    ) -> Result<C::Reply>
+    where
+        C: CookieWithReplyChecked,
+    {
+        match (reply.is_null(), error.is_null()) {
+            (true, true) => {
+                self.has_error()?;
+                unreachable!("xcb_wait_for_reply64 returned null without I/O error");
+            }
+            (true, false) => {
+                let error = error::resolve_error(error, &self.ext_data);
+                Err(error.into())
+            }
+            (false, true) => Ok(C::Reply::from_raw(reply as *const u8)),
+            (false, false) => unreachable!("xcb_wait_for_reply64 returned two pointers"),
+        }
+    }
+
+    unsafe fn handle_reply_unchecked<C>(&self, reply: *mut c_void) -> ConnResult<Option<C::Reply>>
+    where
+        C: CookieWithReplyUnchecked,
+    {
+        if reply.is_null() {
+            self.has_error()?;
+            Ok(None)
+        } else {
+            Ok(Some(C::Reply::from_raw(reply as *const u8)))
         }
     }
 }
