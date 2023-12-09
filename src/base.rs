@@ -1162,17 +1162,6 @@ impl Connection {
         }
     }
 
-    unsafe fn handle_wait_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Event> {
-        if ev.is_null() {
-            self.has_error()?;
-            panic!("xcb_wait_for_event returned null with I/O error");
-        } else if is_error(ev) {
-            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
-        } else {
-            Ok(event::resolve_event(ev, &self.ext_data))
-        }
-    }
-
     /// Resolve an xcb_generic_event_t pointer into an Event.
     /// # Safety
     /// The caller is repsonsible to ensure that the `ev` pointer is not NULL.
@@ -1181,17 +1170,6 @@ impl Connection {
     /// dropped.
     pub unsafe fn resolve_event(&self, ev: &mut xcb_generic_event_t) -> Event {
         event::resolve_event(ev, &self.ext_data)
-    }
-
-    unsafe fn handle_poll_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Option<Event>> {
-        if ev.is_null() {
-            self.has_error()?;
-            Ok(None)
-        } else if is_error(ev) {
-            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
-        } else {
-            Ok(Some(event::resolve_event(ev, &self.ext_data)))
-        }
     }
 
     /// Blocks and returns the next event or error from the server.
@@ -1823,6 +1801,30 @@ impl Connection {
     /// to be used for diagnostic/monitoring/informative purposes.
     pub fn total_written(&self) -> usize {
         unsafe { xcb_total_written(self.c) as usize }
+        }
+    }
+
+impl Connection {
+    unsafe fn handle_wait_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Event> {
+        if ev.is_null() {
+            self.has_error()?;
+            panic!("xcb_wait_for_event returned null with I/O error");
+        } else if is_error(ev) {
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
+        } else {
+            Ok(event::resolve_event(ev, &self.ext_data))
+        }
+    }
+
+    unsafe fn handle_poll_for_event(&self, ev: *mut xcb_generic_event_t) -> Result<Option<Event>> {
+        if ev.is_null() {
+            self.has_error()?;
+            Ok(None)
+        } else if is_error(ev) {
+            Err(error::resolve_error(ev as *mut _, &self.ext_data).into())
+        } else {
+            Ok(Some(event::resolve_event(ev, &self.ext_data)))
+        }
     }
 }
 
