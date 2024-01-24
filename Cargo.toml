@@ -30,8 +30,10 @@ optional = true
 features = ["xlib"]
 
 [features]
+default = ["libxcb_v1_14"]
 debug_atom_names = []
 xlib_xcb = ["x11/xlib"]
+libxcb_v1_14 = []
 
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]

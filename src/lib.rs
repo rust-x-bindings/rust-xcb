@@ -261,6 +261,11 @@
 //! have side effects (`x::GetAtomName` requests) which can sometimes not be desirable.
 //! The feature should therefore only be activated when needed.
 //!
+//! ## `libxcb_v1_14`
+//!
+//! This feature is enabled by default and activates the libxcb API version 1.14.
+//! To use a version of the libxcb API prior to 1.14, you must disable it.
+//!
 //! ## Extension features
 //!
 //! The following X extensions are activated by a cargo feature:
