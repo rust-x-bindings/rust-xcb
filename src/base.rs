@@ -1754,6 +1754,9 @@ impl Connection {
     ///
     /// This retrieves the total number of bytes read from this connection,
     /// to be used for diagnostic/monitoring/informative purposes.
+    ///
+    /// Since: libxcb 1.14
+    #[cfg(feature = "libxcb_v1_14")]
     pub fn total_read(&self) -> usize {
         unsafe { xcb_total_read(self.c) as usize }
     }
@@ -1764,6 +1767,9 @@ impl Connection {
     ///
     /// This retrieves the total number of bytes written to this connection,
     /// to be used for diagnostic/monitoring/informative purposes.
+    ///
+    /// Since: libxcb 1.14
+    #[cfg(feature = "libxcb_v1_14")]
     pub fn total_written(&self) -> usize {
         unsafe { xcb_total_written(self.c) as usize }
     }
