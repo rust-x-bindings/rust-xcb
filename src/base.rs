@@ -506,11 +506,14 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 ///
 /// See [Connection::register_for_special_xge].
 #[cfg(any(feature = "xinput", feature = "present"))]
-#[derive(Debug)]
+#[derive(Clone, Copy, Debug)]
 pub struct SpecialEventId {
     raw: *mut xcb_special_event_t,
     stamp: Timestamp,
 }
+
+unsafe impl Send for SpecialEventId {}
+unsafe impl Sync for SpecialEventId {}
 
 #[cfg(any(feature = "xinput", feature = "present"))]
 impl SpecialEventId {
