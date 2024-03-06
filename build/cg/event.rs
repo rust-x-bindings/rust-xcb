@@ -630,11 +630,6 @@ impl CodeGen {
             "{}debug_assert!(response_type != 0, \"This is not an event but an error!\");",
             cg::ind(2),
         )?;
-        writeln!(
-            out,
-            "{}debug_assert!(response_type != XCB_GE_GENERIC, \"This is a GE_GENERIC event!\");",
-            cg::ind(2),
-        )?;
         if self.xcb_mod == "xkb" {
             writeln!(
                 out,
