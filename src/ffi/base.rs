@@ -145,7 +145,7 @@ extern "C" {
         stamp: *mut u32,
     ) -> *mut xcb_special_event_t;
 
-    pub(crate) fn xcb_unregister_for_special_xge(
+    pub(crate) fn xcb_unregister_for_special_event(
         c: *mut xcb_connection_t,
         se: *mut xcb_special_event_t,
     );

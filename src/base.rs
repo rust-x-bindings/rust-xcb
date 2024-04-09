@@ -1277,9 +1277,9 @@ impl Connection {
 
     /// Stop listening to a special event
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn unregister_for_special_xge(&self, se: SpecialEventId) {
+    pub fn unregister_for_special_event(&self, se: SpecialEventId) {
         unsafe {
-            xcb_unregister_for_special_xge(self.c, se.raw);
+            xcb_unregister_for_special_event(self.c, se.raw);
         }
     }
 
