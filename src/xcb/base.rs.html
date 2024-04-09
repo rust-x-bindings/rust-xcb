@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/base.rs`."><title>base.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../xcb/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1988,14 +1990,14 @@
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
-<span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::present;
 <span class="kw">use </span><span class="kw">crate</span>::x::{Atom, Keysym, Setup, Timestamp};
-<span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
 </span><span class="kw">use </span><span class="kw">crate</span>::xinput;
 <span class="kw">use crate</span>::{cache_extensions_data, ffi::<span class="kw-2">*</span>};
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
 </span><span class="kw">use </span>x11::xlib;
 
 <span class="kw">use </span>bitflags::bitflags;
@@ -2416,7 +2418,7 @@
 /// This item is behind the `xlib_xcb` cargo feature.
 ///
 /// See [`Connection::set_event_queue_owner`].
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
 #[derive(Debug)]
 </span><span class="kw">pub enum </span>EventQueueOwner {
     <span class="doccomment">/// XCB owns the event queue
@@ -2429,12 +2431,12 @@
 ///
 /// See [Connection::connect_to_display_with_auth_info] and [Connection::connect_to_fd].
 </span><span class="attr">#[derive(Copy, Clone, Debug)]
-</span><span class="kw">pub struct </span>AuthInfo&lt;<span class="lifetime">&#39;a</span>&gt; {
+</span><span class="kw">pub struct </span>AuthInfo&lt;<span class="lifetime">'a</span>&gt; {
     <span class="doccomment">/// String containing the authentication protocol name,
-    /// such as &quot;MIT-MAGIC-COOKIE-1&quot; or &quot;XDM-AUTHORIZATION-1&quot;.
-    </span><span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    /// such as "MIT-MAGIC-COOKIE-1" or "XDM-AUTHORIZATION-1".
+    </span><span class="kw">pub </span>name: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
     <span class="doccomment">/// data interpreted in a protocol specific manner
-    </span><span class="kw">pub </span>data: <span class="kw-2">&amp;</span><span class="lifetime">&#39;a </span>str,
+    </span><span class="kw">pub </span>data: <span class="kw-2">&amp;</span><span class="lifetime">'a </span>str,
 }
 
 <span class="doccomment">/// Display info returned by [`parse_display`]
@@ -2492,14 +2494,14 @@
 <span class="doccomment">/// A struct that serve as an identifier for internal special queue in XCB
 ///
 /// See [Connection::register_for_special_xge].
-</span><span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+</span><span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
 #[derive(Debug)]
 </span><span class="kw">pub struct </span>SpecialEventId {
     raw: <span class="kw-2">*mut </span>xcb_special_event_t,
     stamp: Timestamp,
 }
 
-<span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+<span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
 </span><span class="kw">impl </span>SpecialEventId {
     <span class="doccomment">/// The X timestamp associated with this special event Id
     </span><span class="kw">pub fn </span>stamp(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; Timestamp {
@@ -2526,29 +2528,29 @@
     <span class="doccomment">/// Connection closed because some file descriptor passing operation failed.
     </span>ClosedFdPassingFailed,
     <span class="doccomment">/// XOpenDisplay returned NULL
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span>XOpenDisplay,
 }
 
 <span class="kw">impl </span>ConnError {
     <span class="kw">fn </span>to_str(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span>str {
         <span class="kw">match </span><span class="kw-2">*</span><span class="self">self </span>{
-            ConnError::Connection =&gt; <span class="string">&quot;Connection error, possible I/O error&quot;</span>,
-            ConnError::ClosedExtNotSupported =&gt; <span class="string">&quot;Connection closed, X extension not supported&quot;</span>,
-            ConnError::ClosedMemInsufficient =&gt; <span class="string">&quot;Connection closed, insufficient memory&quot;</span>,
+            ConnError::Connection =&gt; <span class="string">"Connection error, possible I/O error"</span>,
+            ConnError::ClosedExtNotSupported =&gt; <span class="string">"Connection closed, X extension not supported"</span>,
+            ConnError::ClosedMemInsufficient =&gt; <span class="string">"Connection closed, insufficient memory"</span>,
             ConnError::ClosedReqLenExceed =&gt; {
-                <span class="string">&quot;Connection closed, exceeded request length that server accepts.&quot;
+                <span class="string">"Connection closed, exceeded request length that server accepts."
             </span>}
-            ConnError::ClosedParseErr =&gt; <span class="string">&quot;Connection closed, error during parsing display string&quot;</span>,
+            ConnError::ClosedParseErr =&gt; <span class="string">"Connection closed, error during parsing display string"</span>,
             ConnError::ClosedInvalidScreen =&gt; {
-                <span class="string">&quot;Connection closed, the server does not have a screen matching the display&quot;
+                <span class="string">"Connection closed, the server does not have a screen matching the display"
             </span>}
             ConnError::ClosedFdPassingFailed =&gt; {
-                <span class="string">&quot;Connection closed, some file descriptor passing operation failed&quot;
+                <span class="string">"Connection closed, some file descriptor passing operation failed"
             </span>}
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
             </span>ConnError::XOpenDisplay =&gt; {
-                <span class="string">&quot;XOpenDisplay failed to open a display. Check the $DISPLAY env var&quot;
+                <span class="string">"XOpenDisplay failed to open a display. Check the $DISPLAY env var"
             </span>}
         }
     }
@@ -2582,16 +2584,16 @@
 }
 
 <span class="kw">impl </span>Display <span class="kw">for </span>Error {
-    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+    <span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
         <span class="kw">match </span><span class="self">self </span>{
-            Error::Connection(<span class="kw">_</span>) =&gt; f.write_str(<span class="string">&quot;xcb connection error&quot;</span>),
-            Error::Protocol(<span class="kw">_</span>) =&gt; f.write_str(<span class="string">&quot;xcb protocol error&quot;</span>),
+            Error::Connection(<span class="kw">_</span>) =&gt; f.write_str(<span class="string">"xcb connection error"</span>),
+            Error::Protocol(<span class="kw">_</span>) =&gt; f.write_str(<span class="string">"xcb protocol error"</span>),
         }
     }
 }
 
 <span class="kw">impl </span>std::error::Error <span class="kw">for </span>Error {
-    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>std::error::Error + <span class="lifetime">&#39;static</span>)&gt; {
+    <span class="kw">fn </span>source(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>(<span class="kw">dyn </span>std::error::Error + <span class="lifetime">'static</span>)&gt; {
         <span class="kw">match </span><span class="self">self </span>{
             Error::Connection(err) =&gt; <span class="prelude-val">Some</span>(err),
             Error::Protocol(err) =&gt; <span class="prelude-val">Some</span>(err),
@@ -2627,7 +2629,7 @@
 </span><span class="kw">pub struct </span>Connection {
     c: <span class="kw-2">*mut </span>xcb_connection_t,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span>dpy: <span class="kw-2">*mut </span>xlib::Display,
 
     ext_data: Vec&lt;ExtensionData&gt;,
@@ -2637,7 +2639,7 @@
     // per application.
     // Only the first established connections is used
     // to print the name of atoms during Debug
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
     </span>dbg_atom_names: bool,
 }
 
@@ -2715,7 +2717,7 @@
     /// OpenGL.
     ///
     /// This function is behind the `xlib_xcb` cargo feature.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub fn </span>connect_with_xlib_display() -&gt; ConnResult&lt;(Connection, i32)&gt; {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>dpy = xlib::XOpenDisplay(ptr::null());
@@ -2745,7 +2747,7 @@
     ///
     /// # Panics
     /// Panics if one of the mandatory extension is not present.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub fn </span>connect_with_xlib_display_and_extensions(
         mandatory: <span class="kw-2">&amp;</span>[Extension],
         optional: <span class="kw-2">&amp;</span>[Extension],
@@ -2770,7 +2772,7 @@
     /// Connects to an X server, given the open socket fd and the
     /// `auth_info`. The file descriptor `fd` is bidirectionally connected to an X server.
     /// If the connection should be unauthenticated, `auth_info` must be `None`.
-    </span><span class="kw">pub fn </span>connect_to_fd(fd: RawFd, auth_info: <span class="prelude-ty">Option</span>&lt;AuthInfo&lt;<span class="lifetime">&#39;_</span>&gt;&gt;) -&gt; ConnResult&lt;<span class="self">Self</span>&gt; {
+    </span><span class="kw">pub fn </span>connect_to_fd(fd: RawFd, auth_info: <span class="prelude-ty">Option</span>&lt;AuthInfo&lt;<span class="lifetime">'_</span>&gt;&gt;) -&gt; ConnResult&lt;<span class="self">Self</span>&gt; {
         <span class="self">Self</span>::connect_to_fd_with_extensions(fd, auth_info, <span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>[])
     }
 
@@ -2787,7 +2789,7 @@
     /// Panics if one of the mandatory extension is not present.
     </span><span class="kw">pub fn </span>connect_to_fd_with_extensions(
         fd: RawFd,
-        auth_info: <span class="prelude-ty">Option</span>&lt;AuthInfo&lt;<span class="lifetime">&#39;_</span>&gt;&gt;,
+        auth_info: <span class="prelude-ty">Option</span>&lt;AuthInfo&lt;<span class="lifetime">'_</span>&gt;&gt;,
         mandatory: <span class="kw-2">&amp;</span>[Extension],
         optional: <span class="kw-2">&amp;</span>[Extension],
     ) -&gt; ConnResult&lt;<span class="self">Self</span>&gt; {
@@ -2828,7 +2830,7 @@
     /// returned in the second tuple member, which is otherwise set to `0`.
     </span><span class="kw">pub fn </span>connect_to_display_with_auth_info(
         display_name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
-        auth_info: AuthInfo&lt;<span class="lifetime">&#39;_</span>&gt;,
+        auth_info: AuthInfo&lt;<span class="lifetime">'_</span>&gt;,
     ) -&gt; ConnResult&lt;(Connection, i32)&gt; {
         <span class="self">Self</span>::connect_to_display_with_auth_info_and_extensions(display_name, auth_info, <span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>[])
     }
@@ -2846,7 +2848,7 @@
     /// Panics if one of the mandatory extension is not present.
     </span><span class="kw">pub fn </span>connect_to_display_with_auth_info_and_extensions(
         display_name: <span class="prelude-ty">Option</span>&lt;<span class="kw-2">&amp;</span>str&gt;,
-        auth_info: AuthInfo&lt;<span class="lifetime">&#39;_</span>&gt;,
+        auth_info: AuthInfo&lt;<span class="lifetime">'_</span>&gt;,
         mandatory: <span class="kw-2">&amp;</span>[Extension],
         optional: <span class="kw-2">&amp;</span>[Extension],
     ) -&gt; ConnResult&lt;(Connection, i32)&gt; {
@@ -2910,7 +2912,7 @@
         <span class="macro">assert!</span>(!conn.is_null());
         <span class="macro">assert!</span>(check_connection_error(conn).is_ok());
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">let </span>dbg_atom_names = {
             <span class="kw">if </span>dan::DAN_CONN.is_null() {
                 dan::DAN_CONN = conn;
@@ -2922,28 +2924,28 @@
 
         <span class="kw">let </span>ext_data = cache_extensions_data(conn, mandatory, optional);
 
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;xlib_xcb&quot;</span>))]
-        #[cfg(not(feature = <span class="string">&quot;debug_atom_names&quot;</span>))]
+        <span class="attr">#[cfg(not(feature = <span class="string">"xlib_xcb"</span>))]
+        #[cfg(not(feature = <span class="string">"debug_atom_names"</span>))]
         </span><span class="kw">return </span>Connection { c: conn, ext_data };
 
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;xlib_xcb&quot;</span>))]
-        #[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(not(feature = <span class="string">"xlib_xcb"</span>))]
+        #[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">return </span>Connection {
             c: conn,
             ext_data,
             dbg_atom_names,
         };
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
-        #[cfg(not(feature = <span class="string">&quot;debug_atom_names&quot;</span>))]
+        <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
+        #[cfg(not(feature = <span class="string">"debug_atom_names"</span>))]
         </span><span class="kw">return </span>Connection {
             c: conn,
             dpy: ptr::null_mut(),
             ext_data,
         };
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
-        #[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
+        #[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">return </span>Connection {
             c: conn,
             dpy: ptr::null_mut(),
@@ -2961,7 +2963,7 @@
     ///
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub unsafe fn </span>from_xlib_display(dpy: <span class="kw-2">*mut </span>xlib::Display) -&gt; Connection {
         <span class="self">Self</span>::from_xlib_display_and_extensions(dpy, <span class="kw-2">&amp;</span>[], <span class="kw-2">&amp;</span>[])
     }
@@ -2981,18 +2983,18 @@
     ///
     /// # Safety
     /// The `dpy` pointer must be a pointer to a valid `xlib::Display`.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub unsafe fn </span>from_xlib_display_and_extensions(
         dpy: <span class="kw-2">*mut </span>xlib::Display,
         mandatory: <span class="kw-2">&amp;</span>[Extension],
         optional: <span class="kw-2">&amp;</span>[Extension],
     ) -&gt; Connection {
-        <span class="macro">assert!</span>(!dpy.is_null(), <span class="string">&quot;attempt connect with null display&quot;</span>);
+        <span class="macro">assert!</span>(!dpy.is_null(), <span class="string">"attempt connect with null display"</span>);
         <span class="kw">let </span>c = XGetXCBConnection(dpy);
 
         <span class="macro">assert!</span>(check_connection_error(c).is_ok());
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">let </span>dbg_atom_names = {
             <span class="kw">if </span>dan::DAN_CONN.is_null() {
                 dan::DAN_CONN = c;
@@ -3004,7 +3006,7 @@
 
         <span class="kw">let </span>ext_data = cache_extensions_data(c, mandatory, optional);
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">return </span>Connection {
             c,
             dpy,
@@ -3012,7 +3014,7 @@
             dbg_atom_names,
         };
 
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;debug_atom_names&quot;</span>))]
+        <span class="attr">#[cfg(not(feature = <span class="string">"debug_atom_names"</span>))]
         </span><span class="kw">return </span>Connection { c, dpy, ext_data };
     }
 
@@ -3032,7 +3034,7 @@
     /// #   Ok(())
     /// # }
     /// ```
-    </span><span class="kw">pub fn </span>active_extensions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = Extension&gt; + <span class="lifetime">&#39;_ </span>{
+    </span><span class="kw">pub fn </span>active_extensions(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw">impl </span>Iterator&lt;Item = Extension&gt; + <span class="lifetime">'_ </span>{
         <span class="self">self</span>.ext_data.iter().map(|eed| eed.ext)
     }
 
@@ -3051,7 +3053,7 @@
     <span class="doccomment">/// Returns the inner ffi `xlib::Display` pointer.
     ///
     /// This function is behind the `xlib_xcb` cargo feature.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub fn </span>get_raw_dpy(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>xlib::Display {
         <span class="self">self</span>.dpy
     }
@@ -3060,7 +3062,7 @@
     /// with the Xlib interface. In that case, the default owner is Xlib.
     ///
     /// This function is behind the `xlib_xcb` cargo feature.
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub fn </span>set_event_queue_owner(<span class="kw-2">&amp;</span><span class="self">self</span>, owner: EventQueueOwner) {
         <span class="macro">debug_assert!</span>(!<span class="self">self</span>.dpy.is_null());
         <span class="kw">unsafe </span>{
@@ -3170,14 +3172,14 @@
     ///     loop {
     ///         let event = match conn.wait_for_event() {
     ///             Err(xcb::Error::Connection(err)) =&gt; {
-    ///                 panic!(&quot;unexpected I/O error: {}&quot;, err);
+    ///                 panic!("unexpected I/O error: {}", err);
     ///             }
     ///             Err(xcb::Error::Protocol(xcb::ProtocolError::X(x::Error::Font(err), _req_name))) =&gt; {
     ///                 // may be this particular error is fine?
     ///                 continue;
     ///             }
     ///             Err(xcb::Error::Protocol(err)) =&gt; {
-    ///                 panic!(&quot;unexpected protocol error: {:#?}&quot;, err);
+    ///                 panic!("unexpected protocol error: {:#?}", err);
     ///             }
     ///             Ok(event) =&gt; event,
     ///         };
@@ -3217,7 +3219,7 @@
     <span class="doccomment">/// Returns the next event without reading from the connection.
     ///
     /// This is a version of [Connection::poll_for_event] that only examines the
-    /// event queue for new events. The function doesn&#39;t try to read new
+    /// event queue for new events. The function doesn't try to read new
     /// events from the connection if no queued events are found.
     ///
     /// This function is useful for callers that know in advance that all
@@ -3243,15 +3245,15 @@
     /// XGE events are only defined in the `xinput` and `present` extensions
     ///
     /// This function is present only if either of the `xinput` or `present` cargo features are active.
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
     </span><span class="kw">pub fn </span>register_for_special_xge&lt;XGE: GeEvent&gt;(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; SpecialEventId {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ext: <span class="kw-2">*mut </span>xcb_extension_t = <span class="kw">match </span>XGE::EXTENSION {
-                <span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
                 </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span>xinput::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-                <span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+                <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
                 </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span>present::FFI_EXT <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>,
-                <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;only Input and Present have XGE events&quot;</span>),
+                <span class="kw">_ </span>=&gt; <span class="macro">unreachable!</span>(<span class="string">"only Input and Present have XGE events"</span>),
             };
 
             <span class="kw">let </span><span class="kw-2">mut </span>stamp: Timestamp = <span class="number">0</span>;
@@ -3263,7 +3265,7 @@
     }
 
     <span class="doccomment">/// Stop listening to a special event
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
     </span><span class="kw">pub fn </span>unregister_for_special_xge(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) {
         <span class="kw">unsafe </span>{
             xcb_unregister_for_special_xge(<span class="self">self</span>.c, se.raw);
@@ -3271,7 +3273,7 @@
     }
 
     <span class="doccomment">/// Returns the next event from a special queue, blocking until one arrives
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
     </span><span class="kw">pub fn </span>wait_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) -&gt; <span class="prelude-ty">Result</span>&lt;Event&gt; {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ev = xcb_wait_for_special_event(<span class="self">self</span>.c, se.raw);
@@ -3280,7 +3282,7 @@
     }
 
     <span class="doccomment">/// Returns the next event from a special queue
-    </span><span class="attr">#[cfg(any(feature = <span class="string">&quot;xinput&quot;</span>, feature = <span class="string">&quot;present&quot;</span>))]
+    </span><span class="attr">#[cfg(any(feature = <span class="string">"xinput"</span>, feature = <span class="string">"present"</span>))]
     </span><span class="kw">pub fn </span>poll_for_special_event(<span class="kw-2">&amp;</span><span class="self">self</span>, se: SpecialEventId) -&gt; <span class="prelude-ty">Result</span>&lt;<span class="prelude-ty">Option</span>&lt;Event&gt;&gt; {
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>ev = xcb_poll_for_special_event(<span class="self">self</span>.c, se.raw);
@@ -3305,10 +3307,10 @@
     ///
     /// Accessor for the data returned by the server when the connection
     /// was initialized. This data includes
-    /// - the server&#39;s required format for images,
+    /// - the server's required format for images,
     /// - a list of available visuals,
     /// - a list of available screens,
-    /// - the server&#39;s maximum request length (in the absence of the
+    /// - the server's maximum request length (in the absence of the
     /// BIG-REQUESTS extension),
     /// - and other assorted information.
     ///
@@ -3369,7 +3371,7 @@
     ///     // Example of request with reply. The error (if any) is obtained with the reply.
     ///     let cookie = conn.send_request(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: x::Atom = conn
     ///             .wait_for_reply(cookie)?
@@ -3420,7 +3422,7 @@
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request_unchecked(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: Option&lt;x::Atom&gt; = conn
     ///             .wait_for_reply_unchecked(cookie)?
@@ -3510,7 +3512,7 @@
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: x::Atom = conn
     ///             .wait_for_reply(cookie)?
@@ -3545,7 +3547,7 @@
     /// #   let (conn, screen_num) = xcb::Connection::connect(None)?;
     ///     let cookie = conn.send_request_unchecked(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     });
     ///     let wm_protocols_atom: Option&lt;x::Atom&gt; = conn
     ///             .wait_for_reply_unchecked(cookie)?  // connection error may happen
@@ -3578,11 +3580,11 @@
     /// let (wm_protocols_cookie, wm_name_cookie) = (
     ///     conn.send_request(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     }),
     ///     conn.send_request(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_NAME&quot;,
+    ///         name: b"WM_NAME",
     ///     }),
     /// );
     /// let (wm_protocols_atom, wm_name_atom) = {
@@ -3640,7 +3642,7 @@
             <span class="kw">match </span>received {
                 <span class="number">0 </span>=&gt; <span class="prelude-val">None</span>,
                 <span class="number">1 </span>=&gt; <span class="prelude-val">Some</span>(<span class="self">self</span>.handle_reply_checked::&lt;C&gt;(reply, error)),
-                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;unexpected return value from xcb_poll_for_reply64&quot;</span>),
+                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"unexpected return value from xcb_poll_for_reply64"</span>),
             }
         }
     }
@@ -3660,11 +3662,11 @@
     /// let (wm_protocols_cookie, wm_name_cookie) = (
     ///     conn.send_request_unchecked(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_PROTOCOLS&quot;,
+    ///         name: b"WM_PROTOCOLS",
     ///     }),
     ///     conn.send_request_unchecked(&amp;x::InternAtom {
     ///         only_if_exists: true,
-    ///         name: b&quot;WM_NAME&quot;,
+    ///         name: b"WM_NAME",
     ///     }),
     /// );
     /// let (wm_protocols_atom, wm_name_atom) = {
@@ -3692,7 +3694,7 @@
     ///         }
     ///
     ///         match (wm_protocols_atom, wm_name_atom) {
-    ///             // If either `wm_protocols_atom` or `wm_name_atom` hasn&#39;t
+    ///             // If either `wm_protocols_atom` or `wm_name_atom` hasn't
     ///             // been received, continue the loop.
     ///             (Some(None), _) | (_, Some(None)) =&gt; continue,
     ///
@@ -3730,7 +3732,7 @@
             <span class="kw">match </span>received {
                 <span class="number">0 </span>=&gt; <span class="prelude-val">None</span>,
                 <span class="number">1 </span>=&gt; <span class="prelude-val">Some</span>(<span class="self">self</span>.handle_reply_unchecked::&lt;C&gt;(reply)),
-                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">&quot;unexpected return value from xcb_poll_for_reply64&quot;</span>),
+                <span class="kw">_ </span>=&gt; <span class="macro">panic!</span>(<span class="string">"unexpected return value from xcb_poll_for_reply64"</span>),
             }
         }
     }
@@ -3743,7 +3745,7 @@
     /// to be used for diagnostic/monitoring/informative purposes.
     ///
     /// Since: libxcb 1.14
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;libxcb_v1_14&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"libxcb_v1_14"</span>)]
     </span><span class="kw">pub fn </span>total_read(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
         <span class="kw">unsafe </span>{ xcb_total_read(<span class="self">self</span>.c) <span class="kw">as </span>usize }
     }
@@ -3756,7 +3758,7 @@
     /// to be used for diagnostic/monitoring/informative purposes.
     ///
     /// Since: libxcb 1.14
-    </span><span class="attr">#[cfg(feature = <span class="string">&quot;libxcb_v1_14&quot;</span>)]
+    </span><span class="attr">#[cfg(feature = <span class="string">"libxcb_v1_14"</span>)]
     </span><span class="kw">pub fn </span>total_written(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; usize {
         <span class="kw">unsafe </span>{ xcb_total_written(<span class="self">self</span>.c) <span class="kw">as </span>usize }
     }
@@ -3766,7 +3768,7 @@
     <span class="kw">unsafe fn </span>handle_wait_for_event(<span class="kw-2">&amp;</span><span class="self">self</span>, ev: <span class="kw-2">*mut </span>xcb_generic_event_t) -&gt; <span class="prelude-ty">Result</span>&lt;Event&gt; {
         <span class="kw">if </span>ev.is_null() {
             <span class="self">self</span>.has_error()<span class="question-mark">?</span>;
-            <span class="macro">panic!</span>(<span class="string">&quot;xcb_wait_for_event returned null with I/O error&quot;</span>);
+            <span class="macro">panic!</span>(<span class="string">"xcb_wait_for_event returned null with I/O error"</span>);
         } <span class="kw">else if </span>is_error(ev) {
             <span class="prelude-val">Err</span>(error::resolve_error(ev <span class="kw">as </span><span class="kw-2">*mut </span><span class="kw">_</span>, <span class="kw-2">&amp;</span><span class="self">self</span>.ext_data).into())
         } <span class="kw">else </span>{
@@ -3796,14 +3798,14 @@
         <span class="kw">match </span>(reply.is_null(), error.is_null()) {
             (<span class="bool-val">true</span>, <span class="bool-val">true</span>) =&gt; {
                 <span class="self">self</span>.has_error()<span class="question-mark">?</span>;
-                <span class="macro">unreachable!</span>(<span class="string">&quot;xcb_wait_for_reply64 returned null without I/O error&quot;</span>);
+                <span class="macro">unreachable!</span>(<span class="string">"xcb_wait_for_reply64 returned null without I/O error"</span>);
             }
             (<span class="bool-val">true</span>, <span class="bool-val">false</span>) =&gt; {
                 <span class="kw">let </span>error = error::resolve_error(error, <span class="kw-2">&amp;</span><span class="self">self</span>.ext_data);
                 <span class="prelude-val">Err</span>(error.into())
             }
             (<span class="bool-val">false</span>, <span class="bool-val">true</span>) =&gt; <span class="prelude-val">Ok</span>(C::Reply::from_raw(reply <span class="kw">as </span><span class="kw-2">*const </span>u8)),
-            (<span class="bool-val">false</span>, <span class="bool-val">false</span>) =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;xcb_wait_for_reply64 returned two pointers&quot;</span>),
+            (<span class="bool-val">false</span>, <span class="bool-val">false</span>) =&gt; <span class="macro">unreachable!</span>(<span class="string">"xcb_wait_for_reply64 returned two pointers"</span>),
         }
     }
 
@@ -3833,7 +3835,7 @@
 }
 
 <span class="comment">// SAFETY: We provide a valid xcb_connection_t that is valid for as long as required by the trait.
-</span><span class="attr">#[cfg(feature = <span class="string">&quot;as-raw-xcb-connection&quot;</span>)]
+</span><span class="attr">#[cfg(feature = <span class="string">"as-raw-xcb-connection"</span>)]
 </span><span class="kw">unsafe impl </span>as_raw_xcb_connection::AsRawXcbConnection <span class="kw">for </span>Connection {
     <span class="kw">fn </span>as_raw_xcb_connection(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*mut </span>as_raw_xcb_connection::xcb_connection_t {
         <span class="self">self</span>.get_raw_conn().cast()
@@ -3842,19 +3844,19 @@
 
 <span class="kw">impl </span>Drop <span class="kw">for </span>Connection {
     <span class="kw">fn </span>drop(<span class="kw-2">&amp;mut </span><span class="self">self</span>) {
-        <span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
         </span><span class="kw">if </span><span class="self">self</span>.dbg_atom_names {
             <span class="kw">unsafe </span>{
                 dan::DAN_CONN = ptr::null_mut();
             }
         }
 
-        <span class="attr">#[cfg(not(feature = <span class="string">&quot;xlib_xcb&quot;</span>))]
+        <span class="attr">#[cfg(not(feature = <span class="string">"xlib_xcb"</span>))]
         </span><span class="kw">unsafe </span>{
             xcb_disconnect(<span class="self">self</span>.c);
         }
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
         </span><span class="kw">unsafe </span>{
             <span class="kw">if </span><span class="self">self</span>.dpy.is_null() {
                 xcb_disconnect(<span class="self">self</span>.c);
@@ -3865,7 +3867,7 @@
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;debug_atom_names&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"debug_atom_names"</span>)]
 </span><span class="kw">mod </span>dan {
     <span class="kw">use super</span>::{Connection, Xid};
     <span class="kw">use </span><span class="kw">crate</span>::ffi::base::xcb_connection_t;
@@ -3880,9 +3882,9 @@
 
     <span class="kw">impl </span>fmt::Debug <span class="kw">for </span>x::Atom {
         <span class="attr">#[allow(clippy::print_in_format_impl)]
-        </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">&#39;_</span>&gt;) -&gt; fmt::Result {
+        </span><span class="kw">fn </span>fmt(<span class="kw-2">&amp;</span><span class="self">self</span>, f: <span class="kw-2">&amp;mut </span>fmt::Formatter&lt;<span class="lifetime">'_</span>&gt;) -&gt; fmt::Result {
             <span class="kw">if </span><span class="self">self</span>.resource_id() == <span class="number">0 </span>{
-                <span class="kw">return </span>f.write_str(<span class="string">&quot;ATOM_NONE&quot;</span>);
+                <span class="kw">return </span>f.write_str(<span class="string">"ATOM_NONE"</span>);
             }
 
             <span class="kw">let </span>conn = <span class="kw">unsafe </span>{ Connection::from_raw_conn(DAN_CONN) };
@@ -3890,14 +3892,14 @@
             <span class="kw">let </span>cookie = conn.send_request(<span class="kw-2">&amp;</span>x::GetAtomName { atom: <span class="kw-2">*</span><span class="self">self </span>});
             <span class="kw">let </span>reply = conn.wait_for_reply(cookie).map_err(|err| {
                 <span class="macro">eprintln!</span>(
-                    <span class="string">&quot;Error during fmt::Debug of x::Atom (fetching atom name): {:#?}&quot;</span>,
+                    <span class="string">"Error during fmt::Debug of x::Atom (fetching atom name): {:#?}"</span>,
                     err
                 );
                 fmt::Error
             })<span class="question-mark">?</span>;
 
             <span class="kw">let </span>name = reply.name().to_utf8();
-            f.write_fmt(<span class="macro">format_args!</span>(<span class="string">&quot;Atom(\&quot;{}\&quot; ; {})&quot;</span>, name, <span class="self">self</span>.resource_id()))<span class="question-mark">?</span>;
+            f.write_fmt(<span class="macro">format_args!</span>(<span class="string">"Atom(\"{}\" ; {})"</span>, name, <span class="self">self</span>.resource_id()))<span class="question-mark">?</span>;
 
             mem::forget(conn);
             <span class="prelude-val">Ok</span>(())
@@ -3915,7 +3917,7 @@
         XCB_CONN_CLOSED_PARSE_ERR =&gt; <span class="prelude-val">Err</span>(ConnError::ClosedParseErr),
         XCB_CONN_CLOSED_INVALID_SCREEN =&gt; <span class="prelude-val">Err</span>(ConnError::ClosedInvalidScreen),
         XCB_CONN_CLOSED_FDPASSING_FAILED =&gt; <span class="prelude-val">Err</span>(ConnError::ClosedFdPassingFailed),
-        code =&gt; <span class="macro">unreachable!</span>(<span class="string">&quot;unexpected error code from XCB: {}&quot;</span>, code),
+        code =&gt; <span class="macro">unreachable!</span>(<span class="string">"unexpected error code from XCB: {}"</span>, code),
     }
 }
 
@@ -3936,7 +3938,7 @@
 
 <span class="doccomment">/// Compute the necessary padding after `base` to have `align` alignment
 </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>align_pad(base: usize, align: usize) -&gt; usize {
-    <span class="macro">debug_assert!</span>(align.is_power_of_two(), <span class="string">&quot;`align` must be a power of two&quot;</span>);
+    <span class="macro">debug_assert!</span>(align.is_power_of_two(), <span class="string">"`align` must be a power of two"</span>);
 
     <span class="kw">let </span>base = base <span class="kw">as </span>isize;
     <span class="kw">let </span>align = align <span class="kw">as </span>isize;

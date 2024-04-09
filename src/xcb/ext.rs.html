@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ext.rs`."><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ext.rs`."><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../xcb/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -439,142 +441,142 @@
     <span class="doccomment">/// The `XCMISC` extension.
     </span>XcMisc,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
     </span><span class="doccomment">/// The `Composite` extension.
     /// Available with the `composite` cargo feature.
     </span>Composite,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
     </span><span class="doccomment">/// The `DAMAGE` extension.
     /// Available with the `damage` cargo feature.
     </span>Damage,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
     </span><span class="doccomment">/// The `DPMS` extension.
     /// Available with the `dpms` cargo feature.
     </span>Dpms,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
     </span><span class="doccomment">/// The `DRI2` extension.
     /// Available with the `dri2` cargo feature.
     </span>Dri2,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
     </span><span class="doccomment">/// The `DRI3` extension.
     /// Available with the `dri3` cargo feature.
     </span>Dri3,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"ge"</span>)]
     </span><span class="doccomment">/// The `Generic Event Extension` extension.
     /// Available with the `ge` cargo feature.
     </span>GenericEvent,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
     </span><span class="doccomment">/// The `GLX` extension.
     /// Available with the `glx` cargo feature.
     </span>Glx,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
     </span><span class="doccomment">/// The `Present` extension.
     /// Available with the `present` cargo feature.
     </span>Present,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
     </span><span class="doccomment">/// The `RANDR` extension.
     /// Available with the `randr` cargo feature.
     </span>RandR,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
     </span><span class="doccomment">/// The `RECORD` extension.
     /// Available with the `record` cargo feature.
     </span>Record,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
     </span><span class="doccomment">/// The `RENDER` extension.
     /// Available with the `render` cargo feature.
     </span>Render,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
     </span><span class="doccomment">/// The `X-Resource` extension.
     /// Available with the `res` cargo feature.
     </span>Res,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
     </span><span class="doccomment">/// The `MIT-SCREEN-SAVER` extension.
     /// Available with the `screensaver` cargo feature.
     </span>ScreenSaver,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
     </span><span class="doccomment">/// The `SHAPE` extension.
     /// Available with the `shape` cargo feature.
     </span>Shape,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
     </span><span class="doccomment">/// The `MIT-SHM` extension.
     /// Available with the `shm` cargo feature.
     </span>Shm,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
     </span><span class="doccomment">/// The `SYNC` extension.
     /// Available with the `sync` cargo feature.
     </span>Sync,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
     </span><span class="doccomment">/// The `XEVIE` extension.
     /// Available with the `xevie` cargo feature.
     </span>Xevie,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
     </span><span class="doccomment">/// The `XFree86-DRI` extension.
     /// Available with the `xf86dri` cargo feature.
     </span>Xf86Dri,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
     </span><span class="doccomment">/// The `XFree86-VidModeExtension` extension.
     /// Available with the `xf86vidmode` cargo feature.
     </span>Xf86VidMode,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
     </span><span class="doccomment">/// The `XFIXES` extension.
     /// Available with the `xfixes` cargo feature.
     </span>XFixes,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
     </span><span class="doccomment">/// The `XINERAMA` extension.
     /// Available with the `xinerama` cargo feature.
     </span>Xinerama,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
     </span><span class="doccomment">/// The `XInputExtension` extension.
     /// Available with the `xinput` cargo feature.
     </span>Input,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
     </span><span class="doccomment">/// The `XKEYBOARD` extension.
     /// Available with the `xkb` cargo feature.
     </span>Xkb,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
     </span><span class="doccomment">/// The `XpExtension` extension.
     /// Available with the `xprint` cargo feature.
     </span>XPrint,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
     </span><span class="doccomment">/// The `SELinux` extension.
     /// Available with the `xselinux` cargo feature.
     </span>SeLinux,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
     </span><span class="doccomment">/// The `XTEST` extension.
     /// Available with the `xtest` cargo feature.
     </span>Test,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
     </span><span class="doccomment">/// The `XVideo` extension.
     /// Available with the `xv` cargo feature.
     </span>Xv,
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
     </span><span class="doccomment">/// The `XVideo-MotionCompensation` extension.
     /// Available with the `xvmc` cargo feature.
     </span>XvMc,
@@ -582,94 +584,94 @@
 
 <span class="kw">impl </span>Extension {
     <span class="doccomment">/// Returns the official X-Name of the extension,
-    /// such as `&quot;BIG-REQUESTS&quot;`.
-    </span><span class="kw">fn </span>xname(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str {
+    /// such as `"BIG-REQUESTS"`.
+    </span><span class="kw">fn </span>xname(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span>str {
         <span class="kw">match </span><span class="self">self </span>{
             Extension::BigRequests =&gt; <span class="kw">crate</span>::bigreq::XNAME,
             Extension::XcMisc =&gt; <span class="kw">crate</span>::xc_misc::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
             </span>Extension::Composite =&gt; <span class="kw">crate</span>::composite::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
             </span>Extension::Damage =&gt; <span class="kw">crate</span>::damage::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
             </span>Extension::Dpms =&gt; <span class="kw">crate</span>::dpms::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
             </span>Extension::Dri2 =&gt; <span class="kw">crate</span>::dri2::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
             </span>Extension::Dri3 =&gt; <span class="kw">crate</span>::dri3::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"ge"</span>)]
             </span>Extension::GenericEvent =&gt; <span class="kw">crate</span>::ge::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
             </span>Extension::Glx =&gt; <span class="kw">crate</span>::glx::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
             </span>Extension::Present =&gt; <span class="kw">crate</span>::present::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
             </span>Extension::RandR =&gt; <span class="kw">crate</span>::randr::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
             </span>Extension::Record =&gt; <span class="kw">crate</span>::record::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
             </span>Extension::Render =&gt; <span class="kw">crate</span>::render::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
             </span>Extension::Res =&gt; <span class="kw">crate</span>::res::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
             </span>Extension::ScreenSaver =&gt; <span class="kw">crate</span>::screensaver::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
             </span>Extension::Shape =&gt; <span class="kw">crate</span>::shape::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
             </span>Extension::Shm =&gt; <span class="kw">crate</span>::shm::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
             </span>Extension::Sync =&gt; <span class="kw">crate</span>::sync::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
             </span>Extension::Xevie =&gt; <span class="kw">crate</span>::xevie::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
             </span>Extension::Xf86Dri =&gt; <span class="kw">crate</span>::xf86dri::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
             </span>Extension::Xf86VidMode =&gt; <span class="kw">crate</span>::xf86vidmode::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
             </span>Extension::XFixes =&gt; <span class="kw">crate</span>::xfixes::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
             </span>Extension::Xinerama =&gt; <span class="kw">crate</span>::xinerama::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
             </span>Extension::Input =&gt; <span class="kw">crate</span>::xinput::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
             </span>Extension::Xkb =&gt; <span class="kw">crate</span>::xkb::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
             </span>Extension::XPrint =&gt; <span class="kw">crate</span>::xprint::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
             </span>Extension::SeLinux =&gt; <span class="kw">crate</span>::xselinux::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
             </span>Extension::Test =&gt; <span class="kw">crate</span>::xtest::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
             </span>Extension::Xv =&gt; <span class="kw">crate</span>::xv::XNAME,
 
-            <span class="attr">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+            <span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
             </span>Extension::XvMc =&gt; <span class="kw">crate</span>::xvmc::XNAME,
         }
     }
@@ -716,7 +718,7 @@
 
             <span class="macro">assert!</span>(
                 reply.present(),
-                <span class="string">&quot;mandatory extension {} is not present on this system&quot;</span>,
+                <span class="string">"mandatory extension {} is not present on this system"</span>,
                 ext
             );
             ext_data.push(ExtensionData {
@@ -754,93 +756,93 @@
     }
 }
 
-<span class="kw">unsafe fn </span>get_extension_id(ext: Extension) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span><span class="kw-2">mut </span>xcb_extension_t {
+<span class="kw">unsafe fn </span>get_extension_id(ext: Extension) -&gt; <span class="kw-2">&amp;</span><span class="lifetime">'static </span><span class="kw-2">mut </span>xcb_extension_t {
     <span class="kw">match </span>ext {
         Extension::BigRequests =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::bigreq::FFI_EXT,
         Extension::XcMisc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xc_misc::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
         </span>Extension::Composite =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::composite::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
         </span>Extension::Damage =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::damage::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
         </span>Extension::Dpms =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dpms::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
         </span>Extension::Dri2 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri2::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
         </span>Extension::Dri3 =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::dri3::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"ge"</span>)]
         </span>Extension::GenericEvent =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::ge::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
         </span>Extension::Glx =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::glx::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
         </span>Extension::Present =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::present::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
         </span>Extension::RandR =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::randr::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
         </span>Extension::Record =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::record::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
         </span>Extension::Render =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::render::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
         </span>Extension::Res =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::res::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
         </span>Extension::ScreenSaver =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::screensaver::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
         </span>Extension::Shape =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shape::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
         </span>Extension::Shm =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::shm::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
         </span>Extension::Sync =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::sync::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
         </span>Extension::Xevie =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xevie::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
         </span>Extension::Xf86Dri =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86dri::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
         </span>Extension::Xf86VidMode =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xf86vidmode::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
         </span>Extension::XFixes =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xfixes::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
         </span>Extension::Xinerama =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinerama::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
         </span>Extension::Input =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xinput::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
         </span>Extension::Xkb =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xkb::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
         </span>Extension::XPrint =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xprint::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
         </span>Extension::SeLinux =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xselinux::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
         </span>Extension::Test =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xtest::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
         </span>Extension::Xv =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xv::FFI_EXT,
 
-        <span class="attr">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+        <span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
         </span>Extension::XvMc =&gt; <span class="kw-2">&amp;mut </span><span class="kw">crate</span>::xvmc::FFI_EXT,
     }
 }

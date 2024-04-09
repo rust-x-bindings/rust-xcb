@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["XShmAttach","XShmCreateImage","XShmCreatePixmap","XShmDetach","XShmGetEventBase","XShmGetImage","XShmPixmapFormat","XShmPutImage","XShmQueryExtension","XShmQueryVersion"],"struct":["XShmCompletionEvent","XShmSegmentInfo"],"type":["ShmSeg"]};

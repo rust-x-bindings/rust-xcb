@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/lib.rs`."><title>lib.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../xcb/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -844,7 +846,7 @@
  *
  * Permission is hereby granted, free of charge, to any
  * person obtaining a copy of this software and associated
- * documentation files (the &quot;Software&quot;), to deal in the
+ * documentation files (the "Software"), to deal in the
  * Software without restriction, including without
  * limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of
@@ -856,7 +858,7 @@
  * shall be included in all copies or substantial portions
  * of the Software.
  *
- * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
  * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
@@ -943,21 +945,21 @@
 //!         ],
 //!     });
 //!     // We now check if the window creation worked.
-//!     // A cookie can&#39;t be cloned; it is moved to the function.
+//!     // A cookie can't be cloned; it is moved to the function.
 //!     conn.check_request(cookie)?;
 //!
-//!     // Let&#39;s change the window title
+//!     // Let's change the window title
 //!     let cookie = conn.send_request_checked(&amp;x::ChangeProperty {
 //!         mode: x::PropMode::Replace,
 //!         window,
 //!         property: x::ATOM_WM_NAME,
 //!         r#type: x::ATOM_STRING,
-//!         data: b&quot;My XCB Window&quot;,
+//!         data: b"My XCB Window",
 //!     });
 //!     // And check for success again
 //!     conn.check_request(cookie)?;
 //!
-//!     // We now show (&quot;map&quot; in X terminology) the window.
+//!     // We now show ("map" in X terminology) the window.
 //!     // This time we do not check for success, so we discard the cookie.
 //!     conn.send_request(&amp;x::MapWindow {
 //!         window,
@@ -969,23 +971,23 @@
 //!         let cookies = (
 //!             conn.send_request(&amp;x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: b&quot;WM_PROTOCOLS&quot;,
+//!                 name: b"WM_PROTOCOLS",
 //!             }),
 //!             conn.send_request(&amp;x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: b&quot;WM_DELETE_WINDOW&quot;,
+//!                 name: b"WM_DELETE_WINDOW",
 //!             }),
 //!             conn.send_request(&amp;x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: b&quot;_NET_WM_STATE&quot;,
+//!                 name: b"_NET_WM_STATE",
 //!             }),
 //!             conn.send_request(&amp;x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_VERT&quot;,
+//!                 name: b"_NET_WM_STATE_MAXIMIZED_VERT",
 //!             }),
 //!             conn.send_request(&amp;x::InternAtom {
 //!                 only_if_exists: true,
-//!                 name: b&quot;_NET_WM_STATE_MAXIMIZED_HORZ&quot;,
+//!                 name: b"_NET_WM_STATE_MAXIMIZED_HORZ",
 //!             }),
 //!         );
 //!         (
@@ -998,7 +1000,7 @@
 //!     };
 //!
 //!     // We now activate the window close event by sending the following request.
-//!     // If we don&#39;t do this we can still close the window by clicking on the &quot;x&quot; button,
+//!     // If we don't do this we can still close the window by clicking on the "x" button,
 //!     // but the event loop is notified through a connection shutdown error.
 //!     conn.check_request(conn.send_request_checked(&amp;x::ChangeProperty {
 //!         mode: x::PropMode::Replace,
@@ -1043,7 +1045,7 @@
 //!                     });
 //!                     conn.check_request(cookie)?;
 //!
-//!                     // Same as before, if we don&#39;t check for error, we have to flush
+//!                     // Same as before, if we don't check for error, we have to flush
 //!                     // the connection.
 //!                     // conn.flush()?;
 //!
@@ -1059,7 +1061,7 @@
 //!                 // We have received a message from the server
 //!                 if let x::ClientMessageData::Data32([atom, ..]) = ev.data() {
 //!                     if atom == wm_del_window.resource_id() {
-//!                         // The received atom is &quot;WM_DELETE_WINDOW&quot;.
+//!                         // The received atom is "WM_DELETE_WINDOW".
 //!                         // We can check here if the user needs to save before
 //!                         // exit, or in our case, exit right away.
 //!                         break Ok(());
@@ -1088,7 +1090,7 @@
 //! When this feature is activated, the `fmt::Debug` implementation for `x::Atom` will print
 //! out the name of the atom in addition to its value.
 //!
-//! E.g. the feature would turn `Atom { res_id: 303 }` into `Atom(&quot;Abs Pressure&quot; ; 303)`.
+//! E.g. the feature would turn `Atom { res_id: 303 }` into `Atom("Abs Pressure" ; 303)`.
 //!
 //! This can be useful in situations where you are not sure which atom you have to intern
 //! in order to look up some data in a reply.
@@ -1165,13 +1167,13 @@
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>base;
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>ext;
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">mod </span>xlib_xcb;
 
     <span class="kw">pub use </span>base::<span class="kw-2">*</span>;
     <span class="kw">pub use </span>ext::<span class="kw-2">*</span>;
 
-    <span class="attr">#[cfg(feature = <span class="string">&quot;xlib_xcb&quot;</span>)]
+    <span class="attr">#[cfg(feature = <span class="string">"xlib_xcb"</span>)]
     </span><span class="kw">pub use </span>xlib_xcb::<span class="kw-2">*</span>;
 }
 
@@ -1230,7 +1232,7 @@
         </span><span class="kw">const </span>FORMAT: u8 = <span class="number">32</span>;
     }
 
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xproto.rs&quot;</span>));
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xproto.rs"</span>));
 }
 
 <span class="doccomment">/// An helper macro that generate a struct of atoms.
@@ -1250,14 +1252,14 @@
 /// xcb::atoms_struct! {
 ///     #[derive(Copy, Clone, Debug)]
 ///     pub(crate) struct Atoms {
-///         pub wm_protocols    =&gt; b&quot;WM_PROTOCOLS&quot;,
-///         pub wm_del_window   =&gt; b&quot;WM_DELETE_WINDOW&quot;,
+///         pub wm_protocols    =&gt; b"WM_PROTOCOLS",
+///         pub wm_del_window   =&gt; b"WM_DELETE_WINDOW",
 ///         /// Supported EWMH hints
-///         pub net_supported  =&gt; b&quot;_NET_SUPPORTED&quot;,
+///         pub net_supported  =&gt; b"_NET_SUPPORTED",
 ///
 ///         // You can also explicitly set the `only_if_exists` argument when interning
 ///         // each atom with the following syntax (the default is `true`):
-///         pub custom_atom    =&gt; b&quot;MY_CUSTOM_ATOM&quot; only_if_exists = false,
+///         pub custom_atom    =&gt; b"MY_CUSTOM_ATOM" only_if_exists = false,
 ///     }
 /// }
 ///
@@ -1317,73 +1319,73 @@
 
 <span class="kw">pub mod </span>bigreq {
     <span class="doccomment">//! The `BIG-REQUESTS` extension.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/bigreq.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/bigreq.rs"</span>));
 }
 
 <span class="kw">pub mod </span>xc_misc {
     <span class="doccomment">//! The `XC-MISC` extension.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xc_misc.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xc_misc.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;composite&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"composite"</span>)]
 </span><span class="kw">pub mod </span>composite {
     <span class="doccomment">//! The `Composite` X extension.
     //!
     //! Accessible with the `composite` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/composite.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/composite.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;damage&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"damage"</span>)]
 </span><span class="kw">pub mod </span>damage {
     <span class="doccomment">//! The `DAMAGE` X extension.
     //!
     //! Accessible with the `damage` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/damage.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/damage.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;dpms&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dpms"</span>)]
 </span><span class="kw">pub mod </span>dpms {
     <span class="doccomment">//! The `DPMS` X extension.
     //!
     //! Accessible with the `dpms` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dpms.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/dpms.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;dri2&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dri2"</span>)]
 </span><span class="kw">pub mod </span>dri2 {
     <span class="doccomment">//! The `DRI2` X extension.
     //!
     //! Accessible with the `dri2` cargo feature.
     </span><span class="attr">#![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dri2.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/dri2.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;dri3&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"dri3"</span>)]
 </span><span class="kw">pub mod </span>dri3 {
     <span class="doccomment">//! The `DRI3` X extension.
     //!
     //! Accessible with the `dri3` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/dri3.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/dri3.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;ge&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"ge"</span>)]
 </span><span class="kw">pub mod </span>ge {
     <span class="doccomment">//! The `Generic Event Extension` X extension.
     //!
     //! Accessible with the `ge` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/ge.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/ge.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;glx&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"glx"</span>)]
 </span><span class="kw">pub mod </span>glx {
     <span class="doccomment">//! The `GLX` X extension.
     //!
     //! Accessible with the `glx` cargo feature.
     </span><span class="attr">#![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/glx.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/glx.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xinput&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xinput"</span>)]
 </span><span class="kw">pub mod </span>xinput {
     <span class="doccomment">//! The `XInputExtension` X extension.
     //!
@@ -1443,138 +1445,138 @@
         }
     }
 
-    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xinput.rs&quot;</span>));
+    <span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xinput.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;present&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"present"</span>)]
 </span><span class="kw">pub mod </span>present {
     <span class="doccomment">//! The `Present` X extension.
     //!
     //! Accessible with the `present` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/present.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/present.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;randr&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"randr"</span>)]
 </span><span class="kw">pub mod </span>randr {
     <span class="doccomment">//! The `RANDR` X extension.
     //!
     //! Accessible with the `randr` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/randr.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/randr.rs"</span>));
 
     <span class="doccomment">/// For information on what the various properties mean, see the [RandR specification][randr-spec]
     ///
     /// [randr-spec]: https://cgit.freedesktop.org/xorg/proto/randrproto/tree/randrproto.txt#n1860
     </span><span class="kw">mod </span>property {
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_BACKLIGHT&quot;</span>)]
-        </span><span class="kw">pub const </span>BACKLIGHT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Backlight&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_BACKLIGHT"</span>)]
+        </span><span class="kw">pub const </span>BACKLIGHT: <span class="kw-2">&amp;</span>str = <span class="string">"Backlight"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_CLONE_LIST&quot;</span>)]
-        </span><span class="kw">pub const </span>CLONE_LIST: <span class="kw-2">&amp;</span>str = <span class="string">&quot;CloneList&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_CLONE_LIST"</span>)]
+        </span><span class="kw">pub const </span>CLONE_LIST: <span class="kw-2">&amp;</span>str = <span class="string">"CloneList"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_COMPATIBILITY_LIST&quot;</span>)]
-        </span><span class="kw">pub const </span>COMPATIBILITY_LIST: <span class="kw-2">&amp;</span>str = <span class="string">&quot;CompatibilityList&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_COMPATIBILITY_LIST"</span>)]
+        </span><span class="kw">pub const </span>COMPATIBILITY_LIST: <span class="kw-2">&amp;</span>str = <span class="string">"CompatibilityList"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_CONNECTOR_NUMBER&quot;</span>)]
-        </span><span class="kw">pub const </span>CONNECTOR_NUMBER: <span class="kw-2">&amp;</span>str = <span class="string">&quot;ConnectorNumber&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_CONNECTOR_NUMBER"</span>)]
+        </span><span class="kw">pub const </span>CONNECTOR_NUMBER: <span class="kw-2">&amp;</span>str = <span class="string">"ConnectorNumber"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_CONNECTOR_TYPE&quot;</span>)]
-        </span><span class="kw">pub const </span>CONNECTOR_TYPE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;ConnectorType&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_CONNECTOR_TYPE"</span>)]
+        </span><span class="kw">pub const </span>CONNECTOR_TYPE: <span class="kw-2">&amp;</span>str = <span class="string">"ConnectorType"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_RANDR_EDID&quot;</span>)]
-        </span><span class="kw">pub const </span>EDID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;EDID&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_RANDR_EDID"</span>)]
+        </span><span class="kw">pub const </span>EDID: <span class="kw-2">&amp;</span>str = <span class="string">"EDID"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_SIGNAL_FORMAT&quot;</span>)]
-        </span><span class="kw">pub const </span>SIGNAL_FORMAT: <span class="kw-2">&amp;</span>str = <span class="string">&quot;SignalFormat&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_SIGNAL_FORMAT"</span>)]
+        </span><span class="kw">pub const </span>SIGNAL_FORMAT: <span class="kw-2">&amp;</span>str = <span class="string">"SignalFormat"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_SIGNAL_PROPERTIES&quot;</span>)]
-        </span><span class="kw">pub const </span>SIGNAL_PROPERTIES: <span class="kw-2">&amp;</span>str = <span class="string">&quot;SignalProperties&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_SIGNAL_PROPERTIES"</span>)]
+        </span><span class="kw">pub const </span>SIGNAL_PROPERTIES: <span class="kw-2">&amp;</span>str = <span class="string">"SignalProperties"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_BORDER&quot;</span>)]
-        </span><span class="kw">pub const </span>BORDER: <span class="kw-2">&amp;</span>str = <span class="string">&quot;Border&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_BORDER"</span>)]
+        </span><span class="kw">pub const </span>BORDER: <span class="kw-2">&amp;</span>str = <span class="string">"Border"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_BORDER_DIMENSIONS&quot;</span>)]
-        </span><span class="kw">pub const </span>BORDER_DIMENSIONS: <span class="kw-2">&amp;</span>str = <span class="string">&quot;BorderDimensions&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_BORDER_DIMENSIONS"</span>)]
+        </span><span class="kw">pub const </span>BORDER_DIMENSIONS: <span class="kw-2">&amp;</span>str = <span class="string">"BorderDimensions"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_GUID&quot;</span>)]
-        </span><span class="kw">pub const </span>GUID: <span class="kw-2">&amp;</span>str = <span class="string">&quot;GUID&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_GUID"</span>)]
+        </span><span class="kw">pub const </span>GUID: <span class="kw-2">&amp;</span>str = <span class="string">"GUID"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_RANDR_TILE&quot;</span>)]
-        </span><span class="kw">pub const </span>TILE: <span class="kw-2">&amp;</span>str = <span class="string">&quot;TILE&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_RANDR_TILE"</span>)]
+        </span><span class="kw">pub const </span>TILE: <span class="kw-2">&amp;</span>str = <span class="string">"TILE"</span>;
 
-        <span class="attr">#[doc(alias = <span class="string">&quot;RR_PROPERTY_NON_DESKTOP&quot;</span>)]
-        </span><span class="kw">pub const </span>NON_DESKTOP: <span class="kw-2">&amp;</span>str = <span class="string">&quot;non-desktop&quot;</span>;
+        <span class="attr">#[doc(alias = <span class="string">"RR_PROPERTY_NON_DESKTOP"</span>)]
+        </span><span class="kw">pub const </span>NON_DESKTOP: <span class="kw-2">&amp;</span>str = <span class="string">"non-desktop"</span>;
     }
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;record&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"record"</span>)]
 </span><span class="kw">pub mod </span>record {
     <span class="doccomment">//! The `RECORD` X extension.
     //!
     //! Accessible with the `record` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/record.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/record.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;render&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"render"</span>)]
 </span><span class="kw">pub mod </span>render {
     <span class="doccomment">//! The `RENDER` X extension.
     //!
     //! Accessible with the `render` cargo feature.
     </span><span class="attr">#![allow(unused_variables)]
     #![allow(clippy::unit_arg)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/render.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/render.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;res&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"res"</span>)]
 </span><span class="kw">pub mod </span>res {
     <span class="doccomment">//! The `X-Resource` X extension.
     //!
     //! Accessible with the `res` cargo feature.
     </span><span class="attr">#![allow(unused_variables)]
     #![allow(clippy::unit_arg)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/res.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/res.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;screensaver&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"screensaver"</span>)]
 </span><span class="kw">pub mod </span>screensaver {
     <span class="doccomment">//! The `MIT-SCREEN-SAVER` X extension.
     //!
     //! Accessible with the `screensaver` cargo feature.
     </span><span class="attr">#![allow(unused_variables)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/screensaver.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/screensaver.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xselinux&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xselinux"</span>)]
 </span><span class="kw">pub mod </span>xselinux {
     <span class="doccomment">//! The `SELinux` X extension.
     //!
     //! Accessible with the `xselinux` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xselinux.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xselinux.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;shape&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"shape"</span>)]
 </span><span class="kw">pub mod </span>shape {
     <span class="doccomment">//! The `SHAPE` X extension.
     //!
     //! Accessible with the `shape` cargo feature.
     </span><span class="attr">#![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/shape.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/shape.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;shm&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"shm"</span>)]
 </span><span class="kw">pub mod </span>shm {
     <span class="doccomment">//! The `MIT-SHM` X extension.
     //!
     //! Accessible with the `shm` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/shm.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/shm.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;sync&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"sync"</span>)]
 </span><span class="kw">pub mod </span>sync {
     <span class="doccomment">//! The `SYNC` X extension.
     //!
@@ -1582,68 +1584,68 @@
     </span><span class="attr">#![allow(unused_variables)]
     #![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/sync.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/sync.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xtest&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xtest"</span>)]
 </span><span class="kw">pub mod </span>xtest {
     <span class="doccomment">//! The `XTEST` X extension.
     //!
     //! Accessible with the `xtest` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xtest.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xtest.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xprint&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xprint"</span>)]
 </span><span class="kw">pub mod </span>xprint {
     <span class="doccomment">//! The `XpExtension` X extension.
     //!
     //! Accessible with the `xprint` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xprint.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xprint.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xevie&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xevie"</span>)]
 </span><span class="kw">pub mod </span>xevie {
     <span class="doccomment">//! The `XEVIE` X extension.
     //!
     //! Accessible with the `xevie` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xevie.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xevie.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xf86dri&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xf86dri"</span>)]
 </span><span class="kw">pub mod </span>xf86dri {
     <span class="doccomment">//! The `XFree86-DRI` X extension.
     //!
     //! Accessible with the `xf86dri` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xf86dri.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xf86dri.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xf86vidmode&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xf86vidmode"</span>)]
 </span><span class="kw">pub mod </span>xf86vidmode {
     <span class="doccomment">//! The `XFree86-VidModeExtension` X extension.
     //!
     //! Accessible with the `xf86vidmode` cargo feature.
     </span><span class="attr">#![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xf86vidmode.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xf86vidmode.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xfixes&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xfixes"</span>)]
 </span><span class="kw">pub mod </span>xfixes {
     <span class="doccomment">//! The `XFIXES` X extension.
     //!
     //! Accessible with the `xfixes` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xfixes.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xfixes.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xinerama&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xinerama"</span>)]
 </span><span class="kw">pub mod </span>xinerama {
     <span class="doccomment">//! The `XINERAMA` X extension.
     //!
     //! Accessible with the `xinerama` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xinerama.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xinerama.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xkb&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xkb"</span>)]
 </span><span class="kw">pub mod </span>xkb {
     <span class="doccomment">//! The `XKEYBOARD` X extension.
     //!
@@ -1652,24 +1654,24 @@
     #![allow(clippy::let_unit_value)]
     #![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xkb.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xkb.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xv&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xv"</span>)]
 </span><span class="kw">pub mod </span>xv {
     <span class="doccomment">//! The `XVideo` X extension.
     //!
     //! Accessible with the `xv` cargo feature.
     </span><span class="attr">#![allow(clippy::unit_arg)]
     #![allow(clippy::too_many_arguments)]
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xv.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xv.rs"</span>));
 }
 
-<span class="attr">#[cfg(feature = <span class="string">&quot;xvmc&quot;</span>)]
+<span class="attr">#[cfg(feature = <span class="string">"xvmc"</span>)]
 </span><span class="kw">pub mod </span>xvmc {
     <span class="doccomment">//! The `XVideo-MotionCompensation` X extension.
     //!
     //! Accessible with the `xvmc` cargo feature.
-    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">&quot;OUT_DIR&quot;</span>), <span class="string">&quot;/xvmc.rs&quot;</span>));
+    </span><span class="macro">include!</span>(<span class="macro">concat!</span>(<span class="macro">env!</span>(<span class="string">"OUT_DIR"</span>), <span class="string">"/xvmc.rs"</span>));
 }
 </code></pre></div></section></main></body></html>

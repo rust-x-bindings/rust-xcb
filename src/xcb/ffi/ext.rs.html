@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/ext.rs`."><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-9ee3a5e31a2afa3e.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.75.0 (82e1608df 2023-12-21)" data-channel="1.75.0" data-search-js="search-8fbf244ebcf71464.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-9dd44ab47b99a0fb.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/ffi/ext.rs`."><title>ext.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../../static.files/rustdoc-5bc39a1768837dd0.css"><meta name="rustdoc-vars" data-root-path="../../../" data-static-root-path="../../../static.files/" data-current-crate="xcb" data-themes="" data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js" data-settings-js="settings-4313503d2e1961c2.js" ><script src="../../../static.files/storage-4c98445ec4002617.js"></script><script defer src="../../../static.files/src-script-e66d777a5a92e9b2.js"></script><script defer src="../../../src-files.js"></script><script defer src="../../../static.files/main-48f368f3872407c8.js"></script><noscript><link rel="stylesheet" href="../../../static.files/noscript-04d5337699b92874.css"></noscript><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title">
+            <h2>Files</h2></div></nav><div class="sidebar-resizer"></div>
+    <main><nav class="sub"><form class="search-form"><span></span><div id="sidebar-button" tabindex="-1"><a href="../../../xcb/all.html" title="show sidebar"></a></div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" tabindex="-1"><a href="../../../help.html" title="help">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -268,7 +270,7 @@
  *
  * Permission is hereby granted, free of charge, to any
  * person obtaining a copy of this software and associated
- * documentation files (the &quot;Software&quot;), to deal in the
+ * documentation files (the "Software"), to deal in the
  * Software without restriction, including without
  * limitation the rights to use, copy, modify, merge,
  * publish, distribute, sublicense, and/or sell copies of
@@ -280,7 +282,7 @@
  * shall be included in all copies or substantial portions
  * of the Software.
  *
- * THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF
  * ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
  * TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A
  * PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT
@@ -317,8 +319,8 @@
     XCB_REQUEST_REPLY_FDS = <span class="number">1 </span>&lt;&lt; <span class="number">3</span>,
 }
 
-<span class="attr">#[link(name = <span class="string">&quot;xcb&quot;</span>)]
-</span><span class="kw">extern </span><span class="string">&quot;C&quot; </span>{
+<span class="attr">#[link(name = <span class="string">"xcb"</span>)]
+</span><span class="kw">extern </span><span class="string">"C" </span>{
     <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">fn </span>xcb_send_request(
         c: <span class="kw-2">*mut </span>xcb_connection_t,
         flags: c_int,
@@ -334,7 +336,7 @@
      * @param request Information about the request to be sent.
      * @param num_fds Number of additional file descriptors to send to the server
      * @param fds Additional file descriptors that should be send to the server.
-     * @return The request&#39;s sequence number on success, 0 otherwise.
+     * @return The request's sequence number on success, 0 otherwise.
      *
      * This function sends a new request to the X server. The data of the request is
      * given as an array of @c iovecs in the @p vector argument. The length of that
@@ -378,7 +380,7 @@
      * @param request Information about the request to be sent.
      * @param num_fds Number of additional file descriptors to send to the server
      * @param fds Additional file descriptors that should be send to the server.
-     * @return The request&#39;s sequence number on success, 0 otherwise.
+     * @return The request's sequence number on success, 0 otherwise.
      *
      * This function sends a new request to the X server. The data of the request is
      * given as an array of @c iovecs in the @p vector argument. The length of that
@@ -394,7 +396,7 @@
      * Use xcb_flush() to make sure that it really was sent.
      *
      * Please note that this function is not the preferred way for sending requests.
-     * It&#39;s better to use the generated wrapper functions.
+     * It's better to use the generated wrapper functions.
      *
      * Please note that xcb might use index -1 and -2 of the @p vector array internally,
      * so they must be valid!
@@ -440,12 +442,12 @@
      * callback which XCB can call when it wants the write side of the
      * socket back to make a request. This callback synchronizes with the
      * external socket owner and flushes any output queues if appropriate.
-     * If you are sending requests which won&#39;t cause a reply, please note the
+     * If you are sending requests which won't cause a reply, please note the
      * comment for xcb_writev which explains some sequence number wrap issues.
      *
      * All replies that are generated while the socket is owned externally have
-     * @p flags applied to them. For example, use XCB_REQUEST_CHECK if you don&#39;t
-     * want errors to go to xcb&#39;s normal error handling, but instead having to be
+     * @p flags applied to them. For example, use XCB_REQUEST_CHECK if you don't
+     * want errors to go to xcb's normal error handling, but instead having to be
      * picked up via xcb_wait_for_reply(), xcb_poll_for_reply() or
      * xcb_request_check().
      */
@@ -465,8 +467,8 @@
      * @param requests Number of requests that are being sent.
      * @return 1 on success, else 0.
      *
-     * You must own the write-side of the socket (you&#39;ve called
-     * xcb_take_socket, and haven&#39;t returned from return_socket yet) to call
+     * You must own the write-side of the socket (you've called
+     * xcb_take_socket, and haven't returned from return_socket yet) to call
      * xcb_writev. Also, the iovec must have at least 1 byte of data in it.
      * You have to make sure that xcb can detect sequence number wraps correctly.
      * This means that the first request you send after xcb_take_socket must cause a
@@ -510,7 +512,7 @@
     ) -&gt; c_int;
 
     <span class="doccomment">/**
-     * @brief Don&#39;t use this, only needed by the generated code.
+     * @brief Don't use this, only needed by the generated code.
      * @param c The connection to the X server.
      * @param reply A reply that was received from the server
      * @param replylen The size of the reply.
