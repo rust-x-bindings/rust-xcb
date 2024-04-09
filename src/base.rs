@@ -520,6 +520,13 @@ impl SpecialEventId {
     }
 }
 
+// safe because XCB is thread safe.
+#[cfg(any(feature = "xinput", feature = "present"))]
+unsafe impl Send for SpecialEventId {}
+
+#[cfg(any(feature = "xinput", feature = "present"))]
+unsafe impl Sync for SpecialEventId {}
+
 /// Error type that is returned by `Connection::has_error`.
 #[derive(Debug)]
 pub enum ConnError {
@@ -1285,7 +1292,7 @@ impl Connection {
 
     /// Returns the next event from a special queue, blocking until one arrives
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn wait_for_special_event(&self, se: SpecialEventId) -> Result<Event> {
+    pub fn wait_for_special_event(&self, se: &SpecialEventId) -> Result<Event> {
         unsafe {
             let ev = xcb_wait_for_special_event(self.c, se.raw);
             self.handle_wait_for_event(ev)
@@ -1294,7 +1301,7 @@ impl Connection {
 
     /// Returns the next event from a special queue
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn poll_for_special_event(&self, se: SpecialEventId) -> Result<Option<Event>> {
+    pub fn poll_for_special_event(&self, se: &SpecialEventId) -> Result<Option<Event>> {
         unsafe {
             let ev = xcb_poll_for_special_event(self.c, se.raw);
             self.handle_poll_for_event(ev)
