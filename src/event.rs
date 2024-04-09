@@ -219,6 +219,7 @@ pub(crate) unsafe fn resolve_event(
                 }
             }
         }
+        return Event::Unknown(UnknownEvent::from_raw(event as *mut _));
     }
 
     for data in extension_data {
