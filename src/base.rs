@@ -502,21 +502,24 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
     }
 }
 
+#[deprecated(note = "use `SpecialEvent` instead")]
+pub type SpecialEventId = SpecialEvent;
+
 /// A struct that serve as an identifier for internal special queue in XCB
 ///
 /// See [Connection::register_for_special_xge].
 #[cfg(any(feature = "xinput", feature = "present"))]
 #[derive(Debug)]
-pub struct SpecialEventId {
+pub struct SpecialEvent {
     raw: *mut xcb_special_event_t,
 }
 
 // safe because XCB is thread safe.
 #[cfg(any(feature = "xinput", feature = "present"))]
-unsafe impl Send for SpecialEventId {}
+unsafe impl Send for SpecialEvent {}
 
 #[cfg(any(feature = "xinput", feature = "present"))]
-unsafe impl Sync for SpecialEventId {}
+unsafe impl Sync for SpecialEvent {}
 
 /// Error type that is returned by `Connection::has_error`.
 #[derive(Debug)]
@@ -1259,7 +1262,7 @@ impl Connection {
         &self,
         extension: Extension,
         eid: EID,
-    ) -> SpecialEventId {
+    ) -> SpecialEvent {
         unsafe {
             let ext: *mut xcb_extension_t = match extension {
                 #[cfg(feature = "xinput")]
@@ -1271,13 +1274,13 @@ impl Connection {
 
             let raw = xcb_register_for_special_xge(self.c, ext, eid.resource_id(), ptr::null_mut());
 
-            SpecialEventId { raw }
+            SpecialEvent { raw }
         }
     }
 
     /// Stop listening to a special event
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn unregister_for_special_event(&self, se: SpecialEventId) {
+    pub fn unregister_for_special_event(&self, se: SpecialEvent) {
         unsafe {
             xcb_unregister_for_special_event(self.c, se.raw);
         }
@@ -1285,7 +1288,7 @@ impl Connection {
 
     /// Returns the next event from a special queue, blocking until one arrives
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn wait_for_special_event(&self, se: &SpecialEventId) -> Result<Event> {
+    pub fn wait_for_special_event(&self, se: &SpecialEvent) -> Result<Event> {
         unsafe {
             let ev = xcb_wait_for_special_event(self.c, se.raw);
             self.handle_wait_for_event(ev)
@@ -1294,7 +1297,7 @@ impl Connection {
 
     /// Returns the next event from a special queue
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn poll_for_special_event(&self, se: &SpecialEventId) -> Result<Option<Event>> {
+    pub fn poll_for_special_event(&self, se: &SpecialEvent) -> Result<Option<Event>> {
         unsafe {
             let ev = xcb_poll_for_special_event(self.c, se.raw);
             self.handle_poll_for_event(ev)
