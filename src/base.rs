@@ -509,15 +509,6 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 #[derive(Debug)]
 pub struct SpecialEventId {
     raw: *mut xcb_special_event_t,
-    stamp: Timestamp,
-}
-
-#[cfg(any(feature = "xinput", feature = "present"))]
-impl SpecialEventId {
-    /// The X timestamp associated with this special event Id
-    pub fn stamp(&self) -> Timestamp {
-        self.stamp
-    }
 }
 
 // safe because XCB is thread safe.
@@ -1264,21 +1255,23 @@ impl Connection {
     ///
     /// This function is present only if either of the `xinput` or `present` cargo features are active.
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn register_for_special_xge<XGE: GeEvent>(&self) -> SpecialEventId {
+    pub fn register_for_special_xge<EID: Xid>(
+        &self,
+        extension: Extension,
+        eid: EID,
+    ) -> SpecialEventId {
         unsafe {
-            let ext: *mut xcb_extension_t = match XGE::EXTENSION {
+            let ext: *mut xcb_extension_t = match extension {
                 #[cfg(feature = "xinput")]
                 Extension::Input => &mut xinput::FFI_EXT as *mut _,
                 #[cfg(feature = "present")]
                 Extension::Present => &mut present::FFI_EXT as *mut _,
-                _ => unreachable!("only Input and Present have XGE events"),
+                _ => panic!("only Input and Present have XGE events"),
             };
 
-            let mut stamp: Timestamp = 0;
+            let raw = xcb_register_for_special_xge(self.c, ext, eid.resource_id(), ptr::null_mut());
 
-            let raw = xcb_register_for_special_xge(self.c, ext, XGE::NUMBER, &mut stamp as *mut _);
-
-            SpecialEventId { raw, stamp }
+            SpecialEventId { raw }
         }
     }
 
