@@ -1274,7 +1274,7 @@ impl Connection {
     /// XGE events are only defined in the `xinput` and `present` extensions
     ///
     /// This function is present only if either of the `xinput` or `present` cargo features are active.
-    #[deprecated(note = "broken API: use `register_for_special_event` instead")]
+    #[deprecated(note = "Broken API: use `register_for_special_event` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
     #[allow(deprecated)]
     pub fn register_for_special_xge<XGE: GeEvent>(&self) -> SpecialEventId {
@@ -1292,6 +1292,35 @@ impl Connection {
             let raw = xcb_register_for_special_xge(self.c, ext, XGE::NUMBER, &mut stamp as *mut _);
 
             SpecialEventId { raw, stamp }
+        }
+    }
+
+    /// Stop listening to a special event
+    #[deprecated(note = "use `unregister_for_special_event` instead")]
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn unregister_for_special_xge(&self, se: SpecialEvent) {
+        unsafe {
+            xcb_unregister_for_special_event(self.c, se.raw);
+        }
+    }
+
+    /// Returns the next event from a special queue, blocking until one arrives
+    #[deprecated(note = "Broken API: use `wait_for_special_event2` instead")]
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn wait_for_special_event(&self, se: SpecialEvent) -> Result<Event> {
+        unsafe {
+            let ev = xcb_wait_for_special_event(self.c, se.raw);
+            self.handle_wait_for_event(ev)
+        }
+    }
+
+    /// Returns the next event from a special queue
+    #[deprecated(note = "Broken API: use `poll_for_special_event2` instead")]
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn poll_for_special_event(&self, se: SpecialEvent) -> Result<Option<Event>> {
+        unsafe {
+            let ev = xcb_poll_for_special_event(self.c, se.raw);
+            self.handle_poll_for_event(ev)
         }
     }
 
@@ -1332,7 +1361,7 @@ impl Connection {
 
     /// Returns the next event from a special queue, blocking until one arrives
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn wait_for_special_event(&self, se: &SpecialEvent) -> Result<Event> {
+    pub fn wait_for_special_event2(&self, se: &SpecialEvent) -> Result<Event> {
         unsafe {
             let ev = xcb_wait_for_special_event(self.c, se.raw);
             self.handle_wait_for_event(ev)
@@ -1341,7 +1370,7 @@ impl Connection {
 
     /// Returns the next event from a special queue
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn poll_for_special_event(&self, se: &SpecialEvent) -> Result<Option<Event>> {
+    pub fn poll_for_special_event2(&self, se: &SpecialEvent) -> Result<Option<Event>> {
         unsafe {
             let ev = xcb_poll_for_special_event(self.c, se.raw);
             self.handle_poll_for_event(ev)

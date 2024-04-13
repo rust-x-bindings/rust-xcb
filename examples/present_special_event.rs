@@ -112,7 +112,7 @@ impl Example {
         self.conn.flush()?;
 
         loop {
-            let ev = self.conn.poll_for_special_event(&special_event)?;
+            let ev = self.conn.poll_for_special_event2(&special_event)?;
             if let Some(ev) = ev {
                 println!("Received special event {:#?}", ev);
             }
