@@ -81,6 +81,14 @@ pub trait BaseEvent: Raw<xcb_generic_event_t> {
 
     /// The number associated to this event
     const NUMBER: u32;
+
+    /// Check whether this event was emitted by the SendEvent request
+    /// See `[crate::x::SendEvent]`.
+    fn is_from_send_event(&self) -> bool {
+        let ev = self.as_raw();
+        let response_type = unsafe { (*ev).response_type };
+        (response_type & 0x80) != 0
+    }
 }
 
 /// A trait for GE_GENERIC events
