@@ -505,6 +505,7 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 /// A struct that serve as an identifier for internal special queue in XCB
 ///
 /// See [Connection::register_for_special_xge].
+#[deprecated(note = "Broken API: use `SpecialEvent` instead")]
 #[cfg(any(feature = "xinput", feature = "present"))]
 #[derive(Debug)]
 pub struct SpecialEventId {
@@ -512,6 +513,7 @@ pub struct SpecialEventId {
     stamp: Timestamp,
 }
 
+#[allow(deprecated)]
 #[cfg(any(feature = "xinput", feature = "present"))]
 impl SpecialEventId {
     /// The X timestamp associated with this special event Id
@@ -519,6 +521,22 @@ impl SpecialEventId {
         self.stamp
     }
 }
+
+/// A struct that serve as an identifier for internal special queue in XCB
+///
+/// See [Connection::register_for_special_event].
+#[cfg(any(feature = "xinput", feature = "present"))]
+#[derive(Debug)]
+pub struct SpecialEvent {
+    raw: *mut xcb_special_event_t,
+}
+
+// safe because XCB is thread safe.
+#[cfg(any(feature = "xinput", feature = "present"))]
+unsafe impl Send for SpecialEvent {}
+
+#[cfg(any(feature = "xinput", feature = "present"))]
+unsafe impl Sync for SpecialEvent {}
 
 /// Error type that is returned by `Connection::has_error`.
 #[derive(Debug)]
@@ -1256,7 +1274,9 @@ impl Connection {
     /// XGE events are only defined in the `xinput` and `present` extensions
     ///
     /// This function is present only if either of the `xinput` or `present` cargo features are active.
+    #[deprecated(note = "Broken API: use `register_for_special_event` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
+    #[allow(deprecated)]
     pub fn register_for_special_xge<XGE: GeEvent>(&self) -> SpecialEventId {
         unsafe {
             let ext: *mut xcb_extension_t = match XGE::EXTENSION {
@@ -1276,16 +1296,72 @@ impl Connection {
     }
 
     /// Stop listening to a special event
+    #[deprecated(note = "use `unregister_for_special_event` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn unregister_for_special_xge(&self, se: SpecialEventId) {
+    pub fn unregister_for_special_xge(&self, se: SpecialEvent) {
         unsafe {
-            xcb_unregister_for_special_xge(self.c, se.raw);
+            xcb_unregister_for_special_event(self.c, se.raw);
+        }
+    }
+
+    /// Returns the next event from a special queue, blocking until one arrives
+    #[deprecated(note = "Broken API: use `wait_for_special_event2` instead")]
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn wait_for_special_event(&self, se: SpecialEvent) -> Result<Event> {
+        unsafe {
+            let ev = xcb_wait_for_special_event(self.c, se.raw);
+            self.handle_wait_for_event(ev)
+        }
+    }
+
+    /// Returns the next event from a special queue
+    #[deprecated(note = "Broken API: use `poll_for_special_event2` instead")]
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn poll_for_special_event(&self, se: SpecialEvent) -> Result<Option<Event>> {
+        unsafe {
+            let ev = xcb_poll_for_special_event(self.c, se.raw);
+            self.handle_poll_for_event(ev)
+        }
+    }
+
+    /// Start listening for a special event.
+    ///
+    /// Effectively creates an internal special queue for this event
+    /// XGE events are only defined in the `xinput` and `present` extensions
+    ///
+    /// This function is present only if either of the `xinput` or `present` cargo features are active.
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn register_for_special_event<EID: Xid>(
+        &self,
+        extension: Extension,
+        eid: EID,
+    ) -> SpecialEvent {
+        unsafe {
+            let ext: *mut xcb_extension_t = match extension {
+                #[cfg(feature = "xinput")]
+                Extension::Input => &mut xinput::FFI_EXT as *mut _,
+                #[cfg(feature = "present")]
+                Extension::Present => &mut present::FFI_EXT as *mut _,
+                _ => panic!("only Input and Present have XGE events"),
+            };
+
+            let raw = xcb_register_for_special_xge(self.c, ext, eid.resource_id(), ptr::null_mut());
+
+            SpecialEvent { raw }
+        }
+    }
+
+    /// Stop listening to a special event
+    #[cfg(any(feature = "xinput", feature = "present"))]
+    pub fn unregister_for_special_event(&self, se: SpecialEvent) {
+        unsafe {
+            xcb_unregister_for_special_event(self.c, se.raw);
         }
     }
 
     /// Returns the next event from a special queue, blocking until one arrives
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn wait_for_special_event(&self, se: SpecialEventId) -> Result<Event> {
+    pub fn wait_for_special_event2(&self, se: &SpecialEvent) -> Result<Event> {
         unsafe {
             let ev = xcb_wait_for_special_event(self.c, se.raw);
             self.handle_wait_for_event(ev)
@@ -1294,7 +1370,7 @@ impl Connection {
 
     /// Returns the next event from a special queue
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn poll_for_special_event(&self, se: SpecialEventId) -> Result<Option<Event>> {
+    pub fn poll_for_special_event2(&self, se: &SpecialEvent) -> Result<Option<Event>> {
         unsafe {
             let ev = xcb_poll_for_special_event(self.c, se.raw);
             self.handle_poll_for_event(ev)

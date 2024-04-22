@@ -99,6 +99,10 @@ name = "opengl_window"
 required-features = ["glx", "xlib_xcb", "dri2"]
 
 [[example]]
+name = "present_special_event"
+required-features = ["present", "randr"]
+
+[[example]]
 name = "randr_crtc_info"
 required-features = ["randr"]
 
