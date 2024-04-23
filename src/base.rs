@@ -459,14 +459,14 @@ pub struct AuthInfo<'a> {
 }
 
 /// Display info returned by [`parse_display`]
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DisplayInfo {
     /// The hostname
-    host: String,
+    pub host: String,
     /// The display number
-    display: i32,
+    pub display: i32,
     /// The screen number
-    screen: i32,
+    pub screen: i32,
 }
 
 /// Parses a display string in the form documented by [X (7x)](https://linux.die.net/man/7/x).
@@ -477,36 +477,56 @@ pub struct DisplayInfo {
 /// If `name` empty, it uses the environment variable `DISPLAY`.
 ///
 /// If `name` does not contain a screen number, `DisplayInfo::screen` is set to `0`.
+///
+/// # Example
+/// ```
+/// use xcb::{DisplayInfo, parse_display};
+///
+/// assert_eq!(parse_display(":0"), Some(DisplayInfo {
+///     host: "".to_string(),
+///     display: 0,
+///     screen: 0,
+/// }));
+/// assert_eq!(parse_display("localhost:0.1"), Some(DisplayInfo {
+///     host: "localhost".to_string(),
+///     display: 0,
+///     screen: 1,
+/// }));
+///
+/// assert!(parse_display("0").is_none());
+/// ```
 pub fn parse_display(name: &str) -> Option<DisplayInfo> {
-    unsafe {
-        let name = CString::new(name).unwrap();
-        let mut hostp: *mut c_char = ptr::null_mut();
-        let mut display = 0i32;
-        let mut screen = 0i32;
+    let name = CString::new(name).unwrap();
+    let mut hostp: *mut c_char = ptr::null_mut();
+    let mut display = 0i32;
+    let mut screen = 0i32;
 
-        let success = xcb_parse_display(
+    let success = unsafe {
+        xcb_parse_display(
             name.as_ptr(),
             &mut hostp as *mut _,
             &mut display as *mut _,
             &mut screen as *mut _,
-        );
+        )
+    };
 
-        if success != 0 {
-            let host = CStr::from_ptr(hostp as *const _)
-                .to_str()
-                .unwrap()
-                .to_string();
+    if success != 0 {
+        let host = unsafe { CStr::from_ptr(hostp as *const _) }
+            .to_str()
+            .unwrap()
+            .to_string();
 
+        unsafe {
             libc::free(hostp as *mut _);
-
-            Some(DisplayInfo {
-                host,
-                display,
-                screen,
-            })
-        } else {
-            None
         }
+
+        Some(DisplayInfo {
+            host,
+            display,
+            screen,
+        })
+    } else {
+        None
     }
 }
 
