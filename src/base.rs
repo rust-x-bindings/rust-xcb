@@ -462,11 +462,11 @@ pub struct AuthInfo<'a> {
 #[derive(Debug)]
 pub struct DisplayInfo {
     /// The hostname
-    host: String,
+    pub host: String,
     /// The display number
-    display: i32,
+    pub display: i32,
     /// The screen number
-    screen: i32,
+    pub screen: i32,
 }
 
 /// Parses a display string in the form documented by [X (7x)](https://linux.die.net/man/7/x).
