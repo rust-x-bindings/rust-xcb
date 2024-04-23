@@ -2063,6 +2063,14 @@
 <a href="#2061" id="2061">2061</a>
 <a href="#2062" id="2062">2062</a>
 <a href="#2063" id="2063">2063</a>
+<a href="#2064" id="2064">2064</a>
+<a href="#2065" id="2065">2065</a>
+<a href="#2066" id="2066">2066</a>
+<a href="#2067" id="2067">2067</a>
+<a href="#2068" id="2068">2068</a>
+<a href="#2069" id="2069">2069</a>
+<a href="#2070" id="2070">2070</a>
+<a href="#2071" id="2071">2071</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
@@ -2146,6 +2154,14 @@
 
     <span class="doccomment">/// The number associated to this event
     </span><span class="kw">const </span>NUMBER: u32;
+
+    <span class="doccomment">/// Check whether this event was emitted by the SendEvent request
+    /// See `[crate::x::SendEvent]`.
+    </span><span class="kw">fn </span>is_from_send_event(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; bool {
+        <span class="kw">let </span>ev = <span class="self">self</span>.as_raw();
+        <span class="kw">let </span>response_type = <span class="kw">unsafe </span>{ (<span class="kw-2">*</span>ev).response_type };
+        (response_type &amp; <span class="number">0x80</span>) != <span class="number">0
+    </span>}
 }
 
 <span class="doccomment">/// A trait for GE_GENERIC events
