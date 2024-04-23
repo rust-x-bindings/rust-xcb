@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -  - various authors
 
+## [1.4.0] - 2024-04-23 - various authors
+### Added
+ - `BaseEvent::is_from_send_event` (#262)
+ - feature `libxcb_v1_14` (enabled by default) (#250)
+
+### Fixed
+ - Special event API (#261)
+ - DisplayInfo members visibility (#263)
+
 ## [1.3.0] - 2023-12-09 - various authors
 ### Added
  - add `Connection::poll_for_reply` and `Connection::poll_for_reply_unchecked` (#245)
