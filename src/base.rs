@@ -459,7 +459,7 @@ pub struct AuthInfo<'a> {
 }
 
 /// Display info returned by [`parse_display`]
-#[derive(Debug)]
+#[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct DisplayInfo {
     /// The hostname
     pub host: String,
@@ -477,6 +477,24 @@ pub struct DisplayInfo {
 /// If `name` empty, it uses the environment variable `DISPLAY`.
 ///
 /// If `name` does not contain a screen number, `DisplayInfo::screen` is set to `0`.
+///
+/// # Example
+/// ```
+/// use xcb::{DisplayInfo, parse_display};
+///
+/// assert_eq!(parse_display(":0"), Some(DisplayInfo {
+///     host: "".to_string(),
+///     display: 0,
+///     screen: 0,
+/// }));
+/// assert_eq!(parse_display("localhost:0.1"), Some(DisplayInfo {
+///     host: "localhost".to_string(),
+///     display: 0,
+///     screen: 1,
+/// }));
+///
+/// assert!(parse_display("0").is_none());
+/// ```
 pub fn parse_display(name: &str) -> Option<DisplayInfo> {
     unsafe {
         let name = CString::new(name).unwrap();
