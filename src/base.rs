@@ -1326,7 +1326,8 @@ impl Connection {
     /// Stop listening to a special event
     #[deprecated(note = "use `unregister_for_special_event` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn unregister_for_special_xge(&self, se: SpecialEvent) {
+    #[allow(deprecated)]
+    pub fn unregister_for_special_xge(&self, se: SpecialEventId) {
         unsafe {
             xcb_unregister_for_special_event(self.c, se.raw);
         }
@@ -1335,7 +1336,8 @@ impl Connection {
     /// Returns the next event from a special queue, blocking until one arrives
     #[deprecated(note = "Broken API: use `wait_for_special_event2` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn wait_for_special_event(&self, se: SpecialEvent) -> Result<Event> {
+    #[allow(deprecated)]
+    pub fn wait_for_special_event(&self, se: SpecialEventId) -> Result<Event> {
         unsafe {
             let ev = xcb_wait_for_special_event(self.c, se.raw);
             self.handle_wait_for_event(ev)
@@ -1345,7 +1347,8 @@ impl Connection {
     /// Returns the next event from a special queue
     #[deprecated(note = "Broken API: use `poll_for_special_event2` instead")]
     #[cfg(any(feature = "xinput", feature = "present"))]
-    pub fn poll_for_special_event(&self, se: SpecialEvent) -> Result<Option<Event>> {
+    #[allow(deprecated)]
+    pub fn poll_for_special_event(&self, se: SpecialEventId) -> Result<Option<Event>> {
         unsafe {
             let ev = xcb_poll_for_special_event(self.c, se.raw);
             self.handle_poll_for_event(ev)
