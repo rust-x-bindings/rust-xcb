@@ -137,3 +137,7 @@ name = "screenshot"
 [[example]]
 name = "xkb_init"
 required-features = ["xkb"]
+
+[[example]]
+name = "xkb_keyboard_mouse_event"
+required-features = ["xkb"]
