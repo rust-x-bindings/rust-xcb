@@ -195,7 +195,19 @@ impl Drop for UnknownEvent {
     }
 }
 
-pub(crate) unsafe fn resolve_event(
+/// Resolve an event from the X server
+///
+/// If the event originates from an extension, the `extension_data` parameter must contain the
+/// data for the extension of origin.
+/// If the resolution fails, an `Event::Unknown` is returned.
+///
+/// # Panics
+/// The function will panic if the matches with an `XCB_GE_GENERIC` event, but can't
+/// be resolved as such.
+///
+/// # Safety
+/// The caller must ensure that `event` is a valid pointer to an `xcb_generic_event_t`.
+pub unsafe fn resolve_event(
     event: *mut xcb_generic_event_t,
     extension_data: &[ExtensionData],
 ) -> Event {
