@@ -1,7 +1,7 @@
 use crate::base::ResolveWireError;
 use crate::ext::{Extension, ExtensionData};
-use crate::ffi::*;
 use crate::x;
+use crate::{ffi::*, BaseError, Raw};
 use std::mem;
 
 #[cfg(feature = "damage")]
@@ -95,6 +95,42 @@ pub enum ProtocolError {
     #[cfg(feature = "xv")]
     /// The error is issued from the `XVideo` extension.
     Xv(xv::Error, Option<&'static str>),
+
+    /// The error is unknown.
+    Unknown(UnknownError, Option<&'static str>),
+}
+
+impl ProtocolError {
+    pub fn as_raw(&self) -> *mut xcb_generic_error_t {
+        match self {
+            ProtocolError::X(e, _) => e.as_raw(),
+            #[cfg(feature = "damage")]
+            ProtocolError::Damage(e, _) => e.as_raw(),
+            #[cfg(feature = "glx")]
+            ProtocolError::Glx(e, _) => e.as_raw(),
+            #[cfg(feature = "randr")]
+            ProtocolError::RandR(e, _) => e.as_raw(),
+            #[cfg(feature = "render")]
+            ProtocolError::Render(e, _) => e.as_raw(),
+            #[cfg(feature = "shm")]
+            ProtocolError::Shm(e, _) => e.as_raw(),
+            #[cfg(feature = "sync")]
+            ProtocolError::Sync(e, _) => e.as_raw(),
+            #[cfg(feature = "xf86vidmode")]
+            ProtocolError::Xf86VidMode(e, _) => e.as_raw(),
+            #[cfg(feature = "xfixes")]
+            ProtocolError::XFixes(e, _) => e.as_raw(),
+            #[cfg(feature = "xinput")]
+            ProtocolError::Input(e, _) => e.as_raw(),
+            #[cfg(feature = "xkb")]
+            ProtocolError::Xkb(e, _) => e.as_raw(),
+            #[cfg(feature = "xprint")]
+            ProtocolError::XPrint(e, _) => e.as_raw(),
+            #[cfg(feature = "xv")]
+            ProtocolError::Xv(e, _) => e.as_raw(),
+            ProtocolError::Unknown(e, _) => e.as_raw(),
+        }
+    }
 }
 
 impl std::fmt::Display for ProtocolError {
@@ -105,7 +141,71 @@ impl std::fmt::Display for ProtocolError {
 
 impl std::error::Error for ProtocolError {}
 
-pub(crate) unsafe fn resolve_error(
+/// an error that was not recognized as part of the core protocol or any enabled extension
+pub struct UnknownError {
+    raw: *mut xcb_generic_error_t,
+}
+
+impl Raw<xcb_generic_error_t> for UnknownError {
+    unsafe fn from_raw(raw: *mut xcb_generic_error_t) -> Self {
+        UnknownError { raw }
+    }
+
+    fn as_raw(&self) -> *mut xcb_generic_error_t {
+        self.raw
+    }
+}
+
+impl BaseError for UnknownError {
+    const EXTENSION: Option<Extension> = None;
+    const NUMBER: u32 = u32::MAX;
+}
+
+impl UnknownError {
+    pub fn response_type(&self) -> u8 {
+        unsafe { (*self.raw).response_type }
+    }
+    pub fn sequence(&self) -> u16 {
+        unsafe { (*self.raw).sequence }
+    }
+    pub fn resource_id(&self) -> u32 {
+        unsafe { (*self.raw).resource_id }
+    }
+    pub fn minor_code(&self) -> u16 {
+        unsafe { (*self.raw).minor_code }
+    }
+    pub fn major_code(&self) -> u8 {
+        unsafe { (*self.raw).major_code }
+    }
+    pub fn full_sequence(&self) -> u32 {
+        unsafe { (*self.raw).full_sequence }
+    }
+}
+
+unsafe impl Send for UnknownError {}
+unsafe impl Sync for UnknownError {}
+
+impl std::fmt::Debug for UnknownError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_tuple("UnknownError").finish()
+    }
+}
+
+impl Drop for UnknownError {
+    fn drop(&mut self) {
+        unsafe { libc::free(self.raw as *mut _) }
+    }
+}
+
+/// Resolve an error from the X server
+///
+/// If the error originates from an extension, the `extension_data` parameter must contain the
+/// data for the extension of origin.
+/// If the resolution fails, an `ProtocolError::Unknown` is returned.
+///
+/// # Safety
+/// The caller must ensure that `error` is a valid pointer to an `xcb_generic_error_t`.
+pub unsafe fn resolve_error(
     error: *mut xcb_generic_error_t,
     extension_data: &[ExtensionData],
 ) -> ProtocolError {
@@ -228,79 +328,64 @@ pub(crate) unsafe fn resolve_error(
         crate::x::request_name(major_code as u16)
     };
 
-    if let Some(ext_data) = best {
+    let resolved: Option<ProtocolError> = if let Some(ext_data) = best {
         match ext_data.ext {
             #[cfg(feature = "damage")]
-            Extension::Damage => ProtocolError::Damage(
-                damage::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Damage => damage::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Damage(e, emitted_by)),
 
             #[cfg(feature = "glx")]
-            Extension::Glx => ProtocolError::Glx(
-                glx::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Glx => glx::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Glx(e, emitted_by)),
 
             #[cfg(feature = "randr")]
-            Extension::RandR => ProtocolError::RandR(
-                randr::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::RandR => randr::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::RandR(e, emitted_by)),
+
+            #[cfg(feature = "render")]
+            Extension::Render => render::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Render(e, emitted_by)),
 
             #[cfg(feature = "shm")]
-            Extension::Shm => ProtocolError::Shm(
-                shm::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Shm => shm::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Shm(e, emitted_by)),
 
             #[cfg(feature = "sync")]
-            Extension::Sync => ProtocolError::Sync(
-                sync::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Sync => sync::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Sync(e, emitted_by)),
 
             #[cfg(feature = "xf86vidmode")]
-            Extension::Xf86VidMode => ProtocolError::Xf86VidMode(
-                xf86vidmode::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Xf86VidMode => {
+                xf86vidmode::Error::resolve_wire_error(ext_data.first_error, error)
+                    .map(|e| ProtocolError::Xf86VidMode(e, emitted_by))
+            }
 
             #[cfg(feature = "xfixes")]
-            Extension::XFixes => ProtocolError::XFixes(
-                xfixes::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::XFixes => xfixes::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::XFixes(e, emitted_by)),
 
             #[cfg(feature = "xinput")]
-            Extension::Input => ProtocolError::Input(
-                xinput::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Input => xinput::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Input(e, emitted_by)),
 
             #[cfg(feature = "xkb")]
-            Extension::Xkb => ProtocolError::Xkb(
-                xkb::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Xkb => xkb::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Xkb(e, emitted_by)),
 
             #[cfg(feature = "xprint")]
-            Extension::XPrint => ProtocolError::XPrint(
-                xprint::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::XPrint => xprint::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::XPrint(e, emitted_by)),
 
             #[cfg(feature = "xv")]
-            Extension::Xv => ProtocolError::Xv(
-                xv::Error::resolve_wire_error(ext_data.first_error, error),
-                emitted_by,
-            ),
+            Extension::Xv => xv::Error::resolve_wire_error(ext_data.first_error, error)
+                .map(|e| ProtocolError::Xv(e, emitted_by)),
 
-            _ => unreachable!("Could not match extension event"),
+            _ => None,
         }
     } else {
-        ProtocolError::X(x::Error::resolve_wire_error(0, error), emitted_by)
-    }
+        x::Error::resolve_wire_error(0, error).map(|e| ProtocolError::X(e, emitted_by))
+    };
+    resolved.unwrap_or_else(|| ProtocolError::Unknown(UnknownError::from_raw(error), emitted_by))
 }
 
 #[cfg(all(feature = "xinput", feature = "xkb", feature = "screensaver"))]

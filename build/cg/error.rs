@@ -210,6 +210,17 @@ impl CodeGen {
         }
         writeln!(out, "}}")?;
 
+        writeln!(out)?;
+        writeln!(out, "impl Error {{")?;
+        writeln!(out, "  pub fn as_raw(&self) -> *mut xcb_generic_error_t {{")?;
+        writeln!(out, "    match self {{")?;
+        for error in &self.errors {
+            writeln!(out, "      Self::{}(e) => e.as_raw(),", error.variant)?;
+        }
+        writeln!(out, "    }}")?;
+        writeln!(out, "  }}")?;
+        writeln!(out, "}}")?;
+
         self.emit_resolve_wire_error(out)?;
 
         Ok(())
@@ -218,7 +229,7 @@ impl CodeGen {
     fn emit_resolve_wire_error<O: Write>(&self, out: &mut O) -> io::Result<()> {
         writeln!(out)?;
         writeln!(out, "impl base::ResolveWireError for Error {{")?;
-        writeln!(out, "{}unsafe fn resolve_wire_error(first_error: u8, raw: *mut xcb_generic_error_t) -> Self {{", cg::ind(1))?;
+        writeln!(out, "{}unsafe fn resolve_wire_error(first_error: u8, raw: *mut xcb_generic_error_t) -> std::option::Option<Self> {{", cg::ind(1))?;
         writeln!(out, "{}debug_assert!(!raw.is_null());", cg::ind(2))?;
         writeln!(out, "{}let error_code = (*raw).error_code;", cg::ind(2))?;
         writeln!(out, "{}match error_code - first_error {{", cg::ind(2))?;
@@ -228,22 +239,14 @@ impl CodeGen {
             }
             writeln!(
                 out,
-                "{}{} => Error::{}({}::from_raw(raw)),",
+                "{}{} => std::option::Option::Some(Error::{}({}::from_raw(raw))),",
                 cg::ind(3),
                 error.number,
                 error.variant,
                 error.rs_typ
             )?;
         }
-        writeln!(out, "{}_ => unreachable!(", cg::ind(3))?;
-        writeln!(
-            out,
-            "{}\"Could not resolve {} Error with error_code {{}} and first_error {{}}\",",
-            cg::ind(4),
-            self.xcb_mod
-        )?;
-        writeln!(out, "{}error_code, first_error", cg::ind(4))?;
-        writeln!(out, "{}),", cg::ind(3))?;
+        writeln!(out, "{}_ => std::option::Option::None,", cg::ind(3))?;
         writeln!(out, "{}}}", cg::ind(2))?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
