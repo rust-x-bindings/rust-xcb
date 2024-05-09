@@ -269,7 +269,13 @@ pub struct ExtensionData {
     pub first_error: u8,
 }
 
-pub(crate) fn cache_extensions_data(
+/// Returns the extension data for the given extensions.
+/// This function may block as the data will be queried from the server
+/// if not already cached.
+///
+/// #Panics
+/// This function will panic if a mandatory extension is not present on the server.
+pub fn cache_extensions_data(
     conn: *mut xcb_connection_t,
     mandatory: &[Extension],
     optional: &[Extension],

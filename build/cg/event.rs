@@ -654,14 +654,14 @@ impl CodeGen {
 
             writeln!(
                 out,
-                "{}{} => Some(Event::{}({}::from_raw(raw))),",
+                "{}{} => std::option::Option::Some(Event::{}({}::from_raw(raw))),",
                 cg::ind(3),
                 event.number,
                 event.variant,
                 event.rs_typ
             )?;
         }
-        writeln!(out, "{}_ => None,", cg::ind(3))?;
+        writeln!(out, "{}_ => std::option::Option::None,", cg::ind(3))?;
         writeln!(out, "{}}}", cg::ind(2))?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;

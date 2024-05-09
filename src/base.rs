@@ -130,11 +130,6 @@ pub(crate) trait ResolveWireEvent: Sized {
     /// Resolve a pointer to `xcb_generic_event_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_event`
     ///
-    /// # Panics
-    /// Panics if the event subtype cannot be resolved to `Self`. That is,
-    /// `response_type` field must be checked beforehand to be in range with
-    /// `first_event`.
-    ///
     /// # Safety
     /// `event` must be a valid, non-null event returned by `xcb_wait_for_event`
     /// or similar function
@@ -163,19 +158,14 @@ pub(crate) trait ResolveWireGeEvent: Sized {
 ///
 /// `Self` is normally an enum of several event subtypes.
 /// See [crate::x::Error] and [crate::ProtocolError]
-pub(crate) trait ResolveWireError {
+pub(crate) trait ResolveWireError: Sized {
     /// Convert a pointer to `xcb_generic_error_t` to `Self`, inferring the correct subtype
     /// using `response_type` field and `first_error`.
-    ///
-    /// # Panics
-    /// Panics if the error subtype cannot be resolved for `self`. That is,
-    /// `response_type` field must be checked beforehand to be in range with
-    /// `first_error`.
     ///
     /// # Safety
     /// `err` must be a valid, non-null error obtained by `xcb_wait_for_reply`
     /// or similar function
-    unsafe fn resolve_wire_error(first_error: u8, error: *mut xcb_generic_error_t) -> Self;
+    unsafe fn resolve_wire_error(first_error: u8, error: *mut xcb_generic_error_t) -> Option<Self>;
 }
 
 /// Trait for types that can serialize themselves to the X wire.
@@ -1095,6 +1085,14 @@ impl Connection {
         self.ext_data.iter().map(|eed| eed.ext)
     }
 
+    /// Get the data of the extensions activated for this connection.
+    ///
+    /// You may use this to manually resolve an event or an error with
+    /// `xcb::event::resolve_event` or `xcb::error::resolve_error`.
+    pub fn active_extensions_data(&self) -> &[ExtensionData] {
+        &self.ext_data
+    }
+
     /// Returns the inner ffi `xcb_connection_t` pointer
     pub fn get_raw_conn(&self) -> *mut xcb_connection_t {
         self.c
@@ -1216,6 +1214,16 @@ impl Connection {
     /// dropped.
     pub unsafe fn resolve_event(&self, ev: &mut xcb_generic_event_t) -> Event {
         event::resolve_event(ev, &self.ext_data)
+    }
+
+    /// Resolve an xcb_generic_error_t pointer into an Error.
+    /// # Safety
+    /// The caller is repsonsible to ensure that the `err` pointer is not NULL.
+    /// The ownership of the pointer is effectively transferred to the
+    /// returned Error and it will be destroyed when the Error is
+    /// dropped.
+    pub unsafe fn resolve_error(&self, err: &mut xcb_generic_error_t) -> error::ProtocolError {
+        error::resolve_error(err, &self.ext_data)
     }
 
     /// Blocks and returns the next event or error from the server.
