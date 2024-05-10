@@ -3600,6 +3600,26 @@
 <a href="#3598" id="3598">3598</a>
 <a href="#3599" id="3599">3599</a>
 <a href="#3600" id="3600">3600</a>
+<a href="#3601" id="3601">3601</a>
+<a href="#3602" id="3602">3602</a>
+<a href="#3603" id="3603">3603</a>
+<a href="#3604" id="3604">3604</a>
+<a href="#3605" id="3605">3605</a>
+<a href="#3606" id="3606">3606</a>
+<a href="#3607" id="3607">3607</a>
+<a href="#3608" id="3608">3608</a>
+<a href="#3609" id="3609">3609</a>
+<a href="#3610" id="3610">3610</a>
+<a href="#3611" id="3611">3611</a>
+<a href="#3612" id="3612">3612</a>
+<a href="#3613" id="3613">3613</a>
+<a href="#3614" id="3614">3614</a>
+<a href="#3615" id="3615">3615</a>
+<a href="#3616" id="3616">3616</a>
+<a href="#3617" id="3617">3617</a>
+<a href="#3618" id="3618">3618</a>
+<a href="#3619" id="3619">3619</a>
+<a href="#3620" id="3620">3620</a>
 </pre></div><pre class="rust"><code><span class="comment">// This source file is generated automatically from xfixes.xml
 
 </span><span class="kw">use </span><span class="kw">crate</span>::base::{<span class="self">self</span>, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid};
@@ -4370,6 +4390,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>QueryVersionReply {
@@ -4828,6 +4852,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -5854,6 +5882,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>FetchRegionReply {
@@ -6330,6 +6362,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetCursorNameReply {
@@ -6647,6 +6683,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 

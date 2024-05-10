@@ -853,6 +853,10 @@
 <a href="#851" id="851">851</a>
 <a href="#852" id="852">852</a>
 <a href="#853" id="853">853</a>
+<a href="#854" id="854">854</a>
+<a href="#855" id="855">855</a>
+<a href="#856" id="856">856</a>
+<a href="#857" id="857">857</a>
 </pre></div><pre class="rust"><code><span class="comment">// This source file is generated automatically from damage.xml
 
 </span><span class="kw">use </span><span class="kw">crate</span>::base::{<span class="self">self</span>, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid};
@@ -1345,6 +1349,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 

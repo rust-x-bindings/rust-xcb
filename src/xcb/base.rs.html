@@ -2102,6 +2102,13 @@
 <a href="#2100" id="2100">2100</a>
 <a href="#2101" id="2101">2101</a>
 <a href="#2102" id="2102">2102</a>
+<a href="#2103" id="2103">2103</a>
+<a href="#2104" id="2104">2104</a>
+<a href="#2105" id="2105">2105</a>
+<a href="#2106" id="2106">2106</a>
+<a href="#2107" id="2107">2107</a>
+<a href="#2108" id="2108">2108</a>
+<a href="#2109" id="2109">2109</a>
 </pre></div><pre class="rust"><code><span class="kw">use </span><span class="kw">crate</span>::error::{<span class="self">self</span>, ProtocolError};
 <span class="kw">use </span><span class="kw">crate</span>::event::{<span class="self">self</span>, Event};
 <span class="kw">use </span><span class="kw">crate</span>::ext::{Extension, ExtensionData};
@@ -2405,6 +2412,13 @@
     /// The returned pointer must be freed with [`libc::free`] to avoid any memory leak, or be used
     /// to build another reply.
     </span><span class="kw">unsafe fn </span>into_raw(<span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8;
+
+    <span class="doccomment">/// Get the raw pointer of the XCB reply.
+    ///
+    /// # Safety
+    /// The returned pointer must NOT be freed. Passing this pointer to [`libc::free`] will result in a double free
+    /// when the reply is dropped.
+    </span><span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8;
 }
 
 <span class="doccomment">/// General trait for cookies returned by requests.

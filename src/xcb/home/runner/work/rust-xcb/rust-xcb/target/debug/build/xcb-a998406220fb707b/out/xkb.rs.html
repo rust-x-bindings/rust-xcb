@@ -18066,6 +18066,62 @@
 <a href="#18064" id="18064">18064</a>
 <a href="#18065" id="18065">18065</a>
 <a href="#18066" id="18066">18066</a>
+<a href="#18067" id="18067">18067</a>
+<a href="#18068" id="18068">18068</a>
+<a href="#18069" id="18069">18069</a>
+<a href="#18070" id="18070">18070</a>
+<a href="#18071" id="18071">18071</a>
+<a href="#18072" id="18072">18072</a>
+<a href="#18073" id="18073">18073</a>
+<a href="#18074" id="18074">18074</a>
+<a href="#18075" id="18075">18075</a>
+<a href="#18076" id="18076">18076</a>
+<a href="#18077" id="18077">18077</a>
+<a href="#18078" id="18078">18078</a>
+<a href="#18079" id="18079">18079</a>
+<a href="#18080" id="18080">18080</a>
+<a href="#18081" id="18081">18081</a>
+<a href="#18082" id="18082">18082</a>
+<a href="#18083" id="18083">18083</a>
+<a href="#18084" id="18084">18084</a>
+<a href="#18085" id="18085">18085</a>
+<a href="#18086" id="18086">18086</a>
+<a href="#18087" id="18087">18087</a>
+<a href="#18088" id="18088">18088</a>
+<a href="#18089" id="18089">18089</a>
+<a href="#18090" id="18090">18090</a>
+<a href="#18091" id="18091">18091</a>
+<a href="#18092" id="18092">18092</a>
+<a href="#18093" id="18093">18093</a>
+<a href="#18094" id="18094">18094</a>
+<a href="#18095" id="18095">18095</a>
+<a href="#18096" id="18096">18096</a>
+<a href="#18097" id="18097">18097</a>
+<a href="#18098" id="18098">18098</a>
+<a href="#18099" id="18099">18099</a>
+<a href="#18100" id="18100">18100</a>
+<a href="#18101" id="18101">18101</a>
+<a href="#18102" id="18102">18102</a>
+<a href="#18103" id="18103">18103</a>
+<a href="#18104" id="18104">18104</a>
+<a href="#18105" id="18105">18105</a>
+<a href="#18106" id="18106">18106</a>
+<a href="#18107" id="18107">18107</a>
+<a href="#18108" id="18108">18108</a>
+<a href="#18109" id="18109">18109</a>
+<a href="#18110" id="18110">18110</a>
+<a href="#18111" id="18111">18111</a>
+<a href="#18112" id="18112">18112</a>
+<a href="#18113" id="18113">18113</a>
+<a href="#18114" id="18114">18114</a>
+<a href="#18115" id="18115">18115</a>
+<a href="#18116" id="18116">18116</a>
+<a href="#18117" id="18117">18117</a>
+<a href="#18118" id="18118">18118</a>
+<a href="#18119" id="18119">18119</a>
+<a href="#18120" id="18120">18120</a>
+<a href="#18121" id="18121">18121</a>
+<a href="#18122" id="18122">18122</a>
 </pre></div><pre class="rust"><code><span class="comment">// This source file is generated automatically from xkb.xml
 
 </span><span class="kw">use </span><span class="kw">crate</span>::base::{<span class="self">self</span>, BaseError, BaseEvent, GeEvent, Raw, Reply, WiredIn, WiredOut, Xid};
@@ -30645,6 +30701,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>UseExtensionReply {
@@ -31111,6 +31171,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -31674,6 +31738,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -32250,6 +32318,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetMapReply {
@@ -32699,6 +32771,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetCompatMapReply {
@@ -32986,6 +33062,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetIndicatorStateReply {
@@ -33234,6 +33314,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -33600,6 +33684,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -34024,6 +34112,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetNamesReply {
@@ -34356,6 +34448,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -34984,6 +35080,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>ListComponentsReply {
@@ -35248,6 +35348,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
@@ -35654,6 +35758,10 @@
         std::mem::forget(<span class="self">self</span>);
         raw
     }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
+    }
 }
 
 <span class="kw">impl </span>std::fmt::Debug <span class="kw">for </span>GetDeviceInfoReply {
@@ -35985,6 +36093,10 @@
         <span class="kw">let </span>raw = <span class="self">self</span>.raw;
         std::mem::forget(<span class="self">self</span>);
         raw
+    }
+
+    <span class="kw">unsafe fn </span>as_raw(<span class="kw-2">&amp;</span><span class="self">self</span>) -&gt; <span class="kw-2">*const </span>u8 {
+        <span class="self">self</span>.raw
     }
 }
 
