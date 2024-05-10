@@ -301,6 +301,13 @@ pub trait Reply {
     /// The returned pointer must be freed with [`libc::free`] to avoid any memory leak, or be used
     /// to build another reply.
     unsafe fn into_raw(self) -> *const u8;
+
+    /// Get the raw pointer of the XCB reply.
+    ///
+    /// # Safety
+    /// The returned pointer must NOT be freed. Passing this pointer to [`libc::free`] will result in a double free
+    /// when the reply is dropped.
+    unsafe fn as_raw(&self) -> *const u8;
 }
 
 /// General trait for cookies returned by requests.

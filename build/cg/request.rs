@@ -354,6 +354,10 @@ impl CodeGen {
         writeln!(out, "        std::mem::forget(self);")?;
         writeln!(out, "        raw")?;
         writeln!(out, "    }}")?;
+        writeln!(out)?;
+        writeln!(out, "    unsafe fn as_raw(&self) -> *const u8 {{")?;
+        writeln!(out, "        self.raw")?;
+        writeln!(out, "    }}")?;
         writeln!(out, "}}")?;
 
         self.emit_debug_impl(out, reply_rs_typ, &reply.fields)?;
