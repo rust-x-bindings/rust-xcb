@@ -1683,8 +1683,13 @@ impl CodeGen {
                     //       not simply the length of a slice, and they must be exposed so that the
                     //       user can treat the slice as an image. The format field is important for
                     //       GetPropertyReply where the value getter would panic if formats mismatch.
+                    //       The keycodes_per_modifier field is needed for iterating the list of
+                    //       keycodes returned in GetModifierMappingReply.
                     let visibility = if *is_fieldref
-                        && !(name == "width" || name == "height" || name == "format")
+                        && !(name == "width"
+                            || name == "height"
+                            || name == "format"
+                            || name == "keycodes_per_modifier")
                     {
                         ""
                     } else {
