@@ -1324,9 +1324,9 @@ impl Connection {
         unsafe {
             let ext: *mut xcb_extension_t = match XGE::EXTENSION {
                 #[cfg(feature = "xinput")]
-                Extension::Input => &mut xinput::FFI_EXT as *mut _,
+                Extension::Input => ptr::addr_of_mut!(xinput::FFI_EXT),
                 #[cfg(feature = "present")]
-                Extension::Present => &mut present::FFI_EXT as *mut _,
+                Extension::Present => ptr::addr_of_mut!(present::FFI_EXT),
                 _ => unreachable!("only Input and Present have XGE events"),
             };
 
@@ -1385,10 +1385,10 @@ impl Connection {
         unsafe {
             let ext: *mut xcb_extension_t = match extension {
                 #[cfg(feature = "xinput")]
-                Extension::Input => &mut xinput::FFI_EXT as *mut _,
+                Extension::Input => ptr::addr_of_mut!(xinput::FFI_EXT),
                 #[cfg(feature = "present")]
-                Extension::Present => &mut present::FFI_EXT as *mut _,
-                _ => panic!("only Input and Present have XGE events"),
+                Extension::Present => ptr::addr_of_mut!(present::FFI_EXT),
+                _ => unreachable!("only Input and Present have XGE events"),
             };
 
             let raw = xcb_register_for_special_xge(self.c, ext, eid.resource_id(), ptr::null_mut());

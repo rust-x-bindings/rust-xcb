@@ -158,16 +158,13 @@ enum Field {
     Expr {
         name: String,
         typ: String,
-        wire_off: Expr,
         wire_sz: Expr,
         expr: Expr,
     },
     Pad {
-        wire_off: Expr,
         wire_sz: Expr,
     },
     AlignPad {
-        wire_off: Expr,
         wire_sz: Expr,
     },
 }
@@ -560,7 +557,7 @@ impl CodeGen {
             writeln!(out, "    unsafe {{")?;
             writeln!(
                 out,
-                "        xcb_prefetch_extension_data(conn.get_raw_conn(), &mut FFI_EXT as *mut _);"
+                "        xcb_prefetch_extension_data(conn.get_raw_conn(), std::ptr::addr_of_mut!(FFI_EXT));"
             )?;
             writeln!(out, "    }}")?;
             writeln!(out, "}}")?;
@@ -588,7 +585,7 @@ impl CodeGen {
             writeln!(out, "    unsafe {{")?;
             writeln!(
                 out,
-                "        let reply = xcb_get_extension_data(conn.get_raw_conn(), &mut FFI_EXT as *mut _);"
+                "        let reply = xcb_get_extension_data(conn.get_raw_conn(), std::ptr::addr_of_mut!(FFI_EXT));"
             )?;
             writeln!(
                 out,
@@ -1124,10 +1121,6 @@ trait WireSz {
     fn wire_sz(&self) -> Expr;
 }
 
-trait WireOff {
-    fn wire_off(&self) -> Expr;
-}
-
 trait HasWireLayout {
     fn has_wire_layout(&self) -> bool;
 }
@@ -1212,19 +1205,6 @@ impl WireSz for TypeInfo {
             | TypeInfo::XidUnion { .. }
             | TypeInfo::Enum { .. }
             | TypeInfo::Mask { .. } => Expr::Value(4),
-        }
-    }
-}
-
-impl WireOff for Field {
-    fn wire_off(&self) -> Expr {
-        match self {
-            Field::Field { wire_off, .. }
-            | Field::List { wire_off, .. }
-            | Field::Switch { wire_off, .. }
-            | Field::Expr { wire_off, .. }
-            | Field::Pad { wire_off, .. }
-            | Field::AlignPad { wire_off, .. } => wire_off.clone(),
         }
     }
 }

@@ -182,9 +182,7 @@ impl CodeGen {
                 }
                 ir::Field::Pad(wire_sz) => {
                     has_wire_layout = false;
-                    let wire_off = wire_off.clone().reduce();
                     vec.push(Field::Pad {
-                        wire_off,
                         wire_sz: Expr::Value(*wire_sz),
                     });
                     Expr::Value(*wire_sz)
@@ -192,9 +190,8 @@ impl CodeGen {
                 ir::Field::AlignPad(sz) => {
                     has_wire_layout = false;
                     let wire_off = wire_off.clone().reduce();
-                    let wire_sz = Expr::AlignPad(*sz, Box::new(wire_off.clone())).reduce();
+                    let wire_sz = Expr::AlignPad(*sz, Box::new(wire_off)).reduce();
                     vec.push(Field::AlignPad {
-                        wire_off,
                         wire_sz: wire_sz.clone(),
                     });
                     wire_sz
@@ -357,7 +354,6 @@ impl CodeGen {
                     vec.push(Field::Expr {
                         name,
                         typ,
-                        wire_off: wire_off.clone(),
                         wire_sz: wire_sz.clone(),
                         expr,
                     });

@@ -6,6 +6,7 @@ use crate::x;
 
 use std::fmt;
 use std::mem;
+use std::ptr;
 
 /// Refers to a X protocol extension.
 #[derive(Copy, Clone, Debug, PartialEq, Eq)]
@@ -283,18 +284,18 @@ pub fn cache_extensions_data(
     unsafe {
         for ext in mandatory {
             let ext_id = get_extension_id(*ext);
-            xcb_prefetch_extension_data(conn, ext_id as *mut _);
+            xcb_prefetch_extension_data(conn, ext_id);
         }
         for ext in optional {
             let ext_id = get_extension_id(*ext);
-            xcb_prefetch_extension_data(conn, ext_id as *mut _);
+            xcb_prefetch_extension_data(conn, ext_id);
         }
 
         let mut ext_data = Vec::new();
 
         for ext in mandatory {
             let ext_id = get_extension_id(*ext);
-            let raw = xcb_get_extension_data(conn, ext_id as *mut _);
+            let raw = xcb_get_extension_data(conn, ext_id);
             let reply = x::QueryExtensionReply::from_raw(raw);
 
             assert!(
@@ -313,7 +314,7 @@ pub fn cache_extensions_data(
 
         for ext in optional {
             let ext_id = get_extension_id(*ext);
-            let raw = xcb_get_extension_data(conn, ext_id as *mut _);
+            let raw = xcb_get_extension_data(conn, ext_id);
             let reply = x::QueryExtensionReply::from_raw(raw);
 
             if !reply.present() {
@@ -337,93 +338,93 @@ pub fn cache_extensions_data(
     }
 }
 
-unsafe fn get_extension_id(ext: Extension) -> &'static mut xcb_extension_t {
+unsafe fn get_extension_id(ext: Extension) -> *mut xcb_extension_t {
     match ext {
-        Extension::BigRequests => &mut crate::bigreq::FFI_EXT,
-        Extension::XcMisc => &mut crate::xc_misc::FFI_EXT,
+        Extension::BigRequests => ptr::addr_of_mut!(crate::bigreq::FFI_EXT),
+        Extension::XcMisc => ptr::addr_of_mut!(crate::xc_misc::FFI_EXT),
 
         #[cfg(feature = "composite")]
-        Extension::Composite => &mut crate::composite::FFI_EXT,
+        Extension::Composite => ptr::addr_of_mut!(crate::composite::FFI_EXT),
 
         #[cfg(feature = "damage")]
-        Extension::Damage => &mut crate::damage::FFI_EXT,
+        Extension::Damage => ptr::addr_of_mut!(crate::damage::FFI_EXT),
 
         #[cfg(feature = "dpms")]
-        Extension::Dpms => &mut crate::dpms::FFI_EXT,
+        Extension::Dpms => ptr::addr_of_mut!(crate::dpms::FFI_EXT),
 
         #[cfg(feature = "dri2")]
-        Extension::Dri2 => &mut crate::dri2::FFI_EXT,
+        Extension::Dri2 => ptr::addr_of_mut!(crate::dri2::FFI_EXT),
 
         #[cfg(feature = "dri3")]
-        Extension::Dri3 => &mut crate::dri3::FFI_EXT,
+        Extension::Dri3 => ptr::addr_of_mut!(crate::dri3::FFI_EXT),
 
         #[cfg(feature = "ge")]
-        Extension::GenericEvent => &mut crate::ge::FFI_EXT,
+        Extension::GenericEvent => ptr::addr_of_mut!(crate::ge::FFI_EXT),
 
         #[cfg(feature = "glx")]
-        Extension::Glx => &mut crate::glx::FFI_EXT,
+        Extension::Glx => ptr::addr_of_mut!(crate::glx::FFI_EXT),
 
         #[cfg(feature = "present")]
-        Extension::Present => &mut crate::present::FFI_EXT,
+        Extension::Present => ptr::addr_of_mut!(crate::present::FFI_EXT),
 
         #[cfg(feature = "randr")]
-        Extension::RandR => &mut crate::randr::FFI_EXT,
+        Extension::RandR => ptr::addr_of_mut!(crate::randr::FFI_EXT),
 
         #[cfg(feature = "record")]
-        Extension::Record => &mut crate::record::FFI_EXT,
+        Extension::Record => ptr::addr_of_mut!(crate::record::FFI_EXT),
 
         #[cfg(feature = "render")]
-        Extension::Render => &mut crate::render::FFI_EXT,
+        Extension::Render => ptr::addr_of_mut!(crate::render::FFI_EXT),
 
         #[cfg(feature = "res")]
-        Extension::Res => &mut crate::res::FFI_EXT,
+        Extension::Res => ptr::addr_of_mut!(crate::res::FFI_EXT),
 
         #[cfg(feature = "screensaver")]
-        Extension::ScreenSaver => &mut crate::screensaver::FFI_EXT,
+        Extension::ScreenSaver => ptr::addr_of_mut!(crate::screensaver::FFI_EXT),
 
         #[cfg(feature = "shape")]
-        Extension::Shape => &mut crate::shape::FFI_EXT,
+        Extension::Shape => ptr::addr_of_mut!(crate::shape::FFI_EXT),
 
         #[cfg(feature = "shm")]
-        Extension::Shm => &mut crate::shm::FFI_EXT,
+        Extension::Shm => ptr::addr_of_mut!(crate::shm::FFI_EXT),
 
         #[cfg(feature = "sync")]
-        Extension::Sync => &mut crate::sync::FFI_EXT,
+        Extension::Sync => ptr::addr_of_mut!(crate::sync::FFI_EXT),
 
         #[cfg(feature = "xevie")]
-        Extension::Xevie => &mut crate::xevie::FFI_EXT,
+        Extension::Xevie => ptr::addr_of_mut!(crate::xevie::FFI_EXT),
 
         #[cfg(feature = "xf86dri")]
-        Extension::Xf86Dri => &mut crate::xf86dri::FFI_EXT,
+        Extension::Xf86Dri => ptr::addr_of_mut!(crate::xf86dri::FFI_EXT),
 
         #[cfg(feature = "xf86vidmode")]
-        Extension::Xf86VidMode => &mut crate::xf86vidmode::FFI_EXT,
+        Extension::Xf86VidMode => ptr::addr_of_mut!(crate::xf86vidmode::FFI_EXT),
 
         #[cfg(feature = "xfixes")]
-        Extension::XFixes => &mut crate::xfixes::FFI_EXT,
+        Extension::XFixes => ptr::addr_of_mut!(crate::xfixes::FFI_EXT),
 
         #[cfg(feature = "xinerama")]
-        Extension::Xinerama => &mut crate::xinerama::FFI_EXT,
+        Extension::Xinerama => ptr::addr_of_mut!(crate::xinerama::FFI_EXT),
 
         #[cfg(feature = "xinput")]
-        Extension::Input => &mut crate::xinput::FFI_EXT,
+        Extension::Input => ptr::addr_of_mut!(crate::xinput::FFI_EXT),
 
         #[cfg(feature = "xkb")]
-        Extension::Xkb => &mut crate::xkb::FFI_EXT,
+        Extension::Xkb => ptr::addr_of_mut!(crate::xkb::FFI_EXT),
 
         #[cfg(feature = "xprint")]
-        Extension::XPrint => &mut crate::xprint::FFI_EXT,
+        Extension::XPrint => ptr::addr_of_mut!(crate::xprint::FFI_EXT),
 
         #[cfg(feature = "xselinux")]
-        Extension::SeLinux => &mut crate::xselinux::FFI_EXT,
+        Extension::SeLinux => ptr::addr_of_mut!(crate::xselinux::FFI_EXT),
 
         #[cfg(feature = "xtest")]
-        Extension::Test => &mut crate::xtest::FFI_EXT,
+        Extension::Test => ptr::addr_of_mut!(crate::xtest::FFI_EXT),
 
         #[cfg(feature = "xv")]
-        Extension::Xv => &mut crate::xv::FFI_EXT,
+        Extension::Xv => ptr::addr_of_mut!(crate::xv::FFI_EXT),
 
         #[cfg(feature = "xvmc")]
-        Extension::XvMc => &mut crate::xvmc::FFI_EXT,
+        Extension::XvMc => ptr::addr_of_mut!(crate::xvmc::FFI_EXT),
     }
 }

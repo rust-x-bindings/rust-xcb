@@ -809,7 +809,7 @@ impl CodeGen {
         if self.xcb_mod == "xproto" {
             writeln!(out, "{}ext: std::ptr::null_mut(),", cg::ind(3))?;
         } else {
-            writeln!(out, "{}ext: (&mut FFI_EXT) as *mut _,", cg::ind(3))?;
+            writeln!(out, "{}ext: std::ptr::addr_of_mut!(FFI_EXT),", cg::ind(3))?;
         }
         writeln!(out, "{}opcode: {},", cg::ind(3), opcode)?;
         writeln!(

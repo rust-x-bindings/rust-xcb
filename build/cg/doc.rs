@@ -17,18 +17,21 @@ impl DocField {
     }
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct DocError {
     pub typ: String,
     pub text: String,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct DocSee {
     pub typ: String,
     pub name: String,
 }
 
+#[allow(dead_code)]
 #[derive(Debug, Clone)]
 pub struct Doc {
     pub brief: Option<String>,
