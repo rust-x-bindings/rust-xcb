@@ -557,7 +557,7 @@ impl CodeGen {
             writeln!(out, "    unsafe {{")?;
             writeln!(
                 out,
-                "        xcb_prefetch_extension_data(conn.get_raw_conn(), &mut FFI_EXT as *mut _);"
+                "        xcb_prefetch_extension_data(conn.get_raw_conn(), std::ptr::addr_of_mut!(FFI_EXT));"
             )?;
             writeln!(out, "    }}")?;
             writeln!(out, "}}")?;
@@ -585,7 +585,7 @@ impl CodeGen {
             writeln!(out, "    unsafe {{")?;
             writeln!(
                 out,
-                "        let reply = xcb_get_extension_data(conn.get_raw_conn(), &mut FFI_EXT as *mut _);"
+                "        let reply = xcb_get_extension_data(conn.get_raw_conn(), std::ptr::addr_of_mut!(FFI_EXT));"
             )?;
             writeln!(
                 out,
