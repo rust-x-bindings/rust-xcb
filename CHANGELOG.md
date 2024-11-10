@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -  - various authors
 
+## [1.5.0] - 2024-11-09 - various authors
+### Added
+ - `UnknownError` and no more panic for failed resolution (#266)
+ - unsafe public API to resolve FFI events and errors (#266)
+ - `Reply::as_raw` (#267)
+ - `GetModifierMappingReply::keycodes_per_modifier` is public (#271)
+
+### Fixed
+ - Compilation warnings (#275)
+
 ## [1.4.0] - 2024-04-23 - various authors
 ### Added
  - `BaseEvent::is_from_send_event` (#262)
