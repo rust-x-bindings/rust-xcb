@@ -630,7 +630,7 @@ pub mod randr {
     /// For information on what the various properties mean, see the [RandR specification][randr-spec]
     ///
     /// [randr-spec]: https://cgit.freedesktop.org/xorg/proto/randrproto/tree/randrproto.txt#n1860
-    mod property {
+    pub mod property {
         #[doc(alias = "RR_PROPERTY_BACKLIGHT")]
         pub const BACKLIGHT: &str = "Backlight";
 
