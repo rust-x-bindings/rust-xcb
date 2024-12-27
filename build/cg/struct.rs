@@ -1618,10 +1618,7 @@ impl CodeGen {
                         "            let ptr = self.wire_ptr().add(offset) as *const {};",
                         q_rs_typ
                     )?;
-                    writeln!(
-                        out,
-                        "            let val = base::value_from_ptr(ptr) as u32;"
-                    )?;
+                    writeln!(out, "            let val = ptr.read_unaligned() as u32;")?;
                     writeln!(
                         out,
                         "            std::mem::transmute::<u32, {}>(val)",
@@ -1715,7 +1712,7 @@ impl CodeGen {
                         cg::ind(3),
                         q_rs_typ
                     )?;
-                    writeln!(out, "{}base::value_from_ptr(ptr)", cg::ind(3),)?;
+                    writeln!(out, "{}ptr.read_unaligned()", cg::ind(3),)?;
                     writeln!(out, "        }}")?;
                     writeln!(out, "    }}")?;
                 }
