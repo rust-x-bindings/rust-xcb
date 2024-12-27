@@ -5180,7 +5180,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5188,7 +5188,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">1usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5196,7 +5196,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -5256,7 +5256,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5264,7 +5264,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">1usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5272,7 +5272,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -5332,7 +5332,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5340,7 +5340,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">1usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5348,7 +5348,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -5463,7 +5463,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5471,7 +5471,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">1usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, VideoNotifyReason&gt;(val)
         }
     }
@@ -5480,7 +5480,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5488,7 +5488,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Timestamp;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5504,7 +5504,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>Port;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -5618,7 +5618,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5626,7 +5626,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5634,7 +5634,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Timestamp;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5642,7 +5642,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>Port;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5650,7 +5650,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Atom;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5658,7 +5658,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">16usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>i32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -5939,7 +5939,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>xproto::Visualid;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -5947,7 +5947,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -6011,7 +6011,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>Port;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6019,7 +6019,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6027,7 +6027,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">6usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6035,7 +6035,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6043,7 +6043,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">10usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, Type&gt;(val)
         }
     }
@@ -6291,7 +6291,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>Encoding;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6299,7 +6299,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6307,7 +6307,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">6usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6315,7 +6315,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6323,7 +6323,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>Rational;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6551,7 +6551,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6559,7 +6559,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6567,7 +6567,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">6usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6575,7 +6575,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6583,7 +6583,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6833,7 +6833,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, AttributeFlag&gt;(val)
         }
     }
@@ -6842,7 +6842,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>i32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6850,7 +6850,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>i32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -6858,7 +6858,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7140,7 +7140,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7148,7 +7148,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, ImageFormatInfoType&gt;(val)
         }
     }
@@ -7157,7 +7157,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">5usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, xproto::ImageOrder&gt;(val)
         }
     }
@@ -7174,7 +7174,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">24usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7182,7 +7182,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">25usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7190,7 +7190,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">28usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7198,7 +7198,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">32usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7206,7 +7206,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">36usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7214,7 +7214,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">40usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7222,7 +7222,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">44usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, ImageFormatInfoFormat&gt;(val)
         }
     }
@@ -7231,7 +7231,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">48usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7239,7 +7239,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">52usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7247,7 +7247,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">56usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7255,7 +7255,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">60usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7263,7 +7263,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">64usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7271,7 +7271,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">68usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7279,7 +7279,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">72usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7287,7 +7287,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">76usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7295,7 +7295,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">80usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7311,7 +7311,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">116usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, ScanlineOrder&gt;(val)
         }
     }
@@ -7425,7 +7425,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7433,7 +7433,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7441,7 +7441,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7449,7 +7449,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7457,7 +7457,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">10usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -7648,7 +7648,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7656,7 +7656,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7664,7 +7664,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7672,7 +7672,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7879,7 +7879,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7887,7 +7887,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7895,7 +7895,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -7903,7 +7903,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8088,7 +8088,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8096,7 +8096,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">1usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            <span class="kw">let </span>val = base::value_from_ptr(ptr) <span class="kw">as </span>u32;
+            <span class="kw">let </span>val = ptr.read_unaligned() <span class="kw">as </span>u32;
             std::mem::transmute::&lt;u32, GrabPortStatus&gt;(val)
         }
     }
@@ -8105,7 +8105,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8113,7 +8113,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -8805,7 +8805,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8813,7 +8813,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8821,7 +8821,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8829,7 +8829,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -8837,7 +8837,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">10usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -9077,7 +9077,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9085,7 +9085,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9093,7 +9093,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9101,7 +9101,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>i32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 }
@@ -9298,7 +9298,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9306,7 +9306,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9314,7 +9314,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9322,7 +9322,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9330,7 +9330,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9536,7 +9536,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9544,7 +9544,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9552,7 +9552,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9560,7 +9560,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9770,7 +9770,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">0usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u8;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9778,7 +9778,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">2usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9786,7 +9786,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">4usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9794,7 +9794,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">8usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9802,7 +9802,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">12usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u32;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9810,7 +9810,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">16usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
@@ -9818,7 +9818,7 @@
         <span class="kw">unsafe </span>{
             <span class="kw">let </span>offset = <span class="number">18usize</span>;
             <span class="kw">let </span>ptr = <span class="self">self</span>.wire_ptr().add(offset) <span class="kw">as </span><span class="kw-2">*const </span>u16;
-            base::value_from_ptr(ptr)
+            ptr.read_unaligned()
         }
     }
 
