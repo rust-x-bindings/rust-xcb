@@ -5,7 +5,7 @@ Rust-XCB uses under the hood the core XCB functions to connect and communicate
 with the X server.
 
 __Documentation__:
-https://rust-x-bindings.github.io/rust-xcb/xcb/
+https://docs.rs/xcb/latest/xcb/
 
 Rust-XCB is constituted of the following components:
  - the core library
