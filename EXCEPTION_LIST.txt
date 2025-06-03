@@ -10,6 +10,7 @@ An exception is a difference of code generation based on hard-coded name.
 - randr::NotifyEvent::new: sub_code is inferred from u variant (cg/event.rs)
 - randr::NotifyEvent::u: variant inferred from sub_code (handle_randr_notify_data in cg/struct.rs)
 - xkb unions have a special treatment, the variant is inferred from a type field, hidden to the user (cg/union.rs)
+- NotifyEvent::raw_level, NotifyEvent::more, and NotifyEvent::level are manually implemented to handle the level byte with a continuation flag and map it to ReportLevel variants (src/lib.rs)
 - xinput::Device is faked from DeviceId and is defined in lib.rs (search for "xinput" in cg folder)
 - specific documentation for xinput::InputInfoInfo::Button (cg/switch.rs)
 - A small part of the XML definitions is hand edited to make the code generation a lot easier.

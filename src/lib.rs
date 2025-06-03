@@ -502,6 +502,36 @@ pub mod damage {
     //!
     //! Accessible with the `damage` cargo feature.
     include!(concat!(env!("OUT_DIR"), "/damage.rs"));
+
+    impl NotifyEvent {
+        /// Returns the raw level/continuation byte (2nd byte of the on-wire structure).
+        fn raw_level(&self) -> u8 {
+            // level / continuation byte is the 2nd byte of the on-wire structure
+            unsafe { std::ptr::read_unaligned(self.wire_ptr().add(1) as *const u8) }
+        }
+
+        /// Returns `true` when the server indicates that more
+        /// `NotifyEvent`s belonging to the same logical notification
+        /// follow this one (bit 7 of the level byte is set).
+        pub fn more(&self) -> bool {
+            self.raw_level() & 0x80 != 0
+        }
+
+        /// Return the `ReportLevel` of the event.
+        /// Only the lower 7 bits are considered, the 8th bit is a continuation flag.
+        pub fn level(&self) -> ReportLevel {
+            match (self.raw_level() & 0x7F) as u32 {
+                0 => ReportLevel::RawRectangles,
+                1 => ReportLevel::DeltaRectangles,
+                2 => ReportLevel::BoundingBox,
+                3 => ReportLevel::NonEmpty,
+                _ => unimplemented!(
+                    "unknown damage::ReportLevel value {}",
+                    self.raw_level() & 0x7F
+                ),
+            }
+        }
+    }
 }
 
 #[cfg(feature = "dpms")]

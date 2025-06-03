@@ -1556,6 +1556,15 @@ impl CodeGen {
         fields: &[Field],
     ) -> io::Result<()> {
         for f in fields {
+            /* ---- skip hand-coded damage::NotifyEvent::level() ---- */
+            if self.xcb_mod == "damage"
+                && struct_rs_typ == "NotifyEvent"
+                && matches!(f, Field::Field { name, .. } if name == "level")
+            {
+                // accessor implemented manually in lib.rs, do not generate it here
+                continue;
+            }
+            /* ------------------------------------------------------ */
             if field_is_fd(f) {
                 // fd fields are handled directly in request.rs
                 continue;
