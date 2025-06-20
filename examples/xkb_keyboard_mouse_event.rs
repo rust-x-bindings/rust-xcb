@@ -196,13 +196,13 @@ fn main() -> xcb::Result<()> {
                 }
             }
             xcb::Event::X(x::Event::KeyRelease(key_event)) => {
-                print_key_event(&key_event, false, last_xkb_state_event.as_ref());
+                print_key_event(key_event.as_ref(), false, last_xkb_state_event.as_ref());
             }
             xcb::Event::X(x::Event::ButtonPress(button_event)) => {
                 print_button_event(&button_event, true, last_xkb_state_event.as_ref());
             }
             xcb::Event::X(x::Event::ButtonRelease(button_event)) => {
-                print_button_event(&button_event, false, last_xkb_state_event.as_ref());
+                print_button_event(button_event.as_ref(), false, last_xkb_state_event.as_ref());
             }
             xcb::Event::X(x::Event::MotionNotify(motion_event)) => {
                 let winid = motion_event.event().resource_id();
