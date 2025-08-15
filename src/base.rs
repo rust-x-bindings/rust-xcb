@@ -883,7 +883,6 @@ impl Connection {
         conn.has_error().map(|_| conn)
     }
 
-
     /// Connects to the X server with an open socket file descriptor and optional authentification info.
     ///
     /// Connects to an X server, given the open socket fd and the
