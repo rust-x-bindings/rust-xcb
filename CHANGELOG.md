@@ -5,8 +5,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased] -  - various authors
+
+## [1.6.0] - 2025-08-15 - various authors
 ### Added
  - export well-known RandR output property names, this time for real
+
+### Fixed
+ - fixing further unalignemnt issues (#277)
+ - hand-writen `damage::ReportLevel` enum to handle the DamageNotifyMore bit (#280)
+ - fix unsound API `xcb::Connection::connect_to_fd*` (#283)
 
 ## [1.5.0] - 2024-11-09 - various authors
 ### Added
