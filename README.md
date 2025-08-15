@@ -1,3 +1,7 @@
+
+![Crates.io Version](https://img.shields.io/crates/v/xcb)
+![docs.rs](https://img.shields.io/docsrs/xcb)
+
 # Rust XCB
 
 Rust-XCB is a safe Rust interface to [XCB](http://xcb.freedesktop.org).
