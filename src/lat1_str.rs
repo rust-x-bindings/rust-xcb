@@ -72,7 +72,7 @@ impl Lat1Str {
     ///
     /// `Cow::Borrowed` is returned if `str` contains only ASCII,
     /// otherwise, a conversion from UTF-8 is performed and `Cow::Owned` is returned.
-    pub fn from_utf8(str: &str) -> Cow<Lat1Str> {
+    pub fn from_utf8(str: &str) -> Cow<'_, Lat1Str> {
         if str.is_ascii() {
             Cow::Borrowed(Lat1Str::from_bytes(str.as_bytes()))
         } else {
@@ -126,7 +126,7 @@ impl Lat1Str {
     ///
     /// `Cow::Borrowed` is returned if the string is pure ASCII,
     /// otherwise a conversion to UTF-8 is performed and `Cow::Owned` is returned.
-    pub fn to_utf8(&self) -> Cow<str> {
+    pub fn to_utf8(&self) -> Cow<'_, str> {
         if self.is_ascii() {
             Cow::Borrowed(unsafe { self.as_ascii_unchecked() })
         } else {
