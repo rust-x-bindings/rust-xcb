@@ -2197,7 +2197,7 @@ impl CodeGen {
                     }
                     writeln!(
                         out,
-                        "    pub fn {}(&self{}) -> {}Iterator {{",
+                        "    pub fn {}(&self{}) -> {}Iterator<'_> {{",
                         name, params, q_rs_typ
                     )?;
                     writeln!(out, "        unsafe {{")?;
