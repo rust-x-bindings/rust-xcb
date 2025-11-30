@@ -56,7 +56,7 @@ pub const XlibOwnsEventQueue: XEventQueueOwner = 0;
 /// This item is behind the `xlib_xcb` cargo feature.
 pub const XCBOwnsEventQueue: XEventQueueOwner = 1;
 
-#[cfg(feature = "xlib_xcb")]
+#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
 #[link(name = "X11-xcb")]
 extern "C" {
     /// Get an XCB connection from the `xlib::Display`.
