@@ -1105,7 +1105,7 @@ impl Connection {
     /// the resolution of events and errors in these extensions.
     ///
     /// # Panics
-    /// Panics if feature dyn is active and libraries were not loaded.
+    /// Panics if feature dl is active and libraries were not loaded.
     /// Panics if the connection is null or in error state.
     /// Panics if one of the mandatory extension is not present.
     ///
@@ -1168,7 +1168,7 @@ impl Connection {
     /// This function is behind the `xlib_xcb` cargo feature.
     ///
     /// # Panics
-    /// Panics if feature dyn is active and libraries were not loaded.
+    /// Panics if features dl or xlib_xcb_dl are active and libraries were not loaded.
     /// Panics if the connection is null or in error state.
     ///
     /// # Safety
