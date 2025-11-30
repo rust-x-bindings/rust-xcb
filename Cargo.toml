@@ -29,11 +29,17 @@ version = "2.19.0"
 optional = true
 features = ["xlib"]
 
+[dependencies.x11-dl]
+version = "2.19.0"
+optional = true
+
 [features]
 default = ["libxcb_v1_14"]
 debug_atom_names = []
 xlib_xcb = ["x11/xlib"]
+xlib_xcb_dl = ["x11-dl"]
 libxcb_v1_14 = []
+dl = []
 
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]

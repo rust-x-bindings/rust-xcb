@@ -35,7 +35,11 @@
 use crate::ffi::xcb_connection_t;
 use libc::c_uint;
 
+#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
 use x11::xlib;
+
+#[cfg(feature = "xlib_xcb_dl")]
+use x11_dl::xlib;
 
 /// Type for [XSetEventQueueOwner] owner parameter
 ///
@@ -52,6 +56,7 @@ pub const XlibOwnsEventQueue: XEventQueueOwner = 0;
 /// This item is behind the `xlib_xcb` cargo feature.
 pub const XCBOwnsEventQueue: XEventQueueOwner = 1;
 
+#[cfg(feature = "xlib_xcb")]
 #[link(name = "X11-xcb")]
 extern "C" {
     /// Get an XCB connection from the `xlib::Display`.

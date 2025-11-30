@@ -1,7 +1,8 @@
-use crate::AuthInfo;
-
 use super::ext::*;
 use libc::{c_char, c_int, c_uint, c_void};
+
+#[cfg(feature = "dl")]
+use crate::ffi::dl::XcbLib;
 
 /// Current protocol version
 pub const X_PROTOCOL: u32 = 11;
@@ -114,6 +115,7 @@ pub(crate) struct xcb_auth_info_t {
     pub data: *mut c_char,
 }
 
+#[cfg(not(feature = "dl"))]
 #[link(name = "xcb")]
 extern "C" {
     pub(crate) fn xcb_flush(c: *mut xcb_connection_t) -> c_int;

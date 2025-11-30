@@ -55,6 +55,7 @@ pub(crate) enum xcb_send_request_flags_t {
     XCB_REQUEST_REPLY_FDS = 1 << 3,
 }
 
+#[cfg(not(feature = "dl"))]
 #[link(name = "xcb")]
 extern "C" {
     pub(crate) fn xcb_send_request(
