@@ -512,13 +512,12 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 
     let success = unsafe {
         #[cfg(feature = "dl")]
-        let xcb_parse_display = {
-            let lib = crate::ffi::dl::XcbLib::open();
-            match lib {
-                Ok(lib) => lib.xcb_parse_display,
-                Err(_) => {
-                    return None;
-                }
+        let lib = crate::ffi::dl::XcbLib::open();
+        #[cfg(feature = "dl")]
+        let xcb_parse_display = match lib {
+            Ok(lib) => lib.xcb_parse_display,
+            Err(_) => {
+                return None;
             }
         };
         xcb_parse_display(
@@ -547,6 +546,20 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
     } else {
         None
     }
+}
+
+/// Unloads any cached dynamic libraries loaded by this crate.
+/// Doesn't prevent another open of the libraries, so should be used
+/// after no more calls into this crate occurs, if needed.
+#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+pub fn unload_libraries() -> result::Result<(), OpenError> {
+    unsafe {
+        #[cfg(feature = "dl")]
+        crate::ffi::dl::XcbLib::unload()?;
+        #[cfg(feature = "xlib_xcb_dl")]
+        crate::ffi::dl::XlibXcbLib::unload()?;
+    }
+    Ok(())
 }
 
 /// A struct that serve as an identifier for internal special queue in XCB
@@ -731,7 +744,7 @@ pub struct Connection {
     dbg_atom_names: bool,
 
     #[cfg(feature = "dl")]
-    pub(crate) lib: &'static XcbLib,
+    pub(crate) lib: XcbLib,
 }
 
 unsafe impl Send for Connection {}
@@ -825,20 +838,19 @@ impl Connection {
     #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
     pub fn connect_with_xlib_display() -> ConnResult<(Connection, i32)> {
         #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xopen_display = xlib::XOpenDisplay;
-        #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xdefault_screen = xlib::XDefaultScreen;
+        let (xopen_display, xdefault_screen, xget_xcbconnection) =
+            (xlib::XOpenDisplay, xlib::XDefaultScreen, XGetXCBConnection);
         #[cfg(feature = "xlib_xcb_dl")]
-        let (xopen_display, xdefault_screen) = {
-            let lib = xlib::Xlib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
-            (lib.XOpenDisplay, lib.XDefaultScreen)
-        };
-        #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xget_xcbconnection = XGetXCBConnection;
-        #[cfg(feature = "xlib_xcb_dl")]
-        let xget_xcbconnection = {
-            let lib = XlibXcbLib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
-            lib.XGetXCBConnection
+        let (xopen_display, xdefault_screen, _xlib_lib, xget_xcbconnection, _xlib_xcb_lib) = {
+            let xlib_lib = xlib::Xlib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
+            let xlib_xcb_lib = XlibXcbLib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
+            (
+                xlib_lib.XOpenDisplay,
+                xlib_lib.XDefaultScreen,
+                xlib_lib,
+                xlib_xcb_lib.XGetXCBConnection,
+                xlib_xcb_lib,
+            )
         };
         unsafe {
             let dpy = xopen_display(ptr::null());
@@ -874,20 +886,19 @@ impl Connection {
         optional: &[Extension],
     ) -> ConnResult<(Connection, i32)> {
         #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xopen_display = xlib::XOpenDisplay;
-        #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xdefault_screen = xlib::XDefaultScreen;
+        let (xopen_display, xdefault_screen, xget_xcbconnection) =
+            (xlib::XOpenDisplay, xlib::XDefaultScreen, XGetXCBConnection);
         #[cfg(feature = "xlib_xcb_dl")]
-        let (xopen_display, xdefault_screen) = {
-            let lib = xlib::Xlib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
-            (lib.XOpenDisplay, lib.XDefaultScreen)
-        };
-        #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-        let xget_xcbconnection = XGetXCBConnection;
-        #[cfg(feature = "xlib_xcb_dl")]
-        let xget_xcbconnection = {
-            let lib = XlibXcbLib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
-            lib.XGetXCBConnection
+        let (xopen_display, xdefault_screen, _xlib_lib, xget_xcbconnection, _xlib_xcb_lib) = {
+            let xlib_lib = xlib::Xlib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
+            let xlib_xcb_lib = XlibXcbLib::open().map_err(|_| ConnError::LibrariesNotLoaded)?;
+            (
+                xlib_lib.XOpenDisplay,
+                xlib_lib.XDefaultScreen,
+                xlib_lib,
+                xlib_xcb_lib.XGetXCBConnection,
+                xlib_xcb_lib,
+            )
         };
         unsafe {
             let dpy = xopen_display(ptr::null());
@@ -1183,9 +1194,9 @@ impl Connection {
         #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
         let xget_xcbconnection = XGetXCBConnection;
         #[cfg(feature = "xlib_xcb_dl")]
-        let xget_xcbconnection = {
+        let (xget_xcbconnection, _lib) = {
             let lib = XlibXcbLib::open().expect("X11-xcb library not loaded");
-            lib.XGetXCBConnection
+            (lib.XGetXCBConnection, lib)
         };
         let c = xget_xcbconnection(dpy);
 
@@ -2201,9 +2212,9 @@ impl Drop for Connection {
                 #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
                 let xclose_display = xlib::XCloseDisplay;
                 #[cfg(feature = "xlib_xcb_dl")]
-                let xclose_display = {
+                let (xclose_display, _lib) = {
                     let lib = xlib::Xlib::open().expect("X11-xcb library not loaded");
-                    lib.XCloseDisplay
+                    (lib.XCloseDisplay, lib)
                 };
                 xclose_display(self.dpy);
             }

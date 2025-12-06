@@ -37,7 +37,7 @@ use std::{
     ffi::{CStr, CString},
     fmt::{Display, Formatter},
     path::Path,
-    sync::OnceLock,
+    sync::PoisonError,
 };
 
 use libc::{c_char, c_int, c_uint, c_void, iovec};
@@ -53,11 +53,12 @@ use crate::ffi::{
 pub enum OpenError {
     Library(String),
     Symbol(String),
+    InternalError,
 }
 
 impl Display for OpenError {
     fn fmt(&self, f: &mut Formatter) -> Result<(), ::std::fmt::Error> {
-        let detail = match self {
+        let detail: &str = match self {
             OpenError::Library(detail) => {
                 f.write_str("Library")?;
                 detail
@@ -66,6 +67,7 @@ impl Display for OpenError {
                 f.write_str("Symbol")?;
                 detail
             }
+            OpenError::InternalError => "",
         };
         if !detail.is_empty() {
             f.write_fmt(format_args!(" ({})", detail))?;
@@ -76,9 +78,15 @@ impl Display for OpenError {
 
 impl Error for OpenError {}
 
+impl<T> From<PoisonError<T>> for OpenError {
+    fn from(_: PoisonError<T>) -> Self {
+        OpenError::InternalError
+    }
+}
+
 /// Mostly taken from x11-dl.
 ///
-/// Wrapper around a dlopen handle so we can use it with OnceLock.
+/// Wrapper around a dlopen handle so we can have sync, send and drop.
 pub struct DynamicLibrary {
     handle: *mut c_void,
 }
@@ -109,9 +117,7 @@ impl DynamicLibrary {
                 return Err(OpenError::Library(detail));
             }
 
-            Ok(DynamicLibrary {
-                handle: handle as *mut c_void,
-            })
+            Ok(DynamicLibrary { handle })
         }
     }
 
@@ -120,12 +126,8 @@ impl DynamicLibrary {
 
         for name in names.iter() {
             match DynamicLibrary::open(name) {
-                Ok(lib) => {
-                    return Ok(lib);
-                }
-                Err(err) => {
-                    msgs.push(format!("{}", err));
-                }
+                Ok(lib) => return Ok(lib),
+                Err(err) => msgs.push(format!("{}", err)),
             }
         }
 
@@ -184,9 +186,14 @@ unsafe impl Sync for DynamicLibrary {}
 
 #[cfg(feature = "dl")]
 mod dl_impl {
+    use std::sync::{Arc, RwLock};
+
     use super::*;
 
+    #[derive(Clone)]
     pub struct XcbLib {
+        lib: Arc<DynamicLibrary>,
+
         pub xcb_flush: unsafe extern "C" fn(c: *mut xcb_connection_t) -> c_int,
         pub xcb_get_maximum_request_length: unsafe extern "C" fn(c: *mut xcb_connection_t) -> u32,
         pub xcb_prefetch_maximum_request_length:
@@ -325,107 +332,116 @@ mod dl_impl {
         ) -> *mut c_int,
     }
 
-    impl XcbLib {
-        pub fn open() -> Result<&'static XcbLib, OpenError> {
-            static CACHED: OnceLock<Result<(DynamicLibrary, XcbLib), OpenError>> = OnceLock::new();
-            let cached = CACHED.get_or_init(|| {
-                unsafe {
-                    let lib = DynamicLibrary::open_multi(&["libxcb.so.1", "libxcb.so"])?;
-                    let funcs = XcbLib {
-                        xcb_flush: ::std::mem::transmute(lib.symbol("xcb_flush")?),
-                        xcb_get_maximum_request_length: ::std::mem::transmute(
-                            lib.symbol("xcb_get_maximum_request_length")?,
-                        ),
-                        xcb_prefetch_maximum_request_length: ::std::mem::transmute(
-                            lib.symbol("xcb_prefetch_maximum_request_length")?,
-                        ),
-                        xcb_wait_for_event: ::std::mem::transmute(
-                            lib.symbol("xcb_wait_for_event")?,
-                        ),
-                        xcb_poll_for_event: ::std::mem::transmute(
-                            lib.symbol("xcb_poll_for_event")?,
-                        ),
-                        xcb_poll_for_queued_event: ::std::mem::transmute(
-                            lib.symbol("xcb_poll_for_queued_event")?,
-                        ),
-                        xcb_poll_for_special_event: ::std::mem::transmute(
-                            lib.symbol("xcb_poll_for_special_event")?,
-                        ),
-                        xcb_wait_for_special_event: ::std::mem::transmute(
-                            lib.symbol("xcb_wait_for_special_event")?,
-                        ),
-                        xcb_register_for_special_xge: ::std::mem::transmute(
-                            lib.symbol("xcb_register_for_special_xge")?,
-                        ),
-                        xcb_unregister_for_special_event: ::std::mem::transmute(
-                            lib.symbol("xcb_unregister_for_special_event")?,
-                        ),
-                        xcb_request_check: ::std::mem::transmute(lib.symbol("xcb_request_check")?),
-                        xcb_discard_reply: ::std::mem::transmute(lib.symbol("xcb_discard_reply")?),
-                        xcb_discard_reply64: ::std::mem::transmute(
-                            lib.symbol("xcb_discard_reply64")?,
-                        ),
-                        xcb_get_extension_data: ::std::mem::transmute(
-                            lib.symbol("xcb_get_extension_data")?,
-                        ),
-                        xcb_prefetch_extension_data: ::std::mem::transmute(
-                            lib.symbol("xcb_prefetch_extension_data")?,
-                        ),
-                        xcb_get_setup: ::std::mem::transmute(lib.symbol("xcb_get_setup")?),
-                        xcb_get_file_descriptor: ::std::mem::transmute(
-                            lib.symbol("xcb_get_file_descriptor")?,
-                        ),
-                        xcb_connection_has_error: ::std::mem::transmute(
-                            lib.symbol("xcb_connection_has_error")?,
-                        ),
-                        xcb_connect_to_fd: ::std::mem::transmute(lib.symbol("xcb_connect_to_fd")?),
-                        xcb_disconnect: ::std::mem::transmute(lib.symbol("xcb_disconnect")?),
-                        xcb_parse_display: ::std::mem::transmute(lib.symbol("xcb_parse_display")?),
-                        xcb_connect: ::std::mem::transmute(lib.symbol("xcb_connect")?),
-                        xcb_connect_to_display_with_auth_info: ::std::mem::transmute(
-                            lib.symbol("xcb_connect_to_display_with_auth_info")?,
-                        ),
-                        xcb_generate_id: ::std::mem::transmute(lib.symbol("xcb_generate_id")?),
-                        #[cfg(feature = "libxcb_v1_14")]
-                        xcb_total_read: ::std::mem::transmute(lib.symbol("xcb_total_read")?),
-                        #[cfg(feature = "libxcb_v1_14")]
-                        xcb_total_written: ::std::mem::transmute(lib.symbol("xcb_total_written")?),
+    static CACHED: RwLock<Option<XcbLib>> = RwLock::new(None);
 
-                        // ext
-                        xcb_send_request: ::std::mem::transmute(lib.symbol("xcb_send_request")?),
-                        xcb_send_request_with_fds: ::std::mem::transmute(
-                            lib.symbol("xcb_send_request_with_fds")?,
-                        ),
-                        xcb_send_request64: ::std::mem::transmute(
-                            lib.symbol("xcb_send_request64")?,
-                        ),
-                        xcb_send_request_with_fds64: ::std::mem::transmute(
-                            lib.symbol("xcb_send_request_with_fds64")?,
-                        ),
-                        xcb_send_fd: ::std::mem::transmute(lib.symbol("xcb_send_fd")?),
-                        xcb_take_socket: ::std::mem::transmute(lib.symbol("xcb_take_socket")?),
-                        xcb_writev: ::std::mem::transmute(lib.symbol("xcb_writev")?),
-                        xcb_wait_for_reply: ::std::mem::transmute(
-                            lib.symbol("xcb_wait_for_reply")?,
-                        ),
-                        xcb_wait_for_reply64: ::std::mem::transmute(
-                            lib.symbol("xcb_wait_for_reply64")?,
-                        ),
-                        xcb_poll_for_reply: ::std::mem::transmute(
-                            lib.symbol("xcb_poll_for_reply")?,
-                        ),
-                        xcb_poll_for_reply64: ::std::mem::transmute(
-                            lib.symbol("xcb_poll_for_reply64")?,
-                        ),
-                        xcb_get_reply_fds: ::std::mem::transmute(lib.symbol("xcb_get_reply_fds")?),
-                    };
-                    Ok::<(DynamicLibrary, XcbLib), OpenError>((lib, funcs))
+    impl XcbLib {
+        pub fn open() -> Result<XcbLib, OpenError> {
+            // Try to read at first, whether the library was already loaded.
+            {
+                let lock = CACHED.read()?;
+                if let Some(lib) = lock.as_ref() {
+                    return Ok(lib.clone());
                 }
-            });
-            match cached {
-                Ok((_, lib)) => Ok(lib),
-                Err(err) => Err(err.clone()),
             }
+
+            let mut lock = CACHED.write()?;
+            // Between the read and write lock, someone might have already loaded the library.
+            if let Some(lib) = lock.as_ref() {
+                return Ok(lib.clone());
+            }
+
+            let lib = Arc::new(DynamicLibrary::open_multi(&["libxcb.so.1", "libxcb.so"])?);
+            let xcb = unsafe {
+                XcbLib {
+                    xcb_flush: ::std::mem::transmute(lib.symbol("xcb_flush")?),
+                    xcb_get_maximum_request_length: ::std::mem::transmute(
+                        lib.symbol("xcb_get_maximum_request_length")?,
+                    ),
+                    xcb_prefetch_maximum_request_length: ::std::mem::transmute(
+                        lib.symbol("xcb_prefetch_maximum_request_length")?,
+                    ),
+                    xcb_wait_for_event: ::std::mem::transmute(lib.symbol("xcb_wait_for_event")?),
+                    xcb_poll_for_event: ::std::mem::transmute(lib.symbol("xcb_poll_for_event")?),
+                    xcb_poll_for_queued_event: ::std::mem::transmute(
+                        lib.symbol("xcb_poll_for_queued_event")?,
+                    ),
+                    xcb_poll_for_special_event: ::std::mem::transmute(
+                        lib.symbol("xcb_poll_for_special_event")?,
+                    ),
+                    xcb_wait_for_special_event: ::std::mem::transmute(
+                        lib.symbol("xcb_wait_for_special_event")?,
+                    ),
+                    xcb_register_for_special_xge: ::std::mem::transmute(
+                        lib.symbol("xcb_register_for_special_xge")?,
+                    ),
+                    xcb_unregister_for_special_event: ::std::mem::transmute(
+                        lib.symbol("xcb_unregister_for_special_event")?,
+                    ),
+                    xcb_request_check: ::std::mem::transmute(lib.symbol("xcb_request_check")?),
+                    xcb_discard_reply: ::std::mem::transmute(lib.symbol("xcb_discard_reply")?),
+                    xcb_discard_reply64: ::std::mem::transmute(lib.symbol("xcb_discard_reply64")?),
+                    xcb_get_extension_data: ::std::mem::transmute(
+                        lib.symbol("xcb_get_extension_data")?,
+                    ),
+                    xcb_prefetch_extension_data: ::std::mem::transmute(
+                        lib.symbol("xcb_prefetch_extension_data")?,
+                    ),
+                    xcb_get_setup: ::std::mem::transmute(lib.symbol("xcb_get_setup")?),
+                    xcb_get_file_descriptor: ::std::mem::transmute(
+                        lib.symbol("xcb_get_file_descriptor")?,
+                    ),
+                    xcb_connection_has_error: ::std::mem::transmute(
+                        lib.symbol("xcb_connection_has_error")?,
+                    ),
+                    xcb_connect_to_fd: ::std::mem::transmute(lib.symbol("xcb_connect_to_fd")?),
+                    xcb_disconnect: ::std::mem::transmute(lib.symbol("xcb_disconnect")?),
+                    xcb_parse_display: ::std::mem::transmute(lib.symbol("xcb_parse_display")?),
+                    xcb_connect: ::std::mem::transmute(lib.symbol("xcb_connect")?),
+                    xcb_connect_to_display_with_auth_info: ::std::mem::transmute(
+                        lib.symbol("xcb_connect_to_display_with_auth_info")?,
+                    ),
+                    xcb_generate_id: ::std::mem::transmute(lib.symbol("xcb_generate_id")?),
+                    #[cfg(feature = "libxcb_v1_14")]
+                    xcb_total_read: ::std::mem::transmute(lib.symbol("xcb_total_read")?),
+                    #[cfg(feature = "libxcb_v1_14")]
+                    xcb_total_written: ::std::mem::transmute(lib.symbol("xcb_total_written")?),
+
+                    // ext
+                    xcb_send_request: ::std::mem::transmute(lib.symbol("xcb_send_request")?),
+                    xcb_send_request_with_fds: ::std::mem::transmute(
+                        lib.symbol("xcb_send_request_with_fds")?,
+                    ),
+                    xcb_send_request64: ::std::mem::transmute(lib.symbol("xcb_send_request64")?),
+                    xcb_send_request_with_fds64: ::std::mem::transmute(
+                        lib.symbol("xcb_send_request_with_fds64")?,
+                    ),
+                    xcb_send_fd: ::std::mem::transmute(lib.symbol("xcb_send_fd")?),
+                    xcb_take_socket: ::std::mem::transmute(lib.symbol("xcb_take_socket")?),
+                    xcb_writev: ::std::mem::transmute(lib.symbol("xcb_writev")?),
+                    xcb_wait_for_reply: ::std::mem::transmute(lib.symbol("xcb_wait_for_reply")?),
+                    xcb_wait_for_reply64: ::std::mem::transmute(
+                        lib.symbol("xcb_wait_for_reply64")?,
+                    ),
+                    xcb_poll_for_reply: ::std::mem::transmute(lib.symbol("xcb_poll_for_reply")?),
+                    xcb_poll_for_reply64: ::std::mem::transmute(
+                        lib.symbol("xcb_poll_for_reply64")?,
+                    ),
+                    xcb_get_reply_fds: ::std::mem::transmute(lib.symbol("xcb_get_reply_fds")?),
+
+                    lib: lib,
+                }
+            };
+            *lock = Some(xcb.clone());
+            Ok(xcb)
+        }
+
+        /// Unloads the current cached instance of the library.
+        /// Doesn't prevent another open of the library and recreation of the cache,
+        /// if they are used again after unloading.
+        pub unsafe fn unload() -> Result<(), OpenError> {
+            let mut lock = CACHED.write()?;
+            *lock = None;
+            Ok(())
         }
     }
 
@@ -455,32 +471,61 @@ pub(crate) use dl_impl::*;
 
 #[cfg(feature = "xlib_xcb_dl")]
 mod xlib_xcb_dl_impl {
+    use std::sync::Arc;
+    use std::sync::RwLock;
+
     use super::*;
     use crate::ffi::XEventQueueOwner;
 
+    #[derive(Clone)]
     pub struct XlibXcbLib {
+        lib: Arc<DynamicLibrary>,
         pub XGetXCBConnection:
             unsafe extern "C" fn(dpy: *mut xlib::Display) -> *mut xcb_connection_t,
         pub XSetEventQueueOwner:
             unsafe extern "C" fn(dpy: *mut xlib::Display, owner: XEventQueueOwner),
     }
 
+    static CACHED: RwLock<Option<XlibXcbLib>> = RwLock::new(None);
+
     impl XlibXcbLib {
-        pub fn open() -> Result<&'static XlibXcbLib, OpenError> {
-            static CACHED: OnceLock<Result<(DynamicLibrary, XlibXcbLib), OpenError>> =
-                OnceLock::new();
-            let cached = CACHED.get_or_init(|| unsafe {
-                let lib = DynamicLibrary::open_multi(&["libX11-xcb.so.1", "libX11-xcb.so"])?;
-                let funcs = XlibXcbLib {
+        pub fn open() -> Result<XlibXcbLib, OpenError> {
+            // Try to read at first, whether the library was already loaded.
+            {
+                let lock = CACHED.read()?;
+                if let Some(lib) = lock.as_ref() {
+                    return Ok(lib.clone());
+                }
+            }
+
+            let mut lock = CACHED.write()?;
+            // Between the read and write lock, someone might have already loaded the library.
+            if let Some(lib) = lock.as_ref() {
+                return Ok(lib.clone());
+            }
+
+            let lib = Arc::new(DynamicLibrary::open_multi(&[
+                "libX11-xcb.so.1",
+                "libX11-xcb.so",
+            ])?);
+            let xcb = unsafe {
+                XlibXcbLib {
                     XGetXCBConnection: ::std::mem::transmute(lib.symbol("XGetXCBConnection")?),
                     XSetEventQueueOwner: ::std::mem::transmute(lib.symbol("XSetEventQueueOwner")?),
-                };
-                Ok::<(DynamicLibrary, XlibXcbLib), OpenError>((lib, funcs))
-            });
-            match cached {
-                Ok((_, lib)) => Ok(lib),
-                Err(err) => Err(err.clone()),
-            }
+                    lib: lib,
+                }
+            };
+            *lock = Some(xcb.clone());
+            Ok(xcb)
+        }
+
+        /// Unloads the current cached instance of the library.
+        /// Doesn't prevent another open of the library and recreation of the cache,
+        /// if they are used again after unloading.
+        pub unsafe fn unload() -> Result<(), OpenError> {
+            let mut lock = CACHED.write()?;
+            *lock = None;
+            Ok(())
         }
     }
 }
