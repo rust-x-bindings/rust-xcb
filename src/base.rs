@@ -6,9 +6,9 @@ use crate::ffi::dl::xcb_get_funcs;
 #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
 use crate::ffi::dl::OpenError;
 #[cfg(feature = "dl")]
-use crate::ffi::dl::XcbLib;
+use crate::ffi::XcbLib;
 #[cfg(feature = "xlib_xcb_dl")]
-use crate::ffi::dl::XlibXcbLib;
+use crate::ffi::XlibXcbLib;
 #[cfg(feature = "present")]
 use crate::present;
 use crate::x::{Atom, Keysym, Setup, Timestamp};
@@ -34,6 +34,9 @@ use std::mem;
 use std::os::fd::{IntoRawFd, OwnedFd};
 use std::os::unix::prelude::{AsRawFd, RawFd};
 use std::ptr;
+#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
+use std::rc::Rc;
 use std::result;
 use std::slice;
 
@@ -512,7 +515,7 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 
     let success = unsafe {
         #[cfg(feature = "dl")]
-        let lib = crate::ffi::dl::XcbLib::open();
+        let lib = crate::ffi::XcbLib::open();
         #[cfg(feature = "dl")]
         let xcb_parse_display = match lib {
             Ok(lib) => lib.xcb_parse_display,
@@ -553,12 +556,10 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 /// after no more calls into this crate occurs, if needed.
 #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
 pub fn unload_libraries() -> result::Result<(), OpenError> {
-    unsafe {
-        #[cfg(feature = "dl")]
-        crate::ffi::dl::XcbLib::unload()?;
-        #[cfg(feature = "xlib_xcb_dl")]
-        crate::ffi::dl::XlibXcbLib::unload()?;
-    }
+    #[cfg(feature = "dl")]
+    crate::ffi::XcbLib::unload()?;
+    #[cfg(feature = "xlib_xcb_dl")]
+    crate::ffi::XlibXcbLib::unload()?;
     Ok(())
 }
 
@@ -716,6 +717,14 @@ impl From<ProtocolError> for Error {
 
 /// The general result type for Rust-XCB.
 pub type Result<T> = result::Result<T, Error>;
+
+#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+pub(crate) struct Libs {
+    #[cfg(feature = "dl")]
+    pub xcb: Rc<XcbLib>,
+    #[cfg(feature = "dl")]
+    pub xlib_xcb: Rc<XlibXcbLib>,
+}
 
 /// `Connection` is the central object of XCB.
 ///

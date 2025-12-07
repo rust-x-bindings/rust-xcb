@@ -337,7 +337,6 @@ pub mod ffi {
     #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
     pub(crate) mod xlib_xcb;
 
-    #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
     pub(crate) mod dl;
 
     pub use base::*;

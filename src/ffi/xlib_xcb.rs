@@ -56,9 +56,19 @@ pub const XlibOwnsEventQueue: XEventQueueOwner = 0;
 /// This item is behind the `xlib_xcb` cargo feature.
 pub const XCBOwnsEventQueue: XEventQueueOwner = 1;
 
-#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-#[link(name = "X11-xcb")]
-extern "C" {
+#[cfg(feature = "xlib_xcb_dl")]
+use super::dl::define_api_dynamic as define_api;
+
+#[cfg(not(feature = "xlib_xcb_dl"))]
+use super::dl::define_api_link as define_api;
+
+define_api! {
+    pub(crate) XlibXcbLib XLIBXCBLIB_CACHE
+    libs: ["libX11-xcb.so.1", "libX11-xcb.so"]
+    link: "X11-xcb"
+
+    functions:
+
     /// Get an XCB connection from the `xlib::Display`.
     ///
     /// This function is behind the `xlib_xcb` cargo feature.

@@ -1,4 +1,6 @@
 use crate::base::{Connection, Reply};
+#[cfg(feature = "dl")]
+use crate::ffi::XcbLib;
 use crate::ffi::{xcb_connection_t, xcb_extension_t};
 #[cfg(not(feature = "dl"))]
 use crate::ffi::{xcb_get_extension_data, xcb_prefetch_extension_data};
