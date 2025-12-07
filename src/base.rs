@@ -735,7 +735,8 @@ pub(crate) struct Libs {
 /// `Connection` is thread safe.
 ///
 /// It internally wraps an `xcb_connection_t` object and
-/// will call `xcb_disconnect` when the `Connection` goes out of scope.
+/// will call `xcb_disconnect` when the `Connection` goes out of scope,
+/// unless the `Connection` was explicitly created using `from_raw_conn_and_extensions_no_drop`.
 pub struct Connection {
     c: *mut xcb_connection_t,
 
@@ -754,6 +755,9 @@ pub struct Connection {
 
     #[cfg(feature = "dl")]
     pub(crate) lib: XcbLib,
+
+    // Whether to call xcb_disconnect() on drop.
+    should_drop: bool,
 }
 
 unsafe impl Send for Connection {}
@@ -1160,6 +1164,58 @@ impl Connection {
             dbg_atom_names,
             #[cfg(feature = "dl")]
             lib: XcbLib::open().expect("xcb library not loaded"),
+            should_drop: true,
+        };
+    }
+
+    /// Builds a new `Connection` object from an available connection and cache the extension data
+    /// Similar to `from_raw_conn_and_extensions` except that `xcb_disconnect` will not be called
+    /// when this `Connection` object goes out of scope.
+    ///
+    /// Mainly useful for using this Connection in conjunction with other xlib libraries
+    /// other than x11/x11-dl, like tiny-xlib.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// # Panics
+    /// Panics if feature dl is active and libraries were not loaded.
+    /// Panics if the connection is null or in error state.
+    /// Panics if one of the mandatory extension is not present.
+    ///
+    /// # Safety
+    /// The `conn` pointer must point to a valid `xcb_connection_t`
+    /// The `conn` pointer must outlive this connection.
+    pub unsafe fn from_raw_conn_and_extensions_no_drop(
+        conn: *mut xcb_connection_t,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> Connection {
+        assert!(!conn.is_null());
+        assert!(check_connection_error(conn).is_ok());
+
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = conn;
+                true
+            } else {
+                false
+            }
+        };
+
+        let ext_data = cache_extensions_data(conn, mandatory, optional);
+
+        return Connection {
+            c: conn,
+            #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
+            dpy: ptr::null_mut(),
+            ext_data,
+            #[cfg(feature = "debug_atom_names")]
+            dbg_atom_names,
+            #[cfg(feature = "dl")]
+            lib: XcbLib::open().expect("xcb library not loaded"),
+            should_drop: false,
         };
     }
 
@@ -1231,6 +1287,7 @@ impl Connection {
             dbg_atom_names,
             #[cfg(feature = "dl")]
             lib: XcbLib::open().expect("xcb library not loaded"),
+            should_drop: true,
         };
     }
 
@@ -2204,28 +2261,30 @@ impl Drop for Connection {
             }
         }
 
-        #[cfg(not(any(feature = "xlib_xcb", feature = "xlib_xcb_dl")))]
-        unsafe {
-            #[cfg(feature = "dl")]
-            xcb_get_conn_funcs!(self, xcb_disconnect);
-            xcb_disconnect(self.c);
-        }
-
-        #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
-        unsafe {
-            if self.dpy.is_null() {
+        if self.should_drop {
+            #[cfg(not(any(feature = "xlib_xcb", feature = "xlib_xcb_dl")))]
+            unsafe {
                 #[cfg(feature = "dl")]
                 xcb_get_conn_funcs!(self, xcb_disconnect);
                 xcb_disconnect(self.c);
-            } else {
-                #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-                let xclose_display = xlib::XCloseDisplay;
-                #[cfg(feature = "xlib_xcb_dl")]
-                let (xclose_display, _lib) = {
-                    let lib = xlib::Xlib::open().expect("X11-xcb library not loaded");
-                    (lib.XCloseDisplay, lib)
-                };
-                xclose_display(self.dpy);
+            }
+
+            #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
+            unsafe {
+                if self.dpy.is_null() {
+                    #[cfg(feature = "dl")]
+                    xcb_get_conn_funcs!(self, xcb_disconnect);
+                    xcb_disconnect(self.c);
+                } else {
+                    #[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
+                    let xclose_display = xlib::XCloseDisplay;
+                    #[cfg(feature = "xlib_xcb_dl")]
+                    let (xclose_display, _lib) = {
+                        let lib = xlib::Xlib::open().expect("X11-xcb library not loaded");
+                        (lib.XCloseDisplay, lib)
+                    };
+                    xclose_display(self.dpy);
+                }
             }
         }
     }
