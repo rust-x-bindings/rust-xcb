@@ -718,14 +718,6 @@ impl From<ProtocolError> for Error {
 /// The general result type for Rust-XCB.
 pub type Result<T> = result::Result<T, Error>;
 
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
-pub(crate) struct Libs {
-    #[cfg(feature = "dl")]
-    pub xcb: Rc<XcbLib>,
-    #[cfg(feature = "dl")]
-    pub xlib_xcb: Rc<XlibXcbLib>,
-}
-
 /// `Connection` is the central object of XCB.
 ///
 /// It handles all communications with the X server.
