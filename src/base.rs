@@ -47,11 +47,10 @@ pub trait Xid {
 pub trait XidNew: Xid {
     /// Build a new X resource
     ///
-    /// # Safety
-    /// res_id must be obtained from `xcb_generate_id`. `0` is also a valid value to create a null resource.
+    /// `res_id` must be obtained from `xcb_generate_id`. `0` is also a valid value to create a null resource.
     /// Users should not use this function directly but rather use
-    /// `Connection::generate_id`
-    unsafe fn new(res_id: u32) -> Self;
+    /// [`Connection::generate_id()`]
+    fn new(res_id: u32) -> Self;
 }
 
 /// Trait for types that own a C allocated pointer and are represented by the data pointed to.
@@ -1249,7 +1248,7 @@ impl Connection {
     /// # }
     /// ```
     pub fn generate_id<T: XidNew>(&self) -> T {
-        unsafe { XidNew::new(xcb_generate_id(self.c)) }
+        XidNew::new(unsafe { xcb_generate_id(self.c) })
     }
 
     /// Forces any buffered output to be written to the server.
