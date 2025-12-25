@@ -680,7 +680,8 @@ pub type Result<T> = result::Result<T, Error>;
 /// `Connection` is thread safe.
 ///
 /// It internally wraps an `xcb_connection_t` object and
-/// will call `xcb_disconnect` when the `Connection` goes out of scope.
+/// will call `xcb_disconnect` when the `Connection` goes out of scope,
+/// unless the `Connection` was explicitly created using `from_raw_conn_and_extensions_no_drop`.
 pub struct Connection {
     c: *mut xcb_connection_t,
 
@@ -696,6 +697,9 @@ pub struct Connection {
     // to print the name of atoms during Debug
     #[cfg(feature = "debug_atom_names")]
     dbg_atom_names: bool,
+
+    // Whether to call xcb_disconnect() on drop.
+    should_drop: bool,
 }
 
 unsafe impl Send for Connection {}
@@ -1044,7 +1048,11 @@ impl Connection {
 
         #[cfg(not(feature = "xlib_xcb"))]
         #[cfg(not(feature = "debug_atom_names"))]
-        return Connection { c: conn, ext_data };
+        return Connection {
+            c: conn,
+            ext_data,
+            should_drop: true,
+        };
 
         #[cfg(not(feature = "xlib_xcb"))]
         #[cfg(feature = "debug_atom_names")]
@@ -1052,6 +1060,7 @@ impl Connection {
             c: conn,
             ext_data,
             dbg_atom_names,
+            should_drop: true,
         };
 
         #[cfg(feature = "xlib_xcb")]
@@ -1060,6 +1069,7 @@ impl Connection {
             c: conn,
             dpy: ptr::null_mut(),
             ext_data,
+            should_drop: true,
         };
 
         #[cfg(feature = "xlib_xcb")]
@@ -1069,6 +1079,56 @@ impl Connection {
             dpy: ptr::null_mut(),
             ext_data,
             dbg_atom_names,
+            should_drop: true,
+        };
+    }
+
+    /// Builds a new `Connection` object from an available connection and cache the extension data
+    /// Similar to `from_raw_conn_and_extensions` except that `xcb_disconnect` will not be called
+    /// when this `Connection` object goes out of scope.
+    ///
+    /// Mainly useful for using this Connection in conjunction with other xlib libraries
+    /// other than x11/x11-dl, like tiny-xlib.
+    ///
+    /// Extension data specified by `mandatory` and `optional` is cached to allow
+    /// the resolution of events and errors in these extensions.
+    ///
+    /// # Panics
+    /// Panics if feature dl is active and libraries were not loaded.
+    /// Panics if the connection is null or in error state.
+    /// Panics if one of the mandatory extension is not present.
+    ///
+    /// # Safety
+    /// The `conn` pointer must point to a valid `xcb_connection_t`
+    /// The `conn` pointer must outlive this connection.
+    pub unsafe fn from_raw_conn_and_extensions_no_drop(
+        conn: *mut xcb_connection_t,
+        mandatory: &[Extension],
+        optional: &[Extension],
+    ) -> Connection {
+        assert!(!conn.is_null());
+        assert!(check_connection_error(conn).is_ok());
+
+        #[cfg(feature = "debug_atom_names")]
+        let dbg_atom_names = {
+            if dan::DAN_CONN.is_null() {
+                dan::DAN_CONN = conn;
+                true
+            } else {
+                false
+            }
+        };
+
+        let ext_data = cache_extensions_data(conn, mandatory, optional);
+
+        return Connection {
+            c: conn,
+            #[cfg(feature = "xlib_xcb")]
+            dpy: ptr::null_mut(),
+            ext_data,
+            #[cfg(feature = "debug_atom_names")]
+            dbg_atom_names,
+            should_drop: false,
         };
     }
 
@@ -1130,6 +1190,7 @@ impl Connection {
             dpy,
             ext_data,
             dbg_atom_names,
+            should_drop: true,
         };
 
         #[cfg(not(feature = "debug_atom_names"))]
@@ -2048,17 +2109,19 @@ impl Drop for Connection {
             }
         }
 
-        #[cfg(not(feature = "xlib_xcb"))]
-        unsafe {
-            xcb_disconnect(self.c);
-        }
-
-        #[cfg(feature = "xlib_xcb")]
-        unsafe {
-            if self.dpy.is_null() {
+        if self.should_drop {
+            #[cfg(not(feature = "xlib_xcb"))]
+            unsafe {
                 xcb_disconnect(self.c);
-            } else {
-                xlib::XCloseDisplay(self.dpy);
+            }
+
+            #[cfg(feature = "xlib_xcb")]
+            unsafe {
+                if self.dpy.is_null() {
+                    xcb_disconnect(self.c);
+                } else {
+                    xlib::XCloseDisplay(self.dpy);
+                }
             }
         }
     }
