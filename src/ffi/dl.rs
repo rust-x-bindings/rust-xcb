@@ -126,11 +126,13 @@ pub(crate) use dl_impl::*;
 #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
 macro_rules! define_api_dynamic {
     (
+        $(#[$smeta:meta])*
         $svis:vis $sname:ident $cache:ident
         libs: [$($lname:literal),+]
         link: $link_name:literal
         functions: $($(#[$meta:meta])* $fvis:vis fn $fname:ident($($farg:ident : $ftype:ty),*$(,)?) $(-> $fret:ty)?);+;
     ) => {
+        $(#[$smeta])*
         #[derive(Clone)]
         $svis struct $sname {
             // By putting the library handle into an Arc we allow this struct to be shareable,
