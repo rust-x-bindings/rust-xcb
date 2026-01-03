@@ -207,6 +207,7 @@ pub(crate) use xcb_get_funcs_expect;
 #[cfg(not(any(feature = "dl", feature = "xlib_xcb_dl")))]
 macro_rules! define_api_link {
     (
+        $(#[$_:meta])*
         $svis:vis $sname:ident $cache:ident
         libs: [$($lname:literal),+]
         link: $link_name:literal
