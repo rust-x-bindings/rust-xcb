@@ -2,30 +2,8 @@ use xcb::ffi::xcb_generic_event_t;
 use xcb::{self, dri2, glx, x};
 use xcb::{Raw, Xid};
 
-#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
 use x11::glx::*;
-#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
 use x11::xlib;
-#[cfg(all(feature = "xlib_xcb", not(feature = "xlib_xcb_dl")))]
-use x11::xlib::*;
-#[cfg(feature = "xlib_xcb_dl")]
-use x11_dl::glx::*;
-#[cfg(feature = "xlib_xcb_dl")]
-use x11_dl::xlib::{self, Xlib};
-
-#[cfg(feature = "xlib_xcb_dl")]
-macro_rules! libfn {
-    ($lib:ident, $name:ident) => {
-        ($lib.$name)
-    };
-}
-
-#[cfg(not(feature = "xlib_xcb_dl"))]
-macro_rules! libfn {
-    ($_:ident, $name:ident) => {
-        $name
-    };
-}
 
 use std::ffi::{CStr, CString};
 use std::os::raw::{c_int, c_void};
@@ -42,11 +20,9 @@ type GlXCreateContextAttribsARBProc = unsafe extern "C" fn(
     attribs: *const c_int,
 ) -> GLXContext;
 
-unsafe fn load_gl_func(#[cfg(feature = "xlib_xcb_dl")] glxlib: &Glx, name: &str) -> *mut c_void {
+unsafe fn load_gl_func(name: &str) -> *mut c_void {
     let cname = CString::new(name).unwrap();
-    let ptr: *mut c_void = std::mem::transmute(libfn!(glxlib, glXGetProcAddress)(
-        cname.as_ptr() as *const u8
-    ));
+    let ptr: *mut c_void = std::mem::transmute(glXGetProcAddress(cname.as_ptr() as *const u8));
     if ptr.is_null() {
         panic!("could not load {}", name);
     }
@@ -79,15 +55,13 @@ unsafe fn check_gl_error() {
 }
 
 fn get_glxfbconfig(
-    #[cfg(feature = "xlib_xcb_dl")] xliblib: &Xlib,
-    #[cfg(feature = "xlib_xcb_dl")] glxlib: &Glx,
     dpy: *mut xlib::Display,
     screen_num: i32,
     visual_attribs: &[i32],
 ) -> GLXFBConfig {
     unsafe {
         let mut fbcount: c_int = 0;
-        let fbcs = libfn!(glxlib, glXChooseFBConfig)(
+        let fbcs = glXChooseFBConfig(
             dpy,
             screen_num,
             visual_attribs.as_ptr(),
@@ -99,24 +73,12 @@ fn get_glxfbconfig(
         }
         // we pick the first from the list
         let fbc = *fbcs;
-        libfn!(xliblib, XFree)(fbcs as *mut c_void);
+        xlib::XFree(fbcs as *mut c_void);
         fbc
     }
 }
 
 fn main() -> xcb::Result<()> {
-    // We use unwrap here, but in a real application when using dynamic loading,
-    // you wouldn't do that. The main reason you'd want to use dynamic loading is
-    // to be able to fall back to other protocols or graphics apis like wayland or vulkan.
-    // It also doesn't make a lot of sense to support both dynamic loading and dynamic linking
-    // like here, you should just choose one and stick to it. Dynamic loading will give you
-    // most flexibility if you later want to implement fallbacks.
-    // We support both here for testing purposes.
-    #[cfg(feature = "xlib_xcb_dl")]
-    let xliblib = Xlib::open().unwrap();
-    #[cfg(feature = "xlib_xcb_dl")]
-    let glxlib = Glx::open().unwrap();
-
     let (conn, screen_num) =
         xcb::Connection::connect_with_xlib_display_and_extensions(&[], &[xcb::Extension::Dri2])?;
 
@@ -129,10 +91,6 @@ fn main() -> xcb::Result<()> {
     assert!(glx_ver.major_version() >= 1 && glx_ver.minor_version() >= 3);
 
     let fbc = get_glxfbconfig(
-        #[cfg(feature = "xlib_xcb_dl")]
-        &xliblib,
-        #[cfg(feature = "xlib_xcb_dl")]
-        &glxlib,
         conn.get_raw_dpy(),
         screen_num,
         &[
@@ -163,7 +121,7 @@ fn main() -> xcb::Result<()> {
     );
 
     let vi_ptr: *mut xlib::XVisualInfo =
-        unsafe { libfn!(glxlib, glXGetVisualFromFBConfig)(conn.get_raw_dpy(), fbc) };
+        unsafe { glXGetVisualFromFBConfig(conn.get_raw_dpy(), fbc) };
     let vi = unsafe { *vi_ptr };
 
     // retrieving a few atoms
@@ -216,7 +174,7 @@ fn main() -> xcb::Result<()> {
     });
 
     unsafe {
-        libfn!(xliblib, XFree)(vi_ptr as *mut c_void);
+        xlib::XFree(vi_ptr as *mut c_void);
     }
 
     let title = "XCB OpenGL";
@@ -240,17 +198,13 @@ fn main() -> xcb::Result<()> {
     conn.check_request(conn.send_request_checked(&x::MapWindow { window: win }))?;
 
     unsafe {
-        libfn!(xliblib, XSync)(conn.get_raw_dpy(), xlib::False);
+        xlib::XSync(conn.get_raw_dpy(), xlib::False);
     }
 
-    let glx_exts = unsafe {
-        CStr::from_ptr(libfn!(glxlib, glXQueryExtensionsString)(
-            conn.get_raw_dpy(),
-            screen_num,
-        ))
-    }
-    .to_str()
-    .unwrap();
+    let glx_exts =
+        unsafe { CStr::from_ptr(glXQueryExtensionsString(conn.get_raw_dpy(), screen_num)) }
+            .to_str()
+            .unwrap();
 
     if !check_glx_extension(&glx_exts, "GLX_ARB_create_context") {
         panic!("could not find GLX extension GLX_ARB_create_context");
@@ -259,23 +213,12 @@ fn main() -> xcb::Result<()> {
     // with glx, no need of a current context is needed to load symbols
     // otherwise we would need to create a temporary legacy GL context
     // for loading symbols (at least glXCreateContextAttribsARB)
-    let glx_create_context_attribs: GlXCreateContextAttribsARBProc = unsafe {
-        std::mem::transmute(load_gl_func(
-            #[cfg(feature = "xlib_xcb_dl")]
-            &glxlib,
-            "glXCreateContextAttribsARB",
-        ))
-    };
+    let glx_create_context_attribs: GlXCreateContextAttribsARBProc =
+        unsafe { std::mem::transmute(load_gl_func("glXCreateContextAttribsARB")) };
 
     // loading all other symbols
     unsafe {
-        gl::load_with(|n| {
-            load_gl_func(
-                #[cfg(feature = "xlib_xcb_dl")]
-                &glxlib,
-                &n,
-            )
-        });
+        gl::load_with(|n| load_gl_func(&n));
     }
 
     if !gl::GenVertexArrays::is_loaded() {
@@ -287,7 +230,7 @@ fn main() -> xcb::Result<()> {
         CTX_ERROR_OCCURED = false;
     }
 
-    let old_handler = unsafe { libfn!(xliblib, XSetErrorHandler)(Some(ctx_error_handler)) };
+    let old_handler = unsafe { xlib::XSetErrorHandler(Some(ctx_error_handler)) };
 
     let context_attribs: [c_int; 5] = [
         GLX_CONTEXT_MAJOR_VERSION_ARB as c_int,
@@ -309,15 +252,15 @@ fn main() -> xcb::Result<()> {
     conn.flush()?;
 
     unsafe {
-        libfn!(xliblib, XSync)(conn.get_raw_dpy(), xlib::False);
-        libfn!(xliblib, XSetErrorHandler)(std::mem::transmute(old_handler));
+        xlib::XSync(conn.get_raw_dpy(), xlib::False);
+        xlib::XSetErrorHandler(std::mem::transmute(old_handler));
     }
 
     if ctx.is_null() || unsafe { CTX_ERROR_OCCURED } {
         panic!("error when creating gl-3.0 context");
     }
 
-    if unsafe { libfn!(glxlib, glXIsDirect)(conn.get_raw_dpy(), ctx) } == 0 {
+    if unsafe { glXIsDirect(conn.get_raw_dpy(), ctx) } == 0 {
         panic!("obtained indirect rendering context")
     }
 
@@ -326,17 +269,13 @@ fn main() -> xcb::Result<()> {
 
         match conn.wait_for_event()? {
             xcb::Event::X(x::Event::Expose(_)) => unsafe {
-                libfn!(glxlib, glXMakeCurrent)(
-                    conn.get_raw_dpy(),
-                    win.resource_id() as xlib::XID,
-                    ctx,
-                );
+                glXMakeCurrent(conn.get_raw_dpy(), win.resource_id() as xlib::XID, ctx);
                 gl::ClearColor(0.5f32, 0.5f32, 1.0f32, 1.0f32);
                 gl::Clear(gl::COLOR_BUFFER_BIT);
                 gl::Flush();
                 check_gl_error();
-                libfn!(glxlib, glXSwapBuffers)(conn.get_raw_dpy(), win.resource_id() as xlib::XID);
-                libfn!(glxlib, glXMakeCurrent)(conn.get_raw_dpy(), 0, ptr::null_mut());
+                glXSwapBuffers(conn.get_raw_dpy(), win.resource_id() as xlib::XID);
+                glXMakeCurrent(conn.get_raw_dpy(), 0, ptr::null_mut());
             },
             xcb::Event::X(x::Event::KeyPress(_ev)) => {}
             xcb::Event::X(x::Event::ClientMessage(ev)) => {
@@ -359,27 +298,17 @@ fn main() -> xcb::Result<()> {
             // and mailing thread starting here:
             // http://lists.freedesktop.org/archives/xcb/2015-November/010556.html
             xcb::Event::Dri2(dri2::Event::BufferSwapComplete(ev)) => unsafe {
-                rewire_event(
-                    #[cfg(feature = "xlib_xcb_dl")]
-                    &xliblib,
-                    &conn,
-                    ev.as_raw(),
-                )
+                rewire_event(&conn, ev.as_raw())
             },
             xcb::Event::Dri2(dri2::Event::InvalidateBuffers(ev)) => unsafe {
-                rewire_event(
-                    #[cfg(feature = "xlib_xcb_dl")]
-                    &xliblib,
-                    &conn,
-                    ev.as_raw(),
-                )
+                rewire_event(&conn, ev.as_raw())
             },
             _ => {}
         }
     }
 
     unsafe {
-        libfn!(glxlib, glXDestroyContext)(conn.get_raw_dpy(), ctx);
+        glXDestroyContext(conn.get_raw_dpy(), ctx);
     }
 
     conn.send_request(&x::UnmapWindow { window: win });
@@ -390,16 +319,12 @@ fn main() -> xcb::Result<()> {
     Ok(())
 }
 
-unsafe fn rewire_event(
-    #[cfg(feature = "xlib_xcb_dl")] xliblib: &Xlib,
-    conn: &xcb::Connection,
-    raw_ev: *mut xcb_generic_event_t,
-) {
+unsafe fn rewire_event(conn: &xcb::Connection, raw_ev: *mut xcb_generic_event_t) {
     let ev_type = ((*raw_ev).response_type & 0x7f) as i32;
 
-    if let Some(proc) = libfn!(xliblib, XESetWireToEvent)(conn.get_raw_dpy(), ev_type, None) {
-        libfn!(xliblib, XESetWireToEvent)(conn.get_raw_dpy(), ev_type, Some(proc));
-        (*raw_ev).sequence = libfn!(xliblib, XLastKnownRequestProcessed)(conn.get_raw_dpy()) as u16;
+    if let Some(proc) = xlib::XESetWireToEvent(conn.get_raw_dpy(), ev_type, None) {
+        xlib::XESetWireToEvent(conn.get_raw_dpy(), ev_type, Some(proc));
+        (*raw_ev).sequence = xlib::XLastKnownRequestProcessed(conn.get_raw_dpy()) as u16;
         let mut dummy: xlib::XEvent = std::mem::zeroed();
         proc(
             conn.get_raw_dpy(),
