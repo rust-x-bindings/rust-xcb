@@ -30,7 +30,7 @@
  * DEALINGS IN THE SOFTWARE.
  */
 
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 mod dl_impl {
     use std::error::Error;
     use std::fmt::{Display, Formatter};
@@ -116,14 +116,14 @@ mod dl_impl {
     pub(crate) use xcb_get_funcs;
 }
 
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 pub(crate) use dl_impl::*;
 
 /// This macro either defines extern functions to link to, or a wrapper around a dynamically loaded library,
 /// depending on whether the crate is build with the "dl" flag or not.
 /// The wrapper struct is shareable (through clone()) and will keep the function pointers alive,
 /// as long as the struct lives.
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 macro_rules! define_api_dynamic {
     (
         $(#[$smeta:meta])*
@@ -189,7 +189,7 @@ macro_rules! define_api_dynamic {
     };
 }
 
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 pub(crate) use define_api_dynamic;
 
 #[cfg(feature = "dl")]
@@ -204,7 +204,7 @@ macro_rules! xcb_get_funcs_expect {
 #[cfg(feature = "dl")]
 pub(crate) use xcb_get_funcs_expect;
 
-#[cfg(not(any(feature = "dl", feature = "xlib_xcb_dl")))]
+#[cfg(not(feature = "dl"))]
 macro_rules! define_api_link {
     (
         $(#[$_:meta])*
@@ -223,5 +223,5 @@ macro_rules! define_api_link {
     };
 }
 
-#[cfg(not(any(feature = "dl", feature = "xlib_xcb_dl")))]
+#[cfg(not(feature = "dl"))]
 pub(crate) use define_api_link;

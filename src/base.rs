@@ -3,7 +3,7 @@ use crate::event::{self, Event};
 use crate::ext::{Extension, ExtensionData};
 #[cfg(feature = "dl")]
 use crate::ffi::dl::xcb_get_funcs;
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 use crate::ffi::dl::OpenError;
 #[cfg(feature = "dl")]
 use crate::ffi::XcbLib;
@@ -34,7 +34,7 @@ use std::mem;
 use std::os::fd::{IntoRawFd, OwnedFd};
 use std::os::unix::prelude::{AsRawFd, RawFd};
 use std::ptr;
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 #[cfg(feature = "dl")]
 use std::rc::Rc;
 use std::result;
@@ -553,7 +553,7 @@ pub fn parse_display(name: &str) -> Option<DisplayInfo> {
 /// Unloads any cached dynamic libraries loaded by this crate.
 /// Doesn't prevent another open of the libraries, so should be used
 /// after no more calls into this crate occurs, if needed.
-#[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+#[cfg(feature = "dl")]
 pub fn unload_libraries() -> result::Result<(), OpenError> {
     #[cfg(feature = "dl")]
     crate::ffi::XcbLib::unload()?;
@@ -620,7 +620,7 @@ pub enum ConnError {
     #[cfg(any(feature = "xlib_xcb", feature = "xlib_xcb_dl"))]
     XOpenDisplay,
     /// Libraries not loaded.
-    #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+    #[cfg(feature = "dl")]
     LibrariesNotLoaded,
 }
 
@@ -644,7 +644,7 @@ impl ConnError {
             ConnError::XOpenDisplay => {
                 "XOpenDisplay failed to open a display. Check the $DISPLAY env var"
             }
-            #[cfg(any(feature = "dl", feature = "xlib_xcb_dl"))]
+            #[cfg(feature = "dl")]
             ConnError::LibrariesNotLoaded => "Libraries are not loaded",
         }
     }
