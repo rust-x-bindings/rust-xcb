@@ -1,7 +1,7 @@
 [package]
 name = "xcb"
 version = "1.6.0"
-authors = [ "Remi Thebault <remi.thebault@gmail.com>" ]
+authors = ["Remi Thebault <remi.thebault@gmail.com>"]
 description = "Rust safe bindings for XCB"
 repository = "https://github.com/rust-x-bindings/rust-xcb"
 documentation = "https://docs.rs/xcb/latest/xcb"
@@ -9,7 +9,13 @@ readme = "README.md"
 keywords = ["xcb", "window", "xlib", "x11", "opengl"]
 license = "MIT"
 build = "build/main.rs"
-exclude = [".github", "examples/todo/*", "gen", "xml/upstream", "xml/upstream_normalized"]
+exclude = [
+    ".github",
+    "examples/todo/*",
+    "gen",
+    "xml/upstream",
+    "xml/upstream_normalized",
+]
 autoexamples = false
 edition = "2018"
 
@@ -38,20 +44,52 @@ optional = true
 [features]
 default = ["libxcb_v1_14"]
 debug_atom_names = []
+dl = ["dep:libloading"]
+libxcb_v1_14 = []
 xlib_xcb = ["x11/xlib"]
 xlib_xcb_dl = ["dl", "dep:x11-dl"]
-libxcb_v1_14 = []
-dl = ["dep:libloading"]
 
-composite = [ "xfixes" ]
-damage = [ "xfixes" ]
+all-extensions = [
+    "composite",
+    "damage",
+    "dpms",
+    "dri2",
+    "dri3",
+    "ge",
+    "glx",
+    "present",
+    "randr",
+    "record",
+    "render",
+    "res",
+    "screensaver",
+    "shape",
+    "shm",
+    "sync",
+    "xevie",
+    "xf86dri",
+    "xf86vidmode",
+    "xfixes",
+    "xinerama",
+    "xinput",
+    "xkb",
+    "xprint",
+    "xselinux",
+    "xtest",
+    "xv",
+    "xvmc",
+]
+
+# Extension features
+composite = ["xfixes"]
+damage = ["xfixes"]
 dpms = []
 dri2 = []
 dri3 = []
 ge = []
 glx = []
-present = [ "render", "xfixes", "sync" ]
-randr = [ "render" ]
+present = ["render", "xfixes", "sync"]
+randr = ["render"]
 record = []
 render = []
 res = []
@@ -62,15 +100,16 @@ sync = []
 xevie = []
 xf86dri = []
 xf86vidmode = []
-xfixes = [ "render", "shape" ]
+xfixes = ["render", "shape"]
 xinerama = []
-xinput = [ "xfixes" ]
+xinput = ["xfixes"]
 xkb = []
 xprint = []
 xselinux = []
 xtest = []
-xv = [ "shm" ]
-xvmc = [ "xv" ]
+xv = ["shm"]
+xvmc = ["xv"]
+
 tiny-xlib = ["dep:tiny-xlib"]
 
 [dev-dependencies]

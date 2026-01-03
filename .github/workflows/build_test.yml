@@ -36,7 +36,13 @@ jobs:
         uses: actions-rs/cargo@v1
         with:
           command: test
-          args: --all-features
+          args: --features all-extensions,xlib_xcb
+
+      - name: Run cargo test (dl)
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --features all-extensions,xlib_xcb_dl
 
       - name: Run cargo doc
         uses: actions-rs/cargo@v1
