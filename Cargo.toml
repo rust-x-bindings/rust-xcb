@@ -1,6 +1,6 @@
 [package]
 name = "xcb"
-version = "1.6.0"
+version = "1.7.0"
 authors = ["Remi Thebault <remi.thebault@gmail.com>"]
 description = "Rust safe bindings for XCB"
 repository = "https://github.com/rust-x-bindings/rust-xcb"
