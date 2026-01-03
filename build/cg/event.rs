@@ -7,6 +7,17 @@ use crate::ir;
 
 use std::io::{self, Write};
 
+impl Event {
+    /// The raw XCB type that is used by the event
+    fn raw_typ(&self) -> &'static str {
+        if self.is_xge {
+            "xcb_ge_generic_event_t"
+        } else {
+            "xcb_generic_event_t"
+        }
+    }
+}
+
 impl CodeGen {
     pub(super) fn resolve_event(
         &mut self,
@@ -215,113 +226,17 @@ impl CodeGen {
             return Ok(());
         }
 
-        for event in &self.events {
-            if event.is_xge && self.xcb_mod == "xproto" {
-                // event GeGeneric is not to be emitted because it is meant
-                // to refer to special extension events (xge events)
-                // rust-xcb handles event in much better way than the C bindings
-                continue;
-            }
+        let events = self
+            .events
+            .iter()
+            .filter(|event| !(event.is_xge && self.xcb_mod == "xproto"));
 
+        for event in events.clone() {
             if let Some(copy_from_rs_typ) = &event.copy_from_rs_typ {
-                writeln!(out)?;
-                if let Some(doc) = &event.doc {
-                    doc.emit(out, 0)?;
-                } else {
-                    writeln!(out, "/// The `{}` event.", event.rs_typ)?;
-                }
-                writeln!(out, "pub type {} = {};", event.rs_typ, copy_from_rs_typ)?;
-                continue;
-            }
-
-            // Event are struct holding a pointer.
-            // They own the data pointed to that must be freed during drop.
-
-            let (trait_impl, raw_typ) = if event.is_xge {
-                ("base::GeEvent", "xcb_ge_generic_event_t")
+                self.emit_event_type_def(out, event, copy_from_rs_typ)?;
             } else {
-                ("base::BaseEvent", "xcb_generic_event_t")
-            };
-
-            writeln!(out)?;
-            if let Some(doc) = &event.doc {
-                doc.emit(out, 0)?;
-            } else {
-                writeln!(out, "/// The `{}` event.", event.rs_typ)?;
+                self.emit_event_struct(out, event)?;
             }
-            writeln!(out, "pub struct {} {{", event.rs_typ)?;
-            writeln!(out, "    raw: *mut {},", raw_typ)?;
-            writeln!(out, "}}")?;
-
-            writeln!(out)?;
-            writeln!(out, "impl base::Raw<{}> for {} {{", raw_typ, event.rs_typ)?;
-            writeln!(
-                out,
-                "    unsafe fn from_raw(raw: *mut {}) -> Self {{ {} {{ raw }} }}",
-                raw_typ, event.rs_typ
-            )?;
-            writeln!(out)?;
-            writeln!(out, "    fn as_raw(&self) -> *mut {} {{", raw_typ)?;
-            writeln!(out, "        self.raw")?;
-            writeln!(out, "    }}")?;
-
-            writeln!(out, "}}")?;
-
-            writeln!(out)?;
-            writeln!(out, "impl {} for {} {{", trait_impl, event.rs_typ)?;
-            if event.is_xge {
-                writeln!(
-                    out,
-                    "    const EXTENSION: ext::Extension = ext::Extension::{};",
-                    self.ext_info.as_ref().unwrap().rs_name
-                )?;
-                writeln!(out)?;
-            } else if let Some(ext_info) = self.ext_info.as_ref() {
-                writeln!(
-                        out,
-                        "    const EXTENSION: std::option::Option<ext::Extension> = Some(ext::Extension::{});",
-                        ext_info.rs_name
-                    )?;
-            } else {
-                writeln!(
-                    out,
-                    "    const EXTENSION: std::option::Option<ext::Extension> = None;"
-                )?;
-            }
-            writeln!(out, "    const NUMBER: u32 = {};", event.number)?;
-
-            writeln!(out, "}}")?;
-
-            writeln!(out)?;
-            writeln!(out, "impl {} {{", event.rs_typ)?;
-
-            if !event.is_xge {
-                // we enable contruction of classic events to pass to SendEvent request
-                self.emit_event_new(out, event)?;
-                writeln!(out)?;
-            }
-
-            writeln!(
-                out,
-                "    fn wire_ptr(&self) -> *const u8 {{ self.raw as *const u8 }}"
-            )?;
-            self.emit_struct_accessors(out, &event.rs_typ, &event.fields)?;
-            writeln!(out, "}}")?;
-
-            self.emit_debug_impl(out, &event.rs_typ, &event.fields)?;
-
-            self.emit_wired_impl(out, &event.rs_typ, event.is_xge, raw_typ)?;
-
-            writeln!(out)?;
-            writeln!(out, "impl Drop for {} {{", event.rs_typ)?;
-            writeln!(out, "    fn drop(&mut self) {{")?;
-            writeln!(out, "        unsafe {{ libc::free(self.raw as *mut _); }}")?;
-            writeln!(out, "    }}")?;
-            writeln!(out, "}}")?;
-
-            writeln!(out)?;
-            writeln!(out, "unsafe impl Send for {} {{}}", event.rs_typ)?;
-            writeln!(out, "unsafe impl Sync for {} {{}}", event.rs_typ)?;
         }
 
         writeln!(out)?;
@@ -336,11 +251,7 @@ impl CodeGen {
         }
         writeln!(out, "#[derive(Debug)]")?;
         writeln!(out, "pub enum Event {{")?;
-        for event in &self.events {
-            if event.is_xge && self.xcb_mod == "xproto" {
-                // same comment as above
-                continue;
-            }
+        for event in events.clone() {
             writeln!(out, "    {}({}),", event.variant, event.rs_typ)?;
         }
         writeln!(out, "}}")?;
@@ -349,11 +260,7 @@ impl CodeGen {
         writeln!(out, "impl Event {{")?;
         writeln!(out, "  pub fn as_raw(&self) -> *mut xcb_generic_event_t {{")?;
         writeln!(out, "    match self {{")?;
-        for event in &self.events {
-            if event.is_xge && self.xcb_mod == "xproto" {
-                // same comment as above
-                continue;
-            }
+        for event in events.clone() {
             if event.is_xge {
                 // We can't emit the different type, but it is "OK" to cast
                 // it as xcb_generic_event_t as the response_type can be
@@ -385,6 +292,180 @@ impl CodeGen {
             self.emit_resolve_wire_ge_event(out)?;
         }
 
+        Ok(())
+    }
+
+    fn emit_event_struct<O: Write>(&self, out: &mut O, event: &Event) -> io::Result<()> {
+        // Event are struct holding a pointer.
+        // They own the data pointed to that must be freed during drop.
+
+        let raw_typ = event.raw_typ();
+
+        let rs_typ = &event.rs_typ;
+
+        writeln!(out)?;
+        if let Some(doc) = &event.doc {
+            doc.emit(out, 0)?;
+        } else {
+            writeln!(out, "/// The `{rs_typ}` event.")?;
+        }
+
+        writeln!(out, "pub struct {rs_typ} {{")?;
+        writeln!(out, "    raw: *mut {raw_typ},")?;
+        writeln!(out, "}}")?;
+        writeln!(out)?;
+        writeln!(out, "impl base::Raw<{raw_typ}> for {rs_typ} {{")?;
+        writeln!(out, "    unsafe fn from_raw(")?;
+        writeln!(out, "        raw: *mut {raw_typ},")?;
+        writeln!(out, "    ) -> Self {{")?;
+        writeln!(out, "        {rs_typ} {{ raw }}")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "    fn as_raw(&self) -> *mut {raw_typ} {{")?;
+        writeln!(out, "        self.raw")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        self.emit_event_trait_impl(out, event)?;
+
+        writeln!(out)?;
+        writeln!(out, "impl {rs_typ} {{")?;
+
+        if !event.is_xge {
+            // we enable contruction of classic events to pass to SendEvent request
+            self.emit_event_new(out, event)?;
+            writeln!(out)?;
+        }
+
+        writeln!(
+            out,
+            "    fn wire_ptr(&self) -> *const u8 {{ self.raw as *const u8 }}"
+        )?;
+        self.emit_struct_accessors(out, &event.rs_typ, &event.fields)?;
+        writeln!(out, "}}")?;
+
+        self.emit_debug_impl(out, &event.rs_typ, &event.fields)?;
+
+        self.emit_wired_impl(out, event)?;
+
+        writeln!(out)?;
+        writeln!(out, "impl Drop for {rs_typ} {{")?;
+        writeln!(out, "    fn drop(&mut self) {{")?;
+        writeln!(out, "        unsafe {{ libc::free(self.raw as *mut _); }}")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "unsafe impl Send for {rs_typ} {{}}")?;
+        writeln!(out, "unsafe impl Sync for {rs_typ} {{}}")?;
+
+        Ok(())
+    }
+
+    fn emit_event_type_def<O: Write>(
+        &self,
+        out: &mut O,
+        event: &Event,
+        copy_from_rs_typ: &str,
+    ) -> io::Result<()> {
+        let rs_typ = &event.rs_typ;
+        let raw_typ = event.raw_typ();
+
+        writeln!(out)?;
+        if let Some(doc) = &event.doc {
+            doc.emit(out, 0)?;
+        } else {
+            writeln!(out, "/// The `{rs_typ}` event.")?;
+        }
+
+        writeln!(out, "#[derive(Debug)]")?;
+        writeln!(out, "pub struct {rs_typ}({copy_from_rs_typ});")?;
+        writeln!(out)?;
+        writeln!(out, "impl base::Raw<{raw_typ}> for {rs_typ} {{")?;
+        writeln!(out, "    unsafe fn from_raw(")?;
+        writeln!(out, "        raw: *mut {raw_typ},")?;
+        writeln!(out, "    ) -> Self {{")?;
+        writeln!(out, "        let copy = {copy_from_rs_typ}::from_raw(raw);")?;
+        writeln!(out, "        Self(copy)")?;
+        writeln!(out, "    }}")?;
+        writeln!(out)?;
+        writeln!(out, "    fn as_raw(&self) -> *mut {raw_typ} {{")?;
+        writeln!(out, "        self.0.as_raw()")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        self.emit_event_trait_impl(out, event)?;
+
+        writeln!(out)?;
+        writeln!(out, "impl {rs_typ} {{")?;
+
+        if !event.is_xge {
+            // we enable contruction of classic events to pass to SendEvent request
+            self.emit_event_new(out, event)?;
+            writeln!(out)?;
+        }
+        writeln!(
+            out,
+            "    fn wire_ptr(&self) -> *const u8 {{ self.0.wire_ptr() }}"
+        )?;
+        self.emit_struct_accessors(out, &event.rs_typ, &event.fields)?;
+        writeln!(out, "}}")?;
+
+        self.emit_wired_impl(out, event)?;
+
+        writeln!(out)?;
+        writeln!(out, "unsafe impl Send for {rs_typ} {{}}")?;
+        writeln!(out, "unsafe impl Sync for {rs_typ} {{}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl From<{copy_from_rs_typ}> for {rs_typ} {{")?;
+        writeln!(out, "    fn from(copy: {copy_from_rs_typ}) -> Self {{")?;
+        writeln!(out, "        Self(copy)")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        writeln!(out)?;
+        writeln!(out, "impl AsRef<{copy_from_rs_typ}> for {rs_typ} {{")?;
+        writeln!(out, "    fn as_ref(&self) -> &{copy_from_rs_typ} {{")?;
+        writeln!(out, "        &self.0")?;
+        writeln!(out, "    }}")?;
+        writeln!(out, "}}")?;
+
+        Ok(())
+    }
+
+    fn emit_event_trait_impl<O: Write>(&self, out: &mut O, event: &Event) -> io::Result<()> {
+        let rs_typ = &event.rs_typ;
+        let trait_impl = if event.is_xge {
+            "base::GeEvent"
+        } else {
+            "base::BaseEvent"
+        };
+
+        writeln!(out, "impl {trait_impl} for {rs_typ} {{")?;
+        if event.is_xge {
+            writeln!(
+                out,
+                "    const EXTENSION: ext::Extension = ext::Extension::{};",
+                self.ext_info.as_ref().unwrap().rs_name
+            )?;
+            writeln!(out)?;
+        } else if let Some(ext_info) = self.ext_info.as_ref() {
+            writeln!(
+                        out,
+                        "    const EXTENSION: std::option::Option<ext::Extension> = Some(ext::Extension::{});",
+                        ext_info.rs_name
+                    )?;
+        } else {
+            writeln!(
+                out,
+                "    const EXTENSION: std::option::Option<ext::Extension> = None;"
+            )?;
+        }
+        writeln!(out, "    const NUMBER: u32 = {};", event.number)?;
+
+        writeln!(out, "}}")?;
         Ok(())
     }
 
@@ -711,17 +792,14 @@ impl CodeGen {
         Ok(())
     }
 
-    fn emit_wired_impl<O: Write>(
-        &self,
-        out: &mut O,
-        rs_typ: &str,
-        is_xge: bool,
-        raw_typ: &str,
-    ) -> io::Result<()> {
+    fn emit_wired_impl<O: Write>(&self, out: &mut O, event: &Event) -> io::Result<()> {
+        let rs_typ = &event.rs_typ;
+        let raw_typ = event.raw_typ();
+
         writeln!(out)?;
         writeln!(out, "impl base::WiredOut for {} {{", rs_typ)?;
         writeln!(out, "{}fn wire_len(&self) -> usize {{", cg::ind(1))?;
-        if is_xge {
+        if event.is_xge {
             writeln!(out, "{}32 + 4 * self.length() as usize", cg::ind(2))?;
         } else {
             writeln!(out, "{}32usize", cg::ind(2))?;
@@ -739,11 +817,18 @@ impl CodeGen {
             "{}debug_assert!(wire_buf.len() >= self.wire_len());",
             cg::ind(2)
         )?;
+        writeln!(out, "{}let raw_slice = unsafe {{ ", cg::ind(2))?;
         writeln!(
             out,
-            "{}let raw_slice = unsafe {{ std::slice::from_raw_parts(self.raw as *const u8, self.wire_len()) }};",
-            cg::ind(2)
+            "{}std::slice::from_raw_parts(self{}.raw as *const u8, self.wire_len())",
+            cg::ind(3),
+            if event.copy_from_rs_typ.is_some() {
+                ".0"
+            } else {
+                ""
+            }
         )?;
+        writeln!(out, "{}}};", cg::ind(2))?;
         writeln!(
             out,
             "{}wire_buf[0 .. self.wire_len()].copy_from_slice(raw_slice);",
@@ -761,9 +846,9 @@ impl CodeGen {
             out,
             "{}unsafe fn compute_wire_len({}ptr: *const u8, _params: ()) -> usize {{",
             cg::ind(1),
-            if is_xge { "" } else { "_" }
+            if event.is_xge { "" } else { "_" }
         )?;
-        if is_xge {
+        if event.is_xge {
             writeln!(
                 out,
                 "{}32 + 4 * (*(ptr.add(4) as *const u32) as usize)",
@@ -798,7 +883,7 @@ impl CodeGen {
             cg::ind(2),
             raw_typ
         )?;
-        writeln!(out, "{}{} {{ raw }}", cg::ind(2), rs_typ)?;
+        writeln!(out, "{}{}::from_raw(raw)", cg::ind(2), rs_typ)?;
         writeln!(out, "{}}}", cg::ind(1))?;
         writeln!(out, "}}")?;
         Ok(())
