@@ -108,6 +108,10 @@ name = "opengl_window"
 required-features = ["glx", "xlib_xcb", "dri2"]
 
 [[example]]
+name = "opengl_window_dl"
+required-features = ["dri2", "glx", "xlib_xcb_dl"]
+
+[[example]]
 name = "present_special_event"
 required-features = ["present", "randr"]
 
