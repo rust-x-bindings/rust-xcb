@@ -39,9 +39,9 @@ optional = true
 default = ["libxcb_v1_14"]
 debug_atom_names = []
 xlib_xcb = ["x11/xlib"]
-xlib_xcb_dl = ["x11-dl", "libloading"]
+xlib_xcb_dl = ["dl", "dep:x11-dl"]
 libxcb_v1_14 = []
-dl = ["libloading"]
+dl = ["dep:libloading"]
 
 composite = [ "xfixes" ]
 damage = [ "xfixes" ]
