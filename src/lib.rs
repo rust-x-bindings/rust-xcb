@@ -401,6 +401,11 @@ mod xproto {
         const FORMAT: u8 = 32;
     }
 
+    impl PropEl for Pixmap {
+        // _XROOTPMAP_ID and ESETROOT_PMAP_ID return a pixmap
+        const FORMAT: u8 = 32;
+    }
+
     include!(concat!(env!("OUT_DIR"), "/xproto.rs"));
 }
 
