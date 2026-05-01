@@ -1844,41 +1844,57 @@ impl CodeGen {
                         cg::ind(1),
                         name
                     )?;
-                    writeln!(out, "{}unsafe {{", cg::ind(2))?;
-                    // #154: format can be zero when len is zero
                     writeln!(
                         out,
-                        "{}let len = {};",
-                        cg::ind(3),
-                        self.build_rs_expr(len_expr, "self.", "()", fields)
-                    )?;
-                    writeln!(out, "{}if len == 0 {{ return &[]; }}", cg::ind(3))?;
-                    writeln!(
-                        out,
-                        "{}assert_eq!(self.format(), P::FORMAT, \"mismatched format of {}::{}::{}\");",
-                        cg::ind(3),
+                        "{}self.try_{}().expect(\"mismatched format of {}::{}::{}\")",
+                        cg::ind(2),
+                        name,
                         self.xcb_mod,
                         struct_rs_typ,
                         name
                     )?;
+                    writeln!(out, "{}}}", cg::ind(1))?;
+
+                    // try_<name> variant
+                    writeln!(out)?;
+                    DocField {
+                        name: name.clone(),
+                        text: format!("Same as [`{name}`](Self::{name}) but returns `None` rather than panicking if format does not match."),
+                    }.emit(out, 1)?;
+                    writeln!(
+                        out,
+                        "{}pub fn try_{}<P: PropEl>(&self) -> Option<&[P]> {{",
+                        cg::ind(1),
+                        name
+                    )?;
+                    // #154: format can be zero when len is zero
+                    writeln!(
+                        out,
+                        "{}let len = {};",
+                        cg::ind(2),
+                        self.build_rs_expr(len_expr, "self.", "()", fields)
+                    )?;
+                    writeln!(out, "{}if len == 0 {{ return Some(&[]); }}", cg::ind(2))?;
+                    writeln!(out, "{}if self.format() != P::FORMAT {{ return None }}", cg::ind(2))?;
                     writeln!(
                         out,
                         "{}let offset = {};",
-                        cg::ind(3),
+                        cg::ind(2),
                         self.build_rs_expr(wire_off, "self.", "()", fields)
                     )?;
                     writeln!(
                         out,
                         "{}let len = len / std::mem::size_of::<P>();",
-                        cg::ind(3)
+                        cg::ind(2)
                     )?;
+                    writeln!(out, "{}Some(unsafe {{", cg::ind(2))?;
                     writeln!(
                         out,
                         "{}let ptr = self.wire_ptr().add(offset) as *const P;",
                         cg::ind(3),
                     )?;
                     writeln!(out, "{}std::slice::from_raw_parts(ptr, len)", cg::ind(3))?;
-                    writeln!(out, "{}}}", cg::ind(2))?;
+                    writeln!(out, "{}}})", cg::ind(2))?;
                     writeln!(out, "{}}}", cg::ind(1))?;
                 }
                 Field::List {
