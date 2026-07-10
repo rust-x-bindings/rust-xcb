@@ -2343,6 +2343,7 @@ unsafe fn is_error(ev: *mut xcb_generic_event_t) -> bool {
 }
 
 bitflags! {
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
     pub(crate) struct RequestFlags: u32 {
         const NONE = 0;
         const CHECKED = 1;
