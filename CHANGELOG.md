@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -  - various authors
 
+## [1.7.1] - 2026-08-09 - Sachin-Bath
+### Fixed
+ - Update dependencies and modernize CI actions (#296)
+
 ## [1.7.0] - 2026-01-03 - to-miz, rtbo
 ### Added
  - support for dynamic library loading (#287)
