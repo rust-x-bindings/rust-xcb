@@ -43,5 +43,7 @@ Base library source code.
 ## `xml/`
 
 The XML definitions from the XCB project.
-These defintions were slightly modified compared to the upstream definitions to ease a part of the code generation.
-The unmodified upstream XML definitions are kept in the `xml/upstream` folder.
+These definitions were slightly modified compared to the upstream definitions to ease a part of the code generation.
+The unmodified upstream XML definitions are kept in the `xml/upstream` folder. 
+
+For more information about the modifications relative to upstream and how to incorporate upstream changes, see [`EXCEPTION_LIST.txt`](EXCEPTION_LIST.txt).
